@@ -13,8 +13,8 @@ const DialysisSession = ({dialysis}) => {
             <p className="text-gray-600 text-xs font-medium text mt-2 mb-2">{dialysis.nurseName}</p>
             <p className="text-gray-600 text-xs font-medium text mt-2 mb-2">{dialysis.startTime}</p>
             <p className="text-gray-600 text-xs font-medium text mt-2 mb-2">{dialysis.endTime}</p>
-            <p className="text-gray-600 text-xs font-medium text mt-2 mb-2 hidden md:block">{dialysis.chair}</p>
-            <p className="text-gray-600 text-xs font-medium mt-2 mb-2  hidden md:block">{dialysis.hall}</p>
+            <p className="text-gray-600 text-xs font-medium text mt-2 mb-2 hidden sm:block">{dialysis.chair}</p>
+            <p className="text-gray-600 text-xs font-medium mt-2 mb-2  hidden sm:block">{dialysis.hall}</p>
         </div>
     </>
    
