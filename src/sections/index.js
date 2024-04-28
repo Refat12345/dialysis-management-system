@@ -1,0 +1,5 @@
+export {default as PaginationComponent} from "./public/PaginationComponent"
+export {default as SideBar} from "./public/SideBar"
+export {default as Cards} from "./medical_center/dashboard/Cards"
+export {default as DialysisSessions} from "./medical_center/dashboard/DialysisSessions"
+export {default as PieCharts} from "./medical_center/dashboard/PieCharts"
