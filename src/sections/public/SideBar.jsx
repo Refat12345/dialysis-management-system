@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import NavItem from "../../components/public/NavItem";
+
+import { SideBarHeader , NavItem } from "../../components/index";
 const SideBar = ({sideBarData}) => {
     const [activeItem, setActiveItem] = useState(sideBarData.items[0].name);
 
@@ -14,9 +15,7 @@ const SideBar = ({sideBarData}) => {
           aria-label="Sidebar"
         >
           <div className="h-full px-3 py-4 overflow-y-auto bg-white shadow-lg dark:bg-gray-800 flex flex-col items-center ">
-            <img className="rounded-full w-11 h-11" src={sideBarData.icon}></img>
-            <p className="font-bold text-xl">{sideBarData.name}</p>
-            {sideBarData.title != "" && <p className="mt- text-base font-normal">{sideBarData.title}</p>}
+            <SideBarHeader header={sideBarData.header}/>
             <ul className="space-y-2 font-medium mt-8 " dir="rtl">
             {sideBarData.items.map(admin=>{
                 return <>
