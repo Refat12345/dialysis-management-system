@@ -1,13 +1,13 @@
-import React from "react"
+import React from "react";
 
-import Dashboard from "./pages/medical-center/dashboard/Dashboard";
+import Dashboard from "./pages/manager_center/dashboard/Dashboard";
 
 const App = () => {
   return (
     <React.StrictMode>
       <Dashboard />
     </React.StrictMode>
-  )
-}
+  );
+};
 
-export default App
+export default App;
