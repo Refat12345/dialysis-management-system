@@ -1,6 +1,7 @@
 import React from "react"
 
-import Dashboard from "./pages/medical-center/Dashboard";
+import Dashboard from "./pages/medical-center/dashboard/Dashboard";
+
 const App = () => {
   return (
     <React.StrictMode>
