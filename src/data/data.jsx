@@ -31,9 +31,11 @@ export const titleSession = {
 
 
 export const adminSideBar = {
-    name:"حسن حبنكة",
-    title:"مدير مركز الطحان الخيري",
-    icon:ManagerIcon,
+    header:{
+        name:"حسن حبنكة",
+        title:"مدير مركز الطحان الخيري",
+        icon:ManagerIcon,
+    },
     items:[
         {name:"الصفحة الرئيسية",icon:HomePageICon},
         {name:"المستخدمين",icon:UsersIcon},
