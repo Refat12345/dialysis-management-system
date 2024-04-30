@@ -6,13 +6,29 @@ export default {
   ],
   theme: {
     extend: {
+
+      fontSize: {
+        customSize: '22px',
+      },
+      width: {
+        'phone': '100px',    
+      },
       colors: {
         primaryColor: 'rgba(244,247,254,255)',
         titleColor:'rgba(49,51,127,255)',
         titleSideColor:'rgba(46, 48, 125, 1)',
         textButtonColor:'rgba(46,48,125,255)',
         bgSideButton:'rgba(229, 215, 185, 1)',
-        bgButtonColor:'rgba(212,183,124,255)'
+        bgButtonColor:'rgba(212,183,124,255)',
+        customBlue: '#eff3ff',
+        kk: '#d4b77d',
+        headerTable:"#e5d7ba",
+        firstRow:"#f6f9ff",
+        secondRow:"#fff9ed",
+        customPurple: '#4a4881',
+        dropmenu:'#f5fafc',
+        cardColor:'#f6f9ff',
+        search:'#eff3ff'
       },
       screens :{
         lg2:"1100px"
