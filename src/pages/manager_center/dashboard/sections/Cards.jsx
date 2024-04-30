@@ -25,12 +25,8 @@ const Cards = () => {
   return (
     <>
       <div className="flex flex-row-reverse">
-        {cardData.map((data) => {
-          return (
-            <>
-              <Card data={data} />
-            </>
-          );
+        {cardData.map((data, index) => {
+          return <Card key={index} data={data} />;
         })}
       </div>
     </>

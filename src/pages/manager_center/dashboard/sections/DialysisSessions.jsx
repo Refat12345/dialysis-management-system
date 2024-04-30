@@ -15,12 +15,12 @@ const DialysisSessions = ({ data }) => {
       </p>
       <div className="p-2 bg-white rounded-lg shadow-lg min-h-custom ">
         <Title title={titleSession.dialysisTitle} />
-        {data.map((array) => {
+        {data.map((array, index) => {
           return (
-            <>
+            <div key={index}>
               <HorizontalLine />
               <DialysisSession dialysis={array} />
-            </>
+            </div>
           );
         })}
       </div>

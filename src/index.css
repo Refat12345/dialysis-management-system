@@ -4,9 +4,8 @@
 .chart-title {
   text-align: right; /* محاذاة النص إلى اليمين */
 }
- :root {
-  --color-primary:rgba(246, 249, 255, 1);
-  ;
+:root {
+  --color-primary: rgba(246, 249, 255, 1);
 }
 /*
 a {
@@ -58,7 +57,5 @@ button:focus-visible {
 } */
 
 body {
-  background-color:rgba(244,247,254,255) ;
+  background-color: rgba(244, 247, 254, 255);
 }
-
-

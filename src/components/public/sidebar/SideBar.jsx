@@ -2,10 +2,12 @@
 import { useState } from "react";
 
 import { SideBarHeader, NavItem } from "../../index";
+
 const SideBar = ({ sideBarData }) => {
   const [activeItem, setActiveItem] = useState(sideBarData.items[0].name);
 
   const handleItemClick = (itemName) => {
+    console.log("Clicked");
     setActiveItem(itemName);
   };
   return (
@@ -17,16 +19,16 @@ const SideBar = ({ sideBarData }) => {
         <div className="h-full px-3 py-4 overflow-y-auto bg-white shadow-lg dark:bg-gray-800 flex flex-col items-center ">
           <SideBarHeader header={sideBarData.header} />
           <ul className="space-y-2 font-medium mt-8 " dir="rtl">
-            {sideBarData.items.map((admin) => {
+            {sideBarData.items.map((admin, index) => {
               return (
-                <>
-                  <NavItem
-                    name={admin.name}
-                    icon={admin.icon}
-                    onClick={() => handleItemClick(admin.name)}
-                    isActive={activeItem === admin.name}
-                  />
-                </>
+                <NavItem
+                  key={index}
+                  href={admin.href}
+                  name={admin.name}
+                  icon={admin.icon}
+                  onClick={() => handleItemClick(admin.name)}
+                  isActive={activeItem === admin.name}
+                />
               );
             })}
           </ul>
