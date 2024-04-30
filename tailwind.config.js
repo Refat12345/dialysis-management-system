@@ -17,8 +17,11 @@ export default {
       screens :{
         lg2:"1100px"
       },
+      width:{
+        '1/10':"10%"
+      },
       minHeight: {
-        'custom': '462px',
+        'custom': '340px',
       }
 },
   },

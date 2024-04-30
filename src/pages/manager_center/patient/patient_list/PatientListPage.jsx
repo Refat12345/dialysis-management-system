@@ -1,10 +1,10 @@
 import { SideBar } from "../../../../components";
-import { adminSideBar } from "../../../../data/data";
+import { managerCenterSideBar } from "../../../../data/data";
 
 const PatientListPage = () => {
   return (
     <div>
-      <SideBar sideBarData={adminSideBar} />
+      <SideBar sideBarData={managerCenterSideBar} />
       PatientListPage
     </div>
   );

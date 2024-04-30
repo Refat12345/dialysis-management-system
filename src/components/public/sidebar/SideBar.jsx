@@ -13,10 +13,10 @@ const SideBar = ({ sideBarData }) => {
   return (
     <>
       <aside
-        className="fixed top-0 right-0 z-40 w-59 h-screen transition-transform -translate-x-full sm:translate-x-0 sm:ml-4 md:ml-8 lg:ml-[20px] hidden md:block"
-        aria-label="Sidebar"
+          className="z-40 h-screen transition-transform -translate-x-full sm:translate-x-0 hidden md:block md:w-48"
+          aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-white shadow-lg flex flex-col items-center ">
+        <div className="h-screen w-48 px-3 py-4 overflow-y-auto bg-white shadow-lg flex flex-col items-center ">
           <SideBarHeader header={sideBarData.header} />
           <ul className="space-y-2 font-medium mt-8 " dir="rtl">
             {sideBarData.items.map((admin, index) => {

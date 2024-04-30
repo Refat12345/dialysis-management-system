@@ -3,7 +3,7 @@
 const Card = ({ data }) => {
   const style = {
     width: "75px",
-    height: "75px",
+    height: "70px",
     borderRadius: "50%",
     display: "flex",
     justifyContent: "center",
