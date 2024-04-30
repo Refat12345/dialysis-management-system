@@ -7,7 +7,7 @@ function NavItem({ name, icon, onClick, isActive, href }) {
       <Link
         onClick={onClick}
         to={href}
-        className={`flex items-center p-2 text-titleSideColor rounded-l-md rounded-r-3xl text-base font-normal dark:text-white group ${
+        className={`flex items-center p-2 text-titleSideColor rounded-l-md rounded-r-3xl text-base font-normal group ${
           isActive ? "bg-bgSideButton" : "bg-white hover:bg-gray-100"
         }`}
       >
