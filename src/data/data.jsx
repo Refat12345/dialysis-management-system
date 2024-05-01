@@ -23,6 +23,8 @@ import doctor from '../assets/icons/medical-center/users/users-list/doctor.svg'
 export const mainRoute = "/";
 export const patientsRoute = "/patients";
 
+export const patientsDetailsRoute = "/patient/a";
+
 //--------------------------
 export const titleSession = {
   title: "الجلسات الحالية",
