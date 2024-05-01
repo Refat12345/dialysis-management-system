@@ -13,15 +13,16 @@ import OrdersIcon from "../assets/icons/medical-center/dashboard/SideBar/order.s
 import NotesIcon from "../assets/icons/medical-center/dashboard/SideBar/notification.svg";
 import SettingsIcon from "../assets/icons/medical-center/dashboard/SideBar/setting.svg";
 import LogOutIcon from "../assets/icons/medical-center/dashboard/SideBar/logOut.svg";
-import online from '../assets/icons/medical-center/users/users-list/online.svg'
-import doctor from '../assets/icons/medical-center/users/users-list/doctor.svg'
+import online from "../assets/icons/medical-center/users/users-list/online.svg";
+import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 
 //-------------------------
 
-//Routes 
+//Routes
 
 export const mainRoute = "/";
 export const patientsRoute = "/patients";
+export const usersRoute = "/users";
 
 //--------------------------
 export const titleSession = {
@@ -45,7 +46,7 @@ export const managerCenterSideBar = {
   },
   items: [
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
-    { href: "/", name: "المستخدمين", icon: UsersIcon },
+    { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: "", name: "جلسات الغسيل", icon: DialysisSessionsIcon },
@@ -93,7 +94,6 @@ export const information = {
     kidneyTransplant:"نعم",
 }
 export const cardsData = [
- 
   {
     name: "أسماء ديراني",
     role: "ممرضة",
