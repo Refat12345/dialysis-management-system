@@ -122,7 +122,7 @@ export default function Patient() {
         `}
       </style>
 
-    <div className="overflow-x-auto mr-48 ml-11" dir="rtl">
+    <div className="overflow-x-auto  ml-11" dir="rtl">
     
     {/* header */}
     <input dir="ltr"
