@@ -13,15 +13,16 @@ import OrdersIcon from "../assets/icons/medical-center/dashboard/SideBar/order.s
 import NotesIcon from "../assets/icons/medical-center/dashboard/SideBar/notification.svg";
 import SettingsIcon from "../assets/icons/medical-center/dashboard/SideBar/setting.svg";
 import LogOutIcon from "../assets/icons/medical-center/dashboard/SideBar/logOut.svg";
-import online from '../assets/icons/medical-center/users/users-list/online.svg'
-import doctor from '../assets/icons/medical-center/users/users-list/doctor.svg'
+import online from "../assets/icons/medical-center/users/users-list/online.svg";
+import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 
 //-------------------------
 
-//Routes 
+//Routes
 
 export const mainRoute = "/";
 export const patientsRoute = "/patients";
+export const usersRoute = "/users";
 
 export const patientsDetailsRoute = "/patient/a";
 
@@ -39,7 +40,7 @@ export const titleSession = {
   },
 };
 
-export const adminSideBar = {
+export const managerCenterSideBar = {
   header: {
     name: "حسن حبنكة",
     title: "مدير مركز الطحان الخيري",
@@ -47,7 +48,7 @@ export const adminSideBar = {
   },
   items: [
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
-    { href: "/", name: "المستخدمين", icon: UsersIcon },
+    { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: "", name: "جلسات الغسيل", icon: DialysisSessionsIcon },
@@ -76,8 +77,25 @@ export const sessions = data.map((data, index) => {
   };
 });
 
+
+export const healthInformation = {
+title : "المعلومات الصحية",
+vascularInlet:"المدخل الوعائي",
+dryWeight:"الوزن الجاف",
+blood:"زمرة الدم",
+causeOfKidneyFailure:"سبب القصور الكلوي",
+sessionStartDate:"تاريح بدء الجلسات",
+kidneyTransplant:"وجود زراعة كلية سابقة",
+}
+export const information = {
+    vascularInlet:"قثطرة",
+    dryWeight:"72",
+    blood:"AB+",
+    causeOfKidneyFailure:"مرض السكري",
+    sessionStartDate:"2-3-2024",
+    kidneyTransplant:"نعم",
+}
 export const cardsData = [
- 
   {
     name: "أسماء ديراني",
     role: "ممرضة",

@@ -2,7 +2,7 @@
 import React from "react";
 function Header() {
   return (
-    <div className=" mr-48 mb-5 hidden sm:block ">
+    <div className="mb-5 hidden sm:block ">
     <div className="flex justify-end ">
 
       <div className="flex items-end justify-end   mt-5 pr-2 w-2/4">

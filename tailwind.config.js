@@ -11,7 +11,8 @@ export default {
         customSize: '22px',
       },
       width: {
-        'phone': '100px',    
+        'phone': '100px', 
+        '1/10':"10%"   
       },
       colors: {
         primaryColor: 'rgba(244,247,254,255)',
@@ -33,8 +34,9 @@ export default {
       screens :{
         lg2:"1100px"
       },
+    
       minHeight: {
-        'custom': '462px',
+        'custom': '340px',
       }
 },
   },

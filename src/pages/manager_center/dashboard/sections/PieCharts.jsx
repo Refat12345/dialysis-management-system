@@ -14,7 +14,7 @@ const objectTwo = {
 const PieCharts = () => {
   return (
     <>
-      <div className="ml-14 mt-12">
+      <div className="ml-6 mt-12">
         <div className="shadow-lg  ">
           <PieChart obj={objectOne} />
         </div>

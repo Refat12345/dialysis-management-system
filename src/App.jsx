@@ -1,14 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-
-import Dashboard from "./pages/manager_center/dashboard/Dashboard";
-import PatientListPage from "./pages/manager_center/users/users-list/UsersListPage";
-import UsersListPage from "./pages/manager_center/users/users-list/UsersListPage";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/routes";
 
 const App = () => {
   return (
-    <React.StrictMode>
-      <UsersListPage />
-    </React.StrictMode>
+    <div className="flex flex-row-reverse">
+      <RouterProvider router={router} />
+    </div>
   );
 };
 
