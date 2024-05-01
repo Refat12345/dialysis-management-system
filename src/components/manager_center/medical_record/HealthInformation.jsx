@@ -1,19 +1,49 @@
 /* eslint-disable react/prop-types */
 
-const HealthInformation = ({healthInformation}) => {
+const HealthInformation = ({healthInformation , information}) => {
+  const style = {
+    marginTop:"12%"
+  }
   return (
-    <div className="bg-primaryColor p-4 max-w-7xl mx-auto">
-        <span >{healthInformation.title}</span>
+    <div dir="rtl" className="bg-primaryColor p-4 mx-[4%] h-[30%] mt-10 rounded-xl">
+        <span className="text-healthInformationTitle text-2xl font-bold" >{healthInformation.title}</span>
         <div className="flex flex-row justify-between">
             <div className="flex flex-col" >
-                <span>{healthInformation.vascularInlet}</span>
-                <span>{healthInformation.dryWeight}</span>
-                <span>{healthInformation.blood}</span>
+                <div className="vascularInlet" style={style}>
+                    <span className="">
+                        {healthInformation.vascularInlet}:
+                    </span>
+                    <span className="mr-5 font-bold">
+                        {information.vascularInlet}
+                    </span>
+                </div>
+                <div className="dryWeight" style={style}>
+                    <span>
+                        {healthInformation.dryWeight}
+                    </span>
+                </div>
+                <div className="blood" style={style}>
+                    <span>
+                        {healthInformation.blood}
+                    </span>
+                </div>
             </div>
             <div className="flex flex-col">
-                <span>{healthInformation.causeOfKidneyFailure}</span>
-                <span>{healthInformation.sessionStartDate}</span>
-                <span>{healthInformation.kidneyTransplant}</span>
+                <div className="causeOfKidneyFailure">
+                    <span>
+                        {healthInformation.causeOfKidneyFailure}
+                    </span>
+                </div>
+                <div className="sessionStartDate">
+                    <span>
+                        {healthInformation.sessionStartDate}
+                    </span>
+                </div>
+                <div className="kidneyTransplant">
+                    <span>
+                        {healthInformation.kidneyTransplant}
+                    </span>
+                </div>
             </div>
         </div>
     </div>

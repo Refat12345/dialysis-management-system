@@ -1,3 +1,5 @@
+import { healthInformation } from './src/data/data';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -12,7 +14,7 @@ export default {
       },
       width: {
         'phone': '100px', 
-        '1/10':"10%"   
+        '1/10':"10%",
       },
       colors: {
         primaryColor: 'rgba(244,247,254,255)',
@@ -21,6 +23,7 @@ export default {
         textButtonColor:'rgba(46,48,125,255)',
         bgSideButton:'rgba(229, 215, 185, 1)',
         bgButtonColor:'rgba(212,183,124,255)',
+        healthInformationTitle:'rgba(89,91,153,255)',
         customBlue: '#eff3ff',
         kk: '#d4b77d',
         headerTable:"#e5d7ba",

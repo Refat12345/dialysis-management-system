@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div  className=" flex flex-row-reverse h-screen">
         <SideBar sideBarData={managerCenterSideBar}/>
-        <div className="flex-grow">
+        <div className="flex-grow ">
             <Cards/>
             <div className="flex flex-row-reverse justify-between mt-6">
                   <div  className="flex flex-col md:w-7/12 ">
