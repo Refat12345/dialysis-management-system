@@ -1,5 +1,8 @@
 const MedicalRecordPage = () => {
-  return <div>MedicalRecord</div>;
+  return <div>
+      
+
+  </div>;
 };
 
 export default MedicalRecordPage;

@@ -15,7 +15,6 @@ function NavItem({ name, icon, onClick, isActive, href }) {
           className="w-5 h-5 mr-1"
           src={icon}
           alt={name}
-          style={{ color: "green" }}
         />
         <span className="ms-3">{name}</span>
       </Link>
