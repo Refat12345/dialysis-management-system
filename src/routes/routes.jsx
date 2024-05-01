@@ -1,25 +1,47 @@
+/* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
+import Dashboard from "../pages/manager_center/dashboard/Dashboard";
+import UsersListPage from "../pages/manager_center/users/users-list/UsersListPage";
 import ErrorPage from "../pages/error/ErrorPage";
 import PatientListPage from "../pages/manager_center/patient/patient_list/PatientListPage";
-import { mainRoute, patientsRoute, usersRoute } from "../data/data";
-import UsersListPage from "../pages/manager_center/users/users-list/UsersListPage";
+import {
+  mainRoute,
+  managerCenterSideBar,
+  patientsRoute,
+  usersRoute,
+} from "../data/data";
+import { SideBar } from "../components/index";
 
 const router = createBrowserRouter([
   {
     path: mainRoute,
-    element: <App />,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <Dashboard />
+      </>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: usersRoute,
-    element: <UsersListPage />,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <UsersListPage />
+      </>
+    ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
   {
     path: patientsRoute,
-    element: <PatientListPage />,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PatientListPage />
+      </>
+    ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },

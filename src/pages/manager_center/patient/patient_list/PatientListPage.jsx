@@ -1,11 +1,9 @@
-import { SideBar } from "../../../../components";
-import { managerCenterSideBar } from "../../../../data/data";
+import Patient from "../../../../components/manager_center/patient/Patient";
 
 const PatientListPage = () => {
   return (
-    <div>
-      <SideBar sideBarData={managerCenterSideBar} />
-      PatientListPage
+    <div className="flex-grow">
+      <Patient />
     </div>
   );
 };
