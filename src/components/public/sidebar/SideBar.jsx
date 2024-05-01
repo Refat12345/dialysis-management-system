@@ -13,7 +13,7 @@ const SideBar = ({ sideBarData }) => {
   return (
     <>
       <aside
-          className=" fixed ri top-0  z-40 h-screen transition-transform -translate-x-full sm:translate-x-0 hidden md:block md:w-48"
+          className=" fixed right-0 top-0  z-40 h-screen transition-transform -translate-x-full sm:translate-x-0 hidden md:block md:w-48"
           aria-label="Sidebar"
       >
         <div className="h-screen w-48 px-3 py-4 overflow-y-auto bg-white shadow-lg flex flex-col items-center ">

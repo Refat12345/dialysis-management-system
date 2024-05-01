@@ -11,7 +11,7 @@ export default function Patient() {
     index % 2 === 0 ? "bg-firstRow" : "bg-secondRow";
 
   return (
-    <div className="overflow-x-auto mr-48 ml-11" dir="rtl">
+    <div className="overflow-x-auto ml-11" dir="rtl">
     
       {/* header */}
       <input dir="ltr"
