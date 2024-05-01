@@ -6,7 +6,7 @@ import Card from './Card'
 
 function ViewCard({ cardsData }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mr-48">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {cardsData.map((card, index) => (
         <Card key={index} data={card} />
       ))}
