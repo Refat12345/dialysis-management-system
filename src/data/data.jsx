@@ -61,9 +61,8 @@ export const managerCenterSideBar = {
 };
 
 const data = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5,
-  6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9,
-  10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15
+  ,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
 ];
 
 export const sessions = data.map((data, index) => {
@@ -84,14 +83,14 @@ vascularInlet:"المدخل الوعائي",
 dryWeight:"الوزن الجاف",
 blood:"زمرة الدم",
 causeOfKidneyFailure:"سبب القصور الكلوي",
-sessionStartDate:"تاريح بدء الجلسات",
+sessionStartDate:"تاريح بدء جلسات الغسيل",
 kidneyTransplant:"وجود زراعة كلية سابقة",
 }
 export const information = {
     vascularInlet:"قثطرة",
     dryWeight:"72",
     blood:"AB+",
-    causeOfKidneyFailure:"مرض السكري",
+    causeOfKidneyFailure:"مرض السكري  مرض  الشديد",
     sessionStartDate:"2-3-2024",
     kidneyTransplant:"نعم",
 }

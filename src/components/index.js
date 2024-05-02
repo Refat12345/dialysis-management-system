@@ -1,5 +1,4 @@
 export { default as Card } from "./manager_center/dashboard/Card";
-export { default as PieChart } from "./manager_center/dashboard/PieChart";
 export { default as HorizontalLine } from "./manager_center/dashboard/HorizontalLine";
 export { default as DialysisSession } from "./manager_center/dashboard/DialysisSession";
 export { default as Title } from "./manager_center/dashboard/Title";
@@ -8,3 +7,4 @@ export { default as NavItem } from "./public/sidebar/NavItem";
 export { default as SideBar } from "./public/sidebar/SideBar";
 export { default as PaginationComponent } from "./public/pagination/PaginationComponent";
 export { default as HealthInformation } from "./manager_center/medical_record/HealthInformation";
+export {default as PieChart} from "./manager_center/dashboard/PieChart/PieChart"

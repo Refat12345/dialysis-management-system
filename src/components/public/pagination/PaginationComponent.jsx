@@ -59,9 +59,9 @@ const PaginationComponent = ({
           &lt;&lt;
         </button>
 
-        {visiblePages.map((number) => (
+        {visiblePages.map((number,index) => (
           <button
-            key={number}
+            key={index}
             onClick={() => paginate(number)}
             className={
               number === currentPage

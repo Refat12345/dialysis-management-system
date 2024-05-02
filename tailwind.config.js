@@ -1,4 +1,3 @@
-import { healthInformation } from './src/data/data';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -35,11 +34,15 @@ export default {
         search:'#eff3ff'
       },
       screens :{
-        lg2:"1100px"
+        lg2:"1250px"
       },
     
       minHeight: {
-        'custom': '340px',
+        'customUnder600':"320px",
+        'customUnder680':"380px",
+        'customUnder760':"428px",
+        'customUnder830':"489px",
+        "customAbove830":"550px"
       }
 },
   },

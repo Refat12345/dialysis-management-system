@@ -11,6 +11,7 @@ import {
   usersRoute,
 } from "../data/data";
 import { SideBar } from "../components/index";
+import MedicalRecordPage from "../pages/manager_center/patient/medical_record/MedicalRecordPage";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,16 @@ const router = createBrowserRouter([
       </>
     ),
     //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/medical',
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <MedicalRecordPage />
+      </>
+    ),
     errorElement: <ErrorPage />,
   },
 ]);
