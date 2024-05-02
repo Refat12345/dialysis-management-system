@@ -9,17 +9,13 @@ const PatientProfileNav = () => {
   };
 
   return (
-    <div className="ml-5 h-52 rounded-2xl">
+    <div className="py-7">
       <Tab.Group>
-        <Tab.List className="flex flex-row-reverse bg-white rounded-2xl shadow-sm  pt-8">
+        <Tab.List className="flex flex-row-reverse bg-white rounded-2xl justify-end">
           {state.patientProfileMenuItems.map((item, index) => (
             <Tab
               key={item.name}
-              className={`${
-                state.activeItem === item.name
-                  ? "bg-bgTab text-white border-0 rounded-2xl"
-                  : "text-primaryFontColor bg-white"
-              } text-sm font-normal border-[1px] border-gray100 outline-none px-3 py-[6px] ${
+              className={` text-sm font-normal border-[1px] border-gray100 outline-none shadow-sm ${
                 index === 0 ? "rounded-r-2xl" : ""
               } ${
                 index === state.patientProfileMenuItems.length - 1
@@ -28,7 +24,15 @@ const PatientProfileNav = () => {
               }`}
               onClick={() => handleItemClick(item.name)}
             >
-              {item.name}
+              <div
+                className={`${
+                  state.activeItem === item.name
+                    ? "bg-bgTab text-white rounded-2xl"
+                    : "text-primaryFontColor"
+                }  px-3 py-2 `}
+              >
+                {item.name}
+              </div>
             </Tab>
           ))}
         </Tab.List>

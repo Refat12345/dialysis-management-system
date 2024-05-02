@@ -28,19 +28,9 @@ export const PatientProfileStateProvider = ({ children }) => {
     { href: globalNotesRoute, name: globalNotes },
   ];
 
-  const tabScreens = {
-    globalInfo: <div>1</div>,
-    medicalRecord: <div>2</div>,
-    dialysisSessions: <div>3</div>,
-    medicalAnalysis: <div>4</div>,
-    prescriptions: <div>5</div>,
-    globalNotes: <div>6</div>,
-  };
-
   const [state, setState] = useState({
     activeItem: patientProfileMenuItems[0].name,
     patientProfileMenuItems: patientProfileMenuItems,
-    tabScreens: tabScreens,
   });
 
   const updateState = (newValues) => {
