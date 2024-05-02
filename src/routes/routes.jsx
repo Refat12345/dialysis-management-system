@@ -11,6 +11,7 @@ import {
   usersRoute,
 } from "../data/data";
 import { SideBar } from "../components/index";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
-        <Dashboard />
+        <DialysisPage />
       </>
     ),
     errorElement: <ErrorPage />,

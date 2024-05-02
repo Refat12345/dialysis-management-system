@@ -29,7 +29,9 @@ export default {
         customPurple: '#4a4881',
         dropmenu:'#f5fafc',
         cardColor:'#f6f9ff',
-        search:'#eff3ff'
+        search:'#eff3ff',
+        cardInDialysisPage:'#f6f9ff',
+        borderINCardInDialysisPage:'#f1f4fa'
       },
       screens :{
         lg2:"1100px"
