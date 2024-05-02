@@ -7,6 +7,11 @@
 :root {
   --color-primary: rgba(246, 249, 255, 1);
 }
+
+body {
+  background-color: #FFF;
+}
+
 /*
 a {
   font-weight: 500;
@@ -55,7 +60,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
-
-body {
-  background-color: rgba(244, 247, 254, 255);
-}

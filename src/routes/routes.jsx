@@ -4,9 +4,13 @@ import Dashboard from "../pages/manager_center/dashboard/Dashboard";
 import UsersListPage from "../pages/manager_center/users/users-list/UsersListPage";
 import ErrorPage from "../pages/error/ErrorPage";
 import PatientListPage from "../pages/manager_center/patient/patient_list/PatientListPage";
+import PatientProfilePage from "../pages/manager_center/patient/patient_profile/PatientProfilePage";
+import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
+
 import {
   mainRoute,
   managerCenterSideBar,
+  patientProfileRoute,
   patientsRoute,
   usersRoute,
 } from "../data/data";
@@ -41,6 +45,17 @@ const router = createBrowserRouter([
         <SideBar sideBarData={managerCenterSideBar} />
         <PatientListPage />
       </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: patientProfileRoute,
+    element: (
+      <PatientProfileStateProvider>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PatientProfilePage />
+      </PatientProfileStateProvider>
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,

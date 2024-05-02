@@ -23,8 +23,14 @@ import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 export const mainRoute = "/";
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
+export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
-export const patientsDetailsRoute = "/patient/a";
+export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;
+export const globalInfoRoute = `${patientProfileRoute}/globalInfo`;
+export const dialysisSessionsRoute = `${patientProfileRoute}/dialysisSession`;
+export const medicalAnalysisRoute = `${patientProfileRoute}/medicalAnalysis`;
+export const prescriptionsRoute = `${patientProfileRoute}/prescriptions`;
+export const globalNotesRoute = `${patientProfileRoute}/globalNotes`;
 
 //--------------------------
 export const titleSession = {
@@ -77,24 +83,23 @@ export const sessions = data.map((data, index) => {
   };
 });
 
-
 export const healthInformation = {
-title : "المعلومات الصحية",
-vascularInlet:"المدخل الوعائي",
-dryWeight:"الوزن الجاف",
-blood:"زمرة الدم",
-causeOfKidneyFailure:"سبب القصور الكلوي",
-sessionStartDate:"تاريح بدء الجلسات",
-kidneyTransplant:"وجود زراعة كلية سابقة",
-}
+  title: "المعلومات الصحية",
+  vascularInlet: "المدخل الوعائي",
+  dryWeight: "الوزن الجاف",
+  blood: "زمرة الدم",
+  causeOfKidneyFailure: "سبب القصور الكلوي",
+  sessionStartDate: "تاريح بدء الجلسات",
+  kidneyTransplant: "وجود زراعة كلية سابقة",
+};
 export const information = {
-    vascularInlet:"قثطرة",
-    dryWeight:"72",
-    blood:"AB+",
-    causeOfKidneyFailure:"مرض السكري",
-    sessionStartDate:"2-3-2024",
-    kidneyTransplant:"نعم",
-}
+  vascularInlet: "قثطرة",
+  dryWeight: "72",
+  blood: "AB+",
+  causeOfKidneyFailure: "مرض السكري",
+  sessionStartDate: "2-3-2024",
+  kidneyTransplant: "نعم",
+};
 export const cardsData = [
   {
     name: "أسماء ديراني",
