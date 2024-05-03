@@ -1,18 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-
       fontSize: {
-        customSize: '22px',
+        customSize: "22px",
       },
       width: {
-        'phone': '100px', 
-        '1/10':"10%"   
+        phone: "100px",
+        "1/10": "10%",
       },
       colors: {
         primaryColor: 'rgba(244,247,254,255)',
@@ -31,17 +27,21 @@ export default {
         cardColor:'#f6f9ff',
         search:'#eff3ff',
         cardInDialysisPage:'#f6f9ff',
-        borderINCardInDialysisPage:'#f1f4fa'
+        borderINCardInDialysisPage:'#f1f4fa',
+        bgDashboard: "rgba(244, 247, 254, 255)",
+        
+        gray100: "#E4E4E7",
+        bgTab: "#C3974C",
+        primaryFontColor: "#27272A",
       },
-      screens :{
-        lg2:"1100px"
+      screens: {
+        lg2: "1100px",
       },
-    
+
       minHeight: {
-        'custom': '340px',
-      }
-},
+        custom: "340px",
+      },
+    },
   },
   plugins: [],
-}
-
+};
