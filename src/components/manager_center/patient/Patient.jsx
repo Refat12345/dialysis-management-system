@@ -12,6 +12,7 @@
 //   return (
 //     <div className="overflow-x-auto mr-48 ml-11" dir="rtl">
 
+
 //       {/* header */}
 //       <input dir="ltr"
 //           type="text"
@@ -92,16 +93,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
-import { patientData } from "../../../data/data";
+import { patientData, patientsRoute } from "../../../data/data";
 import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
 import patient from "../../../assets/icons/medical-center/patient/patient.svg";
+import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Patient() {
   const navigate = useNavigate();
 
-  const handleRowClick = (patientId) => {
-    navigate(`/patient/a`);
+  const handleRowClick = (patientName) => {
+    navigate(`${patientsRoute}/${patientName}`);
   };
 
   const getRowColor = (index) =>
@@ -109,6 +111,7 @@ export default function Patient() {
 
   return (
     <>
+      <style>
       <style>
         {`
         tbody  tr:hover {
@@ -126,7 +129,28 @@ export default function Patient() {
           placeholder="...البحث"
           className="bg-search mt-5 text-right w-1/4 p-2.5 h-10  text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
         />
+      <div className="overflow-x-auto  ml-11" dir="rtl">
+        {/* header */}
+        <input
+          dir="ltr"
+          type="text"
+          placeholder="...البحث"
+          className="bg-search mt-5 text-right w-1/4 p-2.5 h-10  text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
+        />
 
+        <div className="flex justify-between mb-5 mt-5">
+          <h2 className="text-customPurple text-customSize">المرضى</h2>
+          <div className="relative w-1/5 ">
+            <select className="bg-dropmenu  text-right w-full p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600">
+              <option>المرضى المقبولين</option>
+              <option>الخيار 2</option>
+              <option>الخيار 3</option>
+            </select>
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <img className="w-5 h-5 " src={down} alt="Patient" />
+            </div>
+          </div>
+        </div>
         <div className="flex justify-between mb-5 mt-5">
           <h2 className="text-customPurple text-customSize">المرضى</h2>
           <div className="relative w-1/5 ">
@@ -198,6 +222,19 @@ export default function Patient() {
           </tbody>
         </table>
       </div>
+                <td className="py-3 pr-6">
+                  <img
+                    className="w-5 h-5 pr-18 -ml-4"
+                    src={down}
+                    alt="Patient"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
+

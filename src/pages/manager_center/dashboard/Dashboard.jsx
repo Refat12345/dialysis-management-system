@@ -7,7 +7,7 @@ import { sessions } from "../../../data/data";
 
 const Dashboard = () => {
   return (
-    <div className="flex-grow mr-52">
+    <div className="flex-grow mr-52 bg-bgDashboard">
       <Cards />
       <div className="flex flex-row-reverse justify-between mt-6">
         <div className="flex flex-col md:w-7/12 ">
