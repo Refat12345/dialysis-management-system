@@ -1,17 +1,21 @@
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../pages/manager_center/dashboard/Dashboard";
-import UsersListPage from "../pages/manager_center/users/users-list/UsersListPage";
-import ErrorPage from "../pages/error/ErrorPage";
-import PatientListPage from "../pages/manager_center/patient/patient_list/PatientListPage";
+import { PatientProfilePage, PatientListPage, ErrorPage, UsersListPage, Dashboard, MedicalRecordPage, PrecedentsSection , MedicalAnalysisPage ,PrescriptionsPage ,MedicalCentersPage} from "../pages/index"
+import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
+import { SideBar } from "../components/index";
+
 import {
   mainRoute,
   managerCenterSideBar,
+  patientProfileRoute,
   patientsRoute,
   usersRoute,
+  medicalRecordRoute,
+  medicalAnalysisRoute,
+  prescriptionsRoute,
+  medicalCentersRoute
 } from "../data/data";
-import { SideBar } from "../components/index";
-import MedicalRecordPage from "../pages/manager_center/patient/medical_record/MedicalRecordPage";
+
 
 const router = createBrowserRouter([
   {
@@ -47,13 +51,84 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/medical',
+    path: patientsRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PatientListPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: patientProfileRoute,
+    element: (
+      <PatientProfileStateProvider>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PatientProfilePage />
+      </PatientProfileStateProvider>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: medicalRecordRoute,
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
         <MedicalRecordPage />
       </>
     ),
+    children: [
+      {
+        path: "pharmacologicalHistory",
+        element: <PrecedentsSection  />,
+        index:true
+      },
+      {
+        path: "surgicalHistory",
+        element: <PrecedentsSection  />,
+      },
+      {
+        path: "pathologicalHistory",
+        element: <PrecedentsSection />,
+      }
+    ],
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: medicalAnalysisRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <MedicalAnalysisPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: prescriptionsRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PrescriptionsPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: medicalCentersRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <MedicalCentersPage />
+      </>
+    ),
+    //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
 ]);

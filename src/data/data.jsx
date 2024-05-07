@@ -23,10 +23,25 @@ import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 export const mainRoute = "/";
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
+export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
-export const patientsDetailsRoute = "/patient/a";
+export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;
+export const globalInfoRoute = `${patientProfileRoute}/globalInfo`;
+export const dialysisSessionsRoute = `${patientProfileRoute}/dialysisSession`;
+export const medicalAnalysisRoute = `${patientProfileRoute}/medicalAnalysis`;
+export const prescriptionsRoute = `${patientProfileRoute}/prescriptions`;
+export const globalNotesRoute = `${patientProfileRoute}/globalNotes`;
+
+export const medicalCentersRoute = "/medicalCenters"
+
 
 //--------------------------
+//saria
+//medical_centers_icons
+import centerIcon from "../assets/icons/public/MedicalCenterIcon.svg"
+import addressIcon from "../assets/icons/public/address.svg"
+
+
 export const titleSession = {
   title: "الجلسات الحالية",
   dialysisTitle: {
@@ -76,7 +91,6 @@ export const sessions = data.map((data, index) => {
   };
 });
 
-
 export const healthInformation = {
 title : "المعلومات الصحية",
 vascularInlet:"المدخل الوعائي",
@@ -94,6 +108,87 @@ export const information = {
     sessionStartDate:"2-3-2024",
     kidneyTransplant:"نعم",
 }
+export const prescriptionOne = [
+  {
+      doctor:"الطبيب سارية الزعبي",
+      status:"نشطة",
+      name:"التهاب",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
+  },{
+      doctor:"الطبيب سارية الزعبي",
+      status:"منتهية",
+      name:"سيتامول",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
+  },{
+      doctor:"الطبيب سارية الزعبي",
+      status:"منتهية",
+      name:"حديد",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
+  }
+] 
+export const prescriptionTow = [
+  {
+      doctor:"الطبيب سارية الزعبي",
+      status:"منتهية",
+      name:"كريب ستوب",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ خمسة حبات يوميا قبل الطعام'
+  },{
+      doctor:"الطبيب أحمد الزعبي",
+      status:"منتهية",
+      name:"سيتامول",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
+  },{
+      doctor:"الطبيب محمد الزعبي",
+      status:"منتهية",
+      name:"بؤوفين",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
+  }
+] 
+export const prescriptions = [prescriptionOne,prescriptionTow]
+
+const array = [1,2,3,4,5,6,7,8
+              ,9,10,11,12
+]
+export const medicalCenters = array.map((array,index)=>{
+  return {centerIcon:centerIcon,name:"مركز حسن الطحان الخيري",
+  addressIcon:addressIcon,address:`سوريا - دمشق - الصالحية بناء رقم (${index+90})`}
+}
+)
+
+export const analysis = [
+  {
+      name: "خضاب",
+      amount :"سلبي",
+      date:"2022-2-3",
+      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+  },
+  {
+      name: "حديد",
+      amount :"ايجابي",
+      date:"2022-2-3",
+      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+  },
+  {
+      name: "دم",
+      amount :"سلبي",
+      date:"2022-2-3",
+      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+  },
+]
+//==============
+
 export const cardsData = [
   {
     name: "أسماء ديراني",

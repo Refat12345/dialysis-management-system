@@ -1,60 +1,61 @@
 /* eslint-disable react/prop-types */
 
-const HealthInformation = ({healthInformation , information}) => {
-  
+const HealthInformation = ({title , information}) => {
+  const titleArray = Object.values(title);
+  const informationArray = Object.values(information);
   return (
-    <div dir="rtl" className="bg-primaryColor p-4 ml-[4%] mr-[3%] h-[29%] rounded-xl mt-16">
-        <span className="text-healthInformationTitle text-2xl font-bold" >{healthInformation.title}</span>
+    <div dir="rtl" className="bg-primaryColor p-4 ml-[4%] mr-[3%] h-[29%]  mt-20 shadow-lg rounded-lg">
+        <span className="text-titleSideColor text-2xl font-bold" >{titleArray[0]}</span>
         <div className="flex flex-row justify-between h-full mt-2">
             <div className="flex flex-col" >
-                <div className="vascularInlet flex items-center h-[27%]">
-                    <span className="">
-                        {healthInformation.vascularInlet}:
+                <div className="vascularInlet flex items-center h-[27%]  ">
+                    <span className=" font-bold">
+                        {titleArray[1]}:
                     </span>
-                    <span className="mr-5 font-bold">
-                        {information.vascularInlet}
+                    <span className="mr-5">
+                        {informationArray[0]}
                     </span>
                 </div>
                 <div className=" dryWeight h-[27%] flex items-center">
-                    <span>
-                        {healthInformation.dryWeight}:
+                    <span className="font-bold">
+                        {titleArray[2]}:
                     </span>
-                    <span className="mr-11 font-bold">
-                        {information.dryWeight}
+                    <span className="mr-11">
+                        {informationArray[1]}
                     </span>
                 </div>
                 <div className="blood h-[27%] flex items-center">
-                    <span>
-                        {healthInformation.blood}:
+                    <span className="font-bold">
+                        {titleArray[3]}:
                     </span>
-                    <span className="mr-16 font-bold">
-                        {information.blood}
+                    <span className="mr-16">
+                        {informationArray[2]}
                     </span>
                 </div>
             </div>
             <div className="flex flex-col ml-[15%]">
                 <div className="causeOfKidneyFailure flex items-center h-[27%]">
-                    <span>
-                        {healthInformation.causeOfKidneyFailure}:
+                    <span className="font-bold">
+                        {titleArray[4]}:
                     </span>
-                    <span className="mr-6 font-bold">
-                        {information.causeOfKidneyFailure}
+                    <span className="mr-6">
+                        {informationArray[3]}
                     </span>
                 </div>
                 <div className="sessionStartDate flex items-center h-[27%]">
-                    <span>
-                        {healthInformation.sessionStartDate}:
+                    <span className="font-bold">
+                        {titleArray[5]}:
                     </span>
-                    <span className="mr-5 font-bold">
-                        {information.sessionStartDate}
+                    <span className="mr-5">
+                        {informationArray[4]}
                     </span>
                 </div>
                 <div className="kidneyTransplant flex items-center h-[27%]">
-                    <span>
-                        {healthInformation.kidneyTransplant}:
+                    <span className="font-bold">
+                        {titleArray[6]}:
                     </span>
-                    <span className="mr-10 font-bold">
-                        {information.kidneyTransplant}
+                    <span className="mr-10  text-red-400">
+                        {informationArray[5]}
                     </span>
                 </div>
             </div>

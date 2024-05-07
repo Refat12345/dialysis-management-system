@@ -1,16 +1,36 @@
 /* eslint-disable no-unused-vars */
-import { HealthInformation, SideBar } from "../../../../components"
-import RecordCard from "../../../../components/manager_center/medical_record/RecordCard"
-import { healthInformation, managerCenterSideBar ,information } from "../../../../data/data"
+import { Outlet } from "react-router-dom"
+import { HealthInformation ,NavItemRecord } from "../../../../components"
+import { healthInformation,information } from "../../../../data/data"
+import PharmacologicalIcon from "../../../../assets/icons/medical-center/medical_record/Pharmacological-Icon.svg"
+import PathologicalIcon from "../../../../assets/icons/medical-center/medical_record/Pathological-Icon.svg"
+import SurgicalIcon from "../../../../assets/icons/medical-center/medical_record/Surgical-Icon.svg"
+const precedents = [
+  {
+    name :"السوابق المرضية",
+    path:"pathologicalHistory",
+    icon:PathologicalIcon
 
+  },{
+    name:"السوابق الجراحية",
+    path:"surgicalHistory",
+    icon:SurgicalIcon
+  },
+  {
+    name:"السوابق الدوائية",
+    path:"pharmacologicalHistory",
+    icon:PharmacologicalIcon
+  }
+]
 const MedicalRecordPage = () => {
   return (
       <div className="flex-grow mr-52 h-screen">
-        <HealthInformation healthInformation={healthInformation} information = {information}/>
-        <div className="bg-primaryColor ml-[4%] mr-[3%] mt-[2%] h-[55%] p-4">
-        <RecordCard/>
-            
-        </div>
+        
+        <HealthInformation title={healthInformation} information = {information}/>
+        <div dir="rtl" className="bg-primaryColor ml-[4%] mr-[3%] mt-[2%] h-[53%] p-6 shadow-lg rounded-lg overflow-y-auto">
+         <NavItemRecord array={precedents}/>
+         <Outlet/>
+        </div>    
       </div>
       
   
@@ -19,3 +39,17 @@ const MedicalRecordPage = () => {
 }
 
 export default MedicalRecordPage
+
+
+/*
+
+
+ <div className="h-[65%] w-[33%]  mt-20">
+                <RecordCard/>
+          </div> 
+          <div className="h-[65%] w-[33%]  mt-20">
+                <RecordCard/>
+          </div>
+          <div className="h-[65%] w-[33%]  mt-20">
+                <RecordCard/>
+          </div>*/

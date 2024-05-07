@@ -7,6 +7,11 @@
 :root {
   --color-primary: rgba(246, 249, 255, 1);
 }
+
+body {
+  background-color: #FFF;
+}
+
 /*
 a {
   font-weight: 500;
@@ -58,4 +63,8 @@ button:focus-visible {
 
 body {
   background-color: white;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
