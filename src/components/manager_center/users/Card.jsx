@@ -2,110 +2,94 @@
 /* eslint-disable react/prop-types */
 
 import React from "react";
-import online from '../../../assets/icons/medical-center/users/users-list/online.svg';
+import online from "../../../assets/icons/medical-center/users/users-list/online.svg";
+import location from "../../../assets/icons/medical-center/users/users-list/location.svg";
+import gender from "../../../assets/icons/medical-center/users/users-list/gender.svg";
+import phone from "../../../assets/icons/medical-center/users/users-list/phone.svg";
+import doctor from "../../../assets/icons/medical-center/users/users-list/doctor.svg";
+import nurse from "../../../assets/icons/medical-center/users/users-list/nurse.svg";
+import nurseMan from "../../../assets/icons/medical-center/users/users-list/nurseMan.svg";
+import secretary from "../../../assets/icons/medical-center/users/users-list/secretary.svg";
+
+function RoleImage({ role }) {
+  let imageSrc;
+  switch (role) {
+    case "ممرضة":
+      imageSrc = nurse;
+      break;
+    case "سكرتيرة":
+      imageSrc = secretary;
+      break;
+    case "ممرض":
+      imageSrc = nurseMan;
+      break;
+    default:
+      imageSrc = doctor;
+  }
+
+  return <img className="w-11" src={imageSrc} alt={role} />;
+}
 
 function Card({ data }) {
   return (
     <>
-      <div className="bg-cardColor p-2 rounded-lg shadow-lg max-w-[270px] mx-auto">
-        <div className="flex flex-row-reverse items-center">
-          <img className="w-13" src={data.image} />
+    
+<div className=" bg-cardColor p-2 rounded-lg shadow-lg max-w-[290px] ">
+        
+        <div className="flex justify-between items-center">
+          
+          <svg
+            className="h-5 w-5 text-green-500 mb-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <circle cx="12" cy="12" r="1" />
+            <circle cx="5" cy="12" r="1" transform="rotate(90 5 12)" />
+            <circle cx="19" cy="12" r="1" transform="rotate(90 19 12)" />
+          </svg>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col -mr-6">
             <div className="flex items-center">
-              <svg
-                className="h-5 w-5 text-green-500 ml-2 mr-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="5" cy="12" r="1" transform="rotate(90 5 12)" />
-                <circle cx="19" cy="12" r="1" transform="rotate(90 19 12)" />
-              </svg>
-
-              <h3 className="text-right mr-2 text-base text-gray-700 font-semibold">
-                {data.name}  ({data.role})
+              <h3 className="text-right text-base text-gray-700 font-semibold">
+                {data.name} ({data.role})
               </h3>
             </div>
-            <span className="text-sm mr-2 text-green-500 text-right">
-              {data.status} 
+
+            <span className="text-sm  text-green-500 text-right">
+              {data.status}
               <img
-                className="h-2 w-2 inline-block text-green-500 mr-1 ml-2"
+                className="h-2 w-2 inline-block text-green-500  ml-2"
                 src={online}
                 alt="online"
               />
             </span>
           </div>
+
+          <RoleImage role={data.role} />
+
         </div>
+
         <div className="mt-2 px-2">
           <div className="flex items-end justify-end">
             <span className="ml-2 text-sm text-gray-600">{data.location}</span>
-
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2C20 17.5 12 22 12 22z"
-              />
-              <circle cx="12" cy="8" r="2" />
-            </svg>
+            <img src={location} className="w-5 h-5" />
           </div>
           <div className="flex items-end justify-end mt-3">
             <span className="ml-2 text-sm text-gray-600">{data.gender}</span>
-
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
+            <img src={gender} className="w-5 h-5" />
           </div>
           <div className="flex items-end justify-end mt-3">
             <span className="ml-2 text-sm text-gray-600">{data.phone}</span>
-
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2C20 17.5 12 22 12 22z"
-              />
-              <circle cx="12" cy="8" r="2" />
-            </svg>
+            <img src={phone} className="w-5 h-5" />
           </div>
         </div>
       </div>
+
+
+
+
+     
     </>
   );
 }

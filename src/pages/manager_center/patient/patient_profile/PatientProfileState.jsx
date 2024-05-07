@@ -11,6 +11,9 @@ import {
   globalNotesRoute,
 } from "../../../../data/data";
 import GlobalInfoState from "../global_info/GlobalInfoState";
+import DialysisPage from "../../dialysis/dialysisPage";
+// import GlobalNotes from "../../../../components/manager_center/globalNotes/GlobalNotes";
+import GeneralNotePage from "../../generalNotes/GeneralNotePage";
 
 const PatientProfileStateContext = createContext();
 export const PatientProfileStateProvider = ({ children }) => {
@@ -38,10 +41,10 @@ export const PatientProfileStateProvider = ({ children }) => {
       </GlobalInfoState>
     ),
     medicalRecord: <div>2</div>,
-    dialysisSessions: <div>3</div>,
+    dialysisSessions: <DialysisPage/>,
     medicalAnalysis: <div>4</div>,
     prescriptions: <div>5</div>,
-    globalNotes: <div>6</div>,
+    globalNotes: <GeneralNotePage/>,
   };
 
   const [state, setState] = useState({

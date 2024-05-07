@@ -103,14 +103,14 @@ export const information = {
 };
 export const cardsData = [
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: " سارية الزعبي ",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
     name: "أسماء ديراني",
@@ -120,7 +120,17 @@ export const cardsData = [
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+  
+  },
+  {
+    name: " محمد سعيد",
+    role: "دكتور",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+   
   },
   {
     name: "أسماء ديراني",
@@ -130,7 +140,6 @@ export const cardsData = [
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
   },
   {
     name: "أسماء ديراني",
@@ -140,7 +149,6 @@ export const cardsData = [
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
   },
   {
     name: "أسماء ديراني",
@@ -150,7 +158,6 @@ export const cardsData = [
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
   },
   {
     name: "أسماء ديراني",
@@ -160,7 +167,6 @@ export const cardsData = [
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
   },
   {
     name: "أسماء ديراني",
@@ -170,218 +176,310 @@ export const cardsData = [
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
   {
-    name: "أسماء ديراني",
-    role: "ممرضة",
+    name: "احمد شريدة",
+    role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
     status: "نشط الآن",
     statusIcon: online,
     phone: "+963 992841193",
-    image: doctor,
+    
   },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+  {
+    name: "احمد شريدة",
+    role: "ممرض",
+    gender: "ذكر",
+    location: "دمشق",
+    status: "نشط الآن",
+    statusIcon: online,
+    phone: "+963 992841193",
+    
+  },
+
+
+
 ];
 
 export const patientData = [
@@ -393,45 +491,100 @@ export const patientData = [
     area: "دمشق",
   },
   {
-    name: "احمد محمود",
+    name: "فراس السيد",
     age: 25,
     nationality: "ذكر",
     phone: "+963999966666",
     area: "دمشق",
   },
   {
-    name: "احمد ",
+    name: "بشار عبد",
+    age: 25,
+    nationality: "ذكر",
+    phone: "+963999966666",
+    area: "دمشق",
+  },{
+    name: "سعيد الرز",
+    age: 25,
+    nationality: "ذكر",
+    phone: "+963999966666",
+    area: "دمشق",
+  },{
+    name: "ماهر الاسعد",
+    age: 25,
+    nationality: "ذكر",
+    phone: "+963999966666",
+    area: "دمشق",
+  },{
+    name: "رامي طلاس",
     age: 25,
     nationality: "ذكر",
     phone: "+963999966666",
     area: "دمشق",
   },
   {
-    name: "احمد محمود",
+    name: "جميل حسن",
     age: 25,
     nationality: "ذكر",
     phone: "+963999966666",
     area: "دمشق",
   },
   {
-    name: "احمد محمود",
+    name: "نمر الراضي ",
     age: 25,
     nationality: "ذكر",
     phone: "+963999966666",
     area: "دمشق",
   },
   {
-    name: "احمد محمود",
+    name: "احمد عليوي",
     age: 25,
     nationality: "ذكر",
     phone: "+963999966666",
     area: "دمشق",
   },
   {
-    name: "احمد محمود",
+    name: "امجد الخشن",
     age: 25,
     nationality: "ذكر",
     phone: "+963999966666",
     area: "دمشق",
+  },
+  
+ 
+];
+
+export const  Globalnotes = [
+  {
+    id: 1,
+    sender: ' رفعت عبد الواحد',
+    receiver: 'الزهر',
+    type: 'ملاحظة جلسة غسيل',
+    content: ' شامل شامل  سريع سريع سريع سريع سريع سريع  في اقصى وقت وقت وقت وققت وقت يييييييييييييييييييييي شامل شامل شامل شامل شامل شامل شامل شامل شامل يُنصح بإجراء فحص طبي شامل...',
+    date: '4 مايو 2024'
+  },
+  {
+    id: 1,
+    sender: 'سارية الزعبي ',
+    receiver: 'الزهر',
+    type: 'ملاحظة عامة ',
+    content: 'يُنصح بإجراء تحليل دموي شامل...',
+    date: '4 مايو 2024'
+  },
+  {
+    id: 1,
+    sender: 'وسيم البزرة',
+    receiver: 'الزهر',
+    type: 'ملاحظة  عامة',
+    content: '   غثيان واقياء اثناء الجلسة ...',
+    date: '4 مايو 2024'
+  },
+  {
+    id: 1,
+    sender: 'سامي ',
+    receiver: 'الزهر',
+    type: 'ملاحظة  عامة',
+    content: '   غثيان واقياء اثناء الجلسة ...',
+    date: '4 مايو 2024'
   },
 ];

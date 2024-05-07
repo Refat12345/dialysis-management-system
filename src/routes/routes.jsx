@@ -17,6 +17,7 @@ import {
 } from "../data/data";
 import { SideBar } from "../components/index";
 import LoginPage from "../pages/manager_center/auth/login/LoginPage";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
     path: usersRoute,
     element: (
       <>
-        <SideBar sideBarData={managerCenterSideBar} />
+        <SideBar  sideBarData={managerCenterSideBar} />
         <UsersListPage />
       </>
     ),

@@ -1,12 +1,136 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/*Start dialysisPage */
+.cardOne{
+  height: 27vh;
+  padding: 0 calc(2%);
+  border-top: 5px solid #f1f4fa; 
+  border-left: 5px solid #f1f4fa;
+
+}
+.cardOneHeader{
+  padding-bottom: calc(1%);
+  padding-top: calc(1%);
+
+}
+.cardGrid{
+  gap:calc(1%)
+}
+
+
+.cardTwo{
+  height: 26vh;
+  padding:  calc(4%);
+  border-top: 5px solid #f1f4fa; 
+  border-left: 5px solid #f1f4fa;
+}
+
+.cardd{
+    height: 30vh;
+    border-top: 5px solid #f1f4fa; 
+    border-left: 5px solid #f1f4fa;
+
+}
+.cardThreeHeader{
+  padding: calc(0.1%);
+  padding-right: calc(2%);
+
+  padding-bottom: calc(0.1%);
+}
+
+.table{
+  padding-top: calc(1%);
+  padding-left: calc(2%);
+  padding-right: calc((2%));
+}
+
+.headertable{
+  padding-top: calc(0.25%);
+  padding-bottom: calc(1.2%);
+  padding-right: calc(2%);
+  padding-left: calc(2%);
+}
+
+.headertable h3{
+  padding-right: calc(2%);
+}
+.headertable h2{
+padding-left: calc(2%)
+}
+
+.tabledata{
+padding-left:calc(2%) ;
+padding-right:calc(2%) ;
+padding-top:calc(1%) ;
+padding-bottom:calc(1%) ;
+}
+
+.sapn1{
+padding-left: calc(2%);
+}
+.sapn2{
+padding-right: calc(1%);
+}
+
+.cardSix{
+  height: 25vh;
+  padding:  calc(1%);
+  border-top: 5px solid #f1f4fa; 
+  border-left: 5px solid #f1f4fa;
+}
+
+.cardSixHeader{
+  padding-bottom: calc(0.3%);
+}
+
+.tablee{
+  padding-top: calc(1%);
+  padding-bottom: calc(2%);
+}
+.notes{
+  height: calc(17vh);
+  padding: calc(2%);
+  padding-bottom: calc(0.1%);
+  
+}
+
+.cardFive{
+  height: 25vh;
+  padding:  calc(4%);
+  padding-bottom: calc(6%);
+  padding-top: calc(2%);
+  border-top: 5px solid #f1f4fa; 
+  border-left: 5px solid #f1f4fa;
+}
+
+
+/* Three */
+
+
+
+/*End dialysisPage*/
+
+
+
+
+
+
+
+
 .chart-title {
   text-align: right; /* محاذاة النص إلى اليمين */
 }
 :root {
   --color-primary: rgba(246, 249, 255, 1);
 }
+
+body {
+  background-color: rgba(244, 247, 254, 255);
+}
+
 
 body {
   background-color: #FFF;
