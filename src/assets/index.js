@@ -1,0 +1,9 @@
+export { default as GlobalInfoAddressIcon } from "./icons/medical-center/patient/globalInfo/address.svg";
+export { default as GlobalInfoUserProfileIcon } from "./icons/medical-center/patient/globalInfo/user-profile.svg";
+export { default as GlobalInfoContactsIcon } from "./icons/medical-center/patient/globalInfo/contacts.svg";
+export { default as GlobalInfoSocietyIcon } from "./icons/medical-center/patient/globalInfo/cross-society.svg";
+export { default as GlobalInfoFamilyIcon } from "./icons/medical-center/patient/globalInfo/family.svg";
+export { default as GlobalInfoGenderIcon } from "./icons/medical-center/patient/globalInfo/gender.svg";
+export { default as GlobalInfoPatientBirthdateIcon } from "./icons/medical-center/patient/globalInfo/patient_birthdate.svg";
+export { default as GlobalInfoSalaryIcon } from "./icons/medical-center/patient/globalInfo/salary-wage.svg";
+export { default as GlobalInfoPatientAvatar } from "./images/manager_center/patient/patient_avatar.png";

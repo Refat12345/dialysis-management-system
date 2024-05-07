@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
+import GlobalInfoPage from "../global_info/GlobalInfoPage";
 
 import {
   globalInfoRoute,
@@ -9,6 +10,10 @@ import {
   prescriptionsRoute,
   globalNotesRoute,
 } from "../../../../data/data";
+import GlobalInfoState from "../global_info/GlobalInfoState";
+import DialysisPage from "../../dialysis/dialysisPage";
+// import GlobalNotes from "../../../../components/manager_center/globalNotes/GlobalNotes";
+import GeneralNotePage from "../../generalNotes/GeneralNotePage";
 
 const PatientProfileStateContext = createContext();
 export const PatientProfileStateProvider = ({ children }) => {
@@ -29,20 +34,41 @@ export const PatientProfileStateProvider = ({ children }) => {
   ];
 
   const tabScreens = {
-    globalInfo: <div>1</div>,
+    //TODO: put patient screens here
+    globalInfo: (
+      <GlobalInfoState>
+        <GlobalInfoPage />
+      </GlobalInfoState>
+    ),
     medicalRecord: <div>2</div>,
-    dialysisSessions: <div>3</div>,
+    dialysisSessions: <DialysisPage/>,
     medicalAnalysis: <div>4</div>,
     prescriptions: <div>5</div>,
-    globalNotes: <div>6</div>,
+    globalNotes: <GeneralNotePage/>,
   };
 
   const [state, setState] = useState({
     activeItem: patientProfileMenuItems[0].name,
     patientProfileMenuItems: patientProfileMenuItems,
-    tabScreens: tabScreens,
+    selectScreen: (val) => selectScreen(val),
   });
 
+  const selectScreen = (screen) => {
+    switch (screen) {
+      case globalInfo:
+        return tabScreens.globalInfo;
+      case dialysisSessions:
+        return tabScreens.dialysisSessions;
+      case medicalRecord:
+        return tabScreens.medicalRecord;
+      case medicalAnalysis:
+        return tabScreens.medicalAnalysis;
+      case prescriptions:
+        return tabScreens.prescriptions;
+      case globalNotes:
+        return tabScreens.globalNotes;
+    }
+  };
   const updateState = (newValues) => {
     setState((prevState) => ({
       ...prevState,

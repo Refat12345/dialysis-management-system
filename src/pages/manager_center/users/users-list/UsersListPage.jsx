@@ -2,7 +2,7 @@
 import { PaginationComponent, SideBar } from "../../../../components";
 import Header from "../../../../components/manager_center/users/Header";
 import ViewCard from "../../../../components/manager_center/users/ViewCard";
-import { managerCenterSideBar, cardsData } from "../../../../data/data";
+import {  cardsData } from "../../../../data/data";
 
 const UsersListPage = () => {
   return (

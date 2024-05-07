@@ -13,8 +13,12 @@ import {
   medicalRecordRoute,
   medicalAnalysisRoute,
   prescriptionsRoute,
-  medicalCentersRoute
+  medicalCentersRoute,
+  loginRoute
 } from "../data/data";
+
+import LoginPage from "../pages/manager_center/auth/login/LoginPage";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 
 
 const router = createBrowserRouter([
@@ -32,7 +36,7 @@ const router = createBrowserRouter([
     path: usersRoute,
     element: (
       <>
-        <SideBar sideBarData={managerCenterSideBar} />
+        <SideBar  sideBarData={managerCenterSideBar} />
         <UsersListPage />
       </>
     ),
@@ -128,6 +132,12 @@ const router = createBrowserRouter([
         <MedicalCentersPage />
       </>
     ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: loginRoute,
+    element: <LoginPage />,
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },

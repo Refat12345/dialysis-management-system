@@ -6,9 +6,11 @@ import Card from './Card'
 
 function ViewCard({ data }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div dir="rtl" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {data.map((card, index) => (
-        <Card key={index} data={card} />
+        <div dir="ltr" key={index}>
+          <Card data={card} />
+        </div>
       ))}
     </div>
   );
