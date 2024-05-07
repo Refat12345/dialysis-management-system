@@ -21,6 +21,7 @@ import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 //Routes
 
 export const mainRoute = "/";
+export const loginRoute = "/login";
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const patientProfileRoute = `${patientsRoute}/:patientName`;

@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
+import GlobalInfoPage from "../global_info/GlobalInfoPage";
 
 import {
   globalInfoRoute,
@@ -9,6 +10,7 @@ import {
   prescriptionsRoute,
   globalNotesRoute,
 } from "../../../../data/data";
+import GlobalInfoState from "../global_info/GlobalInfoState";
 
 const PatientProfileStateContext = createContext();
 export const PatientProfileStateProvider = ({ children }) => {
@@ -30,7 +32,11 @@ export const PatientProfileStateProvider = ({ children }) => {
 
   const tabScreens = {
     //TODO: put patient screens here
-    globalInfo: <div>1</div>,
+    globalInfo: (
+      <GlobalInfoState>
+        <GlobalInfoPage />
+      </GlobalInfoState>
+    ),
     medicalRecord: <div>2</div>,
     dialysisSessions: <div>3</div>,
     medicalAnalysis: <div>4</div>,

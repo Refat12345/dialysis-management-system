@@ -13,8 +13,10 @@ import {
   patientProfileRoute,
   patientsRoute,
   usersRoute,
+  loginRoute,
 } from "../data/data";
 import { SideBar } from "../components/index";
+import LoginPage from "../pages/manager_center/auth/login/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,12 @@ const router = createBrowserRouter([
         <PatientProfilePage />
       </PatientProfileStateProvider>
     ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: loginRoute,
+    element: <LoginPage />,
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },

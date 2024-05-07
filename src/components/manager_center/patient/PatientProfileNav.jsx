@@ -15,7 +15,7 @@ const PatientProfileNav = () => {
           {state.patientProfileMenuItems.map((item, index) => (
             <Tab
               key={item.name}
-              className={` text-sm font-normal border-[1px] border-gray100 outline-none shadow-sm ${
+              className={` md:text-sm sm:text-xs font-normal border-[1px] border-gray100 outline-none shadow-sm ${
                 index === 0 ? "rounded-r-2xl" : ""
               } ${
                 index === state.patientProfileMenuItems.length - 1
@@ -29,7 +29,7 @@ const PatientProfileNav = () => {
                   state.activeItem === item.name
                     ? "bg-bgTab text-white rounded-2xl"
                     : "text-primaryFontColor"
-                }  px-3 py-2 `}
+                }  md:px-3 sm:px-1 py-2 `}
               >
                 {item.name}
               </div>

@@ -30,6 +30,11 @@ export default {
         gray100: "#E4E4E7",
         bgTab: "#C3974C",
         primaryFontColor: "#27272A",
+        //blue
+        blue400: "#9AB8FF80",
+        blue600: "#2E307D",
+        //green
+        green400: "#149603",
       },
       screens: {
         lg2: "1100px",
