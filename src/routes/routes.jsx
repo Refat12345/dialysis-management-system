@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
-        <DialysisPage />
+        <Dashboard />
       </>
     ),
     errorElement: <ErrorPage />,
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     path: usersRoute,
     element: (
       <>
-        <SideBar sideBarData={managerCenterSideBar} />
+        <SideBar  sideBarData={managerCenterSideBar} />
         <UsersListPage />
       </>
     ),
