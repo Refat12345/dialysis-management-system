@@ -5,16 +5,15 @@ const MedicalAnalysisPage = () => {
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"]
 
     return (
-    <div dir="rtl" className="flex-grow  mr-52 mt-16">
+    <div dir="rtl" className="flex-grow">
             
-            <div className="ml-[7%]">
+            <div className="ml-[1%]">
                 <Header/>
                 <div className="analysis">
                     {analysis.map((ana,index)=>{
-                        return <>
-                                <MedicalAnalysis key={index} title={title} data={ana}/>
-                                <div className="mb-4"></div>
-                        </>
+                        return <MedicalAnalysis key={index} title={title} data={ana}/>
+                                
+                      
                     })}
                 </div>
             </div>

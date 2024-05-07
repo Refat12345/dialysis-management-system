@@ -5,7 +5,7 @@ const Medicine = ({data,title}) => {
     const arrayTitle = Object.values(title);
     const arrayData = Object.values(data);
   return (
-    <div  dir="rtl" className='flex flex-row justify-between p-4 bg-white'>
+    <div  dir="rtl" className={`flex flex-row justify-between p-4 bg-white ${height>600?(height>700?"mb-6":"mb-4"):"mb-2"}`}>
         <div className="doctor status ">
             <p className="text-lg font-bold mb-4"> 
                 {arrayData[0]}

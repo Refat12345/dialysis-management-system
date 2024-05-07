@@ -11,12 +11,12 @@ export default function DropDown({filter}) {
     setSelectedValue(value); 
   };
   return (
-    <Menu dir='rtl' as="div" className="relative inline-block text-left">
-    <div>
-      <Menu.Button className="inline-flex w-full justify-center rounded-full bg-bgSideButton px-3 py-2 text-sm  text-textMenuColor font-bold hover:bg-bgSideButton border border-textMenuColor focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-       {selectedValue}
+    <Menu dir='rtl' as="div" className="relative inline-block text-left w-full">
+    <div >
+      <Menu.Button className="inline-flex justify-between w-[90%] rounded-full bg-bgSideButton px-3 py-1 text-sm  text-textMenuColor font-bold hover:bg-bgSideButton border border-textMenuColor focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+        {selectedValue}
         <ChevronDownIcon
-          className="mr-20 h-5 w-5 text-textMenuColor font-bold hover:text-violet-200"
+          className=" h-5 w-5 text-textMenuColor font-bold hover:text-violet-200"
           aria-hidden="true"
         />
       </Menu.Button>

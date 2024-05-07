@@ -9,9 +9,7 @@ const App = () => {
   
   return (
     <div className="flex flex-row-reverse mr-20">
-      <RouterProvider router={router} />
-      
-        
+      <RouterProvider router={router} />     
     </div>
   );
 };

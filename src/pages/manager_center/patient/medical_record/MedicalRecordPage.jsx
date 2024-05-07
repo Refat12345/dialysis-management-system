@@ -24,10 +24,10 @@ const precedents = [
 ]
 const MedicalRecordPage = () => {
   return (
-      <div className="flex-grow mr-52 h-screen">
+      <div className="flex-grow">
         
         <HealthInformation title={healthInformation} information = {information}/>
-        <div dir="rtl" className="bg-primaryColor ml-[4%] mr-[3%] mt-[2%] h-[53%] p-6 shadow-lg rounded-lg overflow-y-auto">
+        <div dir="rtl" className="bg-primaryColor ml-[1%] mt-[4%]  p-6 shadow-lg rounded-lg overflow-y-auto">
          <NavItemRecord array={precedents}/>
          <Outlet/>
         </div>    

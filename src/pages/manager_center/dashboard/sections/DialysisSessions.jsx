@@ -19,10 +19,10 @@ const DialysisSessions = ({data}) => {
          `}>
           <Title title={titleSession.dialysisTitle}/>
             {data.map((array,index)=>{
-                return <>
+                return <div key={index}>
                     <HorizontalLine />
-                    <DialysisSession key={index} dialysis= {array}/> 
-                </>
+                    <DialysisSession dialysis= {array}/> 
+                </div>
             })}
         </div>    
     </div>

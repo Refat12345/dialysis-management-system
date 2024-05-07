@@ -14,7 +14,13 @@ import {
   medicalAnalysisRoute,
   prescriptionsRoute,
   medicalCentersRoute,
-  loginRoute
+  loginRoute,
+  pathologicalTitle,
+  pathologicalPrecedents,
+  surgicalTitle,
+  surgicalPrecedents,
+  pharmacologicalTitle,
+  pharmacologicalPrecedents
 } from "../data/data";
 
 import LoginPage from "../pages/manager_center/auth/login/LoginPage";
@@ -86,17 +92,21 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "pharmacologicalHistory",
-        element: <PrecedentsSection  />,
+        path: "",
+        element: <PrecedentsSection title={pathologicalTitle} precedents={pathologicalPrecedents} />,
         index:true
       },
       {
-        path: "surgicalHistory",
-        element: <PrecedentsSection  />,
+        path: "pathologicalHistory",
+        element: <PrecedentsSection title={pathologicalTitle} precedents={pathologicalPrecedents}/>,
       },
       {
-        path: "pathologicalHistory",
-        element: <PrecedentsSection />,
+        path: "surgicalHistory",
+        element: <PrecedentsSection title={surgicalTitle} precedents={surgicalPrecedents} />,
+      },
+      {
+        path: "pharmacologicalHistory",
+        element: <PrecedentsSection title={pharmacologicalTitle} precedents={pharmacologicalPrecedents} />,
       }
     ],
     //TODO: u may have to add loader

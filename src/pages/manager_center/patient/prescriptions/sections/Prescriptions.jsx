@@ -11,12 +11,10 @@ const Prescriptions = ({prescriptions ,height}) => {
         note:"تعليمات عن الدواء"
     }
   return (
-    <div className="bg-primaryColor p-4 pb-1 shadow-inner shadow-gray-200 rounded-lg">
+    <div className ={` bg-primaryColor p-4 pb-1 shadow-inner shadow-gray-200 rounded-lg ${height>600?(height>700?"mb-5":"mb-3"):"mb-1"}`}>
         {prescriptions.map((medicine,index)=>{
-            return <>
-                    <Medicine key={index} title={title} data ={medicine} />
-                    <div className={`${height>600?(height>700?"mb-6":"mb-4"):"mb-2"}`}></div>
-            </>
+            return <Medicine key={index} title={title} data ={medicine} />
+    
         })}
     </div>
   )
