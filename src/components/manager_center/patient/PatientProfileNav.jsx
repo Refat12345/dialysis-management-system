@@ -6,7 +6,7 @@ const PatientProfileNav = () => {
 
   const handleItemClick = (name) => {
     updateState({ activeItem: name });
-  };
+    };
 
   return (
     <div className="py-7">

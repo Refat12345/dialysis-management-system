@@ -33,7 +33,16 @@ export const medicalAnalysisRoute = `${patientProfileRoute}/medicalAnalysis`;
 export const prescriptionsRoute = `${patientProfileRoute}/prescriptions`;
 export const globalNotesRoute = `${patientProfileRoute}/globalNotes`;
 
+export const medicalCentersRoute = "/medicalCenters"
+
+
 //--------------------------
+//saria
+//medical_centers_icons
+import centerIcon from "../assets/icons/public/MedicalCenterIcon.svg"
+import addressIcon from "../assets/icons/public/address.svg"
+
+
 export const titleSession = {
   title: "الجلسات الحالية",
   dialysisTitle: {
@@ -68,9 +77,8 @@ export const managerCenterSideBar = {
 };
 
 const data = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5,
-  6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9,
-  10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15
+  ,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
 ];
 
 export const sessions = data.map((data, index) => {
@@ -85,24 +93,163 @@ export const sessions = data.map((data, index) => {
 });
 
 export const healthInformation = {
-  title: "المعلومات الصحية",
-  vascularInlet: "المدخل الوعائي",
-  dryWeight: "الوزن الجاف",
-  blood: "زمرة الدم",
-  causeOfKidneyFailure: "سبب القصور الكلوي",
-  sessionStartDate: "تاريح بدء الجلسات",
-  kidneyTransplant: "وجود زراعة كلية سابقة",
-};
+title : "المعلومات الصحية",
+vascularInlet:"المدخل الوعائي",
+dryWeight:"الوزن الجاف",
+blood:"زمرة الدم",
+causeOfKidneyFailure:"سبب القصور الكلوي",
+sessionStartDate:"تاريح بدء جلسات الغسيل",
+kidneyTransplant:"وجود زراعة كلية سابقة",
+}
 export const information = {
-  vascularInlet: "قثطرة",
-  dryWeight: "72",
-  blood: "AB+",
-  causeOfKidneyFailure: "مرض السكري",
-  sessionStartDate: "2-3-2024",
-  kidneyTransplant: "نعم",
-};
-export const cardsData = [
+    vascularInlet:"قثطرة",
+    dryWeight:"72",
+    blood:"AB+",
+    causeOfKidneyFailure:"مرض السكري  مرض  الشديد",
+    sessionStartDate:"2-3-2024",
+    kidneyTransplant:"نعم",
+}
+export const prescriptionOne = [
   {
+      doctor:"الطبيب سارية الزعبي",
+      status:"نشطة",
+      name:"التهاب",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
+  },{
+      doctor:"الطبيب سارية الزعبي",
+      status:"منتهية",
+      name:"سيتامول",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
+  },{
+      doctor:"الطبيب سارية الزعبي",
+      status:"منتهية",
+      name:"حديد",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
+  }
+] 
+export const prescriptionTow = [
+  {
+      doctor:"الطبيب سارية الزعبي",
+      status:"منتهية",
+      name:"كريب ستوب",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ خمسة حبات يوميا قبل الطعام'
+  },{
+      doctor:"الطبيب أحمد الزعبي",
+      status:"منتهية",
+      name:"سيتامول",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
+  },{
+      doctor:"الطبيب محمد الزعبي",
+      status:"منتهية",
+      name:"بؤوفين",
+      startDate:"2030-4-5",
+      endDate:'2040-4-5',
+      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
+  }
+] 
+export const prescriptions = [prescriptionOne,prescriptionTow]
+
+const array = [1,2,3,4,5,6,7,8
+              ,9,10,11,12
+]
+export const medicalCenters = array.map((array,index)=>{
+  return {centerIcon:centerIcon,name:"مركز حسن الطحان الخيري",
+  addressIcon:addressIcon,address:`سوريا - دمشق - الصالحية بناء رقم (${index+90})`}
+}
+)
+
+export const analysis = [
+  {
+      name: "خضاب",
+      amount :"سلبي",
+      date:"2022-2-3",
+      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+  },
+  {
+      name: "حديد",
+      amount :"ايجابي",
+      date:"2022-2-3",
+      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+  },
+  {
+      name: "دم",
+      amount :"سلبي",
+      date:"2022-2-3",
+      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+  },
+]
+export const pathologicalTitle = ["اسم المرض","تاريخ التشخيص  ","تفاصيل عامة"]
+export const surgicalTitle = ["اسم العملية","تاريخ العملية ","تفاصيل عامة"]
+export const pharmacologicalTitle = ["اسم الدواء","تاريخ بدء أخذ الدواء","تاريخ نهاية أخذ الدواء","تفاصيل عامة"]
+
+export const pharmacologicalPrecedents = [{
+  name:"هيبارين",
+  start:"2022-12-2",
+  end:"2024-10-7",
+  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+},{
+  name:"حديد",
+  start:"2022-12-2",
+  end:"2024-10-7",
+  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+},{
+  name:"ايبوتين",
+  start:"2022-12-2",
+  end:"2024-10-7",
+  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+},
+{
+  name:"فيستولا",
+  start:"2022-12-2",
+  end:"2024-10-7",
+  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+}
+
+]
+export const pathologicalPrecedents = [{
+  name:"داء السكري",
+  start:"2012-1-10",
+  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+},{
+  name:"داء الحساسية",
+  start:"2014-1-10",
+  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+},{
+  name:"داء البحصة",
+  start:"2015-1-10",
+  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+},
+
+]
+export const surgicalPrecedents = [{
+  name:"عملية استئصال زائدة",
+  start:"2019-12-2",
+  details:"تمت هذه العملية في مشفى المواساة تحت اشراف الطبيب سارية الزعبي المحترم"
+},{
+  name:"عملية استئصال معدة",
+  start:"2020-26-2",
+  details:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+},{
+  name:"عملية استئصال معدة",
+  start:"2020-16-2",
+  details:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+},
+
+]
+//==============
+const arrOne = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+export const cardsData = arrOne.map((arr,index)=>{
+  return  {
     name: " سارية الزعبي ",
     role: "ممرض",
     gender: "ذكر",
@@ -111,376 +258,9 @@ export const cardsData = [
     statusIcon: online,
     phone: "+963 992841193",
     
-  },
-  {
-    name: "أسماء ديراني",
-    role: "ممرضة",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-  
-  },
-  {
-    name: " محمد سعيد",
-    role: "دكتور",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-   
-  },
-  {
-    name: "أسماء ديراني",
-    role: "ممرضة",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-  },
-  {
-    name: "أسماء ديراني",
-    role: "ممرضة",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-  },
-  {
-    name: "أسماء ديراني",
-    role: "ممرضة",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-  },
-  {
-    name: "أسماء ديراني",
-    role: "ممرضة",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-  },
-  {
-    name: "أسماء ديراني",
-    role: "ممرضة",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
-  {
-    name: "احمد شريدة",
-    role: "ممرض",
-    gender: "ذكر",
-    location: "دمشق",
-    status: "نشط الآن",
-    statusIcon: online,
-    phone: "+963 992841193",
-    
-  },
+  }
+})
 
-
-
-];
 
 export const patientData = [
   {

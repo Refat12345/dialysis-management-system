@@ -24,7 +24,7 @@ const cardData = [
 const Cards = () => {
   return (
     <>
-      <div className="flex flex-row-reverse">
+      <div className="flex flex-row-reverse h-[20%]">
         {cardData.map((data, index) => {
           return <Card key={index} data={data} />;
         })}

@@ -14,8 +14,12 @@ import GlobalInfoState from "../global_info/GlobalInfoState";
 import DialysisPage from "../../dialysis/dialysisPage";
 // import GlobalNotes from "../../../../components/manager_center/globalNotes/GlobalNotes";
 import GeneralNotePage from "../../generalNotes/GeneralNotePage";
+import MedicalRecordPage from "../medical_record/MedicalRecordPage";
+import PrescriptionsPage from "../prescriptions/PrescriptionsPage";
+import MedicalAnalysisPage from "../medical_analysis/MedicalAnalysisPage";
 
 const PatientProfileStateContext = createContext();
+
 export const PatientProfileStateProvider = ({ children }) => {
   const globalInfo = "معلومات عامة";
   const medicalRecord = "السجل الطبي";
@@ -40,10 +44,10 @@ export const PatientProfileStateProvider = ({ children }) => {
         <GlobalInfoPage />
       </GlobalInfoState>
     ),
-    medicalRecord: <div>2</div>,
+    medicalRecord: <MedicalRecordPage/>,
     dialysisSessions: <DialysisPage/>,
-    medicalAnalysis: <div>4</div>,
-    prescriptions: <div>5</div>,
+    medicalAnalysis: <MedicalAnalysisPage/>,
+    prescriptions: <PrescriptionsPage/>,
     globalNotes: <GeneralNotePage/>,
   };
 
@@ -93,5 +97,6 @@ PatientProfileStateProvider.propTypes = {
 };
 
 // Custom hook to use the state
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePatientProfileState = () =>
   useContext(PatientProfileStateContext);

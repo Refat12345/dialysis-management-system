@@ -1,11 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../pages/manager_center/dashboard/Dashboard";
-import UsersListPage from "../pages/manager_center/users/users-list/UsersListPage";
-import ErrorPage from "../pages/error/ErrorPage";
-import PatientListPage from "../pages/manager_center/patient/patient_list/PatientListPage";
-import PatientProfilePage from "../pages/manager_center/patient/patient_profile/PatientProfilePage";
+import { PatientProfilePage, PatientListPage, ErrorPage, UsersListPage, Dashboard, MedicalRecordPage, PrecedentsSection , MedicalAnalysisPage ,PrescriptionsPage ,MedicalCentersPage} from "../pages/index"
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
+import { SideBar } from "../components/index";
 
 import {
   mainRoute,
@@ -13,11 +10,22 @@ import {
   patientProfileRoute,
   patientsRoute,
   usersRoute,
+  medicalRecordRoute,
+  medicalAnalysisRoute,
+  prescriptionsRoute,
+  medicalCentersRoute,
   loginRoute,
+  pathologicalTitle,
+  pathologicalPrecedents,
+  surgicalTitle,
+  surgicalPrecedents,
+  pharmacologicalTitle,
+  pharmacologicalPrecedents
 } from "../data/data";
-import { SideBar } from "../components/index";
+
 import LoginPage from "../pages/manager_center/auth/login/LoginPage";
 import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
+
 
 const router = createBrowserRouter([
   {
@@ -53,12 +61,86 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: patientsRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PatientListPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
     path: patientProfileRoute,
     element: (
       <PatientProfileStateProvider>
         <SideBar sideBarData={managerCenterSideBar} />
         <PatientProfilePage />
       </PatientProfileStateProvider>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: medicalRecordRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <MedicalRecordPage />
+      </>
+    ),
+    children: [
+      {
+        path: "",
+        element: <PrecedentsSection title={pathologicalTitle} precedents={pathologicalPrecedents} />,
+        index:true
+      },
+      {
+        path: "pathologicalHistory",
+        element: <PrecedentsSection title={pathologicalTitle} precedents={pathologicalPrecedents}/>,
+      },
+      {
+        path: "surgicalHistory",
+        element: <PrecedentsSection title={surgicalTitle} precedents={surgicalPrecedents} />,
+      },
+      {
+        path: "pharmacologicalHistory",
+        element: <PrecedentsSection title={pharmacologicalTitle} precedents={pharmacologicalPrecedents} />,
+      }
+    ],
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: medicalAnalysisRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <MedicalAnalysisPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: prescriptionsRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <PrescriptionsPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: medicalCentersRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <MedicalCentersPage />
+      </>
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
