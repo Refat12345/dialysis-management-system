@@ -24,7 +24,7 @@ import {
 } from "../data/data";
 
 import LoginPage from "../pages/manager_center/auth/login/LoginPage";
-import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
+import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 
 
 const router = createBrowserRouter([
@@ -147,7 +147,9 @@ const router = createBrowserRouter([
   },
   {
     path: loginRoute,
-    element: <LoginPage />,
+    element: <LoginStateProvider>
+      <LoginPage />
+    </LoginStateProvider>,
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
