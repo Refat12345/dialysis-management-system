@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 import { SideBarHeader, NavItem } from "../../index";
 
 const SideBar = ({ sideBarData }) => {
   const [activeItem, setActiveItem] = useState(sideBarData.items[0].name);
+  
+  useEffect(() => {
+    const activeItem = localStorage.getItem('activeItem');
+    setActiveItem(activeItem);
+  }, []);
 
   const handleItemClick = (itemName) => {
-    console.log("Clicked");
     setActiveItem(itemName);
+    localStorage.setItem('activeItem', itemName);
   };
   return (
     <>

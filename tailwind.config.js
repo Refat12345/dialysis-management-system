@@ -45,6 +45,7 @@ export default {
       },
       screens :{
         lg2:"1250px",
+        xxl:"1400px",
         phone: "100px",
         "1/10": "10%",
       },
