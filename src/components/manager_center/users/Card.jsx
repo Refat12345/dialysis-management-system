@@ -10,8 +10,9 @@ import doctor from "../../../assets/icons/medical-center/users/users-list/doctor
 import nurse from "../../../assets/icons/medical-center/users/users-list/nurse.svg";
 import nurseMan from "../../../assets/icons/medical-center/users/users-list/nurseMan.svg";
 import secretary from "../../../assets/icons/medical-center/users/users-list/secretary.svg";
-
-function RoleImage({ role }) {
+import { useNavigate } from "react-router-dom";
+import { userDetailsRoute } from "../../../data/data";
+export function RoleImage({ role, width, height }) {
   let imageSrc;
   switch (role) {
     case "ممرضة":
@@ -26,18 +27,34 @@ function RoleImage({ role }) {
     default:
       imageSrc = doctor;
   }
+  console.log(width);
 
-  return <img className="w-11" src={imageSrc} alt={role} />;
+  return <img className={`w-${width} h-${height}`} src={imageSrc} alt={role} />;
 }
 
 function Card({ data }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = (userName) => {
+    navigate(`${userDetailsRoute}`);
+  };
+
   return (
     <>
-    
-<div className=" bg-cardColor p-2 rounded-lg shadow-lg max-w-[290px] ">
-        
+      <style>
+        {`
+      .card-hover  :hover {
+            background-color: #f3f3f3; 
+            cursor: pointer;
+          }
+        `}
+      </style>
+
+      <div
+        className="card-hover bg-cardColor p-2 rounded-lg shadow-lg max-w-[300px] "
+        onClick={() => handleCardClick()}
+      >
         <div className="flex justify-between items-center">
-          
           <svg
             className="h-5 w-5 text-green-500 mb-3"
             fill="none"
@@ -49,7 +66,7 @@ function Card({ data }) {
             <circle cx="19" cy="12" r="1" transform="rotate(90 19 12)" />
           </svg>
 
-          <div className="flex flex-col -mr-6">
+          <div className="flex flex-col ml-8">
             <div className="flex items-center">
               <h3 className="text-right text-base text-gray-700 font-semibold">
                 {data.name} ({data.role})
@@ -66,8 +83,7 @@ function Card({ data }) {
             </span>
           </div>
 
-          <RoleImage role={data.role} />
-
+          <RoleImage role={data.role} width={11} />
         </div>
 
         <div className="mt-2 px-2">
@@ -85,11 +101,6 @@ function Card({ data }) {
           </div>
         </div>
       </div>
-
-
-
-
-     
     </>
   );
 }
