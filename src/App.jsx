@@ -2,15 +2,15 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes";
-
-
+import { Theme } from "@radix-ui/themes";
 
 const App = () => {
-  
   return (
-    <div className="flex flex-row-reverse mr-20">
-      <RouterProvider router={router} />     
-    </div>
+    <Theme>
+      <div className="flex flex-row-reverse">
+        <RouterProvider router={router} />
+      </div>
+    </Theme>
   );
 };
 

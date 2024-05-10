@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import DialysisView from "../../../components/manager_center/dialysis/DialysisView";
 
