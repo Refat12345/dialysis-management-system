@@ -129,15 +129,19 @@ padding-right: calc(1%);
   --color-primary: rgba(246, 249, 255, 1);
 }
 
-body {
-  background-color: rgba(244, 247, 254, 255);
+
+
+
+
+
+@font-face {
+  font-family: 'primaryBold';
+  src: url('./assets/fonts/a-JannatLT-Bold.ttf') format('truetype');
 }
-
-
-body {
-  background-color: #FFF;
+@font-face {
+  font-family: 'primaryRegular';
+  src: url('./assets/fonts/a-JannatLT-Regular.ttf') format('truetype');
 }
-
 /*
 a {
   font-weight: 500;

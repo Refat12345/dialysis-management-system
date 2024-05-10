@@ -3,8 +3,14 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily:{
+        primaryBold: ['primaryBold', 'sans-serif'],
+        primaryRegular: ['primaryRegular', 'sans-serif'],
+      },
       fontSize: {
         customSize: "22px",
+        ms: '0.84375rem',
+        md:'0.9375rem'
       },
       width: {
         phone: "100px",
@@ -54,11 +60,12 @@ export default {
       minHeight: {
         customUnder600: "320px",
         customUnder680: "380px",
-        customUnder760: "428px",
+        customUnder760: "456px",
         customUnder830: "489px",
         customAbove830: "550px",
       },
     },
   },
+  
   plugins: [],
 };

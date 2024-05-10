@@ -13,8 +13,8 @@ const NavItemRecord = ({array}) => {
     <nav >
         <div className="flex flex-grow">
             {array.map((precedent,index)=>{
-                return <Link key={index} className={`text-black transition duration-300 ml-[3%]
-                              ${active === precedent.name && "text-titleSideColor font-bold "}`} 
+                return <Link key={index} className={`text-black font-primaryRegular transition duration-300 ml-[3%]
+                              ${active === precedent.name && "text-titleSideColor text-lg font-primaryBold "}`} 
                               onClick={()=> handleState(precedent.name)}
                               to={precedent.path} 
                         >

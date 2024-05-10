@@ -1,24 +1,23 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import Button from '@mui/material/Button';
+
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-export default function AlertDialog({ RenderComponent ,data ,ContentComponent}) {
+export default function AlertDialog({renderComponent , contentComponent ,titleButton}) {
   const [open, setOpen] = React.useState(false);
 
-
-  const handleOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
-    <React.Fragment>
-      <div onClick={()=>handleOpen()}>
-          <RenderComponent object = {data} />
+    <React.Fragment >
+      <div onClick={handleClickOpen}>
+        {renderComponent}
       </div>
       <Dialog
         open={open}
@@ -26,15 +25,15 @@ export default function AlertDialog({ RenderComponent ,data ,ContentComponent}) 
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogContent>
-           {ContentComponent}
+        <DialogContent >
+            {contentComponent}
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
+        <div className='flex flex-row justify-center'>
+          {titleButton != undefined && <button onClick={handleClose}
+            className='mb-4 bg-bgButtonColor text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg font-primaryBold '
+          >{titleButton}
+          </button>}
+        </div>
       </Dialog>
     </React.Fragment>
   );

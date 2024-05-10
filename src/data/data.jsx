@@ -39,8 +39,7 @@ export const medicalCentersRoute = "/medicalCenters"
 //--------------------------
 //saria
 //medical_centers_icons
-import centerIcon from "../assets/icons/public/MedicalCenterIcon.svg"
-import addressIcon from "../assets/icons/public/address.svg"
+
 
 
 export const titleSession = {
@@ -76,21 +75,6 @@ export const managerCenterSideBar = {
   ],
 };
 
-const data = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15
-  ,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
-];
-
-export const sessions = data.map((data, index) => {
-  return {
-    patientName: "أحمد محمد",
-    nurseName: "عدنان العويدات",
-    startTime: "الساعة السادسة",
-    endTime: "الساعة الثانية عشرة",
-    chair: index + 12,
-    hall: index + 1,
-  };
-});
 
 export const healthInformation = {
 title : "المعلومات الصحية",
@@ -101,152 +85,99 @@ causeOfKidneyFailure:"سبب القصور الكلوي",
 sessionStartDate:"تاريح بدء جلسات الغسيل",
 kidneyTransplant:"وجود زراعة كلية سابقة",
 }
-export const information = {
-    vascularInlet:"قثطرة",
-    dryWeight:"72",
-    blood:"AB+",
-    causeOfKidneyFailure:"مرض السكري  مرض  الشديد",
-    sessionStartDate:"2-3-2024",
-    kidneyTransplant:"نعم",
-}
-export const prescriptionOne = [
-  {
-      doctor:"الطبيب سارية الزعبي",
-      status:"نشطة",
-      name:"التهاب",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
-  },{
-      doctor:"الطبيب سارية الزعبي",
-      status:"منتهية",
-      name:"سيتامول",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
-  },{
-      doctor:"الطبيب سارية الزعبي",
-      status:"منتهية",
-      name:"حديد",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
-  }
-] 
-export const prescriptionTow = [
-  {
-      doctor:"الطبيب سارية الزعبي",
-      status:"منتهية",
-      name:"كريب ستوب",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ خمسة حبات يوميا قبل الطعام'
-  },{
-      doctor:"الطبيب أحمد الزعبي",
-      status:"منتهية",
-      name:"سيتامول",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
-  },{
-      doctor:"الطبيب محمد الزعبي",
-      status:"منتهية",
-      name:"بؤوفين",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
-  }
-] 
-export const prescriptions = [prescriptionOne,prescriptionTow]
+
 
 const array = [1,2,3,4,5,6,7,8
               ,9,10,11,12
 ]
 export const medicalCenters = array.map((array,index)=>{
-  return {centerIcon:centerIcon,name:"مركز حسن الطحان الخيري",
-  addressIcon:addressIcon,address:`سوريا - دمشق - الصالحية بناء رقم (${index+90})`}
+  return {centerName:"مركز حسن الطحان الخيري",
+  telecom: [
+    {
+      use:"المكتب",
+      value:"011 212 312"
+    },
+    {
+      use:"الموبايل",
+      value:"00987654332"
+    },
+    {
+      use:"البريد الالكتروني",
+      value:"sariaAlzoubi@gmail.com"
+    }
+  ],
+  address: "سوريا-دمشق-الصالحية بناء رقم(199)",
+  description:"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة ",
+}
 }
 )
 
-export const analysis = [
-  {
-      name: "خضاب",
-      amount :"سلبي",
-      date:"2022-2-3",
-      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
-  },
-  {
-      name: "حديد",
-      amount :"ايجابي",
-      date:"2022-2-3",
-      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
-  },
-  {
-      name: "دم",
-      amount :"سلبي",
-      date:"2022-2-3",
-      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
-  },
-]
+
 export const pathologicalTitle = ["اسم المرض","تاريخ التشخيص  ","تفاصيل عامة"]
 export const surgicalTitle = ["اسم العملية","تاريخ العملية ","تفاصيل عامة"]
 export const pharmacologicalTitle = ["اسم الدواء","تاريخ بدء أخذ الدواء","تاريخ نهاية أخذ الدواء","تفاصيل عامة"]
 
 export const pharmacologicalPrecedents = [{
-  name:"هيبارين",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"هيبارين",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 },{
-  name:"حديد",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"حديد",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 },{
-  name:"ايبوتين",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"ايبوتين",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 },
 {
-  name:"فيستولا",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"فيستولا",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 }
 
 ]
 export const pathologicalPrecedents = [{
-  name:"داء السكري",
-  start:"2012-1-10",
-  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+  illnessName:"داء السكري",
+  medicalDiagnosisDate:"2012-1-10",
+  generalDetails:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
 },{
-  name:"داء الحساسية",
-  start:"2014-1-10",
-  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+  illnessName:"داء الحساسية",
+  medicalDiagnosisDate:"2014-1-10",
+  generalDetails:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
 },{
-  name:"داء البحصة",
-  start:"2015-1-10",
-  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+  illnessName:"داء البحصة",
+  medicalDiagnosisDate:"2015-1-10",
+  generalDetails:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
 },
 
 ]
 export const surgicalPrecedents = [{
-  name:"عملية استئصال زائدة",
-  start:"2019-12-2",
-  details:"تمت هذه العملية في مشفى المواساة تحت اشراف الطبيب سارية الزعبي المحترم"
+  surgeryName:"عملية استئصال زائدة",
+  surgeryDate:"2019-12-2",
+  generalDetails:"تمت هذه العملية في مشفى المواساة تحت اشراف الطبيب سارية الزعبي المحترم"
 },{
-  name:"عملية استئصال معدة",
-  start:"2020-26-2",
-  details:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+  surgeryName:"عملية استئصال معدة",
+  surgeryDate:"2020-26-2",
+  generalDetails:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
 },{
-  name:"عملية استئصال معدة",
-  start:"2020-16-2",
-  details:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+  surgeryName:"عملية استئصال معدة",
+  surgeryDate:"2020-16-2",
+  generalDetails:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
 },
 
 ]
 //==============
+
+
+
+
+
+
 const arrOne = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 export const cardsData = arrOne.map((arr,index)=>{
   return  {

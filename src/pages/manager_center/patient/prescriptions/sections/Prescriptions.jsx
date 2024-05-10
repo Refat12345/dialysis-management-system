@@ -12,8 +12,8 @@ const Prescriptions = ({prescriptions ,height}) => {
     }
   return (
     <div className ={` bg-primaryColor p-4 pb-1 shadow-inner shadow-gray-200 rounded-lg ${height>600?(height>700?"mb-5":"mb-3"):"mb-1"}`}>
-        {prescriptions.map((medicine,index)=>{
-            return <Medicine key={index} title={title} data ={medicine} />
+        {prescriptions.medicines.map((medicine,index)=>{
+            return <Medicine key={index} title={title} medicine ={medicine} doctor={prescriptions.doctor}/>
     
         })}
     </div>
