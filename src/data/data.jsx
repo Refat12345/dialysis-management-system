@@ -24,6 +24,7 @@ export const mainRoute = "/";
 export const loginRoute = "/login";
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
+export const dialysisRoute = "/dialysis";
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
 export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;
@@ -34,6 +35,8 @@ export const prescriptionsRoute = `${patientProfileRoute}/prescriptions`;
 export const globalNotesRoute = `${patientProfileRoute}/globalNotes`;
 
 export const medicalCentersRoute = "/medicalCenters"
+
+export const userDetailsRoute = `${usersRoute}/userDetails`;
 
 
 //--------------------------
@@ -67,7 +70,7 @@ export const managerCenterSideBar = {
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
-    { href: "", name: "جلسات الغسيل", icon: DialysisSessionsIcon },
+    { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: "", name: "سجل العمليات", icon: LoggingICon },
     { href: "", name: "الطلبات", icon: OrdersIcon },
     { href: "", name: "الملاحظات", icon: NotesIcon },
@@ -250,7 +253,7 @@ export const surgicalPrecedents = [{
 const arrOne = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 export const cardsData = arrOne.map((arr,index)=>{
   return  {
-    name: " سارية الزعبي ",
+    name: " سارية محمد الزعبي ",
     role: "ممرض",
     gender: "ذكر",
     location: "دمشق",
@@ -368,3 +371,16 @@ export const  Globalnotes = [
     date: '4 مايو 2024'
   },
 ];
+
+export const dataContact = {
+  title: ": العنوان",
+  house: "سوريا-دمشق-المالكي",
+  work: "سوريا-دمشق-المالكي",
+};
+
+export const dataLocation = {
+  title: ": معلومات التواصل",
+  linePhone: "0114536987",
+  phone: "+963992841193",
+  gmail:"refatabdalwahed@gmail.com"
+};
