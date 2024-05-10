@@ -30,6 +30,7 @@ import DigitalNationalIdentity from "../components/manager_center/users/UserDeta
 import UserDetailsView from "../components/manager_center/users/UserDetails/UserDetailsView";
 import UserDetailsPage from "../pages/manager_center/users/user-details/UserDetailsPage";
 import GeneralDialysis from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis";
+import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 
 
 const router = createBrowserRouter([
@@ -146,7 +147,9 @@ const router = createBrowserRouter([
   },
   {
     path: loginRoute,
-    element: <LoginPage />,
+    element: <LoginStateProvider>
+      <LoginPage />
+    </LoginStateProvider>,
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },

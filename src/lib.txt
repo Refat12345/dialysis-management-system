@@ -1,0 +1,5 @@
+npm install @radix-ui/themes
+npm install @heroicons/react
+npm install @mui/x-charts
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/styled-engine-sc styled-components

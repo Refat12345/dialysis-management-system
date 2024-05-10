@@ -7,3 +7,6 @@ export { default as GlobalInfoGenderIcon } from "./icons/medical-center/patient/
 export { default as GlobalInfoPatientBirthdateIcon } from "./icons/medical-center/patient/globalInfo/patient_birthdate.svg";
 export { default as GlobalInfoSalaryIcon } from "./icons/medical-center/patient/globalInfo/salary-wage.svg";
 export { default as GlobalInfoPatientAvatar } from "./images/manager_center/patient/patient_avatar.png";
+export { default as SupportLifeImg } from "./images/manager_center/auth/support_life.png";
+export { default as LoginUserIcon } from "./icons/medical-center/auth/user_icon.svg";
+export { default as LoginPasswordIcon } from "./icons/medical-center/auth/password_icon.svg";
