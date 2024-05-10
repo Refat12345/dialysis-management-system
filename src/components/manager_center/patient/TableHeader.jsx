@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 
 export default function TableHeader({ columns, color }) {
   return (
     <>
     
-      <thead>
-        <tr className={`bg-${color}`}>
+      <thead className={`${color}`}>
+        <tr>
           {columns.map((column) => (
             <th
               key={column.key}

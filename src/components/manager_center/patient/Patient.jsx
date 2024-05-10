@@ -70,7 +70,7 @@ export function Table({ data }) {
         </div>
 
         <table className="min-w-full bg-white">
-          <TableHeader columns={columns} color="headerTable" />
+          <TableHeader columns={columns} color="bg-headerTable" />
           <tbody className="text-gray-700">
             {data
               .filter((row) => row.name.includes(searchTerm))

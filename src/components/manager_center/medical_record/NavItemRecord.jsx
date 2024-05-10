@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 
 const NavItemRecord = ({array}) => {
+  
   const [active,setActive] = useState(array[0].name)
   const handleState = (name) => {
     setActive(name)

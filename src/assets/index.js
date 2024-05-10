@@ -10,3 +10,17 @@ export { default as GlobalInfoPatientAvatar } from "./images/manager_center/pati
 export { default as SupportLifeImg } from "./images/manager_center/auth/support_life.png";
 export { default as LoginUserIcon } from "./icons/medical-center/auth/user_icon.svg";
 export { default as LoginPasswordIcon } from "./icons/medical-center/auth/password_icon.svg";
+
+// adminSideBar
+
+export {default as HomePageICon} from "./icons/medical-center/dashboard/SideBar/homePage.svg"
+export {default as UsersIcon} from "./icons/medical-center/dashboard/SideBar/Users.svg"
+export {default as PatientIcon} from "./icons/medical-center/dashboard/SideBar/patientSideBar.svg"
+export {default as AppointmentsIcon} from "./icons/medical-center/dashboard/SideBar/Appointment.svg"
+export {default as DialysisSessionsIcon} from "./icons/medical-center/dashboard/SideBar/laundrySession.svg"
+export {default as LoggingICon} from "./icons/medical-center/dashboard/SideBar/transactionLog.svg"
+export {default as ManagerIcon} from "./icons/medical-center/dashboard/SideBar/manger.svg"
+export {default as OrdersIcon} from "./icons/medical-center/dashboard/SideBar/order.svg"
+export {default as NotesIcon} from "./icons/medical-center/dashboard/SideBar/notification.svg"
+export {default as SettingsIcon} from "./icons/medical-center/dashboard/SideBar/setting.svg"
+export {default as LogOutIcon} from "./icons/medical-center/dashboard/SideBar/logOut.svg"

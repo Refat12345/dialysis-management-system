@@ -29,7 +29,7 @@ const MedicalRecordPage = () => {
 
   return (
       isSuccess &&
-        <div className=" ss flex-grow mr-52 mt-20">  
+        <div className="flex-grow">  
           <HealthInformation title={healthInformation} information = {information.medicalRecord}/>
           <div dir="rtl" className="bg-primaryColor ml-[1%] mt-[4%]  p-6 shadow-lg rounded-lg overflow-y-auto">
             <NavItemRecord array={precedents}/>
@@ -40,17 +40,3 @@ const MedicalRecordPage = () => {
 }
 
 export default MedicalRecordPage
-
-
-/*
-
-
- <div className="h-[65%] w-[33%]  mt-20">
-                <RecordCard/>
-          </div> 
-          <div className="h-[65%] w-[33%]  mt-20">
-                <RecordCard/>
-          </div>
-          <div className="h-[65%] w-[33%]  mt-20">
-                <RecordCard/>
-          </div>*/

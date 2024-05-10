@@ -16,6 +16,9 @@ export {default as PrescriptionsPage} from "./manager_center/patient/prescriptio
 
 //public
 export {default as MedicalCentersPage} from "./public/medical_centers/MedicalCentersPage"
+export {default as LoginPage} from "./manager_center/auth/login/LoginPage"
+export {default as UserDetailsPage} from "./manager_center/users/user-details/UserDetailsPage"
+export {default as GeneralDialysis} from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis"
 
 //error
 export {default as ErrorPage} from "./error/ErrorPage"

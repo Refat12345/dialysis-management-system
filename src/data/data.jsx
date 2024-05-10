@@ -2,19 +2,10 @@
 import Patient from "../assets/icons/medical-center/dashboard/Sessions/patient.svg";
 
 //admin
-import HomePageICon from "../assets/icons/medical-center/dashboard/SideBar/homePage.svg";
-import UsersIcon from "../assets/icons/medical-center/dashboard/SideBar/Users.svg";
-import PatientIcon from "../assets/icons/medical-center/dashboard/SideBar/patientSideBar.svg";
-import AppointmentsIcon from "../assets/icons/medical-center/dashboard/SideBar/Appointment.svg";
-import DialysisSessionsIcon from "../assets/icons/medical-center/dashboard/SideBar/laundrySession.svg";
-import LoggingICon from "../assets/icons/medical-center/dashboard/SideBar/transactionLog.svg";
-import ManagerIcon from "../assets/icons/medical-center/dashboard/SideBar/manger.svg";
-import OrdersIcon from "../assets/icons/medical-center/dashboard/SideBar/order.svg";
-import NotesIcon from "../assets/icons/medical-center/dashboard/SideBar/notification.svg";
-import SettingsIcon from "../assets/icons/medical-center/dashboard/SideBar/setting.svg";
-import LogOutIcon from "../assets/icons/medical-center/dashboard/SideBar/logOut.svg";
+import { HomePageICon , UsersIcon , PatientIcon , AppointmentsIcon 
+        ,DialysisSessionsIcon ,LoggingICon ,ManagerIcon , OrdersIcon
+        , NotesIcon , SettingsIcon , LogOutIcon } from "../assets";
 import online from "../assets/icons/medical-center/users/users-list/online.svg";
-import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 
 //-------------------------
 
