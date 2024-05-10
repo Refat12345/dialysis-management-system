@@ -4,7 +4,7 @@ import {patientData} from './../../../../data/data'
 import { Table } from "../../../../components/manager_center/patient/Patient";
 const PatientListPage = () => {
   return (
-    <div className="flex-grow mr-52">
+    <div className="flex-grow mr-36">
       
       <PaginationComponent data={patientData} RenderComponent={Table} itemsPerPage={8}/>
 

@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { PatientProfilePage, PatientListPage, ErrorPage, UsersListPage, Dashboard, MedicalRecordPage, PrecedentsSection , MedicalAnalysisPage ,PrescriptionsPage ,MedicalCentersPage} from "../pages/index"
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import { SideBar } from "../components/index";
-
 import {
   mainRoute,
   managerCenterSideBar,
@@ -20,10 +19,17 @@ import {
   surgicalTitle,
   surgicalPrecedents,
   pharmacologicalTitle,
-  pharmacologicalPrecedents
+  pharmacologicalPrecedents,
+  userDetailsRoute,
+  dialysisRoute
 } from "../data/data";
 
 import LoginPage from "../pages/manager_center/auth/login/LoginPage";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
+import DigitalNationalIdentity from "../components/manager_center/users/UserDetails/DigitalNationalIdentity";
+import UserDetailsView from "../components/manager_center/users/UserDetails/UserDetailsView";
+import UserDetailsPage from "../pages/manager_center/users/user-details/UserDetailsPage";
+import GeneralDialysis from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 
 
@@ -60,17 +66,11 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-  {
-    path: patientsRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <PatientListPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
+
+
+
+  
+  
   {
     path: patientProfileRoute,
     element: (
@@ -153,6 +153,35 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+
+  {
+    path: userDetailsRoute,
+    element: (
+      <>
+        <SideBar  sideBarData={managerCenterSideBar} />
+        <UserDetailsPage />
+        
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+
+
+  {
+    path: dialysisRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <GeneralDialysis/>
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+
+
+
 ]);
 
 export default router;

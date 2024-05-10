@@ -6,7 +6,7 @@ import { cardsData } from "../../../../data/data";
 
 const UsersListPage = () => {
   return (
-    <div className="flex-grow mr-52">
+    <div className="flex-grow mr-36 ml-8">
       <Header />
       <PaginationComponent
         data={cardsData}

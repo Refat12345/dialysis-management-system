@@ -9,6 +9,7 @@ import patient from "../../../assets/icons/medical-center/patient/patient.svg";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./TableRow";
 import React, { useState } from "react";
+import TableHeader from "./TableHeader";
 
 export function Table({ data }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +27,16 @@ export function Table({ data }) {
     return index % 2 === 0 ? "bg-firstRow" : "bg-secondRow";
   };
 
+  const columns = [
+    { key: 'name', title: 'الاسم' },
+    { key: 'gender', title: 'الجنس' },
+    { key: 'birth', title: 'العمر' },
+    { key: 'location', title: 'السكن' },
+    { key: 'phone', title: 'الهاتف' },
+    { key: 'icon', title: '' },
+
+
+  ];
   return (
     <>
       <style>
@@ -59,27 +70,7 @@ export function Table({ data }) {
         </div>
 
         <table className="min-w-full bg-white">
-          <thead>
-            <tr className="bg-headerTable">
-              <th className="text-right py-3 px-4 uppercase font-semibold text-sm">
-                الاسم
-              </th>
-              <th className="text-right py-3 px-4 uppercase font-semibold text-sm">
-                الجنس
-              </th>
-              <th className="text-right py-3 px-4 uppercase font-semibold text-sm">
-                العمر
-              </th>
-              <th className="text-right py-3 px-4 uppercase font-semibold text-sm">
-                السكن
-              </th>
-              <th className="text-right py-3 px-4 uppercase font-semibold text-sm">
-                الهاتف
-              </th>
-              <th className="text-right py-3 px-4 uppercase font-semibold text-sm"></th>
-            </tr>
-          </thead>
-
+          <TableHeader columns={columns} color="headerTable" />
           <tbody className="text-gray-700">
             {data
               .filter((row) => row.name.includes(searchTerm))
