@@ -8,8 +8,8 @@ const CustomTextField = ({
   onChange,
   size,
   placeholder,
-  icon,
-  side = "left",
+  prefixIcon,
+  suffixIcon,
   type = "text",
   required = false,
 }) => {
@@ -28,8 +28,11 @@ const CustomTextField = ({
           value={value}
           onChange={(e) => onChange(e)}
         >
-          <TextField.Slot side={side}>
-            <div className={`w-5`}>{icon}</div>
+          <TextField.Slot side={"left"}>
+            <div className={`w-5`}>{prefixIcon}</div>
+          </TextField.Slot>
+          <TextField.Slot side={"right"}>
+            <div className={`w-5`}>{suffixIcon}</div>
           </TextField.Slot>
         </TextField.Root>
       </label>
