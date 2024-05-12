@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+
 import TableHeader from '../../patient/TableHeader'
 import TableRow from '../../patient/TableRow';
 import { GeneralDialysisData } from '../../../../data/data';
@@ -12,7 +12,7 @@ function GeneralDialysis() {
     { key: 'birth', title: 'التاريخ' },
     { key: 'location', title: 'التوقيت' },
     { key: 'phone', title: 'الكرسي' },
-    { key: 'icon', title: 'القاعة' },
+    { key: 'room', title: 'القاعة' },
 
 
   ];
@@ -35,6 +35,7 @@ function GeneralDialysis() {
                   index={index}
                   handleRowClick={null}
                   getRowColor={() => getRowColor(index, row.name)}
+                  type={"dialysis"}
                 />
               ))}
           </tbody>

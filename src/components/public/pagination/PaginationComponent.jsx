@@ -1,10 +1,13 @@
+
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-
+import ChevronIcon from "../../../assets/icons/public/chevron_left.svg"
+import ChevronRightIcon  from "../../../assets/icons/public/chevron_right.svg";
 const PaginationComponent = ({
   data,
   RenderComponent,
   itemsPerPage,
+  type,
   initialPage = 1,
 }) => {
   const totalItems = data.length;
@@ -47,16 +50,18 @@ const PaginationComponent = ({
       setVisiblePages(getVisiblePages(newBasePage));
     }
   };
+  const buttonColor = type === "dashboard" ? "bg-white " : "bg-gray-100"
+  const hover = type === "dashboard" ? "hover:bg-gray-100":"hover:bg-gray-200"
   return (
     <>
       <RenderComponent data={currentItems} />
       <div dir="rtl" className="flex justify-center mt-3 ">
         <button
-          className="text-textButtonColor font-primaryBold text-sm bg-white px-2 py-2 ml-1 rounded-lg shadow-lg"
+          className={`text-textButtonColor font-primaryBold text-sm px-2 py-2 ml-1 rounded-lg shadow-lg ${buttonColor}`}
           onClick={handlePrevious}
           disabled={visiblePages[0] === 1}
         >
-          &lt;&lt;
+          <img className="w-[22px] h-[22px]" src={ChevronRightIcon}/>
         </button>
 
         {visiblePages.map((number,index) => (
@@ -66,18 +71,18 @@ const PaginationComponent = ({
             className={
               number === currentPage
                 ? "text-white text-xs font-primaryBold bg-bgButtonColor px-4 py-2 rounded-lg shadow-lg mx-1"
-                : "text-textButtonColor text-xs font-primaryBold bg-white px-4 py-2 rounded-lg shadow-lg mx-1 hover:bg-gray-100"
+                : `text-textButtonColor text-xs font-primaryBold  px-4 py-2 rounded-lg shadow-lg mx-1 ${hover} ${buttonColor}`
             }
           >
             {number}
           </button>
         ))}
         <button
-          className="text-textButtonColor text-sm font-primaryBold bg-white px-2 py-2 mr-1 rounded-lg shadow-lg"
+          className={`text-textButtonColor text-sm font-primaryBold  px-2 py-2 mr-1 rounded-lg shadow-lg ${buttonColor}`}
           onClick={handleNext}
           disabled={visiblePages[visiblePages.length - 1] === totalPages}
         >
-          &gt;&gt;
+          <img className="w-[22px] h-[22px] " src={ChevronIcon}/>
         </button>
       </div>
     </>

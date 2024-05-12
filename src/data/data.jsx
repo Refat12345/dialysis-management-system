@@ -19,6 +19,7 @@ export const createAccountRoute = `${registerRoute}/create-account`;
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
+export const auditingRoute = '/auditing'
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
 export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;
@@ -64,7 +65,7 @@ export const managerCenterSideBar = {
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
-    { href: "", name: "سجل العمليات", icon: LoggingICon },
+    { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: "", name: "الطلبات", icon: OrdersIcon },
     { href: "", name: "الملاحظات", icon: NotesIcon },
     { href: "", name: "الاعدادت", icon: SettingsIcon },
@@ -170,70 +171,80 @@ export const cardsData = arrOne.map((arr,index)=>{
 export const patientData = [
   {
     name: "حيدر البياتي",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   {
     name: "فراس السيد",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   {
     name: "بشار عبد",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },{
     name: "سعيد الرز",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },{
     name: "ماهر الاسعد",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },{
     name: "رامي طلاس",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   {
     name: "جميل حسن",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   {
     name: "نمر الراضي ",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   {
     name: "احمد عليوي",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   {
     name: "امجد الخشن",
-    age: 25,
     nationality: "ذكر",
-    phone: "+963999966666",
+    age: 25,
     area: "دمشق",
+    phone: "+963999966666",
+    
   },
   
  
@@ -1203,9 +1214,111 @@ export const pieChartData ={
 }
 
 
-export const auditing = {
-  
-}
+export const auditing = [{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+},{
+  operation:"السجل الطبي",
+  date:"2-3-2024",
+  affectedUser:"أسماء درباني",
+  affectorUser:"رفعت عبد الواحد",
+  oldData:"71",
+  newData:"73",
+
+}]
 
 
 export const GeneralDialysisData = [

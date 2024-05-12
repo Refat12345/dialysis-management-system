@@ -15,12 +15,17 @@ const filters = [
         array:["كانون الثاني" , "كانون الأول"]
     }
 ]
+const colors = {
+    titleColor:"bgSideButton",
+    contentColor:"bgButtonColor",
+    textColor:"textMenuColor"
+}
   return (
     <div className="header flex justify-between mb-6  ">
         <span className="text-titleSideColor text-2xl font-primaryBold ">التحاليل</span>
         <div className="flex justify-between w-[55%]">
             {filters.map((filter,index)=>{
-                return <DropDown key={index} filter={filter}/>
+                return <DropDown key={index} filter={filter} colors={colors}/>
             })}
         </div>
     </div>

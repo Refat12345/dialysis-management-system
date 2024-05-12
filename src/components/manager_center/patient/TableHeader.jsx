@@ -6,10 +6,10 @@ export default function TableHeader({ columns, color }) {
     
       <thead className={`${color}`}>
         <tr >
-        {columns.map((column) => (
+        {columns.map((column,index) => (
             <th
               key={column.key}
-              className="text-right py-3 px-4 uppercase font-semibold text-sm"
+              className={`text-right py-3 uppercase font-bold text-sm ${index === 0 ? "px-8":"px-4 "} ${column.title === "التاريخ" ?"px-6":"px-4"}`}
             >
               {column.title}
             </th>

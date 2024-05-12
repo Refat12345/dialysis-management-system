@@ -19,6 +19,7 @@ export {default as MedicalCentersPage} from "./public/medical_centers/MedicalCen
 export {default as LoginPage} from "./manager_center/auth/login/LoginPage"
 export {default as UserDetailsPage} from "./manager_center/users/user-details/UserDetailsPage"
 export {default as GeneralDialysis} from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis"
+export {default as AuditingPage} from "./public/auditing/AuditingPage"
 
 //error
 export {default as ErrorPage} from "./error/ErrorPage"

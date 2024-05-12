@@ -14,7 +14,7 @@ const Dashboard = () => {
     <Cards/>
     <div className={`flex flex-row-reverse justify-between ${height>700 ?"mt-7":"mt-5"}`}>
                 <div  className="flex flex-col  md:w-7/12 ">
-                      <PaginationComponent data={data.dialysisSessions} RenderComponent={DialysisSessions} itemsPerPage={itemsPerPage}/>
+                      <PaginationComponent data={data.dialysisSessions} RenderComponent={DialysisSessions} itemsPerPage={itemsPerPage} type={"dashboard"}/>
                 </div> 
                 <div className="hidden lg2:block w-1/3">ٍ
                     <PieCharts data = {pieChartData} />

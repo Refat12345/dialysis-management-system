@@ -14,6 +14,7 @@ import {
   LoginPage,
   UserDetailsPage,
   GeneralDialysis,
+  AuditingPage
 } from "../pages/index";
 import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
@@ -39,11 +40,13 @@ import {
   dialysisRoute,
   registerRoute,
   invitationRoute,
+  auditingRoute,
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
+
 
 const router = createBrowserRouter([
   {
@@ -228,6 +231,19 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+
+  {
+    path: auditingRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <AuditingPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
 ]);
+
 
 export default router;

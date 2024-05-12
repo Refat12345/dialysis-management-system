@@ -72,7 +72,7 @@ export default {
       },
 
       minHeight: {
-        customUnder600: "320px",
+        customUnder600: "325px",
         customUnder618:"379px",
         customUnder680: "395px",
         customUnder735: "432px",
@@ -82,6 +82,11 @@ export default {
         centerAbove700_1400:"552px",
         centerUnder700:"499px",
         centerUnder630:"482px",
+        AuditAbove800:"580px",
+        AuditAbove740:"532px",
+        AuditAbove700:"483px",
+        AuditAbove630:"434px",
+        AuditUnder630:"385px"
         
       },
     },

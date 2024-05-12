@@ -77,6 +77,7 @@ export function Table({ data }) {
                   index={index}
                   handleRowClick={handleRowClick}
                   getRowColor={() => getRowColor(index, row.name)}
+                  type={"patient"}
                 />
               ))}
           </tbody>
