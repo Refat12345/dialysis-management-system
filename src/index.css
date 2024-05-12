@@ -9,6 +9,13 @@
   height: 0.5px; 
   background-color: black; 
 }
+
+/*PaitintPageMinHeight*/
+.min-h-customAbove600 {
+  min-height: 600px;
+}
+
+
 /*Start dialysisPage */
 .cardOne{
   height: 27vh;
@@ -138,9 +145,9 @@ body {
 }
 
 
-body {
+/* body {
   background-color: #FFF;
-}
+} */
 
 /*
 a {

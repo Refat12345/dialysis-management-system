@@ -6,7 +6,7 @@ import { sessions } from "../../../data/data";
 const Dashboard = () => {
   const height = window.innerHeight;
   return (
-    <div  className="flex-grow md:mr-36 bg-bgDashboard">
+    <div  className="flex-grow md:mr-56 bg-bgDashboard">
       <Cards />
       <div className={`flex flex-row-reverse justify-between ${height>700 ?"mt-7":"mt-5"}`}>
                   <div  className="flex flex-col  md:w-7/12 ">

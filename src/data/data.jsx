@@ -384,3 +384,89 @@ export const dataLocation = {
   phone: "+963992841193",
   gmail:"refatabdalwahed@gmail.com"
 };
+
+
+export const GeneralDialysisData = [
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  {
+    patientname: "حيدر البياتي",
+    nursename:"سعيد النايحة",
+    date: '4كانون 2024 الثاني ',
+    hour: "12:00PM",
+    chair: "20",
+    room: "القاعة الاولى",
+  },
+  
+ 
+];

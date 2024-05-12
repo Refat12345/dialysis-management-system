@@ -43,7 +43,7 @@ function Card({ data }) {
     <>
       <style>
         {`
-      .card-hover  :hover {
+      .card-hover:hover {
             background-color: #f3f3f3; 
             cursor: pointer;
           }

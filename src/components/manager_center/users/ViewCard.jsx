@@ -6,7 +6,7 @@ import Card from './Card'
 
 function ViewCard({ data }) {
   return (
-    <div dir="rtl" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div dir="rtl" className="min-h-customAbove830  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-min">
       {data.map((card, index) => (
         <div dir="ltr" key={index}>
           <Card data={card} />

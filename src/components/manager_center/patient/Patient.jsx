@@ -28,14 +28,12 @@ export function Table({ data }) {
   };
 
   const columns = [
-    { key: 'name', title: 'الاسم' },
-    { key: 'gender', title: 'الجنس' },
-    { key: 'birth', title: 'العمر' },
-    { key: 'location', title: 'السكن' },
-    { key: 'phone', title: 'الهاتف' },
-    { key: 'icon', title: '' },
-
-
+    { key: "name", title: "الاسم" },
+    { key: "gender", title: "الجنس" },
+    { key: "birth", title: "العمر" },
+    { key: "location", title: "السكن" },
+    { key: "phone", title: "الهاتف" },
+    { key: "icon", title: "" },
   ];
   return (
     <>
@@ -47,7 +45,8 @@ export function Table({ data }) {
           }
         `}
       </style>
-      <div className="overflow-x-auto  ml-11" dir="rtl">
+      
+      <div className="overflow-x-auto  ml-11 min-h-customAbove600" dir="rtl">
         <input
           dir="rtl"
           type="text"
@@ -70,7 +69,8 @@ export function Table({ data }) {
         </div>
 
         <table className="min-w-full bg-white">
-          <TableHeader columns={columns} color="headerTable" />
+          <TableHeader columns={columns} color="bg-headerTable" />
+
           <tbody className="text-gray-700">
             {data
               .filter((row) => row.name.includes(searchTerm))
