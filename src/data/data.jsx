@@ -22,6 +22,9 @@ import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 
 export const mainRoute = "/";
 export const loginRoute = "/login";
+export const registerRoute = "/register";
+export const invitationRoute = `${registerRoute}/invitation`;
+export const createAccountRoute = `${registerRoute}/create-account`;
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";

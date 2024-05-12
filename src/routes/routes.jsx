@@ -1,6 +1,17 @@
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
-import { PatientProfilePage, PatientListPage, ErrorPage, UsersListPage, Dashboard, MedicalRecordPage, PrecedentsSection , MedicalAnalysisPage ,PrescriptionsPage ,MedicalCentersPage} from "../pages/index"
+import {
+  PatientProfilePage,
+  PatientListPage,
+  ErrorPage,
+  UsersListPage,
+  Dashboard,
+  MedicalRecordPage,
+  PrecedentsSection,
+  MedicalAnalysisPage,
+  PrescriptionsPage,
+  MedicalCentersPage,
+} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import { SideBar } from "../components/index";
 import {
@@ -21,7 +32,9 @@ import {
   pharmacologicalTitle,
   pharmacologicalPrecedents,
   userDetailsRoute,
-  dialysisRoute
+  dialysisRoute,
+  registerRoute,
+  invitationRoute,
 } from "../data/data";
 
 import LoginPage from "../pages/manager_center/auth/login/LoginPage";
@@ -31,7 +44,9 @@ import UserDetailsView from "../components/manager_center/users/UserDetails/User
 import UserDetailsPage from "../pages/manager_center/users/user-details/UserDetailsPage";
 import GeneralDialysis from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
-
+import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
+import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
+import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +63,7 @@ const router = createBrowserRouter([
     path: usersRoute,
     element: (
       <>
-        <SideBar  sideBarData={managerCenterSideBar} />
+        <SideBar sideBarData={managerCenterSideBar} />
         <UsersListPage />
       </>
     ),
@@ -67,10 +82,6 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 
-
-
-  
-  
   {
     path: patientProfileRoute,
     element: (
@@ -93,21 +104,41 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <PrecedentsSection title={pathologicalTitle} precedents={pathologicalPrecedents} />,
-        index:true
+        element: (
+          <PrecedentsSection
+            title={pathologicalTitle}
+            precedents={pathologicalPrecedents}
+          />
+        ),
+        index: true,
       },
       {
         path: "pathologicalHistory",
-        element: <PrecedentsSection title={pathologicalTitle} precedents={pathologicalPrecedents}/>,
+        element: (
+          <PrecedentsSection
+            title={pathologicalTitle}
+            precedents={pathologicalPrecedents}
+          />
+        ),
       },
       {
         path: "surgicalHistory",
-        element: <PrecedentsSection title={surgicalTitle} precedents={surgicalPrecedents} />,
+        element: (
+          <PrecedentsSection
+            title={surgicalTitle}
+            precedents={surgicalPrecedents}
+          />
+        ),
       },
       {
         path: "pharmacologicalHistory",
-        element: <PrecedentsSection title={pharmacologicalTitle} precedents={pharmacologicalPrecedents} />,
-      }
+        element: (
+          <PrecedentsSection
+            title={pharmacologicalTitle}
+            precedents={pharmacologicalPrecedents}
+          />
+        ),
+      },
     ],
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
@@ -147,9 +178,32 @@ const router = createBrowserRouter([
   },
   {
     path: loginRoute,
-    element: <LoginStateProvider>
-      <LoginPage />
-    </LoginStateProvider>,
+    element: (
+      <LoginStateProvider>
+        <LoginPage />
+      </LoginStateProvider>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: registerRoute,
+    element: (
+      <RegisterStateProvider>
+        <RegisterPage />
+      </RegisterStateProvider>
+    ),
+    // children: [
+    //   {
+    //     path: invitationRoute,
+    //     element: (
+    //       <RegisterStateProvider>
+    //         <RegisterCheckCodePage />
+    //       </RegisterStateProvider>
+    //     ),
+    //     errorElement: <ErrorPage />,
+    //   },
+    // ],
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
@@ -158,30 +212,25 @@ const router = createBrowserRouter([
     path: userDetailsRoute,
     element: (
       <>
-        <SideBar  sideBarData={managerCenterSideBar} />
+        <SideBar sideBarData={managerCenterSideBar} />
         <UserDetailsPage />
-        
       </>
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-
 
   {
     path: dialysisRoute,
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
-        <GeneralDialysis/>
+        <GeneralDialysis />
       </>
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-
-
-
 ]);
 
 export default router;
