@@ -3,11 +3,22 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      margin:{
+        "1.5":"0.375rem"
+      },
       borderRadius: {
         '5xl': '2.5rem',
       },
+      fontFamily:{
+        primaryBold: ['primaryBold', 'sans-serif'],
+        primaryRegular: ['primaryRegular', 'sans-serif'],
+      },
       fontSize: {
         customSize: "22px",
+        ms: '0.84375rem',
+        md:'0.9375rem',
+        s:'0.78125rem',
+        17:"1.0625rem"
       },
       width: {
         phone: "100px",
@@ -62,12 +73,19 @@ export default {
 
       minHeight: {
         customUnder600: "320px",
-        customUnder680: "380px",
-        customUnder760: "428px",
-        customUnder830: "489px",
-        customAbove830: "550px",
+        customUnder618:"379px",
+        customUnder680: "395px",
+        customUnder735: "432px",
+        customUnder830: "456px",
+        customAbove830: "522px",
+        centerAbove700:"539px",
+        centerAbove700_1400:"552px",
+        centerUnder700:"499px",
+        centerUnder630:"482px",
+        
       },
     },
   },
+  
   plugins: [],
 };

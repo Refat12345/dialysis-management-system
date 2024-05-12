@@ -11,6 +11,7 @@ export const LoginStateProvider = ({ children }) => {
   });
 
   const handleSubmit = (event) => {
+    console.log("submit");
     event.preventDefault();
   };
 

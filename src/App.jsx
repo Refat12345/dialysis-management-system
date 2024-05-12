@@ -5,11 +5,9 @@ import router from "./routes/routes";
 
 const App = () => {
   return (
-    
-      <div className="flex flex-row-reverse">
+    <div className="flex flex-row-reverse">
         <RouterProvider router={router} />
-      </div>
-    
+    </div>
   );
 };
 

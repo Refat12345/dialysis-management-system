@@ -2,15 +2,11 @@
 
 import { PieChart } from '@mui/x-charts/PieChart';
 
-export default function BasicPie({obj,size}) {
+export default function BasicPie({content,colors,size}) {
 
   const series = [
     {
-      data: [
-        { id: 0, value: 10, label: obj.medicines[0].name },
-        { id: 1, value: 15, label: obj.medicines[1].name  },
-        { id: 2, value: 20, label: obj.medicines[2].name },
-      ],
+      data: content,
       arcLabel: (item) => `${((item.value / totalValue) * 100).toFixed(0)}%`,
       innerRadius: '50%', 
     },
@@ -29,9 +25,9 @@ export default function BasicPie({obj,size}) {
             slotProps={{
               legend: {
                 hidden:true
-                      },
+              },
             }}
-            colors= {[obj.medicines[0].color , obj.medicines[1].color , obj.medicines[2].color]}
+            colors= {colors}
             width={width}
             height={height}
            

@@ -1,21 +1,73 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+import EllipsisIcon from "../../../assets/icons/public/ellipsis.svg";
+import AlertDialog from "../dialog/Dialog";
+import MedicalCenterDetails from "./MedicalCenterDetails";
 
-const MedicalCenter = ({object}) => {
-  const array = Object.values(object);
+const MedicalCenter = ({ icons, content }) => {
+
+  const title = ["العنوان","معلومات التواصل","تفاصيل عامة"] ;
   const height = window.innerHeight;
-  console.log(array);
+  const width = window.innerWidth;
+
+  const responsiveCenterIcon = height > 600 ? (height > 700 ? "w-[23.8%]" : (height > 630 ? "w-[22%]":"w-[21.2%]")) : "w-[20%]"
+  const responsiveCenterName = height > 600 ? (height > 700 ? "mt-3 text-17 " : (height > 630 ? "mt-2 text-base" : "mt-1.5 text-base")) : "mt-2 text-sm";
+  const responsiveAddress = height > 600 ? (height > 700 ? "mt-3" : (height > 630 ? "mt-2" : "mt-1.5")) : "mt-2";
+  const responsiveAddressContent = height > 700 && width > 1315 ? "text-s" : "text-xs";
+
+ 
+  const [isEllipsisHovered, setIsEllipsisHovered] = useState(false);
+
+  const handleEllipsisClick = (event) => {
+    event.stopPropagation();
+  };
+
+  const handleEllipsisMouseEnter = () => {
+    setIsEllipsisHovered(true);
+  };
+
+  const handleEllipsisMouseLeave = () => {
+    setIsEllipsisHovered(false);
+  };
+
+
   return (
-    <div dir="rtl" className=" medical-center p-4 bg-white rounded-lg shadow-lg ">
-        <div className={`${height>600 ? (height > 700 ? "w-[25%]" :"w-[22%]"): "w-[20%]"}`}>
-          <img src={array[0]}  />
+    <div
+      dir="rtl"
+      className={`medical-center p-4 bg-white rounded-lg shadow-lg ${
+        isEllipsisHovered ? "" : "hover:cursor-pointer hover:bg-gray-100"
+      }`}
+    >
+      <div className="flex flex-row justify-between">
+        <div className={`${responsiveCenterIcon}`}>
+          <img src={icons.centerIcon} />
         </div>
-        <p className={`${height > 600 ?(height>700?"mt-5 text-lg ":"mt-3 text-base"):"mt-2 text-sm"} font-bold `}>{array[1]}</p>
-        <div className={`flex ${height > 600 ?(height>700?"mt-2":"mt-1"):"mt-1"} mb-1`}>
-            <img src={array[2]}/>
-            <p className={`${height>700?"text-sm":"text-xs"} `}>{array[3]}</p>
+        <div onClick={handleEllipsisClick}>
+          <AlertDialog 
+              renderComponent={
+                <img
+                  src={EllipsisIcon}
+                  className="w-6 h-6 hover:bg-gray-100  hover:cursor-pointer"  
+                  onMouseEnter={handleEllipsisMouseEnter}
+                  onMouseLeave={handleEllipsisMouseLeave}
+                />
+              }
+              contentComponent={<MedicalCenterDetails title={title} content={content} />}
+              titleButton={"رجوع"}
+          />
+        </div>
+        </div>
+        <p className={`${responsiveCenterName} font-primaryBold `}>
+            {content.centerName}
+        </p>
+        <div className={`flex ${responsiveAddress} mb-2`}>
+            <img className="w-5 h-5" src={icons.addressIcon} />
+            <p className={` font-primaryRegular ${responsiveAddressContent} ${width > 1320 ? "mr-2" :"mr-1.5"}`}>{content.address}</p>
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default MedicalCenter
+export default MedicalCenter;
+
+

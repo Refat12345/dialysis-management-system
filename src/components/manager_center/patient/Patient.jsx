@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable no-unused-vars */
-import { patientData, patientsRoute } from "../../../data/data";
+
+import {  patientsRoute } from "../../../data/data";
 import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
-import patient from "../../../assets/icons/medical-center/patient/patient.svg";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./TableRow";
-import React, { useState } from "react";
+import { useState } from "react";
 import TableHeader from "./TableHeader";
 
 export function Table({ data }) {

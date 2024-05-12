@@ -27,7 +27,6 @@ export function RoleImage({ role, width, height }) {
     default:
       imageSrc = doctor;
   }
-  console.log(width);
 
   return <img className={`w-${width} h-${height}`} src={imageSrc} alt={role} />;
 }
