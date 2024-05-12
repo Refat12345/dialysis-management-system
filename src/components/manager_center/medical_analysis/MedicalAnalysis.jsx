@@ -1,28 +1,29 @@
 /* eslint-disable react/prop-types */
 
-const MedicalAnalysis = ({title,data}) => {
-    const medical = Object.values(data);
+import { useFormatDate } from "../../../utils/DateUtils"
+
+const MedicalAnalysis = ({title,analysis}) => {
+   
    
   return (
    
         <div dir="rtl" className="bg-primaryColor rounded-lg  shadow-inner shadow-grey-200 p-4 pl-2 pb-0 overflow-y-auto mb-4">
         <div className="flex flex-row justify-between ">
-            <div className="flex flex-col  ">
+            <div className="title flex flex-col  ">
                 {title.map((title,index)=>{
-                    return index!=3 && <span className=" content-center font-bold text-base mb-3" key={index}>{title}</span> 
+                    return index!=3 && <span className="content-center font-bold mb-3" key={index}>{title}</span> 
                         
                 })}
             </div>
-            <div className="flex flex-col">
-                {medical.map((data,index)=>{
-                    return index!=3 && <span className ={`content-center text-base  mb-3 ${index === 1 ?"text-green-600": "text-titleSideColor"}`} key={index}>{ data}</span>
-                       
-                })}
+            <div className="content flex flex-col ">
+                <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
+                <span className ={`content-center font-bold text-green-600 mb-3 `}>{analysis.value}</span>
+                <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{useFormatDate(analysis.analysisDate)}</span>
             </div>
             <div className="w-[40%]">
-                <p className="leading-[2]  text-titleSideColor">
-                    <span className="ml-[6%] text-base font-bold text-black">{title[3]}:</span>
-                    {medical[3]}
+                <p className="leading-[2] text-titleSideColor font-bold">
+                    <span className="text-black ml-[6%] font-bold">{title[3]}:</span>
+                    {analysis.notes}
                 </p>
             </div>
             </div>

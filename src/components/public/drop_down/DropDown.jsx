@@ -13,10 +13,10 @@ export default function DropDown({filter}) {
   return (
     <Menu dir='rtl' as="div" className="relative inline-block text-left w-full">
     <div >
-      <Menu.Button className="inline-flex justify-between w-[90%] rounded-full bg-bgSideButton px-3 py-1 text-sm  text-textMenuColor font-bold hover:bg-bgSideButton border border-textMenuColor focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+      <Menu.Button className="inline-flex justify-between w-[90%] rounded-full bg-bgSideButton px-3 py-1 text-sm  text-textMenuColor font-primaryBold hover:bg-bgSideButton border border-textMenuColor focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
         {selectedValue}
         <ChevronDownIcon
-          className=" h-5 w-5 text-textMenuColor font-bold hover:text-violet-200"
+          className=" h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
           aria-hidden="true"
         />
       </Menu.Button>
@@ -39,7 +39,7 @@ export default function DropDown({filter}) {
               <button
                 onClick={()=>handleItemClick(content)}  
                 className={`${
-                  active ? 'bg-bgButtonColor text-white' : 'text-gray-900'
+                  active ? 'bg-bgButtonColor text-white font-primaryRegular' : 'text-gray-900 font-primaryRegular'
                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
               >
                 

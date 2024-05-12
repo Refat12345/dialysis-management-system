@@ -52,7 +52,7 @@ const PaginationComponent = ({
       <RenderComponent data={currentItems} />
       <div dir="rtl" className="flex justify-center mt-3 ">
         <button
-          className="text-textButtonColor font-semibold text-sm bg-white px-2 py-2 ml-1 rounded-lg shadow-lg"
+          className="text-textButtonColor font-primaryBold text-sm bg-white px-2 py-2 ml-1 rounded-lg shadow-lg"
           onClick={handlePrevious}
           disabled={visiblePages[0] === 1}
         >
@@ -65,15 +65,15 @@ const PaginationComponent = ({
             onClick={() => paginate(number)}
             className={
               number === currentPage
-                ? "text-white text-xs font-semibold bg-bgButtonColor px-4 py-2 rounded-lg shadow-lg mx-1"
-                : "text-textButtonColor text-xs font-semibold bg-white px-4 py-2 rounded-lg shadow-lg mx-1"
+                ? "text-white text-xs font-primaryBold bg-bgButtonColor px-4 py-2 rounded-lg shadow-lg mx-1"
+                : "text-textButtonColor text-xs font-primaryBold bg-white px-4 py-2 rounded-lg shadow-lg mx-1 hover:bg-gray-100"
             }
           >
             {number}
           </button>
         ))}
         <button
-          className="text-textButtonColor text-sm font-semibold bg-white px-2 py-2 mr-1 rounded-lg shadow-lg"
+          className="text-textButtonColor text-sm font-primaryBold bg-white px-2 py-2 mr-1 rounded-lg shadow-lg"
           onClick={handleNext}
           disabled={visiblePages[visiblePages.length - 1] === totalPages}
         >

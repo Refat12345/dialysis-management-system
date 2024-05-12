@@ -11,7 +11,11 @@ import {
   MedicalAnalysisPage,
   PrescriptionsPage,
   MedicalCentersPage,
+  LoginPage,
+  UserDetailsPage,
+  GeneralDialysis,
 } from "../pages/index";
+import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import { SideBar } from "../components/index";
 import {
@@ -36,13 +40,6 @@ import {
   registerRoute,
   invitationRoute,
 } from "../data/data";
-
-import LoginPage from "../pages/manager_center/auth/login/LoginPage";
-import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
-import DigitalNationalIdentity from "../components/manager_center/users/UserDetails/DigitalNationalIdentity";
-import UserDetailsView from "../components/manager_center/users/UserDetails/UserDetailsView";
-import UserDetailsPage from "../pages/manager_center/users/user-details/UserDetailsPage";
-import GeneralDialysis from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";

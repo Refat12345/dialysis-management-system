@@ -17,7 +17,7 @@ const filters = [
 ]
   return (
     <div className="header flex justify-between mb-6  ">
-        <span className="text-titleSideColor text-lg font-bold ">التحاليل</span>
+        <span className="text-titleSideColor text-2xl font-primaryBold ">التحاليل</span>
         <div className="flex justify-between w-[55%]">
             {filters.map((filter,index)=>{
                 return <DropDown key={index} filter={filter}/>

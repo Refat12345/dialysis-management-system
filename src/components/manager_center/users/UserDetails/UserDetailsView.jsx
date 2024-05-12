@@ -1,4 +1,4 @@
-import React from "react";
+
 import NationalInformation from "./NationalInformation";
 import ContactInformation from "./ContactInformation";
 import { dataContact ,dataLocation} from "../../../../data/data";

@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable no-unused-vars */
-import { patientData, patientsRoute } from "../../../data/data";
+
+import {  patientsRoute } from "../../../data/data";
 import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
-import patient from "../../../assets/icons/medical-center/patient/patient.svg";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./TableRow";
-import React, { useState } from "react";
+import { useState } from "react";
 import TableHeader from "./TableHeader";
 
 export function Table({ data }) {
@@ -70,7 +66,7 @@ export function Table({ data }) {
         </div>
 
         <table className="min-w-full bg-white">
-          <TableHeader columns={columns} color="headerTable" />
+          <TableHeader columns={columns} color="bg-headerTable" />
           <tbody className="text-gray-700">
             {data
               .filter((row) => row.name.includes(searchTerm))

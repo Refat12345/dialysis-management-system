@@ -2,19 +2,10 @@
 import Patient from "../assets/icons/medical-center/dashboard/Sessions/patient.svg";
 
 //admin
-import HomePageICon from "../assets/icons/medical-center/dashboard/SideBar/homePage.svg";
-import UsersIcon from "../assets/icons/medical-center/dashboard/SideBar/Users.svg";
-import PatientIcon from "../assets/icons/medical-center/dashboard/SideBar/patientSideBar.svg";
-import AppointmentsIcon from "../assets/icons/medical-center/dashboard/SideBar/Appointment.svg";
-import DialysisSessionsIcon from "../assets/icons/medical-center/dashboard/SideBar/laundrySession.svg";
-import LoggingICon from "../assets/icons/medical-center/dashboard/SideBar/transactionLog.svg";
-import ManagerIcon from "../assets/icons/medical-center/dashboard/SideBar/manger.svg";
-import OrdersIcon from "../assets/icons/medical-center/dashboard/SideBar/order.svg";
-import NotesIcon from "../assets/icons/medical-center/dashboard/SideBar/notification.svg";
-import SettingsIcon from "../assets/icons/medical-center/dashboard/SideBar/setting.svg";
-import LogOutIcon from "../assets/icons/medical-center/dashboard/SideBar/logOut.svg";
+import { HomePageICon , UsersIcon , PatientIcon , AppointmentsIcon 
+        ,DialysisSessionsIcon ,LoggingICon ,ManagerIcon , OrdersIcon
+        , NotesIcon , SettingsIcon , LogOutIcon } from "../assets";
 import online from "../assets/icons/medical-center/users/users-list/online.svg";
-import doctor from "../assets/icons/medical-center/users/users-list/doctor.svg";
 
 //-------------------------
 
@@ -45,8 +36,7 @@ export const userDetailsRoute = `${usersRoute}/userDetails`;
 //--------------------------
 //saria
 //medical_centers_icons
-import centerIcon from "../assets/icons/public/MedicalCenterIcon.svg"
-import addressIcon from "../assets/icons/public/address.svg"
+
 
 
 export const titleSession = {
@@ -82,21 +72,6 @@ export const managerCenterSideBar = {
   ],
 };
 
-const data = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15
-  ,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
-];
-
-export const sessions = data.map((data, index) => {
-  return {
-    patientName: "أحمد محمد",
-    nurseName: "عدنان العويدات",
-    startTime: "الساعة السادسة",
-    endTime: "الساعة الثانية عشرة",
-    chair: index + 12,
-    hall: index + 1,
-  };
-});
 
 export const healthInformation = {
 title : "المعلومات الصحية",
@@ -107,152 +82,76 @@ causeOfKidneyFailure:"سبب القصور الكلوي",
 sessionStartDate:"تاريح بدء جلسات الغسيل",
 kidneyTransplant:"وجود زراعة كلية سابقة",
 }
-export const information = {
-    vascularInlet:"قثطرة",
-    dryWeight:"72",
-    blood:"AB+",
-    causeOfKidneyFailure:"مرض السكري  مرض  الشديد",
-    sessionStartDate:"2-3-2024",
-    kidneyTransplant:"نعم",
-}
-export const prescriptionOne = [
-  {
-      doctor:"الطبيب سارية الزعبي",
-      status:"نشطة",
-      name:"التهاب",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
-  },{
-      doctor:"الطبيب سارية الزعبي",
-      status:"منتهية",
-      name:"سيتامول",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
-  },{
-      doctor:"الطبيب سارية الزعبي",
-      status:"منتهية",
-      name:"حديد",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
-  }
-] 
-export const prescriptionTow = [
-  {
-      doctor:"الطبيب سارية الزعبي",
-      status:"منتهية",
-      name:"كريب ستوب",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ خمسة حبات يوميا قبل الطعام'
-  },{
-      doctor:"الطبيب أحمد الزعبي",
-      status:"منتهية",
-      name:"سيتامول",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:' يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي'
-  },{
-      doctor:"الطبيب محمد الزعبي",
-      status:"منتهية",
-      name:"بؤوفين",
-      startDate:"2030-4-5",
-      endDate:'2040-4-5',
-      note:'يرجى أخذ ثلاث حبات يوميا قبل الطعام'
-  }
-] 
-export const prescriptions = [prescriptionOne,prescriptionTow]
 
-const array = [1,2,3,4,5,6,7,8
-              ,9,10,11,12
-]
-export const medicalCenters = array.map((array,index)=>{
-  return {centerIcon:centerIcon,name:"مركز حسن الطحان الخيري",
-  addressIcon:addressIcon,address:`سوريا - دمشق - الصالحية بناء رقم (${index+90})`}
-}
-)
 
-export const analysis = [
-  {
-      name: "خضاب",
-      amount :"سلبي",
-      date:"2022-2-3",
-      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
-  },
-  {
-      name: "حديد",
-      amount :"ايجابي",
-      date:"2022-2-3",
-      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
-  },
-  {
-      name: "دم",
-      amount :"سلبي",
-      date:"2022-2-3",
-      note:"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
-  },
-]
+
+
+
 export const pathologicalTitle = ["اسم المرض","تاريخ التشخيص  ","تفاصيل عامة"]
 export const surgicalTitle = ["اسم العملية","تاريخ العملية ","تفاصيل عامة"]
 export const pharmacologicalTitle = ["اسم الدواء","تاريخ بدء أخذ الدواء","تاريخ نهاية أخذ الدواء","تفاصيل عامة"]
 
 export const pharmacologicalPrecedents = [{
-  name:"هيبارين",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"هيبارين",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 },{
-  name:"حديد",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"حديد",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 },{
-  name:"ايبوتين",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"ايبوتين",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 },
 {
-  name:"فيستولا",
-  start:"2022-12-2",
-  end:"2024-10-7",
-  details:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+  medicineName:"فيستولا",
+  dateStart:"2022-12-2",
+  dateEnd:"2024-10-7",
+  generalDetails:"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
 }
 
 ]
 export const pathologicalPrecedents = [{
-  name:"داء السكري",
-  start:"2012-1-10",
-  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+  illnessName:"داء السكري",
+  medicalDiagnosisDate:"2012-1-10",
+  generalDetails:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
 },{
-  name:"داء الحساسية",
-  start:"2014-1-10",
-  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+  illnessName:"داء الحساسية",
+  medicalDiagnosisDate:"2014-1-10",
+  generalDetails:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
 },{
-  name:"داء البحصة",
-  start:"2015-1-10",
-  details:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+  illnessName:"داء البحصة",
+  medicalDiagnosisDate:"2015-1-10",
+  generalDetails:"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
 },
 
 ]
 export const surgicalPrecedents = [{
-  name:"عملية استئصال زائدة",
-  start:"2019-12-2",
-  details:"تمت هذه العملية في مشفى المواساة تحت اشراف الطبيب سارية الزعبي المحترم"
+  surgeryName:"عملية استئصال زائدة",
+  surgeryDate:"2019-12-2",
+  generalDetails:"تمت هذه العملية في مشفى المواساة تحت اشراف الطبيب سارية الزعبي المحترم"
 },{
-  name:"عملية استئصال معدة",
-  start:"2020-26-2",
-  details:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+  surgeryName:"عملية استئصال معدة",
+  surgeryDate:"2020-26-2",
+  generalDetails:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
 },{
-  name:"عملية استئصال معدة",
-  start:"2020-16-2",
-  details:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+  surgeryName:"عملية استئصال معدة",
+  surgeryDate:"2020-16-2",
+  generalDetails:"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
 },
 
 ]
 //==============
+
+
+
+
+
+
 const arrOne = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 export const cardsData = arrOne.map((arr,index)=>{
   return  {
@@ -387,3 +286,923 @@ export const dataLocation = {
   phone: "+963992841193",
   gmail:"refatabdalwahed@gmail.com"
 };
+
+
+
+
+
+
+
+
+
+export const data = {
+  "dialysisSessions": [
+    {
+    "id": "1",
+    "patientName": "أحمد محمد",
+    "nurseName": "صالح شهاب",
+    "sessionStartTime": "الساعة السادسة",
+    "sessionEndTime": "الساعة الثانية عشرة",
+    "chair":18,
+    "roomName":4
+    },
+    {
+      "id": "2",
+      "patientName": "سعيد صلاح",
+      "nurseName": "أسماء درباني",
+      "sessionStartTime": "الساعة الثانية",
+      "sessionEndTime": "الساعة الحادية عشرة",
+      "chair":20,
+      "roomName":1
+      },
+      {
+        "id": "3",
+        "patientName": "أحمد محمد",
+        "nurseName": "عدنان العويدات",
+        "sessionStartTime": "الساعة السادسة",
+        "sessionEndTime": "الساعة الخامسة",
+        "chair":12,
+        "roomName":3
+        },
+      {
+          "id": "4",
+          "patientName": "سامي خالد",
+          "nurseName": "عدنان الزعبي",
+          "sessionStartTime": "الساعة العاشرة",
+          "sessionEndTime": "الساعة الرابعة",
+          "chair":2,
+          "roomName":5
+        },
+        {
+          "id": "5",
+          "patientName": "مريم محمد",
+          "nurseName": "عدنان العويدات",
+          "sessionStartTime": "الساعة الثامنة",
+          "sessionEndTime": "الساعة العاشرة",
+          "chair":12,
+          "roomName":1
+          },
+          {
+            "id": "6",
+            "patientName": "أحمد محمد",
+            "nurseName": "عدنان العويدات",
+            "sessionStartTime": "الساعة السادسة",
+            "sessionEndTime": "الساعة الثانية عشرة",
+            "chair":35,
+            "roomName":12
+            },
+            {
+              "id": "7",
+              "patientName": "خالد علي",
+              "nurseName": "عدنان العويدات",
+              "sessionStartTime": "الساعة السادسة",
+              "sessionEndTime": "الساعة الثانية عشرة",
+              "chair":20,
+              "roomName":5
+              },
+              {
+                "id": "8",
+                "patientName": "سعدون محمد",
+                "nurseName": "عدنان العويدات",
+                "sessionStartTime": "الساعة السادسة",
+                "sessionEndTime": "الساعة الثانية عشرة",
+                "chair":13,
+                "roomName":2
+                }                          
+  ]
+}
+
+export const analysis = {
+  "analysis" : [
+      {
+          "analysisName": "خضاب",
+          "value" :"سلبي",
+          "analysisDate":"2022-2-3",
+          "notes":"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+      },
+      {
+          "analysisName": "حديد",
+          "value" :"ايجابي",
+          "analysisDate":"2022-2-3",
+          "notes":"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+      },
+      {
+          "analysisName": "دم",
+          "value" :"ايجابي",
+          "analysisDate":"2022-2-3",
+          "notes":"حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة"
+      }
+  ]
+}
+
+
+
+
+export const medicalCenters = {
+  "medicalCenters":[
+      {"centerName":"مركز حسن الطحان الخيري",
+      "telecom": [
+        {
+          "use":"المكتب",
+          "value":"0155 840 227"
+        },
+        {
+          "use":"الموبايل",
+          "value":"00987654332"
+        },
+        {
+          "use":"البريد الالكتروني",
+          "value":"sariaAlzoubi@gmail.com"
+        }
+      ],
+      "address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+      "description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+    },
+    {"centerName":"مركز سند الخيري  ",
+    "telecom": [
+      {
+        "use":"المكتب",
+        "value":"011 212 312"
+      },
+      {
+        "use":"الموبايل",
+        "value":"098767898"
+      }
+    ],
+    "address": "سوريا-دمشق-الميدان بناء رقم(310)",
+    "description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+  }, 
+  {"centerName":"مركز صندوق العافية ",
+  "telecom": [
+    {
+      "use":"المكتب",
+      "value":"011 212 312"
+    },
+    {
+      "use":"البريد الالكتروني",
+      "value":"hasan@gmail.com"
+    }
+  ],
+  "address": "سوريا-دمشق-المزة بناء رقم(200)",
+  "description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+},
+{"centerName":"مركز دعمكم حياة  ",
+"telecom": [
+  {
+    "use":"المكتب",
+    "value":"011 212 312"
+  },
+  {
+    "use":"الموبايل",
+    "value":"00987654332"
+  },
+  {
+    "use":"البريد الالكتروني",
+    "value":"sariaAlzoubi@gmail.com"
+  }
+],
+"address": "سوريا-دمشق-الزاهرة شارع خالد",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+},
+{"centerName":"مركز حسن حبنكة الميداني ",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-حمص-الحضارة بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+},
+{"centerName":"مركز الزاهرة الجديدة الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الزاهرة بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+},
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}, {"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}, {"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}, {"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}, {"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+, 
+{"centerName":"مركز حسن الطحان الخيري",
+"telecom": [
+{
+  "use":"المكتب",
+  "value":"011 212 312"
+},
+{
+  "use":"الموبايل",
+  "value":"00987654332"
+},
+{
+  "use":"البريد الالكتروني",
+  "value":"sariaAlzoubi@gmail.com"
+}
+],
+"address": "سوريا-دمشق-الصالحية بناء رقم(199)",
+"description":"جمعية خيرية تابعه الى دعمكم حياة باشرف خالد خشيفاتي  وحسن حبنكة "
+}   
+  
+  ]
+}
+
+
+
+export const information = {
+  "medicalRecord" :{
+      "vascularEntrance":"قثطرة",
+      "dryWeight":"72",
+      "bloodType":"A+",
+      "causeRenalFailure":"مرض السكري  مرض  الشديد",
+      "dialysisStartDate":"2-3-2024",
+      "kidneyTransplant":"نعم",
+
+      "pharmacologicalPrecedents" : [{
+          "medicineName":"هيبارين",
+          "dateStart":"2022-12-2",
+          "dateEnd":"2024-10-7",
+          "generalDetails":"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+      },{
+          "medicineName":"حديد",
+          "dateStart":"2022-12-2",
+          "dateEnd":"2024-10-7",
+          "generalDetails":"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+      },{
+          "medicineName":"ايبوتين",
+          "dateStart":"2022-12-2",
+          "dateEnd":"2024-10-7",
+          "generalDetails":"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+      },
+      {
+          "medicineName":"فيستولا",
+          "dateStart":"2022-12-2",
+          "dateEnd":"2024-10-7",
+          "generalDetails":"هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف "
+      }
+      ],
+
+      "pathologicalPrecedents" : [{
+          "illnessName":"داء السكري",
+          "medicalDiagnosisDate":"2012-1-10",
+          "generalDetails":"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+      },{
+          "illnessName":"داء الحساسية",
+          "medicalDiagnosisDate":"2014-1-10",
+          "generalDetails":"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"          },{
+          "illnessName":"داء البحصة",
+          "medicalDiagnosisDate":"2015-1-10",
+          "generalDetails":"هو داء مزمن يصيب جميع المرضى عافانا وعافاكم الله من هذا المرض"
+      }
+      ],
+
+      "surgicalPrecedents" : [{
+          "surgeryName":"عملية استئصال زائدة",
+          "surgeryDate":"2019-12-2",
+          "generalDetails":"تمت هذه العملية في مشفى المواساة تحت اشراف الطبيب سارية الزعبي المحترم"
+      },{
+          "surgeryName":"عملية استئصال معدة",
+          "surgeryDate":"2020-26-2",
+          "generalDetails":"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+      },{
+          "surgeryName":"عملية استئصال معدة",
+          "surgeryDate":"2020-16-2",
+          "generalDetails":"تمت العملية في مشفى المجتهد تحت اشراف الطبيب الضعيف رفعت عبد الواحد وقد انتهت هذه العملية بالفشل"
+      } 
+      ]
+  }
+}
+
+
+export const prescription = {
+  "prescriptions" :[
+      {
+          "doctor":"الطبيب سارية الزعبي",
+          "medicines":[
+          {
+              "status":"نشطة",
+              "name":"التهاب",
+              "dateOfStart":"2030-4-5",
+              "dateOfEnd":"2040-4-5",
+              "details":"يرجى أخذ ثلاث حبات يوميا قبل الطعام"
+          },{
+              
+              "status":"منتهية",
+              "name":"سيتامول",
+              "dateOfStart":"2030-4-5",
+              "dateOfEnd":"2040-4-5",
+              "details":" يرجى أخذ ثلاث حبات يوميا قبل الطعام أنا حتى مشي ما أمشي"
+          },{
+
+              "status":"منتهية",
+              "name":"حديد",
+              "dateOfStart":"2030-4-5",
+              "dateOfEnd":"2040-4-5",
+              "details":"يرجى أخذ ثلاث حبات يوميا قبل الطعام"
+          }
+          ]
+      }
+  ]
+}
+
+export const statistic = {
+  "waitingList" :1500,
+  "patients":200,
+  "dialysisSessions":3000
+
+}
+
+export const pieChartData ={
+  "medicines":{
+      "heparin":40,
+      "iron":20,
+      "epoetin":30
+  },
+  "causeRenalFailure":{
+      "diabetes":150,
+      "heartDiseases":100,
+      "bloodPressure":80,
+      "otherDiseases":300
+  }
+}
+
+
+export const auditing = {
+  
+}

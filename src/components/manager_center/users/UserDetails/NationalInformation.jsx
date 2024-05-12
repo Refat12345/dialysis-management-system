@@ -1,4 +1,4 @@
-import React from 'react'
+
 import MyButton from './MyButton'
 import { RoleImage } from '../Card'
 import truee from "./../../../../assets/icons/medical-center/users/user-details/true.svg";
