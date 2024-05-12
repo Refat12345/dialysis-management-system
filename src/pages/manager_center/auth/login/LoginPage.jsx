@@ -1,10 +1,6 @@
 import { Box } from "@radix-ui/themes";
 import { useLoginState } from "./LoginPageState";
-import {
-  LoginPasswordIcon,
-  LoginUserIcon,
-  SupportLifeImg,
-} from "../../../../assets/index";
+import { LoginPasswordIcon, LoginUserIcon } from "../../../../assets/index";
 import CustomButton from "../../../../components/public/button/CustomButton";
 import CustomTextField from "../../../../components/public/textfield/CustomTextField";
 import {
@@ -15,6 +11,7 @@ import {
   loginPaddingX,
 } from "../../../../utils/StyleUtils";
 import { useNavigate } from "react-router-dom";
+import SupportLifeLogo from "../../../../components/manager_center/auth/SupportLifeLogo";
 
 const LoginPage = () => {
   // eslint-disable-next-line no-unused-vars
@@ -48,8 +45,7 @@ const LoginPage = () => {
             label={"الرقم الوطني"}
             placeholder="الرقم الوطني"
             value={state.nationaltyNumber}
-            icon={<img src={LoginUserIcon} alt="" />}
-            side="left"
+            prefixIcon={<img src={LoginUserIcon} alt="" />}
             type="number"
             onChange={(e) => updateState({ nationaltyNumber: e.target.value })}
           />
@@ -58,9 +54,8 @@ const LoginPage = () => {
             label={"كلمة المرور"}
             placeholder="كلمة المرور"
             value={state.password}
-            icon={<img src={LoginPasswordIcon} alt="" />}
+            prefixIcon={<img src={LoginPasswordIcon} alt="" />}
             onChange={(e) => updateState({ password: e.target.value })}
-            side="left"
             type="password"
             required={true}
           />
@@ -87,11 +82,7 @@ const LoginPage = () => {
           </div>
         </form>
       </div>
-      <div className="flex justify-center items-center bg-bgLogin h-full">
-        <Box className="lg:w-[350px] lg:h-[380px] md:w-[280px] md:h-[300px] w-[200px] h-[220px]">
-          <img className="" src={SupportLifeImg} alt="" />
-        </Box>
-      </div>
+      <SupportLifeLogo />
     </div>
   );
 };
