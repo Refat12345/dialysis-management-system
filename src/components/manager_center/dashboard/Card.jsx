@@ -12,13 +12,13 @@ const Card = ({title,statistic}) => {
 }
   return (
     <>
-        <div style={styleComponent} className="p-6 max-w-xs min-w-80 mx-5 bg-white rounded-xl shadow-lg flex flex-row-reverse items-center text-right  ">
+        <div style={styleComponent} className="px-6 max-w-xs min-w-80 mx-5 bg-white rounded-xl shadow-lg flex flex-row-reverse items-center text-right  ">
             <div style={style} className=" flex justify-center items-center w-16 h-16 ">
             <img src={title.icon} alt="" />
             </div>
             <div className="mr-6">
-              <div className=" font-primaryRegular text-base text-black mb-2">{title.name}</div>
-              <p className="text-black font-primaryBold text-2xl">{statistic}</p>
+              <div className="text-base mb-2">{title.name}</div>
+              <p className="font-bold text-2xl">{statistic}</p>
             </div>
       </div>    
   </>

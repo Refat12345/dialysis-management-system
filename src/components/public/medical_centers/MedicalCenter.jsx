@@ -2,11 +2,20 @@
 import { useState } from "react";
 import EllipsisIcon from "../../../assets/icons/public/ellipsis.svg";
 import AlertDialog from "../dialog/Dialog";
-import TextArea from "../text_area/TextArea";
+import MedicalCenterDetails from "./MedicalCenterDetails";
 
 const MedicalCenter = ({ icons, content }) => {
 
+  const title = ["العنوان","معلومات التواصل","تفاصيل عامة"] ;
   const height = window.innerHeight;
+  const width = window.innerWidth;
+
+  const responsiveCenterIcon = height > 600 ? (height > 700 ? "w-[23.8%]" : (height > 630 ? "w-[22%]":"w-[21.2%]")) : "w-[20%]"
+  const responsiveCenterName = height > 600 ? (height > 700 ? "mt-3 text-17 " : (height > 630 ? "mt-2 text-base" : "mt-1.5 text-base")) : "mt-2 text-sm";
+  const responsiveAddress = height > 600 ? (height > 700 ? "mt-3" : (height > 630 ? "mt-2" : "mt-1.5")) : "mt-2";
+  const responsiveAddressContent = height > 700 && width > 1315 ? "text-s" : "text-xs";
+
+ 
   const [isEllipsisHovered, setIsEllipsisHovered] = useState(false);
 
   const handleEllipsisClick = (event) => {
@@ -21,18 +30,6 @@ const MedicalCenter = ({ icons, content }) => {
     setIsEllipsisHovered(false);
   };
 
-  const [userInput, setUserInput] = useState(''); 
-  const handleUserInput = (event) => {
-    setUserInput(event.target.value);
-     
-  };
-  const handleConfirmation = () => {
-    if (userInput  === "") {
-      alert('يجب تدخيل أحرف');
-    } else {
-        console.log("a");
-    }
-  };
 
   return (
     <div
@@ -42,48 +39,35 @@ const MedicalCenter = ({ icons, content }) => {
       }`}
     >
       <div className="flex flex-row justify-between">
-        <div
-          className={`${height > 600 ? (height > 700 ? "w-[25%]" : "w-[22%]") : "w-[20%]"}`}
-        >
+        <div className={`${responsiveCenterIcon}`}>
           <img src={icons.centerIcon} />
         </div>
         <div onClick={handleEllipsisClick}>
-        <AlertDialog renderComponent={<img
-          src={EllipsisIcon}
-          className="w-6 h-6 hover:bg-gray-100 hover:cursor-pointer"
-          
-          onMouseEnter={handleEllipsisMouseEnter}
-          onMouseLeave={handleEllipsisMouseLeave}
-        />}
-        contentComponent={<div dir="rtl">
-              <p className="text-lg text-titleSideColor font-primaryBold mb-4">سبب نقل المريض الى مركز اخر</p>
-              <TextArea value={userInput} onChange={handleUserInput} label={"السبب"} />
-              <div className='flex flex-row justify-center'>
-          <button onClick={handleConfirmation}
-            className='my-4 font-primaryBold bg-bgButtonColor text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg '
-          >{"تأكيد"}
-          </button>
+          <AlertDialog 
+              renderComponent={
+                <img
+                  src={EllipsisIcon}
+                  className="w-6 h-6 hover:bg-gray-100  hover:cursor-pointer"  
+                  onMouseEnter={handleEllipsisMouseEnter}
+                  onMouseLeave={handleEllipsisMouseLeave}
+                />
+              }
+              contentComponent={<MedicalCenterDetails title={title} content={content} />}
+              titleButton={"رجوع"}
+          />
         </div>
-        </div>}
-       
-        />
         </div>
-      </div>
-      <p
-        className={`${
-          height > 600 ? (height > 700 ? "mt-4 text-lg " : "mt-2 text-base") : "mt-1 text-sm"
-        } font-primaryBold `}
-      >
-        {content.centerName}
-      </p>
-      <div
-        className={`flex ${height > 600 ? (height > 700 ? "mt-4" : "mt-2") : "mt-1"} mb-2`}
-      >
-        <img src={icons.addressIcon} />
-        <p className={` font-primaryRegular ${height > 700 ? "text-sm" : "text-xs"} mr-2`}>{content.address}</p>
-      </div>
+        <p className={`${responsiveCenterName} font-primaryBold `}>
+            {content.centerName}
+        </p>
+        <div className={`flex ${responsiveAddress} mb-2`}>
+            <img className="w-5 h-5" src={icons.addressIcon} />
+            <p className={` font-primaryRegular ${responsiveAddressContent} ${width > 1320 ? "mr-2" :"mr-1.5"}`}>{content.address}</p>
+        </div>
     </div>
   );
 };
 
 export default MedicalCenter;
+
+

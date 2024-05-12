@@ -56,7 +56,7 @@ export const PatientProfileStateProvider = ({ children }) => {
     patientProfileMenuItems: patientProfileMenuItems,
     selectScreen: (val) => selectScreen(val),
   });
-
+  
   const selectScreen = (screen) => {
     switch (screen) {
       case globalInfo:

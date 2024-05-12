@@ -61,11 +61,6 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-
-
-
-  
-  
   {
     path: patientProfileRoute,
     element: (

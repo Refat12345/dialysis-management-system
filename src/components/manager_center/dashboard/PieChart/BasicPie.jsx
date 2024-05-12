@@ -25,7 +25,7 @@ export default function BasicPie({content,colors,size}) {
             slotProps={{
               legend: {
                 hidden:true
-                      },
+              },
             }}
             colors= {colors}
             width={width}

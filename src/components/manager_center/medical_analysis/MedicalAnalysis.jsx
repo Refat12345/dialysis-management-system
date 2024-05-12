@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { useFormatDate } from "../../../utils/DateUtils"
+
 const MedicalAnalysis = ({title,analysis}) => {
    
    
@@ -9,18 +11,18 @@ const MedicalAnalysis = ({title,analysis}) => {
         <div className="flex flex-row justify-between ">
             <div className="title flex flex-col  ">
                 {title.map((title,index)=>{
-                    return index!=3 && <span className=" content-center font-primaryBold text-base mb-3" key={index}>{title}</span> 
+                    return index!=3 && <span className="content-center font-bold mb-3" key={index}>{title}</span> 
                         
                 })}
             </div>
             <div className="content flex flex-col ">
-                <span className ={`content-center text-base font-primaryBold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
-                <span className ={`content-center text-base font-primaryBold text-green-600 mb-3 `}>{analysis.value}</span>
-                <span className ={`content-center text-base font-primaryBold text-titleSideColor mb-3 `}>{analysis.analysisDate}</span>
+                <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
+                <span className ={`content-center font-bold text-green-600 mb-3 `}>{analysis.value}</span>
+                <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{useFormatDate(analysis.analysisDate)}</span>
             </div>
             <div className="w-[40%]">
-                <p className="leading-[2] text-titleSideColor font-primaryBold">
-                    <span className="ml-[6%] text-base  font-primaryBold text-black">{title[3]}:</span>
+                <p className="leading-[2] text-titleSideColor font-bold">
+                    <span className="text-black ml-[6%] font-bold">{title[3]}:</span>
                     {analysis.notes}
                 </p>
             </div>

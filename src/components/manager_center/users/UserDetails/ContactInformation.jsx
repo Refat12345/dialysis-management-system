@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import truee from "./../../../../assets/icons/medical-center/users/user-details/true.svg";
 import contact from "./../../../../assets/icons/medical-center/users/user-details/ContactInformation.svg";
 import location from "./../../../../assets/icons/medical-center/users/user-details/locationInformation.svg"
 function ContactInformation({ data }) {
