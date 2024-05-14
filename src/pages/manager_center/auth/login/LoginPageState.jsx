@@ -7,11 +7,21 @@ export const LoginStateProvider = ({ children }) => {
     password: "",
     nationaltyNumber: "",
     loading: false,
+    showPassword: false,
     handleSubmit: (event) => handleSubmit(event),
+    handleVisible: (event) => handleVisible(event),
   });
 
   const handleSubmit = (event) => {
     console.log("submit");
+    event.preventDefault();
+  };
+
+  const handleVisible = (event) => {
+    setState((prevState) => ({
+      ...prevState,
+      showPassword: !prevState.showPassword,
+    }));
     event.preventDefault();
   };
 

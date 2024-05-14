@@ -5,12 +5,26 @@ const RegisterStateContext = createContext();
 export const RegisterStateProvider = ({ children }) => {
   const [state, setState] = useState({
     code: "",
+    screenIndex: 1,
+    password: "",
+    nationaltyNumber: "010100246000",
+    username: "وسيم البزره",
     loading: false,
+    showPassword: false,
     handleSubmit: (event) => handleSubmit(event),
+    handleVisible: (event) => handleVisible(event),
   });
 
   const handleSubmit = (event) => {
-    console.log("submit");
+    state.screenIndex == 1 ? updateState({ screenIndex: 2 }) : null;
+    event.preventDefault();
+  };
+
+  const handleVisible = (event) => {
+    setState((prevState) => ({
+      ...prevState,
+      showPassword: !prevState.showPassword,
+    }));
     event.preventDefault();
   };
 

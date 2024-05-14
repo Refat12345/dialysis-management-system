@@ -1,8 +1,9 @@
 import { Box } from "@radix-ui/themes";
 import { useLoginState } from "./LoginPageState";
-import { LoginPasswordIcon, LoginUserIcon } from "../../../../assets/index";
+import { LoginPasswordIcon, UserNumberIcon } from "../../../../assets/index";
 import CustomButton from "../../../../components/public/button/CustomButton";
 import CustomTextField from "../../../../components/public/textfield/CustomTextField";
+
 import {
   bodySmallStyle,
   headlineLargeStyle,
@@ -12,6 +13,7 @@ import {
 } from "../../../../utils/StyleUtils";
 import { useNavigate } from "react-router-dom";
 import SupportLifeLogo from "../../../../components/manager_center/auth/SupportLifeLogo";
+import { PasswordVisibleIcon } from "../../../../components";
 
 const LoginPage = () => {
   // eslint-disable-next-line no-unused-vars
@@ -45,7 +47,7 @@ const LoginPage = () => {
             label={"الرقم الوطني"}
             placeholder="الرقم الوطني"
             value={state.nationaltyNumber}
-            prefixIcon={<img src={LoginUserIcon} alt="" />}
+            prefixIcon={<img src={UserNumberIcon} alt="" />}
             type="number"
             onChange={(e) => updateState({ nationaltyNumber: e.target.value })}
           />
@@ -55,30 +57,37 @@ const LoginPage = () => {
             placeholder="كلمة المرور"
             value={state.password}
             prefixIcon={<img src={LoginPasswordIcon} alt="" />}
+            suffixIcon={
+              <button onClick={(e) => state.handleVisible(e)}>
+                <PasswordVisibleIcon showPassword={state.showPassword} />
+              </button>
+            }
             onChange={(e) => updateState({ password: e.target.value })}
-            type="password"
+            type={state.showPassword ? "text" : "password"}
             required={true}
           />
           <Box height="10px" />
-          <CustomButton
-            className={`bg-bgLogin text-blue600 h-12 shadow-lg transition-all ${headlineMediumStyle}`}
-            loading={state.loading}
-            title="تسجيل الدخول"
-          />
+          <div className="w-auto">
+            <CustomButton
+              variant="solid"
+              className={`bg-bgLogin text-blue600 h-12 shadow-lg transition-all w-full font-bold ${headlineMediumStyle}`}
+              loading={state.loading}
+              title="تسجيل الدخول"
+            />
+          </div>
           <div dir="rtl" className="flex flex-row justify-center">
-            <p className={`font-medium transition-all ${bodySmallStyle}`}>
-              {" "}
-              {"لست مسجلاً في النظام؟"}{" "}
+            <div className={`font-semibold transition-all ${bodySmallStyle}`}>
+              {"لست مسجلاً في النظام؟"}
               <CustomButton
                 variant="ghost"
-                className={`text-blue600 font-medium transition-all ${bodySmallStyle}`}
+                className={`text-blue600 font-semibold transition-all m-0 p-1 ${bodySmallStyle}`}
                 loading={state.loading}
                 title="التسجيل في النظام"
                 onClick={() => {
                   navigate("/register");
                 }}
               />
-            </p>
+            </div>
           </div>
         </form>
       </div>

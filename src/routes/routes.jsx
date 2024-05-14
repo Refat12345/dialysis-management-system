@@ -14,7 +14,7 @@ import {
   LoginPage,
   UserDetailsPage,
   GeneralDialysis,
-  AuditingPage
+  AuditingPage,
 } from "../pages/index";
 import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
@@ -46,7 +46,6 @@ import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPage
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
-
 
 const router = createBrowserRouter([
   {
@@ -193,17 +192,6 @@ const router = createBrowserRouter([
         <RegisterPage />
       </RegisterStateProvider>
     ),
-    // children: [
-    //   {
-    //     path: invitationRoute,
-    //     element: (
-    //       <RegisterStateProvider>
-    //         <RegisterCheckCodePage />
-    //       </RegisterStateProvider>
-    //     ),
-    //     errorElement: <ErrorPage />,
-    //   },
-    // ],
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
@@ -244,6 +232,5 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 ]);
-
 
 export default router;
