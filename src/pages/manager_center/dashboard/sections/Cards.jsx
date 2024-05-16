@@ -27,9 +27,9 @@ const Cards = () => {
   return (
  <>
   <div className={`flex flex-row-reverse ${height > 700 ? "h-[20%]":"h-[18.5%]"}`}>
-    <Card  title={cardData[0]} statistic={statistic.patients}/>;
-    <Card  title={cardData[1]} statistic={statistic.waitingList} />;
-    <Card  title={cardData[2]} statistic={statistic.dialysisSessions} />;
+    <Card  title={cardData[0]} statistic={statistic.patients}/>
+    <Card  title={cardData[1]} statistic={statistic.waitingList} />
+    <Card  title={cardData[2]} statistic={statistic.dialysisSessions} />
   </div>
 </>
   );

@@ -18,10 +18,10 @@ const PieCharts = ({data}) => {
     { id: 1, value: data.causeRenalFailure.heartDiseases , label: causeRenalFailureTitle[0][1]  },
     { id: 2, value: data.causeRenalFailure.bloodPressure, label: causeRenalFailureTitle[0][2]},
   ];
-
+  const height = window.innerHeight;
   return (
     <>
-    <div className="mt-14 ml-[10%]">
+    <div className={`${height > 700 ?"mt-8 ml-[10%]" :"mt-6 ml-[10%]"}`}>
         <div className="shadow-lg  ">
           <PieChart title = {medicinesTitle} data = {medicines}/>
         </div>
