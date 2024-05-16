@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Button } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 
 const CustomButton = ({
   variant = "soft",
@@ -9,9 +10,17 @@ const CustomButton = ({
   ...props
 }) => {
   return (
-    <Button variant={variant} loading={loading} onClick={onClick} {...props}>
-      {title}
-    </Button>
+    <Theme className="inline">
+      <Button
+        size="3"
+        variant={variant}
+        loading={loading}
+        onClick={onClick}
+        {...props}
+      >
+        {title}
+      </Button>
+    </Theme>
   );
 };
 

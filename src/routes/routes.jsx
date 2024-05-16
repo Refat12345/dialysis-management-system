@@ -196,17 +196,6 @@ const router = createBrowserRouter([
         <RegisterPage />
       </RegisterStateProvider>
     ),
-    // children: [
-    //   {
-    //     path: invitationRoute,
-    //     element: (
-    //       <RegisterStateProvider>
-    //         <RegisterCheckCodePage />
-    //       </RegisterStateProvider>
-    //     ),
-    //     errorElement: <ErrorPage />,
-    //   },
-    // ],
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
@@ -258,6 +247,5 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 ]);
-
 
 export default router;

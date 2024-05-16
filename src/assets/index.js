@@ -9,7 +9,11 @@ export { default as GlobalInfoSalaryIcon } from "./icons/medical-center/patient/
 export { default as GlobalInfoPatientAvatar } from "./images/manager_center/patient/patient_avatar.png";
 export { default as SupportLifeImg } from "./images/manager_center/auth/support_life.png";
 export { default as LoginUserIcon } from "./icons/medical-center/auth/user_icon.svg";
+export { default as CheckCodeIcon } from "./icons/medical-center/auth/tabler_mail-code.svg";
 export { default as LoginPasswordIcon } from "./icons/medical-center/auth/password_icon.svg";
+export { default as VisibleIcon } from "./icons/medical-center/auth/visible.svg";
+export { default as NonVisibleIcon } from "./icons/medical-center/auth/non-visible.svg";
+export { default as UserNumberIcon } from "./icons/medical-center/auth/user-number-icon.svg";
 
 // adminSideBar
 
