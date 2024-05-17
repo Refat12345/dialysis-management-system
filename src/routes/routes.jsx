@@ -14,7 +14,8 @@ import {
   LoginPage,
   UserDetailsPage,
   GeneralDialysis,
-  AuditingPage
+  AuditingPage,
+  OrdersPage
 } from "../pages/index";
 import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
@@ -41,12 +42,14 @@ import {
   registerRoute,
   invitationRoute,
   auditingRoute,
+  ordersRoute,
   settingRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
+
 import SettingPage from "../pages/manager_center/setting/SettingPage";
 
 
@@ -195,17 +198,6 @@ const router = createBrowserRouter([
         <RegisterPage />
       </RegisterStateProvider>
     ),
-    // children: [
-    //   {
-    //     path: invitationRoute,
-    //     element: (
-    //       <RegisterStateProvider>
-    //         <RegisterCheckCodePage />
-    //       </RegisterStateProvider>
-    //     ),
-    //     errorElement: <ErrorPage />,
-    //   },
-    // ],
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
@@ -245,6 +237,17 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+  {
+    path: ordersRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <OrdersPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
 
   {
     path: settingRoute,
@@ -260,6 +263,5 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 ]);
-
 
 export default router;

@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 .custom-hr {
-  border: 0; 
-  height: 0.5px; 
-  background-color: black; 
+  border: 0;
+  height: 0.5px;
+  background-color: black;
 }
 
 .custom-hrr {
@@ -21,123 +21,107 @@
   min-height: 600px;
 }
 
-
 /*Start dialysisPage */
-.cardOne{
+.cardOne {
   height: 27vh;
   padding: 0 calc(2%);
-  border-top: 5px solid #f1f4fa; 
+  border-top: 5px solid #f1f4fa;
   border-left: 5px solid #f1f4fa;
-
 }
-.cardOneHeader{
+.cardOneHeader {
   padding-bottom: calc(1%);
   padding-top: calc(1%);
-
 }
-.cardGrid{
-  gap:calc(1%)
+.cardGrid {
+  gap: calc(1%);
 }
 
-
-.cardTwo{
+.cardTwo {
   height: 26vh;
-  padding:  calc(4%);
-  border-top: 5px solid #f1f4fa; 
+  padding: calc(4%);
+  border-top: 5px solid #f1f4fa;
   border-left: 5px solid #f1f4fa;
 }
 
-.cardd{
-    height: 30vh;
-    border-top: 5px solid #f1f4fa; 
-    border-left: 5px solid #f1f4fa;
-
+.cardd {
+  height: 30vh;
+  border-top: 5px solid #f1f4fa;
+  border-left: 5px solid #f1f4fa;
 }
-.cardThreeHeader{
+.cardThreeHeader {
   padding: calc(0.1%);
   padding-right: calc(2%);
 
   padding-bottom: calc(0.1%);
 }
 
-.table{
+.table {
   padding-top: calc(1%);
   padding-left: calc(2%);
   padding-right: calc((2%));
 }
 
-.headertable{
+.headertable {
   padding-top: calc(0.25%);
   padding-bottom: calc(1.2%);
   padding-right: calc(2%);
   padding-left: calc(2%);
 }
 
-.headertable h3{
+.headertable h3 {
   padding-right: calc(2%);
 }
-.headertable h2{
-padding-left: calc(2%)
+.headertable h2 {
+  padding-left: calc(2%);
 }
 
-.tabledata{
-padding-left:calc(2%) ;
-padding-right:calc(2%) ;
-padding-top:calc(1%) ;
-padding-bottom:calc(1%) ;
+.tabledata {
+  padding-left: calc(2%);
+  padding-right: calc(2%);
+  padding-top: calc(1%);
+  padding-bottom: calc(1%);
 }
 
-.sapn1{
-padding-left: calc(2%);
+.sapn1 {
+  padding-left: calc(2%);
 }
-.sapn2{
-padding-right: calc(1%);
+.sapn2 {
+  padding-right: calc(1%);
 }
 
-.cardSix{
+.cardSix {
   height: 25vh;
-  padding:  calc(1%);
-  border-top: 5px solid #f1f4fa; 
+  padding: calc(1%);
+  border-top: 5px solid #f1f4fa;
   border-left: 5px solid #f1f4fa;
 }
 
-.cardSixHeader{
+.cardSixHeader {
   padding-bottom: calc(0.3%);
 }
 
-.tablee{
+.tablee {
   padding-top: calc(1%);
   padding-bottom: calc(2%);
 }
-.notes{
+.notes {
   height: calc(17vh);
   padding: calc(2%);
   padding-bottom: calc(0.1%);
-  
 }
 
-.cardFive{
+.cardFive {
   height: 25vh;
-  padding:  calc(4%);
+  padding: calc(4%);
   padding-bottom: calc(6%);
   padding-top: calc(2%);
-  border-top: 5px solid #f1f4fa; 
+  border-top: 5px solid #f1f4fa;
   border-left: 5px solid #f1f4fa;
 }
 
-
 /* Three */
 
-
-
 /*End dialysisPage*/
-
-
-
-
-
-
-
 
 .chart-title {
   text-align: right; /* محاذاة النص إلى اليمين */
@@ -146,23 +130,30 @@ padding-right: calc(1%);
   --color-primary: rgba(246, 249, 255, 1);
 }
 
-
 @font-face {
-  font-family: 'primaryBold';
-  src: url('./assets/fonts/a-JannatLT-Bold.ttf') format('truetype');
+  font-family: "primaryBold";
+  src: url("./assets/fonts/a-JannatLT-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
-  font-family: 'primaryRegular';
-  src: url('./assets/fonts/a-JannatLT-Regular.ttf') format('truetype');
+  font-family: "primaryRegular";
+  src: url("./assets/fonts/a-JannatLT-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}
+.radix-themes {
+  --default-font-family: "primaryRegular", sans-serif;
+  --heading-font-family: "primaryBold", sans-serif;
+  /* Add other font-family tokens as needed */
+}
+
+.radix-themes:where([data-is-root-theme="true"]) {
+  min-height: 0dvh;
 }
 body {
   background-color: rgba(244, 247, 254, 255);
 }
-
 
 /* body {
   background-color: #FFF;
@@ -219,8 +210,8 @@ button:focus-visible {
 
 body {
   background-color: white;
-  font-family: 'primaryBold', sans-serif;
-  font-family:'primaryRegular', sans-serif ;
+  font-family: "primaryBold", sans-serif;
+  font-family: "primaryRegular", sans-serif;
 }
 ::-webkit-scrollbar {
   display: none;

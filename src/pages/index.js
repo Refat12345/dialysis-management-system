@@ -14,6 +14,9 @@ export {default as PrecedentsSection} from "./manager_center/patient/medical_rec
 export {default as MedicalAnalysisPage} from "./manager_center/patient/medical_analysis/MedicalAnalysisPage"
 export {default as PrescriptionsPage} from "./manager_center/patient/prescriptions/PrescriptionsPage"
 
+//managerCenter
+export {default as OrdersPage} from "./manager_center/orders/OrdersPage"
+
 //public
 export {default as MedicalCentersPage} from "./public/medical_centers/MedicalCentersPage"
 export {default as LoginPage} from "./manager_center/auth/login/LoginPage"
