@@ -10,6 +10,12 @@
   background-color: black; 
 }
 
+.custom-hrr {
+  border: none;
+  border-top: 1px solid;
+  margin-right: auto;
+}
+
 /*PaitintPageMinHeight*/
 .min-h-customAbove600 {
   min-height: 600px;

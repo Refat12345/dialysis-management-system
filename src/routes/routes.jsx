@@ -41,11 +41,13 @@ import {
   registerRoute,
   invitationRoute,
   auditingRoute,
+  settingRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
+import SettingPage from "../pages/manager_center/setting/SettingPage";
 
 
 const router = createBrowserRouter([
@@ -238,6 +240,20 @@ const router = createBrowserRouter([
       <>
         <SideBar sideBarData={managerCenterSideBar} />
         <AuditingPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: settingRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <SettingPage />
+        
+        
       </>
     ),
     //TODO: u may have to add loader

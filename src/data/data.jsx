@@ -20,6 +20,7 @@ export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
 export const auditingRoute = '/auditing'
+export const settingRoute = '/setting'
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
 export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;
@@ -68,7 +69,7 @@ export const managerCenterSideBar = {
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: "", name: "الطلبات", icon: OrdersIcon },
     { href: "", name: "الملاحظات", icon: NotesIcon },
-    { href: "", name: "الاعدادت", icon: SettingsIcon },
+    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
@@ -1405,3 +1406,36 @@ export const GeneralDialysisData = [
   
  
 ];
+
+export const dataCenterLocation = {
+  title: "معلومات التواصل",
+  phone: "+963992841193",
+  gmail:"refatabdalwahed@gmail.com"
+};
+
+export const dataCenterTime = [
+{
+  name:"الوردية الاولى",
+  start: "8:00AM",
+  end:"12:00PM"
+},
+{
+  name:"الوردية الثانية",
+  start: "8:00AM",
+  end:"12:00PM"
+}
+
+]
+
+export const dataNoteInMedicalCenter ={
+  content:"كلية مركز طبي يقع على ضفاف نهر الفرات يحده من الشمال تركيا ومن الجنوب المغرب ومن الشرق كلية الهندسة المعلوماتية ومن الغرب كلية "
+}
+
+export const statisticMedicalInfo = {
+  "chairCount" :150,
+  "patientsCount":25,
+  "doctorCount":25
+}
+ 
+
+

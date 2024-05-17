@@ -4,10 +4,12 @@ import { PaginationComponent } from "../../../components/index";
 import { data ,pieChartData } from "../../../data/data";
 const Dashboard = () => {
   const height = window.innerHeight;
+  const width  = window.innerWidth;
 
   const itemsPerPage = height > 599 ?( height > 819 ? 7 : 6 ) : 5
 
-
+console.log(height);
+console.log(width);
 
   return (
     <div  className="flex-grow md:mr-48 bg-bgDashboard h-screen">

@@ -60,6 +60,7 @@ export default {
         blue400: "#9AB8FF80",
         blue600: "#2E307D",
         cardDetailsColor:"#e0e9fa",
+        blue700:"#424489",
         //green
         green400: "#149603",
         //gray
