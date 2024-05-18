@@ -20,6 +20,7 @@ export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
 export const auditingRoute = '/auditing'
+export const secretariaAccountRoute = '/secretaria_account'
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
 export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;

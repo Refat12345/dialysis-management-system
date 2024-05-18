@@ -17,7 +17,7 @@ const CustomTextField = ({
 }) => {
   return (
     <div dir="rtl">
-      <label className={`${bodyMeduimStyle}`}>
+      <label className={`${bodyMeduimStyle} font-medium`}>
         {label}
         <div className="h-1"></div>
         <Theme>

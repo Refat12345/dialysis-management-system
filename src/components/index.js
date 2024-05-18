@@ -30,3 +30,7 @@ export { default as TableRow } from "./manager_center/patient/TableRow";
 
 //login
 export { default as PasswordVisibleIcon } from "./manager_center/auth/PasswordVisibleIcon";
+
+//Primitives
+export { default as Row } from "./public/primitives/Row";
+export { default as Column } from "./public/primitives/Column";
