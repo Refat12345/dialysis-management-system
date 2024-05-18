@@ -19,7 +19,8 @@ export const createAccountRoute = `${registerRoute}/create-account`;
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
-export const auditingRoute = '/auditing';
+export const auditingRoute = '/auditing'
+export const secretariaAccountRoute = '/secretaria_account';
 export const ordersRoute = '/orders';
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 

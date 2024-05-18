@@ -1,29 +1,29 @@
 /* eslint-disable react/prop-types */
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { bodyMeduimStyle } from "../../../utils/StyleUtils";
 
-export default function DropDown({ title, filter, colors, onSelect }) {
-  const [selectedValue, setSelectedValue] = useState(title);
-
-  const color = `bg-${colors.titleColor} text-${colors.textColor} border-${colors.textColor}`;
-
-  const handleItemClick = (value) => {
-    setSelectedValue(value);
-  };
+const SelectedTextFeild = ({ label, value, filter, onSelect }) => {
   return (
     <Menu dir="rtl" as="div" className="relative inline-block w-full">
-      <div>
+      <label className={`font-medium ${bodyMeduimStyle}`}>
+        {label}:<div className="h-1"></div>
         <Menu.Button
-          className={`inline-flex justify-between w-[90%] rounded-full bg- px-3 py-1 text-sm   font-primaryBold hover:bg-${colors.titleColor} border  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 ${color}`}
+          className={`inline-flex justify-between w-full
+          rounded-lg px-3 py-[7px] ${bodyMeduimStyle} hover:bg-gray-100 border-[1.8px] 
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75
+            bg-white text-black border-gray-300 ${
+              value === label ? "text-gray-400" : "text-black"
+            } transition-all`}
         >
-          {selectedValue}
+          {value}
           <ChevronDownIcon
             className=" h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
             aria-hidden="true"
           />
         </Menu.Button>
-      </div>
+      </label>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -40,13 +40,10 @@ export default function DropDown({ title, filter, colors, onSelect }) {
                 <Menu.Item key={index}>
                   {({ active }) => (
                     <button
-                      onClick={() => {
-                        handleItemClick(content);
-                        onSelect(content);
-                      }}
+                      onClick={() => onSelect(content)}
                       className={`${
                         active
-                          ? `bg-${colors.contentColor} text-white font-primaryRegular`
+                          ? `bg-bgButtonColor text-white font-primaryRegular`
                           : "text-gray-900 font-primaryRegular"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
@@ -61,4 +58,6 @@ export default function DropDown({ title, filter, colors, onSelect }) {
       </Transition>
     </Menu>
   );
-}
+};
+
+export default SelectedTextFeild;

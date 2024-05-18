@@ -15,7 +15,7 @@ import {
   UserDetailsPage,
   GeneralDialysis,
   AuditingPage,
-  OrdersPage
+  OrdersPage,
 } from "../pages/index";
 import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
@@ -42,14 +42,14 @@ import {
   registerRoute,
   invitationRoute,
   auditingRoute,
+  secretariaAccountRoute,
   ordersRoute,
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
-import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
-
-
+import CreateSecretariaAccountState from "../pages/manager_center/secretaria_account/CreateSecretariaAccountState";
+import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_account/CreateSecretariaAccountPage";
 
 const router = createBrowserRouter([
   {
@@ -230,6 +230,19 @@ const router = createBrowserRouter([
       <>
         <SideBar sideBarData={managerCenterSideBar} />
         <AuditingPage />
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: secretariaAccountRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <CreateSecretariaAccountState>
+          <CreateSecretariaAccountPage />
+        </CreateSecretariaAccountState>
       </>
     ),
     //TODO: u may have to add loader

@@ -9,36 +9,36 @@ export default {
         "2.5":"0.6250rem"
       },
       borderRadius: {
-        '5xl': '2.5rem',
+        "5xl": "2.5rem",
       },
-      fontFamily:{
-        primaryBold: ['primaryBold', 'sans-serif'],
-        primaryRegular: ['primaryRegular', 'sans-serif'],
+      fontFamily: {
+        primaryBold: ["primaryBold", "sans-serif"],
+        primaryRegular: ["primaryRegular", "sans-serif"],
       },
       fontSize: {
         customSize: "22px",
-        ms: '0.84375rem',
-        md:'0.9375rem',
-        s:'0.78125rem',
-        17:"1.0625rem"
+        ms: "0.84375rem",
+        md: "0.9375rem",
+        s: "0.78125rem",
+        17: "1.0625rem",
       },
       width: {
         phone: "100px",
         "1/10": "10%",
       },
       colors: {
-        primaryColor: 'rgba(244,247,254,255)',
-        titleColor:'rgba(49,51,127,255)',
-        titleSideColor:'rgba(46, 48, 125, 1)',
-        textButtonColor:'rgba(46,48,125,255)',
-        bgSideButton:'rgba(229, 215, 185, 1)',
-        bgbutton:"#d4b77c",
-        bgtitle:"#c49d69",
-        bgButtonColor:'rgba(212,183,124,255)',
-        customBlue: '#eff3ff',
-        cardInDialysisPage:'#f6f9ff',
-        borderINCardInDialysisPage:'#f1f4fa',
-      
+        primaryColor: "rgba(244,247,254,255)",
+        titleColor: "rgba(49,51,127,255)",
+        titleSideColor: "rgba(46, 48, 125, 1)",
+        textButtonColor: "rgba(46,48,125,255)",
+        bgSideButton: "rgba(229, 215, 185, 1)",
+        bgbutton: "#d4b77c",
+        bgtitle: "#c49d69",
+        bgButtonColor: "rgba(212,183,124,255)",
+        customBlue: "#eff3ff",
+        cardInDialysisPage: "#f6f9ff",
+        borderINCardInDialysisPage: "#f1f4fa",
+
         bgDashboard: "rgba(244, 247, 254, 255)",
         textMenuColor: "rgba(117,117,117,1)",
         healthInformationTitle: "rgba(89,91,153,255)",
@@ -57,16 +57,19 @@ export default {
         bgTab: "#C3974C",
         bgLogin: "#E6D7B6",
         primaryFontColor: "#27272A",
-        whiteCard:"#ffffff",
-        
+        whiteCard: "#ffffff",
+
         //blue
         blue400: "#9AB8FF80",
         blue600: "#2E307D",
-        cardDetailsColor:"#e0e9fa",
+        cardDetailsColor: "#e0e9fa",
         //green
         green400: "#149603",
         //gray
-        gray200: "f9f9f9",
+        gray200: "#f9f9f9",
+        gray700: "#333333",
+
+        bgSecretaria: "#F7F4EC",
       },
       screens: {
         lg2: "1250px",
@@ -94,6 +97,6 @@ export default {
       },
     },
   },
-  
+
   plugins: [],
 };
