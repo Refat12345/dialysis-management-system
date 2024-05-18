@@ -58,7 +58,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
             </td>
           }
           
-       
+       {type === "orders" && <td></td>}
       {type === "orders" && <td>
         <div className="flex justify-end">
         <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">

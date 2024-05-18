@@ -6,6 +6,7 @@ const OrdersSection = ({data}) => {
         { key: "order", title: "مقدم الطلب" },
         { key: "content", title: "محتوى الطلب" },
         { key: "Acceptance refusals", title: "" },
+        { key: "Acceptance refusals", title: "" },
         { key : "details" , title : "" }
         ];
         const handleRowClick = () => {

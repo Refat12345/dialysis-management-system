@@ -1,6 +1,6 @@
 import { DropDown } from "../../../../../components"
-
 const Header = () => {
+
 const filters = [
     {
         title:" الربع",
@@ -20,6 +20,7 @@ const colors = {
     contentColor:"bgButtonColor",
     textColor:"textMenuColor"
 }
+
   return (
     <div className="header flex justify-between mb-6  ">
         <span className="text-titleSideColor text-2xl font-primaryBold ">التحاليل</span>
