@@ -20,13 +20,14 @@ export { default as MedicalAnalysis } from "./manager_center/medical_analysis/Me
 export { default as Medicine } from "./manager_center/prescription/medicine";
 export { default as TransferPatient } from "./manager_center/patient/transfer_patient/TransferPatient";
 //public
-export { default as MedicalCenter } from "./public/medical_centers/MedicalCenter";
-export { default as Search } from "./public/search/Search";
-export { default as DropDown } from "./public/drop_down/DropDown";
-export { default as TextArea } from "./public/text_area/TextArea";
-export { default as AlertDialog } from "./public/dialog/Dialog";
-export { default as TableHeader } from "./manager_center/patient/TableHeader";
-export { default as TableRow } from "./manager_center/patient/TableRow";
+export {default as MedicalCenter} from "./public/medical_centers/MedicalCenter"
+export {default as Search} from "./public/search/Search"
+export {default as DropDown} from "./public/drop_down/DropDown"
+export {default as TextArea} from "./public/text_area/TextArea"
+export {default as AlertDialog} from "./public/dialog/Dialog"
+export {default as TableHeader} from "./manager_center/patient/TableHeader"
+export {default as TableRow} from "./manager_center/patient/TableRow"
+
 
 //login
 export { default as PasswordVisibleIcon } from "./manager_center/auth/PasswordVisibleIcon";

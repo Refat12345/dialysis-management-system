@@ -4,7 +4,7 @@ import
 import { titleSession } from "../../../../data/data";
 
 const DialysisSessions = ({data}) => {
-  const height= window.innerHeight;
+  let height= window.innerHeight;
   let minHeight = height > 600 ? ( height > 745 ? ( height > 830 ? "min-h-customAbove830" : "min-h-customUnder830" ) : (height > 680 ? "min-h-customUnder735" : (height > 618 ? "min-h-customUnder680" : "min-h-customUnder618") ) ) : "min-h-customUnder600";
   let responsive = height > 700 ? "mb-5" : ( height < 628 ? ( height < 600 ? "mb-5" : "mb-2" ) : "mb-3" )
   

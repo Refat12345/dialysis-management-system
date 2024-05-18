@@ -20,7 +20,8 @@ export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
 export const auditingRoute = '/auditing'
-export const secretariaAccountRoute = '/secretaria_account'
+export const secretariaAccountRoute = '/secretaria_account';
+export const ordersRoute = '/orders';
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
 export const medicalRecordRoute = `${patientProfileRoute}/medicalRecord`;
@@ -67,7 +68,7 @@ export const managerCenterSideBar = {
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
-    { href: "", name: "الطلبات", icon: OrdersIcon },
+    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
     { href: "", name: "الملاحظات", icon: NotesIcon },
     { href: "", name: "الاعدادت", icon: SettingsIcon },
     { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
@@ -1318,9 +1319,17 @@ export const auditing = [{
   affectorUser:"رفعت عبد الواحد",
   oldData:"71",
   newData:"73",
-
 }]
 
+const arr = [1,2,3,4,5,6,7,8,9,10 ,11,12,13,14,15,16,17]
+export const orders = arr.map((order,index)=>{
+  return {
+    
+    type:"المراكز الطبية",
+    order :"سارية الزعبي",
+    details :"أريد نقل المريض محمد خالد من مركز سند الخيري الى مركز حسن الطحان الخيري وذلك بسبب نقص في التجهيزات "
+  }
+})
 
 export const GeneralDialysisData = [
   {

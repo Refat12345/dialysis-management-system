@@ -7,6 +7,7 @@ import ChevronIcon from "../../../assets/icons/public/chevron-left.svg"
 import { useFormatDate } from "../../../utils/DateUtils";
 import AlertDialog from "../../public/dialog/Dialog";
 import AuditingDetailsDialog from "../../public/auditing/AuditingDetailsDialog";
+import RejectionReason from "../../../pages/manager_center/orders/sections/RejectionReason";
 
 function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
     const object = {
@@ -23,21 +24,27 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
         className={`text-right border-b ${getRowColor(index)}`}
         onClick={() => handleRowClick(object.connectOne)}
       >
-        <td className="py-3 px-4 w-48">
+        <td className="py-3 px-4">
           <div>
             {
-            type != "auditing" && <img
+            type != "auditing"  && 
+              type != "orders" ? <img
               className="inline-block w-6 h-6 mr-0"
               src={patient}
               alt="Patient"
-            />
+            />:""
+            
             }
             <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
           </div>
         </td>
         <td className={`py-3 px-4`}>{type === "auditing" ? useFormatDate(object.connectTow) : object.connectTow}</td>
-        <td className="py-3 px-4">{object.connectThree}</td>
-        <td className="py-3 px-4">{object.connectFour}</td>
+        {type === "orders" ? <td className="py-3 px-4" >
+        
+              <p className="whitespace-nowrap overflow-hidden text-ellipsis w-[90%]" >{object.connectThree}</p>
+  
+          </td> :<td className="py-3 px-4">{object.connectThree}</td>}
+        {object.connectFour != undefined && <td className="py-3 px-4 ">{object.connectFour}</td>}
         {
             (object.connectFive != undefined && type != "auditing" )&& 
             <td className={`py-3 w-48 ${type === "dialysis" ? "pr-6":""}`} dir="ltr">
@@ -50,8 +57,26 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
               {object.connectSix}
             </td>
           }
-        {type != "dialysis" &&
-        <td className="py-3 pr-12">
+          
+       
+      {type === "orders" && <td>
+        <div className="flex justify-end">
+        <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
+              <p className="text-md text-center ">قبول</p>
+          </div>
+          <AlertDialog renderComponent={<div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
+              <p className="text-md text-center ">رفض</p>
+          </div>}
+            contentComponent={<RejectionReason/>
+          }
+          
+          />
+        </div>
+        
+        </td>}
+        {
+        type != "dialysis" &&
+        <td className={`py-3 ${type != "orders" ?"pr-12":"pr-0"}`} align= {`${type === "orders" ? "right" :""}`}>
         {type === "auditing" ?
         <div className= {`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${index % 2 === 0 ? "hover:bg-gray-200" :"hover:bg-gray-300"}`}>
             <AlertDialog renderComponent={<img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />}
@@ -59,8 +84,20 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
                         titleButton={"رجوع"} 
             />
         </div>:
-          <img className="w-5 h-5 pr-18 -ml-4" src={down} alt="Patient" />}
-      </td>}
+         type === "orders" ?
+         <div className= {`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${index % 2 === 0 ? "hover:bg-gray-200" :"hover:bg-gray-300  "}`}>
+            <AlertDialog renderComponent={<img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />}
+                        contentComponent={<div dir="rtl" className=" flex flex-col ">
+                          <p className="self-center text-lg font-bold mb-5">تفاصيل الطلب :</p>
+                          <p className="text-base text-titleColor font-bold">{object.connectThree}</p>
+                        </div>}
+                        titleButton={"رجوع"} 
+            />
+        </div>
+         : <img className="w-5 h-5 pr-18 -ml-4" src={down} alt="Patient" />}
+      </td>
+      }
+       
       </tr>
     );
   }

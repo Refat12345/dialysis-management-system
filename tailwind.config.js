@@ -3,8 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      margin: {
-        1.5: "0.375rem",
+      margin:{
+        "1.5":"0.375rem",
+        "5px":"0.3125 ",
+        "2.5":"0.6250rem"
       },
       borderRadius: {
         "5xl": "2.5rem",
@@ -42,6 +44,7 @@ export default {
         healthInformationTitle: "rgba(89,91,153,255)",
         bgMedicineStatus: "rgba(241, 241, 255, 1)",
         bgMedicalCenters: "rgba(229, 215, 185, 0.25)",
+        bgOrders:"rgba(242, 241, 237, 1)",
         kk: "#d4b77d",
         headerTable: "#e5d7ba",
         firstRow: "#f6f9ff",
@@ -75,21 +78,22 @@ export default {
       },
 
       minHeight: {
-        customUnder600: "325px",
-        customUnder618: "379px",
-        customUnder680: "395px",
-        customUnder735: "432px",
-        customUnder830: "456px",
-        customAbove830: "522px",
-        centerAbove700: "539px",
-        centerAbove700_1400: "552px",
-        centerUnder700: "499px",
-        centerUnder630: "482px",
-        AuditAbove800: "580px",
-        AuditAbove740: "532px",
-        AuditAbove700: "483px",
-        AuditAbove630: "434px",
-        AuditUnder630: "385px",
+        customUnder600: "315px",
+        customUnder618:"369px",
+        customUnder680: "385px",
+        customUnder735: "422px",
+        customUnder830: "446px",
+        customAbove830: "512px",
+        centerAbove700:"539px",
+        centerAbove700_1400:"560px",
+        centerUnder700:"499px",
+        centerUnder630:"482px",
+        AuditAbove800:"580px",
+        AuditAbove740:"532px",
+        AuditAbove700:"483px",
+        AuditAbove630:"434px",
+        AuditUnder630:"385px"
+        
       },
     },
   },

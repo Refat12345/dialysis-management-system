@@ -15,6 +15,7 @@ import {
   UserDetailsPage,
   GeneralDialysis,
   AuditingPage,
+  OrdersPage,
 } from "../pages/index";
 import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
@@ -42,6 +43,7 @@ import {
   invitationRoute,
   auditingRoute,
   secretariaAccountRoute,
+  ordersRoute,
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -241,6 +243,17 @@ const router = createBrowserRouter([
         <CreateSecretariaAccountState>
           <CreateSecretariaAccountPage />
         </CreateSecretariaAccountState>
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: ordersRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <OrdersPage />
       </>
     ),
     //TODO: u may have to add loader
