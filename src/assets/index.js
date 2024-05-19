@@ -28,3 +28,6 @@ export {default as OrdersIcon} from "./icons/medical-center/dashboard/SideBar/or
 export {default as NotesIcon} from "./icons/medical-center/dashboard/SideBar/notification.svg"
 export {default as SettingsIcon} from "./icons/medical-center/dashboard/SideBar/setting.svg"
 export {default as LogOutIcon} from "./icons/medical-center/dashboard/SideBar/logOut.svg"
+
+//Sacertary
+export {default as SecretaryImage} from "./images/manager_center/secretary/secretary_image.png"

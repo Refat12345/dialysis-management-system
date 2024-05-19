@@ -1,6 +1,4 @@
 import PropTypes from "prop-types"; // Import PropTypes
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import { GlobalInfoPatientAvatar } from "../../../../assets";
 
 export const CardRow = ({ title, content }) => {
   return (
@@ -9,33 +7,6 @@ export const CardRow = ({ title, content }) => {
       <div className="text-base font-bold">{content}</div>
       <div className="w-0"></div>
       <div className="w-0"></div>
-    </div>
-  );
-};
-
-export const InfoCard = ({ patientInfo }) => {
-  return (
-    <div className="flex flex-row-reverse">
-      <div className="px-3 pt-4 pb-2">
-        <img className="w-16" src={GlobalInfoPatientAvatar} alt="" />
-      </div>
-      <div className="flex flex-col items-end justify-start px-1 pt-5">
-        <div className="font-bold text-lg mb-1">{patientInfo.name}</div>
-        <div className="flex flex-row-reverse items-center justify-end">
-          {patientInfo.status === "enable" ? (
-            <CheckIcon className="text-green400 w-6 h-6" />
-          ) : (
-            <XMarkIcon className="text-red-600 w-6 h-6" />
-          )}
-          <span
-            className={`${
-              patientInfo.status === "enable" ? "text-green400" : "text-red-600"
-            } mx-2`}
-          >
-            {patientInfo.status === "enable" ? "مفعّل" : "غير مفعّل"}
-          </span>
-        </div>
-      </div>
     </div>
   );
 };
@@ -70,10 +41,6 @@ CardHeader.propTypes = {
 CardRow.propTypes = {
   title: PropTypes.node.isRequired,
   content: PropTypes.node.isRequired,
-};
-
-InfoCard.propTypes = {
-  patientInfo: PropTypes.node.isRequired,
 };
 
 export default GlobalInfoCard;
