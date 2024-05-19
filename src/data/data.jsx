@@ -21,7 +21,6 @@ export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
 export const auditingRoute = '/auditing';
 export const ordersRoute = '/orders';
-export const auditingRoute = '/auditing'
 export const settingRoute = '/setting'
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
@@ -1418,9 +1417,9 @@ export const GeneralDialysisData = [
 ];
 
 export const dataCenterLocation = {
-  title: "معلومات التواصل",
   phone: "+963992841193",
-  gmail:"refatabdalwahed@gmail.com"
+  gmail:"refatabdalwahed@gmail.com",
+  line:"4534321"
 };
 
 export const dataCenterTime = [

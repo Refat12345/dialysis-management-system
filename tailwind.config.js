@@ -68,6 +68,7 @@ export default {
         green400: "#149603",
         //gray
         gray200: "f9f9f9",
+        gray300: "#e4e9f4",
       },
       screens: {
         lg2: "1250px",
