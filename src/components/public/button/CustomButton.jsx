@@ -10,7 +10,7 @@ const CustomButton = ({
   ...props
 }) => {
   return (
-    <Theme className="inline">
+    <Theme className="inline bg-transparent">
       <Button
         size="3"
         variant={variant}

@@ -4,11 +4,18 @@ import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { bodyMeduimStyle } from "../../../utils/StyleUtils";
 
-const SelectedTextFeild = ({ label, value, filter, onSelect }) => {
+const SelectedTextFeild = ({
+  activeLabel = true,
+  label,
+  value,
+  filter,
+  onSelect,
+}) => {
   return (
     <Menu dir="rtl" as="div" className="relative inline-block w-full">
       <label className={`font-medium ${bodyMeduimStyle}`}>
-        {label}:<div className="h-1"></div>
+        {!activeLabel ? "" : `${label}:`}
+        <div className="h-1"></div>
         <Menu.Button
           className={`inline-flex justify-between w-full
           rounded-lg px-3 py-[7px] ${bodyMeduimStyle} hover:bg-gray-100 border-[1.8px] 
@@ -19,7 +26,7 @@ const SelectedTextFeild = ({ label, value, filter, onSelect }) => {
         >
           {value}
           <ChevronDownIcon
-            className=" h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
+            className="h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
             aria-hidden="true"
           />
         </Menu.Button>
@@ -33,8 +40,8 @@ const SelectedTextFeild = ({ label, value, filter, onSelect }) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right  rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-          <div className="px-1 py-1 ">
+        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right z-10 rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none max-h-60 overflow-y-auto">
+          <div className="px-1 py-1">
             {filter.map((content, index) => {
               return (
                 <Menu.Item key={index}>

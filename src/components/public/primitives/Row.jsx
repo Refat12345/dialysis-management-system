@@ -9,7 +9,7 @@ const Row = ({
     <div
       className={`flex ${
         reverse ? "flex-row-reverse" : "flex-row"
-      } ${mainAxisAlignment} ${crossAxisAlignment}
+      } ${mainAxisAlignment} ${crossAxisAlignment} w-full
     `}
     >
       {children}

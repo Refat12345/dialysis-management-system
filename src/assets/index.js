@@ -31,3 +31,4 @@ export {default as LogOutIcon} from "./icons/medical-center/dashboard/SideBar/lo
 
 //Sacertary
 export {default as SecretaryImage} from "./images/manager_center/secretary/secretary_image.png"
+export {default as TrashIcon} from "./icons/medical-center/users/secretary_account/trash-icon.svg"
