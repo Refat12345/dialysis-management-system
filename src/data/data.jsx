@@ -36,6 +36,8 @@ export const medicalCentersRoute = "/medicalCenters"
 
 export const userDetailsRoute = `${usersRoute}/userDetails`;
 
+//Delete 
+export const addPatintinfoRoute = '/logOut'
 
 //--------------------------
 //saria
@@ -72,7 +74,7 @@ export const managerCenterSideBar = {
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
     { href: "", name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 

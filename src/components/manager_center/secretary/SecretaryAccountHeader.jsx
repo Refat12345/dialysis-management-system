@@ -2,8 +2,8 @@ import { SecretaryImage } from "../../../assets/index";
 import { labelMediumStyle } from "../../../utils/StyleUtils";
 
 const SecretaryAccountHeader = () => {
-  return (
-    <div className="w-full lg:h-[150px] md:h-32 h-24 bg-bgSecretaria px-3 flex flex-row justify-start items-center transition-all">
+  return (//h-150
+    <div className="w-full lg:h-[120px] md:h-32 h-24 bg-bgSecretaria px-3 flex flex-row justify-start items-center transition-all">
       <img
         className="lg:w-28 lg:h-28 w-20 h-20 transition-all"
         src={SecretaryImage}

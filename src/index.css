@@ -9,6 +9,12 @@
   height: 0.5px;
   background-color: black;
 }
+.custom-hrrr {
+  width: calc(50%);
+  border: 0;
+  height: 0.1px;
+  background-color: dimgray;
+}
 
 .custom-hrr {
   border: none;

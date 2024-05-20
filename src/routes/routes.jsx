@@ -44,7 +44,8 @@ import {
   auditingRoute,
   secretariaAccountRoute,
   ordersRoute,
-  settingRoute
+  settingRoute,
+  addPatintinfoRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -54,6 +55,8 @@ import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_acco
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 
 import SettingPage from "../pages/manager_center/setting/SettingPage";
+import AddPaitentInfo from "../components/addPaitentInfo/AddPaitentInfo";
+import AddPaitentInfoState from "../components/addPaitentInfo/AddPaitentInfoState";
 
 
 const router = createBrowserRouter([
@@ -272,6 +275,22 @@ const router = createBrowserRouter([
         <SideBar sideBarData={managerCenterSideBar} />
         <SettingPage />
         
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+
+  //For Delete
+  {
+    path:addPatintinfoRoute ,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <AddPaitentInfoState>
+        <AddPaitentInfo />
+
+        </AddPaitentInfoState>
         
       </>
     ),
