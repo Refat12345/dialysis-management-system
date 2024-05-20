@@ -34,10 +34,20 @@ const CustomTextField = ({
             onChange={(e) => onChange(e)}
           >
             <TextField.Slot side={"left"}>
-              <div className={`w-5`}>{prefixIcon}</div>
+              <div
+                className={`${
+                  prefixIcon ? "lg:w-5 w-4" : ""
+                } flex flex-col justify-center`}
+              >
+                {prefixIcon}
+              </div>
             </TextField.Slot>
             <TextField.Slot side={"right"}>
-              <div className={`w-5 flex flex-col justify-center`}>
+              <div
+                className={`${
+                  suffixIcon ? "lg:w-5 w-4" : ""
+                } flex flex-col justify-center`}
+              >
                 {suffixIcon}
               </div>
             </TextField.Slot>

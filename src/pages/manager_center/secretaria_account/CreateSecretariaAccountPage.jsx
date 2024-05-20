@@ -1,11 +1,18 @@
-import { Row } from "../../../components";
+import { Column, Row } from "../../../components";
 import SecretaryAccountHeader from "../../../components/manager_center/secretary/SecretaryAccountHeader";
 import { useCreateSecretaryAccountState } from "./CreateSecretariaAccountState";
 import { UserNumberIcon, LoginUserIcon } from "../../../assets/index";
 import CustomTextField from "../../../components/public/textfield/CustomTextField";
 import SelectedTextFeild from "../../../components/public/textfield/SelectedTextFeild";
-import { heightSmall } from "../../../utils/StyleUtils";
+import {
+  bodyMeduimStyle,
+  bodySmallStyle,
+  heightSmall,
+} from "../../../utils/StyleUtils";
 import CustomDatePicker from "../../../components/public/datepicker/CustomDatePicker";
+import ContactSecretariaComponent from "./secretaria_sections/ContactSecretariaComponent";
+import { PlusIcon } from "@heroicons/react/16/solid";
+import CustomButton from "../../../components/public/button/CustomButton";
 
 const CreateSecretariaAccountPage = () => {
   const { state, updateState } = useCreateSecretaryAccountState();
@@ -13,6 +20,27 @@ const CreateSecretariaAccountPage = () => {
     array: ["أنثى", "ذكر"],
     title: "الجنس",
   };
+  const useFilter = ["المنزل", "العمل"];
+  const typeContactFilter = ["الهاتف", "البريد الالكتروني"];
+  const typeAddressFilter = [
+    "دمشق",
+    "حلب",
+    "حمص",
+    "حماة",
+    "اللاذقية",
+    "طرطوس",
+    "دير الزور",
+    "الرقة",
+    "الحسكة",
+    "إدلب",
+    "درعا",
+    "السويداء",
+    "القنيطرة",
+    "بانياس",
+    "القامشلي",
+    "تدمر",
+    "ريف دمشق",
+  ];
 
   return (
     <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48">
@@ -72,6 +100,102 @@ const CreateSecretariaAccountPage = () => {
             />
           </div>
         </Row>
+        <div className={`${heightSmall}`}></div>
+        <div className="mr-4">
+          <Column>
+            <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              {"معلومات التواصل:"}
+            </p>
+            <div className="h-1"></div>
+            {state.contactInfo.map((contact, index) => (
+              <ContactSecretariaComponent
+                key={index}
+                selectUse={(val) =>
+                  state.updateContactInfo(index, { use: val })
+                }
+                useValue={contact.use}
+                filterUse={useFilter}
+                filterType={typeContactFilter}
+                typeValue={contact.type}
+                selectType={(val) =>
+                  state.updateContactInfo(index, { type: val })
+                }
+                value={contact.value}
+                onChange={(val) => {
+                  state.updateContactInfo(index, { value: val.target.value });
+                }}
+                onRemove={() => state.removeContactInfo(index)}
+                showDeleteButton={state.contactInfo.length > 1}
+                firstLabel="الاستخدام"
+                secondLabel="النوع"
+              />
+            ))}
+            <div className="h-3"></div>
+            <CustomButton
+              variant="solid"
+              onClick={() => {
+                state.addContactInfo();
+              }}
+              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  <span className={`${bodySmallStyle}`}>
+                    إضافة معلومة تواصل
+                  </span>
+                  <div className="lg:w-2 md:w-2 w-1"></div>
+                  <PlusIcon className="w-5 h-5 mr-1 text-white" />
+                </div>
+              }
+              radius="full"
+            />
+          </Column>
+          <div className="h-3"></div>
+          <Column>
+            <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              {"العنوان:"}
+            </p>
+            <div className="h-1"></div>
+            {state.addressInfo.map((contact, index) => (
+              <ContactSecretariaComponent
+                key={index}
+                selectUse={(val) =>
+                  state.updateAddressInfo(index, { use: val })
+                }
+                useValue={contact.use}
+                filterUse={useFilter}
+                filterType={typeAddressFilter}
+                typeValue={contact.city}
+                selectType={(val) =>
+                  state.updateAddressInfo(index, { city: val })
+                }
+                value={contact.line}
+                onChange={(val) => {
+                  state.updateAddressInfo(index, { line: val.target.value });
+                }}
+                onRemove={() => state.removeAddressInfo(index)}
+                showDeleteButton={state.addressInfo.length > 1}
+                firstLabel={"الاستخدام"}
+                secondLabel={"المدينة"}
+              />
+            ))}
+            <div className="h-3"></div>
+            <CustomButton
+              variant="solid"
+              onClick={() => {
+                state.addAddressInfo();
+              }}
+              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  <span className={`${bodySmallStyle}`}>إضافة عناون</span>
+                  <div className="lg:w-2 md:w-2 w-1"></div>
+                  <PlusIcon className="w-5 h-5 mr-1 text-white" />
+                </div>
+              }
+              radius="full"
+            />
+          </Column>
+        </div>
       </div>
     </div>
   );
