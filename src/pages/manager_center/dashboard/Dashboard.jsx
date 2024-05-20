@@ -3,10 +3,14 @@ import { Cards, PieCharts, DialysisSessions } from "../../index";
 import { PaginationComponent } from "../../../components/index";
 import { data ,pieChartData } from "../../../data/data";
 const Dashboard = () => {
-  let height = window.innerHeight;
+  const height = window.innerHeight;
+  const width = window.innerWidth;
+
 
   const itemsPerPage = height > 599 ?( height > 819 ? 7 : 6 ) : 5
 
+console.log(height)
+console.log(width)
 
 
   return (

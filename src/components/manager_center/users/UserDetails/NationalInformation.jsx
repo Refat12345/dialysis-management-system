@@ -4,7 +4,7 @@ import { RoleImage } from '../Card'
 import truee from "./../../../../assets/icons/medical-center/users/user-details/true.svg";
 function NationalInformation() {
   let data = {
-    role: "طبيب",
+    role: "سكرتيرة",
     name: "رفعت عبد الواحد",
     gender:"ذكر",
     phone:"+963992841193",
