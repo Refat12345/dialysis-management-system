@@ -32,6 +32,7 @@ export default {
         titleSideColor: "rgba(46, 48, 125, 1)",
         textButtonColor: "rgba(46,48,125,255)",
         bgSideButton: "rgba(229, 215, 185, 1)",
+        bgMedicalRecord:"#F7F4EC",
         bgbutton: "#d4b77c",
         bgtitle: "#c49d69",
         bgButtonColor: "rgba(212,183,124,255)",

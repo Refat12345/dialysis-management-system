@@ -15,6 +15,7 @@ const CustomTextField = ({
   required = false,
   readOnly = false,
 }) => {
+  
   return (
     <div dir="rtl">
       <label className={`${bodyMeduimStyle} font-medium`}>
@@ -33,14 +34,16 @@ const CustomTextField = ({
             value={value}
             onChange={(e) => onChange(e)}
           >
+            {prefixIcon != undefined && 
             <TextField.Slot side={"left"}>
               <div className={`w-5`}>{prefixIcon}</div>
-            </TextField.Slot>
+            </TextField.Slot>}
+            {suffixIcon !=undefined && 
             <TextField.Slot side={"right"}>
-              <div className={`w-5 flex flex-col justify-center`}>
-                {suffixIcon}
-              </div>
-            </TextField.Slot>
+            <div className={`w-5 flex flex-col justify-center`}>
+              {suffixIcon}
+            </div>
+          </TextField.Slot>}
           </TextField.Root>
         </Theme>
       </label>

@@ -31,3 +31,7 @@ export {default as LogOutIcon} from "./icons/medical-center/dashboard/SideBar/lo
 
 //Sacertary
 export {default as SecretaryImage} from "./images/manager_center/secretary/secretary_image.png"
+
+//public
+export {default as MedicalRecord} from "./icons/public/record_svgrepo.com.svg"
+export {default as PlusIcon} from "./icons/public/plus.svg"

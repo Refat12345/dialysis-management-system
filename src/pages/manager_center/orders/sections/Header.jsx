@@ -7,7 +7,7 @@ const Header = () => {
     }
     const filter = {
         title :"نوع الطلب",
-        ordersOne :["المراكز الطبية" , "السكرتارية" ,"المرضى"]
+        array :["المراكز الطبية" , "السكرتارية" ,"المرضى"]
     }
   return (
     <div dir="rtl">
@@ -16,7 +16,9 @@ const Header = () => {
         <HorizontalLine/>
         <div className="mb-4"></div>
         <div className="w-64">
-        <DropDown colors={colors} filter={ filter} />
+        <DropDown colors={colors} filter={ filter.array} title={filter.title} onSelect={(val) => {
+                console.log(val);
+              }}/>
         </div>
     </div>
   )

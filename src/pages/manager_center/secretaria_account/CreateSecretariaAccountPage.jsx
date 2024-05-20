@@ -1,7 +1,7 @@
 import { Row } from "../../../components";
-import SecretaryAccountHeader from "../../../components/manager_center/secretary/SecretaryAccountHeader";
+import PublicHeader from "../../../components/manager_center/secretary/PublicHeader";
 import { useCreateSecretaryAccountState } from "./CreateSecretariaAccountState";
-import { UserNumberIcon, LoginUserIcon } from "../../../assets/index";
+import { UserNumberIcon, LoginUserIcon ,SecretaryImage } from "../../../assets/index";
 import CustomTextField from "../../../components/public/textfield/CustomTextField";
 import SelectedTextFeild from "../../../components/public/textfield/SelectedTextFeild";
 import { heightSmall } from "../../../utils/StyleUtils";
@@ -16,7 +16,7 @@ const CreateSecretariaAccountPage = () => {
 
   return (
     <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48">
-      <SecretaryAccountHeader />
+      <PublicHeader  title={"إضافة سكرتاريا"} icon={SecretaryImage}/>
       <div className="bg-bgDashboard h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
         <Row mainAxisAlignment="justify-evenly">
           <div className="w-1/2 mr-4">

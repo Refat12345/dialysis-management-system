@@ -35,6 +35,7 @@ export const medicalCentersRoute = "/medicalCenters"
 
 export const userDetailsRoute = `${usersRoute}/userDetails`;
 
+export const enterMedicalRecordRoute = "/enterMedicalRecord"
 
 //--------------------------
 //saria

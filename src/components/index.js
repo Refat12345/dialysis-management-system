@@ -27,6 +27,9 @@ export {default as TextArea} from "./public/text_area/TextArea"
 export {default as AlertDialog} from "./public/dialog/Dialog"
 export {default as TableHeader} from "./manager_center/patient/TableHeader"
 export {default as TableRow} from "./manager_center/patient/TableRow"
+export {default as PublicHeader} from "./manager_center/secretary/PublicHeader"
+export {default as SelectedTextFeild} from "./public/textfield/SelectedTextFeild"
+export {default as CustomTextField} from "./public/textfield/CustomTextField"
 
 
 //login
