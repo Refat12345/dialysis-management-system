@@ -1,13 +1,15 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 const CreateSecretariaAccountStateContext = createContext();
+import dayjs from "dayjs";
 
 const CreateSecretariaAccountState = ({ children }) => {
   const [state, setState] = useState({
     nationaltyNumber: "",
     username: "",
     genderValue: "",
-    birthDate: "",
+    birthdate: null,
+    birthdateString: "",
     contactInfo: [
       {
         use: "",
@@ -32,12 +34,19 @@ const CreateSecretariaAccountState = ({ children }) => {
     removeAddressInfo: (index) => removeAddressInfo(index),
     handleSelectPermission: (val) => handleSelectPermission(val),
     removePermissions: (index) => removePermissions(index),
+    selectDate: (val) => selectDate(val),
   });
 
   const selectGender = (value) => {
     updateState({ genderValue: value });
   };
 
+  const selectDate = (val) => {
+    const formattedDate = dayjs(val).format("YYYY-MM-DD");
+    console.log("Formatted Date:", formattedDate);
+    updateState({ birthdate: dayjs(val), birthdateString: formattedDate });
+  };
+  
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
       ...prevState,

@@ -80,9 +80,7 @@ const CreateSecretariaAccountPage = () => {
             <CustomDatePicker
               label="تاريخ الميلاد"
               date={state.birthdate}
-              onSelect={(val) => {
-                updateState({ birthDate: val });
-              }}
+              onSelect={state.selectDate}
             />
           </div>
         </Row>
@@ -198,6 +196,7 @@ const CreateSecretariaAccountPage = () => {
               onRemove={(val) => state.removePermissions(val)}
             />
           </Column>
+          <button onClick={console.log(state)}>print</button>
         </div>
       </div>
     </div>
