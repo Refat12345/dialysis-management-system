@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
-import GlobalInfoPage from "../global_info/GlobalInfoPage";
+import { useNavigate } from "react-router-dom";
 
 import {
   globalInfoRoute,
@@ -10,17 +10,12 @@ import {
   prescriptionsRoute,
   globalNotesRoute,
 } from "../../../../data/data";
-import GlobalInfoState from "../global_info/GlobalInfoState";
-import DialysisPage from "../../dialysis/dialysisPage";
-// import GlobalNotes from "../../../../components/manager_center/globalNotes/GlobalNotes";
-import GeneralNotePage from "../../generalNotes/GeneralNotePage";
-import MedicalRecordPage from "../medical_record/MedicalRecordPage";
-import PrescriptionsPage from "../prescriptions/PrescriptionsPage";
-import MedicalAnalysisPage from "../medical_analysis/MedicalAnalysisPage";
 
 const PatientProfileStateContext = createContext();
 
 export const PatientProfileStateProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   const globalInfo = "معلومات عامة";
   const medicalRecord = "السجل الطبي";
   const dialysisSessions = "جلسات الغسيل";
@@ -39,16 +34,12 @@ export const PatientProfileStateProvider = ({ children }) => {
 
   const tabScreens = {
     //TODO: put patient screens here
-    globalInfo: (
-      <GlobalInfoState>
-        <GlobalInfoPage />
-      </GlobalInfoState>
-    ),
-    medicalRecord: <MedicalRecordPage/>,
-    dialysisSessions: <DialysisPage/>,
-    medicalAnalysis: <MedicalAnalysisPage/>,
-    prescriptions: <PrescriptionsPage/>,
-    globalNotes: <GeneralNotePage/>,
+    globalInfo: globalInfoRoute,
+    medicalRecord: medicalRecordRoute,
+    dialysisSessions: dialysisSessionsRoute,
+    medicalAnalysis: medicalAnalysisRoute,
+    prescriptions: prescriptionsRoute,
+    globalNotes: globalNotesRoute,
   };
 
   const [state, setState] = useState({
@@ -56,21 +47,27 @@ export const PatientProfileStateProvider = ({ children }) => {
     patientProfileMenuItems: patientProfileMenuItems,
     selectScreen: (val) => selectScreen(val),
   });
-  
+
   const selectScreen = (screen) => {
     switch (screen) {
       case globalInfo:
-        return tabScreens.globalInfo;
+        navigate(tabScreens.globalInfo);
+        break;
       case dialysisSessions:
-        return tabScreens.dialysisSessions;
+        navigate(tabScreens.dialysisSessions);
+        break;
       case medicalRecord:
-        return tabScreens.medicalRecord;
+        navigate(tabScreens.medicalRecord);
+        break;
       case medicalAnalysis:
-        return tabScreens.medicalAnalysis;
+        navigate(tabScreens.medicalAnalysis);
+        break;
       case prescriptions:
-        return tabScreens.prescriptions;
+        navigate(tabScreens.prescriptions);
+        break;
       case globalNotes:
-        return tabScreens.globalNotes;
+        navigate(tabScreens.globalNotes);
+        break;
     }
   };
   const updateState = (newValues) => {

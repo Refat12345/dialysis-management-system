@@ -16,6 +16,7 @@ import {
   GeneralDialysis,
   AuditingPage,
   OrdersPage,
+  GlobalInfoPage,
   EnterMedicalRecordPage
 } from "../pages/index";
 import {} from "../pages/index";
@@ -45,6 +46,10 @@ import {
   auditingRoute,
   secretariaAccountRoute,
   ordersRoute,
+  settingRoute,
+  globalInfoRoute,
+  dialysisSessionsRoute,
+  globalNotesRoute,
   enterMedicalRecordRoute,
   settingRoute
 } from "../data/data";
@@ -58,7 +63,9 @@ import EnterMedicalRecordState from "../pages/secretariat/patient/medical_record
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 
 import SettingPage from "../pages/manager_center/setting/SettingPage";
-
+import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
+import GeneralNotePage from "../pages/manager_center/generalNotes/GeneralNotePage";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +111,48 @@ const router = createBrowserRouter([
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: globalInfoRoute,
+        element: (
+          <GlobalInfoState>
+            <GlobalInfoPage />
+          </GlobalInfoState>
+        ),
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: medicalRecordRoute,
+        element: <MedicalRecordPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: dialysisSessionsRoute,
+        element: <DialysisPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: medicalAnalysisRoute,
+        element: <MedicalAnalysisPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: prescriptionsRoute,
+        element: <PrescriptionsPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: globalNotesRoute,
+        element: <GeneralNotePage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+    ],
   },
   {
     path: medicalRecordRoute,
@@ -288,8 +337,6 @@ const router = createBrowserRouter([
       <>
         <SideBar sideBarData={managerCenterSideBar} />
         <SettingPage />
-        
-        
       </>
     ),
     //TODO: u may have to add loader

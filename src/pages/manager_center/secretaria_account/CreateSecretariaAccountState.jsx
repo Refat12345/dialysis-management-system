@@ -1,13 +1,14 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 const CreateSecretariaAccountStateContext = createContext();
+import dayjs from "dayjs";
 
 const CreateSecretariaAccountState = ({ children }) => {
   const [state, setState] = useState({
     nationaltyNumber: "",
     username: "",
     genderValue: "",
-    birthDate: "",
+    birthdate: null,
     contactInfo: [
       {
         use: "",
@@ -22,6 +23,7 @@ const CreateSecretariaAccountState = ({ children }) => {
         line: "",
       },
     ],
+    permissions: [],
     selectGender: (val) => selectGender(val),
     updateContactInfo: (index, info) => updateContactInfo(index, info),
     updateAddressInfo: (index, info) => updateAddressInfo(index, info),
@@ -29,12 +31,21 @@ const CreateSecretariaAccountState = ({ children }) => {
     removeContactInfo: (index) => removeContactInfo(index),
     addAddressInfo: () => addAddressInfo(),
     removeAddressInfo: (index) => removeAddressInfo(index),
+    handleSelectPermission: (val) => handleSelectPermission(val),
+    removePermissions: (index) => removePermissions(index),
+    selectDate: (val) => selectDate(val),
   });
 
   const selectGender = (value) => {
     updateState({ genderValue: value });
   };
 
+  const selectDate = (val) => {
+    const formattedDate = dayjs(val).format("YYYY-MM-DD");
+    console.log("Formatted Date:", formattedDate);
+    updateState({ birthdate: dayjs(val) });
+  };
+  
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
       ...prevState,
@@ -91,6 +102,35 @@ const CreateSecretariaAccountState = ({ children }) => {
       }
       return prevState;
     });
+  };
+
+  const handleSelectPermission = (val) => {
+    setState((prevState) => {
+      // Check if the value is already included in the permissions array
+      if (prevState.permissions.includes(val)) {
+        // If so, remove the value using the removePermissions function
+        // This should be done outside of setState to avoid direct mutation
+        return {
+          ...prevState,
+          permissions: prevState.permissions.filter(
+            (permission) => permission !== val
+          ),
+        };
+      } else {
+        // If the value is not included, add it to the permissions array
+        return {
+          ...prevState,
+          permissions: [...prevState.permissions, val],
+        };
+      }
+    });
+  };
+
+  const removePermissions = (val) => {
+    setState((prevState) => ({
+      ...prevState,
+      permissions: prevState.permissions.filter((v) => v !== val),
+    }));
   };
 
   const updateState = (newValues) => {
