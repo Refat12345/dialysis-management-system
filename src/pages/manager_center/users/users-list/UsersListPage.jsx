@@ -32,7 +32,7 @@ const UsersListPage = () => {
       <PaginationComponent
         data={cardsData}
         RenderComponent={ViewCard}
-        itemsPerPage={itemsPerPage}
+        itemsPerPage={12}
       />
     </div>
   );

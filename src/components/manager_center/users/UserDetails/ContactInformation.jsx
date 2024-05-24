@@ -1,16 +1,22 @@
 /* eslint-disable react/prop-types */
 import contact from "./../../../../assets/icons/medical-center/users/user-details/ContactInformation.svg";
-import location from "./../../../../assets/icons/medical-center/users/user-details/locationInformation.svg"
+import location from "./../../../../assets/icons/medical-center/users/user-details/locationInformation.svg";
 function ContactInformation({ data }) {
   return (
     <div className="border p-4 rounded-xl bg-whiteCard">
       <div className="flex flex-row justify-end  mt-2 mb-2 ">
         <div dir="ltr" className="flex flex-grow justify-start items-center">
-         {Object.keys(data).length === 4?<img src={contact} />:<img src={location} />} 
+
+          {Object.keys(data).length === 4 ? (
+            <img src={contact} />
+          ) : (
+            <img src={location} />
+          )}
         </div>
 
         <h3 className="text-xl text-bgtitle">{data.title}</h3>
       </div>
+
       {Object.keys(data).length === 4 ? (
         <div className="flex flex-row-reverse  ">
           <div className="flex flex-col gap-2 mt-3">
@@ -39,3 +45,6 @@ function ContactInformation({ data }) {
 }
 
 export default ContactInformation;
+
+
+

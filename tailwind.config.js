@@ -63,7 +63,8 @@ export default {
         //blue
         blue400: "#9AB8FF80",
         blue600: "#2E307D",
-        cardDetailsColor: "#e0e9fa",
+        cardDetailsColor:"#e0e9fa",
+        blue700:"#424489",
         //green
         green400: "#149603",
         //gray
@@ -71,6 +72,7 @@ export default {
         gray700: "#333333",
 
         bgSecretaria: "#F7F4EC",
+        gray300: "#e4e9f4",
       },
       screens: {
         lg2: "1250px",

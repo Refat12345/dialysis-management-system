@@ -35,3 +35,4 @@ export {default as SecretaryImage} from "./images/manager_center/secretary/secre
 //public
 export {default as MedicalRecord} from "./icons/public/record_svgrepo.com.svg"
 export {default as PlusIcon} from "./icons/public/plus.svg"
+export {default as TrashIcon} from "./icons/medical-center/users/secretary_account/trash-icon.svg"
