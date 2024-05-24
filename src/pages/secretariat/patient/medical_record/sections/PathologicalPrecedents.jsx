@@ -1,73 +1,74 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Row ,CustomTextField} from "../../../../../components/index"
-import {PlusIcon} from "../../../../../assets/index"
+import { Row ,CustomTextField ,CustomDatePicker, AlertDialog}  from "../../../../../components/index"
+import PathologicalPrecedentsDialog from "./dialog/PathologicalPrecedentsDialog"
 const PathologicalPrecedents = ({ state , updateState }) => {
 
-    const filter = {
-        array: ["أنثى", "ذكر"],
-        title: "الجنس",
-    };
+
 return (
-    <div className="bg-white rounded-lg py-5 px-3 w-[49%]">
+    <div className="paddingCard bg-white rounded-lg w-[49.2%]">
         <Row mainAxisAlignment="justify-between" >
-            <p className="pr-2">السوابق المرضية</p>
+            <p className="pr-2 font-bold text-titleColor text-lg">السوابق المرضية</p>
             <div className="flex pl-3 ">
-                <img src = {PlusIcon} className="h-4 w-4 self-center"/>
-                <p>اضافة سابقة أخرى</p>
-            </div>
+                <div onClick={()=> state.addPathologicalPrecedent() } className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md">
+                    <p className="">اضافة سابقة أخرى</p> 
+                </div>
+                {state.pathologicalPrecedents.length >1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
+                    <p className="">الكل</p> 
+                </div>}  contentComponent={<PathologicalPrecedentsDialog state={state} updateState={updateState}/>}/>}
+            </div> 
         </Row>
-        <Row mainAxisAlignment="justify-evenly">
-            <div className="w-[45%] ">
-            <CustomTextField
-                    label = {"اسم المرض"}
-                    size = "3"
-                    required={true}
-                    placeholder={"اسم المرض"}
-                    type="text"
-                    value = {state.illnessName}
-                    onChange = {(e) =>
-                        updateState({
-                            illnessName: e.target.value,
-                        })
+        {
+            state.pathologicalPrecedents.map((precedent,index)=>{
+                return index === state.pathologicalPrecedents.length-1 &&  <div key={index}>
+                <div className="mgBottomHeader"></div>
+                    <Row mainAxisAlignment="justify-evenly">
+                        <div className="w-[48%]">
+                            <CustomTextField
+                                label = {"اسم المرض"}
+                                size = "3"
+                                placeholder={"اسم المرض"}
+                                type="text"
+                                value = {precedent.illnessName}
+                                onChange = {(e) =>
+                                    state.updatePathologicalPrecedent(index,
+                                        {illnessName: e.target.value}
+                                    )
                     }
                 />
-            </div>
-            <div className="w-[45%] ">
-            <CustomTextField
-                    label = {"تاريخ التشخيص"}
-                    size = "3"
-                    required={true}
-                    placeholder={"تاريخ التشخيص"}
-                    type="text"
-                    value = {state.medicalDiagnosisDate}
-                    onChange = {(e) =>
-                        updateState({
-                            medicalDiagnosisDate: e.target.value,
-                        })
-                    }
-                />
-            </div>
-        </Row>
+                </div>
+                <div className="w-[48%]">
+                    <CustomDatePicker
+                        label = {"تاريخ التشخيص"}
+                        value = {precedent.medicalDiagnosisDate}
+                        onSelect={(e) =>
+                            state.updatePathologicalPrecedent(index,
+                                {medicalDiagnosisDate: e},
+                            )
+                        }
+                    />  
+                </div>
+                    </Row>
         <div className="mgBetweenField"></div>
         <Row mainAxisAlignment="justify-evenly">
-                <div className="w-[94%]">
+                <div className="w-[98%]">
                 <CustomTextField
                     label={"تفاصيل عامة"}
                     size = "3"
-                    required={true}
                     placeholder={"تفاصيل عامة"}
                     type="text"
-                    value = {state.pathologicalGeneralDetails}
+                    value = {precedent.pathologicalGeneralDetails}
                     onChange={(val) => {
-                        updateState({
-                            pathologicalGeneralDetails:val.target.value
-                        })
+                        state.updatePathologicalPrecedent(index,
+                            {pathologicalGeneralDetails:val.target.value}
+                        )
                     }}
             />
                 </div>
-        </Row>
-
+            </Row>
+        </div>
+            })
+        }
     </div>
     
   )

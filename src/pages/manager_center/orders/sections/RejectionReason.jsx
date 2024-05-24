@@ -6,6 +6,10 @@ const RejectionReason = () => {
     const handleUserInput = (event) => {
         setUserInput(event.target.value);
     };
+
+    const handle = () => {
+        console.log("Saria");
+    }
     
 return (
     <div dir="rtl">
@@ -13,7 +17,7 @@ return (
             <p className="text-lg text-titleColor font-primaryBold mb-4">سبب الرفض</p>
             <TextArea value={userInput} onChange={handleUserInput} label={"السبب"} />
             <div className='flex flex-row justify-center'>
-                <button type="submit" className='my-4 font-primaryBold bg-red-500 text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg '
+                <button type="submit" onSubmit={()=>handle()} className='my-4 font-primaryBold bg-red-500 text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg '
                 > {"تأكيد"}
                 </button>
             </div>

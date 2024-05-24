@@ -41,22 +41,22 @@ const SelectedTextFeild = ({
         leaveTo="transform opacity-0 scale-95"
       
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right z-10 rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none max-h-60 overflow-y-auto z-50">
-          <div className="px-1 py-1">
+        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none max-h-60 overflow-y-auto z-50">
+          <div dir={`${label==="زمرة الدم"?"ltr":"rtl"}`} className="px-1 py-1">
             {filter.map((content, index) => {
               return (
                 <Menu.Item key={index}>
                   {({ active }) => (
-                    <button
+                    <div
                       onClick={() => onSelect(content)}
                       className={`${
                         active
-                          ? `bg-bgButtonColor text-white font-primaryRegular`
+                          ? `bg-bgButtonColor text-white font-primaryRegular cursor-pointer`
                           : "text-gray-900 font-primaryRegular"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
                       {content}
-                    </button>
+                    </div>
                   )}
                 </Menu.Item>
               );

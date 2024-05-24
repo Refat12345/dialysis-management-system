@@ -4,10 +4,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { bodyMeduimStyle } from "../../../utils/StyleUtils";
 import { styled } from "@mui/material/styles";
 import "dayjs/locale/ar";
-
 // import TextField from "@mui/material/TextField";
 // eslint-disable-next-line react/prop-types
 const CustomDatePicker = ({ label, onSelect, date }) => {
+
   return (
     <label dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
       {label}:<div className="h-1"></div>
@@ -17,6 +17,7 @@ const CustomDatePicker = ({ label, onSelect, date }) => {
           orientation="landscape"
           value={date}
           onChange={(newValue) => onSelect(newValue)}
+      
           // renderInput={(params) => <TextField {...params} />}
           format="YYYY MMMM DD"
         />

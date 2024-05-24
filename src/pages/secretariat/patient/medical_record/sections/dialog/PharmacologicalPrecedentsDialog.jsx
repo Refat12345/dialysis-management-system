@@ -1,27 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Row , CustomTextField ,CustomDatePicker ,AlertDialog} from "../../../../../components/index"
-import PharmacologicalPrecedentsDialog from "./dialog/PharmacologicalPrecedentsDialog"
-const PharmacologicalPrecedents = ({ state , updateState }) => {
-
-
-return (
-    <div className="paddingCard bg-white rounded-lg  w-[49.2%]">
-        <Row mainAxisAlignment="justify-between" >
-            <p className="pr-2 font-bold text-titleColor text-lg">السوابق الدوائية</p>
-            <div className="flex pl-3 ">
-                <div onClick={()=>state.addPharmacologicalPrecedents()} className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor rounded-full text-md">
-                    <p className="">اضافة سابقة أخرى</p> 
-                </div>
-                {state.pharmacologicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
-                    <p className="">الكل</p> 
-                </div>}  contentComponent={<PharmacologicalPrecedentsDialog state={state} updateState={updateState}/>}/>}
-            </div> 
-        </Row>
-        <div className="mgBottomHeader"></div>
-            {state.pharmacologicalPrecedents.map((precedent,index)=>{
-                return index === state.pharmacologicalPrecedents.length-1 &&
-                <div key={index}>
+import { Row,CustomTextField ,CustomDatePicker } from "../../../../../../components"
+import "../../style.css"
+const PharmacologicalPrecedentsDialog = ({state,updateState}) => {
+  let array = state.pharmacologicalPrecedents.slice(0,-1)
+  return (
+    <div>
+      {array.map((precedent,index)=>{
+                return <div key={index}>
+                      <div  dir="rtl" className="paddingCard bg-bgMedicalRecord rounded-lg ">
                     <Row mainAxisAlignment="justify-evenly">
             <div className="w-[25%] ">
             <CustomTextField
@@ -78,10 +65,11 @@ return (
             </div>
         </Row>
                 </div>
+                <div className="mgButton"></div>
+                </div>
             })}
     </div>
-    
   )
 }
 
-export default PharmacologicalPrecedents
+export default PharmacologicalPrecedentsDialog

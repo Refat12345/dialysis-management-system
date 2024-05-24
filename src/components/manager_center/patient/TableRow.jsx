@@ -24,7 +24,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
         className={`text-right border-b ${getRowColor(index)}`}
         onClick={() => handleRowClick(object.connectOne)}
       >
-        <td className="py-3 px-4">
+        <td className="py-3 px-4 ">
           <div>
             {
             type != "auditing"  && 
@@ -58,7 +58,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
             </td>
           }
           
-       {type === "orders" && <td></td>}
+       {type === "orders" && <td className="w-[1px]"></td>}
       {type === "orders" && <td>
         <div className="flex justify-end">
         <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
@@ -76,7 +76,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
         </td>}
         {
         type != "dialysis" &&
-        <td className={`py-3 ${type != "orders" ?"pr-12":"pr-0"}`} align= {`${type === "orders" ? "right" :""}`}>
+        <td className={`py-3 ${type != "orders" ?"pr-12":"pr-0"}`} align= {`${type === "orders" ? "right" :""} ${type === "orders" && "w-16"}`}>
         {type === "auditing" ?
         <div className= {`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${index % 2 === 0 ? "hover:bg-gray-200" :"hover:bg-gray-300"}`}>
             <AlertDialog renderComponent={<img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />}

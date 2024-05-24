@@ -1,6 +1,4 @@
 import { Column, Row } from "../../../components";
-import SecretaryAccountHeader from "../../../components/manager_center/secretary/SecretaryAccountHeader";
-import { Row } from "../../../components";
 import PublicHeader from "../../../components/manager_center/secretary/PublicHeader";
 import { useCreateSecretaryAccountState } from "./CreateSecretariaAccountState";
 import { UserNumberIcon, LoginUserIcon ,SecretaryImage } from "../../../assets/index";

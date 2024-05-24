@@ -3,10 +3,14 @@
 import { labelMediumStyle } from "../../../utils/StyleUtils";
 
 const PublicHeader = ({title, icon ,bool}) => {
-  let responsiveImage = "lg:w-24 lg:h-24";
-  let labelStyle = "text-base lg:text-lg"  
+
+  const labelStyle = "text-base lg:text-lg"  
+  const height = window.innerHeight;
+  const responsiveHeight = height > 735 ?"lg:h-[110px]" : (height < 623 ? "lg:h-[80px]":"lg:h-[90px]")
+  const responsiveImage = height > 735 ?"lg:w-20 lg:h-20":"lg:w-16 lg:h-16";
+
   return (
-    <div className="w-full lg:h-[150px] md:h-32 h-24 bg-bgSecretaria px-3 flex flex-row justify-start items-center transition-all">
+    <div className={`w-full md:h-32 h-24 bg-bgSecretaria px-3 flex flex-row justify-start items-center transition-all ${bool !=undefined ?responsiveHeight :"lg:h-[150px]"}` }>
       <img
         className={`w-20 h-20 transition-all ${bool !=undefined ? responsiveImage :"lg:w-28 lg:h-28 "}`}
         src={icon}
@@ -19,7 +23,7 @@ const PublicHeader = ({title, icon ,bool}) => {
         >
           {title}
         </p>
-        <div className={`transition-all ${bool !=undefined ? "lg:h-3 md:h-2 h-1":"lg:h-5 md:h-4 h-1"}`}></div>
+        <div className={`transition-all ${bool !=undefined ? "lg:h-[9px] md:h-[6px] h-[3px]":"lg:h-5 md:h-4 h-1"}`}></div>
         <p
           className={`${bool !=undefined ?labelStyle :labelMediumStyle} text-primaryFontColor font-medium transition-all`}
         >

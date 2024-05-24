@@ -1,103 +1,76 @@
-// /* eslint-disable no-unused-vars */
-// /* eslint-disable react/prop-types */
-// import { Row ,SelectedTextFeild } from "../../../../../components/index"
-// import CustomTextField from "../../../../../components/public/textfield/CustomTextField";
-// const SurgicalPrecedents = ({ state , updateState }) => {
-//     const filter = {
-//         array: ["أنثى", "ذكر"],
-//         title: "الجنس",
-//     };
-//   let length = state.surgicalPrecedents.length
-// return (
-//     <div className="bg-white rounded-lg py-5 px-3 w-[49%]">
-//        <form>
-//        <Row mainAxisAlignment="justify-evenly">
-//             <div className="w-[45%] ">
-//                 <CustomTextField
-//                     label={"اسم العملية"}
-//                     size = "3"
-//                     required={true}
-//                     placeholder={"اسم العملية"}
-//                     type="text"
-//                     value = {state.surgicalPrecedents[length-1].surgeryName}
-//                     onChange={(e) => state.updateSurgicalPrecedent(length-1, "surgeryName", e.target.value)}
-//             />
-//             </div>
-//         </Row>
-        
-//         <button type="submit" onSubmit={()=>state.addSurgicalPrecedents()} className="p-3 bg-bgtitle">sssssss</button>
-//         <button onClick={()=>state.postData()}>adsad</button>
-//        </form>
-//     </div>
-    
-//   )
-// }
-
-// export default SurgicalPrecedents
-
 
 
 /* eslint-disable no-unused-vars */
  /* eslint-disable react/prop-types */
-import { Row ,SelectedTextFeild } from "../../../../../components/index"
-import CustomTextField from "../../../../../components/public/textfield/CustomTextField";
+import { Row ,CustomDatePicker ,CustomTextField ,AlertDialog} from "../../../../../components/index"
+import SurgicalPrecedentsDialog from "./dialog/SurgicalPrecedentsDialog";
+
 const SurgicalPrecedents = ({ state , updateState }) => {
-    const filter = {
-        array: ["أنثى", "ذكر"],
-        title: "الجنس",
-    };
-  let length = state.surgicalPrecedents.length
+ 
 return (
-    <div className="bg-white rounded-lg py-5 px-3 w-[49%]">
-        <Row mainAxisAlignment="justify-evenly">
-            <div className="w-[45%] ">
+    <div className="paddingCard bg-white rounded-lg w-[49.2%]">
+        <Row mainAxisAlignment="justify-between" >
+            <p className="pr-2 font-bold text-titleColor text-lg">السوابق الجراحية</p>
+            <div className="flex pl-3 ">
+                
+                <div onClick={()=>state.addSurgicalPrecedents()} className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor rounded-full text-md ">
+                    <p className="">اضافة سابقة أخرى</p> 
+                </div>
+                {state.surgicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
+                    <p className="">الكل</p> 
+                </div>}  contentComponent={<SurgicalPrecedentsDialog state={state} updateState={updateState}/>}/>}
+            </div> 
+        </Row>
+        <div className="mgBottomHeader"></div>
+        {state.surgicalPrecedents.map((precedent,index)=>{
+            return index === state.surgicalPrecedents.length - 1 && <div key={index}>
+            <Row mainAxisAlignment="justify-evenly">
+            <div className="w-[47%] ">
                 <CustomTextField
                     label={"اسم العملية"}
                     size = "3"
-                    required={true}
                     placeholder={"اسم العملية"}
                     type="text"
-                    value = {state.surgicalPrecedents[length-1].surgeryName}
-                    onChange={(e) => state.updatePathologicalPrecedent(length-1, "surgeryName", e.target.value)}
+                    value = {precedent.surgeryName}
+                    onChange={(e) => state.updateSurgicalPrecedent(index,{surgeryName: e.target.value})}
             />
+            
             </div>
-            <div className="w-[45%] ">
-            <CustomTextField
+            <div className="w-[47%] ">
+            <CustomDatePicker
                     label={"تاريخ العملية"}
-                    size = "3"
-                    required={true}
-                    placeholder={"تاريخ العملية"}
-                    type="text"
-                    value = {state.surgeryDate}
-                    onChange={(val) => {
-                        updateState({
-                            surgeryDate:val.target.value
-                        })
-                    }}
-            />
+                    value = {precedent.surgeryDate}
+                    onSelect={(e) =>
+                        state.updateSurgicalPrecedent(index,
+                            {surgeryDate: e},
+                        )
+                    }
+                    />  
+
             </div>
         </Row>
         <div className="mgBetweenField"></div>
         <Row mainAxisAlignment="justify-evenly">
-                <div className="w-[94%]">
+                <div className="w-[98%]">
                 <CustomTextField
                     label={"تفاصيل عامة"}
                     size = "3"
-                    required={true}
                     placeholder={"تفاصيل عامة"}
                     type="text"
-                    value = {state.generalDetails}
+                    value = {precedent.generalDetails}
                     onChange={(val) => {
-                        updateState({
-                            generalDetails:val.target.value
-                        })
+                        state.updateSurgicalPrecedent(index,
+                            {generalDetails:val.target.value}
+                        )
                     }}
             />
                 </div>
         </Row>
+            </div>
+        })}
     </div>
     
-  )
+)
 }
 
 export default SurgicalPrecedents

@@ -1,32 +1,37 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
+
 const EnterMedicalRecordStateContext = createContext();
 
 const EnterMedicalRecordState = ({ children }) => {
+   
     const [state, setState] = useState({
         causeRenalFailure: "",
         bloodType: "",
         dryWeight: "",
-        dialysisStartDate: "",
+        dialysisStartDate:null,
+        kidneyTransplant:"",
+        vascularEntrance:"",
         surgicalPrecedents: [
           {
             surgeryName: "",
-            surgeryDate: "",
+            surgeryDate: null,
             generalDetails: "",
           }
         ],
         pathologicalPrecedents: [
           {
             illnessName: "",
-            medicalDiagnosisDate: "",
+            medicalDiagnosisDate: null,
             pathologicalGeneralDetails: "",
           }
         ],
         pharmacologicalPrecedents: [
           {
             medicineName: "",
-            dateStart: "",
-            dateEnd: "",
+            dateStart: null,
+            dateEnd: null,
             pharmacologicalGeneralDetails:""
           }
           
@@ -34,20 +39,21 @@ const EnterMedicalRecordState = ({ children }) => {
         selectCauseRenalFailure: (val) => selectCauseRenalFailure(val),
         selectBloodType: (val) => selectBloodType(val),
         selectDryWeight : (val) => selectDryWeight(val),
+        selectKidneyTransplant: (val)=> selectKidneyTransplant(val),
+        selectVascularEntrance: (val) => selectVascularEntrance(val),
         addSurgicalPrecedents: () => addSurgicalPrecedents(),
         addPathologicalPrecedent : () => addPathologicalPrecedent(),
         addPharmacologicalPrecedents : () => addPharmacologicalPrecedents(),
-        updateSurgicalPrecedent : (index,filed,value) => updateSurgicalPrecedent(index,filed,value),
-        updatePathologicalPrecedent :  (index,filed,value) => updatePathologicalPrecedent(index,filed,value),
-        updatePharmacologicalPrecedent :(index,filed,value) => updatePharmacologicalPrecedent(index,filed,value),
-        postData :()=> postData()
+        updateSurgicalPrecedent : (index,value) => updateSurgicalPrecedent(index,value),
+        updatePathologicalPrecedent :  (index,value) => updatePathologicalPrecedent(index,value),
+        updatePharmacologicalPrecedent :(index,value) => updatePharmacologicalPrecedent(index,value),
+        postData :(data)=> postData(data)
         
 });
-
+  
     const selectCauseRenalFailure = (val) => {
         updateState({ causeRenalFailure: val });
     };
-
 
 
     const selectBloodType = (val)=>{
@@ -55,6 +61,13 @@ const EnterMedicalRecordState = ({ children }) => {
     }
     const selectDryWeight = (val) => {
         updateState({ dryWeight: val });
+    }
+    const selectKidneyTransplant =(val) =>{
+      updateState({ kidneyTransplant: val });
+    }
+
+    const selectVascularEntrance = (val) => {
+      updateState({ vascularEntrance: val });
     }
 
     const updateState = (newValues) => {
@@ -67,7 +80,7 @@ const EnterMedicalRecordState = ({ children }) => {
     const addPathologicalPrecedent = () => {
       const newPrecedent = {
         illnessName: "",
-        medicalDiagnosisDate: "",
+        medicalDiagnosisDate: null,
         pathologicalGeneralDetails: "",
       };
     
@@ -80,14 +93,14 @@ const EnterMedicalRecordState = ({ children }) => {
     const addPharmacologicalPrecedents = () => {
       const newPrecedent = {
         medicineName: "",
-        dateStart: "",
-        dateEnd: "",
+        dateStart: null,
+        dateEnd: null,
         pharmacologicalGeneralDetails:""
       };
     
       setState((prevState) => ({
         ...prevState,
-        pathologicalPrecedents: [...prevState.pathologicalPrecedents, newPrecedent],
+        pharmacologicalPrecedents: [...prevState.pharmacologicalPrecedents, newPrecedent],
       }));
     };
 
@@ -95,7 +108,7 @@ const EnterMedicalRecordState = ({ children }) => {
     const addSurgicalPrecedents = () => {
       const newPrecedent = {
         surgeryName: "",
-        surgeryDate: "",
+        surgeryDate: null,
         generalDetails: "",
       };
     
@@ -105,45 +118,99 @@ const EnterMedicalRecordState = ({ children }) => {
       }));
     };
 
-    const updatePathologicalPrecedent = (index, field, value) => {
-      setState((prevState) => {
-        const updatedPrecedents = [...prevState.pathologicalPrecedents];
-        updatedPrecedents[index][field] = value;
-        return {
-          ...prevState,
-          pathologicalPrecedents: updatedPrecedents,
-        };
-      });
+    const updatePathologicalPrecedent = (index, newValue) => {
+      setState((prevState) => ({
+        ...prevState,
+        pathologicalPrecedents: prevState.pathologicalPrecedents.map((value, i) =>
+          i === index ? { ...value, ...newValue } : value
+        ),
+      }));
+    };
+   
+    
+    const updatePharmacologicalPrecedent = (index, newValue) => {
+      setState((prevState) => ({
+        ...prevState,
+        pharmacologicalPrecedents: prevState.pharmacologicalPrecedents.map((value, i) =>
+          i === index ? { ...value, ...newValue } : value
+        ),
+      }));
     };
     
-    const updatePharmacologicalPrecedent = (index, field, value) => {
-      setState((prevState) => {
-        const updatedPrecedents = [...prevState.pharmacologicalPrecedents];
-        updatedPrecedents[index][field] = value;
-        return {
-          ...prevState,
-          pharmacologicalPrecedents: updatedPrecedents,
-        };
-      });
+    const updateSurgicalPrecedent = (index, newValue) => {
+      setState((prevState) => ({
+        ...prevState,
+        surgicalPrecedents: prevState.surgicalPrecedents.map((value, i) =>
+          i === index ? { ...value, ...newValue } : value
+        ),
+      }));
     };
     
-    const updateSurgicalPrecedent = (index, field, value) => {
-      setState((prevState) => {
-        const updatedPrecedents = [...prevState.surgicalPrecedents];
-        updatedPrecedents[index][field] = value;
-        return {
-          ...prevState,
-          surgicalPrecedents: updatedPrecedents,
-        };
-      });
-    };
+    
+
+    const postData = (data) => {
+
+      const {causeRenalFailure,bloodType,
+        dryWeight,dialysisStartDate,
+        kidneyTransplant,vascularEntrance,
+        surgicalPrecedents,pathologicalPrecedents,
+        pharmacologicalPrecedents} = data;
+        let surgical = surgicalPrecedents.length === 1  && surgicalPrecedents[0].surgeryName === "" ? [] : surgicalPrecedents;
+        let pathological =pathologicalPrecedents.length === 1 && pathologicalPrecedents[0].illnessName === "" ? [] :pathologicalPrecedents
+        let pharmacological = pharmacologicalPrecedents.length === 1  && pharmacologicalPrecedents[0].medicineName === "" ? [] :pharmacologicalPrecedents
+
+        surgical.length >= 1 && surgical.forEach(item => {
+          console.log("a");
+          if (item.surgeryDate === null) {
+            item.surgeryDate = "";
+          } else {
+            item.surgeryDate =item.surgeryDate.format("YYYY MMMM DD")
+          }
+        });
+        
+
+        pathological.length >=1 && pathological.forEach(item => {
+          if (item.medicalDiagnosisDate === null) {
+            item.medicalDiagnosisDate = "";
+          } else {
+            item.medicalDiagnosisDate =item.medicalDiagnosisDate.format("YYYY MMMM DD")
+          }
+        });
+
+
+        pharmacological.length >=1 && pharmacological.forEach(item => {
+          if (item.dateStart === null) {
+            item.dateStart = "";
+          } else {
+            item.dateStart =item.dateStart.format("YYYY MMMM DD")
+          }
+          if (item.dateEnd === null) {
+            item.dateEnd = "";
+          } else {
+            item.dateEnd =item.dateEnd.format("YYYY MMMM DD")
+          }
+        });
+
+
+        const body = {
+          causeRenalFailure:"Hypertension",
+          dryWeight:dryWeight,
+          bloodType:bloodType,
+          dialysisStartDate:"2024-05-15",
+          kidneyTransplant:true ,
+          vascularEntrance:"Fistula",
+          userID:21
+        }
+        return body;
+        //dialysisStartDate != null ?dialysisStartDate.format("YYYY MMMM DD"):"",
+        // //kidneyTransplant === "لا" ? false : 
+        // surgicalPrecedents:surgical,
+        //   pathologicalPrecedents:pathological,
+        //   pharmacologicalPrecedents:pharmacological,
+    }
 
 
 
-
-  const postData = () => {
-    console.log(state.surgicalPrecedents);
-  }
 
   const contextValue = {
     state,
