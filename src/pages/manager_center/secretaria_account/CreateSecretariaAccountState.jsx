@@ -9,7 +9,6 @@ const CreateSecretariaAccountState = ({ children }) => {
     username: "",
     genderValue: "",
     birthdate: null,
-    birthdateString: "",
     contactInfo: [
       {
         use: "",
@@ -44,7 +43,7 @@ const CreateSecretariaAccountState = ({ children }) => {
   const selectDate = (val) => {
     const formattedDate = dayjs(val).format("YYYY-MM-DD");
     console.log("Formatted Date:", formattedDate);
-    updateState({ birthdate: dayjs(val), birthdateString: formattedDate });
+    updateState({ birthdate: dayjs(val) });
   };
   
   const updateContactInfo = (index, newContactInfo) => {

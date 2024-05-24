@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import {  patientsRoute } from "../../../data/data";
+import { globalInfoRoute, patientsRoute } from "../../../data/data";
 import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./TableRow";
@@ -13,7 +13,7 @@ export function Table({ data }) {
   const navigate = useNavigate();
 
   const handleRowClick = (patientName) => {
-    navigate(`${patientsRoute}/${patientName}`);
+    navigate(`${patientsRoute}/${patientName}/${globalInfoRoute}`);
   };
 
   const getRowColor = (index, name) => {
@@ -41,7 +41,7 @@ export function Table({ data }) {
           }
         `}
       </style>
-      
+
       <div className="overflow-x-auto  ml-11 min-h-customAbove600" dir="rtl">
         <input
           dir="rtl"
