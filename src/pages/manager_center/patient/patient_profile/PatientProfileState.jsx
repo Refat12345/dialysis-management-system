@@ -45,7 +45,8 @@ export const PatientProfileStateProvider = ({ children }) => {
       </GlobalInfoState>
     ),
     medicalRecord: <MedicalRecordPage/>,
-    dialysisSessions: <DialysisPage/>,
+    // dialysisSessions: <DialysisPage/>,
+    dialysisSessions: <div>1</div>,
     medicalAnalysis: <MedicalAnalysisPage/>,
     prescriptions: <PrescriptionsPage/>,
     globalNotes: <GeneralNotePage/>,

@@ -39,6 +39,7 @@ import {
   pharmacologicalPrecedents,
   userDetailsRoute,
   dialysisRoute,
+  dialysisDetailsRoute,
   registerRoute,
   invitationRoute,
   auditingRoute,
@@ -57,6 +58,14 @@ import RegisterCheckCodePage from "../pages/manager_center/auth/register/Registe
 import SettingPage from "../pages/manager_center/setting/SettingPage";
 import AddPaitentInfo from "../components/addPaitentInfo/AddPaitentInfo";
 import AddPaitentInfoState from "../components/addPaitentInfo/AddPaitentInfoState";
+import { UserProvider } from "../pages/manager_center/users/users-list/UserListState";
+import { PatientProvider } from "../pages/manager_center/patient/patient_list/PaitientListState";
+import { UserDetailsProvider } from "../pages/manager_center/users/user-details/UserDetailsState";
+import { GeneralDialysisProvider } from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
+import GeneralDialysisPage from "../pages/manager_center/dialysis/General/GeneralDialysisPage";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
+import { DialysisDetailstProvider } from "../pages/manager_center/dialysis/DialysisPageState";
+import { SettingProvider } from "../pages/manager_center/setting/SettingState";
 
 
 const router = createBrowserRouter([
@@ -75,7 +84,9 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
+        <UserProvider>
         <UsersListPage />
+        </UserProvider>
       </>
     ),
     //TODO: u may have to add loader
@@ -86,7 +97,9 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
+        <PatientProvider>
         <PatientListPage />
+        </PatientProvider>
       </>
     ),
     //TODO: u may have to add loader
@@ -213,7 +226,9 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
+        <UserDetailsProvider>
         <UserDetailsPage />
+        </UserDetailsProvider>
       </>
     ),
     //TODO: u may have to add loader
@@ -225,7 +240,24 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
-        <GeneralDialysis />
+        <GeneralDialysisProvider>
+        <GeneralDialysisPage />
+        </GeneralDialysisProvider>
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: dialysisDetailsRoute ,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        {/* <DialysisDetailstProvider > */}
+        < DialysisPage/>
+        {/* </DialysisDetailstProvider> */}
+        
       </>
     ),
     //TODO: u may have to add loader
@@ -273,7 +305,11 @@ const router = createBrowserRouter([
     element: (
       <>
         <SideBar sideBarData={managerCenterSideBar} />
+        <SettingProvider>
         <SettingPage />
+
+        </SettingProvider>
+        
         
       </>
     ),

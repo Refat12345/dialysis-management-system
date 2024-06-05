@@ -4,8 +4,8 @@ import DialogContactCenter from "../Contact/DialogContactCenter";
 import { useState,useContext } from "react";
 import { DataContext } from "../DataContext";
 
-function GeneralAboutCenter() {
-  const { data } = useContext(DataContext);
+function GeneralAboutCenter({data}) {
+  // const { data } = useContext(DataContext);
   const [open, setOpen] = useState(false);
 
   return (
@@ -19,23 +19,23 @@ function GeneralAboutCenter() {
 
       <div className="flex flex-col justify-center items-center ml-1">
         <img className="w-32 h-32" src={medical} alt="Medical" />
-        <span className="mt-4 text-xl">صندوق العافية المركزي</span>
+        <span className="mt-4 text-xl">{data.centerName}</span>
       </div>
 
       <div className="w-72 border border-indigo-300 mt-3 p-5 rounded-3xl">
         <span className="block">مديرالمركز</span>
-        <span>{data.centerName}</span>
+        <span>{data.adminName}</span>
       </div>
       <div className="w-72 border border-indigo-300 mt-3 p-5 rounded-3xl">
         <span className="block">الجمعية الخيرية التابعة للمركز</span>
-        <span>{data.organization}</span>
+        <span>{data.charityName}</span>
       </div>
       <div className="w-72 border border-indigo-300 mt-3 p-5 rounded-3xl">
         <span className="block">عنوان المركز</span>
-        <span>{data.location}</span>
+        <span>{data['address'][0].cityName}</span>
       </div>
 
-      <DialogContactCenter open={open} setOpen={setOpen}/>
+      {/* <DialogContactCenter open={open} setOpen={setOpen}/> */}
     </div>
   );
 }

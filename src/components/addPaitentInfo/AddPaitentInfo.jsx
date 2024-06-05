@@ -1,12 +1,30 @@
 /* eslint-disable no-unused-vars */
+import {
+  econamic_status,
+  education,
+  family_status,
+  home_location,
+  patient,
+  society_status,
+  work,
+} from "../../assets/index";
 import React from "react";
 import SecretaryAccountHeader from "../manager_center/secretary/SecretaryAccountHeader";
 import HeaderTextField from "./HeaderTextField";
-import society_status from "./../../assets/icons/addPaitentInfo/society_status.svg";
 import CustomTextField from "../public/textfield/CustomTextField";
 import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
 import { useAddPaitentInfoState } from "./AddPaitentInfoState";
 import Row from "../public/primitives/Row";
+import Column from "../public/primitives/Column";
+import {
+  bodyMeduimStyle,
+  bodySmallStyle,
+  heightSmall,
+} from "../../utils/StyleUtils";
+
+import ContactSecretariaComponent from "../../pages/manager_center/secretaria_account/secretaria_sections/ContactSecretariaComponent";
+import CustomButton from "../public/button/CustomButton";
+import { PlusIcon } from "@heroicons/react/20/solid";
 function AddPaitentInfo() {
   const { state, updateState } = useAddPaitentInfoState();
 
@@ -15,6 +33,32 @@ function AddPaitentInfo() {
     title: "الجنس",
   };
 
+  const relativeRelationFilter = {
+    array: ["اخ", "ابن عم", "ام", "اب"],
+    title: "صلة القرابة",
+  };
+
+  const useFilter = ["المنزل", "العمل"];
+  const typeContactFilter = ["الهاتف", "البريد الالكتروني"];
+  const typeAddressFilter = [
+    "دمشق",
+    "حلب",
+    "حمص",
+    "حماة",
+    "اللاذقية",
+    "طرطوس",
+    "دير الزور",
+    "الرقة",
+    "الحسكة",
+    "إدلب",
+    "درعا",
+    "السويداء",
+    "القنيطرة",
+    "بانياس",
+    "القامشلي",
+    "تدمر",
+    "ريف دمشق",
+  ];
   const LearnFilter = {
     array: ["ثانوي", "جامعي"],
     title: "التعليم",
@@ -40,13 +84,14 @@ function AddPaitentInfo() {
     title: "ايجار",
   };
   return (
-    <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48">
+    <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage">
       <SecretaryAccountHeader />
 
       <div className="grid grid-cols-2">
         <div>
-          <div className="w-3/4 mr-4">
+          <div className="w-3/4 mr-4 mt-3">
             <HeaderTextField icon={society_status} text={"الوضع الاجتماعي"} />
+            <div className="mt-3"></div>
 
             <SelectedTextFeild
               label={genderFilter.title}
@@ -55,8 +100,9 @@ function AddPaitentInfo() {
               onSelect={(val) => state.selectGender(val)}
             />
           </div>
-          <div className="w-3/4 mr-4">
-            <HeaderTextField icon={society_status} text={"التعليم"} />
+          <div className="w-3/4 mr-4 mt-3">
+            <HeaderTextField icon={education} text={"التعليم"} />
+            <div className="mt-3"></div>
 
             <SelectedTextFeild
               label={"المستوى التعليمي"}
@@ -66,8 +112,9 @@ function AddPaitentInfo() {
             />
           </div>
 
-          <div className="w-3/4 mr-4 mt-2">
-            <HeaderTextField icon={society_status} text={"الوضع الاقتصادي"} />
+          <div className="w-3/4 mr-4 mt-3">
+            <HeaderTextField icon={econamic_status} text={"الوضع الاقتصادي"} />
+            <div className="mt-3"></div>
 
             <SelectedTextFeild
               label={"الدخل العام"}
@@ -80,7 +127,7 @@ function AddPaitentInfo() {
               onSelect={(val) => state.selectEconomicSituation(val)}
             />
           </div>
-          <div className="w-3/4 mr-4 mt-2">
+          <div className="w-3/4 mr-4 mt-3">
             <SelectedTextFeild
               label={"نوع الدخل "}
               value={state.economicType === "" ? "ثابت" : state.economicType}
@@ -88,7 +135,7 @@ function AddPaitentInfo() {
               onSelect={(val) => state.selectEconomicType(val)}
             />
           </div>
-          <div className="w-3/4 mr-4 mt-2">
+          <div className="w-3/4 mr-4 mt-3">
             <SelectedTextFeild
               label={"مصدر الدخل "}
               value={
@@ -101,14 +148,14 @@ function AddPaitentInfo() {
         </div>
 
         <div>
-        <div className="w-3/4 mr-4">
-        <HeaderTextField icon={society_status} text={"الوضع العائلي"} />
+          <div className="w-3/4 mr-4 mt-3">
+            <HeaderTextField icon={family_status} text={"الوضع العائلي"} />
+            <div className="mt-3"></div>
 
             <CustomTextField
               size="3"
               required={true}
               label={"عدد الاولاد"}
-              
               value={state.nationaltyNumber}
               type="number"
               onChange={(e) =>
@@ -118,7 +165,7 @@ function AddPaitentInfo() {
               }
             />
           </div>
-          <div className="w-3/4 mr-4">
+          <div className="w-3/4 mr-4 mt-3">
             <CustomTextField
               size="3"
               required={true}
@@ -133,14 +180,14 @@ function AddPaitentInfo() {
             />
           </div>
 
-          <div className="w-3/4 mr-4">
-        <HeaderTextField icon={society_status} text={"العمل"} />
+          <div className="w-3/4 mr-4 mt-3">
+            <HeaderTextField icon={work} text={"العمل"} />
+            <div className="mt-3"></div>
 
             <CustomTextField
               size="3"
               required={true}
               label={"طبيعة العمل "}
-              
               value={state.work}
               type="text"
               onChange={(e) =>
@@ -151,74 +198,180 @@ function AddPaitentInfo() {
             />
           </div>
 
-          <div className="w-3/4 mr-4">
-        <HeaderTextField icon={society_status} text={"السكن"} />
+          <div className="w-3/4 mr-4 mt-3">
+            <HeaderTextField icon={home_location} text={"السكن"} />
+            <div className="mt-3"></div>
 
-        <SelectedTextFeild
+            <SelectedTextFeild
               label={"الاقامة"}
               value={state.location === "" ? "ايجار" : state.location}
               filter={location.array}
               onSelect={(val) => state.selectLocation(val)}
             />
           </div>
-
-
-
-          
         </div>
-
-       
       </div>
 
-      <HeaderTextField text={"مرافق المريض"}/>
-      <Row>
-      <div className="w-1/2 mr-4">
-            <CustomTextField
-              size="3"
-              required={true}
-              label={"اسم المستخدم:"}
-              placeholder="اسم المستخدم"
-              value={state.username}
-              type="text"
-              onChange={(e) =>
-                updateState({
-                  username: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="w-1/2 mr-4">
-            <CustomTextField
-              size="3"
-              required={true}
-              label={"اسم المستخدم:"}
-              placeholder="اسم المستخدم"
-              value={state.username}
-              type="text"
-              onChange={(e) =>
-                updateState({
-                  username: e.target.value,
-                })
-              }
-            />
-          </div>
-      </Row>
+      {/* /////////////////////// //////////////////////////////*/}
+      <div className="mt-7"></div>
+      <HeaderTextField text={"مرافق المريض"} width={"كامل"} />
+      <div className="mt-3"></div>
 
-    
+      <Row>
+        <div className="w-6/12 mr-4 ml-2">
+          <CustomTextField
+            size="3"
+            required={true}
+            label={"اسم المستخدم:"}
+            placeholder="اسم المستخدم"
+            value={state.username}
+            type="text"
+            onChange={(e) =>
+              updateState({
+                username: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="w-6/12 mr-4 ml-4">
+          <SelectedTextFeild
+            label={"صلة القرابة"}
+            value={
+              state.relativeRelation === "" ? "اخ" : state.relativeRelation
+            }
+            filter={relativeRelationFilter.array}
+            onSelect={(val) => state.selectrelativeRelation(val)}
+          />
+        </div>
+      </Row>
+      <div className="mt-3"></div>
+
+      <div className="mr-4">
+        <Column>
+          <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+            {"معلومات التواصل:"}
+          </p>
+          <div className="h-1"></div>
+          {state.contactInfo.map((contact, index) => (
+            <ContactSecretariaComponent
+              key={index}
+              selectUse={(val) => state.updateContactInfo(index, { use: val })}
+              useValue={contact.use}
+              filterUse={useFilter}
+              filterType={typeContactFilter}
+              typeValue={contact.type}
+              selectType={(val) =>
+                state.updateContactInfo(index, { type: val })
+              }
+              value={contact.value}
+              onChange={(val) => {
+                state.updateContactInfo(index, { value: val.target.value });
+              }}
+              onRemove={() => state.removeContactInfo(index)}
+              showDeleteButton={state.contactInfo.length > 1}
+              firstLabel="الاستخدام"
+              secondLabel="النوع"
+            />
+          ))}
+          <div className="h-3"></div>
+          <CustomButton
+            variant="solid"
+            onClick={() => {
+              state.addContactInfo();
+            }}
+            className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+            title={
+              <div className="flex items-center justify-center">
+                <span className={`${bodySmallStyle}`}>إضافة معلومة تواصل</span>
+                <div className="lg:w-2 md:w-2 w-1"></div>
+                <PlusIcon className="w-5 h-5 mr-1 text-white" />
+              </div>
+            }
+            radius="full"
+          />
+        </Column>
+        <div className="h-3"></div>
+        <Column>
+          <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+            {"العنوان:"}
+          </p>
+          <div className="h-1"></div>
+          {state.addressInfo.map((contact, index) => (
+            <ContactSecretariaComponent
+              key={index}
+              selectUse={(val) => state.updateAddressInfo(index, { use: val })}
+              useValue={contact.use}
+              filterUse={useFilter}
+              filterType={typeAddressFilter}
+              typeValue={contact.city}
+              selectType={(val) =>
+                state.updateAddressInfo(index, { city: val })
+              }
+              value={contact.line}
+              onChange={(val) => {
+                state.updateAddressInfo(index, { line: val.target.value });
+              }}
+              onRemove={() => state.removeAddressInfo(index)}
+              showDeleteButton={state.addressInfo.length > 1}
+              firstLabel={"الاستخدام"}
+              secondLabel={"المدينة"}
+            />
+          ))}
+          <div className="h-3"></div>
+          <CustomButton
+            variant="solid"
+            onClick={() => {
+              state.addAddressInfo();
+            }}
+            className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+            title={
+              <div className="flex items-center justify-center">
+                <span className={`${bodySmallStyle}`}>إضافة عناون</span>
+                <div className="lg:w-2 md:w-2 w-1"></div>
+                <PlusIcon className="w-5 h-5 mr-1 text-white" />
+              </div>
+            }
+            radius="full"
+          />
+        </Column>
+      </div>
+
+      <div className="mt-3"></div>
+
+      <span className="mr-4 text-xl">ملاحظات:</span>
+      <div className="w-full mr-4 ml-2 ">
+        <CustomTextField
+          size="3"
+          required={true}
+          placeholder="ادخل الملاحظة..."
+          value={state.note}
+          type="text"
+          onChange={(e) =>
+            updateState({
+              note: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <div className="mt-3"></div>
+      <div dir="ltr" className="ml-3 mb-5 ">
+        <CustomButton
+          variant="solid"
+          onClick={() => {
+          }}
+          className={`w-40  bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+          title={
+            <div className="flex items-center justify-center">
+              <span className={`${bodySmallStyle}`}>حفظ</span>
+              <div className="lg:w-2 md:w-2 w-1"></div>
+            </div>
+          }
+          radius="full"
+        />
+      </div>
     </div>
   );
 }
 
 export default AddPaitentInfo;
-
-{
-  /* <div className="w-1/2 mr-4">
-        <CustomTextField
-          size="3"
-          required={true}
-          label={"الحالة الاجتماعية:"}
-          placeholder="اسم المستخدم"
-          type="text"
-        />
-      </div> */
-}

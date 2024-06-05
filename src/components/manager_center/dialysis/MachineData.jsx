@@ -1,15 +1,27 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
-export default function MachineData() {
-    const [machineData, setMachineData] = useState({
-        sodiumConcentration: '140 mEq/L',
-        pumpSpeed: '300 مل/د',
-        venousPressure: '150 mmHg',
-        filterType: 'FX CorDiax',
-        filterColorPostSession: 'أصفر فاتح',
-        vascularAccess: 'قثطرة دائمة'
-      });
+export default function MachineData({data}) {
+    // const [machineData, setMachineData] = useState({
+    //     sodiumConcentration: '140 mEq/L',
+    //     pumpSpeed: '300 مل/د',
+    //     venousPressure: '150 mmHg',
+    //     filterType: 'FX CorDiax',
+    //     filterColorPostSession: 'أصفر فاتح',
+    //     vascularAccess: 'قثطرة دائمة'
+    //   });
+
+      
+  const machineData = {
+    sodiumConcentration: data.dialysisSession.naConcentration,
+    pumpSpeed: data.dialysisSession.pumpSpeed,
+    venousPressure: data.dialysisSession.venousPressure,
+    filterType: data.dialysisSession.filterType,
+    filterColorPostSession: data.dialysisSession.filterColor, 
+    vascularAccess: data.dialysisSession.vascularConnection, 
+
+  };
   return (
     <div>
        <div className="cardFive bg-cardInDialysisPage w-full flex flex-col justify-start rounded-lg ">

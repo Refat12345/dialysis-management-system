@@ -39,6 +39,7 @@ export default {
         cardInDialysisPage: "#f6f9ff",
         borderINCardInDialysisPage: "#f1f4fa",
 
+
         bgDashboard: "rgba(244, 247, 254, 255)",
         textMenuColor: "rgba(117,117,117,1)",
         healthInformationTitle: "rgba(89,91,153,255)",
@@ -58,6 +59,7 @@ export default {
         bgLogin: "#E6D7B6",
         primaryFontColor: "#27272A",
         whiteCard: "#ffffff",
+        addPaitentInfoPage:"#f6f9ff",
 
         //blue
         blue400: "#9AB8FF80",

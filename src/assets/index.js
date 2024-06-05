@@ -32,3 +32,16 @@ export {default as LogOutIcon} from "./icons/medical-center/dashboard/SideBar/lo
 //Sacertary
 export {default as SecretaryImage} from "./images/manager_center/secretary/secretary_image.png"
 export {default as TrashIcon} from "./icons/medical-center/users/secretary_account/trash-icon.svg"
+
+
+
+//addPaitentInfo
+
+export {default as econamic_status} from './icons/addPaitentInfo/econamic_status.svg'
+export { default as education} from './icons/addPaitentInfo/education.svg'
+export {default as family_status} from './icons/addPaitentInfo/family_status.svg'
+export {default as home_location} from './icons/addPaitentInfo/home_location.svg'
+export { default as patient} from './icons/addPaitentInfo/patient .svg'
+export {default as society_status} from './icons/addPaitentInfo/society_status.svg'
+export {default as work} from './icons/addPaitentInfo/work.svg'
+

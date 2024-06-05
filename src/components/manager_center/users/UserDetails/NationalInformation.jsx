@@ -1,17 +1,23 @@
+/* eslint-disable react/prop-types */
 
 import MyButton from './MyButton'
 import { RoleImage } from '../Card'
 import truee from "./../../../../assets/icons/medical-center/users/user-details/true.svg";
-function NationalInformation() {
-  let data = {
-    role: "سكرتيرة",
-    name: "رفعت عبد الواحد",
-    gender:"ذكر",
-    phone:"+963992841193",
-    gmail:"refatabdalwahed@gmail.com",
-    nationalNumber:"01010193261",
-    birth:"4 مايو 2024"
-  }
+function NationalInformation({data}) {
+
+ 
+  // let data = {
+  //   role: "سكرتيرة",
+  //   name: "رفعت عبد الواحد",
+  //   gender:"ذكر",
+  //   phone:"+963992841193",
+  //   gmail:"refatabdalwahed@gmail.com",
+  //   nationalNumber:"01010193261",
+  //   birth:"4 مايو 2024"
+  // }
+  let displayRole = data.role === 'nurse' ? 'ممرض' : "طبيب";
+  let displayGender = data.gender === 'male' ? 'ذكر' : 'انثى';
+  let displayStatus = data.accountStatus === 'active' ? 'نشط الان' : 'غير نشط';
   return (
     <div className="border p-4 rounded-xl col-span-2 bg-whiteCard">
           <div className="flex flex-row justify-end   ">
@@ -32,7 +38,7 @@ function NationalInformation() {
             <div className="flex flex-col mr-6 justify-center">
               <div className="flex items-center">
                 <h3 className="text-right text-base text-gray-700 font-semibold text-lg">
-                  {data.name} ({data.role})
+                  {data.fullName} ({displayRole})
                 </h3>
               </div>
 
@@ -46,7 +52,7 @@ function NationalInformation() {
               </span>
             </div>
 
-            <RoleImage role={data.role} width={20} height={20} />
+            <RoleImage role={displayRole} width={20} height={20} />
             
           </div>
 
@@ -55,7 +61,7 @@ function NationalInformation() {
           <div className="flex flex-row-reverse mb-5 mt-5 ">
             <div className="flex flex-col gap-2">
               <h3 className="text-right">الجنس</h3>
-              <h3 className="text-right">{data.gender}</h3>
+              <h3 className="text-right">{displayGender}</h3>
             </div>
 
             <div className="flex flex-col gap-2 mr-36">
@@ -65,7 +71,7 @@ function NationalInformation() {
 
             <div className="flex flex-col gap-2 mr-36 ">
               <h3 className="text-right">تاريخ الميلاد </h3>
-              <h3 className="text-right">{data.birth}</h3>
+              <h3 className="text-right">{data.dateOfBirth}</h3>
             </div>
           </div>
         </div>
