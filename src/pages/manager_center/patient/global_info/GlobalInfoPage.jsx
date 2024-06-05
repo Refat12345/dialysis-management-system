@@ -18,13 +18,17 @@ import GlobalInfoCard, {
 } from "../../../../components/manager_center/patient/global_info/GlobalInfoCard";
 import { GlobalInfoStateContext } from "./GlobalInfoState";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  bodyMeduimStyle,
+  headlineMediumStyle,
+} from "../../../../utils/StyleUtils";
 
 const GlobalInfoPage = () => {
   const { state } = useContext(GlobalInfoStateContext);
 
   return (
-    <div className="container mx-auto">
-      <div className="columns-2 gap-y-5 md:gap-x-10 md:mx-10 sm:mx-7 sm:gap-x-5 items-end">
+    <div className="mx-auto">
+      <div className="lg:columns-2 md:columns-2 sm:columns-2 columns-1 gap-y-5 md:gap-x-10 md:mx-10 sm:mx-7 sm:gap-x-5 mr-8 ml-2 gap-x-3 items-end transition-all">
         <GlobalInfoCard
           headerTitle={<span>معلومات التواصل</span>}
           headerIcon={GlobalInfoContactsIcon}
@@ -102,7 +106,7 @@ const GlobalInfoPage = () => {
               <InfoCard patientInfo={state.patientInfo} />
               <CardRow
                 title={
-                  <span className="flex flex-row-reverse">
+                  <span className="flex flex-row">
                     <img src={GlobalInfoGenderIcon} alt="" />
                     <span className="pr-2">الجنس</span>
                   </span>
@@ -111,7 +115,7 @@ const GlobalInfoPage = () => {
               />
               <CardRow
                 title={
-                  <span className="flex flex-row-reverse">
+                  <span className="flex flex-row">
                     <img src={GlobalInfoPatientBirthdateIcon} alt="" />
                     <span className="pr-2">تاريخ الميلاد</span>
                   </span>
@@ -164,7 +168,9 @@ const InfoCard = ({ patientInfo }) => {
         <img className="w-16" src={GlobalInfoPatientAvatar} alt="" />
       </div>
       <div className="flex flex-col items-end justify-start px-1 pt-5">
-        <div className="font-bold text-lg mb-1">{patientInfo.name}</div>
+        <div className={`font-bold ${headlineMediumStyle} mb-1 transition-all`}>
+          {patientInfo.name}
+        </div>
         <div className="flex flex-row-reverse items-center justify-end">
           {patientInfo.status === "enable" ? (
             <CheckIcon className="text-green400 w-6 h-6" />
@@ -174,7 +180,7 @@ const InfoCard = ({ patientInfo }) => {
           <span
             className={`${
               patientInfo.status === "enable" ? "text-green400" : "text-red-600"
-            } mx-2`}
+            } mx-2 ${bodyMeduimStyle}`}
           >
             {patientInfo.status === "enable" ? "مفعّل" : "غير مفعّل"}
           </span>

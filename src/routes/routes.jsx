@@ -16,6 +16,7 @@ import {
   GeneralDialysis,
   AuditingPage,
   OrdersPage,
+  GlobalInfoPage,
 } from "../pages/index";
 import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
@@ -46,6 +47,10 @@ import {
   secretariaAccountRoute,
   ordersRoute,
   settingRoute,
+  globalInfoRoute,
+  dialysisSessionsRoute,
+  globalNotesRoute,
+  settingRoute,
   addPatintinfoRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
@@ -56,6 +61,9 @@ import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_acco
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 
 import SettingPage from "../pages/manager_center/setting/SettingPage";
+import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
+import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
+import GeneralNotePage from "../pages/manager_center/generalNotes/GeneralNotePage";
 import AddPaitentInfo from "../components/addPaitentInfo/AddPaitentInfo";
 import AddPaitentInfoState from "../components/addPaitentInfo/AddPaitentInfoState";
 import { UserProvider } from "../pages/manager_center/users/users-list/UserListState";
@@ -116,6 +124,48 @@ const router = createBrowserRouter([
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: globalInfoRoute,
+        element: (
+          <GlobalInfoState>
+            <GlobalInfoPage />
+          </GlobalInfoState>
+        ),
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: medicalRecordRoute,
+        element: <MedicalRecordPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: dialysisSessionsRoute,
+        element: <DialysisPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: medicalAnalysisRoute,
+        element: <MedicalAnalysisPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: prescriptionsRoute,
+        element: <PrescriptionsPage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: globalNotesRoute,
+        element: <GeneralNotePage />,
+        //TODO: u may have to add loader
+        errorElement: <ErrorPage />,
+      },
+    ],
   },
   {
     path: medicalRecordRoute,

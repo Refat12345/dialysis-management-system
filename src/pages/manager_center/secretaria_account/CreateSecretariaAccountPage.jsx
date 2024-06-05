@@ -13,39 +13,25 @@ import CustomDatePicker from "../../../components/public/datepicker/CustomDatePi
 import ContactSecretariaComponent from "./secretaria_sections/ContactSecretariaComponent";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import CustomButton from "../../../components/public/button/CustomButton";
+import {
+  typeAddressFilter,
+  genderFilter,
+  permissionsOptions,
+  typeContactFilter,
+  useFilter,
+} from "./secretaria_sections/secretariaData";
+import MultiSelectTextField from "../../../components/public/textfield/MultiSelectTextField";
 
 const CreateSecretariaAccountPage = () => {
   const { state, updateState } = useCreateSecretaryAccountState();
-  const genderFilter = {
-    array: ["أنثى", "ذكر"],
-    title: "الجنس",
-  };
-  const useFilter = ["المنزل", "العمل"];
-  const typeContactFilter = ["الهاتف", "البريد الالكتروني"];
-  const typeAddressFilter = [
-    "دمشق",
-    "حلب",
-    "حمص",
-    "حماة",
-    "اللاذقية",
-    "طرطوس",
-    "دير الزور",
-    "الرقة",
-    "الحسكة",
-    "إدلب",
-    "درعا",
-    "السويداء",
-    "القنيطرة",
-    "بانياس",
-    "القامشلي",
-    "تدمر",
-    "ريف دمشق",
-  ];
 
   return (
-    <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48">
+    <div
+      dir="rtl"
+      className="w-full flex flex-col lg:mr-48 md:mr-48 bg-bgDashboard"
+    >
       <SecretaryAccountHeader />
-      <div className="bg-bgDashboard h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
+      <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
         <Row mainAxisAlignment="justify-evenly">
           <div className="w-1/2 mr-4">
             <CustomTextField
@@ -94,9 +80,7 @@ const CreateSecretariaAccountPage = () => {
             <CustomDatePicker
               label="تاريخ الميلاد"
               date={state.birthdate}
-              onSelect={(val) => {
-                updateState({ birthDate: val });
-              }}
+              onSelect={state.selectDate}
             />
           </div>
         </Row>
@@ -195,6 +179,24 @@ const CreateSecretariaAccountPage = () => {
               radius="full"
             />
           </Column>
+          <div className="h-5"></div>
+          <Column>
+            <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              {"الصلاحيات:"}
+            </p>
+            <div className="h-1"></div>
+            <MultiSelectTextField
+              activeLabel={false}
+              label="الصلاحيات لهذا المستخدم"
+              selectedValues={state.permissions}
+              filter={permissionsOptions}
+              onSelect={(val) => {
+                state.handleSelectPermission(val);
+              }}
+              onRemove={(val) => state.removePermissions(val)}
+            />
+          </Column>
+          <button onClick={console.log(state)}>print</button>
         </div>
       </div>
     </div>

@@ -24,6 +24,6 @@ export const useFormatDate = (dateString) => {
     const formattedMonth = monthFormatter.format(date);
 
     // Combine all parts into the final string
-    return `${formattedDay} ${formattedMonth} ` + `${formattedYear}`;
+    return `${formattedYear} ${formattedMonth} ${formattedDay}`;
   }, [dateString]);
 };
