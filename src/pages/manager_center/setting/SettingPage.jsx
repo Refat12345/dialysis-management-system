@@ -6,7 +6,6 @@ import { DataProvider } from "../../../components/manager_center/setting/DataCon
 import {
   dataCenterLocation,
   dataCenterTime,
-  dataNoteInMedicalCenter,
 } from "../../../data/data";
 import TimeCenter from "../../../components/manager_center/setting/TiemCenter/TimeCenter";
 function SettingPage() {

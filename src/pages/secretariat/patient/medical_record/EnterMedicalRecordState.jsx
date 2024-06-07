@@ -148,65 +148,75 @@ const EnterMedicalRecordState = ({ children }) => {
     
     
 
-    const postData = (data) => {
+    const postData = (object) => {
 
-      const {causeRenalFailure,bloodType,
-        dryWeight,dialysisStartDate,
-        kidneyTransplant,vascularEntrance,
-        surgicalPrecedents,pathologicalPrecedents,
-        pharmacologicalPrecedents} = data;
-        let surgical = surgicalPrecedents.length === 1  && surgicalPrecedents[0].surgeryName === "" ? [] : surgicalPrecedents;
-        let pathological =pathologicalPrecedents.length === 1 && pathologicalPrecedents[0].illnessName === "" ? [] :pathologicalPrecedents
-        let pharmacological = pharmacologicalPrecedents.length === 1  && pharmacologicalPrecedents[0].medicineName === "" ? [] :pharmacologicalPrecedents
+      let data = {
+        vascularEntrance :object.vascularEntrance,
+        bloodType:object.bloodType,
+        dryWeight:object.dryWeight,
+        dialysisStartDate:object.dialysisStartDate,
+        kidneyTransplant:object.kidneyTransplant,
+        causeRenalFailure:object.causeRenalFailure,
+        surgicalPrecedents:object.surgicalPrecedents,
+        pathologicalPrecedents:object.pathologicalPrecedents,
+        pharmacologicalPrecedents:object.pharmacologicalPrecedents
+      }
 
+
+        let surgical =  data.surgicalPrecedents.length >= 1 ?( data.surgicalPrecedents[data.surgicalPrecedents.length-1].surgeryName === "" ? 
+        data.surgicalPrecedents.slice(0,-1) :data.surgicalPrecedents) :[];
+
+        let pathological = data.pathologicalPrecedents.length >= 1 ? (data.pathologicalPrecedents[data.pathologicalPrecedents.length-1].illnessName === "" ?
+        data.pathologicalPrecedents.slice(0,-1) : data.pathologicalPrecedents ) : []
+
+        let pharmacological = data.pathologicalPrecedents.length >= 1 ?( data.pharmacologicalPrecedents[data.pharmacologicalPrecedents.length-1].medicineName === "" ? 
+        data.pharmacologicalPrecedents.slice(0,-1) : data.pharmacologicalPrecedents) :[]
+        
         surgical.length >= 1 && surgical.forEach(item => {
-          console.log("a");
           if (item.surgeryDate === null) {
             item.surgeryDate = "";
           } else {
-            item.surgeryDate =item.surgeryDate.format("YYYY MMMM DD")
+            item.surgeryDate =item.surgeryDate.format("DD-MM-YYYY")
           }
         });
         
 
-        pathological.length >=1 && pathological.forEach(item => {
+        pathological.length >= 1 && pathological.forEach(item => {
           if (item.medicalDiagnosisDate === null) {
             item.medicalDiagnosisDate = "";
           } else {
-            item.medicalDiagnosisDate =item.medicalDiagnosisDate.format("YYYY MMMM DD")
+            item.medicalDiagnosisDate =item.medicalDiagnosisDate.format("DD-MM-YYYY")
           }
         });
 
 
-        pharmacological.length >=1 && pharmacological.forEach(item => {
+        pharmacological.length >= 1 && pharmacological.forEach(item => {
           if (item.dateStart === null) {
             item.dateStart = "";
           } else {
-            item.dateStart =item.dateStart.format("YYYY MMMM DD")
+            item.dateStart =item.dateStart.format("DD-MM-YYYY")
           }
           if (item.dateEnd === null) {
             item.dateEnd = "";
           } else {
-            item.dateEnd =item.dateEnd.format("YYYY MMMM DD")
+            item.dateEnd =item.dateEnd.format("DD-MM-YYYY")
           }
         });
 
 
         const body = {
-          causeRenalFailure:"Hypertension",
-          dryWeight:dryWeight,
-          bloodType:bloodType,
-          dialysisStartDate:"2024-05-15",
-          kidneyTransplant:true ,
-          vascularEntrance:"Fistula",
-          userID:21
+          causeRenalFailure:data.causeRenalFailure,
+          dryWeight:data.dryWeight,
+          bloodType:data.bloodType,
+          dialysisStartDate:data.dialysisStartDate != null ?data.dialysisStartDate.format("DD-MM-YYYY"):"",
+          kidneyTransplant:data.kidneyTransplant === "لا" || data.kidneyTransplant=== "" ? false :true ,
+          vascularEntrance:data.vascularEntrance,
+          surgicalPrecedents:surgical,
+          pathologicalPrecedents:pathological,
+          pharmacologicalPrecedents:pharmacological,
+          userID:21, 
         }
         return body;
-        //dialysisStartDate != null ?dialysisStartDate.format("YYYY MMMM DD"):"",
-        // //kidneyTransplant === "لا" ? false : 
-        // surgicalPrecedents:surgical,
-        //   pathologicalPrecedents:pathological,
-        //   pharmacologicalPrecedents:pharmacological,
     }
 
 

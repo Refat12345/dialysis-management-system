@@ -1,4 +1,3 @@
-import React from 'react'
 import { DataContext } from '../DataContext'
 import { useContext,useState } from 'react';
 import DialogNote from './DialogNote';

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Globalnotes } from "./../../../data/data";
 import GlobalNotes from "../../../components/manager_center/globalNotes/GlobalNotes";
 

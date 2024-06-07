@@ -24,7 +24,7 @@ const precedents = [
   }
 ]
 const MedicalRecordPage = () => {
-
+  
 
   return (
      

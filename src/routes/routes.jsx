@@ -17,9 +17,9 @@ import {
   AuditingPage,
   OrdersPage,
   GlobalInfoPage,
-  EnterMedicalRecordPage
+  EnterMedicalRecordPage,
+  AddMedicalAnalysisPage
 } from "../pages/index";
-import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import { SideBar } from "../components/index";
 import {
@@ -51,7 +51,7 @@ import {
   dialysisSessionsRoute,
   globalNotesRoute,
   enterMedicalRecordRoute,
-  settingRoute
+  addMedicalAnalysisRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -66,6 +66,7 @@ import SettingPage from "../pages/manager_center/setting/SettingPage";
 import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
 import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 import GeneralNotePage from "../pages/manager_center/generalNotes/GeneralNotePage";
+import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/AddMedicalAnalysisState";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +126,45 @@ const router = createBrowserRouter([
       {
         path: medicalRecordRoute,
         element: <MedicalRecordPage />,
+        children: [
+          {
+            path: "",
+            element: (
+              <PrecedentsSection
+                title={pathologicalTitle}
+                precedents={pathologicalPrecedents}
+              />
+            ),
+            index: true,
+          },
+          {
+            path: "pathologicalHistory",
+            element: (
+              <PrecedentsSection
+                title={pathologicalTitle}
+                precedents={pathologicalPrecedents}
+              />
+            ),
+          },
+          {
+            path: "surgicalHistory",
+            element: (
+              <PrecedentsSection
+                title={surgicalTitle}
+                precedents={surgicalPrecedents}
+              />
+            ),
+          },
+          {
+            path: "pharmacologicalHistory",
+            element: (
+              <PrecedentsSection
+                title={pharmacologicalTitle}
+                precedents={pharmacologicalPrecedents}
+              />
+            ),
+          },
+        ],
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },
@@ -137,6 +177,7 @@ const router = createBrowserRouter([
       {
         path: medicalAnalysisRoute,
         element: <MedicalAnalysisPage />,
+        
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },
@@ -154,78 +195,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: medicalRecordRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <MedicalRecordPage />
-      </>
-    ),
-    children: [
-      {
-        path: "",
-        element: (
-          <PrecedentsSection
-            title={pathologicalTitle}
-            precedents={pathologicalPrecedents}
-          />
-        ),
-        index: true,
-      },
-      {
-        path: "pathologicalHistory",
-        element: (
-          <PrecedentsSection
-            title={pathologicalTitle}
-            precedents={pathologicalPrecedents}
-          />
-        ),
-      },
-      {
-        path: "surgicalHistory",
-        element: (
-          <PrecedentsSection
-            title={surgicalTitle}
-            precedents={surgicalPrecedents}
-          />
-        ),
-      },
-      {
-        path: "pharmacologicalHistory",
-        element: (
-          <PrecedentsSection
-            title={pharmacologicalTitle}
-            precedents={pharmacologicalPrecedents}
-          />
-        ),
-      },
-    ],
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: medicalAnalysisRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <MedicalAnalysisPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: prescriptionsRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <PrescriptionsPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
+  
   {
     path: medicalCentersRoute,
     element: (
@@ -330,7 +300,18 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-
+  {
+    path:addMedicalAnalysisRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar}/>
+        <AddMedicalAnalysisState>
+            <AddMedicalAnalysisPage/>
+        </AddMedicalAnalysisState>
+      </>
+    ),
+    errorElement: <ErrorPage/>
+  },
   {
     path: settingRoute,
     element: (

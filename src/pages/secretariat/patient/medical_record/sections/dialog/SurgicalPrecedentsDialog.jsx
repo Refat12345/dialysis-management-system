@@ -2,11 +2,13 @@
 /* eslint-disable react/prop-types */
 import { Row,CustomTextField ,CustomDatePicker } from "../../../../../../components"
 import "../../style.css"
+import dayjs from "dayjs";
 const SurgicalPrecedentsDialog = ({state,updateState}) => {
     let array = state.surgicalPrecedents.slice(0,-1)
   return (
     
     array.map((precedent,index)=>{
+        console.log(dayjs(precedent.surgeryDate));
         return <div dir="rtl" key={index} >
                 <div className="paddingCard bg-bgMedicalRecord rounded-lg ">
                 <Row mainAxisAlignment="justify-evenly">
@@ -24,7 +26,7 @@ const SurgicalPrecedentsDialog = ({state,updateState}) => {
         <div className="w-[47%] ">
         <CustomDatePicker
                 label={"تاريخ العملية"}
-                value = {precedent.surgeryDate}
+                value = { dayjs(precedent.surgeryDate)}
                 onSelect={(e) =>
                     state.updateSurgicalPrecedent(index,
                         {surgeryDate: e},

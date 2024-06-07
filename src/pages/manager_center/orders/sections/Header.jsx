@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { DropDown, HorizontalLine, Search } from "../../../../components"
 
-const Header = () => {
+const Header = ({setFilter ,handleChange}) => {
     const colors = {
         titleColor:"primaryColor",
         contentColor:"bgButtonColor"
@@ -11,13 +12,13 @@ const Header = () => {
     }
   return (
     <div dir="rtl">
-        <Search/>
+        <Search handleInputValue={handleChange}/>
         <div className="mb-4"></div>
         <HorizontalLine/>
         <div className="mb-4"></div>
         <div className="w-64">
         <DropDown colors={colors} filter={ filter.array} title={filter.title} onSelect={(val) => {
-                console.log(val);
+                setFilter(val)
               }}/>
         </div>
     </div>

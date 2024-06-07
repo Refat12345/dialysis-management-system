@@ -1,37 +1,33 @@
 /* eslint-disable no-unused-vars */
-import { PublicHeader ,CustomButton } from "../../../../components"
+import { PublicHeader ,CustomButton , Toast } from "../../../../components"
 import { MedicalRecord } from "../../../../assets"
 import {PublicInformation ,PathologicalPrecedents,SurgicalPrecedents,PharmacologicalPrecedents} from "./sections/index"
 import { useEnterMedicalRecordState } from "./EnterMedicalRecordState";
 import "./style.css"
-import { useCreateMedicalRecordMutation } from "../../../../services/secretariat/medical_record/EnterMedicalRecordSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useCreateMedicalRecordMutation } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
+import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
 
 const EnterMedicalRecordPage = () => {
-
 const { state , updateState } = useEnterMedicalRecordState();
-const [createMedicalRecord,{isError}] = useCreateMedicalRecordMutation();
-const object = {
-  vascularEntrance :state.vascularEntrance,
-  bloodType:state.bloodType,
-  dryWeight:state.dryWeight,
-  dialysisStartDate:state.dialysisStartDate,
-  kidneyTransplant:state.kidneyTransplant,
-  causeRenalFailure:state.causeRenalFailure,
-  surgicalPrecedents:state.surgicalPrecedents,
-  pathologicalPrecedents:state.pathologicalPrecedents,
-  pharmacologicalPrecedents:state.pharmacologicalPrecedents
-}
+const [createMedicalRecord , {data,isError,isSuccess,isLoading}] = useCreateMedicalRecordMutation();
 
-const handlePost = async () => {
-  try {
-    await createMedicalRecord({ss:"sad"})
-  }catch(err) {
-    console.log("S");
-    console.error(+err)
+
+const notify = () => toast("تم اضافة السجل الطبي بنجاح");
+const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
+
+const handlePost =async () => {
+  let body =state.postData(state);
+  try{
+    await createMedicalRecord(body);
+  }catch(error) {
+    console.log(error);
   }
-  
 }
-
+if(isSuccess) {
+  console.log("sar");
+}
   return (
     <div dir="rtl" className="parent flex-grow  h-screen bg-bgMedicalRecord">
         <div className="md:mr-48 bg-bgMedicalRecord">
@@ -48,7 +44,8 @@ const handlePost = async () => {
                 </div>
                 <div className="mgButton"></div>
             <div className="flex justify-end ">
-            <CustomButton
+            {!isLoading ? <div>
+              <CustomButton
               variant="solid"
               onClick={handlePost}
               className={` bg-bgbutton text-white h-8 transition-all font-bold text-md hover:cursor-pointer  `}
@@ -62,6 +59,8 @@ const handlePost = async () => {
               }
               radius="full"
             />
+            <Toast textStyle={textToastStyle} progressColor={"green"}/>
+            </div>:<ButtonLoader/>}
             </div>
             </div> 
         </div>

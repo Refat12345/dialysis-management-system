@@ -5,14 +5,23 @@ import CustomTextField from "../../../../../components/public/textfield/CustomTe
 import "../style.css"
 const PublicInformation = ({ state , updateState }) => {
 
-    const bloodFilter = {
+    const bloodSelection = {
         array: ["A+","A-","B+","B-","AB+","AB-","O+","O-"],
         title: "زمرة الدم",
     };
-    const kidneyTransplantFilter = {
+    const kidneyTransplantSelection = {
         array: ["نعم","لا"],
         title: "زراعة كلية سابقة",
     };
+    const vascularEntranceSelection = {
+        array:["قثطرة","فيستولا"],
+        title:"الوصل الوعائي"
+    }
+    const causeRenalFailureSelection = {
+        array:["ضغط دم","امراض قلبية","داء السكري"],
+        title:"سبب الفشل الكلوي"
+    }
+
     
     function handleCheckboxChange(checkboxNumber) { 
         if (checkboxNumber === 1 ) {
@@ -28,7 +37,7 @@ return (
                 <SelectedTextFeild
                     label={"سبب القصور الكلوي"}
                     value={state.causeRenalFailure === "" ? "سبب القصور الكلوي"  : state.causeRenalFailure}
-                    filter={bloodFilter.array}
+                    filter={causeRenalFailureSelection.array}
                     onSelect={(val) => state.selectCauseRenalFailure(val)}
             />
             </div>
@@ -36,7 +45,7 @@ return (
                 <SelectedTextFeild
                     label={"زمرة الدم"}
                     value={state.bloodType === "" ? "زمرة الدم"  : state.bloodType}
-                    filter={bloodFilter.array}
+                    filter={bloodSelection.array}
                     onSelect={(val) => state.selectBloodType(val)}
             />
             </div>
@@ -74,7 +83,7 @@ return (
                 <SelectedTextFeild
                     label={"الوصل الوعائي"}
                     value={state.vascularEntrance === "" ? "الوصل الوعائي"  : state.vascularEntrance}
-                    filter={kidneyTransplantFilter.array}
+                    filter={vascularEntranceSelection.array}
                     onSelect={(val) => state.selectVascularEntrance(val)}
             />
                 </div>
@@ -82,7 +91,7 @@ return (
                 <SelectedTextFeild
                     label={"زراعة كلية سابقة"}
                     value={state.kidneyTransplant === "" ? "زراعة كلية سابقة"  : state.kidneyTransplant}
-                    filter={kidneyTransplantFilter.array}
+                    filter={kidneyTransplantSelection.array}
                     onSelect={(val) => state.selectKidneyTransplant(val)}
             />
                 

@@ -7,7 +7,8 @@ const PathologicalPrecedents = ({ state , updateState }) => {
 
 return (
     <div className="paddingCard bg-white rounded-lg w-[49.2%]">
-        <Row mainAxisAlignment="justify-between" >
+       <form>
+       <Row mainAxisAlignment="justify-between" >
             <p className="pr-2 font-bold text-titleColor text-lg">السوابق المرضية</p>
             <div className="flex pl-3 ">
                 <div onClick={()=> state.addPathologicalPrecedent() } className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md">
@@ -69,6 +70,7 @@ return (
         </div>
             })
         }
+       </form>
     </div>
     
   )

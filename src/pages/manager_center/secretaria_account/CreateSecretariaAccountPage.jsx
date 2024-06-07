@@ -1,8 +1,8 @@
 import { Column, Row } from "../../../components";
-import PublicHeader from "../../../components/manager_center/secretary/PublicHeader";
 import { useCreateSecretaryAccountState } from "./CreateSecretariaAccountState";
-import { UserNumberIcon, LoginUserIcon ,SecretaryImage } from "../../../assets/index";
+import { UserNumberIcon, LoginUserIcon } from "../../../assets/index";
 import CustomTextField from "../../../components/public/textfield/CustomTextField";
+import { SecretaryImage } from "../../../assets/index";
 import SelectedTextFeild from "../../../components/public/textfield/SelectedTextFeild";
 import {
   bodyMeduimStyle,
@@ -21,19 +21,17 @@ import {
   useFilter,
 } from "./secretaria_sections/secretariaData";
 import MultiSelectTextField from "../../../components/public/textfield/MultiSelectTextField";
+import {PublicHeader} from "../../../components";
 
 const CreateSecretariaAccountPage = () => {
   const { state, updateState } = useCreateSecretaryAccountState();
 
   return (
-    <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48">
-      <PublicHeader  title={"إضافة سكرتاريا"} icon={SecretaryImage}/>
-      <div className="bg-bgDashboard h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
     <div
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-bgDashboard"
     >
-      <SecretaryAccountHeader />
+      <PublicHeader title = {"إضافة سكرتاريا"} icon={SecretaryImage}/>
       <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
         <Row mainAxisAlignment="justify-evenly">
           <div className="w-1/2 mr-4">

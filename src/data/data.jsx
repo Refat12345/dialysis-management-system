@@ -48,6 +48,8 @@ export const userDetailsRoute = `${usersRoute}/userDetails`;
 
 export const enterMedicalRecordRoute = "/enterMedicalRecord"
 
+export const addMedicalAnalysisRoute = "/addMedicalAnalysis"
+
 //--------------------------
 //saria
 //medical_centers_icons
@@ -130,13 +132,7 @@ export const pharmacologicalPrecedents = [
     generalDetails:
       "هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف ",
   },
-  {
-    medicineName: "فيستولا",
-    dateStart: "2022-12-2",
-    dateEnd: "2024-10-7",
-    generalDetails:
-      "هذا الدواء خاص الى مرضى فئة غسيل الكلى في مركز حسن الطحان الخيري باشراف ",
-  },
+  
 ];
 export const pathologicalPrecedents = [
   {
@@ -392,33 +388,44 @@ export const data = {
   ],
 };
 
-export const analysis = {
+export const analysisData = {
   analysis: [
     {
       analysisName: "خضاب",
-      value: "سلبي",
-      analysisDate: "2022-2-3",
+      quarter:"الربع الأول",
+      value: "ايجابي",
+      analysisDate: "1-4-2024",
       notes:
         "حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة",
     },
     {
       analysisName: "حديد",
-      value: "ايجابي",
-      analysisDate: "2022-2-3",
+      quarter:"الربع الثاني",
+      value: "سلبي",
+      analysisDate: "2-4-2024",
+      notes:
+        "حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند المحترمين",
+    },
+    {
+      analysisName: "حديد",
+      quarter:"الربع الأول",
+      value: "سلبي",
+      analysisDate: "2-5-2024",
       notes:
         "حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة",
     },
     {
       analysisName: "دم",
+      quarter:"الربع الأول",   
       value: "ايجابي",
-      analysisDate: "2022-2-3",
+      analysisDate: "2-6-2024",
       notes:
         "حسن الطحان أحلى حسن حبنكة الكينغ لعيون أبو خالد الورد الأستاذ راتب المحترم أحلى شباب وأحلى سهرة شباب الباك ايند الزبالة",
     },
   ],
 };
 
-export const medicalCenters = {
+export const medicalCentersData = {
   medicalCenters: [
     {
       centerName: "مركز حسن الطحان الخيري",
@@ -1290,28 +1297,28 @@ export const pieChartData = {
   },
 };
 
-export const auditing = [
+export const auditingData = [
   {
     operation: "السجل الطبي",
     date: "2-3-2024",
     affectedUser: "أسماء درباني",
-    affectorUser: "رفعت عبد الواحد",
+    affectorUser: "سارية الزعبي",
     oldData: "71",
     newData: "73",
   },
   {
-    operation: "السجل الطبي",
+    operation: "التحاليل",
     date: "2-3-2024",
     affectedUser: "أسماء درباني",
-    affectorUser: "رفعت عبد الواحد",
+    affectorUser: "وسيم البزرة",
     oldData: "71",
     newData: "73",
   },
   {
-    operation: "السجل الطبي",
+    operation: "الوصفات",
     date: "2-3-2024",
     affectedUser: "أسماء درباني",
-    affectorUser: "رفعت عبد الواحد",
+    affectorUser: "أحمد شريدة",
     oldData: "71",
     newData: "73",
   },
@@ -1398,10 +1405,10 @@ export const auditing = [
 ];
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-export const orders = arr.map((order, index) => {
+export const ordersData = arr.map((order, index) => {
   return {
-    type: "المراكز الطبية",
-    order: "سارية الزعبي",
+    type: index % 2 === 0 ?"المراكز الطبية" :"المرضى",
+    order:index % 2 === 0 ? "سارية الزعبي":"رفعت عبد الواحد",
     details:
       "أريد نقل المريض محمد خالد من مركز سند الخيري الى مركز حسن الطحان الخيري وذلك بسبب نقص في التجهيزات ",
   };
