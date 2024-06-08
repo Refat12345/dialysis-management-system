@@ -21,7 +21,7 @@ const PieCharts = ({data}) => {
   const height = window.innerHeight;
   return (
     <>
-    <div className={`${height > 700 ?"mt-8 ml-[10%]" :"mt-6 ml-[10%]"}`}>
+    <div className={`${height > 700 ?"mt-14 ml-[10%]" :"mt-11 ml-[10%]"}`}>
         <div className="shadow-lg  ">
           <PieChart title = {medicinesTitle} data = {medicines}/>
         </div>

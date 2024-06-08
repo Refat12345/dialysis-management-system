@@ -27,3 +27,7 @@ export {default as AuditingPage} from "./public/auditing/AuditingPage"
 //error
 export {default as ErrorPage} from "./error/ErrorPage"
 
+// secretariat
+export {default as EnterMedicalRecordPage} from "./secretariat/patient/medical_record/EnterMedicalRecordPage"
+export {default as AddMedicalAnalysisPage} from "./secretariat/patient/medical_analysis/AddMedicalAnalysisPage"
+

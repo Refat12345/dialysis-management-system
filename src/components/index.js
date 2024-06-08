@@ -20,13 +20,21 @@ export { default as MedicalAnalysis } from "./manager_center/medical_analysis/Me
 export { default as Medicine } from "./manager_center/prescription/medicine";
 export { default as TransferPatient } from "./manager_center/patient/transfer_patient/TransferPatient";
 //public
-export { default as MedicalCenter } from "./public/medical_centers/MedicalCenter";
-export { default as Search } from "./public/search/Search";
-export { default as DropDown } from "./public/drop_down/DropDown";
-export { default as TextArea } from "./public/text_area/TextArea";
-export { default as AlertDialog } from "./public/dialog/Dialog";
-export { default as TableHeader } from "./manager_center/patient/TableHeader";
-export { default as TableRow } from "./manager_center/patient/TableRow";
+export {default as MedicalCenter} from "./public/medical_centers/MedicalCenter"
+export {default as Search} from "./public/search/Search"
+export {default as DropDown} from "./public/drop_down/DropDown"
+export {default as TextArea} from "./public/text_area/TextArea"
+export {default as AlertDialog} from "./public/dialog/Dialog"
+export {default as TableHeader} from "./manager_center/patient/TableHeader"
+export {default as TableRow} from "./manager_center/patient/TableRow"
+export {default as PublicHeader} from "./manager_center/secretary/PublicHeader"
+export {default as SelectedTextFeild} from "./public/textfield/SelectedTextFeild"
+export {default as CustomTextField} from "./public/textfield/CustomTextField"
+export {default as CustomDatePicker} from "./public/datepicker/CustomDatePicker"
+export {default as CustomButton} from "./public/button/CustomButton"
+export {default as PageLoader} from './public/loader/PageLoader'
+export {default as Toast} from './public/toast/Toast'
+
 
 //login
 export { default as PasswordVisibleIcon } from "./manager_center/auth/PasswordVisibleIcon";
@@ -34,4 +42,3 @@ export { default as PasswordVisibleIcon } from "./manager_center/auth/PasswordVi
 //Primitives
 export { default as Row } from "./public/primitives/Row";
 export { default as Column } from "./public/primitives/Column";
-export { default as CustomButton } from "./public/button/CustomButton";

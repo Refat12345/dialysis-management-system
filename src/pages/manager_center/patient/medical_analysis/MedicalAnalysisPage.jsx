@@ -1,24 +1,73 @@
-import { MedicalAnalysis } from "../../../../components"
-import Header from "./sections/Header"
-import { analysis } from "../../../../data/data"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { MedicalAnalysis, PageLoader } from "../../../../components";
+import Header from "./sections/Header";
+import { useEffect, useState, useMemo } from "react";
+import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
+
 const MedicalAnalysisPage = () => {
-    const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"]
+    const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
+    const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(16);
+    const [analysis, setAnalysis] = useState([]);
+    const [filters, setFilters] = useState({
+        type: "",
+        date: "",
+        quarter: ""
+    });
 
-  
-    
-    return (
-        <div dir="rtl" className="flex-grow">
-            
-        <div className="ml-[1%]">
-            <Header/>
-            <div className="analysis">
-                {analysis.analysis.map((analysis,index)=>{
-                    return <MedicalAnalysis key={index} title={title} analysis={analysis}/>   
-                })}
+    useEffect(() => {
+        if (isSuccess && data?.analysis) {
+            setAnalysis(data.analysis);
+        }
+    }, [isSuccess, data]);
+
+    const filteredAnalysis = useMemo(() => {
+        let filteredAnalysis = analysis;
+
+        if (filters.type !== "" && filters.type !== "نوع التحليل") {
+            filteredAnalysis = filteredAnalysis.filter(ana => ana.analysisName.includes(filters.type));
+        }
+        if (filters.date !== "" && filters.date !== "الشهر") {
+            filteredAnalysis = filteredAnalysis.filter(ana => ana.analysisDate.includes(filters.date));
+        }
+        if (filters.quarter !== "" && filters.quarter !== "الربع") {
+            filteredAnalysis = filteredAnalysis.filter(ana => ana.quarter.includes(filters.quarter));
+        }
+
+        return filteredAnalysis;
+    }, [filters, analysis]);
+
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <PageLoader />
             </div>
-        </div>
-</div>
-)
-}
+        );}
 
-export default MedicalAnalysisPage
+    if(isError || !isSuccess) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
+            </div>
+        );
+    }
+    if (isSuccess && analysis.length === 0) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="font-bold text-2xl">لا يوجد تحاليل طبية لهذا المريض</p>
+            </div>
+        );}
+    return (
+            <div dir="rtl" className="flex-grow">
+                <div className="ml-[1%]">
+                    <Header value={filters} setFilters={setFilters} />
+                    <div className="analysis">
+                        {filteredAnalysis.map((analysisItem, index) => (
+                            <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+    );
+};
+
+export default MedicalAnalysisPage;

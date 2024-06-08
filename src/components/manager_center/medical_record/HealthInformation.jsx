@@ -34,7 +34,7 @@ const HealthInformation = ({title , information}) => {
                     <span className={`${responsive}`}>
                         {titleArray[3]}:
                     </span>
-                    <span className= {`font-bold mr-16  ${responsive}`}>
+                    <span dir="ltr" className= {`font-bold mr-16  ${responsive}`}>
                         {information.bloodType}
                     </span>
                 </div>
@@ -61,7 +61,7 @@ const HealthInformation = ({title , information}) => {
                         {titleArray[6]}:
                     </span>
                     <span className={`font-bold mr-10  text-red-400 ${responsive}`}>
-                        {information.kidneyTransplant}
+                        {information.kidneyTransplant === 0 ? "لا": "نعم"}
                     </span>
                 </div>
             </div>

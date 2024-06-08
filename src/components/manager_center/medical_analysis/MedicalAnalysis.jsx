@@ -17,7 +17,7 @@ const MedicalAnalysis = ({title,analysis}) => {
             </div>
             <div className="content flex flex-col ">
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
-                <span className ={`content-center font-bold text-green-600 mb-3 `}>{analysis.value}</span>
+                <span className ={`content-center font-bold mb-3 ${analysis.value === "سلبي"?"text-red-500":"text-green-600"}`}>{analysis.value}</span>
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{useFormatDate(analysis.analysisDate)}</span>
             </div>
             <div className="w-[40%]">

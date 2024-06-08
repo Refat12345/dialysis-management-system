@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
 import {
@@ -17,8 +18,9 @@ import {
   AuditingPage,
   OrdersPage,
   GlobalInfoPage,
+  EnterMedicalRecordPage,
+  AddMedicalAnalysisPage
 } from "../pages/index";
-import {} from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import { SideBar } from "../components/index";
 import {
@@ -33,11 +35,8 @@ import {
   medicalCentersRoute,
   loginRoute,
   pathologicalTitle,
-  pathologicalPrecedents,
   surgicalTitle,
-  surgicalPrecedents,
   pharmacologicalTitle,
-  pharmacologicalPrecedents,
   userDetailsRoute,
   dialysisRoute,
   dialysisDetailsRoute,
@@ -53,12 +52,16 @@ import {
   
   addPatintinfoRoute,
   addPrescriptionInfoRoute
+  enterMedicalRecordRoute,
+  addMedicalAnalysisRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
 import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import CreateSecretariaAccountState from "../pages/manager_center/secretaria_account/CreateSecretariaAccountState";
 import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_account/CreateSecretariaAccountPage";
+import EnterMedicalRecordState from "../pages/secretariat/patient/medical_record/EnterMedicalRecordState";
+
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 
 import SettingPage from "../pages/manager_center/setting/SettingPage";
@@ -77,6 +80,7 @@ import { SettingProvider } from "../pages/manager_center/setting/SettingState";
 import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
+import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/AddMedicalAnalysisState";
 
 const router = createBrowserRouter([
   {
@@ -140,6 +144,45 @@ const router = createBrowserRouter([
       {
         path: medicalRecordRoute,
         element: <MedicalRecordPage />,
+        children: [
+          {
+            path: "",
+            element: (
+              <PrecedentsSection
+                title={pathologicalTitle}
+                type = {"pathological"}
+              />
+            ),
+            index: true,
+          },
+          {
+            path: "pathologicalHistory",
+            element: (
+              <PrecedentsSection
+                title={pathologicalTitle}
+                type = {"pathological"}
+              />
+            ),
+          },
+          {
+            path: "surgicalHistory",
+            element: (
+              <PrecedentsSection
+                title={surgicalTitle}
+                type = {"surgical"}
+              />
+            ),
+          },
+          {
+            path: "pharmacologicalHistory",
+            element: (
+              <PrecedentsSection
+                title={pharmacologicalTitle}
+                type = {"pharmacological"}
+              />
+            ),
+          },
+        ],
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },
@@ -152,6 +195,7 @@ const router = createBrowserRouter([
       {
         path: medicalAnalysisRoute,
         element: <MedicalAnalysisPage />,
+        
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },
@@ -169,78 +213,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: medicalRecordRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <MedicalRecordPage />
-      </>
-    ),
-    children: [
-      {
-        path: "",
-        element: (
-          <PrecedentsSection
-            title={pathologicalTitle}
-            precedents={pathologicalPrecedents}
-          />
-        ),
-        index: true,
-      },
-      {
-        path: "pathologicalHistory",
-        element: (
-          <PrecedentsSection
-            title={pathologicalTitle}
-            precedents={pathologicalPrecedents}
-          />
-        ),
-      },
-      {
-        path: "surgicalHistory",
-        element: (
-          <PrecedentsSection
-            title={surgicalTitle}
-            precedents={surgicalPrecedents}
-          />
-        ),
-      },
-      {
-        path: "pharmacologicalHistory",
-        element: (
-          <PrecedentsSection
-            title={pharmacologicalTitle}
-            precedents={pharmacologicalPrecedents}
-          />
-        ),
-      },
-    ],
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: medicalAnalysisRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <MedicalAnalysisPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: prescriptionsRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <PrescriptionsPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
+  
   {
     path: medicalCentersRoute,
     element: (
@@ -351,7 +324,31 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-
+  {
+    path: enterMedicalRecordRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <EnterMedicalRecordState>
+            <EnterMedicalRecordPage />
+        </EnterMedicalRecordState>
+      </>
+    ),
+    //TODO: u may have to add loader
+    errorElement: <ErrorPage />,
+  },
+  {
+    path:addMedicalAnalysisRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar}/>
+        <AddMedicalAnalysisState>
+            <AddMedicalAnalysisPage/>
+        </AddMedicalAnalysisState>
+      </>
+    ),
+    errorElement: <ErrorPage/>
+  },
   {
     path: settingRoute,
     element: (

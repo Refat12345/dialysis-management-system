@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
+
 import { DropDown } from "../../../../../components";
 
-const Header = () => {
+const Header = ({value,setFilters}) => {
   const filters = [
     {
       title: " الربع",
@@ -12,7 +14,11 @@ const Header = () => {
     },
     {
       title: "الشهر",
-      array: ["كانون الثاني", "كانون الأول"],
+      array:  [
+        "كانون الثاني","شباط","آذار","نيسان","أيار",
+        "حزيران","تموز","آب","أيلول","تشرين الأول",
+        "تشرين الثاني","كانون الأول"
+      ],
     },
   ];
   const colors = {
@@ -20,6 +26,7 @@ const Header = () => {
     contentColor: "bgButtonColor",
     textColor: "textMenuColor",
   };
+
   return (
     <div className="header flex justify-between mb-6  ">
       <span className="text-titleSideColor text-2xl font-primaryBold ">
@@ -34,7 +41,7 @@ const Header = () => {
               title={filter.title}
               colors={colors}
               onSelect={(val) => {
-                console.log(val);
+              index === 0 ? setFilters({...value,quarter:val}) : (index === 1 ? setFilters({...value,type:val}) : setFilters({...value,date:val}))
               }}
             />
           );

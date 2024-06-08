@@ -1,10 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-
+import Cookies from 'js-cookie';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-
     baseQuery: fetchBaseQuery({
         credentials: 'same-origin',
         baseUrl: "http://localhost:8000/api/",
@@ -15,6 +13,8 @@ export const apiSlice = createApi({
             }
             return headers;
         },
+        baseUrl: "http://localhost:8000/api",
+        headers:{'Authorization': `Bearer ${Cookies.get("token")}`}
     }),
 
     endpoints: () => ({}),

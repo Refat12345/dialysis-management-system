@@ -11,6 +11,10 @@ export default function DropDown({ title, filter, colors, onSelect }) {
   const handleItemClick = (value) => {
     setSelectedValue(value);
   };
+  const handleReset = () => {
+    setSelectedValue(title);
+    onSelect(title);
+  };
   return (
     <Menu dir="rtl" as="div" className="relative inline-block w-full">
       <div>
@@ -35,6 +39,7 @@ export default function DropDown({ title, filter, colors, onSelect }) {
       >
         <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right  rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
           <div className="px-1 py-1 ">
+
             {filter.map((content, index) => {
               return (
                 <Menu.Item key={index}>
@@ -56,6 +61,20 @@ export default function DropDown({ title, filter, colors, onSelect }) {
                 </Menu.Item>
               );
             })}
+             <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={handleReset}
+                  className={`${
+                    active
+                      ? `bg-${colors.contentColor} text-white font-primaryRegular`
+                      : "text-gray-900 font-primaryRegular"
+                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                >
+                  {"الكل"}
+                </button>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>

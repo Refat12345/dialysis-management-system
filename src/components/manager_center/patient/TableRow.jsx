@@ -22,6 +22,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
       connectSeven :Object.values(row)[5],
       connectEight :Object.values(row)[5],
 
+      connectSeven: type === "auditing" ?Object.values(row)[6]:""
     } 
   
     return (
@@ -30,7 +31,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
         onClick={() => handleRowClick(userIdString)}
 
       >
-        <td className="py-3 px-4">
+        <td className="py-3 px-4 ">
           <div>
             {
             type != "auditing"  && 
@@ -44,7 +45,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
             <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
           </div>
         </td>
-        <td className={`py-3 px-4`}>{type === "auditing" ? useFormatDate(object.connectTow) : object.connectTow}</td>
+        <td className={`py-3 px-4`}>{type === "auditing" ? object.connectTow : object.connectTow}</td>
         {type === "orders" ? <td className="py-3 px-4" >
         
               <p className="whitespace-nowrap overflow-hidden text-ellipsis w-[90%]" >{object.connectThree}</p>
@@ -64,7 +65,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
             </td>
           }
           
-       
+       {type === "orders" && <td className="w-[1px]"></td>}
       {type === "orders" && <td>
         <div className="flex justify-end">
         <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
@@ -82,11 +83,11 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
         </td>}
         {
         type != "dialysis" &&
-        <td className={`py-3 ${type != "orders" ?"pr-12":"pr-0"}`} align= {`${type === "orders" ? "right" :""}`}>
+        <td className={`py-3 ${type != "orders" ?"pr-12":"pr-0"}`} align= {`${type === "orders" ? "right" :""} ${type === "orders" && "w-16"}`}>
         {type === "auditing" ?
         <div className= {`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${index % 2 === 0 ? "hover:bg-gray-200" :"hover:bg-gray-300"}`}>
             <AlertDialog renderComponent={<img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />}
-                        contentComponent={<AuditingDetailsDialog oldData={object.connectFive} newData={object.connectSix} details={"تم تعديل الوزن الجاف"}/>}
+                        contentComponent={<AuditingDetailsDialog oldData={object.connectFive} newData={object.connectSix} details={object.connectSeven}/>}
                         titleButton={"رجوع"} 
             />
         </div>:

@@ -13,10 +13,10 @@ const Medicine = ({medicine,title , doctor}) => {
     <div  dir="rtl" className={`flex flex-row justify-between p-4 rounded-lg bg-white ${parentResponsive}`}>
         <div className="doctor status ">
             <p className="text-lg font-bold mb-4"> 
-                {doctor}
+                الطبيب: {doctor}
             </p>
-            <div className={`rounded-full p-1  w-[50%] ${medicine.status === "منتهية" ?"bg-green-100" :"bg-bgMedicineStatus"} `}>
-                <p className={`text-center ${medicine.status === "منتهية" ? "text-green-500 " :"text-titleSideColor"}`}>{medicine.status}</p>
+            <div className={`rounded-full p-1  w-[60%] ${medicine.status === "منتهية" ?"bg-green-100" :"bg-bgMedicineStatus"} `}>
+                <p className={`text-center pr- ${medicine.status === "منتهية" ? "text-green-500 " :"text-titleSideColor"}`}>{medicine.status}</p>
             </div>
         </div>
         <div className="title text-base ">
