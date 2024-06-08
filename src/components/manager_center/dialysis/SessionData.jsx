@@ -1,14 +1,29 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
-function SessionData() {
-  const [sessionData, setSessionData] = useState({
-    nurseName: "سعيد الحوزاني",
-    centerName: "حسن حبنكة",
-    supervisingDoctor: "سعيد محمد",
-    sessionStatus: "منتهية",
-    sessionDate: "2024 كانون2 الثاني",
-  });
+function SessionData({data}) {
+
+  
+  
+  // const [sessionData, setSessionData] = useState({
+  //   nurseName: "سعيد الحوزاني",
+  //   centerName: "حسن حبنكة",
+  //   supervisingDoctor: "سعيد محمد",
+  //   sessionStatus: "منتهية",
+  //   sessionDate: "2024 كانون2 الثاني",
+  // });
+
+ 
+
+  const sessionData = {
+    nurseName: data.dialysisSession.nurse,
+    centerName: data.dialysisSession.center,
+    supervisingDoctor: data.dialysisSession.doctor,
+    sessionStatus: data.dialysisSession.sessionStartTime.split(' ')[1].slice(0, 5),
+    sessionDate: data.dialysisSession.sessionStartTime.split(' ')[0],  
+  };
+
   return (
     <div>
       <div className="cardOne bg-cardInDialysisPage w-full flex flex-col justify-start rounded-lg ">

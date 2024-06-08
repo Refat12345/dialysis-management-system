@@ -9,7 +9,9 @@ import AlertDialog from "../../public/dialog/Dialog";
 import AuditingDetailsDialog from "../../public/auditing/AuditingDetailsDialog";
 import RejectionReason from "../../../pages/manager_center/orders/sections/RejectionReason";
 
-function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
+function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
+ 
+  const userIdString = id ? id.toString() : '14';
     const object = {
       connectOne :Object.values(row)[0],
       connectTow :Object.values(row)[1],
@@ -23,7 +25,8 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
     return (
       <tr
         className={`text-right border-b ${getRowColor(index)}`}
-        onClick={() => handleRowClick(object.connectOne)}
+        onClick={() => handleRowClick(userIdString)}
+
       >
         <td className="py-3 px-4 ">
           <div>

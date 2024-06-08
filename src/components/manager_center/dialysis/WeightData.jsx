@@ -1,14 +1,16 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
   
-  export default function WeightData() {
-    const [weightData, setWeightData] = useState({
-    weightBefore: '70كغ',
-    weightAfter: '60كغ',
-    totalWithdrawalRate: 'معدل السحب الكلي/سا',
-    sessionStart: '12:00PM',
-    sessionEnd: '4:00PM'
-  });
+  export default function WeightData({data}) {
+ 
+  const weightData = {
+    weightBefore: data.dialysisSession.weightBeforeSession,
+    weightAfter: data.dialysisSession.weightAfterSession,
+    totalWithdrawalRate: data.dialysisSession.totalWithdrawalRate,
+    sessionStart: data.dialysisSession.sessionStartTime.split(' ')[1].slice(0, 5),
+    sessionEnd: data.dialysisSession.sessionEndTime.split(' ')[1].slice(0, 5), 
+  };
     return (
       <div>
         <div className="cardTwo bg-cardInDialysisPage w-full flex flex-col justify-start rounded-lg ">

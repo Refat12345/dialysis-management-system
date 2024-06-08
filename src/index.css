@@ -9,13 +9,25 @@
   height: 0.5px;
   background-color: black;
 }
+.custom-hrrr {
+  width: calc(99%);
+  border: 0;
+  height: 0.1px;
+  background-color: dimgray;
+}
 
 .custom-hrr {
   border: none;
   border-top: 1px solid;
   margin-right: auto;
 }
-
+.custom-hrrrr {
+  width: 90%;
+  margin-right:10px;
+  border: 0;
+  height: 0.07px;
+  background-color: black;
+}
 /*PaitintPageMinHeight*/
 .min-h-customAbove600 {
   min-height: 600px;

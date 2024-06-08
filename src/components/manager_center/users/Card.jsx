@@ -12,6 +12,7 @@ import nurseMan from "../../../assets/icons/medical-center/users/users-list/nurs
 import secretary from "../../../assets/icons/medical-center/users/users-list/secretary.svg";
 import { useNavigate } from "react-router-dom";
 import { userDetailsRoute } from "../../../data/data";
+
 export function RoleImage({ role, width, height }) {
   let imageSrc;
   switch (role) {
@@ -32,10 +33,21 @@ export function RoleImage({ role, width, height }) {
 }
 
 function Card({ data }) {
+  let displayRole =
+    data.role === "nurse"
+      ? "ممرض"
+      : data.role === "doctor"
+      ? "طبيب"
+      : data.role === "secretary"
+      ? "سكرتاريا"
+      : data.role;
+  let displayGender = data.gender === "male" ? "ذكر" : "انثى";
+  let displayStatus = data.accountStatus === "active" ? "نشط الان" : "غير نشط";
+
   const navigate = useNavigate();
 
-  const handleCardClick = (userName) => {
-    navigate(`${userDetailsRoute}`);
+  const handleCardClick = () => {
+    navigate(`${userDetailsRoute.replace(":id", data.id)}`);
   };
 
   return (
@@ -68,12 +80,12 @@ function Card({ data }) {
           <div className="flex flex-col ml-8">
             <div className="flex items-center">
               <h3 className="text-right text-base text-gray-700 font-semibold">
-                {data.name} ({data.role})
+                {data.fullName} ({displayRole})
               </h3>
             </div>
 
             <span className="text-sm  text-green-500 text-right">
-              {data.status}
+              {displayStatus}
               <img
                 className="h-2 w-2 inline-block text-green-500  ml-2"
                 src={online}
@@ -87,15 +99,17 @@ function Card({ data }) {
 
         <div className="mt-2 px-2">
           <div className="flex items-end justify-end">
-            <span className="ml-2 text-sm text-gray-600">{data.location}</span>
+            <span className="ml-2 text-sm text-gray-600">{data.city}</span>
             <img src={location} className="w-5 h-5" />
           </div>
           <div className="flex items-end justify-end mt-3">
-            <span className="ml-2 text-sm text-gray-600">{data.gender}</span>
+            <span className="ml-2 text-sm text-gray-600">{displayGender}</span>
             <img src={gender} className="w-5 h-5" />
           </div>
           <div className="flex items-end justify-end mt-3">
-            <span className="ml-2 text-sm text-gray-600">{data.phone}</span>
+            <span className="ml-2 text-sm text-gray-600">
+              {data.contactNumber}
+            </span>
             <img src={phone} className="w-5 h-5" />
           </div>
         </div>

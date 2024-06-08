@@ -1,50 +1,115 @@
 /* eslint-disable react/prop-types */
 import contact from "./../../../../assets/icons/medical-center/users/user-details/ContactInformation.svg";
-import location from "./../../../../assets/icons/medical-center/users/user-details/locationInformation.svg";
+import { useDetailsUsers } from "./../../../../pages/manager_center/users/user-details/UserDetailsState";
+
 function ContactInformation({ data }) {
-  return (
-    <div className="border p-4 rounded-xl bg-whiteCard">
-      <div className="flex flex-row justify-end  mt-2 mb-2 ">
-        <div dir="ltr" className="flex flex-grow justify-start items-center">
+//   const { isLoading, isSuccess } = useDetailsUsers();
 
-          {Object.keys(data).length === 4 ? (
-            <img src={contact} />
-          ) : (
-            <img src={location} />
-          )}
+//   if (!data || !data.telecomData) {
+//     return <div>جاري تحميل المعلومات...</div>;
+//   }
+
+//   return (
+//     <>
+//       {isSuccess && !isLoading && data.length != 0 && (
+//         <div className="border p-4 rounded-xl bg-whiteCard" style={{ height: "300px" }}>
+//           <div className="flex flex-row justify-end  mt-2 mb-2 ">
+//             <div dir="ltr" className="flex flex-grow justify-start items-center"> 
+//               <img src={contact} />            
+//           </div>
+//             <h3 className="text-xl text-bgtitle">معلومات التواصل</h3>
+//           </div>
+//           <div className="flex flex-row-reverse  ">
+//             <div className="flex flex-col gap-2 mt-3">
+//               {data.telecomData.phone[0]?.value !== undefined ? (
+//                 <>
+//                   <h3 className="text-right">:الجوال</h3>
+//                   <h3 className="text-right">
+//                     {data.telecomData.phone[0].value}
+//                   </h3>
+//                 </>
+//               ) : null}
+//               {data.telecomData.phone[1]?.value !== undefined ? (
+//                 <>
+//                   <h3 className="text-right">الهاتف</h3>
+//                   <h3 className="text-right">
+//                     {data.telecomData.phone[1].value}
+//                   </h3>
+//                 </>
+//               ) : null}
+
+// {
+//   data.telecomData.gmail && data.telecomData.gmail.length > 0 && data.telecomData.gmail[0].value ? (
+//     <>
+//       <div className="flex flex-col gap-2">
+//         <h3 className="text-right mt-2">البريد الاكتروني</h3>
+//         <h3 className="text-right">
+//           {data.telecomData.gmail[0].value}
+//         </h3>
+//       </div>
+//     </>
+//   ) : null
+// }
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+
+
+
+const { isLoading, isSuccess } = useDetailsUsers();
+
+// التحقق من وجود البيانات والتأكد من أن telecomData ليست فارغة
+if (!data || !data.telecomData || (data.telecomData.phone && data.telecomData.phone.length === 0) && (!data.telecomData.gmail || data.telecomData.gmail.length === 0)) {
+  return <div>جاري تحميل المعلومات...</div>;
+}
+
+return (
+  <>
+    {isSuccess && !isLoading && (
+      <div className="border p-4 rounded-xl bg-whiteCard" style={{ height: "300px" }}>
+        <div className="flex flex-row justify-end  mt-2 mb-2 ">
+          <div dir="ltr" className="flex flex-grow justify-start items-center"> 
+            <img src={contact} alt="Contact Information" />            
+          </div>
+          <h3 className="text-xl text-bgtitle">معلومات التواصل</h3>
         </div>
-
-        <h3 className="text-xl text-bgtitle">{data.title}</h3>
+        <div className="flex flex-row-reverse  ">
+          <div className="flex flex-col gap-2 mt-3">
+            {data.telecomData.phone?.[0]?.value && (
+              <>
+                <h3 className="text-right">:الجوال</h3>
+                <h3 className="text-right">
+                  {data.telecomData.phone[0].value}
+                </h3>
+              </>
+            )}
+            {data.telecomData.phone?.[1]?.value && (
+              <>
+                <h3 className="text-right">الهاتف</h3>
+                <h3 className="text-right">
+                  {data.telecomData.phone[1].value}
+                </h3>
+              </>
+            )}
+            {data.telecomData.gmail?.[0]?.value && (
+              <>
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-right mt-2">البريد الاكتروني</h3>
+                  <h3 className="text-right">
+                    {data.telecomData.gmail[0].value}
+                  </h3>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
-
-      {Object.keys(data).length === 4 ? (
-        <div className="flex flex-row-reverse  ">
-          <div className="flex flex-col gap-2 mt-3">
-            <h3 className="text-right">الهاتف</h3>
-            <h3 className="text-right">0113741201</h3>
-            <h3 className="text-right mt-2">الموبايل</h3>
-            <h3 className="text-right">+963992841193</h3>
-            <div className="flex flex-col gap-2">
-              <h3 className="text-right mt-2">البريد الاكتروني</h3>
-              <h3 className="text-right">refatabdalwahed@gmail.com</h3>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="flex flex-row-reverse  ">
-          <div className="flex flex-col gap-2 mt-3">
-            <h3 className="text-right">المنزل</h3>
-            <h3 className="text-right">{data.house}</h3>
-            <h3 className="text-right mt-2">العمل</h3>
-            <h3 className="text-right">{data.work}</h3>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    )}
+  </>
+);
 }
 
 export default ContactInformation;
-
-
-

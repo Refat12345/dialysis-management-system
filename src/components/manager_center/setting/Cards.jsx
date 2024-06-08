@@ -18,7 +18,7 @@ function Cards() {
         <div className="flex flex-row items-center justify-between w-full">
           <span className=" text-lg text-blue700 pr-4">الاحصائيات</span>
         </div>
-        <div className="grid grid-cols-3 mb-3 -mt-2">
+        {/* <div className="grid grid-cols-3 mb-3 -mt-2">
         {data.cardData.map((card, index) => (
             <Cardd
               key={index}
@@ -26,7 +26,16 @@ function Cards() {
               statistic={data.statisticMedicalInfo[card.statistic]}
             />
           ))}
-        </div>
+        </div> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   mb-3 -mt-2">
+  {data.cardData.map((card, index) => (
+    <Cardd
+      key={index}
+      data={card}
+      statistic={data.statisticMedicalInfo[card.statistic]}
+    />
+  ))}
+</div>
       </div>
     </>
   );

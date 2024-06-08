@@ -29,11 +29,14 @@ export const createAccountRoute = `${registerRoute}/create-account`;
 export const patientsRoute = "/patients";
 export const usersRoute = "/users";
 export const dialysisRoute = "/dialysis";
-export const auditingRoute = "/auditing";
-export const secretariaAccountRoute = "/secretaria_account";
-export const ordersRoute = "/orders";
+export const dialysisDetailsRoute = `${dialysisRoute}/dialysisDetails/:id`;
+
+export const auditingRoute = '/auditing'
+export const secretariaAccountRoute = '/secretaria_account';
+export const ordersRoute = '/orders';
 export const settingRoute = "/setting";
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
+
 
 export const medicalRecordRoute = `medical-record`;
 export const globalInfoRoute = `global-info`;
@@ -44,7 +47,13 @@ export const globalNotesRoute = `global-notes`;
 
 export const medicalCentersRoute = "/medicalCenters";
 
-export const userDetailsRoute = `${usersRoute}/userDetails`;
+export const userDetailsRoute = `${usersRoute}/userDetails/:id`;
+
+//Delete 
+export const addPatintinfoRoute = '/logOut'
+export const addPrescriptionInfoRoute = '/PrescriptionInfo'
+
+// export const userDetailsRoute = `${usersRoute}/userDetails`;
 
 export const enterMedicalRecordRoute = "/enterMedicalRecord"
 
@@ -80,9 +89,9 @@ export const managerCenterSideBar = {
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: "", name: "الملاحظات", icon: NotesIcon },
+    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -119,7 +128,14 @@ export const ordersData = arr.map((order, index) => {
 });
 //==============
 
-const arrOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+
+
+
+
+
+const arrOne = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+
+
 export const cardsData = arrOne.map((arr, index) => {
   return {
     name: " سارية محمد الزعبي ",
