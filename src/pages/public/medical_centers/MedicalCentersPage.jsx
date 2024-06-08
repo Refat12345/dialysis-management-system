@@ -49,6 +49,14 @@ if(isError || !isSuccess) {
         </div>
     );
 }
+if (isSuccess && medicalCenters.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+          <p className="font-bold text-2xl">لا يوجد مراكز طبية بعد</p>
+      </div>
+  );}
+
+
   return (
     <div dir="rtl" className={`mr-48 w-full`}>
       <div className="mx-[4%]">
