@@ -4,12 +4,14 @@ import React from "react";
 import Card from "./Card";
 
 function ViewCard({ data }) {
+  const flatUserData = data.flat();
+
   return (
     <div
       dir="rtl"
       className="min-h-customAbove830  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-min"
     >
-      {data[0].map((card, index) => (
+      {flatUserData.map((card, index) => (
         <div dir="ltr" key={index}>
           <Card data={card} />
         </div>

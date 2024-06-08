@@ -50,8 +50,9 @@ import {
   globalInfoRoute,
   dialysisSessionsRoute,
   globalNotesRoute,
-  settingRoute,
-  addPatintinfoRoute
+  
+  addPatintinfoRoute,
+  addPrescriptionInfoRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -71,9 +72,10 @@ import { PatientProvider } from "../pages/manager_center/patient/patient_list/Pa
 import { UserDetailsProvider } from "../pages/manager_center/users/user-details/UserDetailsState";
 import { GeneralDialysisProvider } from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import GeneralDialysisPage from "../pages/manager_center/dialysis/General/GeneralDialysisPage";
-import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 import { DialysisDetailstProvider } from "../pages/manager_center/dialysis/DialysisPageState";
 import { SettingProvider } from "../pages/manager_center/setting/SettingState";
+import AddPrescription from "../components/addPrescription/AddPrescription";
+import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
 
 const router = createBrowserRouter([
@@ -383,6 +385,22 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+
+  {
+    path: addPrescriptionInfoRoute,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <AddPrescriptionState>
+        <AddPrescription />
+
+        </AddPrescriptionState>
+
+      </>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  //END FOR DELETE 
 ]);
 
 export default router;

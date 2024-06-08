@@ -34,20 +34,20 @@ export const PatientProfileStateProvider = ({ children }) => {
 
   const tabScreens = {
     //TODO: put patient screens here
-    globalInfo: (
-      <GlobalInfoState>
-        <GlobalInfoPage />
-      </GlobalInfoState>
-    ),
-    medicalRecord: <MedicalRecordPage/>,
+    // globalInfo: (
+    //   <GlobalInfoState>
+    //     <GlobalInfoPage />
+    //   </GlobalInfoState>
+    // ),
+    // medicalRecord: <MedicalRecordPage/>,
     // dialysisSessions: <DialysisPage/>,
     dialysisSessions: <div>1</div>,
-    medicalAnalysis: <MedicalAnalysisPage/>,
-    prescriptions: <PrescriptionsPage/>,
-    globalNotes: <GeneralNotePage/>,
+    // medicalAnalysis: <MedicalAnalysisPage/>,
+    // prescriptions: <PrescriptionsPage/>,
+    // globalNotes: <GeneralNotePage/>,
     globalInfo: globalInfoRoute,
     medicalRecord: medicalRecordRoute,
-    dialysisSessions: dialysisSessionsRoute,
+    // dialysisSessions: dialysisSessionsRoute,
     medicalAnalysis: medicalAnalysisRoute,
     prescriptions: prescriptionsRoute,
     globalNotes: globalNotesRoute,

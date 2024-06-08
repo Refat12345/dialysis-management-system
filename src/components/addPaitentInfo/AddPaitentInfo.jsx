@@ -88,6 +88,7 @@ function AddPaitentInfo() {
       <SecretaryAccountHeader />
 
       <div className="grid grid-cols-2">
+
         <div>
           <div className="w-3/4 mr-4 mt-3">
             <HeaderTextField icon={society_status} text={"الوضع الاجتماعي"} />
@@ -244,6 +245,7 @@ function AddPaitentInfo() {
           />
         </div>
       </Row>
+
       <div className="mt-3"></div>
 
       <div className="mr-4">
@@ -251,7 +253,9 @@ function AddPaitentInfo() {
           <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
             {"معلومات التواصل:"}
           </p>
+
           <div className="h-1"></div>
+
           {state.contactInfo.map((contact, index) => (
             <ContactSecretariaComponent
               key={index}
@@ -272,7 +276,9 @@ function AddPaitentInfo() {
               firstLabel="الاستخدام"
               secondLabel="النوع"
             />
-          ))}
+          ))
+          }
+
           <div className="h-3"></div>
           <CustomButton
             variant="solid"

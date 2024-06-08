@@ -34,10 +34,6 @@ export const dialysisDetailsRoute = `${dialysisRoute}/dialysisDetails/:id`;
 export const auditingRoute = '/auditing'
 export const secretariaAccountRoute = '/secretaria_account';
 export const ordersRoute = '/orders';
-export const settingRoute = '/setting'
-export const auditingRoute = "/auditing";
-export const secretariaAccountRoute = "/secretaria_account";
-export const ordersRoute = "/orders";
 export const settingRoute = "/setting";
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
@@ -55,7 +51,9 @@ export const userDetailsRoute = `${usersRoute}/userDetails/:id`;
 
 //Delete 
 export const addPatintinfoRoute = '/logOut'
-export const userDetailsRoute = `${usersRoute}/userDetails`;
+export const addPrescriptionInfoRoute = '/PrescriptionInfo'
+
+// export const userDetailsRoute = `${usersRoute}/userDetails`;
 
 //--------------------------
 //saria
@@ -88,7 +86,7 @@ export const managerCenterSideBar = {
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: "", name: "الملاحظات", icon: NotesIcon },
+    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
@@ -197,9 +195,6 @@ export const surgicalPrecedents = [
 const arrOne = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 
 
-export const cardsData = arrOne.map((arr,index)=>{
-  return  {
-const arrOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 export const cardsData = arrOne.map((arr, index) => {
   return {
     name: " سارية محمد الزعبي ",
