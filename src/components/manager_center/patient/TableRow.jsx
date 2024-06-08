@@ -17,6 +17,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
       connectFour :Object.values(row)[3],
       connectFive :Object.values(row)[4],
       connectSix :Object.values(row)[5],
+      connectSeven: type === "auditing" ?Object.values(row)[6]:""
     } 
   
     return (
@@ -38,7 +39,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
             <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
           </div>
         </td>
-        <td className={`py-3 px-4`}>{type === "auditing" ? useFormatDate(object.connectTow) : object.connectTow}</td>
+        <td className={`py-3 px-4`}>{type === "auditing" ? object.connectTow : object.connectTow}</td>
         {type === "orders" ? <td className="py-3 px-4" >
         
               <p className="whitespace-nowrap overflow-hidden text-ellipsis w-[90%]" >{object.connectThree}</p>
@@ -80,7 +81,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
         {type === "auditing" ?
         <div className= {`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${index % 2 === 0 ? "hover:bg-gray-200" :"hover:bg-gray-300"}`}>
             <AlertDialog renderComponent={<img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />}
-                        contentComponent={<AuditingDetailsDialog oldData={object.connectFive} newData={object.connectSix} details={"تم تعديل الوزن الجاف"}/>}
+                        contentComponent={<AuditingDetailsDialog oldData={object.connectFive} newData={object.connectSix} details={object.connectSeven}/>}
                         titleButton={"رجوع"} 
             />
         </div>:

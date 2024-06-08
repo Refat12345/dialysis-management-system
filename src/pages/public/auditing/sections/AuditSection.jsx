@@ -23,7 +23,16 @@ const AuditSection = ({data}) => {
                     <TableHeader columns={columns} color={"bg-gray-300"}/>
                     <tbody className="text-gray-700">
                         {data.map((audit,index)=>{
-                            return <TableRow key={index} row={audit} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"auditing"}/>
+                            const object = {
+                                operation: audit.operation,
+                                date:"2022-2-3",
+                                affectedUser: audit.affectedUser,
+                                affectorUser: audit.affectorUser,
+                                oldData: audit.oldData,
+                                newData: audit.newData,
+                                destinationOfOperation: audit.destinationOfOperation
+                            }
+                            return <TableRow key={index} row={object} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"auditing"}/>
                             })}
                     </tbody>
             </table>

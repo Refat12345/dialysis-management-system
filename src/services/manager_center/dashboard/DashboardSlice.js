@@ -10,7 +10,7 @@ export const apiDashboard = apiSlice.injectEndpoints({
         }),
         getStatistics : builder.query({
             query :()=>({
-                url:"/getStatistics",
+                url:"/getCenterStatistics",
                 method:"GET"
             }), 
         }),

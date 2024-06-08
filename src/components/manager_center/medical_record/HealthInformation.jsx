@@ -61,7 +61,7 @@ const HealthInformation = ({title , information}) => {
                         {titleArray[6]}:
                     </span>
                     <span className={`font-bold mr-10  text-red-400 ${responsive}`}>
-                        {information.kidneyTransplant}
+                        {information.kidneyTransplant === 0 ? "لا": "نعم"}
                     </span>
                 </div>
             </div>
