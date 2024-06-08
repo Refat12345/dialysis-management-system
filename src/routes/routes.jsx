@@ -35,11 +35,8 @@ import {
   medicalCentersRoute,
   loginRoute,
   pathologicalTitle,
-  pathologicalPrecedents,
   surgicalTitle,
-  surgicalPrecedents,
   pharmacologicalTitle,
-  pharmacologicalPrecedents,
   userDetailsRoute,
   dialysisRoute,
   registerRoute,
@@ -133,7 +130,7 @@ const router = createBrowserRouter([
             element: (
               <PrecedentsSection
                 title={pathologicalTitle}
-                precedents={pathologicalPrecedents}
+                type = {"pathological"}
               />
             ),
             index: true,
@@ -143,7 +140,7 @@ const router = createBrowserRouter([
             element: (
               <PrecedentsSection
                 title={pathologicalTitle}
-                precedents={pathologicalPrecedents}
+                type = {"pathological"}
               />
             ),
           },
@@ -152,7 +149,7 @@ const router = createBrowserRouter([
             element: (
               <PrecedentsSection
                 title={surgicalTitle}
-                precedents={surgicalPrecedents}
+                type = {"surgical"}
               />
             ),
           },
@@ -161,7 +158,7 @@ const router = createBrowserRouter([
             element: (
               <PrecedentsSection
                 title={pharmacologicalTitle}
-                precedents={pharmacologicalPrecedents}
+                type = {"pharmacological"}
               />
             ),
           },

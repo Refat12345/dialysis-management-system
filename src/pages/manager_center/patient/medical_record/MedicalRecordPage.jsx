@@ -40,10 +40,15 @@ const MedicalRecordPage = () => {
 
 if(isError || !isSuccess) {
     return (
-        <div className="flex items-center justify-center h-screen">
-            <p>خطأ بجلب البيانات </p>
-        </div>
+      <div className="flex items-center justify-center h-screen">
+        <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
+      </div>
     );
+}
+if(medicalRecord.original != undefined) {
+  return <div className="flex items-center justify-center h-screen">
+      <p className="font-bold text-2xl">لا يوجد سجل طبي لهذا المريض</p>
+  </div>
 }
   return (
     <div className="flex-grow">
@@ -51,7 +56,7 @@ if(isError || !isSuccess) {
           <HealthInformation title={healthInformation} information={medicalRecord} />
           <div dir="rtl" className="bg-primaryColor ml-[1%] mt-[4%] p-6 shadow-lg rounded-lg overflow-y-auto">
             <NavItemRecord array={precedents} />
-            <Outlet  medicalRecordData={medicalRecord} />
+            <Outlet context={medicalRecord} />
           </div>
       </>
     </div>

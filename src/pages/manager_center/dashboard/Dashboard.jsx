@@ -31,8 +31,8 @@ const Dashboard = () => {
 
   if (!sessionSuccess || !statisticsSuccess) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <p>خطأ بجلب البيانات </p>
+      <div className="flex items-center justify-center h-screen">
+        <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
       </div>
     );
   }

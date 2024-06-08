@@ -34,7 +34,7 @@ const HealthInformation = ({title , information}) => {
                     <span className={`${responsive}`}>
                         {titleArray[3]}:
                     </span>
-                    <span className= {`font-bold mr-16  ${responsive}`}>
+                    <span dir="ltr" className= {`font-bold mr-16  ${responsive}`}>
                         {information.bloodType}
                     </span>
                 </div>
