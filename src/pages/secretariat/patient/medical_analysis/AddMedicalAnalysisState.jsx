@@ -29,8 +29,28 @@ const AddMedicalAnalysisState = ({ children }) => {
   };
 
   const postData = (value) => {
-    if((value.negative === true || value.positive === true) && value.value != "")
+    let valueOne = ""
+    if((value.negative === true || value.positive === true) && value.value != ""){
       console.log("a");
+    }
+    if(value.negative === true) {
+      valueOne = "سلبي"
+    } else if (value.positive === true) {
+      valueOne = "ايجابي"
+    } else {
+      valueOne = value.value
+    }
+    let body = {
+      averageMin:value.averageMin,
+      averageMax:value.averageMax,
+      value:valueOne,
+      quarter:"Q2",
+      analysisType:value.analysisType,
+      analysisDate:value.analysisDate.format("DD-MM-YYYY"),
+      notes:value.notes,
+      userID:22
+    }
+    return body
   }
   const contextValue = {
     state,

@@ -17,7 +17,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
       connectFour :Object.values(row)[3],
       connectFive :Object.values(row)[4],
       connectSix :Object.values(row)[5],
-      connectSeven: type === "auditing" ?Object.values(row)[6]:""
+      connectSeven:Object.values(row)[6]
     } 
   
     return (
@@ -59,7 +59,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type}) {
             </td>
           }
           
-       {type === "orders" && <td className="w-[1px]"></td>}
+      {type === "orders" && <td className="w-[1px]"></td>}
       {type === "orders" && <td>
         <div className="flex justify-end">
         <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">

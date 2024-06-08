@@ -20,13 +20,11 @@ const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fo
 const handlePost =async () => {
   let body =state.postData(state);
   try{
-    await createMedicalRecord(body);
+    console.log(body);
+    // await createMedicalRecord(body);
   }catch(error) {
     console.log(error);
   }
-}
-if(isSuccess) {
-  console.log("sar");
 }
   return (
     <div dir="rtl" className="parent flex-grow  h-screen bg-bgMedicalRecord">
