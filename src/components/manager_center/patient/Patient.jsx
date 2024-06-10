@@ -1,14 +1,23 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import { globalInfoRoute, patientsRoute } from "../../../data/data";
-import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./TableRow";
 import TableHeader from "./TableHeader";
 import { usePatient } from "../../../pages/manager_center/patient/patient_list/PaitientListState";
+import {SelectedTextFeild} from "../.."
+import { useEffect,useState } from "react";
+
 
 export function Table({ data }) {
-  const { selectedOption, handleSelectChange  } = usePatient();
+  const { selectedOption, handleSelectChange } = usePatient();
+ 
+
+  const filter = {
+    title: "نوع ",
+    array: ["مرضى مقبولين", "مرضى مرفوضين", "مرضى انتظار"],
+  };
 
 
   const filteredData = data.map(item => ({
@@ -20,6 +29,9 @@ export function Table({ data }) {
     contactNumber:item.contactNumber
 
   }));
+
+  
+
 
 
 
@@ -54,40 +66,38 @@ export function Table({ data }) {
       </style>
 
       <div className="overflow-x-auto  ml-11 min-h-customAbove600" dir="rtl">
-        <input
+        {/* <input
           dir="rtl"
           type="text"
           placeholder="البحث"
           className="bg-search mt-5 text-right w-1/4 p-2.5 h-10 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
-        />
+          onChange={(e) => setSearchTerm(e.target.value)}  
+
+        /> */}
+
+
         <div className="flex justify-between mb-5 mt-5">
           <h2 className="text-customPurple text-customSize">المرضى</h2>
           <div className="relative w-1/5 ">
-          <select
-              className="bg-search text-right w-full p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
+            <SelectedTextFeild
+              activeLabel={false}
               value={selectedOption}
-              onChange={handleSelectChange}
-            >
-              <option>مرضى مقبولين</option>
-              <option>مرضى انتظار</option>
-              <option>مرضى مرفوضين</option>
-
-            </select>
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <img className="w-5 h-5 " src={down} alt="Patient" />
-            </div>
+              filter={filter.array}
+              onSelect={handleSelectChange}
+            />
           </div>
         </div>
+
+
 
         <table className="min-w-full bg-white">
 
           <TableHeader columns={columns} color="bg-headerTable" />
+          
           <tbody className="text-gray-700">
             {filteredData.map((row, index) => (
                 <TableRow
                 id = {data[index].id}
-                
-
                   key={index}
                   row={row}
                   index={index}
@@ -98,6 +108,7 @@ export function Table({ data }) {
               ))}
           </tbody>
         </table>
+
       </div>
     </>
   );

@@ -1,29 +1,70 @@
 import { PaginationComponent } from "../../../../components";
-import { patientData } from "./../../../../data/data";
+import { useState,useEffect } from "react";
 import { Table } from "../../../../components/manager_center/patient/Patient";
 import { usePatient } from "./PaitientListState";
 import LoadingComponent from "../../../../components/public/LoadingComponent ";
+import PatientHeader from "../../../../components/manager_center/patient/PatientHeader";
 const PatientListPage = () => {
-  const { patientData, isLoading, isSuccess } = usePatient();
-  console.log("patientData in PatientListPage:", patientData);
+
+  const { patientData, isLoading, isSuccess ,filteredDataSearch,setSearchTerm  } = usePatient();
+  const [searchTerm, setSearchTermState] = useState("");
+  const [noResultsFound, setNoResultsFound] = useState(false);
+
+  useEffect(() => {
+    if (searchTerm) {
+      if (filteredDataSearch.length) {
+        setNoResultsFound(false);
+      } else {
+        setNoResultsFound(true);
+      }
+    } else {
+      setNoResultsFound(false);
+    }
+  }, [searchTerm, filteredDataSearch]);
 
   if (isLoading) return <LoadingComponent />;
   if (!patientData) return <div>No data available</div>;
 
+
+
   const flattenedData = patientData.flat();
 
   return (
+    
     <>
-      {isSuccess && !isLoading && (
-        <div className="flex-grow mr-56 ">
+    {isSuccess && !isLoading && flattenedData && (
+      <div className="flex-grow mr-56 ml-8">
+        <PatientHeader
+          setSearchTerm={(term) => {
+            setSearchTermState(term);
+            setSearchTerm(term);
+          }}
+        />
+        {noResultsFound ? (
+          <div
+            className="no-results-message"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <div style={{ textAlign: "center" }}>
+              <p>لم نعثر على أي نتائج مطابقة لبحثك.</p>
+              <p>جرب كلمات مفتاحية مختلفة أو قم بتوسيع نطاق البحث.</p>
+            </div>
+          </div>
+        ) : (
           <PaginationComponent
-            data={flattenedData}
+            data={ filteredDataSearch.length ? filteredDataSearch.flat() :flattenedData}
             RenderComponent={Table}
-            itemsPerPage={3}
+            itemsPerPage={4}
           />
-        </div>
-      )}
-    </>
+        )}
+      </div>
+    )}
+  </>
   );
 };
 
