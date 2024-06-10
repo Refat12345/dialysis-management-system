@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // /* eslint-disable react/prop-types */
 // import { createContext, useContext, useState, useEffect } from "react";
 // import { useGetUserQuery } from "./UserSlice";
@@ -84,7 +85,7 @@
 
 ///////////
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetUserQuery } from "./UserSlice";
+import { useGetUserQuery } from "../../../../services/manager_center/user/user_list/UserSlice"; 
 
 const UserContext = createContext();
 

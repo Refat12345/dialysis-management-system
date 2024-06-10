@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetCenterSettingQuery } from "./SettingSlice";
+import { useGetCenterSettingQuery } from "../../../services/manager_center/setting/SettingSlice"; 
 
 const SettingContext = createContext();
 

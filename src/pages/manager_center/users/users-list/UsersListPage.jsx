@@ -4,7 +4,7 @@ import Header from "../../../../components/manager_center/users/Header";
 import ViewCard from "../../../../components/manager_center/users/ViewCard";
 import { cardsData } from "../../../../data/data";
 import React, { useState, useEffect } from "react";
-import { useGetUserQuery } from "./UserSlice";
+import { useGetUserQuery } from "../../../../services/manager_center/user/user_list/UserSlice";
 import LoadingComponent from "../../../../components/public/LoadingComponent ";
 import { UserProvider, useUsers } from "./UserListState";
 // const UsersListPage = () => {

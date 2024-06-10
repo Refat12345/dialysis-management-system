@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useGetPatientQuery } from './PatientSlice'; 
+import { useGetPatientQuery } from '../../../../services/manager_center/patient/patient_list/PatientSlice'; 
 
 const PatientContext = createContext();
 

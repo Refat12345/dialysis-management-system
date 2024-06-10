@@ -9,13 +9,14 @@ import {
   work,
 } from "../../assets/index";
 import React from "react";
-import SecretaryAccountHeader from "../manager_center/secretary/SecretaryAccountHeader";
+import PublicHeader from "../manager_center/secretary/PublicHeader"; 
 import HeaderTextField from "./HeaderTextField";
 import CustomTextField from "../public/textfield/CustomTextField";
 import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
 import { useAddPaitentInfoState } from "./AddPaitentInfoState";
 import Row from "../public/primitives/Row";
 import Column from "../public/primitives/Column";
+import  patientIcon  from "../../assets/icons/addPaitentInfo/econamic_status.svg";
 import {
   bodyMeduimStyle,
   bodySmallStyle,
@@ -85,7 +86,8 @@ function AddPaitentInfo() {
   };
   return (
     <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage">
-      <SecretaryAccountHeader />
+
+      <PublicHeader title={'اضافة المعلومات العامة'} icon={patientIcon} />
 
       <div className="grid grid-cols-2">
 
