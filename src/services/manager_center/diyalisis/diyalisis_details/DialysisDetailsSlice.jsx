@@ -1,4 +1,4 @@
-import { apiSlice } from "../../../services/apiSlice"; 
+import { apiSlice } from "../../../apiSlice"; 
 
 export const DialysisDetailsSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

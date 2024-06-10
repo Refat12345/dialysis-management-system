@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useGetDialysisDetailsQuery } from './DialysisDetailsSlice';
+import { useGetDialysisDetailsQuery } from '../../../services/manager_center/diyalisis/diyalisis_details/DialysisDetailsSlice'; 
 const DialysisDetailsContext = createContext();
 
 export const DialysisDetailstProvider = ({ children ,id}) => {

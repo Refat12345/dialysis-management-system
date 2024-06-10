@@ -1,10 +1,10 @@
-import { apiSlice } from "../../../../services/apiSlice";
+import { apiSlice } from "../../../apiSlice";
 
-export const UserSlice = apiSlice.injectEndpoints({
+const UserSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query({
       query: (role) => ({
-        url: `getCenterUsersByRole/0/${role}`,
+        url: `/getCenterUsersByRole/0/${role}`,
         method: "GET",
       }),
     }),

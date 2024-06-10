@@ -1,11 +1,11 @@
-import SecretaryAccountHeader from "../manager_center/secretary/SecretaryAccountHeader";
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { bodyMeduimStyle } from "../../utils/StyleUtils";
 import CustomTextField from "../public/textfield/CustomTextField";
 import DatePickerr from "./DatePicker";
 import { useAddPrescriptionState } from "./AddPrescriptionState";
-
+import PublicHeader from "../manager_center/secretary/PublicHeader";
+import patient from "../../assets/icons/addPaitentInfo/econamic_status.svg"
 function AddPrescription() {
     const { state, updateState } = useAddPrescriptionState();
 
@@ -16,7 +16,7 @@ function AddPrescription() {
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage"
     >
-      <SecretaryAccountHeader />
+      <PublicHeader icon={patient} title={'اضافة وصفة طبية'} />
 
       <div className=" border p-3 rounded-xl m-3">
 

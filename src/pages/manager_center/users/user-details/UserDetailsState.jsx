@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useGetUserDetailsQuery } from './UserDetailsSlice'; 
+import { useGetUserDetailsQuery } from '../../../../services/manager_center/user/user_details/UserDetailsSlice'; 
 
 const UserDetailsContext = createContext();
 

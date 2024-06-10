@@ -51,7 +51,7 @@ import {
   globalNotesRoute,
   
   addPatintinfoRoute,
-  addPrescriptionInfoRoute
+  addPrescriptionInfoRoute,
   enterMedicalRecordRoute,
   addMedicalAnalysisRoute
 } from "../data/data";

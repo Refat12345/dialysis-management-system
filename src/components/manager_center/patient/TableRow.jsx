@@ -19,8 +19,8 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
       connectFour :Object.values(row)[3],
       connectFive :Object.values(row)[4],
       connectSix :Object.values(row)[5],
-      connectSeven :Object.values(row)[5],
-      connectEight :Object.values(row)[5],
+      // connectSeven :Object.values(row)[5],
+      // connectEight :Object.values(row)[5],
 
       connectSeven: type === "auditing" ?Object.values(row)[6]:""
     } 

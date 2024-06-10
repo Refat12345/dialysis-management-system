@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useGetGeneralDialysisQuery } from "./GeneralDialysisSlice";
+import { useGetGeneralDialysisQuery } from "../../../../services/manager_center/diyalisis/dialysis_sidebar/GeneralDialysisSlice"; 
 import { createContext, useContext, useState, useEffect } from "react";
 
 const GeneralDialysisContext = createContext();
