@@ -49,9 +49,8 @@ import {
   globalInfoRoute,
   dialysisSessionsRoute,
   globalNotesRoute,
-  
   addPatintinfoRoute,
-  addPrescriptionInfoRoute
+  addPrescriptionInfoRoute,
   enterMedicalRecordRoute,
   addMedicalAnalysisRoute
 } from "../data/data";
