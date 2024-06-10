@@ -10,6 +10,8 @@ export const GeneralDialysisProvider = ({ children }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectedYearOption, setSelectedYearOption] = useState("2024");
   const [selectedMonthOption, setSelectedMonthOption] = useState("5");
+  const [filteredDataSearch, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { data: users, isLoading: isUserLoading, isSuccess: isUserSuccess } = useGetGeneralDialysisQuery({ month: selectedMonthOption, year: selectedYearOption });
 
@@ -27,12 +29,24 @@ export const GeneralDialysisProvider = ({ children }) => {
     }
   }, [isUserSuccess, isUserLoading, users]);
 
+  useEffect(() => {
+    if (searchTerm !== "") {
+      const flatUserData = userData.dialysisSessions.flat();
+      const filtered = flatUserData.filter((user) =>
+        user.patientName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(userData);
+    }
+  }, [searchTerm, userData]);
+
   const handleSelectYearChange = (event) => {
-    setSelectedYearOption(event.target.value);
+    setSelectedYearOption(event);
   };
 
   const handleSelectMonthChange = (event) => {
-    setSelectedMonthOption(event.target.value);
+    setSelectedMonthOption(event);
   };
 
   return (
@@ -47,6 +61,8 @@ export const GeneralDialysisProvider = ({ children }) => {
         selectedMonthOption,
         setSelectedMonthOption,
         handleSelectMonthChange,
+        setSearchTerm,
+        filteredDataSearch
       }}
     >
       {children}
