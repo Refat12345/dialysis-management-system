@@ -5,7 +5,7 @@ const AuditingSlice = apiSlice.injectEndpoints(
         endpoints:(builder)=>({
             getAuditing:builder.query({
                 query:(id)=>({
-                    url:`/getlogs/${id}`
+                    url:`getlogs/${id}`
                 })
         })
     }

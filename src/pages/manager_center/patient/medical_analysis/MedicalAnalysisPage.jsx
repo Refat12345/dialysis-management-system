@@ -6,14 +6,15 @@ import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_
 
 const MedicalAnalysisPage = () => {
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
-    const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(16);
+    const id = sessionStorage.getItem("patientId");
+    const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(id);
     const [analysis, setAnalysis] = useState([]);
     const [filters, setFilters] = useState({
         type: "",
         date: "",
         quarter: ""
     });
-
+   
     useEffect(() => {
         if (isSuccess && data?.analysis) {
             setAnalysis(data.analysis);
@@ -22,17 +23,19 @@ const MedicalAnalysisPage = () => {
 
     const filteredAnalysis = useMemo(() => {
         let filteredAnalysis = analysis;
-
         if (filters.type !== "" && filters.type !== "نوع التحليل") {
             filteredAnalysis = filteredAnalysis.filter(ana => ana.analysisName.includes(filters.type));
         }
         if (filters.date !== "" && filters.date !== "الشهر") {
-            filteredAnalysis = filteredAnalysis.filter(ana => ana.analysisDate.includes(filters.date));
+  
+            filteredAnalysis = filteredAnalysis.filter((ana) => {
+                console.log(typeof ana.analysisDate)
+                return ana.analysisDate.includes(filters.date)
+            });
         }
-        if (filters.quarter !== "" && filters.quarter !== "الربع") {
+        if (filters.quarter !== "" && filters.quarter !== " الربع") {
             filteredAnalysis = filteredAnalysis.filter(ana => ana.quarter.includes(filters.quarter));
         }
-
         return filteredAnalysis;
     }, [filters, analysis]);
 

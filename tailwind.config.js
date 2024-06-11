@@ -18,6 +18,7 @@ export default {
       fontSize: {
         customSize: "22px",
         ms: "0.84375rem",
+        m:"0.9000rem",
         md: "0.9375rem",
         s: "0.78125rem",
         17: "1.0625rem",

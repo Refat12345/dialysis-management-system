@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import GeneralAboutCenter from "../../../components/manager_center/setting/GeneralAboutCenter/GeneralAboutCenter";
 import Cards from "../../../components/manager_center/setting/Cards";
 import ContactCenter from "../../../components/manager_center/setting/Contact/ContactCenter";

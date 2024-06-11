@@ -1,5 +1,4 @@
 import { PaginationComponent } from "../../../../components";
-import { patientData } from "./../../../../data/data";
 import { Table } from "../../../../components/manager_center/patient/Patient";
 import { usePatient } from "./PaitientListState";
 import LoadingComponent from "../../../../components/public/LoadingComponent ";

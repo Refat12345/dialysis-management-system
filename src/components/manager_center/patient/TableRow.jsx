@@ -25,7 +25,10 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
     return (
       <tr
         className={`text-right border-b ${getRowColor(index)}`}
-        onClick={() => handleRowClick(userIdString)}
+        onClick={() => {
+          handleRowClick(userIdString)
+          sessionStorage.setItem("patientId",userIdString)
+        }}
 
       >
         <td className="py-3 px-4 ">
@@ -42,7 +45,7 @@ function TableRow({ row, index, handleRowClick, getRowColor ,type ,id}) {
             <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
           </div>
         </td>
-        <td className={`py-3 px-4`}>{type === "auditing" ? object.connectTow : object.connectTow}</td>
+        <td className={`py-3 px-4`}>{type === "auditing" ? useFormatDate(object.connectTow) : object.connectTow}</td>
         {type === "orders" ? <td className="py-3 px-4" >
         
               <p className="whitespace-nowrap overflow-hidden text-ellipsis w-[90%]" >{object.connectThree}</p>

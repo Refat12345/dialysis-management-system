@@ -25,7 +25,7 @@ const AuditSection = ({data}) => {
                         {data.map((audit,index)=>{
                             const object = {
                                 operation: audit.operation,
-                                date:"2022-2-3",
+                                date:audit.date,
                                 affectedUser: audit.affectedUser,
                                 affectorUser: audit.affectorUser,
                                 oldData: audit.oldData,

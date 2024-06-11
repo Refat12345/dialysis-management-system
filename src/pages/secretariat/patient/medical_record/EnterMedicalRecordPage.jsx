@@ -20,8 +20,7 @@ const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fo
 const handlePost =async () => {
   let body =state.postData(state);
   try{
-    console.log(body);
-    // await createMedicalRecord(body);
+    await createMedicalRecord(body);
   }catch(error) {
     console.log(error);
   }

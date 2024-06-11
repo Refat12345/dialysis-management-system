@@ -27,6 +27,7 @@ export function Table({ data }) {
 
   const handleRowClick = (patientName) => {
     navigate(`${patientsRoute}/${patientName}/${globalInfoRoute}`);
+    
   };
 
   const getRowColor = (index) => {
@@ -86,8 +87,6 @@ export function Table({ data }) {
             {filteredData.map((row, index) => (
                 <TableRow
                 id = {data[index].id}
-                
-
                   key={index}
                   row={row}
                   index={index}

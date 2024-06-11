@@ -4,7 +4,7 @@ export const apiShowMedicalCenters = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getMedicalCenters: builder.query({
             query: () => ({
-                url: '/getAllMedicalCenters',
+                url: 'getAllMedicalCenters',
                 method: 'GET',
                 
             }),

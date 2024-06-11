@@ -3,7 +3,7 @@ import time from "./../../../../assets/icons/medical-center/setting/time.svg";
 import addTime from "./../../../../assets/icons/medical-center/setting/addtime.svg";
 import edit from "./../../../../assets/icons/medical-center/setting/edit.svg";
 import DialogTimeCenter from "./DialogTimeCenter";
-import React, { useState,useContext } from "react";
+import  { useState,useContext } from "react";
 import { DataContext } from "../DataContext";
 
 function TimeCenter() {
