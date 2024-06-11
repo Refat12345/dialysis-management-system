@@ -30,7 +30,7 @@
 //         />
 //         <div className="flex items-end justify-end pr-2 w-2/4">
 //           <div className="  relative w-2/12 mr-4 ">
-            
+
 //              <select
 //               className="bg-search text-right w-full p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
 //               value={selectedOption}
@@ -70,16 +70,19 @@
 // }
 // export default Header;
 
-
-import React from "react";
 import CustomButton from "../../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { bodyMeduimStyle } from "../../../utils/StyleUtils";
 import { useNavigate } from "react-router-dom";
 import { secretariaAccountRoute } from "../../../data/data";
 import { useUsers } from "../../../pages/manager_center/users/users-list/UserListState";
+import {  SelectedTextFeild } from "../..";
 
-function Header({ setSearchTerm }) { // إضافة setSearchTerm كخاصية
+function Header({ setSearchTerm }) {
+  const filter = {
+    title: "نوع ",
+    array: ["طبيب", "السكرتارية", "ممرض"],
+  };
   const navigate = useNavigate();
   const { selectedOption, handleSelectChange } = useUsers();
 
@@ -103,24 +106,18 @@ function Header({ setSearchTerm }) { // إضافة setSearchTerm كخاصية
         />
         <div className="flex items-end justify-end pr-2 w-2/4">
           <div className="relative w-2/12 mr-4">
-            <select
-              className="bg-search text-right w-full p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
+            <SelectedTextFeild
+              activeLabel={false}
               value={selectedOption}
-              onChange={handleSelectChange}
-            >
-              <option>طبيب</option>
-              <option>ممرض</option>
-              <option>سكرتاريا</option>
-            </select>
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              {/* SVG icon */}
-            </div>
+              filter={filter.array}
+              onSelect={handleSelectChange}
+            />
           </div>
           <input
             type="text"
             placeholder="...البحث"
             className="bg-search text-right w-5/12 p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
-            onChange={(e) => setSearchTerm(e.target.value)} // إضافة onChange لتحديث قيمة البحث
+            onChange={(e) => setSearchTerm(e.target.value)}  
           />
         </div>
       </div>
