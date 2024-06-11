@@ -3,6 +3,7 @@ import { MedicalAnalysis, PageLoader } from "../../../../components";
 import Header from "./sections/Header";
 import { useEffect, useState, useMemo } from "react";
 import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
+import { formatDate } from "../../../../utils/DateUtils";
 
 const MedicalAnalysisPage = () => {
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
@@ -27,10 +28,8 @@ const MedicalAnalysisPage = () => {
             filteredAnalysis = filteredAnalysis.filter(ana => ana.analysisName.includes(filters.type));
         }
         if (filters.date !== "" && filters.date !== "الشهر") {
-  
             filteredAnalysis = filteredAnalysis.filter((ana) => {
-                console.log(typeof ana.analysisDate)
-                return ana.analysisDate.includes(filters.date)
+                return formatDate(ana.analysisDate).includes(filters.date)
             });
         }
         if (filters.quarter !== "" && filters.quarter !== " الربع") {

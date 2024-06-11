@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { DropDown, Search } from "../../../../components";
+import { DropDown, Search } from "../../../../components"
 const Header = ({value,setFilter,setInputValue}) => {
     const filters = [
         {

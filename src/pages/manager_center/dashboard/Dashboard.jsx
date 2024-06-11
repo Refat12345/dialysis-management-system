@@ -8,21 +8,21 @@ import { useGetCausesRenalFailureQuery, useGetPieChartsQuery, useGetSessionsQuer
 
 const Dashboard = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [date,setDate] = useState(null)
-  let dateOne= date != null && new Date(date.$d)
-   let dateObj = date !=null && {
-    month:dateOne.getMonth()+1,
-    year:dateOne.getFullYear()
-    
-  }
-  const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(dateObj)
+  const [date,setDate] = useState({
+    month:"",
+    year:""
+  })
+  
+  const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
   const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading  } = useGetSessionsQuery();
   const { data: statisticsData, isSuccess: statisticsSuccess, isLoading: statisticsLoading } = useGetStatisticsQuery();
   const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
   useEffect(() => {
-      refetch();
+      if(date.month != "" && date.year != "" ){
+        refetch();
+      }
   }, [date, refetch]);
   useEffect(() => {
     if (!isLoaded) {
@@ -45,7 +45,7 @@ const Dashboard = () => {
       </div>
     );
   }
- 
+ console.log(medicineDate);
   return (
     <div className="flex-grow md:mr-48 bg-bgDashboard h-screen">
       <Cards data={statisticsData[0]} />
@@ -59,7 +59,7 @@ const Dashboard = () => {
           />
         </div>
         <div className="hidden lg2:block w-1/3">
-          <PieCharts medicineData={medicineDate.pieChart} causeRenalData = {causeRenalData.causeRenalFailure} loading= {medicineLoading} setValue={setDate} />
+          <PieCharts medicineData={medicineDate.pieChart} causeRenalData = {causeRenalData.causeRenalFailure} loading= {medicineLoading} setValue={setDate} date= {date} />
         </div>
       </div>
     </div>

@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import { useFormatDate } from "../../../utils/DateUtils"
-
+import { formatDate } from "../../../utils/DateUtils"
 const MedicalAnalysis = ({title,analysis}) => {
-   
-   
-  return (
-   
+    
+return (
         <div dir="rtl" className="bg-primaryColor rounded-lg  shadow-inner shadow-grey-200 p-4 pl-2 pb-0 overflow-y-auto mb-4">
         <div className="flex flex-row justify-between ">
             <div className="title flex flex-col  ">
@@ -18,7 +15,7 @@ const MedicalAnalysis = ({title,analysis}) => {
             <div className="content flex flex-col ">
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
                 <span className ={`content-center font-bold mb-3 ${analysis.value === "سلبي"?"text-red-500":"text-green-600"}`}>{analysis.value}</span>
-                <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{useFormatDate(analysis.analysisDate)}</span>
+                <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{formatDate(analysis.analysisDate)}</span>
             </div>
             <div className="w-[40%]">
                 <p className="leading-[2] text-titleSideColor font-bold">
@@ -28,8 +25,7 @@ const MedicalAnalysis = ({title,analysis}) => {
             </div>
             </div>
     </div>
-  
-  )
+)
 }
 
 export default MedicalAnalysis
