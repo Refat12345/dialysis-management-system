@@ -6,7 +6,7 @@ import DialogCardd from "./DialogCardd";
 import { DataContext } from "../DataContext";
 
 /* eslint-disable react/prop-types */
-function Cardd({ data, statistic }) {
+function Cardd({ data,title,icon}) {
   const [open, setOpen] = useState(false);
 
   const height = window.innerHeight;
@@ -21,60 +21,33 @@ function Cardd({ data, statistic }) {
   const responsiveWidth = "w-full sm:w-1/2 md:w-1/3 lg:w-3/4";
   const responsiveHeight = "h-auto";
   const responsiveMargin = "mx-5 my-2";
-  const overflowClass = "overflow-hidden"; // لمنع المحتوى من الخروج
-
-  //   const responsiveWidth = "w-60"; // حجم العرض الثابت
-  // const responsiveHeight = "h-24"; // حجم الارتفاع الثابت
-  // const responsiveMargin = "mx-5 my-2"; // المسافة الجانبية
+  const overflowClass = "overflow-hidden"; 
   return (
+
     <>
-      {data.name === "اجمالي الكراسي" ? (
-        <>
-          <div
-            onClick={() => setOpen(true)}
-            style={styleComponent}
-            dir="rtl"
-            // className="h-24 pl-6 w-60 mx-5  bg-gray300 rounded-xl shadow-lg flex flex-row-reverse items-center text-right "
-            className={`${responsiveHeight} ${responsiveWidth} ${responsiveMargin}  ${overflowClass} bg-gray300 rounded-xl shadow-lg flex flex-row-reverse items-center text-right`}
-          >
-            <div className="mr-6 ml-5 ">
-              <p className="font-bold text-2xl">{statistic}</p>
-
-              <div className="text-base mb-2">{data.name}</div>
-            </div>
-
-            <div
-              style={style}
-              className=" flex justify-center items-center w-14 h-14 "
-            >
-              <img src={data.icon} alt="" />
-            </div>
-          </div>
-        </>
-      ) :  <>
+       <>
       <div
         
         style={styleComponent}
         dir="rtl"
-        // className="h-24 pl-6 w-60 mx-5  bg-gray300 rounded-xl shadow-lg flex flex-row-reverse items-center text-right "
         className={`${responsiveHeight} ${responsiveWidth} ${responsiveMargin}  ${overflowClass} bg-gray300 rounded-xl shadow-lg flex flex-row-reverse items-center text-right`}
       >
         <div className="mr-6 ml-5 ">
-          <p className="font-bold text-2xl">{statistic}</p>
+          <p className="font-bold text-2xl">{data}</p>
 
-          <div className="text-base mb-2">{data.name}</div>
+          <div className="text-base mb-2">{title}</div>
         </div>
 
         <div
           style={style}
           className=" flex justify-center items-center w-14 h-14 "
         >
-          <img src={data.icon} alt="" />
+          <img src={icon} alt="" />
         </div>
       </div>
-    </>}
+    </>
 
-      <DialogCardd open={open} setOpen={setOpen} />
+      {/* <DialogCardd open={open} setOpen={setOpen} /> */}
     </>
   );
 }

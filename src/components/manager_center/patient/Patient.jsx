@@ -30,14 +30,11 @@ export function Table({ data }) {
 
   }));
 
-  
-
-
-
 
   const navigate = useNavigate();
 
   const handleRowClick = (patientName) => {
+   
     navigate(`${patientsRoute}/${patientName}/${globalInfoRoute}`);
   };
 
@@ -66,16 +63,7 @@ export function Table({ data }) {
       </style>
 
       <div className="overflow-x-auto  ml-11 min-h-customAbove600" dir="rtl">
-        {/* <input
-          dir="rtl"
-          type="text"
-          placeholder="البحث"
-          className="bg-search mt-5 text-right w-1/4 p-2.5 h-10 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
-          onChange={(e) => setSearchTerm(e.target.value)}  
-
-        /> */}
-
-
+     
         <div className="flex justify-between mb-5 mt-5">
           <h2 className="text-customPurple text-customSize">المرضى</h2>
           <div className="relative w-1/5 ">
@@ -88,8 +76,6 @@ export function Table({ data }) {
           </div>
         </div>
 
-
-
         <table className="min-w-full bg-white">
 
           <TableHeader columns={columns} color="bg-headerTable" />
@@ -97,7 +83,7 @@ export function Table({ data }) {
           <tbody className="text-gray-700">
             {filteredData.map((row, index) => (
                 <TableRow
-                id = {data[index].id}
+                  id = {data[index].id}
                   key={index}
                   row={row}
                   index={index}

@@ -12,8 +12,8 @@ import TimeCenter from "../../../components/manager_center/setting/TiemCenter/Ti
 import { SettingProvider, useSetting } from "./SettingState";
 import LoadingComponent from "../../../components/public/LoadingComponent ";
 function SettingPage() {
-  const { SettingData, isLoading, isSuccess } = useSetting();
-  console.log("Setting Data in PatientListPage:", SettingData);
+  const { SettingData, isLoading, isSuccess,SettingTime, setSettingTime } = useSetting();
+  console.log("Setting Time ", SettingTime);
 
   if (isLoading) return <LoadingComponent />;
   if (!SettingData) return <div>No data available</div>;
@@ -36,12 +36,12 @@ function SettingPage() {
  
            <div className="flex flex-row gap-6">
              <GeneralAboutCenter data={SettingData.center} />
-             {/* <div className="grid grid-cols-1 gap-3 ">
-               <Cards />
-               <TimeCenter data={dataCenterTime} />
-               <ContactCenter data={dataCenterLocation} />
-               <NoteCenter  />
-             </div> */}
+             <div className="grid grid-cols-1 gap-3 ">
+               <Cards data={SettingData.center} />
+               <TimeCenter data={SettingData.center.shifts} SettingTime={SettingTime} setSettingTime={setSettingTime}  />
+               <ContactCenter data={SettingData.center.telecom} />
+               {/* <NoteCenter  /> */}
+             </div>
            </div>
          </div>
        </div>

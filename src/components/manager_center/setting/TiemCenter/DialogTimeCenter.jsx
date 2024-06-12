@@ -10,17 +10,19 @@ export default function DialogTimeCenter({ open, setOpen }) {
   const handleClose = () => {
     setOpen(false);
   };
-  const { data, setData } = useContext(DataContext);
+  // const { data, setData } = useContext(DataContext);
 
   const [shiftName, setShiftName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
+  console.log(startTime)
+  
+
   const handleInputChange = (e, setter) => setter(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // إضافة الوردية الجديدة إلى البيانات
     const newShift = {
       name: shiftName,
       start: startTime,
@@ -41,7 +43,8 @@ export default function DialogTimeCenter({ open, setOpen }) {
       </DialogTitle>
       <DialogContent className="p-4 w-full " dir="rtl">
         <div className=" mx-auto p-4  w-full">
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}> */}
+          <form >
             <div className="mb-4 w-96">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"

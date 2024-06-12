@@ -16,7 +16,7 @@ const Dashboard = () => {
   
   useEffect(() => {
     if (!isLoaded) {
-      Cookies.set("token", "22|uheq145P7KxoWfJcO0pndmpdh3qbpZh9W3NLCHogaa1cdfc5");
+      Cookies.set("token", "47|Veqh5DOlaeVVEBqpKB6AJXekzeWbl09MsZLQt51795626b02");
       setIsLoaded(true);
     }
   }, [isLoaded]);

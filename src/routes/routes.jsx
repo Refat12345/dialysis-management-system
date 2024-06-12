@@ -81,6 +81,7 @@ import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
 import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/AddMedicalAnalysisState";
+import { GeneralDetailsProvider } from "../pages/manager_center/generalNotes/GeneralNoteState";
 
 const router = createBrowserRouter([
   {
@@ -207,7 +208,11 @@ const router = createBrowserRouter([
       },
       {
         path: globalNotesRoute,
-        element: <GeneralNotePage />,
+        element: 
+        <GeneralDetailsProvider>
+        <GeneralNotePage />
+        </GeneralDetailsProvider>
+        ,
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },

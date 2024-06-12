@@ -80,6 +80,7 @@ function ContactCenter({ data }) {
 
   const isEmpty = !data || data.length === 0;
 
+
   return (
     <div className="border p-4 rounded-xl bg-whiteCard overflow-hidden">
       <div className="flex flex-row-reverse   mt-2 mb-2 ">
@@ -105,19 +106,19 @@ function ContactCenter({ data }) {
         <img className="ml-2" src={medicalContact} />
       </div>
       <div className="flex flex-wrap -mx-2 ">
+
         <div className="flex flex-row gap-56 mt-3 ">
-          <div className="flex flex-col">
-            <h3 className="text-right">{"المكتب"}</h3>
-            <h3 className="text-right">{data.line}</h3>
-          </div>
-          <div className="flex flex-col">
-            <h3 className="text-right">{"الموبايل"}</h3>
-            <h3 className="text-right">{data.phone}</h3>
-          </div>
-          <div className="flex flex-col">
-            <h3 className="text-right">{"الايميل"}</h3>
-            <h3 className="text-right">{data.gmail}</h3>
-          </div>
+          
+          {data.map((card, index) => {
+                return (
+                  <div key={index} className="flex flex-col">
+                    <h3 className="text-right">{card.system}</h3>
+                    <h3 className="text-right">{card.value}</h3>
+                  </div>
+                );
+           
+          })}
+          
         </div>
       </div>
     </div>
@@ -125,3 +126,15 @@ function ContactCenter({ data }) {
 }
 
 export default ContactCenter;
+{/* <div className="flex flex-col">
+            <h3 className="text-right">{"المكتب"}</h3>
+            <h3 className="text-right">{data.line}</h3>
+          </div> */}
+{/* <div className="flex flex-col">
+            <h3 className="text-right">{"الموبايل"}</h3>
+            <h3 className="text-right">{data.phone}</h3>
+          </div>
+          <div className="flex flex-col">
+            <h3 className="text-right">{"الايميل"}</h3>
+            <h3 className="text-right">{data.gmail}</h3>
+          </div> */}
