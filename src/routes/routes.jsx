@@ -52,7 +52,8 @@ import {
   addPatintinfoRoute,
   addPrescriptionInfoRoute,
   enterMedicalRecordRoute,
-  addMedicalAnalysisRoute
+  addMedicalAnalysisRoute,
+  enterDisbursedMedicines
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -80,6 +81,8 @@ import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
 import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/AddMedicalAnalysisState";
+import EnterDisbursedMedicines from "../pages/secretariat/enter_disbursed_medicines/EnterDisbursedMedicinesPage";
+import EnterDisbursedMedicinesState from "../pages/secretariat/enter_disbursed_medicines/EnterDisbursedMedicinesState";
 
 const router = createBrowserRouter([
   {
@@ -389,8 +392,20 @@ const router = createBrowserRouter([
         <SideBar sideBarData={managerCenterSideBar} />
         <AddPrescriptionState>
         <AddPrescription />
-
         </AddPrescriptionState>
+
+      </>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: enterDisbursedMedicines,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <EnterDisbursedMedicinesState>
+        <EnterDisbursedMedicines />
+        </EnterDisbursedMedicinesState>
 
       </>
     ),

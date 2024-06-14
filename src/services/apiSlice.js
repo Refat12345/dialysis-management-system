@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
+    
     baseQuery: fetchBaseQuery({
         credentials: 'same-origin',
         baseUrl: "http://localhost:8000/api/",

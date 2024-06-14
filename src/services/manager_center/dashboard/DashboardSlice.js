@@ -8,11 +8,11 @@ export const apiDashboard = apiSlice.injectEndpoints({
                 method: 'GET',
             }),
         }),
-        getStatistics : builder.query({
+        getCenterStatistics: builder.query({
             query :()=>({
                 url:"getCenterStatistics",
                 method:"GET"
-            }), 
+            })
         }),
         getCausesRenalFailure : builder.query({
             query :()=>({
@@ -33,7 +33,7 @@ export const apiDashboard = apiSlice.injectEndpoints({
 
 export const {
     useGetSessionsQuery,
-    useGetStatisticsQuery,
+    useGetCenterStatisticsQuery,
     useGetPieChartsQuery,
     useGetCausesRenalFailureQuery
 } = apiDashboard;

@@ -6,6 +6,7 @@ import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_
 import { formatDate } from "../../../../utils/DateUtils";
 
 const MedicalAnalysisPage = () => {
+
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
     const id = sessionStorage.getItem("patientId");
     const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(id);

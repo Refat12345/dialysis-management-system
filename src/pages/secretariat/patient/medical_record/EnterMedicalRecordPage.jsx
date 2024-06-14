@@ -25,6 +25,7 @@ const handlePost =async () => {
     console.log(error);
   }
 }
+
   return (
     <div dir="rtl" className="parent flex-grow  h-screen bg-bgMedicalRecord">
         <div className="md:mr-48 bg-bgMedicalRecord">
