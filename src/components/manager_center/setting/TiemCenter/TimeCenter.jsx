@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import time from "./../../../../assets/icons/medical-center/setting/time.svg";
 import addTime from "./../../../../assets/icons/medical-center/setting/addtime.svg";

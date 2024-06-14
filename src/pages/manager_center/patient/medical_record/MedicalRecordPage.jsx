@@ -28,7 +28,8 @@ const precedents = [
 ];
 
 const MedicalRecordPage = () => {
-  const { data, isSuccess, isLoading,isError } = useGetMedicalRecordQuery(16);
+  const id = sessionStorage.getItem("patientId");
+  const { data, isSuccess, isLoading,isError } = useGetMedicalRecordQuery(id);
 
   const medicalRecord = useMemo(() => isSuccess ? data.medicalRecord : null, [isSuccess, data]);
   if (isLoading) {
@@ -45,7 +46,7 @@ if(isError || !isSuccess) {
       </div>
     );
 }
-if(medicalRecord.original != undefined) {
+if(medicalRecord ==="لا يوجد سجل طبي لهذاالمريض") {
   return <div className="flex items-center justify-center h-screen">
       <p className="font-bold text-2xl">لا يوجد سجل طبي لهذا المريض</p>
   </div>

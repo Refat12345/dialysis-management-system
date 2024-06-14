@@ -36,6 +36,7 @@ export function Table({ data }) {
   const handleRowClick = (patientName) => {
    
     navigate(`${patientsRoute}/${patientName}/${globalInfoRoute}`);
+    
   };
 
   const getRowColor = (index) => {

@@ -14,12 +14,12 @@ const DialysisSession = ({dialysis}) => {
         <div className={`flex flex-row-reverse  bg-white rounded-md mx-4 my-4 mb-2 ${width<640 ?"justify-between":""}`}>
             <div dir="rtl" className="flex w-[18.5%] ">
                 <img src={Icon} alt=""/>
-                <p className={`content-center text pr-2 ${responsive} `}>{dialysis.patientName}</p>
+                <p className={`content-center text pr-2 whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
-            <p className={` text-center w-[20.5%] text ${responsive}`}>{dialysis.nurseName}</p>
-            <p className={`text-center w-[20.5%] text ${responsive}`}>{dialysis.sessionStartTime}</p>
-            <p className={`text-center w-[20.5%] text ${responsive}`}>{dialysis.sessionEndTime}</p>
-            <p className={`text-center w-1/10 text ${responsive} hidden sm:block`}>{dialysis.chair}</p>
+            <p className={` text-center w-[20.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
+            <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.sessionStartTime}</p>
+            <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.sessionEndTime}</p>
+            <p className={`text-center w-1/10  ${responsive} hidden sm:block`}>{dialysis.chair}</p>
             <p className={`w-1/10 ${responsive} pl-4 hidden sm:block`}>{dialysis.roomName}</p>
         </div>
     </>

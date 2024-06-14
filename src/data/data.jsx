@@ -45,9 +45,13 @@ export const medicalAnalysisRoute = `medical-analysis`;
 export const prescriptionsRoute = `prescriptions`;
 export const globalNotesRoute = `global-notes`;
 
+
 export const medicalCentersRoute = "/medicalCenters";
 
 export const userDetailsRoute = `${usersRoute}/userDetails/:id`;
+
+export const dialysisByPatient = `dialysisByPatient`;
+ 
 
 //Delete 
 export const addPatintinfoRoute = '/logOut'
@@ -74,6 +78,81 @@ export const titleSession = {
     hall: "القاعة",
   },
 };
+
+export const dialysisSessions = [
+  {
+
+  patientName : "أحمد محمد",
+  "nurseName": "صالح شهاب",
+  "sessionStartTime": "الساعة السادسة",
+  "sessionEndTime": "الساعة الثانية عشرة",
+  "chair":18,
+  "roomName":"1"
+  },
+  {
+    "id": "2",
+    "patientName": "سعيد صلاح",
+    "nurseName": "أسماء درباني",
+    "sessionStartTime": "الساعة الثانية",
+    "sessionEndTime": "الساعة الحادية عشرة",
+    "chair":20,
+    "roomName":1
+    },
+    {
+      "id": "3",
+      "patientName": "أحمد محمد",
+      "nurseName": "عدنان العويدات",
+      "sessionStartTime": "الساعة السادسة",
+      "sessionEndTime": "الساعة الخامسة",
+      "chair":12,
+      "roomName":3
+      },
+    {
+        "id": "4",
+        "patientName": "سامي خالد",
+        "nurseName": "عدنان الزعبي",
+        "sessionStartTime": "الساعة العاشرة",
+        "sessionEndTime": "الساعة الرابعة",
+        "chair":2,
+        "roomName":5
+      },
+      {
+        "id": "5",
+        "patientName": "مريم محمد",
+        "nurseName": "عدنان العويدات",
+        "sessionStartTime": "الساعة الثامنة",
+        "sessionEndTime": "الساعة العاشرة",
+        "chair":12,
+        "roomName":1
+        },
+        {
+          "id": "6",
+          "patientName": "أحمد محمد",
+          "nurseName": "عدنان العويدات",
+          "sessionStartTime": "الساعة السادسة",
+          "sessionEndTime": "الساعة الثانية عشرة",
+          "chair":35,
+          "roomName":12
+          },
+          {
+            "id": "7",
+            "patientName": "خالد علي",
+            "nurseName": "عدنان العويدات",
+            "sessionStartTime": "الساعة السادسة",
+            "sessionEndTime": "الساعة الثانية عشرة",
+            "chair":20,
+            "roomName":5
+            },
+            {
+              "id": "8",
+              "patientName": "سعدون محمد",
+              "nurseName": "عدنان العويدات",
+              "sessionStartTime": "الساعة السادسة",
+              "sessionEndTime": "الساعة الثانية عشرة",
+              "chair":13,
+              "roomName":2
+              }                          
+]
 
 export const managerCenterSideBar = {
   header: {

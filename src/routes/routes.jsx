@@ -49,11 +49,11 @@ import {
   globalInfoRoute,
   dialysisSessionsRoute,
   globalNotesRoute,
-  
   addPatintinfoRoute,
   addPrescriptionInfoRoute,
   enterMedicalRecordRoute,
-  addMedicalAnalysisRoute
+  addMedicalAnalysisRoute,
+  dialysisByPatient
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -187,9 +187,24 @@ const router = createBrowserRouter([
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },
+      // {
+      //   path: dialysisSessionsRoute,
+      //   element: <DialysisPage />,
+      //   //TODO: u may have to add loader
+      //   errorElement: <ErrorPage />,
+      // },
       {
-        path: dialysisSessionsRoute,
-        element: <DialysisPage />,
+        path: dialysisByPatient,
+        element: (
+          <>
+            {/* <SideBar sideBarData={managerCenterSideBar} /> */}
+    
+            
+            <GeneralDialysisProvider>
+            <GeneralDialysisPage />
+            </GeneralDialysisProvider>
+          </>
+        ),
         //TODO: u may have to add loader
         errorElement: <ErrorPage />,
       },
@@ -271,13 +286,15 @@ const router = createBrowserRouter([
       <>
         <SideBar sideBarData={managerCenterSideBar} />
         <GeneralDialysisProvider>
-        <GeneralDialysisPage />
+        <GeneralDialysisPage type={"general"} />
         </GeneralDialysisProvider>
       </>
     ),
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+
+  
 
   {
     path: dialysisDetailsRoute ,

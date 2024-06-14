@@ -4,19 +4,19 @@ export const ShowPatientProfileSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getMedicalRecord: builder.query({
             query: (id) => ({
-                url: `/showMedicalRecord/${id}`,
+                url: `showMedicalRecord/${id}`,
                 method: 'GET',
             }),
         }),
         getMedicalAnalysis: builder.query({
             query: (id) => ({
-                url: `/showMedicalAnalysis/${id}`,
+                url: `showMedicalAnalysis/${id}`,
                 method: 'GET',
             }),
         }),
         getPrescriptions: builder.query({
             query: (id) => ({
-                url: `/getPrescriptionsByPatient/${id}`,
+                url: `getPrescriptionsByPatient/${id}`,
                 method: 'GET',
             }),
         }),

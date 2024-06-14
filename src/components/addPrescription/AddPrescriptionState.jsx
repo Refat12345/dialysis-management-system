@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useContext } from "react";
+import { useCreatePrescriptionMutation } from "../../services/secretariat/addPrescription/AddPrescriptionSlice";
 const AddPrescriptionStateContext = createContext();
 
 const AddPrescriptionState = ({ children }) => {
@@ -20,6 +21,8 @@ const AddPrescriptionState = ({ children }) => {
     updateContactInfo: (index, info) => updateContactInfo(index, info),
     addContactInfo: () => addContactInfo(),
     removeContactInfo: (index) => removeContactInfo(index),
+    postData :(data)=> postData(data)
+
   });
 
   const updateContactInfo = (index, newContactInfo) => {
@@ -63,7 +66,6 @@ const AddPrescriptionState = ({ children }) => {
     });
   };
 
-
   const updateState = (newValues) => {
     setState((prevState) => ({
       ...prevState,
@@ -71,9 +73,38 @@ const AddPrescriptionState = ({ children }) => {
     }));
   };
 
+  const transformPrescriptionData = (prescriptionInfo) => {
+    return {
+      patientID: "15", // استبدل بمعرف المريض الصحيح
+      // medicines: prescriptionInfo.map((info) => ({
+      //   name: info.prescriptionName,
+      //   dateOfStart: `${info.yearStart}-${info.monthStart.padStart(2, '0')}-${info.dayStart.padStart(2, '0')}`,
+      //   dateOfEnd: `${info.yearEnd}-${info.monthEnd.padStart(2, '0')}-${info.dayEnd.padStart(2, '0')}`,
+      //   amount: "2", // استبدل بالكمية الصحيحة
+      //   details: info.note
+      // }))
+      medicines: prescriptionInfo.map((info) => ({
+        name: info.prescriptionName,
+        dateOfStart: `${info.yearStart}-${info.monthStart.padStart(2, '0')}-${info.dayStart.padStart(2, '0')}`,
+        dateOfEnd: `${info.yearEnd}-${info.monthEnd.padStart(2, '0')}-${info.dayEnd.padStart(2, '0')}`,
+        amount: "2", // استبدل بالكمية الصحيحة
+        details: info.note
+      }))
+    };
+  };
+  const [createPrescription] = useCreatePrescriptionMutation();
+
+  const postData = (prescriptionInfo) => {
+    const transformedData = transformPrescriptionData(prescriptionInfo);
+    createPrescription(transformedData).unwrap();
+    // منطق بعد الإرسال الناجح
+  };
+  
+
   const contextValue = {
     state,
     updateState,
+    postData
   };
 
   return (

@@ -5,7 +5,8 @@ import { useGetPrescriptionsQuery } from "../../../../services/public/patient_pr
 
 const PrescriptionsPage = () => {
   const height = window.innerHeight;
-  const { data, isSuccess, isLoading, isError } = useGetPrescriptionsQuery(1);
+  const id = sessionStorage.getItem("patientId");
+  const { data, isSuccess, isLoading, isError } = useGetPrescriptionsQuery(id);
   const [prescriptions, setPrescriptions] = useState([]);
 
   useEffect(() => {

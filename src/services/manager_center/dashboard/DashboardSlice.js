@@ -4,21 +4,29 @@ export const apiDashboard = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getSessions: builder.query({
             query: () => ({
-                url: '/getDialysisSessions/0/5/2024',
+                url: 'getDialysisSessions/0/5/2024',
                 method: 'GET',
             }),
         }),
         getStatistics : builder.query({
             query :()=>({
-                url:"/getCenterStatistics",
+                url:"getCenterStatistics",
+                method:"GET"
+            }), 
+        }),
+        getCausesRenalFailure : builder.query({
+            query :()=>({
+                url:"causeRenalFailure",
                 method:"GET"
             }), 
         }),
         getPieCharts:builder.query({
-            query :()=>({
-                url:"/getPieCharts",
+            query :(data)=>{
+                return{
+                url:data.month != "" && data.year != "" ?`getPieCharts/${data.month}/${data.year}`:"getPieCharts",
                 method:"GET"
-            })
+            }
+            }
         })
     })
 });
@@ -26,5 +34,6 @@ export const apiDashboard = apiSlice.injectEndpoints({
 export const {
     useGetSessionsQuery,
     useGetStatisticsQuery,
-    useGetPieChartsQuery
+    useGetPieChartsQuery,
+    useGetCausesRenalFailureQuery
 } = apiDashboard;

@@ -3,25 +3,34 @@ import { useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 import { Cards, PieCharts, DialysisSessions } from "../../index";
 import { PaginationComponent, PageLoader } from "../../../components/index";
-import { pieChartData } from "../../../data/data";
-import { useGetSessionsQuery, useGetStatisticsQuery } from "../../../services/manager_center/dashboard/DashboardSlice";
+import { pieChartData ,dialysisSessions  } from "../../../data/data";
+import { useGetCausesRenalFailureQuery, useGetPieChartsQuery, useGetSessionsQuery, useGetStatisticsQuery } from "../../../services/manager_center/dashboard/DashboardSlice";
 
 const Dashboard = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [date,setDate] = useState({
+    month:"",
+    year:""
+  })
+  
+  const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
   const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading  } = useGetSessionsQuery();
   const { data: statisticsData, isSuccess: statisticsSuccess, isLoading: statisticsLoading } = useGetStatisticsQuery();
-  
+  const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
-  
+  useEffect(() => {
+      if(date.month != "" && date.year != "" ){
+        refetch();
+      }
+  }, [date, refetch]);
   useEffect(() => {
     if (!isLoaded) {
-      Cookies.set("token", "47|Veqh5DOlaeVVEBqpKB6AJXekzeWbl09MsZLQt51795626b02");
+      Cookies.set("token", "21|Cz0zpod31DuLNDWnVy2IT8iEnP3JzR246P0nDdnP7c34e6e5");
       setIsLoaded(true);
     }
   }, [isLoaded]);
-
-  if (sessionLoading || statisticsLoading) {
+  if (sessionLoading || statisticsLoading ||causeRenalLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <PageLoader />
@@ -29,28 +38,28 @@ const Dashboard = () => {
     );
   }
 
-  if (!sessionSuccess || !statisticsSuccess) {
+  if (!sessionSuccess || !statisticsSuccess || !causeRenalSuccess) {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
       </div>
     );
   }
-
+ console.log(medicineDate);
   return (
     <div className="flex-grow md:mr-48 bg-bgDashboard h-screen">
       <Cards data={statisticsData[0]} />
       <div className={`flex flex-row-reverse justify-between ${height > 700 ? "mt-7" : "mt-5"}`}>
-        <div className="flex flex-col md:w-7/12">
+        <div className="flex flex-col md:w-[62%]">
           <PaginationComponent
-            data={sessionData.dialysisSessions}
+            data={dialysisSessions}
             RenderComponent={DialysisSessions}
             itemsPerPage={itemsPerPage}
             type="dashboard"
           />
         </div>
         <div className="hidden lg2:block w-1/3">
-          <PieCharts data={pieChartData} />
+          <PieCharts medicineData={medicineDate.pieChart} causeRenalData = {causeRenalData.causeRenalFailure} loading= {medicineLoading} setValue={setDate} date= {date} />
         </div>
       </div>
     </div>

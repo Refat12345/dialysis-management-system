@@ -27,3 +27,28 @@ export const useFormatDate = (dateString) => {
     return `${formattedYear} ${formattedMonth} ${formattedDay}`;
   }, [dateString]);
 };
+
+
+
+export const formatDate = (dateString) => {
+  const arabicMonths = {
+    "يناير": "كانون الثاني",
+    "فبراير": "شباط",
+    "مارس": "آذار",
+    "أبريل": "نيسان",
+    "مايو": "أيار",
+    "يونيو": "حزيران",
+    "يوليو": "تموز",
+    "أغسطس": "آب",
+    "سبتمبر": "أيلول",
+    "أكتوبر": "تشرين الأول",
+    "نوفمبر": "تشرين الثاني",
+    "ديسمبر": "كانون الأول"
+  };
+  
+  const [day, month, year] = dateString.split('-');
+ 
+  const arabicMonth = arabicMonths[month];
+
+  return `${day} ${arabicMonth} ${year}`;
+};

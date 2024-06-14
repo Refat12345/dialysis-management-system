@@ -5,7 +5,7 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
     createMedicalRecord: builder.mutation({
         query: (medicalRecord) => { 
             return {
-                url: `/createMedicalRecord`,
+                url: `createMedicalRecord`,
                 method: 'POST',
                 body: medicalRecord
             };
@@ -15,7 +15,7 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
     addMedicalAnalysis: builder.mutation({
         query: (medicalAnalysis) => { 
             return {
-                url: `/addMedicalAnalysis`,
+                url: `addMedicalAnalysis`,
                 method: 'POST',
                 body: medicalAnalysis
             };
