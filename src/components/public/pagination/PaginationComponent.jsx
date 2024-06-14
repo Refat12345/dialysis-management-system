@@ -4,11 +4,13 @@ import { useState } from "react";
 import ChevronIcon from "../../../assets/icons/public/chevron_left.svg"
 import ChevronRightIcon  from "../../../assets/icons/public/chevron_right.svg";
 const PaginationComponent = ({
+  
   data,
   RenderComponent,
   itemsPerPage,
   type,
   initialPage = 1,
+  type2
 }) => {
   const totalItems = data.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -54,7 +56,7 @@ const PaginationComponent = ({
   const hover = type === "dashboard" ? "hover:bg-gray-100":"hover:bg-gray-200"
   return (
     <>
-      <RenderComponent data={currentItems} />
+      <RenderComponent data={currentItems}  type2={type2} />
       <div dir="rtl" className="flex justify-center mt-3 ">
         <button
           className={`text-textButtonColor font-primaryBold text-sm px-2 py-2 ml-1 rounded-lg shadow-lg ${buttonColor}`}

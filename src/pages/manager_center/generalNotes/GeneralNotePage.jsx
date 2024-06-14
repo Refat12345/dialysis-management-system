@@ -1,15 +1,13 @@
-
-import { Globalnotes } from "./../../../data/data";
-import GlobalNotes from "../../../components/manager_center/globalNotes/GlobalNotes";
+import GlobalNoteView from "../../../components/manager_center/globalNotes/GlobalNoteView";
+import { GeneralDetailsProvider } from "./GeneralNoteState";
+import { useParams } from "react-router-dom";
 
 export default function GeneralNotePage() {
-  return (
-    <div dir="rtl">
-      <span className="text-blue-500 text-lg">الملاحظات العامة</span>
+  const { patientName } = useParams();
 
-      {Globalnotes.map((card, index) => (
-        <GlobalNotes key={index} note={card} />
-      ))}
-    </div>
+  return (
+    <GeneralDetailsProvider userId={patientName}>
+      <GlobalNoteView />
+    </GeneralDetailsProvider>
   );
 }

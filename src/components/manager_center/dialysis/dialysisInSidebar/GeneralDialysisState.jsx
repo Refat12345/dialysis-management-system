@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useGetGeneralDialysisQuery } from "../../../../services/manager_center/diyalisis/dialysis_sidebar/GeneralDialysisSlice"; 
+import { useGetGeneralDialysisQuery,useGetDialysisByPatientQuery } from "../../../../services/manager_center/diyalisis/dialysis_sidebar/GeneralDialysisSlice"; 
 import { createContext, useContext, useState, useEffect } from "react";
 
 const GeneralDialysisContext = createContext();
 
-export const GeneralDialysisProvider = ({ children }) => {
+export const GeneralDialysisProvider = ({ children ,userId}) => {
+
+  const storedPatientName = localStorage.getItem('patientName');
+  const userIdString = storedPatientName ? storedPatientName.toString() : '14';
+
+
   const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -13,7 +18,21 @@ export const GeneralDialysisProvider = ({ children }) => {
   const [filteredDataSearch, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  /////
+
+  const [userByPatient, setUserByPatient] = useState([]);
+  const [isLoadingByPatient, setIsLoadingByPatient] = useState(false);
+  const [isSuccessByPatient, setIsSuccessByPatient] = useState(false);
+  const [selectedYearOptionByPatient, setSelectedYearOptionByPatient] = useState("2024");
+  const [selectedMonthOptionByPatient, setSelectedMonthOptionByPatient] = useState("5");
+
+
+  ///
+
   const { data: users, isLoading: isUserLoading, isSuccess: isUserSuccess } = useGetGeneralDialysisQuery({ month: selectedMonthOption, year: selectedYearOption });
+
+  const { data: dialysisByPatient, isLoading: isdialysisByPatientLoading, isSuccess: isdialysisByPatientSuccess } = useGetDialysisByPatientQuery({ month: selectedMonthOption, year: selectedYearOption , userId : userIdString });
+
 
   useEffect(() => {
     if (isUserSuccess && users) {
@@ -49,6 +68,30 @@ export const GeneralDialysisProvider = ({ children }) => {
     setSelectedMonthOption(event);
   };
 
+  /////
+  useEffect(() => {
+    if (isdialysisByPatientSuccess && dialysisByPatient) {
+      setUserByPatient(dialysisByPatient);
+      setIsLoadingByPatient(false);
+      setIsSuccessByPatient(true);
+    } else if (isdialysisByPatientLoading) {
+      setIsLoadingByPatient(true);
+      setIsSuccessByPatient(false);
+    } else {
+      setIsLoadingByPatient(false);
+      setIsSuccessByPatient(false);
+    }
+  }, [isdialysisByPatientSuccess, isdialysisByPatientLoading, dialysisByPatient]);
+
+  const handleSelectYearChangeByPatient = (event) => {
+    setSelectedYearOptionByPatient(event);
+  };
+
+  const handleSelectMonthChangeByPatient = (event) => {
+    setSelectedMonthOptionByPatient(event);
+  };
+
+  ////
   return (
     <GeneralDialysisContext.Provider
       value={{
@@ -62,7 +105,17 @@ export const GeneralDialysisProvider = ({ children }) => {
         setSelectedMonthOption,
         handleSelectMonthChange,
         setSearchTerm,
-        filteredDataSearch
+        filteredDataSearch,
+
+        handleSelectYearChangeByPatient,
+        handleSelectMonthChangeByPatient,
+        userByPatient,
+        isLoadingByPatient,
+        isSuccessByPatient,
+        selectedMonthOptionByPatient,
+        selectedYearOptionByPatient
+
+
       }}
     >
       {children}
