@@ -3,6 +3,7 @@ import { useLoginState } from "./LoginPageState";
 import { LoginPasswordIcon, UserNumberIcon } from "../../../../assets/index";
 import CustomButton from "../../../../components/public/button/CustomButton";
 import CustomTextField from "../../../../components/public/textfield/CustomTextField";
+import { ToastContainer } from "react-toastify";
 
 import {
   bodySmallStyle,
@@ -17,7 +18,7 @@ import { PasswordVisibleIcon } from "../../../../components";
 
 const LoginPage = () => {
   // eslint-disable-next-line no-unused-vars
-  const { state, updateState } = useLoginState();
+  const { state, updateState, handleSubmit, handleVisible } = useLoginState();
   const navigate = useNavigate();
 
   return (
@@ -27,7 +28,8 @@ const LoginPage = () => {
         className={`${loginMarginX} my-7 ${loginPaddingX} bg-white shadow-xl rounded-lg transition-all`}
       >
         <form
-          onSubmit={state.handleSubmit}
+          dir="rtl"
+          onSubmit={handleSubmit}
           className="flex flex-col justify-center h-full space-y-4"
         >
           <h1
@@ -43,7 +45,6 @@ const LoginPage = () => {
           <div className="h-5"></div>
           <CustomTextField
             size="3"
-            required={true}
             label={"الرقم الوطني"}
             placeholder="الرقم الوطني"
             value={state.nationaltyNumber}
@@ -51,6 +52,11 @@ const LoginPage = () => {
             type="number"
             onChange={(e) => updateState({ nationaltyNumber: e.target.value })}
           />
+          {state.errors.nationaltyNumber && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+              {state.errors.nationaltyNumber}
+            </div>
+          )}
           <CustomTextField
             size="3"
             label={"كلمة المرور"}
@@ -58,14 +64,18 @@ const LoginPage = () => {
             value={state.password}
             prefixIcon={<img src={LoginPasswordIcon} alt="" />}
             suffixIcon={
-              <button onClick={(e) => state.handleVisible(e)}>
+              <button onClick={(e) => handleVisible(e)}>
                 <PasswordVisibleIcon showPassword={state.showPassword} />
               </button>
             }
             onChange={(e) => updateState({ password: e.target.value })}
             type={state.showPassword ? "text" : "password"}
-            required={true}
           />
+          {state.errors.password && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+              {state.errors.password}
+            </div>
+          )}
           <Box height="10px" />
           <div className="w-auto">
             <CustomButton
@@ -75,13 +85,13 @@ const LoginPage = () => {
               title="تسجيل الدخول"
             />
           </div>
+          <ToastContainer position="bottom-left" />
           <div dir="rtl" className="flex flex-row justify-center">
             <div className={`font-semibold transition-all ${bodySmallStyle}`}>
               {"لست مسجلاً في النظام؟"}
               <CustomButton
                 variant="ghost"
                 className={`text-blue600 font-semibold transition-all m-0 p-1 ${bodySmallStyle}`}
-                loading={state.loading}
                 title="التسجيل في النظام"
                 onClick={() => {
                   navigate("/register");
