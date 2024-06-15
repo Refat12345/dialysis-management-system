@@ -1,9 +1,19 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useContext } from "react";
-import { useCreatePrescriptionMutation } from "../../services/secretariat/addPrescription/AddPrescriptionSlice";
+import { createContext, useState, useContext, useEffect } from "react";
+import {
+  useCreatePrescriptionMutation,
+  useGetMedicineNamesQuery,
+} from "../../services/secretariat/addPrescription/AddPrescriptionSlice";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AddPrescriptionStateContext = createContext();
 
 const AddPrescriptionState = ({ children }) => {
+  const [userData, setUserData] = useState([]);
+  const [isLoadingmedicences, setIsLoadingmedicences] = useState(false);
+  const [isSuccessmedicences, setIsSuccessmedicences] = useState(false);
   const [state, setState] = useState({
     prescriptionInfo: [
       {
@@ -17,13 +27,19 @@ const AddPrescriptionState = ({ children }) => {
         note: "",
       },
     ],
+    genderValue: "",
+
+    selectGender: (val) => selectGender(val),
 
     updateContactInfo: (index, info) => updateContactInfo(index, info),
     addContactInfo: () => addContactInfo(),
     removeContactInfo: (index) => removeContactInfo(index),
-    postData :(data)=> postData(data)
-
+    postData: (data) => postData(data),
   });
+
+  const selectGender = (value) => {
+    updateState({ genderValue: value });
+  };
 
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
@@ -44,6 +60,7 @@ const AddPrescriptionState = ({ children }) => {
       yearStart: "",
       yearEnd: "",
       note: "",
+      amount: "",
     };
 
     setState((prevState) => ({
@@ -75,36 +92,128 @@ const AddPrescriptionState = ({ children }) => {
 
   const transformPrescriptionData = (prescriptionInfo) => {
     return {
-      patientID: "15", // استبدل بمعرف المريض الصحيح
-      // medicines: prescriptionInfo.map((info) => ({
-      //   name: info.prescriptionName,
-      //   dateOfStart: `${info.yearStart}-${info.monthStart.padStart(2, '0')}-${info.dayStart.padStart(2, '0')}`,
-      //   dateOfEnd: `${info.yearEnd}-${info.monthEnd.padStart(2, '0')}-${info.dayEnd.padStart(2, '0')}`,
-      //   amount: "2", // استبدل بالكمية الصحيحة
-      //   details: info.note
-      // }))
+      patientID: "15",
       medicines: prescriptionInfo.map((info) => ({
         name: info.prescriptionName,
-        dateOfStart: `${info.yearStart}-${info.monthStart.padStart(2, '0')}-${info.dayStart.padStart(2, '0')}`,
-        dateOfEnd: `${info.yearEnd}-${info.monthEnd.padStart(2, '0')}-${info.dayEnd.padStart(2, '0')}`,
-        amount: "2", // استبدل بالكمية الصحيحة
-        details: info.note
-      }))
+        dateOfStart: `${info.yearStart}-${info.monthStart.padStart(
+          2,
+          "0"
+        )}-${info.dayStart.padStart(2, "0")}`,
+        dateOfEnd: `${info.yearEnd}-${info.monthEnd.padStart(
+          2,
+          "0"
+        )}-${info.dayEnd.padStart(2, "0")}`,
+        amount: info.amount,
+        details: info.note,
+      })),
     };
   };
-  const [createPrescription] = useCreatePrescriptionMutation();
+  const [createPrescription, { isLoading, isSuccess, isError, error }] =
+    useCreatePrescriptionMutation();
 
-  const postData = (prescriptionInfo) => {
+  const {
+    data: medicences,
+    isLoading: ismedicencesLoading,
+    isSuccess: ismedicencesSuccess,
+  } = useGetMedicineNamesQuery();
+
+  useEffect(() => {
+    if (ismedicencesSuccess && medicences) {
+      setUserData(medicences.medicine_names);
+      setIsLoadingmedicences(false);
+      setIsSuccessmedicences(true);
+    } else if (ismedicencesLoading) {
+      setIsLoadingmedicences(true);
+      setIsSuccessmedicences(false);
+    } else {
+      setIsLoadingmedicences(false);
+      setIsSuccessmedicences(false);
+    }
+  }, [ismedicencesSuccess, ismedicencesLoading, medicences]);
+
+  // const postData = async (prescriptionInfo) => {
+  //   const transformedData = transformPrescriptionData(prescriptionInfo);
+  //   try {
+  //     await createPrescription(transformedData).unwrap();
+  //     // عرض toast بنجاح العملية
+  //     // toast.success('تم إرسال الوصفة الطبية بنجاح!');
+  //     // تفريغ الحقول
+  //     setState((prevState) => ({
+  //       ...prevState,
+  //       prescriptionInfo: prevState.prescriptionInfo.map(info => ({
+  //         ...info,
+  //         prescriptionName: "",
+  //         dayStart: "",
+  //         dayEnd: "",
+  //         monthStart: "",
+  //         monthEnd: "",
+  //         yearStart: "",
+  //         yearEnd: "",
+  //         note: "",
+  //         amount: "",
+
+  //       }))
+  //     }));
+
+  //   } catch (err) {
+  //     // عرض toast بفشل العملية
+  //     // toast.error('حدث خطأ أثناء إرسال الوصفة الطبية');
+  //       //     console.error('حدث خطأ أثناء إرسال الوصفة الطبية', err);
+
+  //   }
+  // };
+
+  const postData = async (prescriptionInfo) => {
+    const isAllFieldsFilled = prescriptionInfo.every(
+      (info) =>
+        info.prescriptionName &&
+        info.dayStart &&
+        info.dayEnd &&
+        info.monthStart &&
+        info.monthEnd &&
+        info.yearStart &&
+        info.yearEnd &&
+        info.note &&
+        info.amount
+    );
+
+    if (!isAllFieldsFilled) {
+      toast.error("يرجى ملء جميع الحقول قبل الإرسال.");
+      return;
+    }
+
     const transformedData = transformPrescriptionData(prescriptionInfo);
-    createPrescription(transformedData).unwrap();
-    // منطق بعد الإرسال الناجح
+    try {
+      await createPrescription(transformedData).unwrap();
+      toast.success("تم إرسال الوصفة الطبية بنجاح!");
+      setState({
+        ...state,
+        prescriptionInfo: [
+          {
+            prescriptionName: "",
+            dayStart: "",
+            dayEnd: "",
+            monthStart: "",
+            monthEnd: "",
+            yearStart: "",
+            yearEnd: "",
+            note: "",
+            amount: "",
+          },
+        ],
+      });
+    } catch (err) {
+      toast.error("حدث خطأ أثناء إرسال الوصفة الطبية");
+      console.error("حدث خطأ أثناء إرسال الوصفة الطبية", err);
+    }
   };
-  
-
   const contextValue = {
     state,
     updateState,
-    postData
+    postData,
+    isLoadingmedicences,
+    isSuccessmedicences,
+    userData,
   };
 
   return (

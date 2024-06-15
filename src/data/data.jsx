@@ -56,6 +56,8 @@ export const dialysisByPatient = `dialysisByPatient`;
 //Delete 
 export const addPatintinfoRoute = '/logOut'
 export const addPrescriptionInfoRoute = '/PrescriptionInfo'
+export const assignMaterialToUserCenter = "/assignMaterialToUserCenter";
+
 
 // export const userDetailsRoute = `${usersRoute}/userDetails`;
 
@@ -164,7 +166,7 @@ export const managerCenterSideBar = {
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: assignMaterialToUserCenter, name: "المواعيد", icon: AppointmentsIcon },
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },

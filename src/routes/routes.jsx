@@ -53,7 +53,8 @@ import {
   addPrescriptionInfoRoute,
   enterMedicalRecordRoute,
   addMedicalAnalysisRoute,
-  dialysisByPatient
+  dialysisByPatient,
+  assignMaterialToUserCenter
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -82,6 +83,7 @@ import AddPrescriptionState from "../components/addPrescription/AddPrescriptionS
 
 import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/AddMedicalAnalysisState";
 import { GeneralDetailsProvider } from "../pages/manager_center/generalNotes/GeneralNoteState";
+import AssignMaterialToUserCenter from "../components/AssignMaterialToUserCenter";
 
 const router = createBrowserRouter([
   {
@@ -417,6 +419,19 @@ const router = createBrowserRouter([
 
       </>
     ),
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: assignMaterialToUserCenter,
+    element: (
+      <>
+        <SideBar sideBarData={managerCenterSideBar} />
+        <AssignMaterialToUserCenter/>
+      
+      </>
+    ),
+    //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
   //END FOR DELETE 
