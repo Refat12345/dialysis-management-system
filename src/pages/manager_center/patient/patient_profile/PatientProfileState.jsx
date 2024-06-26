@@ -9,6 +9,8 @@ import {
   medicalAnalysisRoute,
   prescriptionsRoute,
   globalNotesRoute,
+  dialysisRoute,
+  dialysisByPatient,
 } from "../../../../data/data";
 
 const PatientProfileStateContext = createContext();
@@ -26,7 +28,7 @@ export const PatientProfileStateProvider = ({ children }) => {
   const patientProfileMenuItems = [
     { href: globalInfoRoute, name: globalInfo },
     { href: medicalRecordRoute, name: medicalRecord },
-    { href: dialysisSessionsRoute, name: dialysisSessions },
+    { href: dialysisByPatient, name: dialysisSessions },
     { href: medicalAnalysisRoute, name: medicalAnalysis },
     { href: prescriptionsRoute, name: prescriptions },
     { href: globalNotesRoute, name: globalNotes },
@@ -41,13 +43,13 @@ export const PatientProfileStateProvider = ({ children }) => {
     // ),
     // medicalRecord: <MedicalRecordPage/>,
     // dialysisSessions: <DialysisPage/>,
-    dialysisSessions: <div>1</div>,
+    // dialysisSessions: <div>1</div>,
     // medicalAnalysis: <MedicalAnalysisPage/>,
     // prescriptions: <PrescriptionsPage/>,
     // globalNotes: <GeneralNotePage/>,
     globalInfo: globalInfoRoute,
     medicalRecord: medicalRecordRoute,
-    // dialysisSessions: dialysisSessionsRoute,
+    dialysisSessions: dialysisByPatient,
     medicalAnalysis: medicalAnalysisRoute,
     prescriptions: prescriptionsRoute,
     globalNotes: globalNotesRoute,

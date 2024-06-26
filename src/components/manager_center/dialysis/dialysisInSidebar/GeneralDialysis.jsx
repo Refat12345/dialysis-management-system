@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { dialysisRoute, dialysisDetailsRoute } from "../../../../data/data";
 import { useGeneralDialysis } from "./GeneralDialysisState";
 import SelectedTextFeild from "../../../public/textfield/SelectedTextFeild";
-function GeneralDialysis({ data }) {
+function GeneralDialysis({ data ,type2 }) {
+  console.log("type is ", type2)
   const navigate = useNavigate();
 
   const {
@@ -19,7 +20,13 @@ function GeneralDialysis({ data }) {
     handleSelectYearChange,
     selectedMonthOption,
     handleSelectMonthChange,
+    userByPatient,
+    isLoadingByPatient,
+    isSuccessByPatient,
+
   } = useGeneralDialysis();
+
+
   if (isLoading || !userData || !userData.dialysisSessions) {
     return <div>جاري تحميل البيانات...</div>;
   }
@@ -32,6 +39,7 @@ function GeneralDialysis({ data }) {
     chair: item.chair,
     roomName: item.roomName,
   }));
+  
 
   const columns = [
     { key: "name", title: "اسم المريض" },
@@ -74,7 +82,8 @@ function GeneralDialysis({ data }) {
 
   return (
     <>
-      {isSuccess && !isLoading && userData && (
+    {
+      type2 === "dialysis" ?  isSuccess && !isLoading && userData && (
         <div
           className="flex-grow overflow-x-auto mr-56 ml-8 h-full mt-2 min-h-customAbove600"
           dir="rtl"
@@ -125,8 +134,64 @@ function GeneralDialysis({ data }) {
             </tbody>
           </table>
         </div>
-        // </div>
-      )}
+      ) 
+      :
+
+      isSuccessByPatient && !isLoadingByPatient && userByPatient && (
+        <div
+          className="flex-grow overflow-x-auto  ml-8 h-full mt-2 min-h-customAbove600"
+          dir="rtl"
+        >
+          <div className="flex justify-between mb-5 mt-5">
+            <h2 className="text-customPurple text-customSize">جلسات الغسيل</h2>
+
+            <div className="relative w-1/5 ">
+              <SelectedTextFeild
+                activeLabel={false}
+                value={selectedYearOption}
+                filter={filterYear.array}
+                onSelect={handleSelectYearChange}
+              />
+
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <img className="w-5 h-5 " src={down} alt="Patient" />
+              </div>
+            </div>
+
+            <div className="relative w-1/5 ">
+              <SelectedTextFeild
+                activeLabel={false}
+                value={selectedMonthOption}
+                filter={filterMonth.array}
+                onSelect={handleSelectMonthChange}
+              />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <img className="w-5 h-5 " src={down} alt="Patient" />
+              </div>
+            </div>
+          </div>
+          <table className="min-w-full bg-white">
+            <TableHeader columns={columns} color="bg-headerTable" />
+
+            <tbody className="text-gray-700">
+              {filteredData.map((row, index) => (
+                <TableRow
+                  id={data[index].id}
+                  key={index}
+                  row={row}
+                  index={index}
+                  handleRowClick={handleRowClick}
+                  getRowColor={() => getRowColor(index, row.name)}
+                  type={"dialysis"}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) 
+      
+    }
+     
     </>
   );
 }

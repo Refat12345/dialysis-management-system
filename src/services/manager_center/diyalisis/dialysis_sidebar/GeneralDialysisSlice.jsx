@@ -11,6 +11,16 @@ export const GeneralDialysisSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+    getDialysisByPatient: builder.query({
+      query: ({ userId,month, year }) => {
+        return {
+          url: `getPatientDialysisSessions/${userId}/${month}/${year}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
-export const {  useGetGeneralDialysisQuery } = GeneralDialysisSlice;
+export const {  useGetGeneralDialysisQuery,useGetDialysisByPatientQuery } = GeneralDialysisSlice;
+
+

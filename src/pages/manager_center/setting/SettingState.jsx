@@ -8,6 +8,7 @@ export const SettingProvider = ({ children }) => {
   const [SettingData, setSettingData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [SettingTime, setSettingTime] = useState([]);
 
   const {
     data: setting,
@@ -18,6 +19,7 @@ export const SettingProvider = ({ children }) => {
   useEffect(() => {
     if (isUserSuccess && setting) {
       setSettingData(setting);
+      setSettingTime(setting.center.shifts);
       setIsLoading(false);
       setIsSuccess(true);
     } else if (isUserLoading) {
@@ -30,7 +32,7 @@ export const SettingProvider = ({ children }) => {
   }, [isUserSuccess, isUserLoading, setting]);
 
   return (
-    <SettingContext.Provider value={{ SettingData, isLoading, isSuccess }}>
+    <SettingContext.Provider value={{ SettingData, isLoading, isSuccess ,SettingTime, setSettingTime}}>
       {children}
     </SettingContext.Provider>
   );

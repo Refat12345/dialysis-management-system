@@ -46,9 +46,13 @@ export const medicalAnalysisRoute = `medical-analysis`;
 export const prescriptionsRoute = `prescriptions`;
 export const globalNotesRoute = `global-notes`;
 
+
 export const medicalCentersRoute = "/medicalCenters";
 
 export const userDetailsRoute = `${usersRoute}/userDetails/:id`;
+
+export const dialysisByPatient = `dialysisByPatient`;
+ 
 
 //Delete 
 export const addPatintinfoRoute = '/logOut'
