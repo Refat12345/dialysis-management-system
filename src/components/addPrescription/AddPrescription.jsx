@@ -5,9 +5,13 @@ import CustomTextField from "../public/textfield/CustomTextField";
 import DatePickerr from "./DatePicker";
 import { useAddPrescriptionState } from "./AddPrescriptionState";
 import PublicHeader from "../manager_center/secretary/PublicHeader";
-import patient from "../../assets/icons/addPaitentInfo/econamic_status.svg";
+import addPrespictionIcon  from "../../assets/icons/addPrespiction.svg";
+import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
 function AddPrescription() {
-  const { state, updateState,postData } = useAddPrescriptionState();
+  const { state, postData, userData } = useAddPrescriptionState();
+  const amount = {
+    array: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  };
 
   return (
     <>
@@ -15,7 +19,7 @@ function AddPrescription() {
         dir="rtl"
         className="w-full flex flex-col md:mr-48 bg-addPaitentInfoPage"
       >
-        <PublicHeader icon={patient} title={"اضافة وصفة طبية"} />
+        <PublicHeader icon={addPrespictionIcon} title={"اضافة وصفة طبية"} />
 
         <div className=" border p-3 rounded-xl m-3">
           <div className="flex flex-row justify-between p-4">
@@ -46,23 +50,42 @@ function AddPrescription() {
                 className="bg-slate-200 border p-3 rounded-xl m-3 "
               >
                 <div className="grid grid-cols-2">
-                  <div className="col-span-2">
-                    <div className="w-3/4 mr-4 mt-3">
+                  <div>
+                    <div className="w-1/2 mr-4 mt-3">
                       <div className="mt-3"></div>
+                      
 
-                      <CustomTextField
-                        size="3"
-                        required={true}
-                        label={"اسم الدواء :"}
-                        value={contact.prescriptionName}
-                        type="text"
-                        onChange={(val) => {
+                      <SelectedTextFeild
+                        activeLabel={false}
+                        value={
+                          contact.prescriptionName === ""
+                            ? "اختر الدواء"
+                            : contact.prescriptionName
+                        }
+                        filter={userData}
+                        onSelect={(val) => {
                           state.updateContactInfo(index, {
-                            prescriptionName: val.target.value,
+                            prescriptionName: val,
                           });
                         }}
                       />
                     </div>
+                  </div>
+                  <div className="w-1/2 mr-4 mt-3">
+                    <div className="mt-3"></div>
+
+                    <SelectedTextFeild
+                      activeLabel={false}
+                      value={      
+                        contact.amount === undefined ? "اختر الكمية" : contact.amount
+                      }
+                      filter={amount.array}
+                      onSelect={(val) => {
+                        state.updateContactInfo(index, {
+                          amount: val,
+                        });
+                      }}
+                    />
                   </div>
 
                   <div className="mr-3 mt-2">
@@ -80,7 +103,7 @@ function AddPrescription() {
                     />
                   </div>
 
-                  <div className="w-3/4 mr-4 mt-3">
+                  <div className="w-1/2 mr-4 mt-3">
                     <div className="mt-3"></div>
 
                     <CustomTextField
@@ -96,32 +119,26 @@ function AddPrescription() {
                       }}
                     />
                   </div>
-                  
-                </div>
-
-                {/* زر الحفظ يلزم تعديلل */}
-                <div className="flex justify-center mt-2">
-                <CustomButton
-                variant="solid"
-                onClick={() => {
-                  // state.addContactInfo();
-                  postData(state.prescriptionInfo);
-                }}
-                className={`bg-addPaitentInfoPage text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
-                title={
-                  <div className="flex items-center justify-center">
-                    <span className="text-sm">إضافة دواء</span>
-                    <div className="w-2"></div>
-                   
-                  </div>
-                }
-                radius="full"
-              />
-
                 </div>
               </div>
             </>
           ))}
+          <div className="flex justify-end mt-2">
+            <CustomButton
+              variant="solid"
+              onClick={() => {
+                postData(state.prescriptionInfo);
+              }}
+              className={`bg-headerTable w-full text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  <span  className="text-sm w-full">    حفظ   </span>
+                  
+                </div>
+              }
+              radius="full"
+            />
+          </div>
         </div>
       </div>
     </>

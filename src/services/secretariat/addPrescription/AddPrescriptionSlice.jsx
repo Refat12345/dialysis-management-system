@@ -16,11 +16,20 @@ export const AddPrescriptionSlice = apiSlice.injectEndpoints({
             
         },
     }),
+    getMedicineNames: builder.query({
+        query: () => {
+          return {
+            url: `getMedicineNames`,
+            method: "GET",
+          };
+        },
+      }),
   
 })
 
 });
 
 export const {
-useCreatePrescriptionMutation
+useCreatePrescriptionMutation,
+useGetMedicineNamesQuery
 } = AddPrescriptionSlice;

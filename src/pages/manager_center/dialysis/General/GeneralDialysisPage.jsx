@@ -4,6 +4,7 @@ import { GeneralDialysisProvider, useGeneralDialysis } from "../../../../compone
 import PatientHeader from "../../../../components/manager_center/patient/PatientHeader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import LoadingComponent from "../../../../components/public/LoadingComponent ";
 
 function GeneralDialysisPage({ type }) {
   const { patientName } = useParams();
@@ -37,9 +38,9 @@ function GeneralDialysisPage({ type }) {
       setNoResultsFound(false);
     }
   }, [searchTerm, filteredDataSearch]);
-  if (isLoading || !userData || !userData.dialysisSessions) {
-    return <div>جاري تحميل البيانات...</div>;
-  }
+  
+  if (isLoading) return <LoadingComponent />;
+
 
   return (
     <>
