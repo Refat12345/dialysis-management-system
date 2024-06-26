@@ -16,7 +16,7 @@ function UserDetailsView() {
   
   
 
-
+console.log(userData);
   useEffect(() => {
     if (isSuccess && !isLoading && userData) {
       const [userDataa] = userData;
