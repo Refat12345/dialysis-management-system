@@ -3,7 +3,7 @@ import { PaginationComponent, SideBar } from "../../../../components";
 import Header from "../../../../components/manager_center/users/Header";
 import ViewCard from "../../../../components/manager_center/users/ViewCard";
 import React, { useState, useEffect } from "react";
-import LoadingComponent from "../../../../components/public/LoadingComponent ";
+import {PageLoader} from "../../../../components/index";
 import { useUsers } from "./UserListState";
 const UsersListPage = () => {
   const { userData, isLoading, isSuccess, setSearchTerm, filteredData } =
@@ -23,7 +23,11 @@ const UsersListPage = () => {
     }
   }, [searchTerm, filteredData]);
 
-  if (isLoading) return <LoadingComponent />;
+  if (isLoading) return <div className="flex-grow md:mr-48">
+  <div className="flex items-center justify-center h-screen">
+    <PageLoader />
+  </div>
+</div>;
   if (!userData.length && !searchTerm) return <div>No data available</div>;
 
 

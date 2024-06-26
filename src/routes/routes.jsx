@@ -19,10 +19,10 @@ import {
   OrdersPage,
   GlobalInfoPage,
   EnterMedicalRecordPage,
-  AddMedicalAnalysisPage
+  AddMedicalAnalysisPage,
+  MainPage
 } from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
-import { SideBar } from "../components/index";
 import {
   mainRoute,
   managerCenterSideBar,
@@ -53,9 +53,9 @@ import {
   addPrescriptionInfoRoute,
   enterMedicalRecordRoute,
   addMedicalAnalysisRoute,
-  enterDisbursedMedicines
-  addMedicalAnalysisRoute,
-  dialysisByPatient
+  enterDisbursedMedicines,
+  dialysisByPatient,
+  secretariatSideBar
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -65,7 +65,7 @@ import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_acco
 import EnterMedicalRecordState from "../pages/secretariat/patient/medical_record/EnterMedicalRecordState";
 
 import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
-
+import MainLayout from "../pages/MainLayout";
 import SettingPage from "../pages/manager_center/setting/SettingPage";
 import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
 import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
@@ -82,181 +82,22 @@ import { SettingProvider } from "../pages/manager_center/setting/SettingState";
 import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
-import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/AddMedicalAnalysisState";
+import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/add_analysis/AddMedicalAnalysisState";
 import EnterDisbursedMedicines from "../pages/secretariat/enter_disbursed_medicines/EnterDisbursedMedicinesPage";
 import EnterDisbursedMedicinesState from "../pages/secretariat/enter_disbursed_medicines/EnterDisbursedMedicinesState";
 import { GeneralDetailsProvider } from "../pages/manager_center/generalNotes/GeneralNoteState";
+import MedicalRecordState from "../pages/manager_center/patient/medical_record/MedicalRecordState";
+import EditMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisState";
+import EditPrescriptionsState from "../pages/secretariat/patient/prescriptions/edit_prescriptions/EditPrescriptionsState";
 
 const router = createBrowserRouter([
   {
-    path: mainRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <Dashboard />
-      </>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: usersRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <UserProvider>
-        <UsersListPage />
-        </UserProvider>
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: patientsRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <PatientProvider>
-        <PatientListPage />
-        </PatientProvider>
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-
-  {
-    path: patientProfileRoute,
-    element: (
-      <PatientProfileStateProvider>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <PatientProfilePage />
-      </PatientProfileStateProvider>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: globalInfoRoute,
-        element: (
-          <GlobalInfoState>
-            <GlobalInfoPage />
-          </GlobalInfoState>
-        ),
-        //TODO: u may have to add loader
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: medicalRecordRoute,
-        element: <MedicalRecordPage />,
-        children: [
-          {
-            path: "",
-            element: (
-              <PrecedentsSection
-                title={pathologicalTitle}
-                type = {"pathological"}
-              />
-            ),
-            index: true,
-          },
-          {
-            path: "pathologicalHistory",
-            element: (
-              <PrecedentsSection
-                title={pathologicalTitle}
-                type = {"pathological"}
-              />
-            ),
-          },
-          {
-            path: "surgicalHistory",
-            element: (
-              <PrecedentsSection
-                title={surgicalTitle}
-                type = {"surgical"}
-              />
-            ),
-          },
-          {
-            path: "pharmacologicalHistory",
-            element: (
-              <PrecedentsSection
-                title={pharmacologicalTitle}
-                type = {"pharmacological"}
-              />
-            ),
-          },
-        ],
-        //TODO: u may have to add loader
-        errorElement: <ErrorPage />,
-      },
-      // {
-      //   path: dialysisSessionsRoute,
-      //   element: <DialysisPage />,
-      //   //TODO: u may have to add loader
-      //   errorElement: <ErrorPage />,
-      // },
-      {
-        path: dialysisByPatient,
-        element: (
-          <>
-            {/* <SideBar sideBarData={managerCenterSideBar} /> */}
-    
-            
-            <GeneralDialysisProvider>
-            <GeneralDialysisPage />
-            </GeneralDialysisProvider>
-          </>
-        ),
-        //TODO: u may have to add loader
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: medicalAnalysisRoute,
-        element: <MedicalAnalysisPage />,
-        
-        //TODO: u may have to add loader
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: prescriptionsRoute,
-        element: <PrescriptionsPage />,
-        //TODO: u may have to add loader
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: globalNotesRoute,
-        element: 
-        <GeneralDetailsProvider>
-        <GeneralNotePage />
-        </GeneralDetailsProvider>
-        ,
-        //TODO: u may have to add loader
-        errorElement: <ErrorPage />,
-      },
-    ],
-  },
-  
-  {
-    path: medicalCentersRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <MedicalCentersPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: loginRoute,
+    path: loginRoute,  
     element: (
       <LoginStateProvider>
         <LoginPage />
       </LoginStateProvider>
     ),
-    //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
   {
@@ -269,173 +110,252 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+  {
+    path: '/app', 
+    element: <MainLayout />,  
+    children: [
+      {
+        path: "",
+        element: (
+            <MainPage />
 
-  {
-    path: userDetailsRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <UserDetailsProvider>
-        <UserDetailsPage />
-        </UserDetailsProvider>
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
+        ),
+        index:true,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: mainRoute,
+        element: (
+            <MainPage />
 
-  {
-    path: dialysisRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <GeneralDialysisProvider>
-        <GeneralDialysisPage type={"general"} />
-        </GeneralDialysisProvider>
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-
-  
-
-  {
-    path: dialysisDetailsRoute ,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        {/* <DialysisDetailstProvider > */}
-        < DialysisPage/>
-        {/* </DialysisDetailstProvider> */}
-        
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-
-  {
-    path: auditingRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <AuditingPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: secretariaAccountRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <CreateSecretariaAccountState>
-          <CreateSecretariaAccountPage />
-        </CreateSecretariaAccountState>
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: ordersRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <OrdersPage />
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: enterMedicalRecordRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <EnterMedicalRecordState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: usersRoute,
+        element: (
+          <UserProvider>
+            <UsersListPage />
+          </UserProvider>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: userDetailsRoute,
+        element: (
+          <UserDetailsProvider>
+            <UserDetailsPage />
+          </UserDetailsProvider>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: patientsRoute,
+        element: (
+          <PatientProvider>
+            <PatientListPage />
+          </PatientProvider>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: patientProfileRoute,
+        element: (
+          <PatientProfileStateProvider>
+            <PatientProfilePage />
+          </PatientProfileStateProvider>
+        ),
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: globalInfoRoute,
+            element: (
+              <GlobalInfoState>
+                <GlobalInfoPage />
+              </GlobalInfoState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: medicalRecordRoute,
+            element: (
+              <MedicalRecordState>
+                <MedicalRecordPage />
+              </MedicalRecordState>
+            ),
+            children: [
+              {
+                path: '',
+                element: (
+                  <PrecedentsSection
+                    title={pathologicalTitle}
+                    type={'pathological'}
+                  />
+                ),
+                index: true,
+              },
+              {
+                path: 'pathologicalHistory',
+                element: (
+                  <PrecedentsSection
+                    title={pathologicalTitle}
+                    type={'pathological'}
+                  />
+                ),
+              },
+              {
+                path: 'surgicalHistory',
+                element: (
+                  <PrecedentsSection
+                    title={surgicalTitle}
+                    type={'surgical'}
+                  />
+                ),
+              },
+              {
+                path: 'pharmacologicalHistory',
+                element: (
+                  <PrecedentsSection
+                    title={pharmacologicalTitle}
+                    type={'pharmacological'}
+                  />
+                ),
+              },
+            ],
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: dialysisByPatient,
+            element: (
+              <GeneralDialysisProvider>
+                <GeneralDialysisPage />
+              </GeneralDialysisProvider>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: medicalAnalysisRoute,
+            element: (
+              <EditMedicalAnalysisState>
+                <MedicalAnalysisPage />
+              </EditMedicalAnalysisState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: prescriptionsRoute,
+            element: (
+              <EditPrescriptionsState>
+                <PrescriptionsPage />
+              </EditPrescriptionsState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: globalNotesRoute,
+            element: (
+              <GeneralDetailsProvider>
+                <GeneralNotePage />
+              </GeneralDetailsProvider>
+            ),
+            errorElement: <ErrorPage />,
+          },
+        ],
+      },
+      {
+        path: medicalCentersRoute,
+        element: <MedicalCentersPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: dialysisRoute,
+        element: (
+          <GeneralDialysisProvider>
+            <GeneralDialysisPage type={'general'} />
+          </GeneralDialysisProvider>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: dialysisDetailsRoute,
+        element: <DialysisPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: auditingRoute,
+        element: <AuditingPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: secretariaAccountRoute,
+        element: (
+          <CreateSecretariaAccountState>
+            <CreateSecretariaAccountPage />
+          </CreateSecretariaAccountState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: ordersRoute,
+        element: <OrdersPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: enterMedicalRecordRoute,
+        element: (
+          <EnterMedicalRecordState>
             <EnterMedicalRecordPage />
-        </EnterMedicalRecordState>
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
+          </EnterMedicalRecordState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: addMedicalAnalysisRoute,
+        element: (
+          <AddMedicalAnalysisState>
+            <AddMedicalAnalysisPage />
+          </AddMedicalAnalysisState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: settingRoute,
+        element: (
+          <SettingProvider>
+            <SettingPage />
+          </SettingProvider>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: addPatintinfoRoute,
+        element: (
+          <AddPaitentInfoState>
+            <AddPaitentInfo />
+          </AddPaitentInfoState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: addPrescriptionInfoRoute,
+        element: (
+          <AddPrescriptionState>
+            <AddPrescription />
+          </AddPrescriptionState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: enterDisbursedMedicines,
+        element: (
+          <EnterDisbursedMedicinesState>
+            <EnterDisbursedMedicines />
+          </EnterDisbursedMedicinesState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+    ],
   },
-  {
-    path:addMedicalAnalysisRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar}/>
-        <AddMedicalAnalysisState>
-            <AddMedicalAnalysisPage/>
-        </AddMedicalAnalysisState>
-      </>
-    ),
-    errorElement: <ErrorPage/>
-  },
-  {
-    path: settingRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <SettingProvider>
-        <SettingPage />
-
-        </SettingProvider>
-        
-        
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-
-  //For Delete
-  {
-    path:addPatintinfoRoute ,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <AddPaitentInfoState>
-        <AddPaitentInfo />
-
-        </AddPaitentInfoState>
-        
-      </>
-    ),
-    //TODO: u may have to add loader
-    errorElement: <ErrorPage />,
-  },
-
-  {
-    path: addPrescriptionInfoRoute,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <AddPrescriptionState>
-        <AddPrescription />
-        </AddPrescriptionState>
-
-      </>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: enterDisbursedMedicines,
-    element: (
-      <>
-        <SideBar sideBarData={managerCenterSideBar} />
-        <EnterDisbursedMedicinesState>
-        <EnterDisbursedMedicines />
-        </EnterDisbursedMedicinesState>
-
-      </>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  //END FOR DELETE 
 ]);
 
 export default router;

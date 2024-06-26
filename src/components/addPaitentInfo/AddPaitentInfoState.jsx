@@ -12,7 +12,6 @@ const AddPaitentInfoState = ({ children }) => {
     username: "",
     genderValue: "",
     birthDate: "",
-
     LearnValue: "",
     economicSituation: "",
     economicType: "",

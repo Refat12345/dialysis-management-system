@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import { convertDateToArabicFormat } from "../../../utils/DateUtils";
 const Medicine = ({medicine,title , doctor}) => {
     const height = window.innerHeight;
     const arrayTitle = Object.values(title);
@@ -26,8 +26,8 @@ const Medicine = ({medicine,title , doctor}) => {
         </div>
         <div className="name date text-base font-bold text-titleSideColor">
             <p className={`${responsive}`}>{medicine.name}</p>
-            <p className={`${responsive}`}>{medicine.dateOfStart}</p>
-            <p className={`${responsiveBottom}`}>{medicine.dateOfEnd}</p>
+            <p className={`${responsive}`}>{convertDateToArabicFormat(medicine.dateOfStart)}</p>
+            <p className={`${responsiveBottom}`}>{convertDateToArabicFormat(medicine.dateOfEnd)}</p>
         </div>
         <div className="note text-base w-[30%] leading-[1.5]">
             <p className={`${responsive}`}>{arrayTitle[3]}:</p>

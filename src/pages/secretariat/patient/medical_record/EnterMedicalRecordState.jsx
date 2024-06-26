@@ -24,7 +24,7 @@ const EnterMedicalRecordState = ({ children }) => {
           {
             illnessName: "",
             medicalDiagnosisDate: null,
-            pathologicalGeneralDetails: "",
+            generalDetails: "",
           }
         ],
         pharmacologicalPrecedents: [
@@ -32,7 +32,7 @@ const EnterMedicalRecordState = ({ children }) => {
             medicineName: "",
             dateStart: null,
             dateEnd: null,
-            pharmacologicalGeneralDetails:""
+            generalDetails:""
           }
           
         ],
@@ -81,7 +81,7 @@ const EnterMedicalRecordState = ({ children }) => {
       const newPrecedent = {
         illnessName: "",
         medicalDiagnosisDate: null,
-        pathologicalGeneralDetails: "",
+        generalDetails: "",
       };
     
       setState((prevState) => ({
@@ -95,7 +95,7 @@ const EnterMedicalRecordState = ({ children }) => {
         medicineName: "",
         dateStart: null,
         dateEnd: null,
-        pharmacologicalGeneralDetails:""
+        generalDetails:""
       };
     
       setState((prevState) => ({
@@ -176,7 +176,7 @@ const EnterMedicalRecordState = ({ children }) => {
           if (item.surgeryDate === null) {
             item.surgeryDate = "";
           } else {
-            item.surgeryDate =item.surgeryDate.format("DD-MM-YYYY")
+            item.surgeryDate =item.surgeryDate.format("YYYY-MM-DD")
           }
         });
         
@@ -185,7 +185,7 @@ const EnterMedicalRecordState = ({ children }) => {
           if (item.medicalDiagnosisDate === null) {
             item.medicalDiagnosisDate = "";
           } else {
-            item.medicalDiagnosisDate =item.medicalDiagnosisDate.format("DD-MM-YYYY")
+            item.medicalDiagnosisDate =item.medicalDiagnosisDate.format("YYYY-MM-DD")
           }
         });
 
@@ -194,27 +194,26 @@ const EnterMedicalRecordState = ({ children }) => {
           if (item.dateStart === null) {
             item.dateStart = "";
           } else {
-            item.dateStart =item.dateStart.format("DD-MM-YYYY")
+            item.dateStart =item.dateStart.format("YYYY-MM-DD")
           }
           if (item.dateEnd === null) {
             item.dateEnd = "";
           } else {
-            item.dateEnd =item.dateEnd.format("DD-MM-YYYY")
+            item.dateEnd =item.dateEnd.format("YYYY-MM-DD")
           }
         });
-
 
         const body = {
           causeRenalFailure:data.causeRenalFailure,
           dryWeight:data.dryWeight,
           bloodType:data.bloodType,
-          dialysisStartDate:data.dialysisStartDate != null ?data.dialysisStartDate.format("DD-MM-YYYY"):"",
+          dialysisStartDate:data.dialysisStartDate != null ?data.dialysisStartDate.format("YYYY-MM-DD"):"",
           kidneyTransplant:data.kidneyTransplant === "لا" || data.kidneyTransplant=== "" ? false :true ,
           vascularEntrance:data.vascularEntrance,
-          surgicalPrecedents:surgical,
-          pathologicalPrecedents:pathological,
-          pharmacologicalPrecedents:pharmacological,
-          userID:21, 
+          surgicalHistories:surgical,
+          pathologicalHistories:pathological,
+          pharmacologicalHistories:pharmacological,
+          userID:16, 
         }
         return body;
     }

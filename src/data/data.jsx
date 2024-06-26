@@ -20,22 +20,21 @@ import online from "../assets/icons/medical-center/users/users-list/online.svg";
 //-------------------------
 
 //Routes
-
-export const mainRoute = "/";
-export const loginRoute = "/login";
+export const loginRoute = "/";
+export const mainRoute = "mainPage";
 export const registerRoute = "/register";
 export const invitationRoute = `${registerRoute}/invitation`;
 export const createAccountRoute = `${registerRoute}/create-account`;
-export const patientsRoute = "/patients";
-export const usersRoute = "/users";
-export const dialysisRoute = "/dialysis";
-export const enterDisbursedMedicines = "/enterDisbursedMedicines"
+export const patientsRoute = "patients";
+export const usersRoute = "users";
+export const dialysisRoute = "dialysis";
+export const enterDisbursedMedicines = "enterDisbursedMedicines"
 export const dialysisDetailsRoute = `${dialysisRoute}/dialysisDetails/:id`;
 
-export const auditingRoute = '/auditing'
-export const secretariaAccountRoute = '/secretaria_account';
-export const ordersRoute = '/orders';
-export const settingRoute = "/setting";
+export const auditingRoute = 'auditing'
+export const secretariaAccountRoute = 'secretaria_account';
+export const ordersRoute = 'orders';
+export const settingRoute = "setting";
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
 
 
@@ -47,25 +46,81 @@ export const prescriptionsRoute = `prescriptions`;
 export const globalNotesRoute = `global-notes`;
 
 
-export const medicalCentersRoute = "/medicalCenters";
+export const medicalCentersRoute = "medicalCenters";
 
-export const userDetailsRoute = `${usersRoute}/userDetails/:id`;
+export const userDetailsRoute = `${usersRoute}/:id`;
 
 export const dialysisByPatient = `dialysisByPatient`;
  
 
 //Delete 
-export const addPatintinfoRoute = '/logOut'
-export const addPrescriptionInfoRoute = '/PrescriptionInfo'
+export const addPatintinfoRoute = 'logOut'
+export const addPrescriptionInfoRoute = 'PrescriptionInfo'
 
 // export const userDetailsRoute = `${usersRoute}/userDetails`;
 
-export const enterMedicalRecordRoute = "/enterMedicalRecord"
+export const enterMedicalRecordRoute = "enterMedicalRecord"
 
-export const addMedicalAnalysisRoute = "/addMedicalAnalysis"
+export const addMedicalAnalysisRoute = "addMedicalAnalysis"
 
 //--------------------------
 //saria
+
+export const managerCenterSideBar = {
+  header: {
+    name: "حسن حبنكة",
+    title: "مدير مركز الطحان الخيري",
+    icon: ManagerIcon,
+  },
+  items: [
+    { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
+    { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
+    { href: patientsRoute, name: "المرضى", icon: PatientIcon },
+    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
+    { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
+    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
+    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
+    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
+    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+  ],
+};
+
+export const secretariatSideBar = {
+  header: {
+    name: "ريما كباكيبي",
+    title: "سكرتيرة الطحان الخيري",
+    icon: ManagerIcon,
+  },
+  items: [
+    { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
+    { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
+    { href: patientsRoute, name: "المرضى", icon: PatientIcon },
+    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
+    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
+    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
+    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+  ],
+};
+
+export const managerSideBar = {
+  header: {
+    name: "راتب خشيفاتي",
+    title: "مدير برنامج دعمكم حياة",
+    icon: ManagerIcon,
+  },
+  items: [
+    { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
+    { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
+    { href: patientsRoute, name: "المرضى", icon: PatientIcon },
+    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
+    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
+    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
+    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+  ],
+};
 
 export const titleSession = {
   title: "الجلسات الحالية",
@@ -83,8 +138,8 @@ export const titleSession = {
 export const dialysisSessions = [
   {
 
-  patientName : "أحمد محمد",
-  "nurseName": "صالح شهاب",
+  patientName : "ساريه محمد  منير الزعبي",
+  "nurseName": "عدنان  العويدات محمد",
   "sessionStartTime": "الساعة السادسة",
   "sessionEndTime": "الساعة الثانية عشرة",
   "chair":18,
@@ -155,25 +210,7 @@ export const dialysisSessions = [
               }                          
 ]
 
-export const managerCenterSideBar = {
-  header: {
-    name: "حسن حبنكة",
-    title: "مدير مركز الطحان الخيري",
-    icon: ManagerIcon,
-  },
-  items: [
-    { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
-    { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
-    { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: "", name: "المواعيد", icon: AppointmentsIcon },
-    { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
-    { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
-    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
-    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
-  ],
-};
+
 
 export const healthInformation = {
   title: "المعلومات الصحية",

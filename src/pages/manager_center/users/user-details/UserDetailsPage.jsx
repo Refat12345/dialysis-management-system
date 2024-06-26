@@ -7,7 +7,6 @@ export default function UserDetailsPage() {
 
   let { id } = useParams();
 
-
   return (
     <UserDetailsProvider userId={id}>
 <>

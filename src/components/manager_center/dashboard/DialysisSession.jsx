@@ -16,7 +16,7 @@ const DialysisSession = ({dialysis}) => {
                 <img src={Icon} alt=""/>
                 <p className={`content-center text pr-2 whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
-            <p className={` text-center w-[20.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
+            <p dir="rtl" className={` text-center w-[20.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
             <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.sessionStartTime}</p>
             <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.sessionEndTime}</p>
             <p className={`text-center w-1/10  ${responsive} hidden sm:block`}>{dialysis.chair}</p>

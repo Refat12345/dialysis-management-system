@@ -17,7 +17,7 @@ const AddMedicalAnalysisState = ({ children }) => {
         result:null,
         analysisType: "",
         userID: "",
-        postData : (value)=>postData(value)
+        postData : (value) => postData(value)
     }
   );
 
@@ -45,11 +45,12 @@ const AddMedicalAnalysisState = ({ children }) => {
       averageMax:value.averageMax,
       value:valueOne,
       quarter:"Q2",
-      analysisType:value.analysisType,
-      analysisDate:value.analysisDate.format("DD-MM-YYYY"),
+      analysisTypeID:1,
+      analysisDate:value.analysisDate.format("YYYY-MM-DD"),
       notes:value.notes,
-      userID:22
+      userID:15
     }
+    console.log(body);
     return body
   }
   const contextValue = {

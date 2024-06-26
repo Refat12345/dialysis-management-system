@@ -8,7 +8,7 @@ const PharmacologicalPrecedentsDialog = ({state,updateState}) => {
     <div>
       {array.map((precedent,index)=>{
                 return <div key={index}>
-                      <div  dir="rtl" className="paddingCard bg-bgMedicalRecord rounded-lg ">
+                    <div  dir="rtl" className="paddingCard bg-bgMedicalRecord rounded-lg ">
                     <Row mainAxisAlignment="justify-evenly">
             <div className="w-[25%] ">
             <CustomTextField
@@ -55,10 +55,10 @@ const PharmacologicalPrecedentsDialog = ({state,updateState}) => {
                     size = "3"
                     placeholder={"تفاصيل عامة"}
                     type="text"
-                    value = {precedent.pharmacologicalGeneralDetails}
+                    value = {precedent.generalDetails}
                     onChange={(val) => 
                         state.updatePharmacologicalPrecedent(index,
-                            {pharmacologicalGeneralDetails: val.target.value},
+                            {generalDetails: val.target.value},
                         )
                     }
             />

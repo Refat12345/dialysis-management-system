@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import dayjs from "dayjs"
 import { Row,CustomTextField ,CustomDatePicker } from "../../../../../../components"
 import "../../style.css"
-const PathologicalPrecedentsDialog = ({state,updateState}) => {
+const PathologicalPrecedentsDialog = ({state}) => {
     let array = state.pathologicalPrecedents.slice(0,-1)
   return (
     
@@ -28,7 +29,7 @@ const PathologicalPrecedentsDialog = ({state,updateState}) => {
         <div className="w-[48%]">
             <CustomDatePicker
                 label = {"تاريخ التشخيص"}
-                value = {precedent.medicalDiagnosisDate}
+                value = {dayjs(precedent.medicalDiagnosisDate)}
                 onSelect={(e) =>
                     state.updatePathologicalPrecedent(index,
                         {medicalDiagnosisDate: e},
@@ -47,10 +48,10 @@ const PathologicalPrecedentsDialog = ({state,updateState}) => {
             size = "3"
             placeholder={"تفاصيل عامة"}
             type="text"
-            value = {precedent.pathologicalGeneralDetails}
+            value = {precedent.generalDetails}
             onChange={(val) => {
                 state.updatePathologicalPrecedent(index,
-                    {pathologicalGeneralDetails:val.target.value}
+                    {generalDetails:val.target.value}
                 )
             }}
     />

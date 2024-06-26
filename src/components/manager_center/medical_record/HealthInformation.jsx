@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { useFormatDate } from "../../../utils/DateUtils";
+import { convertDateToArabicFormat } from "../../../utils/DateUtils";
 
 const HealthInformation = ({title , information}) => {
-  const titleArray = Object.values(title);
-  const height = window.innerHeight;
-  let responsive =  height > 600 ? ( height > 700 ? "mb-6" : "mb-4" ) : "mb-2"
-
-  return (
+    const titleArray = Object.values(title);
+    const height = window.innerHeight;
+    let responsive =  height > 600 ? ( height > 700 ? "mb-6" : "mb-4" ) : "mb-2"
+return (
     <div dir="rtl" className="bg-primaryColor p-4 pb-3 ml-[1%] shadow-lg rounded-lg">
 
         <span className={`text-titleSideColor text-2xl font-bold `} >{titleArray[0]}</span>
@@ -53,7 +52,7 @@ const HealthInformation = ({title , information}) => {
                         {titleArray[5]}:
                     </span>
                     <span className={`font-bold mr-5 ${responsive}`}>
-                        {useFormatDate(information.dialysisStartDate)}
+                        {convertDateToArabicFormat(information.dialysisStartDate)}
                     </span>
                 </div>
                 <div className="kidneyTransplant flex ">
@@ -67,7 +66,7 @@ const HealthInformation = ({title , information}) => {
             </div>
         </div>
     </div>
-  )
+)
 }
 
 export default HealthInformation
