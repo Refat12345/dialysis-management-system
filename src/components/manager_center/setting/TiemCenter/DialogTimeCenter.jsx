@@ -1,40 +1,62 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import Dialog from "@mui/material/Dialog";
-import React, { useState ,useContext} from "react";
-import DialogActions from "@mui/material/DialogActions";
+import React, { useState, useContext } from "react";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { DataContext } from "../DataContext";
+import { useAddShiftMutation } from "../../../../services/manager_center/setting/SettingSlice";
+
 export default function DialogTimeCenter({ open, setOpen }) {
   const handleClose = () => {
     setOpen(false);
   };
-  // const { data, setData } = useContext(DataContext);
 
   const [shiftName, setShiftName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
-  console.log(startTime)
-  
+  const [addShift] = useAddShiftMutation();
 
   const handleInputChange = (e, setter) => setter(e.target.value);
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const newShift = {
+  //     shiftStart: startTime,
+  //     shiftEnd: endTime,
+  //     name: shiftName,
+  //     centerID: "1",
+  //   };
+  //   addShift(newShift)
+  //     .unwrap()
+  //     .then((payload) => {
+  //       console.log("وردية جديدة تمت إضافتها:", payload);
+  //       setOpen(false);
+  //     })
+  //     .catch((error) => console.error("خطأ في إضافة وردية:", error));
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newShift = {
-      name: shiftName,
-      start: startTime,
-      end: endTime
-    };
-    setData(prevData => ({
-      ...prevData,
-      centerTime: [...prevData.centerTime, newShift]
-    }));
-    setOpen(false);
-  };
+    let formattedStartTime = startTime;
+    let formattedEndTime = endTime;
 
+    if (startTime.length === 5) formattedStartTime += ":00";
+    if (endTime.length === 5) formattedEndTime += ":00";
+
+    const newShift = {
+      shiftStart: formattedStartTime,
+      shiftEnd: formattedEndTime,
+      name: shiftName,
+      centerID: "1",
+    };
+    addShift(newShift)
+      .unwrap()
+      .then((payload) => {
+        console.log("وردية جديدة تمت إضافتها:", payload);
+        setOpen(false);
+      })
+      .catch((error) => console.error("خطأ في إضافة وردية:", error));
+  };
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -43,8 +65,7 @@ export default function DialogTimeCenter({ open, setOpen }) {
       </DialogTitle>
       <DialogContent className="p-4 w-full " dir="rtl">
         <div className=" mx-auto p-4  w-full">
-          {/* <form onSubmit={handleSubmit}> */}
-          <form >
+          <form onSubmit={handleSubmit}>
             <div className="mb-4 w-96">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -83,7 +104,6 @@ export default function DialogTimeCenter({ open, setOpen }) {
               <label
                 className="block text-gray-700 text-sm font-bold mb-2 w-full cursor-pointer"
                 htmlFor="endTime"
-                
               >
                 وقت انتهاء الوردية:
                 <input

@@ -14,11 +14,8 @@ import { SettingProvider, useSetting } from "./SettingState";
 import LoadingComponent from "../../../components/public/LoadingComponent ";
 function SettingPage() {
   const { SettingData, isLoading, isSuccess,SettingTime, setSettingTime } = useSetting();
-  console.log("Setting Time ", SettingTime);
-
   if (isLoading) return <LoadingComponent />;
   if (!SettingData) return <div>No data available</div>;
-
   return (
     <SettingProvider>
       <>
@@ -39,7 +36,7 @@ function SettingPage() {
              <GeneralAboutCenter data={SettingData.center} />
              <div className="grid grid-cols-1 gap-3 ">
                <Cards data={SettingData.center} />
-               <TimeCenter data={SettingData.center.shifts} SettingTime={SettingTime} setSettingTime={setSettingTime}  />
+               <TimeCenter data={SettingData.center.shifts}   setSettingTime={setSettingTime} SettingTime={SettingTime} />
                <ContactCenter data={SettingData.center.telecom} />
                {/* <NoteCenter  /> */}
              </div>

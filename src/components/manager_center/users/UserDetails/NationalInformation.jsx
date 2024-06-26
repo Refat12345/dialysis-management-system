@@ -5,18 +5,8 @@ import { RoleImage } from '../Card'
 import truee from "./../../../../assets/icons/medical-center/users/user-details/true.svg";
 function NationalInformation({data}) {
 
- 
-  // let data = {
-  //   role: "سكرتيرة",
-  //   name: "رفعت عبد الواحد",
-  //   gender:"ذكر",
-  //   phone:"+963992841193",
-  //   gmail:"refatabdalwahed@gmail.com",
-  //   nationalNumber:"01010193261",
-  //   birth:"4 مايو 2024"
-  // }
-  let displayRole = data.role === 'nurse' ? 'ممرض' : "طبيب";
-  let displayGender = data.gender === 'male' ? 'ذكر' : 'انثى';
+
+  let displayRole = data.role === 'nurse' ? 'ممرض' : (data.role === 'doctor' ? 'طبيب' : (data.role === 'secretary' ? 'سكرتاريا' : ''));  let displayGender = data.gender === 'male' ? 'ذكر' : 'انثى';
   let displayStatus = data.accountStatus === 'active' ? 'نشط الان' : 'غير نشط';
   return (
     <div className="border p-4 rounded-xl col-span-2 bg-whiteCard">
@@ -27,11 +17,11 @@ function NationalInformation({data}) {
               className="flex flex-grow justify-start items-center mb-4"
             >
               {
-                data.role!="سكرتيرة" ?  <MyButton text={"خيارات الحساب"} />:null
+                displayRole!="سكرتاريا" ?  <MyButton text={"خيارات الحساب"} />:null
               }
              
               {
-                data.role ==="سكرتيرة" ?<><MyButton text={"حول الحساب"} /> <MyButton text={"عرض الصلاحيات"}  /></>  :null
+                displayRole ==="سكرتاريا" ?<><MyButton text={"حول الحساب"} /> <MyButton text={"عرض الصلاحيات"}  /></>  :null
               }
             </div>
 

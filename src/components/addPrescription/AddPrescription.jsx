@@ -5,8 +5,11 @@ import CustomTextField from "../public/textfield/CustomTextField";
 import DatePickerr from "./DatePicker";
 import { useAddPrescriptionState } from "./AddPrescriptionState";
 import PublicHeader from "../manager_center/secretary/PublicHeader";
-import addPrespictionIcon  from "../../assets/icons/addPrespiction.svg";
+import addPrespictionIcon from "../../assets/icons/addPrespiction.svg";
 import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 function AddPrescription() {
   const { state, postData, userData } = useAddPrescriptionState();
   const amount = {
@@ -53,7 +56,6 @@ function AddPrescription() {
                   <div>
                     <div className="w-1/2 mr-4 mt-3">
                       <div className="mt-3"></div>
-                      
 
                       <SelectedTextFeild
                         activeLabel={false}
@@ -76,8 +78,10 @@ function AddPrescription() {
 
                     <SelectedTextFeild
                       activeLabel={false}
-                      value={      
-                        contact.amount === undefined ? "اختر الكمية" : contact.amount
+                      value={
+                        contact.amount === undefined
+                          ? "اختر الكمية"
+                          : contact.amount
                       }
                       filter={amount.array}
                       onSelect={(val) => {
@@ -88,19 +92,78 @@ function AddPrescription() {
                     />
                   </div>
 
-                  <div className="mr-3 mt-2">
-                    <DatePickerr
+                  <div className=" mr-3 mt-2 p-5">
+                    {/* <DatePickerr
                       contact={contact}
                       label={"تاريخ  بدء اخذ الدواء"}
                       index={index}
-                    />
+                    /> */}
+                    <div className="flex flex-col items-start justify-center">
+                      <label htmlFor="drugStartDate" className="text-lg mb-2">
+                        {"تاريخ بدء اخذ الدواء "}
+                      </label>
+                      <DatePicker
+                       className="w-72 h-8"
+                        id="start-date"
+                        selected={
+                          new Date(
+                            contact.yearStart,
+                            contact.monthStart - 1,
+                            contact.dayStart
+                          )
+                        }
+                        onChange={(date) => {
+                          const year = date.getFullYear();
+                          const month = date.getMonth() + 1;
+                          const day = date.getDate();
+                          state.updateContactInfo(index, {
+                            yearStart: year,
+                            monthStart: month,
+                            dayStart: day,
+                          });
+                        }}
+                        dateFormat="yyyy/MM/dd"
+                        placeholderText="اختر تاريخ البدء"
+                        calendarAriaLabel="اختر تاريخ البدء"
+                      />
+                    </div>
                   </div>
-                  <div className="mr-3 mt-2">
-                    <DatePickerr
+
+                  <div className="mr-3 mt-2 p-5">
+                    {/* <DatePickerr
                       contact={contact}
                       label={"تاريخ نهاية اخذ الدواء"}
                       index={index}
-                    />
+                    /> */}
+                    <div className="flex flex-col items-start justify-center">
+                      <label htmlFor="drugEndDate" className="text-lg mb-2">
+                        {"تاريخ نهاية اخذ الدواء "}
+                      </label>
+                      <DatePicker
+                       className="w-72 h-8"
+                        id="end-date"
+                        selected={
+                          new Date(
+                            contact.yearEnd,
+                            contact.monthEnd - 1,
+                            contact.dayEnd
+                          )
+                        }
+                        onChange={(date) => {
+                          const year = date.getFullYear();
+                          const month = date.getMonth() + 1;
+                          const day = date.getDate();
+                          state.updateContactInfo(index, {
+                            yearEnd: year,
+                            monthEnd: month,
+                            dayEnd: day,
+                          });
+                        }}
+                        dateFormat="yyyy/MM/dd"
+                        placeholderText="اختر تاريخ النهاية"
+                        calendarAriaLabel="اختر تاريخ النهاية"
+                      />
+                    </div>
                   </div>
 
                   <div className="w-1/2 mr-4 mt-3">
@@ -132,8 +195,7 @@ function AddPrescription() {
               className={`bg-headerTable w-full text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
               title={
                 <div className="flex items-center justify-center">
-                  <span  className="text-sm w-full">    حفظ   </span>
-                  
+                  <span className="text-sm w-full"> حفظ </span>
                 </div>
               }
               radius="full"

@@ -8,15 +8,17 @@ import {
   society_status,
   work,
 } from "../../assets/index";
+import { useAddPatientInfoMutation } from "./../../services/secretariat/patient_profile/AddPatientProfileSlice";
+
 import React from "react";
-import PublicHeader from "../manager_center/secretary/PublicHeader"; 
+import PublicHeader from "../manager_center/secretary/PublicHeader";
 import HeaderTextField from "./HeaderTextField";
 import CustomTextField from "../public/textfield/CustomTextField";
 import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
 import { useAddPaitentInfoState } from "./AddPaitentInfoState";
 import Row from "../public/primitives/Row";
 import Column from "../public/primitives/Column";
-import  patientIcon  from "../../assets/icons/addPaitentInfo/econamic_status.svg";
+import patientIcon from "../../assets/icons/addPaitentInfo/econamic_status.svg";
 import {
   bodyMeduimStyle,
   bodySmallStyle,
@@ -30,13 +32,18 @@ function AddPaitentInfo() {
   const { state, updateState } = useAddPaitentInfoState();
 
   const genderFilter = {
-    array: ["أنثى", "ذكر"],
-    title: "الجنس",
+    array: ["سوري", "فلسطيني", "اردني", "اجنبي"],
+    title: "الجنسية",
   };
 
   const relativeRelationFilter = {
     array: ["اخ", "ابن عم", "ام", "اب"],
     title: "صلة القرابة",
+  };
+
+  const statusFilter = {
+    array: ["مقبول", "انتظار", "مرفوض", "معلق"],
+    title: "حالة الحساب",
   };
 
   const useFilter = ["المنزل", "العمل"];
@@ -85,12 +92,13 @@ function AddPaitentInfo() {
     title: "ايجار",
   };
   return (
-    <div dir="rtl" className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage">
-
-      <PublicHeader title={'اضافة المعلومات العامة'} icon={patientIcon} />
+    <div
+      dir="rtl"
+      className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage"
+    >
+      <PublicHeader title={"اضافة المعلومات العامة"} icon={patientIcon} />
 
       <div className="grid grid-cols-2">
-
         <div>
           <div className="w-3/4 mr-4 mt-3">
             <HeaderTextField icon={society_status} text={"الوضع الاجتماعي"} />
@@ -98,7 +106,7 @@ function AddPaitentInfo() {
 
             <SelectedTextFeild
               label={genderFilter.title}
-              value={state.genderValue === "" ? "الجنس" : state.genderValue}
+              value={state.genderValue === "" ? "الجنسية" : state.genderValue}
               filter={genderFilter.array}
               onSelect={(val) => state.selectGender(val)}
             />
@@ -119,21 +127,23 @@ function AddPaitentInfo() {
             <HeaderTextField icon={econamic_status} text={"الوضع الاقتصادي"} />
             <div className="mt-3"></div>
 
-            <SelectedTextFeild
+            <CustomTextField
+              size="3"
+              required={true}
               label={"الدخل العام"}
-              value={
-                state.economicSituation === ""
-                  ? "متوسط"
-                  : state.economicSituation
+              value={state.publicIncome}
+              type="number"
+              onChange={(e) =>
+                updateState({
+                  publicIncome: e.target.value,
+                })
               }
-              filter={economicSituationFilter.array}
-              onSelect={(val) => state.selectEconomicSituation(val)}
             />
           </div>
           <div className="w-3/4 mr-4 mt-3">
             <SelectedTextFeild
               label={"نوع الدخل "}
-              value={state.economicType === "" ? "ثابت" : state.economicType}
+              value={state.economicType === "" ? "اختر نوع الدخل" : state.economicType}
               filter={economicTypeFilter.array}
               onSelect={(val) => state.selectEconomicType(val)}
             />
@@ -142,7 +152,7 @@ function AddPaitentInfo() {
             <SelectedTextFeild
               label={"مصدر الدخل "}
               value={
-                state.economicSource === "" ? "وظيفة" : state.economicSource
+                state.economicSource === "" ? "اختر مصدر الدخل" : state.economicSource
               }
               filter={economicSourceFilter.array}
               onSelect={(val) => state.selectEconomicSource(val)}
@@ -207,13 +217,48 @@ function AddPaitentInfo() {
 
             <SelectedTextFeild
               label={"الاقامة"}
-              value={state.location === "" ? "ايجار" : state.location}
+              value={state.location === "" ? "اختر نوع الاقامة" : state.location}
               filter={location.array}
               onSelect={(val) => state.selectLocation(val)}
             />
           </div>
+
+
+          {/* /// */}
+          <div className="w-3/4 mr-4 mt-3">
+            <HeaderTextField icon={home_location} text={"حالة الحساب"} />
+            <div className="mt-3"></div>
+
+            <SelectedTextFeild
+              label={"الحالة"}
+              value={state.status === "" ? "اختر الحالة" : state.status}
+              filter={statusFilter.array}
+              onSelect={(val) => state.selectStatus(val)}
+            />
+          </div>
+          {
+            state.status === "مرفوض" || state.status === "انتظار" ?  <div className="w-3/4 mr-4 mt-3">
+            <div className="mt-3"></div>
+
+            <CustomTextField
+              size="3"
+              required={true}
+              label={"السبب"}
+              value={state.reasonOfStatus}
+              type="text"
+              onChange={(e) =>
+                updateState({
+                  reasonOfStatus: e.target.value,
+                })
+              }
+            />
+          </div>  : null
+          }
+
+
         </div>
       </div>
+
 
       {/* /////////////////////// //////////////////////////////*/}
       <div className="mt-7"></div>
@@ -240,7 +285,7 @@ function AddPaitentInfo() {
           <SelectedTextFeild
             label={"صلة القرابة"}
             value={
-              state.relativeRelation === "" ? "اخ" : state.relativeRelation
+              state.relativeRelation === "" ? "اختر صلة القرابة" : state.relativeRelation
             }
             filter={relativeRelationFilter.array}
             onSelect={(val) => state.selectrelativeRelation(val)}
@@ -278,8 +323,7 @@ function AddPaitentInfo() {
               firstLabel="الاستخدام"
               secondLabel="النوع"
             />
-          ))
-          }
+          ))}
 
           <div className="h-3"></div>
           <CustomButton
@@ -311,9 +355,9 @@ function AddPaitentInfo() {
               useValue={contact.use}
               filterUse={useFilter}
               filterType={typeAddressFilter}
-              typeValue={contact.city}
+              typeValue={contact.cityName}
               selectType={(val) =>
-                state.updateAddressInfo(index, { city: val })
+                state.updateAddressInfo(index, { cityName: val })
               }
               value={contact.line}
               onChange={(val) => {
@@ -323,6 +367,13 @@ function AddPaitentInfo() {
               showDeleteButton={state.addressInfo.length > 1}
               firstLabel={"الاستخدام"}
               secondLabel={"المدينة"}
+              type={"سكن"}
+              val={contact.countryName}
+              onChangeCountryName={(val) => {
+                state.updateAddressInfo(index, {
+                  countryName: val.target.value,
+                });
+              }}
             />
           ))}
           <div className="h-3"></div>
@@ -344,7 +395,7 @@ function AddPaitentInfo() {
         </Column>
       </div>
 
-      <div className="mt-3"></div>
+      {/* <div className="mt-3"></div>
 
       <span className="mr-4 text-xl">ملاحظات:</span>
       <div className="w-full mr-4 ml-2 ">
@@ -360,13 +411,44 @@ function AddPaitentInfo() {
             })
           }
         />
-      </div>
+      </div> */}
 
       <div className="mt-3"></div>
       <div dir="ltr" className="ml-3 mb-5 ">
         <CustomButton
           variant="solid"
           onClick={() => {
+            const data = {
+              maritalStatus: state.genderValue,
+              status: state.status,
+              reasonOfStatus: state.reasonOfStatus,
+              educationalLevel: state.LearnValue,
+
+              generalIncome: state.publicIncome,
+
+              incomeType: state.economicType,
+
+              sourceOfIncome: state.economicSource,
+              workDetails: state.work,
+              residenceType: state.location,
+              fullName: state.username,
+              degreeOfKinship: state.relativeRelation,
+              patientID: '15',
+              childrenNumber: state.nationaltyNumber,
+              healthStateChildren: state.childreStatus,
+              telecomDataArray: state.contactInfo,
+              address: state.addressInfo,
+            };
+            console.log("is", data);
+            // addPatientInfo(state).unwrap()
+            // .then((payload) => {
+            //   // هنا يمكنك التعامل مع الاستجابة في حالة النجاح
+            //   console.log(payload);
+            // })
+            // .catch((error) => {
+            //   // هنا يمكنك التعامل مع الأخطاء
+            //   console.error(error);
+            // });
           }}
           className={`w-40  bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
           title={

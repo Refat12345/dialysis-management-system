@@ -20,11 +20,23 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
                 body: medicalAnalysis
             };
         },
-    })
+    }),
+
+    addPatientInfo: builder.mutation({
+        query: (Info) => { 
+            return {
+                url: `addPatientInfo`,
+                method: 'POST',
+                body: Info
+            };
+            
+        },
+    }),
 })
 });
 
 export const {
 useCreateMedicalRecordMutation,
-useAddMedicalAnalysisMutation
+useAddMedicalAnalysisMutation,
+useAddPatientInfoMutation
 } = AddPatientProfileSlice;

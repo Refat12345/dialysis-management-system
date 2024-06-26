@@ -95,14 +95,15 @@ const AddPrescriptionState = ({ children }) => {
       patientID: "15",
       medicines: prescriptionInfo.map((info) => ({
         name: info.prescriptionName,
-        dateOfStart: `${info.yearStart}-${info.monthStart.padStart(
-          2,
-          "0"
-        )}-${info.dayStart.padStart(2, "0")}`,
-        dateOfEnd: `${info.yearEnd}-${info.monthEnd.padStart(
-          2,
-          "0"
-        )}-${info.dayEnd.padStart(2, "0")}`,
+        dateOfStart: `${info.yearStart
+          .toString()
+          .padStart(4, "0")}-${info.monthStart
+          .toString()
+          .padStart(2, "0")}-${info.dayStart.toString().padStart(2, "0")}`,
+        dateOfEnd: `${info.yearEnd.toString().padStart(4, "0")}-${info.monthEnd
+          .toString()
+          .padStart(2, "0")}-${info.dayEnd.toString().padStart(2, "0")}`,
+
         amount: info.amount,
         details: info.note,
       })),
@@ -130,38 +131,6 @@ const AddPrescriptionState = ({ children }) => {
       setIsSuccessmedicences(false);
     }
   }, [ismedicencesSuccess, ismedicencesLoading, medicences]);
-
-  // const postData = async (prescriptionInfo) => {
-  //   const transformedData = transformPrescriptionData(prescriptionInfo);
-  //   try {
-  //     await createPrescription(transformedData).unwrap();
-  //     // عرض toast بنجاح العملية
-  //     // toast.success('تم إرسال الوصفة الطبية بنجاح!');
-  //     // تفريغ الحقول
-  //     setState((prevState) => ({
-  //       ...prevState,
-  //       prescriptionInfo: prevState.prescriptionInfo.map(info => ({
-  //         ...info,
-  //         prescriptionName: "",
-  //         dayStart: "",
-  //         dayEnd: "",
-  //         monthStart: "",
-  //         monthEnd: "",
-  //         yearStart: "",
-  //         yearEnd: "",
-  //         note: "",
-  //         amount: "",
-
-  //       }))
-  //     }));
-
-  //   } catch (err) {
-  //     // عرض toast بفشل العملية
-  //     // toast.error('حدث خطأ أثناء إرسال الوصفة الطبية');
-  //       //     console.error('حدث خطأ أثناء إرسال الوصفة الطبية', err);
-
-  //   }
-  // };
 
   const postData = async (prescriptionInfo) => {
     const isAllFieldsFilled = prescriptionInfo.every(

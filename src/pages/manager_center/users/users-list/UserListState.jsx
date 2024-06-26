@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) => {
         return "doctor";
       case "ممرض":
         return "nurse";
-      case "سكرتاريا":
+      case "السكرتارية":
         return "secretary";
       default:
         return "unknown";
