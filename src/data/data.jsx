@@ -54,9 +54,9 @@ export const dialysisByPatient = `dialysisByPatient`;
  
 
 //Delete 
-export const addPatintinfoRoute = '/logOut'
-export const addPrescriptionInfoRoute = '/PrescriptionInfo'
-export const assignMaterialToUserCenter = "/assignMaterialToUserCenter";
+export const addPatintinfoRoute = 'logOut'
+export const addPrescriptionInfoRoute = 'PrescriptionInfo'
+export const assignMaterialToUserCenter = "assignMaterialToUserCenter";
 
 // export const userDetailsRoute = `${usersRoute}/userDetails`;
 

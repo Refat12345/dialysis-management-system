@@ -5,7 +5,6 @@ import { RoleImage } from '../Card'
 import truee from "./../../../../assets/icons/medical-center/users/user-details/true.svg";
 function NationalInformation({data}) {
 
-
   let displayRole = data.role === 'nurse' ? 'ممرض' : (data.role === 'doctor' ? 'طبيب' : (data.role === 'secretary' ? 'سكرتاريا' : ''));  let displayGender = data.gender === 'male' ? 'ذكر' : 'انثى';
   let displayStatus = data.accountStatus === 'active' ? 'نشط الان' : 'غير نشط';
   return (
@@ -21,7 +20,7 @@ function NationalInformation({data}) {
               }
              
               {
-                displayRole ==="سكرتاريا" ?<><MyButton text={"حول الحساب"} /> <MyButton text={"عرض الصلاحيات"}  /></>  :null
+                displayRole ==="سكرتاريا" ?<><MyButton text={"حول الحساب"} /> <MyButton text={"عرض الصلاحيات"} id={data.id}  /></>  :null
               }
             </div>
 

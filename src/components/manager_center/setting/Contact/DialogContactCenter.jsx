@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useAddCenterContactMutation } from "../../../../services/manager_center/setting/SettingSlice";
-
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +16,9 @@ function DialogContactCenter({ open, setOpen }) {
   const [contactType, setContactType] = useState("");
   const [contactValue, setContactValue] = useState("");
   const [addCenterContact] = useAddCenterContactMutation();
+
+  const user = useSelector((state) => state.user);
+
 
   const handleClose = () => {
     setOpen(false);
@@ -32,7 +35,7 @@ function DialogContactCenter({ open, setOpen }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const telecomsData = {
-      centerID: "1",
+      centerID: user.centerID,
       telecoms: [
         {
           system: contactType,

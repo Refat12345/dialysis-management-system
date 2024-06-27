@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { useGetPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
-
+import { useSelector } from "react-redux";
 const PatientContext = createContext();
 
 export const PatientProvider = ({ children }) => {
@@ -28,11 +28,15 @@ export const PatientProvider = ({ children }) => {
 
   const translatedOption = translateOption(selectedOption);
 
+  const user = useSelector((state) => state.user);
+  const centerIdString = user.centerID ? user.centerID.toString() : '14';
+
+
   const {
     data: patient,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetPatientQuery(translatedOption);
+  } = useGetPatientQuery({option: translatedOption, centerId: centerIdString });
 
   useEffect(() => {
     if (isUserSuccess && patient) {

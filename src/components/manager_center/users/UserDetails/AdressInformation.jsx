@@ -48,8 +48,13 @@ function AdressInformation({ data, setData }) {
     setData(newData);
 
     try {
-      await editUser(newData);
-      console.log("تم تحديث البيانات بنجاح");
+      // await editUser(newData);
+      // console.log("تم تحديث البيانات بنجاح");
+
+      const returnedData = await editUser(newData);
+    console.log("تم تحديث البيانات بنجاح");
+    console.log("البيانات الراجعة من الخادم:", returnedData);
+      
     } catch (error) {
       console.error("حدث خطأ أثناء تحديث البيانات", error);
     }

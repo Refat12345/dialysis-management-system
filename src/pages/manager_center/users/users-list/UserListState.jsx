@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { useGetUserQuery } from "../../../../services/manager_center/user/user_list/UserSlice"; 
+import { useSelector } from "react-redux";
 
 const UserContext = createContext();
 
@@ -11,6 +12,11 @@ export const UserProvider = ({ children }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectedOption, setSelectedOption] = useState("ممرض");
   const [searchTerm, setSearchTerm] = useState('');
+
+  const user = useSelector((state) => state.user);
+
+console.log("rrr",user)
+  
 
   const translateOption = (option = "nurse") => {
     switch (option) {
@@ -25,13 +31,20 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+ 
+
   const translatedOption = translateOption(selectedOption);
+
+  // console.log("id issss ",user.centerID)
+  // console.log("rolesss",translatedOption)
+  const centerIdString = user.centerID ? user.centerID.toString() : '14';
+
 
   const {
     data: users,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetUserQuery(translatedOption);
+  } = useGetUserQuery({ option: translatedOption, centerId: centerIdString });
 
   useEffect(() => {
     if (isUserSuccess && users) {

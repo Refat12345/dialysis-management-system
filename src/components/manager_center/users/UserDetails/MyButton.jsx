@@ -1,15 +1,9 @@
 /* eslint-disable react/prop-types */
 import setting from "./../../../../assets/icons/medical-center/users/user-details/setting.svg";
-
-
-
-import React, { useState,useEffect } from "react";
+import { useState,useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
-
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import Button from "@mui/material/Button";
 import {useGetUserPermissionsQuery,useEditUserPermissionsMutation} from "./../../../../services/manager_center/user/user_details/UserDetailsSlice"
 
 
@@ -43,9 +37,9 @@ const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
 
 
 
-const MyButton = ({ text }) => {
-
-  const { data: permession, isLoading: isUserpermessionLoading, isSuccess: isUserpermessionSuccess } = useGetUserPermissionsQuery('26');
+const MyButton = ({ text ,id}) => {
+  const userIdString = id ? id.toString() : '14';
+  const { data: permession, isLoading: isUserpermessionLoading, isSuccess: isUserpermessionSuccess } = useGetUserPermissionsQuery(userIdString);
   const [editUserPermissions] = useEditUserPermissionsMutation();
 
   const permissionMap = {
@@ -97,7 +91,7 @@ const MyButton = ({ text }) => {
       .map(([switchId]) => Object.keys(permissionMap).find(key => permissionMap[key] === switchId));
 
     const newData = {
-      userId: '26', // استبدل هذا بالمعرف الفعلي للمستخدم
+      userId: userIdString, // استبدل هذا بالمعرف الفعلي للمستخدم
       permissionNames,
     };
 

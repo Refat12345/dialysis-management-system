@@ -1,49 +1,49 @@
-import {apiSlice} from '../../apiSlice'
+import { apiSlice } from "../../apiSlice";
 
 export const CenterSettingSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCenterSetting: builder.query({
-      query: () => ({
-        url: `/center/1`,
+      query: (id) => ({
+        url: `/center/${id}`,
         method: "GET",
       }),
-      providesTags: ['CenterSetting'],
-
+      providesTags: ["CenterSetting"],
     }),
     addShift: builder.mutation({
-      query: (shiftRecord) => { 
-          console.log("haaa",shiftRecord)
-          return {
-              url: `shifts`,
-              method: 'POST',
-              body: shiftRecord,
-          };
-          
-      },
-  }),
-  addCenterContact: builder.mutation({
-    query: (telcomeRecord) => { 
-        console.log("haaa",telcomeRecord)
+      query: (shiftRecord) => {
         return {
-            url: `createCenterTelecoms`,
-            method: 'POST',
-            body: telcomeRecord,
-        };   
-    },
-}),
-editShift: builder.mutation({
-  query: (shiftRecord) => { 
-      console.log("hasssssaa",shiftRecord)
-      return {
-          url: `updateShift`,
-          method: 'POST',
+          url: `shifts`,
+          method: "POST",
           body: shiftRecord,
-      };
-      
-  },
-  invalidatesTags: ['CenterSetting'],
-}),
+        };
+      },
+    }),
+    addCenterContact: builder.mutation({
+      query: (telcomeRecord) => {
+        return {
+          url: `createCenterTelecoms`,
+          method: "POST",
+          body: telcomeRecord,
+        };
+      },
+      invalidatesTags: ["CenterSetting"],
+    }),
+    editShift: builder.mutation({
+      query: (shiftRecord) => {
+        return {
+          url: `updateShift`,
+          method: "POST",
+          body: shiftRecord,
+        };
+      },
+      invalidatesTags: ["CenterSetting"],
+    }),
   }),
 });
 
-export const { useGetCenterSettingQuery,useAddShiftMutation,useAddCenterContactMutation , useEditShiftMutation } = CenterSettingSlice;
+export const {
+  useGetCenterSettingQuery,
+  useAddShiftMutation,
+  useAddCenterContactMutation,
+  useEditShiftMutation,
+} = CenterSettingSlice;

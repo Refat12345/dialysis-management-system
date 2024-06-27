@@ -3,13 +3,15 @@ import { PaginationComponent, SideBar } from "../../../../components";
 import Header from "../../../../components/manager_center/users/Header";
 import ViewCard from "../../../../components/manager_center/users/ViewCard";
 import React, { useState, useEffect } from "react";
-import {PageLoader} from "../../../../components/index";
+import { PageLoader } from "../../../../components/index";
 import { useUsers } from "./UserListState";
 const UsersListPage = () => {
   const { userData, isLoading, isSuccess, setSearchTerm, filteredData } =
     useUsers();
   const [searchTerm, setSearchTermState] = useState("");
   const [noResultsFound, setNoResultsFound] = useState(false);
+
+
 
   useEffect(() => {
     if (searchTerm) {
@@ -23,11 +25,14 @@ const UsersListPage = () => {
     }
   }, [searchTerm, filteredData]);
 
-  if (isLoading) return <div className="flex-grow md:mr-48">
-  <div className="flex items-center justify-center h-screen">
-    <PageLoader />
-  </div>
-</div>;
+  if (isLoading)
+    return (
+      <div className="flex-grow md:mr-48">
+        <div className="flex items-center justify-center h-screen">
+          <PageLoader />
+        </div>
+      </div>
+    );
   if (!userData.length && !searchTerm) return <div>No data available</div>;
 
   return (
@@ -35,7 +40,7 @@ const UsersListPage = () => {
       {isSuccess && !isLoading && (
         <div className="flex-grow mr-56 ml-8">
           <Header
-          title={"user"}
+            title={"user"}
             setSearchTerm={(term) => {
               setSearchTermState(term);
               setSearchTerm(term);
@@ -70,10 +75,6 @@ const UsersListPage = () => {
 };
 
 export default UsersListPage;
-
-
-
-
 
 /* eslint-disable no-unused-vars */
 // import {
@@ -158,7 +159,6 @@ export default UsersListPage;
 //                 </div>
 //                 <h4 className="text-right">سامر </h4>
 
-                
 //               </div>
 
 //               <div className="flex justify-end mt-3 ml-5 mb-4">
@@ -183,7 +183,7 @@ export default UsersListPage;
 //                   title={
 //                     <div className="flex items-center justify-center">
 //                       <span className={`${bodySmallStyle}`}>
-//                         اضافة الى قائمة الانتظار 
+//                         اضافة الى قائمة الانتظار
 //                       </span>
 //                       <div className="lg:w-2 md:w-2 w-1"></div>
 //                     </div>

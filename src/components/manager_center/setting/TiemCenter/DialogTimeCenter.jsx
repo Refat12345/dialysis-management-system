@@ -5,11 +5,14 @@ import React, { useState, useContext } from "react";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAddShiftMutation } from "../../../../services/manager_center/setting/SettingSlice";
-
+import { useSelector } from "react-redux";
 export default function DialogTimeCenter({ open, setOpen }) {
   const handleClose = () => {
     setOpen(false);
   };
+  const user = useSelector((state) => state.user);
+
+  // const centerIdString = user.centerID ? user.centerID.toString() : '14';
 
   const [shiftName, setShiftName] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -40,14 +43,14 @@ export default function DialogTimeCenter({ open, setOpen }) {
     let formattedStartTime = startTime;
     let formattedEndTime = endTime;
 
-    if (startTime.length === 5) formattedStartTime += ":00";
-    if (endTime.length === 5) formattedEndTime += ":00";
+    // if (startTime.length === 5) formattedStartTime += ":00";
+    // if (endTime.length === 5) formattedEndTime += ":00";
 
     const newShift = {
       shiftStart: formattedStartTime,
       shiftEnd: formattedEndTime,
       name: shiftName,
-      centerID: "1",
+      centerID: user.centerID,
     };
     addShift(newShift)
       .unwrap()
