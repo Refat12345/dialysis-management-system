@@ -35,7 +35,7 @@ export function Table({ data }) {
 
   const handleRowClick = (patientName) => {
    
-    navigate(`${patientsRoute}/${patientName}/${globalInfoRoute}`);
+    navigate(`/app/patients/${patientName}/global-info`);
     
   };
 

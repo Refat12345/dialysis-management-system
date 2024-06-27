@@ -38,7 +38,7 @@ const CheckBox = ({ state, updateState }) => {
             checked={state.positive}
             id="checkbox2"
             type="checkbox"
-            className="form-checkbox h-6 w-6 text-gray-600 ml-2 hover:cursor-pointer"
+            className = "form-checkbox h-6 w-6 text-gray-600 ml-2 hover:cursor-pointer"
             onChange={() => handleCheckboxChange(2)}
           />
           <span className="ml-2 text-gray-700">ايجابي</span>

@@ -2,7 +2,7 @@ import { PaginationComponent } from "../../../../components";
 import { useState,useEffect } from "react";
 import { Table } from "../../../../components/manager_center/patient/Patient";
 import { usePatient } from "./PaitientListState";
-import LoadingComponent from "../../../../components/public/LoadingComponent ";
+import {PageLoader} from "../../../../components/index"
 import PatientHeader from "../../../../components/manager_center/patient/PatientHeader";
 const PatientListPage = () => {
 
@@ -22,7 +22,11 @@ const PatientListPage = () => {
     }
   }, [searchTerm, filteredDataSearch]);
 
-  if (isLoading) return <LoadingComponent />;
+  if (isLoading) return <div className="flex-grow md:mr-48">
+  <div className="flex items-center justify-center h-screen">
+    <PageLoader />
+  </div>
+</div>;
   if (!patientData) return <div>No data available</div>;
 
 

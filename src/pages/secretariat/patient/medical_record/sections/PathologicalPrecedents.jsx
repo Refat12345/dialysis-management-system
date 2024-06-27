@@ -58,10 +58,10 @@ return (
                     size = "3"
                     placeholder={"تفاصيل عامة"}
                     type="text"
-                    value = {precedent.pathologicalGeneralDetails}
+                    value = {precedent.generalDetails}
                     onChange={(val) => {
                         state.updatePathologicalPrecedent(index,
-                            {pathologicalGeneralDetails:val.target.value}
+                            {generalDetails:val.target.value}
                         )
                     }}
             />

@@ -20,7 +20,7 @@ function AddPrescription() {
     <>
       <div
         dir="rtl"
-        className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage"
+        className="w-full flex flex-col md:mr-48 bg-addPaitentInfoPage"
       >
         <PublicHeader icon={addPrespictionIcon} title={"اضافة وصفة طبية"} />
 

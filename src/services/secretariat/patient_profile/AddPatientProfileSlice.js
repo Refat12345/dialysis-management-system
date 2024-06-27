@@ -7,7 +7,7 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
             return {
                 url: `createMedicalRecord`,
                 method: 'POST',
-                body: medicalRecord
+                body: medicalRecord,
             };
             
         },

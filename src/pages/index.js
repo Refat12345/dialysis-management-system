@@ -23,11 +23,12 @@ export {default as LoginPage} from "./manager_center/auth/login/LoginPage"
 export {default as UserDetailsPage} from "./manager_center/users/user-details/UserDetailsPage"
 export {default as GeneralDialysis} from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis"
 export {default as AuditingPage} from "./public/auditing/AuditingPage"
+export {default as MainPage} from "./public/MainPage"
 
 //error
 export {default as ErrorPage} from "./error/ErrorPage"
 
 // secretariat
 export {default as EnterMedicalRecordPage} from "./secretariat/patient/medical_record/EnterMedicalRecordPage"
-export {default as AddMedicalAnalysisPage} from "./secretariat/patient/medical_analysis/AddMedicalAnalysisPage"
+export {default as AddMedicalAnalysisPage} from "./secretariat/patient/medical_analysis/add_analysis/AddMedicalAnalysisPage"
 

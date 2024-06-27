@@ -52,3 +52,47 @@ export const formatDate = (dateString) => {
 
   return `${day} ${arabicMonth} ${year}`;
 };
+
+export const  convertDate = (dateStr) => {
+  const months = {
+      'يناير': '01',
+      'فبراير': '02',
+      'مارس': '03',
+      'أبريل': '04',
+      'مايو': '05',
+      'يونيو': '06',
+      'يوليو': '07',
+      'أغسطس': '08',
+      'سبتمبر': '09',
+      'أكتوبر': '10',
+      'نوفمبر': '11',
+      'ديسمبر': '12'
+  };
+  
+  const [day, month, year] = dateStr.split('-');
+
+  const monthNumber = months[month];
+  
+  return `${year}-${monthNumber}-${day.padStart(2, '0')}`;
+}
+
+export function convertDateToArabicFormat(dateString) {
+  
+  const months = [
+      "كانون الثاني", "شباط", "آذار", "نيسان", "أيار", "حزيران",
+      "تموز", "آب", "أيلول", "تشرين الأول", "تشرين الثاني", "كانون الأول"
+  ];
+
+  
+  const date = new Date(dateString);
+
+ 
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+
+
+  const formattedDate = `${day} ${months[month]} ${year}`;
+  
+  return formattedDate;
+}

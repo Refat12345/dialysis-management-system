@@ -7,7 +7,7 @@ const PatientProfilePage = () => {
   const { state } = usePatientProfileState();
 
   return (
-    <div className="w-full flex flex-col lg:mr-56 md:mr-56 pl-6">
+    <div className="w-full flex flex-col  lg:mr-56 md:mr-56 pl-6">
       <PatientProfileNav />
       <div className="w-full">
         <Outlet />

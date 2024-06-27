@@ -3,23 +3,27 @@ import {
     CustomDatePicker,
     CustomTextField,
     PublicHeader,
-    SelectedTextFeild
-    } from "../../../../components";
+    SelectedTextFeild,
+    Toast
+    } from "../../../../../components";
 import { useAddMedicalAnalysisState } from "./AddMedicalAnalysisState";
-import { MedicalRecord } from "../../../../assets";
+import { MedicalRecord } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
-import { useAddMedicalAnalysisMutation } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
+import { useAddMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
+import { toast } from "react-toastify";
+import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
     const { state, updateState } = useAddMedicalAnalysisState();
-    const [addMedicalAnalysis, { isSuccess, isError, isLoading }] = useAddMedicalAnalysisMutation();
+    const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
     const typeSelections = ["خضاب", "دم", "حديد"];
     const unitSelections = ["mm", "cm", "ml"];
-
+    const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
     const postData = async () => {
         try {
             let body = state.postData(state)
             await addMedicalAnalysis(body);
+            toast("تم اضافة التحليل الطبي بنجاح")
         } catch (error) {
             console.error("Error adding medical analysis:", error);
         }
@@ -80,8 +84,8 @@ import { useAddMedicalAnalysisMutation } from "../../../../services/secretariat/
                     </div>
                     </div>
                 </div>
-                <div className="mt-8 flex justify-end">
-                    <CustomButton
+                <div className="mt-8 flex justify-end"> 
+                    {!isLoading ? <div className=""> <CustomButton
                         variant="solid"
                         onClick={postData}
                         className="bg-bgbutton text-white h-8 transition-all font-bold text-md hover:cursor-pointer"
@@ -93,10 +97,9 @@ import { useAddMedicalAnalysisMutation } from "../../../../services/secretariat/
                         }
                         radius="full"
                     />
+                </div>:<ButtonLoader/>}
                 </div>
-            {isLoading && <p>Loading...</p>}
-            {isSuccess && <p>تمت إضافة التحليل بنجاح!</p>}
-            {isError && <p>حدث خطأ أثناء إضافة التحليل.</p>}
+                <Toast textStyle={textToastStyle} progressColor={"green"}/>
         </div>
     </div>
     );

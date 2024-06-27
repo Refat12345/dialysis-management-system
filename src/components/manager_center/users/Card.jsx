@@ -47,7 +47,7 @@ function Card({ data }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`${userDetailsRoute.replace(":id", data.id)}`);
+    navigate(`/app/users/${data.id}`);
   };
 
   return (

@@ -7,18 +7,21 @@ export const ShowPatientProfileSlice = apiSlice.injectEndpoints({
                 url: `showMedicalRecord/${id}`,
                 method: 'GET',
             }),
+            providesTags: ['MedicalRecord'],
         }),
         getMedicalAnalysis: builder.query({
             query: (id) => ({
                 url: `showMedicalAnalysis/${id}`,
                 method: 'GET',
             }),
+            providesTags: ['MedicalAnalysis'],
         }),
         getPrescriptions: builder.query({
             query: (id) => ({
                 url: `getPrescriptionsByPatient/${id}`,
                 method: 'GET',
             }),
+            providesTags: ['Prescriptions'],
         }),
     })
 });

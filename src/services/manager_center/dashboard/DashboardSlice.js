@@ -1,30 +1,34 @@
 import { apiSlice } from '../../apiSlice';
-
+import Cookies from "js-cookie"
 export const apiDashboard = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getSessions: builder.query({
             query: () => ({
                 url: 'getDialysisSessions/0/5/2024',
                 method: 'GET',
+                headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
             }),
         }),
-        getStatistics : builder.query({
+        getCenterStatistics: builder.query({
             query :()=>({
                 url:"getCenterStatistics",
-                method:"GET"
-            }), 
+                method:"GET",
+                headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
+            })
         }),
         getCausesRenalFailure : builder.query({
             query :()=>({
                 url:"causeRenalFailure",
-                method:"GET"
+                method:"GET",
+                headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
             }), 
         }),
         getPieCharts:builder.query({
             query :(data)=>{
                 return{
                 url:data.month != "" && data.year != "" ?`getPieCharts/${data.month}/${data.year}`:"getPieCharts",
-                method:"GET"
+                method:"GET",
+                headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
             }
             }
         })
@@ -33,7 +37,7 @@ export const apiDashboard = apiSlice.injectEndpoints({
 
 export const {
     useGetSessionsQuery,
-    useGetStatisticsQuery,
+    useGetCenterStatisticsQuery,
     useGetPieChartsQuery,
     useGetCausesRenalFailureQuery
 } = apiDashboard;

@@ -14,17 +14,19 @@ const { state , updateState } = useEnterMedicalRecordState();
 const [createMedicalRecord , {data,isError,isSuccess,isLoading}] = useCreateMedicalRecordMutation();
 
 
-const notify = () => toast("تم اضافة السجل الطبي بنجاح");
 const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
 
 const handlePost =async () => {
   let body =state.postData(state);
   try{
-    await createMedicalRecord(body);
+    console.log(body)
+    await createMedicalRecord(body).unwrap();
+    toast("تم اضافة السجل الطبي بنجاح");
   }catch(error) {
     console.log(error);
   }
 }
+
   return (
     <div dir="rtl" className="parent flex-grow  h-screen bg-bgMedicalRecord">
         <div className="md:mr-48 bg-bgMedicalRecord">
@@ -56,8 +58,9 @@ const handlePost =async () => {
               }
               radius="full"
             />
-            <Toast textStyle={textToastStyle} progressColor={"green"}/>
+            
             </div>:<ButtonLoader/>}
+            <Toast textStyle={textToastStyle} progressColor={"green"}/>
             </div>
             </div> 
         </div>

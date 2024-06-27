@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MedicalAnalysis, PageLoader } from "../../../../components";
+import { AlertDialog, MedicalAnalysis, PageLoader  } from "../../../../components";
 import Header from "./sections/Header";
 import { useEffect, useState, useMemo } from "react";
 import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
 import { formatDate } from "../../../../utils/DateUtils";
-
+import Cookies from "js-cookie"
+import EditMedicalAnalysisDialog from "../../../secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisDialog"
 const MedicalAnalysisPage = () => {
+
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
     const id = sessionStorage.getItem("patientId");
     const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(id);
@@ -64,7 +66,9 @@ const MedicalAnalysisPage = () => {
                     <Header value={filters} setFilters={setFilters} />
                     <div className="analysis">
                         {filteredAnalysis.map((analysisItem, index) => (
-                            <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                            Cookies.get("role") === "secretary" ? <AlertDialog key={index} renderComponent={<div className="hover:cursor-pointer">
+                                <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                            </div>} contentComponent={<EditMedicalAnalysisDialog medicalAnalysis={analysisItem}/>}/> :<MedicalAnalysis key={index} title={title} analysis={analysisItem} />
                         ))}
                     </div>
                 </div>

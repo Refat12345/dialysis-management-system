@@ -4,7 +4,9 @@ import { useLoginMutation } from "../../../../services/manager_center/auth/AuthS
 import { useNavigate } from "react-router-dom";
 import { validateLoginForm } from "../../../../validator";
 import { showErrorToast, showSuccessToast } from "../../../../utils/toastUtils";
-import Cookies from "js-cookie";
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../../services/userSlice';
+import Cookies from "js-cookie"
 
 const LoginStateContext = createContext();
 
@@ -18,6 +20,8 @@ export const LoginStateProvider = ({ children }) => {
     showPassword: false,
     errors: {},
   });
+  const dispatch = useDispatch();
+
 
   const [loginApi, { error }] = useLoginMutation();
 
@@ -46,11 +50,12 @@ export const LoginStateProvider = ({ children }) => {
         nationalNumber: state.nationaltyNumber,
         password: state.password,
       }).unwrap();
-
+      Cookies.set("role",response.user.role)
+      const token = Cookies.set("token", response.user.token);
+      dispatch(setUser(response.user))
+      sessionStorage.setItem("user", JSON.stringify(response.user));
       showSuccessToast("login successfully");
-      Cookies.set("token", response.user.token);
-      Cookies.set("user", response.user);
-      navigate("/");
+      if(token) {navigate("/app")}
     } catch (err) {
       showErrorToast(err.data.error || error);
     }
