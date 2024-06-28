@@ -26,6 +26,8 @@ export const registerRoute = "/register";
 export const invitationRoute = `${registerRoute}/invitation`;
 export const createAccountRoute = `${registerRoute}/create-account`;
 export const patientsRoute = "patients";
+export const patientRoute = "patient";
+
 export const usersRoute = "users";
 export const dialysisRoute = "dialysis";
 export const enterDisbursedMedicines = "enterDisbursedMedicines"
@@ -36,6 +38,7 @@ export const secretariaAccountRoute = 'secretaria_account';
 export const ordersRoute = 'orders';
 export const settingRoute = "setting";
 export const patientProfileRoute = `${patientsRoute}/:patientName`;
+export const patientOptionRoute = `${patientRoute}/:patientName`;
 
 
 export const medicalRecordRoute = `medical-record`;
@@ -54,7 +57,7 @@ export const dialysisByPatient = `dialysisByPatient`;
  
 
 //Delete 
-export const addPatintinfoRoute = 'logOut'
+export const addPatintinfoRoute = 'addPatientInfo'
 export const addPrescriptionInfoRoute = 'PrescriptionInfo'
 export const assignMaterialToUserCenter = "assignMaterialToUserCenter";
 

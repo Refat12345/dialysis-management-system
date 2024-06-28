@@ -9,7 +9,8 @@ import {
   work,
 } from "../../assets/index";
 import { useAddPatientInfoMutation } from "./../../services/secretariat/patient_profile/AddPatientProfileSlice";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import PublicHeader from "../manager_center/secretary/PublicHeader";
 import HeaderTextField from "./HeaderTextField";
@@ -28,8 +29,13 @@ import {
 import ContactSecretariaComponent from "../../pages/manager_center/secretaria_account/secretaria_sections/ContactSecretariaComponent";
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
-function AddPaitentInfo() {
+
+function AddPaitentInfo({id}) {
+
   const { state, updateState } = useAddPaitentInfoState();
+  const [addPatientInfo] = useAddPatientInfoMutation();
+
+  console.log("11111", id)
 
   const genderFilter = {
     array: ["سوري", "فلسطيني", "اردني", "اجنبي"],
@@ -91,6 +97,11 @@ function AddPaitentInfo() {
     array: ["ايجار", "ملك"],
     title: "ايجار",
   };
+
+  const maritalStatusFilter = {
+    array: ["اعزب", "متزوج"],
+    title: "صلة القرابة",
+  };
   return (
     <div
       dir="rtl"
@@ -143,7 +154,11 @@ function AddPaitentInfo() {
           <div className="w-3/4 mr-4 mt-3">
             <SelectedTextFeild
               label={"نوع الدخل "}
-              value={state.economicType === "" ? "اختر نوع الدخل" : state.economicType}
+              value={
+                state.economicType === ""
+                  ? "اختر نوع الدخل"
+                  : state.economicType
+              }
               filter={economicTypeFilter.array}
               onSelect={(val) => state.selectEconomicType(val)}
             />
@@ -152,7 +167,9 @@ function AddPaitentInfo() {
             <SelectedTextFeild
               label={"مصدر الدخل "}
               value={
-                state.economicSource === "" ? "اختر مصدر الدخل" : state.economicSource
+                state.economicSource === ""
+                  ? "اختر مصدر الدخل"
+                  : state.economicSource
               }
               filter={economicSourceFilter.array}
               onSelect={(val) => state.selectEconomicSource(val)}
@@ -165,32 +182,46 @@ function AddPaitentInfo() {
             <HeaderTextField icon={family_status} text={"الوضع العائلي"} />
             <div className="mt-3"></div>
 
-            <CustomTextField
-              size="3"
-              required={true}
-              label={"عدد الاولاد"}
-              value={state.nationaltyNumber}
-              type="number"
-              onChange={(e) =>
-                updateState({
-                  nationaltyNumber: e.target.value,
-                })
+            <SelectedTextFeild
+              label={"الحالة الاجتماعية"}
+              value={
+                state.maritalStatus === ""
+                  ? "ادخل الحالة الاجتماعية"
+                  : state.maritalStatus
               }
+              filter={maritalStatusFilter.array}
+              onSelect={(val) => state.selectMaritalStatus(val)}
             />
-          </div>
-          <div className="w-3/4 mr-4 mt-3">
-            <CustomTextField
-              size="3"
-              required={true}
-              label={"الحالة الصحية للأولاد"}
-              value={state.childreStatus}
-              type="text"
-              onChange={(e) =>
-                updateState({
-                  childreStatus: e.target.value,
-                })
-              }
-            />
+            <div className="mt-3"></div>
+
+            {state.maritalStatus === "متزوج" && (
+              <>
+                <CustomTextField
+                  size="3"
+                  required={true}
+                  label={"عدد الاولاد"}
+                  value={state.nationaltyNumber}
+                  type="number"
+                  onChange={(e) =>
+                    updateState({
+                      nationaltyNumber: e.target.value,
+                    })
+                  }
+                />
+                <CustomTextField
+                  size="3"
+                  required={true}
+                  label={"الحالة الصحية للأولاد"}
+                  value={state.childreStatus}
+                  type="text"
+                  onChange={(e) =>
+                    updateState({
+                      childreStatus: e.target.value,
+                    })
+                  }
+                />
+              </>
+            )}
           </div>
 
           <div className="w-3/4 mr-4 mt-3">
@@ -217,14 +248,14 @@ function AddPaitentInfo() {
 
             <SelectedTextFeild
               label={"الاقامة"}
-              value={state.location === "" ? "اختر نوع الاقامة" : state.location}
+              value={
+                state.location === "" ? "اختر نوع الاقامة" : state.location
+              }
               filter={location.array}
               onSelect={(val) => state.selectLocation(val)}
             />
           </div>
 
-
-          {/* /// */}
           <div className="w-3/4 mr-4 mt-3">
             <HeaderTextField icon={home_location} text={"حالة الحساب"} />
             <div className="mt-3"></div>
@@ -236,29 +267,26 @@ function AddPaitentInfo() {
               onSelect={(val) => state.selectStatus(val)}
             />
           </div>
-          {
-            state.status === "مرفوض" || state.status === "انتظار" ?  <div className="w-3/4 mr-4 mt-3">
-            <div className="mt-3"></div>
+          {state.status === "مرفوض" || state.status === "انتظار" ? (
+            <div className="w-3/4 mr-4 mt-3">
+              <div className="mt-3"></div>
 
-            <CustomTextField
-              size="3"
-              required={true}
-              label={"السبب"}
-              value={state.reasonOfStatus}
-              type="text"
-              onChange={(e) =>
-                updateState({
-                  reasonOfStatus: e.target.value,
-                })
-              }
-            />
-          </div>  : null
-          }
-
-
+              <CustomTextField
+                size="3"
+                required={true}
+                label={"السبب"}
+                value={state.reasonOfStatus}
+                type="text"
+                onChange={(e) =>
+                  updateState({
+                    reasonOfStatus: e.target.value,
+                  })
+                }
+              />
+            </div>
+          ) : null}
         </div>
       </div>
-
 
       {/* /////////////////////// //////////////////////////////*/}
       <div className="mt-7"></div>
@@ -285,7 +313,9 @@ function AddPaitentInfo() {
           <SelectedTextFeild
             label={"صلة القرابة"}
             value={
-              state.relativeRelation === "" ? "اختر صلة القرابة" : state.relativeRelation
+              state.relativeRelation === ""
+                ? "اختر صلة القرابة"
+                : state.relativeRelation
             }
             filter={relativeRelationFilter.array}
             onSelect={(val) => state.selectrelativeRelation(val)}
@@ -310,9 +340,9 @@ function AddPaitentInfo() {
               useValue={contact.use}
               filterUse={useFilter}
               filterType={typeContactFilter}
-              typeValue={contact.type}
+              typeValue={contact.system}
               selectType={(val) =>
-                state.updateContactInfo(index, { type: val })
+                state.updateContactInfo(index, { system: val })
               }
               value={contact.value}
               onChange={(val) => {
@@ -395,60 +425,75 @@ function AddPaitentInfo() {
         </Column>
       </div>
 
-      {/* <div className="mt-3"></div>
-
-      <span className="mr-4 text-xl">ملاحظات:</span>
-      <div className="w-full mr-4 ml-2 ">
-        <CustomTextField
-          size="3"
-          required={true}
-          placeholder="ادخل الملاحظة..."
-          value={state.note}
-          type="text"
-          onChange={(e) =>
-            updateState({
-              note: e.target.value,
-            })
-          }
-        />
-      </div> */}
-
       <div className="mt-3"></div>
       <div dir="ltr" className="ml-3 mb-5 ">
         <CustomButton
           variant="solid"
-          onClick={() => {
+          onClick={async () => {
+            if (
+              !state.status ||
+              !state.LearnValue ||
+              !state.publicIncome ||
+              !state.economicType ||
+              !state.economicSource ||
+              !state.location ||
+              !state.username ||
+              !state.relativeRelation ||
+              !state.contactInfo ||
+              !state.addressInfo
+            ) {
+              alert("الرجاء ملء جميع الحقول");
+              return;
+            }
+
             const data = {
-              maritalStatus: state.genderValue,
+              nationality: state.genderValue,
+              maritalStatus: state.maritalStatus,
               status: state.status,
               reasonOfStatus: state.reasonOfStatus,
               educationalLevel: state.LearnValue,
-
               generalIncome: state.publicIncome,
-
               incomeType: state.economicType,
-
               sourceOfIncome: state.economicSource,
               workDetails: state.work,
               residenceType: state.location,
               fullName: state.username,
               degreeOfKinship: state.relativeRelation,
-              patientID: '15',
+              patientID: id.toString(),
               childrenNumber: state.nationaltyNumber,
               healthStateChildren: state.childreStatus,
               telecomDataArray: state.contactInfo,
               address: state.addressInfo,
             };
             console.log("is", data);
-            // addPatientInfo(state).unwrap()
-            // .then((payload) => {
-            //   // هنا يمكنك التعامل مع الاستجابة في حالة النجاح
-            //   console.log(payload);
-            // })
-            // .catch((error) => {
-            //   // هنا يمكنك التعامل مع الأخطاء
-            //   console.error(error);
-            // });
+            try {
+              const result = await addPatientInfo(data).unwrap();
+              console.log("Result:", result);
+              toast.success("تم إرسال البيانات  بنجاح!");
+
+              updateState({
+                genderValue: "",
+                maritalStatus: "",
+                status: "",
+                reasonOfStatus: "",
+                LearnValue: "",
+                publicIncome: "",
+                economicType: "",
+                economicSource: "",
+                work: "",
+                location: "",
+                username: "",
+                relativeRelation: "",
+                patientID: "",
+                nationaltyNumber: "",
+                childreStatus: "",
+                contactInfo: [""], 
+                addressInfo: [""], 
+              });
+
+            } catch (error) {
+              toast.error("حدث خطأ اثناء الاضافة");
+            }
           }}
           className={`w-40  bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
           title={

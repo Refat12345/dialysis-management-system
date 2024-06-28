@@ -2,15 +2,64 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import patient from "../../../assets/icons/medical-center/patient/patient.svg";
+import React, { useState, useContext } from "react";
 import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
 import ChevronIcon from "../../../assets/icons/public/chevron-left.svg";
 import { useFormatDate } from "../../../utils/DateUtils";
 import AlertDialog from "../../public/dialog/Dialog";
 import AuditingDetailsDialog from "../../public/auditing/AuditingDetailsDialog";
 import RejectionReason from "../../../pages/manager_center/orders/sections/RejectionReason";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import SelectedTextFeild from "../../public/textfield/SelectedTextFeild";
 function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
+  const navigate = useNavigate();
+
   const userIdString = id ? id.toString() : "14";
+  const [state, setState] = useState({
+    secrtaryValue: "",
+    adminValue: "",
+
+    selectSecertaryOption: (val) => selectSecertaryOption(val),
+    selectAdminOption: (val) => selectAdminValueOption(val),
+  });
+
+  const selectSecertaryOption = (value) => {
+    updateState({ secrtaryValue: value });
+
+    switch (value) {
+      case "اضافة وصفة طبية":
+        navigate(`/app/patient/${id}/PrescriptionInfo`);
+        break;
+      case "اضافة المعلومات العامة":
+        navigate(`/app/patient/${id}/addPatientInfo`);
+        break;
+      case "اردني":
+        history.push("/path-for-jordanian");
+        break;
+      case "اجنبي":
+        history.push("/path-for-foreigner");
+        break;
+      default:
+        break;
+    }
+
+
+
+  };
+
+  const selectAdminValueOption = (value) => {
+    updateState({ adminValue: value });
+  };
+
+  const updateState = (newValues) => {
+    setState((prevState) => ({
+      ...prevState,
+      ...newValues,
+    }));
+  };
+
   const object = {
     connectOne: Object.values(row)[0],
     connectTow: Object.values(row)[1],
@@ -20,15 +69,23 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
     connectSix: Object.values(row)[5],
     connectSeven: Object.values(row)[6],
   };
-  const handleMenuClick = () => {
-    return (
-      
-      <select>
-        <option value="option1">الخيار 1</option>
-        <option value="option2">الخيار 2</option>
-        <option value="option3">الخيار 3</option>
-      </select>
-    );
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const user = useSelector((state) => state.user);
+
+  const [open, setOpen] = useState(false);
+
+  const handleMenuClick = (event) => {
+    event.stopPropagation();
+    setOpen(!open);
+  };
+  const secrtaryFilter = {
+    array: ["اضافة وصفة طبية", "اضافة المعلومات العامة"],
+  };
+
+  const adminFilter = {
+    array: ["سوري", "فلسطيني", "اردني", "اجنبي"],
   };
 
   return (
@@ -153,12 +210,32 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
               />
             </div>
           ) : (
-            <img
-              onClick={handleMenuClick}
-              className="w-5 h-5 pr-18 -ml-4"
-              src={down}
-              alt="Patient"
-            />
+            <>
+              <img
+                onClick={handleMenuClick}
+                className="w-5 h-5 pr-18 -ml-4"
+                src={down}
+                alt="Patient"
+              />
+              {open && user.role === "secretary" && (
+                <SelectedTextFeild
+                  activeLabel={false}
+                  onClick={(event) => event.stopPropagation()}
+                  value={
+                    state.secrtaryValue === "" ? "اختر" : state.secrtaryValue
+                  }
+                  filter={secrtaryFilter.array}
+                  onSelect={(val, event) => {
+                    state.selectSecertaryOption(val);
+                    // event.stopPropagation();
+                    if (event !== undefined) {
+                      event.stopPropagation();
+                    }
+
+                  }}
+                />
+              )}
+            </>
           )}
         </td>
       )}

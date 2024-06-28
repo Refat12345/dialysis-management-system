@@ -10,10 +10,11 @@ const SelectedTextFeild = ({
   value,
   filter,
   onSelect,
+  onClick,
 }) => {
   return (
     <Menu dir="rtl" as="div" className="relative inline-block w-full ">
-      <label className={`font-medium ${bodyMeduimStyle}`}>
+      <label onClick={onClick} className={`font-medium ${bodyMeduimStyle}`}>
         {!activeLabel ? "" : `${label}:`}
         <div className="h-1"></div>
         <Menu.Button
@@ -39,16 +40,21 @@ const SelectedTextFeild = ({
         leave="transition ease-in duration-75"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
-      
       >
         <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none max-h-60 overflow-y-auto z-50">
-          <div dir={`${label==="زمرة الدم"?"ltr":"rtl"}`} className="px-1 py-1">
+          <div
+            dir={`${label === "زمرة الدم" ? "ltr" : "rtl"}`}
+            className="px-1 py-1"
+          >
             {filter.map((content, index) => {
               return (
                 <Menu.Item key={index}>
                   {({ active }) => (
                     <div
-                      onClick={() => onSelect(content)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        onSelect(content);
+                      }}
                       className={`${
                         active
                           ? `bg-bgButtonColor text-white font-primaryRegular cursor-pointer`

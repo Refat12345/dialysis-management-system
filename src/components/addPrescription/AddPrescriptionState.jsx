@@ -10,7 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AddPrescriptionStateContext = createContext();
 
-const AddPrescriptionState = ({ children }) => {
+const AddPrescriptionState = ({ children ,userId }) => {
+  const userIdString = userId ? userId.toString() : '14';
   const [userData, setUserData] = useState([]);
   const [isLoadingmedicences, setIsLoadingmedicences] = useState(false);
   const [isSuccessmedicences, setIsSuccessmedicences] = useState(false);
@@ -92,7 +93,7 @@ const AddPrescriptionState = ({ children }) => {
 
   const transformPrescriptionData = (prescriptionInfo) => {
     return {
-      patientID: "15",
+      patientID: userIdString,
       medicines: prescriptionInfo.map((info) => ({
         name: info.prescriptionName,
         dateOfStart: `${info.yearStart

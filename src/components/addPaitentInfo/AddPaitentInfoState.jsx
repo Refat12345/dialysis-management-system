@@ -21,10 +21,12 @@ const AddPaitentInfoState = ({ children }) => {
     location: "",
     status: "",
     reasonOfStatus :"",
+    maritalStatus :"",
+
     contactInfo: [
       {
         use: "",
-        type: "",
+        system: "",
         value: "",
       },
     ],
@@ -50,6 +52,8 @@ const AddPaitentInfoState = ({ children }) => {
     removeAddressInfo: (index) => removeAddressInfo(index),
     selectrelativeRelation: (val) => selectrelativeRelation(val),
     selectStatus: (val) => selectStatus(val),
+    selectMaritalStatus: (val) => selectMaritalStatus(val),
+
 
   });
   const selectrelativeRelation = (value) => {
@@ -76,6 +80,9 @@ const AddPaitentInfoState = ({ children }) => {
   const selectLearn = (value) => {
     updateState({ LearnValue: value });
   };
+  const selectMaritalStatus = (value) => {
+    updateState({ maritalStatus: value });
+  };
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
       ...prevState,
@@ -93,7 +100,7 @@ const AddPaitentInfoState = ({ children }) => {
     }));
   };
   const addContactInfo = () => {
-    const newContact = { use: "", type: "", value: "" };
+    const newContact = { use: "", system: "", value: "" };
     setState((prevState) => ({
       ...prevState,
       contactInfo: [...prevState.contactInfo, newContact],

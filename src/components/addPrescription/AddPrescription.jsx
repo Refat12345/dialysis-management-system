@@ -2,19 +2,21 @@ import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { bodyMeduimStyle } from "../../utils/StyleUtils";
 import CustomTextField from "../public/textfield/CustomTextField";
-import DatePickerr from "./DatePicker";
-import { useAddPrescriptionState } from "./AddPrescriptionState";
+import AddPrescriptionState, { useAddPrescriptionState } from "./AddPrescriptionState";
 import PublicHeader from "../manager_center/secretary/PublicHeader";
 import addPrespictionIcon from "../../assets/icons/addPrespiction.svg";
 import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import React from "react";
 function AddPrescription() {
+  
   const { state, postData, userData } = useAddPrescriptionState();
   const amount = {
     array: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   };
+
+
 
   return (
     <>
@@ -47,7 +49,7 @@ function AddPrescription() {
           </div>
 
           {state.prescriptionInfo.map((contact, index) => (
-            <>
+            <React.Fragment key={index}>
               <div
                 key={index}
                 className="bg-slate-200 border p-3 rounded-xl m-3 "
@@ -93,11 +95,7 @@ function AddPrescription() {
                   </div>
 
                   <div className=" mr-3 mt-2 p-5">
-                    {/* <DatePickerr
-                      contact={contact}
-                      label={"تاريخ  بدء اخذ الدواء"}
-                      index={index}
-                    /> */}
+                 
                     <div className="flex flex-col items-start justify-center">
                       <label htmlFor="drugStartDate" className="text-lg mb-2">
                         {"تاريخ بدء اخذ الدواء "}
@@ -130,11 +128,7 @@ function AddPrescription() {
                   </div>
 
                   <div className="mr-3 mt-2 p-5">
-                    {/* <DatePickerr
-                      contact={contact}
-                      label={"تاريخ نهاية اخذ الدواء"}
-                      index={index}
-                    /> */}
+                  
                     <div className="flex flex-col items-start justify-center">
                       <label htmlFor="drugEndDate" className="text-lg mb-2">
                         {"تاريخ نهاية اخذ الدواء "}
@@ -184,7 +178,7 @@ function AddPrescription() {
                   </div>
                 </div>
               </div>
-            </>
+            </React.Fragment>
           ))}
           <div className="flex justify-end mt-2">
             <CustomButton

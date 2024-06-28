@@ -34,9 +34,6 @@ console.log("rrr",user)
  
 
   const translatedOption = translateOption(selectedOption);
-
-  // console.log("id issss ",user.centerID)
-  // console.log("rolesss",translatedOption)
   const centerIdString = user.centerID ? user.centerID.toString() : '14';
 
 
