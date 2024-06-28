@@ -11,7 +11,8 @@ const savedUser = JSON.parse(sessionStorage.getItem("user")) || {
     gender: "",
     accountStatus: "",
     role: "",
-    centerID: ""
+    centerID: "",
+    centerName:""
 };
 
 const userSlice = createSlice ({

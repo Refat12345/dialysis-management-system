@@ -5,11 +5,14 @@ import { useEffect, useState, useMemo } from "react";
 import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
 import { formatDate } from "../../../../utils/DateUtils";
 import Cookies from "js-cookie"
+import { useParams } from "react-router-dom";
 import EditMedicalAnalysisDialog from "../../../secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisDialog"
+
 const MedicalAnalysisPage = () => {
 
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
-    const id = sessionStorage.getItem("patientId");
+    const { patientName } = useParams();
+    const id = useMemo(() => patientName, [patientName]);
     const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(id);
     const [analysis, setAnalysis] = useState([]);
     const [filters, setFilters] = useState({
@@ -17,7 +20,7 @@ const MedicalAnalysisPage = () => {
         date: "",
         quarter: ""
     });
-   
+
     useEffect(() => {
         if (isSuccess && data?.analysis) {
             setAnalysis(data.analysis);

@@ -26,7 +26,7 @@ const SideBar = ({ sideBarData }) => {
       >
         <div className="h-screen w-48 px-3 py-4 overflow-y-auto bg-white shadow-lg flex flex-col items-center ">
           <SideBarHeader header={sideBarData.header} />
-          <ul className="space-y-2 font-medium mt-8 " dir="rtl">
+          <ul className="space-y-2 font-medium mt-6 " dir="rtl">
             {sideBarData.items.map((admin, index) => (
               <NavItem
                 key={index}

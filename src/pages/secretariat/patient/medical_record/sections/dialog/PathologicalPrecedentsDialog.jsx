@@ -8,6 +8,10 @@ const PathologicalPrecedentsDialog = ({state}) => {
   return (
     
     array.map((precedent,index)=>{
+        console.log();
+        const data = new Date(precedent.medicalDiagnosisDate)
+        console.log(data.getMonth());
+        const string = `${data.getFullYear()}-${data.getMonth()}-${data.getDate()}`
         return <div key={index}>
             <div  dir="rtl" className="paddingCard bg-bgMedicalRecord rounded-lg ">
         <div className="mgBottomHeader"></div>
@@ -29,7 +33,7 @@ const PathologicalPrecedentsDialog = ({state}) => {
         <div className="w-[48%]">
             <CustomDatePicker
                 label = {"تاريخ التشخيص"}
-                value = {dayjs(precedent.medicalDiagnosisDate)}
+                value = {dayjs(string)}
                 onSelect={(e) =>
                     state.updatePathologicalPrecedent(index,
                         {medicalDiagnosisDate: e},

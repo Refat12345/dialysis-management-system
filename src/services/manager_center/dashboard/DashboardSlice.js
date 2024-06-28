@@ -4,7 +4,7 @@ export const apiDashboard = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getSessions: builder.query({
             query: () => ({
-                url: 'getDialysisSessions/0/5/2024',
+                url: 'getNurseDialysisSessions/active',
                 method: 'GET',
                 headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
             }),

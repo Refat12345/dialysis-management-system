@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { TableHeader , TableRow } from "../../../../components";
-const OrdersSection = ({data}) => {
+const OrdersSection = ({data  }) => {
     const columns = [
         { key: "type", title: "نوع الطلب" },
         { key: "order", title: "مقدم الطلب" },
@@ -23,8 +23,13 @@ const OrdersSection = ({data}) => {
         <table className={`bg-white w-full mt-4 table-fixed`}>
                     <TableHeader columns={columns} color={"bg-bgSideButton"} type={"orders"}/>
                     <tbody className="text-gray-700">
-                        {data.map((audit,index)=>{
-                            return <TableRow key={index} row={audit} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"orders"}/>
+                        {data.map((order,index)=>{
+                            const object = {
+                                type :order.type,
+                                senderName:order.senderName,
+                                content:order.content
+                            }
+                            return <TableRow key={index} row={object} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"orders"} id = {order.id}/>
                             })}
                     </tbody>
             </table>

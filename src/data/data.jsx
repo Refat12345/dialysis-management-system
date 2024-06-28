@@ -14,6 +14,7 @@ import {
   NotesIcon,
   SettingsIcon,
   LogOutIcon,
+  MedicalCentersIcon
 } from "../assets";
 import online from "../assets/icons/medical-center/users/users-list/online.svg";
 
@@ -51,7 +52,8 @@ export const medicalCentersRoute = "medicalCenters";
 export const userDetailsRoute = `${usersRoute}/:id`;
 
 export const dialysisByPatient = `dialysisByPatient`;
- 
+
+export const disbursedMaterialsRoute = `disbursedMaterials`
 
 //Delete 
 export const addPatintinfoRoute = 'logOut'
@@ -70,7 +72,7 @@ export const addMedicalAnalysisRoute = "addMedicalAnalysis"
 export const managerCenterSideBar = {
   header: {
     name: "حسن حبنكة",
-    title: "مدير مركز الطحان الخيري",
+    title: "مدير مركز حسن الطحان الخيري " ,
     icon: ManagerIcon,
   },
   items: [
@@ -115,10 +117,9 @@ export const managerSideBar = {
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: "", name: "المواعيد", icon: AppointmentsIcon },
-    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
+    { href: medicalCentersRoute, name: "المراكز الطبية", icon: MedicalCentersIcon },
+    { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
-    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
@@ -135,6 +136,7 @@ export const titleSession = {
     hall: "القاعة",
   },
 };
+export const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
 
 export const dialysisSessions = [
   {

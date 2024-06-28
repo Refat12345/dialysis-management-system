@@ -8,7 +8,7 @@ const GridView = ({data}) => {
         centerIcon:centerIcon,
         addressIcon:addressIcon
     }
-
+    console.log(data);
     const height = window.innerHeight;
     const width = window.innerWidth;
     const responsive =  (height > 630 ? (height > 700 ?(width>1410 ? "min-h-centerAbove700_1400" : "min-h-centerAbove700") : "min-h-centerUnder700") : "min-h-centerUnder630" )
@@ -18,7 +18,7 @@ return (
     {data.map((medicalCenter , index)=>{
         return <AlertDialog key={index} 
                 renderComponent={<MedicalCenter icons={icons} content={medicalCenter}/>} 
-                contentComponent={<TransferPatient/>} 
+                contentComponent={<TransferPatient patientID={"15"} destinationCenterID={medicalCenter.id}/>} 
                 />
 
     })}

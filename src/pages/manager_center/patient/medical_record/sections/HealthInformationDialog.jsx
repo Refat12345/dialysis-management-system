@@ -6,6 +6,7 @@ import { SelectedTextFeild, CustomTextField, CustomButton , ButtonLoader , Toast
 import { useMedicalRecordState } from "../MedicalRecordState";
 import { useEditMedicalRecordMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 import dayjs from "dayjs";
+import { textToastStyle } from "../../../../../data/data";
 const HealthInformationDialog = ({ medicalRecord }) => {
     const { state, updateState } = useMedicalRecordState();
     const [editMedicalRecord,{data,isLoading}] = useEditMedicalRecordMutation()
@@ -35,7 +36,6 @@ const HealthInformationDialog = ({ medicalRecord }) => {
         title: "سبب الفشل الكلوي",
     };
     
-    const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"}; 
     const postHealthInfoData = async() => {
         try{
             const response = state.postHealthInfo(state,medicalRecord.id,editMedicalRecord);
@@ -43,6 +43,7 @@ const HealthInformationDialog = ({ medicalRecord }) => {
             console.log(err);
         }
     }
+
     return (
         <>
         <div dir="rtl" className="p-4 w-[400px]">

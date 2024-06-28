@@ -8,7 +8,7 @@ import PathologicalIcon from "../../../../assets/icons/medical-center/medical_re
 import SurgicalIcon from "../../../../assets/icons/medical-center/medical_record/Surgical-Icon.svg";
 import { useGetMedicalRecordQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
 import { useMemo } from "react";
-import { useMedicalRecordState } from "./MedicalRecordState";
+import { useParams } from "react-router-dom";
 import Cookies from "js-cookie"
 import HealthInformationDialog from "./sections/HealthInformationDialog";
 
@@ -31,7 +31,11 @@ const precedents = [
 ];
 
 const MedicalRecordPage = () => {
-  const id = sessionStorage.getItem("patientId");
+  const { patientName } = useParams();
+
+  const id = useMemo(() => patientName, [patientName]);
+  
+
   const { data, isSuccess, isLoading,isError } = useGetMedicalRecordQuery(id);
 
   const medicalRecord = useMemo(() => isSuccess ? data.medicalRecord : null, [isSuccess, data]);
@@ -59,7 +63,7 @@ if(medicalRecord === "لا يوجد سجل طبي لهذاالمريض") {
   return (
     <div className="flex-grow">
       <>
-          {Cookies.get("role") === "admin" ?<HealthInformation title={healthInformation} information={medicalRecord} /> : <AlertDialog renderComponent={<div className="hover:cursor-pointer">
+          {Cookies.get("role") != "secretary" ?<HealthInformation title={healthInformation} information={medicalRecord} /> : <AlertDialog renderComponent={<div className="hover:cursor-pointer">
             <HealthInformation title={healthInformation} information={medicalRecord} />
           </div>}
           contentComponent={<HealthInformationDialog medicalRecord={medicalRecord} />}/>}

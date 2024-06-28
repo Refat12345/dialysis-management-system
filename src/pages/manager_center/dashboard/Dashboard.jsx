@@ -2,7 +2,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Cards, PieCharts, DialysisSessions } from "../../index";
 import { PaginationComponent, PageLoader } from "../../../components/index";
-import { dialysisSessions  } from "../../../data/data";
 import { useGetCausesRenalFailureQuery, useGetCenterStatisticsQuery, useGetPieChartsQuery, useGetSessionsQuery } from "../../../services/manager_center/dashboard/DashboardSlice";
 const Dashboard = () => {
 
@@ -48,7 +47,7 @@ const Dashboard = () => {
       <div className={`flex flex-row-reverse justify-between ${height > 700 ? "mt-7" : "mt-5"}`}>
         <div className="flex flex-col md:w-[62%]">
           <PaginationComponent
-            data={dialysisSessions}
+            data={sessionData.message}
             RenderComponent={DialysisSessions}
             itemsPerPage={itemsPerPage}
             type="dashboard"

@@ -1,70 +1,92 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { PageLoader, PaginationComponent } from "../../../components"
+import { PageLoader, PaginationComponent } from "../../../components";
 import Header from "./sections/Header";
 import AuditSection from "./sections/AuditSection";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useGetAuditingQuery } from "../../../services/manager_center/auditing/AuditingSlice";
 
 const AuditingPage = () => {
-    const { data, isSuccess, isLoading } = useGetAuditingQuery(1)
-    const [auditing, setAuditing] = useState([])
-    const [filter, setFilter] = useState({
-        date: "",
-        operation: ""
-    })
-    const [inputValue, setInputValue] = useState("")
+  const { data, isSuccess, isLoading } = useGetAuditingQuery(1);
+  const [auditing, setAuditing] = useState([]);
+  const [filter, setFilter] = useState({
+    date: "",
+    operation: "",
+  });
+  const [inputValue, setInputValue] = useState("");
 
+  const itemsPerPage = useMemo(() => {
     const height = window.innerHeight;
-    const itemsPerPage = height > 630 ? (height > 700 ? (height > 740 ? (height > 800 ? 11 : 10) : 9) : 8) : 7
+    if (height > 800) return 11;
+    if (height > 740) return 10;
+    if (height > 700) return 9;
+    if (height > 630) return 8;
+    return 7;
+  }, [window.innerHeight]);
 
-    useEffect(() => {
-        if (isSuccess && data?.logs) {
-            setAuditing(data.logs)
-        }
-    }, [isSuccess, data])
-
-    const filteredAuditing = useMemo(() => {
-        let filteredArray = auditing
-        if (filter.operation !== "") {
-            filteredArray = filter.operation === "العملية" ? filteredArray : filteredArray.filter((audit) =>
-                audit.operation.toLowerCase().includes(filter.operation.toLowerCase()))
-        }
-        if (filter.date !== "") {
-            filteredArray = filter.date === "التاريخ" ? filteredArray : filteredArray.filter(audit =>
-                audit.date.toLowerCase().includes(filter.date.toLowerCase()))
-        }
-        if (inputValue !== "") {
-            filteredArray = filteredArray.filter(audit =>
-                audit.affectorUser.toLowerCase().includes(inputValue.toLowerCase()))
-        }
-        return filteredArray
-    }, [filter, inputValue, auditing])
-
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value)
+  useEffect(() => {
+    if (isSuccess && data?.logs) {
+      setAuditing(data.logs);
     }
+  }, [isSuccess, data]);
 
+  const filteredAuditing = useMemo(() => {
+    return auditing.filter((audit) => {
+      const matchesOperation =
+        filter.operation === "" ||
+        filter.operation === "العملية" ||
+        audit.operation.toLowerCase().includes(filter.operation.toLowerCase());
+      const matchesDate =
+        filter.date === "" ||
+        filter.date === "التاريخ" ||
+        audit.date.toLowerCase().includes(filter.date.toLowerCase());
+      const matchesInput =
+        inputValue === "" ||
+        audit.affectorUser.toLowerCase().includes(inputValue.toLowerCase());
+      return matchesOperation && matchesDate && matchesInput;
+    });
+  }, [filter, inputValue, auditing]);
+
+  const handleInputChange = useCallback((e) => {
+    setInputValue(e.target.value);
+  }, []);
+
+  if (isSuccess && auditing.length === 0) {
     return (
-        <div dir="rtl" className="flex-grow md:mr-48 ">
-            {isLoading ? (
-                <div className="flex items-center justify-center h-screen">
-                    <PageLoader />
-                </div>
-            ) : isSuccess && (
-                <div className="mx-[5.5%]">
-                    <Header value={filter} setFilter={setFilter} setInputValue={handleInputChange} />
-                    {filteredAuditing.length > 0 && (
-                        <PaginationComponent
-                            RenderComponent={AuditSection}
-                            data={filteredAuditing}
-                            itemsPerPage={itemsPerPage}
-                        />
-                    )}
-                </div>
-            )}
+      <div className="flex-grow md:mr-48">
+        <div className="flex items-center justify-center h-screen">
+          <p className="font-bold text-2xl">لا يوجد سجل عمليات</p>
         </div>
-    )
-}
+      </div>
+    );
+  }
 
-export default AuditingPage
+  return (
+    <div dir="rtl" className="flex-grow md:mr-48 ">
+      {isLoading ? (
+        <div className="flex items-center justify-center h-screen">
+          <PageLoader />
+        </div>
+      ) : (
+        isSuccess && (
+          <div className="mx-[5.5%]">
+            <Header
+              value={filter}
+              setFilter={setFilter}
+              setInputValue={handleInputChange}
+            />
+            {filteredAuditing.length > 0 && (
+              <PaginationComponent
+                RenderComponent={AuditSection}
+                data={filteredAuditing}
+                itemsPerPage={itemsPerPage}
+              />
+            )}
+          </div>
+        )
+      )}
+    </div>
+  );
+};
+
+export default AuditingPage;

@@ -6,11 +6,13 @@ import DialogContent from '@mui/material/DialogContent';
 export default function AlertDialog({renderComponent , contentComponent ,titleButton}) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (event) => {
+    event.stopPropagation();
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setOpen(false);
   };
 

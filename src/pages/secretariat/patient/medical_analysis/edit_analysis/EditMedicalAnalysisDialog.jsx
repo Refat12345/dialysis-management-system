@@ -12,6 +12,7 @@ import { convertDate } from "../../../../../utils/DateUtils";
 import CheckBox from "../add_analysis/sections/CheckBox";
 import { useEditMedicalAnalysisState } from "./EditMedicalAnalysisState";
 import dayjs from "dayjs";
+import { textToastStyle } from "../../../../../data/data";
 import { useParams } from "react-router-dom";
 import { useEditMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 const EditMedicalAnalysisDialog = ({medicalAnalysis}) => {
@@ -29,7 +30,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis}) => {
     const postData =  () => {
         state.postData(state,editMedicalAnalysis)
     }
-    const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
+
     return (
         <div dir="rtl" className="w-[400px]">
             {state.value != "" ?    
@@ -92,7 +93,9 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis}) => {
                         }
                         radius="full"
                     />
-                </div>:<ButtonLoader/>}
+                </div>:<div className="flex justify-center">
+                <ButtonLoader/>
+                </div>}
                 <Toast textStyle={textToastStyle} progressColor={"green"}/>
                 </>:<ButtonLoader/>
                 }

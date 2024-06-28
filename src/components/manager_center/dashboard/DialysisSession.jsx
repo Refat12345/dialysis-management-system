@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import Icon from "../../../assets/icons/medical-center/dashboard/Sessions/patient.svg"
+import { getHourInArabic } from "../../../utils/DateUtils";
 
 const DialysisSession = ({dialysis}) => {
   
@@ -17,8 +18,8 @@ const DialysisSession = ({dialysis}) => {
                 <p className={`content-center text pr-2 whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
             <p dir="rtl" className={` text-center w-[20.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
-            <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.sessionStartTime}</p>
-            <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.sessionEndTime}</p>
+            <p className={`text-center w-[20.5%]  ${responsive}`}>{getHourInArabic(dialysis.sessionStartTime)}</p>
+            <p className={`text-center w-[20.5%]  ${responsive}`}>{getHourInArabic(dialysis.sessionEndTime)}</p>
             <p className={`text-center w-1/10  ${responsive} hidden sm:block`}>{dialysis.chair}</p>
             <p className={`w-1/10 ${responsive} pl-4 hidden sm:block`}>{dialysis.roomName}</p>
         </div>

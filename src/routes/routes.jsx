@@ -25,7 +25,7 @@ import {
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import {
   mainRoute,
-  managerCenterSideBar,
+
   patientProfileRoute,
   patientsRoute,
   usersRoute,
@@ -41,13 +41,11 @@ import {
   dialysisRoute,
   dialysisDetailsRoute,
   registerRoute,
-  invitationRoute,
   auditingRoute,
   secretariaAccountRoute,
   ordersRoute,
   settingRoute,
   globalInfoRoute,
-  dialysisSessionsRoute,
   globalNotesRoute,
   addPatintinfoRoute,
   addPrescriptionInfoRoute,
@@ -55,7 +53,8 @@ import {
   addMedicalAnalysisRoute,
   enterDisbursedMedicines,
   dialysisByPatient,
-  secretariatSideBar
+  disbursedMaterialsRoute
+
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -89,6 +88,8 @@ import { GeneralDetailsProvider } from "../pages/manager_center/generalNotes/Gen
 import MedicalRecordState from "../pages/manager_center/patient/medical_record/MedicalRecordState";
 import EditMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisState";
 import EditPrescriptionsState from "../pages/secretariat/patient/prescriptions/edit_prescriptions/EditPrescriptionsState";
+import OrdersState from "../pages/manager_center/orders/OrdersState";
+import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
 
 const router = createBrowserRouter([
   {
@@ -297,7 +298,9 @@ const router = createBrowserRouter([
       },
       {
         path: ordersRoute,
-        element: <OrdersPage />,
+        element: <OrdersState>
+            <OrdersPage />
+        </OrdersState>,
         errorElement: <ErrorPage />,
       },
       {
@@ -354,6 +357,12 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
+      {
+        path:disbursedMaterialsRoute,
+        element :(
+          <DisbursedMaterials/>
+        )
+      }
     ],
   },
 ]);

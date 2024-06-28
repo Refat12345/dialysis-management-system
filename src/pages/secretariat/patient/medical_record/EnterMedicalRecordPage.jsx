@@ -5,6 +5,7 @@ import {PublicInformation ,PathologicalPrecedents,SurgicalPrecedents,Pharmacolog
 import { useEnterMedicalRecordState } from "./EnterMedicalRecordState";
 import "./style.css"
 import { toast } from 'react-toastify';
+import { textToastStyle } from "../../../../data/data";
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateMedicalRecordMutation } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
@@ -14,7 +15,6 @@ const { state , updateState } = useEnterMedicalRecordState();
 const [createMedicalRecord , {data,isError,isSuccess,isLoading}] = useCreateMedicalRecordMutation();
 
 
-const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
 
 const handlePost =async () => {
   let body =state.postData(state);
