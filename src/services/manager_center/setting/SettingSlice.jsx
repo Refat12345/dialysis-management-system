@@ -38,6 +38,16 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["CenterSetting"],
     }),
+
+    addChair: builder.mutation({
+      query: (chair) => {
+        return {
+          url: `chairs`,
+          method: "POST",
+          body: chair,
+        };
+      },
+    }),
   }),
 });
 
@@ -46,4 +56,5 @@ export const {
   useAddShiftMutation,
   useAddCenterContactMutation,
   useEditShiftMutation,
+  useAddChairMutation
 } = CenterSettingSlice;

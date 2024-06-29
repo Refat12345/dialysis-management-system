@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetUserQuery } from "../../../../services/manager_center/user/user_list/UserSlice"; 
+import {
+  useGetUserQuery,
+  useGetMedicalCenterQuery,
+} from "../../../../services/manager_center/user/user_list/UserSlice";
 import { useSelector } from "react-redux";
 
 const UserContext = createContext();
@@ -10,18 +13,46 @@ export const UserProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("ممرض");
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedOption, setSelectedOption] = useState("الكل");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const user = useSelector((state) => state.user);
 
-console.log("rrr",user)
-  
+  /////
+  const [MedicalCenters, setmedicalCenters] = useState([]);
+  const [isLoadingMedicalCenters, setIsLoadingMedicalCenters] = useState(false);
+  const [isSuccessMedicalCenters, setIsSuccessMedicalCenters] = useState(false);
+  const [selectedCenterOption, setSelectedCenterOption] = useState("الكل");
+  const [selectedCenterId, setSelectedCenterId] = useState(0);
 
-  const translateOption = (option = "nurse") => {
+
+  const {
+    data: medicalCenters,
+    isLoading: medicalLoading,
+    isSuccess: medicalSuccess,
+  } = useGetMedicalCenterQuery();
+
+  useEffect(() => {
+    if (medicalSuccess && medicalCenters) {
+      setmedicalCenters(medicalCenters);
+      setIsLoadingMedicalCenters(false);
+      setIsSuccessMedicalCenters(true);
+    } else if (medicalLoading) {
+      setIsLoadingMedicalCenters(true);
+      setIsSuccessMedicalCenters(false);
+    } else {
+      setIsLoadingMedicalCenters(false);
+      setIsSuccessMedicalCenters(false);
+    }
+  }, [medicalSuccess, medicalLoading, medicalCenters]);
+  //////
+
+  const translateOption = (option = "الكل") => {
     switch (option) {
       case "طبيب":
         return "doctor";
+      case "الكل":
+        return "all";
       case "ممرض":
         return "nurse";
       case "السكرتارية":
@@ -31,17 +62,14 @@ console.log("rrr",user)
     }
   };
 
- 
-
   const translatedOption = translateOption(selectedOption);
-  const centerIdString = user.centerID ? user.centerID.toString() : '14';
-
+  const centerIdString = user.centerID ? user.centerID.toString() : "14";
 
   const {
     data: users,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetUserQuery({ option: translatedOption, centerId: centerIdString });
+  } = useGetUserQuery({ option: translatedOption, centerId: centerIdString ,role:user.role,selectedCenterId:selectedCenterId});
 
   useEffect(() => {
     if (isUserSuccess && users) {
@@ -58,12 +86,12 @@ console.log("rrr",user)
   }, [isUserSuccess, isUserLoading, users]);
 
   useEffect(() => {
-    if (searchTerm !== '') {
-       const flatUserData = userData.flat();
-       const filtered = flatUserData.filter(user => 
-         user.fullName.toLowerCase().includes(searchTerm.toLowerCase())
-       );
-      console.log(filtered)
+    if (searchTerm !== "") {
+      const flatUserData = userData.flat();
+      const filtered = flatUserData.filter((user) =>
+        user.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      console.log(filtered);
       setFilteredData(filtered);
     } else {
       setFilteredData(userData);
@@ -72,6 +100,15 @@ console.log("rrr",user)
 
   const handleSelectChange = (event) => {
     setSelectedOption(event);
+  };
+
+  const handleSelectCenterChange = (selectedCenterName) => {
+    const selectedCenter = MedicalCenters.centers.find(
+      (center) => center.centerName === selectedCenterName
+    );
+    setSelectedCenterOption(selectedCenterName);
+
+    setSelectedCenterId(selectedCenter.id);
   };
 
   return (
@@ -85,6 +122,11 @@ console.log("rrr",user)
         setSelectedOption,
         handleSelectChange,
         setSearchTerm,
+        isSuccessMedicalCenters,
+        isLoadingMedicalCenters,
+        MedicalCenters,
+        handleSelectCenterChange,
+        selectedCenterOption,
       }}
     >
       {children}

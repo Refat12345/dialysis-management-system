@@ -16,11 +16,11 @@ export const PatientProvider = ({ children }) => {
   const translateOption = (option = "nurse") => {
     switch (option) {
       case "مرضى مقبولين":
-        return "accepted";
+        return "مقبول";
       case "مرضى مرفوضين":
-        return "nurse";
+        return "مرفوض";
       case "مرضى انتظار":
-        return "secretary";
+        return "انتظار";
       default:
         return "unknown";
     }
@@ -60,7 +60,6 @@ export const PatientProvider = ({ children }) => {
       );
       setFilteredData(filtered);
     } else {
-      console.log("hi gg")
       setFilteredData(patientData);
     }
   }, [searchTerm, patientData]);

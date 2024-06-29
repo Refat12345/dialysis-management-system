@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import setting from "./../../../../assets/icons/medical-center/users/user-details/setting.svg";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import {useGetUserPermissionsQuery,useEditUserPermissionsMutation} from "./../../../../services/manager_center/user/user_details/UserDetailsSlice"
-
+import {
+  useGetUserPermissionsQuery,
+  useEditUserPermissionsMutation,
+} from "./../../../../services/manager_center/user/user_details/UserDetailsSlice";
 
 const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
   return (
@@ -35,16 +37,21 @@ const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
   );
 };
 
-
-
-const MyButton = ({ text ,id}) => {
-  const userIdString = id ? id.toString() : '14';
-  const { data: permession, isLoading: isUserpermessionLoading, isSuccess: isUserpermessionSuccess } = useGetUserPermissionsQuery(userIdString);
+const MyButton = ({ text, id }) => {
+  const userIdString = id ? id.toString() : "14";
+  const {
+    data: permession,
+    isLoading: isUserpermessionLoading,
+    isSuccess: isUserpermessionSuccess,
+  } = useGetUserPermissionsQuery(userIdString);
   const [editUserPermissions] = useEditUserPermissionsMutation();
 
   const permissionMap = {
-    "medicalRecord": "ادارة السجل الطبي",
-    "prescription": "ادارة الوصفات الطبية",
+    medicalRecord: "ادارة السجل الطبي",
+    prescription: "ادارة الوصفات الطبية",
+    analysis: "ادارة التحاليل الطبية",
+    session: "ادارة جلسات الغسيل",
+    general: "ادارة المعلومات العامة (تعديل بيانات مركز-تعديل بيانات مستخدم)",
   };
   useEffect(() => {
     if (isUserpermessionSuccess && !isUserpermessionLoading && permession) {
@@ -58,7 +65,6 @@ const MyButton = ({ text ,id}) => {
       setSwitchStates(newSwitchStates);
     }
   }, [isUserpermessionSuccess, isUserpermessionLoading, permession]);
-
 
   const [open, setOpen] = useState(false);
   const [switchStates, setSwitchStates] = useState({
@@ -85,13 +91,16 @@ const MyButton = ({ text ,id}) => {
   };
 
   const handleSave = async () => {
-    // تحويل الحالة switchStates إلى صيغة البيانات المتوقعة
     const permissionNames = Object.entries(switchStates)
       .filter(([_, enabled]) => enabled)
-      .map(([switchId]) => Object.keys(permissionMap).find(key => permissionMap[key] === switchId));
+      .map(([switchId]) =>
+        Object.keys(permissionMap).find(
+          (key) => permissionMap[key] === switchId
+        )
+      );
 
     const newData = {
-      userId: userIdString, // استبدل هذا بالمعرف الفعلي للمستخدم
+      userId: userIdString,
       permissionNames,
     };
 
@@ -103,7 +112,6 @@ const MyButton = ({ text ,id}) => {
     }
   };
 
-
   return (
     <>
       <button
@@ -114,46 +122,44 @@ const MyButton = ({ text ,id}) => {
         <img className="w-4 h-6 inline-block ml-2" src={setting} />
       </button>
 
-     
-{
-  text ==="عرض الصلاحيات"?<Dialog open={open} onClose={handleClose}>
-  <DialogTitle className="text-center ">
-    <span className=" text-4xl text-blue-700">{"الصلاحيات المتاحة"}</span>
-  </DialogTitle>
-  <DialogContent className="p-4">
-    <div dir="rtl" className="grid grid-cols-2 gap-11 mt-5">
-      {Object.keys(switchStates).map((switchId, index, array) => {
-        const isLastItem = index === array.length - 1;
-        return (
-          <div
-            key={switchId}
-            className={`col-span-${isLastItem ? "2" : "1"}`}
-          >
-            <ToggleSwitch
-              id={switchId}
-              name={switchId}
-              label={switchId}
-              enabled={switchStates[switchId]}
-              setEnabled={() => handleToggle(switchId)}
-            />
-          </div>
-        );
-      })}
-    </div>
-     <div className="flex flex-row justify-center mb-3">
-     <button
-        className="mt-5 bg-bgbutton h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-2xl ml-2"
-        onClick={handleSave}
-      >
-        {"حفظ   التغييرات"}
-      </button>
-
-     </div>
-    
-  </DialogContent>
-</Dialog>:null
-}
-      
+      {text === "عرض الصلاحيات" ? (
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle className="text-center ">
+            <span className=" text-4xl text-blue-700">
+              {"الصلاحيات المتاحة"}
+            </span>
+          </DialogTitle>
+          <DialogContent className="p-4">
+            <div dir="rtl" className="grid grid-cols-2 gap-11 mt-5">
+              {Object.keys(switchStates).map((switchId, index, array) => {
+                const isLastItem = index === array.length - 1;
+                return (
+                  <div
+                    key={switchId}
+                    className={`col-span-${isLastItem ? "2" : "1"}`}
+                  >
+                    <ToggleSwitch
+                      id={switchId}
+                      name={switchId}
+                      label={switchId}
+                      enabled={switchStates[switchId]}
+                      setEnabled={() => handleToggle(switchId)}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex flex-row justify-center mb-3">
+              <button
+                className="mt-5 bg-bgbutton h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-2xl ml-2"
+                onClick={handleSave}
+              >
+                {"حفظ   التغييرات"}
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      ) : null}
     </>
   );
 };

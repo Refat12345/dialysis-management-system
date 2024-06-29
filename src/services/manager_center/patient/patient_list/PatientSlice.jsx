@@ -8,7 +8,16 @@ export const PatientSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    addToWaiting: builder.mutation({
+      query: (id) => {
+        return {
+          url: `updatePatientStatus/${id}/waiting`,
+          method: "POST",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetPatientQuery } = PatientSlice;
+export const { useGetPatientQuery,useAddToWaitingMutation } = PatientSlice;

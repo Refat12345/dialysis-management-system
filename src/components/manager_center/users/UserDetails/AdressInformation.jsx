@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 import location from "./../../../../assets/icons/medical-center/users/user-details/locationInformation.svg";
+import edit from "./../../../../assets/icons/medical-center/setting/edit.svg";
 import { useDetailsUsers } from "./../../../../pages/manager_center/users/user-details/UserDetailsState";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
 import { useState } from "react";
 import { useEditUserMutation } from "../../../../services/manager_center/user/user_details/UserDetailsSlice";
+import CustomTextField from "../../../public/textfield/CustomTextField";
 function AdressInformation({ data, setData }) {
   const [editUser] = useEditUserMutation();
 
@@ -48,13 +49,11 @@ function AdressInformation({ data, setData }) {
     setData(newData);
 
     try {
-      // await editUser(newData);
-      // console.log("تم تحديث البيانات بنجاح");
+     
 
       const returnedData = await editUser(newData);
-    console.log("تم تحديث البيانات بنجاح");
-    console.log("البيانات الراجعة من الخادم:", returnedData);
-      
+      console.log("تم تحديث البيانات بنجاح");
+      console.log("البيانات الراجعة من الخادم:", returnedData);
     } catch (error) {
       console.error("حدث خطأ أثناء تحديث البيانات", error);
     }
@@ -74,70 +73,44 @@ function AdressInformation({ data, setData }) {
             >
               <img src={location} alt="Contact Information" />
               <img
-                src={location}
+                src={edit}
                 alt="Edit"
-                className="ml-2 cursor-pointer"
+                className="ml-2 cursor-pointer "
                 onClick={handleClickOpen}
               />
             </div>
             <h3 className="text-xl text-bgtitle">العنوان</h3>
           </div>
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle className="text-center ">
-              <span className=" text-4xl text-blue-700">
-                {"المعلومات المتاحة"}
-              </span>
+
+          <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+            <DialogTitle className="text-center text-blue-700 text-4xl font-bold">
+              المعلومات المتاحة
             </DialogTitle>
-            <DialogContent className="p-4">
-              {
-                <div dir="rtl" className="grid grid-cols-2 gap-11 mt-5">
-                  {form.map((card, index) => (
-                    <div key={index} dir="ltr">
-                      <p className="text-right">{card.use}</p>
-                      <TextField
-                        variant="outlined"
-                        value={card.cityName}
-                        onChange={(e) =>
-                          handleFormChange(index, e.target.value)
-                        }
-                      />
-                    </div>
-                  ))}
-                  <div className="flex flex-row justify-center mb-3">
-                    <Button
-                      variant="contained"
-                      onClick={handleSave}
-                      className="bg-bgbutton h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-2xl ml-2"
-                    >
-                      {"حفظ التغييرات"}
-                    </Button>
+            <DialogContent className="p-6">
+              <div dir="rtl" className="grid grid-cols-2 gap-8 mt-2">
+                {form.map((card, index) => (
+                  <div key={index} dir="ltr" className="my-1">
+                    <p className="text-right font-bold text-lg">{card.use}</p>
+                    <CustomTextField
+                      size="3"
+                      value={card.cityName}
+                      type="text"
+                      onChange={(e) => handleFormChange(index, e.target.value)}
+                    />
                   </div>
-                </div>
-              }
+                ))}
+              </div>
+              <div className="flex flex-row justify-center my-8">
+                <Button
+                  variant="contained"
+                  onClick={handleSave}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded"
+                >
+                  حفظ التغييرات
+                </Button>
+              </div>
             </DialogContent>
           </Dialog>
-
-          {/* <div className="flex flex-row-reverse  ">
-            <div className="flex flex-col gap-2 mt-3">
-              {data.addressData?.work?.[0]?.cityName !== undefined ? (
-                <>
-                  <h3 className="text-right">:العمل</h3>
-                  <h3 className="text-right">
-                    {data.addressData.work[0].cityName}
-                  </h3>
-                </>
-              ) : null}
-              {data.addressData?.home?.[0]?.cityName !== undefined ? (
-                <>
-                  <h3 className="text-right">:العمل</h3>
-                  <h3 className="text-right">
-                    {data.addressData.home[0].cityName}
-                  </h3>
-                </>
-              ) : null}
-            </div>
-          
-          </div> */}
 
           <div className="flex flex-row-reverse  ">
             <div className="flex flex-col gap-2 mt-3">

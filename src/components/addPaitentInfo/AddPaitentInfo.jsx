@@ -35,7 +35,6 @@ function AddPaitentInfo({id}) {
   const { state, updateState } = useAddPaitentInfoState();
   const [addPatientInfo] = useAddPatientInfoMutation();
 
-  console.log("11111", id)
 
   const genderFilter = {
     array: ["سوري", "فلسطيني", "اردني", "اجنبي"],

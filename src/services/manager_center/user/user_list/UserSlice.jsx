@@ -1,17 +1,27 @@
 import { apiSlice } from "../../../apiSlice";
 
 
+
 const UserSlice = apiSlice.injectEndpoints({
-  
+
   endpoints: (builder) => ({
     getUser: builder.query({
       
-      query: ({ option, centerId }) => {
-        console.log("id is ",centerId)
-        console.log("role",option)
+      query: ({ option, centerId,role,selectedCenterId }) => {
+        const id = role === 'superAdmin' ? selectedCenterId : centerId;
+
 
         return {
-          url: `/getCenterUsersByRole/${centerId}/${option}`,
+          url: `/getCenterUsersByRole/${id}/${option}`,
+          method: "GET",
+        }
+       
+      },
+    }),
+    getMedicalCenter: builder.query({
+      query: () => {
+        return {
+          url: `/getAllCenters`,
           method: "GET",
         }
        
@@ -20,4 +30,4 @@ const UserSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetUserQuery } = UserSlice;
+export const { useGetUserQuery,useGetMedicalCenterQuery } = UserSlice;

@@ -5,17 +5,15 @@ import React, { useState, useContext } from "react";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useEditShiftMutation } from "../../../../services/manager_center/setting/SettingSlice";
-
-export default function DialogEditShifts({
-  open,
-  setOpen,
-  data,
-}) {
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+export default function DialogEditShifts({ open, setOpen, data }) {
   const handleClose = () => {
     setOpen(false);
   };
   const [form, setForm] = useState(data.map((item) => ({ ...item })));
   const [editShift] = useEditShiftMutation();
+  const [isLoading, setIsLoading] = useState(false); 
 
   const handleInputChange = (e, index, field) => {
     const newForm = [...form];
@@ -23,40 +21,29 @@ export default function DialogEditShifts({
     setForm(newForm);
   };
 
-  // const handleSubmit = (e, index, id) => {
-  //   e.preventDefault();
-
-  //   let { name, centerID, shiftStart, shiftEnd } = form[index];
-  //   if (shiftStart.length === 5) shiftStart += ":00";
-  //   if (shiftEnd.length === 5) shiftEnd += ":00";
-  //   const updatedShift = { name, centerID, shiftStart, shiftEnd, id };
-
-  //   editShift(updatedShift)
-  //     .unwrap()
-  //     .then((payload) => {
-  //       console.log("تم تحديث الوردية:", payload);
-  //       setOpen(false);
-  //     })
-  //     .catch((error) => console.error("خطأ في تحديث الوردية:", error));
-  // };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { 
     e.preventDefault();
-  
-    form.forEach(async (item, index) => {
+
+    setIsLoading(true);
+    const promises = form.map((item, index) => {
       let { name, centerID, shiftStart, shiftEnd, id } = item;
       if (shiftStart.length === 5) shiftStart += ":00";
       if (shiftEnd.length === 5) shiftEnd += ":00";
       const updatedShift = { name, centerID, shiftStart, shiftEnd, id };
-  
-      try {
-        const payload = await editShift(updatedShift).unwrap();
-        console.log("تم تحديث الوردية:", payload);
-      } catch (error) {
-        console.error("خطأ في تحديث الوردية:", error);
-      }
+
+      return editShift(updatedShift).unwrap(); 
     });
-  
+
+    try {
+      await Promise.all(promises); 
+      console.log("تم تحديث جميع الورديات بنجاح");
+      toast.success("تم تحديث الوردية:");
+    } catch (error) {
+      console.error("خطأ في تحديث الورديات:", error);
+      toast.error("خطأ في تحديث الوردية:");
+    }
+
+    setIsLoading(false); 
     setOpen(false);
   };
 
@@ -66,10 +53,10 @@ export default function DialogEditShifts({
         <span className=" text-4xl text-blue-700">{"تعديل وردية"}</span>
       </DialogTitle>
       <DialogContent className="p-4 w-full " dir="rtl">
-        <div className=" mx-auto p-4  w-full">
-          {form.map((card, index) => (
-            <div key={index} dir="ltr">
-              <form onSubmit={(e) => handleSubmit(e, index, card.id)}>
+        <div className=" mx-auto p-4  w-full" >
+          <form onSubmit={handleSubmit}> 
+            {form.map((card, index) => (
+              <div key={index} dir="rtl">
                 <div className="mb-4 w-96">
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
@@ -122,26 +109,18 @@ export default function DialogEditShifts({
                     />
                   </label>
                 </div>
-
-                {/* <div className="flex items-center justify-center">
-                  <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit"
-                  >
-                    حفظ
-                  </button>
-                </div> */}
-              </form>
+              </div>
+            ))}
+            <div className="flex items-center justify-center">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                disabled={isLoading} 
+              >
+                {isLoading ? 'جارٍ التحميل...' : 'حفظ التعديلات'} 
+              </button>
             </div>
-          ))}
-             <div className="flex items-center justify-center">
-             <button
-  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-  onClick={handleSubmit}
->
-  حفظ التعديلات
-</button>
-                </div>
+          </form>
         </div>
       </DialogContent>
     </Dialog>

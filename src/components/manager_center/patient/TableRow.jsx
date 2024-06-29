@@ -35,8 +35,8 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
       case "اضافة المعلومات العامة":
         navigate(`/app/patient/${id}/addPatientInfo`);
         break;
-      case "اردني":
-        history.push("/path-for-jordanian");
+      case "اضافة مستلزمات جلسة الغسيل":
+        navigate(`/app/patient/${id}/assignMaterialToUserCenter`);
         break;
       case "اجنبي":
         history.push("/path-for-foreigner");
@@ -44,9 +44,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
       default:
         break;
     }
-
-
-
   };
 
   const selectAdminValueOption = (value) => {
@@ -81,7 +78,11 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
     setOpen(!open);
   };
   const secrtaryFilter = {
-    array: ["اضافة وصفة طبية", "اضافة المعلومات العامة"],
+    array: [
+      "اضافة وصفة طبية",
+      "اضافة المعلومات العامة",
+      "اضافة مستلزمات جلسة الغسيل",
+    ],
   };
 
   const adminFilter = {
@@ -217,23 +218,43 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
                 src={down}
                 alt="Patient"
               />
-              {open && user.role === "secretary" && (
-                <SelectedTextFeild
-                  activeLabel={false}
-                  onClick={(event) => event.stopPropagation()}
-                  value={
-                    state.secrtaryValue === "" ? "اختر" : state.secrtaryValue
-                  }
-                  filter={secrtaryFilter.array}
-                  onSelect={(val, event) => {
-                    state.selectSecertaryOption(val);
-                    // event.stopPropagation();
-                    if (event !== undefined) {
-                      event.stopPropagation();
-                    }
-
-                  }}
-                />
+              {open && (
+                <>
+                  {user.role === "secretary" && (
+                    <SelectedTextFeild
+                      activeLabel={false}
+                      onClick={(event) => event.stopPropagation()}
+                      value={
+                        state.secrtaryValue === ""
+                          ? "اختر"
+                          : state.secrtaryValue
+                      }
+                      filter={secrtaryFilter.array}
+                      onSelect={(val, event) => {
+                        state.selectSecertaryOption(val);
+                        if (event !== undefined) {
+                          event.stopPropagation();
+                        }
+                      }}
+                    />
+                  )}
+                  {user.role === "admin" && ( <SelectedTextFeild
+                      activeLabel={false}
+                      onClick={(event) => event.stopPropagation()}
+                      value={
+                        state.adminValue === ""
+                          ? "اختر"
+                          : state.adminValue
+                      }
+                      filter={adminFilter.array}
+                      onSelect={(val, event) => {
+                        state.selectSecertaryOption(val);
+                        if (event !== undefined) {
+                          event.stopPropagation();
+                        }
+                      }}
+                    />)}
+                </>
               )}
             </>
           )}

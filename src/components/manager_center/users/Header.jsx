@@ -77,51 +77,77 @@ import { useNavigate } from "react-router-dom";
 import { secretariaAccountRoute } from "../../../data/data";
 import { useUsers } from "../../../pages/manager_center/users/users-list/UserListState";
 import {  SelectedTextFeild } from "../..";
+import { useSelector } from "react-redux";
 
 function Header({ setSearchTerm }) {
   const filter = {
     title: "نوع ",
-    array: ["طبيب", "السكرتارية", "ممرض"],
+    array: ["طبيب", "السكرتارية", "ممرض","الكل"],
   };
-  const navigate = useNavigate();
-  const { selectedOption, handleSelectChange } = useUsers();
+  const user = useSelector((state) => state.user);
 
+  const navigate = useNavigate();
+  const { selectedOption, handleSelectChange,isSuccessMedicalCenters, isLoadingMedicalCenters,  MedicalCenters , handleSelectCenterChange,selectedCenterOption} = useUsers();
+ if(isSuccessMedicalCenters && !isLoadingMedicalCenters && MedicalCenters){
+  console.log("MedicalCenters",MedicalCenters)
+ }
   return (
-    <div className="mb-5 hidden sm:block ">
-      <div className="flex justify-between mt-5">
-        <CustomButton
-          variant="solid"
-          onClick={() => {
-            navigate(secretariaAccountRoute);
-          }}
-          className={`bg-bgLogin text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
-          title={
-            <div className="flex items-center justify-center">
-              <span className="text-sm">إضافة سكرتاريا</span>
-              <div className="w-2"></div>
-              <PlusIcon className="w-6 h-6 mr-2 text-gray700" />
+    <>
+    {
+      isSuccessMedicalCenters && !isLoadingMedicalCenters && MedicalCenters && (
+        <div className="mb-5 hidden sm:block ">
+        <div className="flex justify-between mt-5">
+          <CustomButton
+            variant="solid"
+            onClick={() => {
+              navigate(secretariaAccountRoute);
+            }}
+            className={`bg-bgLogin text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
+            title={
+              <div className="flex items-center justify-center">
+                <span className="text-sm">إضافة سكرتاريا</span>
+                <div className="w-2"></div>
+                <PlusIcon className="w-6 h-6 mr-2 text-gray700" />
+              </div>
+            }
+            radius="full"
+          />
+          <div className="flex items-end justify-end pr-2 w-2/4">
+            <div className="relative w-2/12 mr-4">
+              <SelectedTextFeild
+                activeLabel={false}
+                value={selectedOption}
+                filter={filter.array}
+                onSelect={handleSelectChange}
+              />
             </div>
-          }
-          radius="full"
-        />
-        <div className="flex items-end justify-end pr-2 w-2/4">
-          <div className="relative w-2/12 mr-4">
-            <SelectedTextFeild
-              activeLabel={false}
-              value={selectedOption}
-              filter={filter.array}
-              onSelect={handleSelectChange}
+            {
+              user.role === "superAdmin" && (
+                <div className="relative w-2/12 mr-4">
+              <SelectedTextFeild
+                activeLabel={false}
+                value={selectedCenterOption}
+                filter={MedicalCenters?.centers?.map(center => center.centerName)}
+                onSelect={handleSelectCenterChange}
+              />
+            </div>
+              )
+  
+            }
+            <input
+              type="text"
+              placeholder="...البحث"
+              className="bg-search text-right w-5/12 p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
+              onChange={(e) => setSearchTerm(e.target.value)}  
             />
           </div>
-          <input
-            type="text"
-            placeholder="...البحث"
-            className="bg-search text-right w-5/12 p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
-            onChange={(e) => setSearchTerm(e.target.value)}  
-          />
         </div>
       </div>
-    </div>
+      )
+    }
+       
+    </>
+
   );
 }
 

@@ -84,9 +84,9 @@ export const managerCenterSideBar = {
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
+    { href: "", name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -102,9 +102,9 @@ export const secretariatSideBar = {
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
+    { href: "", name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -120,9 +120,9 @@ export const managerSideBar = {
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
+    { href: "", name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 

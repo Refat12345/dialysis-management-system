@@ -6,45 +6,27 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAddShiftMutation } from "../../../../services/manager_center/setting/SettingSlice";
 import { useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function DialogTimeCenter({ open, setOpen }) {
   const handleClose = () => {
     setOpen(false);
   };
   const user = useSelector((state) => state.user);
 
-  // const centerIdString = user.centerID ? user.centerID.toString() : '14';
-
   const [shiftName, setShiftName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
 
   const [addShift] = useAddShiftMutation();
 
   const handleInputChange = (e, setter) => setter(e.target.value);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const newShift = {
-  //     shiftStart: startTime,
-  //     shiftEnd: endTime,
-  //     name: shiftName,
-  //     centerID: "1",
-  //   };
-  //   addShift(newShift)
-  //     .unwrap()
-  //     .then((payload) => {
-  //       console.log("وردية جديدة تمت إضافتها:", payload);
-  //       setOpen(false);
-  //     })
-  //     .catch((error) => console.error("خطأ في إضافة وردية:", error));
-  // };
-  const handleSubmit = (e) => {
+  const handleSubmit = async  (e) => {
     e.preventDefault();
     let formattedStartTime = startTime;
     let formattedEndTime = endTime;
-
-    // if (startTime.length === 5) formattedStartTime += ":00";
-    // if (endTime.length === 5) formattedEndTime += ":00";
 
     const newShift = {
       shiftStart: formattedStartTime,
@@ -52,13 +34,18 @@ export default function DialogTimeCenter({ open, setOpen }) {
       name: shiftName,
       centerID: user.centerID,
     };
-    addShift(newShift)
-      .unwrap()
-      .then((payload) => {
-        console.log("وردية جديدة تمت إضافتها:", payload);
-        setOpen(false);
-      })
-      .catch((error) => console.error("خطأ في إضافة وردية:", error));
+    setIsLoading(true); 
+    try {
+      const payload = await addShift(newShift).unwrap();
+      console.log("وردية جديدة تمت إضافتها:", payload);
+      toast.success(" وردية جديدة تمت إضافتها بانتظار الموافقة:");
+
+      setOpen(false);
+    } catch (error) {
+      console.error("خطأ في إضافة وردية:", error);
+      toast.error("خطأ في إضافة وردية:");
+    }
+    setIsLoading(false); 
   };
 
   return (
@@ -121,11 +108,12 @@ export default function DialogTimeCenter({ open, setOpen }) {
             </div>
 
             <div className="flex items-center justify-center">
-              <button
+            <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
+                disabled={isLoading} 
               >
-                حفظ
+                {isLoading ? 'جارٍ التحميل...' : 'حفظ'} 
               </button>
             </div>
           </form>

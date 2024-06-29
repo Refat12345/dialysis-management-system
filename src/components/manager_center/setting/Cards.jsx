@@ -9,32 +9,14 @@ import { statisticMedicalInfo } from "../../../data/data";
 import Cardd from "./Cardd/Cardd";
 
 function Cards({ data }) {
-  // const { data, setData } = useContext(DataContext);
-
   return (
     <>
       <div className="flex flex-col bg-white border border-indigo-300 rounded-xl ">
         <div className="flex flex-row items-center justify-between w-full">
           <span className=" text-lg text-blue700 pr-4">الاحصائيات</span>
         </div>
-        {/* <div className="grid grid-cols-3 mb-3 -mt-2">
-        {data.cardData.map((card, index) => (
-            <Cardd
-              key={index}
-              data={card}
-              statistic={data.statisticMedicalInfo[card.statistic]}
-            />
-          ))}
-        </div> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   mb-3 -mt-2">
-          {/* {data.cardData.map((card, index) => (
-    <Cardd
-      key={index}
-      data={card}
-      statistic={data.statisticMedicalInfo[card.statistic]}
-    />
-  ))} */}
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   mb-3 -mt-2">
           <Cardd
             icon={doctorCount}
             title={"اجمالي الاطباء"}

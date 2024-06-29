@@ -153,6 +153,7 @@ const AddPrescriptionState = ({ children ,userId }) => {
     }
 
     const transformedData = transformPrescriptionData(prescriptionInfo);
+    console.log("transformedData",transformedData)
     try {
       await createPrescription(transformedData).unwrap();
       toast.success("تم إرسال الوصفة الطبية بنجاح!");

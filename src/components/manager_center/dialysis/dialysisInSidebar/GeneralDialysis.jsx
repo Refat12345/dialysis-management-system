@@ -9,7 +9,6 @@ import { dialysisRoute, dialysisDetailsRoute } from "../../../../data/data";
 import { useGeneralDialysis } from "./GeneralDialysisState";
 import SelectedTextFeild from "../../../public/textfield/SelectedTextFeild";
 function GeneralDialysis({ data ,type2 }) {
-  console.log("type is ", type2)
   const navigate = useNavigate();
 
   const {
@@ -94,7 +93,7 @@ function GeneralDialysis({ data ,type2 }) {
             <div className="relative w-1/5 ">
               <SelectedTextFeild
                 activeLabel={false}
-                value={selectedYearOption}
+                value={selectedYearOption === "" ? "اختر السنة" : selectedYearOption}
                 filter={filterYear.array}
                 onSelect={handleSelectYearChange}
               />
@@ -107,7 +106,7 @@ function GeneralDialysis({ data ,type2 }) {
             <div className="relative w-1/5 ">
               <SelectedTextFeild
                 activeLabel={false}
-                value={selectedMonthOption}
+                value={selectedMonthOption === "" ? "اختر الشهر" : selectedMonthOption}
                 filter={filterMonth.array}
                 onSelect={handleSelectMonthChange}
               />

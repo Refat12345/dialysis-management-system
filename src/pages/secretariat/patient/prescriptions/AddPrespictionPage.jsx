@@ -1,4 +1,3 @@
-import React from 'react'
 import AddPrescription from '../../../../components/addPrescription/AddPrescription'
 import AddPrescriptionState from '../../../../components/addPrescription/AddPrescriptionState'
 import { useParams } from 'react-router-dom';

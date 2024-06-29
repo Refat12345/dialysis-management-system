@@ -7,8 +7,11 @@ import DialogEditShifts from "./DialogEditShifts";
 import addTime from "./../../../../assets/icons/medical-center/setting/addtime.svg";
 import edit from "./../../../../assets/icons/medical-center/setting/edit.svg";
 import time from "./../../../../assets/icons/medical-center/setting/time.svg";
+import { useSelector } from "react-redux";
 
-function TimeCenter({ data}) {
+function TimeCenter({ data }) {
+  const user = useSelector((state) => state.user);
+
   const isEmpty = !data || data.length === 0;
   const [open, setOpen] = useState(false);
   const [openEditShift, setOpenEditShift] = useState(false);
@@ -17,15 +20,17 @@ function TimeCenter({ data}) {
       <div className="flex flex-row-reverse   mt-2 mb-2 ">
         <div className="flex flex-grow justify-end items-center gap-3">
           <div className="border p-4 rounded-xl h-4 flex justify-center items-center hover:bg-slate-300 text-black">
-            <img
-              src={addTime}
-              alt="إضافة وقت"
-              onClick={() => setOpen(true)}
-              style={{ cursor: "pointer" }}
-            />
+            {user.role === "secretary" && (
+              <img
+                src={addTime}
+                alt="إضافة وقت"
+                onClick={() => setOpen(true)}
+                style={{ cursor: "pointer" }}
+              />
+            )}
           </div>
 
-          {!isEmpty && (
+          {!isEmpty && user.role === "secretary" && (
             <button className="bg-white h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded flex items-center ml-7">
               <img
                 onClick={() => setOpenEditShift(true)}
@@ -54,7 +59,11 @@ function TimeCenter({ data}) {
       </div>
 
       <DialogTimeCenter open={open} setOpen={setOpen} />
-      <DialogEditShifts open={openEditShift} setOpen={setOpenEditShift} data={data} />
+      <DialogEditShifts
+        open={openEditShift}
+        setOpen={setOpenEditShift}
+        data={data}
+      />
     </div>
   );
 }

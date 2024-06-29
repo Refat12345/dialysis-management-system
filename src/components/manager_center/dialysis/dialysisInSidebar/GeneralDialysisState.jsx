@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useGetGeneralDialysisQuery,useGetDialysisByPatientQuery } from "../../../../services/manager_center/diyalisis/dialysis_sidebar/GeneralDialysisSlice"; 
 import { createContext, useContext, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const GeneralDialysisContext = createContext();
 
@@ -13,12 +14,11 @@ export const GeneralDialysisProvider = ({ children ,userId}) => {
   const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [selectedYearOption, setSelectedYearOption] = useState("2024");
-  const [selectedMonthOption, setSelectedMonthOption] = useState("5");
+  const [selectedYearOption, setSelectedYearOption] = useState("");
+  const [selectedMonthOption, setSelectedMonthOption] = useState("");
   const [filteredDataSearch, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  /////
 
   const [userByPatient, setUserByPatient] = useState([]);
   const [isLoadingByPatient, setIsLoadingByPatient] = useState(false);
@@ -26,10 +26,11 @@ export const GeneralDialysisProvider = ({ children ,userId}) => {
   const [selectedYearOptionByPatient, setSelectedYearOptionByPatient] = useState("2024");
   const [selectedMonthOptionByPatient, setSelectedMonthOptionByPatient] = useState("5");
 
+  const user = useSelector((state) => state.user);
+  const centerIdString = user.centerID ? user.centerID.toString() : '14';
 
-  ///
 
-  const { data: users, isLoading: isUserLoading, isSuccess: isUserSuccess } = useGetGeneralDialysisQuery({ month: selectedMonthOption, year: selectedYearOption });
+  const { data: users, isLoading: isUserLoading, isSuccess: isUserSuccess } = useGetGeneralDialysisQuery({ month: selectedMonthOption, year: selectedYearOption ,centeId:centerIdString });
 
   const { data: dialysisByPatient, isLoading: isdialysisByPatientLoading, isSuccess: isdialysisByPatientSuccess } = useGetDialysisByPatientQuery({ month: selectedMonthOption, year: selectedYearOption , userId : userIdString });
 
@@ -61,6 +62,10 @@ export const GeneralDialysisProvider = ({ children ,userId}) => {
   }, [searchTerm, userData]);
 
   const handleSelectYearChange = (event) => {
+    if (!selectedMonthOption) {
+      alert('يجب اختيار الشهر أولاً');
+      return;
+    }
     setSelectedYearOption(event);
   };
 
@@ -68,7 +73,6 @@ export const GeneralDialysisProvider = ({ children ,userId}) => {
     setSelectedMonthOption(event);
   };
 
-  /////
   useEffect(() => {
     if (isdialysisByPatientSuccess && dialysisByPatient) {
       setUserByPatient(dialysisByPatient);
