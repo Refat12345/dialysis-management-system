@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types"; // Import PropTypes
 const OrdersStateContext = createContext();
 
@@ -7,7 +8,7 @@ const OrdersState = ({ children }) => {
         request_id:"",
         causes:"",
         new_status:"",
-        postData:(data)=>postData(data)
+        postData:(data,changeStatus,type)=>postData(data,changeStatus,type)
     });
 
     const updateState = (newValues) => {
@@ -22,8 +23,15 @@ const OrdersState = ({ children }) => {
         state,
         updateState,
     };
-    const postData = (data)=>{
-        console.log(data);
+    const postData = async(data,changeStatus,type)=>{
+        const body = {
+            request_id:data.request_id,
+            new_status:data.new_status  
+        }
+        try {
+            await changeStatus(body)
+            toast(type === "rejected"?"تم رفض الطلب بنجاح":"تم قبول الطلب بنجاح")
+        }catch(err){console.log(err);}
     }
 return (
     <OrdersStateContext.Provider value={contextValue}>

@@ -7,6 +7,7 @@ import { formatDate } from "../../../../utils/DateUtils";
 import Cookies from "js-cookie"
 import { useParams } from "react-router-dom";
 import EditMedicalAnalysisDialog from "../../../secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisDialog"
+import { useGetAnalysisTypesQuery } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 
 const MedicalAnalysisPage = () => {
 
@@ -14,6 +15,7 @@ const MedicalAnalysisPage = () => {
     const { patientName } = useParams();
     const id = useMemo(() => patientName, [patientName]);
     const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(id);
+    const {data:analysisTypes,isSuccess:success,isLoading:loading} = useGetAnalysisTypesQuery()
     const [analysis, setAnalysis] = useState([]);
     const [filters, setFilters] = useState({
         type: "",
@@ -43,14 +45,13 @@ const MedicalAnalysisPage = () => {
         return filteredAnalysis;
     }, [filters, analysis]);
 
-    if (isLoading) {
+    if (isLoading || loading) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <PageLoader />
             </div>
         );}
-
-    if(isError || !isSuccess) {
+    if(isError || !isSuccess || !success) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
@@ -64,9 +65,11 @@ const MedicalAnalysisPage = () => {
             </div>
         );}
     return (
+            (success && analysisTypes.analysisTypes.length > 0) &&  
+            <>
             <div dir="rtl" className="flex-grow">
                 <div className="ml-[1%]">
-                    <Header value={filters} setFilters={setFilters} />
+                    <Header value={filters} setFilters={setFilters} analysisTypes={analysisTypes.analysisTypes} />
                     <div className="analysis">
                         {filteredAnalysis.map((analysisItem, index) => (
                             Cookies.get("role") === "secretary" ? <AlertDialog key={index} renderComponent={<div className="hover:cursor-pointer">
@@ -76,6 +79,8 @@ const MedicalAnalysisPage = () => {
                     </div>
                 </div>
             </div>
+            </>
+
     );
 };
 

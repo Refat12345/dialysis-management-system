@@ -11,9 +11,9 @@ const Dashboard = () => {
     year:""
   })
   const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
+  const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading   } = useGetSessionsQuery();
   const {data: statisticsData, isSuccess: statisticsSuccess, isLoading: statisticsLoading , error } = useGetCenterStatisticsQuery()
-  const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
   useEffect(() => {

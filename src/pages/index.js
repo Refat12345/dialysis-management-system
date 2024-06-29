@@ -32,3 +32,4 @@ export {default as ErrorPage} from "./error/ErrorPage"
 export {default as EnterMedicalRecordPage} from "./secretariat/patient/medical_record/EnterMedicalRecordPage"
 export {default as AddMedicalAnalysisPage} from "./secretariat/patient/medical_analysis/add_analysis/AddMedicalAnalysisPage"
 
+export  {default as ManagerDashboard} from "./manager/dashboard/ManagerDashboard"

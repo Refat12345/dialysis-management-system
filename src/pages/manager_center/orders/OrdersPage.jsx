@@ -35,8 +35,10 @@ const OrdersPage = () => {
       )
       setOrders(secretaryOrders);
       setFilteredOrders(secretaryOrders);
-      } else{setOrders(ordersData);
-        setFilteredOrders(ordersData);
+      } else{
+        const array = ordersData.filter(order=> order.requestStatus === "pending")
+        setOrders(array);
+        setFilteredOrders(array);
       }
     
       

@@ -10,7 +10,7 @@ const AuditingPage = () => {
   const { data, isSuccess, isLoading } = useGetAuditingQuery(1);
   const [auditing, setAuditing] = useState([]);
   const [filter, setFilter] = useState({
-    date: "",
+    date: null,
     operation: "",
   });
   const [inputValue, setInputValue] = useState("");
@@ -36,10 +36,20 @@ const AuditingPage = () => {
         filter.operation === "" ||
         filter.operation === "العملية" ||
         audit.operation.toLowerCase().includes(filter.operation.toLowerCase());
-      const matchesDate =
-        filter.date === "" ||
-        filter.date === "التاريخ" ||
-        audit.date.toLowerCase().includes(filter.date.toLowerCase());
+      let dayStr 
+      let monthStr 
+      let year 
+      let matchesDate
+      if(filter.date!=null){
+        const date = new Date(filter.date.$d)  
+        dayStr = date.getDate() < 10 ? "0" + date.getDate():date.getDate()
+        monthStr = date.getMonth() + 1 < 10 ? "0"+(date.getMonth()+ 1) :date.getMonth() + 1
+        year = date.getFullYear()
+        const dateString = `${year}-${monthStr}-${dayStr}`; 
+        matchesDate = audit.date === dateString
+      } else {
+        matchesDate = true
+      }
       const matchesInput =
         inputValue === "" ||
         audit.affectorUser.toLowerCase().includes(inputValue.toLowerCase());

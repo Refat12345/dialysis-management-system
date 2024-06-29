@@ -1,15 +1,11 @@
 /* eslint-disable react/prop-types */
-import { DropDown, Search } from "../../../../components"
+import { CustomDatePicker, DropDown, Search } from "../../../../components"
 const Header = ({value,setFilter,setInputValue}) => {
     const filters = [
         {
             title:"العملية",
             array:["السجل الطبي","التحاليل","معلومات المركز","الوصفات"]
         },
-        {
-            title:"التاريخ",
-            array:["كانون الأول","كانون الثاني","شباط"]
-        }
     ]
     const colors = {
         titleColor:"primaryColor",
@@ -24,9 +20,15 @@ const Header = ({value,setFilter,setInputValue}) => {
                         <div className="flex w-[75%] md:w-[66%] lg2:w-[48%] justify-start">
                             {filters.map((filter , index)=>{
                                 return <DropDown key={index} filter={filter.array} colors={colors} title={filter.title}  onSelect={(val) => {
-                                    index === 0 ? setFilter({...value,operation:val}):setFilter({...value,date:val})
+                                            setFilter({...value,operation:val})
                                 }} />
-                            })}        
+                            })}
+                            <CustomDatePicker
+                            date={value.date}
+                            onSelect={(val)=>{
+                                setFilter({...value,date:val})
+                            }}
+                            type={"audit"}/>        
                         </div>
                     </div>
                     <div className="self-end">

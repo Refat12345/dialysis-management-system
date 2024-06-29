@@ -41,7 +41,7 @@ const OrdersSection = ({data  }) => {
                             }
                             const secretaryObject = {
                                 type :order.type,
-                                requestStatus:order.requestStatus === "pending" ? "انتظار" : "تمت الموافقة",
+                                requestStatus:order.requestStatus === "pending" ? "انتظار" :(order.requestStatus === "rejected" ?"تم الرفض":"تمت الموافقة") ,
                                 content:order.content
                                 
                             }

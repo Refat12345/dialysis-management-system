@@ -51,3 +51,10 @@ export { default as patient} from './icons/addPaitentInfo/patient .svg'
 export {default as society_status} from './icons/addPaitentInfo/society_status.svg'
 export {default as work} from './icons/addPaitentInfo/work.svg'
 
+
+export {default as patientDashIcon} from "./icons/manager/dashboard/pateintDashboard.svg"
+export {default as doctorDashIcon} from "./icons/manager/dashboard/doctorDashboard.svg"
+export {default as nurseDashIcon} from "./icons/manager/dashboard/nurseDashborad.svg"
+export {default as dialysisDashIcon} from "./icons/manager/dashboard/sessionDashboard.svg"
+export {default as secretaryDashIcon} from "./icons/manager/dashboard/secretrayDashborad.svg"
+export {default as waitingDashIcon} from "./icons/manager/dashboard/waiting-roomDashborad.svg"

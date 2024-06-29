@@ -2,7 +2,12 @@
 
 import { DropDown } from "../../../../../components";
 
-const Header = ({value,setFilters}) => {
+const Header = ({value,setFilters , analysisTypes}) => {
+  const array = []
+  for (let index = 0; index < analysisTypes.length; index++) {
+    array.push(analysisTypes[index].analysisName)
+    
+  }
   const filters = [
     {
       title: " الربع",
@@ -10,7 +15,7 @@ const Header = ({value,setFilters}) => {
     },
     {
       title: "نوع التحليل",
-      array: ["خضاب", "حديد", "كبد"],
+      array: array,
     },
     {
       title: "الشهر",

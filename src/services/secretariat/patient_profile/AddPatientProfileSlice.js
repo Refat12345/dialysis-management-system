@@ -21,7 +21,12 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
             };
         },
     }),
-
+    getAnalysisTypes:builder.query({
+        query:()=>({
+            url:"getAnalysisTypes",
+            method:"GET"
+        })
+    }),
     addPatientInfo: builder.mutation({
         query: (Info) => { 
             return {
@@ -38,5 +43,6 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
 export const {
 useCreateMedicalRecordMutation,
 useAddMedicalAnalysisMutation,
-useAddPatientInfoMutation
+useAddPatientInfoMutation,
+useGetAnalysisTypesQuery
 } = AddPatientProfileSlice;

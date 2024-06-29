@@ -1,0 +1,65 @@
+/* eslint-disable react/prop-types */
+import { DropDown } from "../../../../components";
+import PieChart from "../../../../components/manager_center/dashboard/PieChart/PieChart"
+
+
+const medicinesTitle =[["حديد","هيبارين","ايبوتين"],["#31357e","#4849e3","#c8d5fd"]]
+const causeRenalFailureTitle =[["داء السكري","أمراض قلبية","ضغط الدم", "أمراض أخرى"],["#c9a05b" , "#ddc994" ,"#a43939","#116e41"]]
+
+
+const PieCharts = ({setValue ,date, causeRenalData, medicineData}) => {
+    const colors = {
+        titleColor:"primaryColor",
+        contentColor:"bgButtonColor"
+    }
+const year = {
+    title :"السنة",
+    array :["2024","2025","2026","2027","2028","2029","2030",
+    "2031","2032","2033","2034","2035"
+    ]
+}
+const month = {
+    title :"الشهر",
+    array :["1","2","3","4","5","6","7",
+    "8","9","10","11","12"
+]
+}
+    const medicines = [
+        { id: 0, value: 30, label:medicinesTitle[0][0]},
+        { id: 1, value: 50 , label: medicinesTitle[0][1]  },
+        { id: 2, value: 30, label: medicinesTitle[0][2]},
+];
+    const causeRenalFailure = [
+        { id: 0, value: 63, label:causeRenalFailureTitle[0][0]},
+        { id: 1, value: 56 , label: causeRenalFailureTitle[0][1]  },
+        { id: 2, value: 32, label: causeRenalFailureTitle[0][2]},
+        { id: 3, value: 54, label: causeRenalFailureTitle[0][3]},
+    ];
+    const height = window.innerHeight;
+    return (
+    <div  className="mx-[10%] mt-10">
+        <div  className="flex justify-between w-[40%]">
+            <DropDown colors={colors} filter={ month.array} title={month.title} onSelect={(val) => {
+            setValue({...date,month:val})
+            }}/>
+            <DropDown colors={colors} filter={ year.array} title={year.title} onSelect={(val) => {
+            setValue({...date,year:val})
+                }}/>
+        </div>
+        <div className={`${height > 700 ?"mt-2" :"mt-1"}`}></div> 
+        <div className={`flex flex-row-reverse justify-between  `}>
+        <div className={`shadow-lg w-[40%]`}>
+        <p dir="rtl"className="bg-white px-5 py-3 text-lg font-bold"> نسب أسباب القصور الكلوي</p>  
+        {<PieChart title = {causeRenalFailureTitle} data = {causeRenalFailure} />} 
+        </div>
+            <div className="shadow-lg w-[40%] ">
+            <p dir="rtl"className="bg-white px-5 py-3 text-lg  font-bold">نسب استهلاك الأدوية </p> 
+                <PieChart title = {medicinesTitle} data = {medicines}/>
+            </div>
+    </div>
+</div>
+)
+}
+
+export default PieCharts
+

@@ -19,11 +19,11 @@ export default function DropDown({ title, filter, colors, onSelect }) {
     <Menu dir="rtl" as="div" className="relative inline-block w-full">
       <div>
         <Menu.Button
-          className={`inline-flex justify-between w-[90%] rounded-full bg- px-3 py-1 text-sm   font-primaryBold hover:bg-${colors.titleColor} border  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 ${color}`}
+          className={`inline-flex justify-between w-[90%] rounded-full bg- px-3 py-1 text-sm font-primaryBold hover:bg-${colors.titleColor} border focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 ${color}`}
         >
           {selectedValue}
           <ChevronDownIcon
-            className=" h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
+            className="h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
             aria-hidden="true"
           />
         </Menu.Button>
@@ -37,9 +37,8 @@ export default function DropDown({ title, filter, colors, onSelect }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right  rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none  z-50">
-          <div className="px-1 py-1 ">
-
+        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-50 max-h-[250px] overflow-y-auto">
+          <div className="px-1 py-1">
             {filter.map((content, index) => {
               return (
                 <Menu.Item key={index}>
@@ -61,7 +60,7 @@ export default function DropDown({ title, filter, colors, onSelect }) {
                 </Menu.Item>
               );
             })}
-             <Menu.Item>
+            <Menu.Item>
               {({ active }) => (
                 <button
                   onClick={handleReset}

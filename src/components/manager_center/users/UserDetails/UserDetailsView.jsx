@@ -111,13 +111,11 @@
 
 import NationalInformation from "./NationalInformation";
 import ContactInformation from "./ContactInformation";
-import { dataContact, dataLocation } from "../../../../data/data";
 import {
-  UserDetailsProvider,
   useDetailsUsers,
 } from "./../../../../pages/manager_center/users/user-details/UserDetailsState";
 import { useState, useEffect } from "react";
-import LoadingComponent from "../../../public/LoadingComponent ";
+import PageLoader from "../../../public/loader/PageLoader";
 import AdressInformation from "./AdressInformation";
 
 function UserDetailsView() {
@@ -157,7 +155,9 @@ console.log(userData);
     }
   }, [isSuccess, isLoading, userData]);
 
-  if (isLoading) return <LoadingComponent />;
+  if (isLoading) return  <div className="flex items-center justify-center h-screen">
+  <PageLoader />
+</div>;
   if (!userData) return <div>No data available</div>;
 
 

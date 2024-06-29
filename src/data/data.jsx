@@ -14,7 +14,8 @@ import {
   NotesIcon,
   SettingsIcon,
   LogOutIcon,
-  MedicalCentersIcon
+  MedicalCentersIcon,
+  SecretaryImage
 } from "../assets";
 import online from "../assets/icons/medical-center/users/users-list/online.svg";
 
@@ -96,7 +97,7 @@ export const secretariatSideBar = {
   header: {
     name: "ريما كباكيبي",
     title: "سكرتيرة الطحان الخيري",
-    icon: ManagerIcon,
+    icon: SecretaryImage,
   },
   items: [
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
@@ -142,82 +143,6 @@ export const titleSession = {
 };
 export const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
 
-export const dialysisSessions = [
-  {
-
-  patientName : "ساريه محمد  منير الزعبي",
-  "nurseName": "عدنان  العويدات محمد",
-  "sessionStartTime": "الساعة السادسة",
-  "sessionEndTime": "الساعة الثانية عشرة",
-  "chair":18,
-  "roomName":"1"
-  },
-  {
-    "id": "2",
-    "patientName": "سعيد صلاح",
-    "nurseName": "أسماء درباني",
-    "sessionStartTime": "الساعة الثانية",
-    "sessionEndTime": "الساعة الحادية عشرة",
-    "chair":20,
-    "roomName":1
-    },
-    {
-      "id": "3",
-      "patientName": "أحمد محمد",
-      "nurseName": "عدنان العويدات",
-      "sessionStartTime": "الساعة السادسة",
-      "sessionEndTime": "الساعة الخامسة",
-      "chair":12,
-      "roomName":3
-      },
-    {
-        "id": "4",
-        "patientName": "سامي خالد",
-        "nurseName": "عدنان الزعبي",
-        "sessionStartTime": "الساعة العاشرة",
-        "sessionEndTime": "الساعة الرابعة",
-        "chair":2,
-        "roomName":5
-      },
-      {
-        "id": "5",
-        "patientName": "مريم محمد",
-        "nurseName": "عدنان العويدات",
-        "sessionStartTime": "الساعة الثامنة",
-        "sessionEndTime": "الساعة العاشرة",
-        "chair":12,
-        "roomName":1
-        },
-        {
-          "id": "6",
-          "patientName": "أحمد محمد",
-          "nurseName": "عدنان العويدات",
-          "sessionStartTime": "الساعة السادسة",
-          "sessionEndTime": "الساعة الثانية عشرة",
-          "chair":35,
-          "roomName":12
-          },
-          {
-            "id": "7",
-            "patientName": "خالد علي",
-            "nurseName": "عدنان العويدات",
-            "sessionStartTime": "الساعة السادسة",
-            "sessionEndTime": "الساعة الثانية عشرة",
-            "chair":20,
-            "roomName":5
-            },
-            {
-              "id": "8",
-              "patientName": "سعدون محمد",
-              "nurseName": "عدنان العويدات",
-              "sessionStartTime": "الساعة السادسة",
-              "sessionEndTime": "الساعة الثانية عشرة",
-              "chair":13,
-              "roomName":2
-              }                          
-]
-
-
 
 export const healthInformation = {
   title: "المعلومات الصحية",
@@ -241,15 +166,7 @@ export const pharmacologicalTitle = [
   "تاريخ نهاية أخذ الدواء",
   "تفاصيل عامة",
 ];
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-export const ordersData = arr.map((order, index) => {
-  return {
-    type: index % 2 === 0 ?"المراكز الطبية" :"المرضى",
-    order:index % 2 === 0 ? "سارية الزعبي":"رفعت عبد الواحد",
-    details:
-      "أريد نقل المريض محمد خالد من مركز سند الخيري الى مركز حسن الطحان الخيري وذلك بسبب نقص في التجهيزات ",
-  };
-});
+
 //==============
 
 

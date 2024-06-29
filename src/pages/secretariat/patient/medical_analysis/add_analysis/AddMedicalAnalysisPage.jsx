@@ -4,21 +4,23 @@ import {
     CustomTextField,
     PublicHeader,
     SelectedTextFeild,
+    PageLoader,
     Toast
     } from "../../../../../components";
 import { textToastStyle } from "../../../../../data/data";
 import { useAddMedicalAnalysisState } from "./AddMedicalAnalysisState";
 import { MedicalAnalysisIcon } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
-import { useAddMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
+import { useAddMedicalAnalysisMutation, useGetAnalysisTypesQuery } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import { toast } from "react-toastify";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
     const { state, updateState } = useAddMedicalAnalysisState();
+    const {data,isSuccess,isLoading:isLoad} = useGetAnalysisTypesQuery()
     const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
-    const typeSelections = ["خضاب", "دم", "حديد"];
-    const unitSelections = ["mm", "cm", "ml"];
+    const typeSelections = [];
+    const unitSelections = [];
     
     const postData = async () => {
         try {
@@ -30,10 +32,24 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
             console.error("Error adding medical analysis:", error);
         }
     };
-
+    if (isLoad) {
+        return (
+            <div className="flex-grow md:mr-48">
+                <div className="flex items-center justify-center h-screen">
+                    <PageLoader />
+                </div>
+            </div>
+        );}
+        if(isSuccess){
+            for (let index = 0; index < data.analysisTypes.length; index++) {
+                typeSelections.push(data.analysisTypes[index].analysisName)
+                unitSelections.push(data.analysisTypes[index].unitOfMeasurement) 
+            }
+        }
     return (
         <div dir="rtl" className="flex-grow bg-bgMedicalRecord md:mr-48 h-screen">
             <div className="mx-[2%]">
+                {(isSuccess && typeSelections.length > 0 && unitSelections.length > 0) && <>
                 <PublicHeader title="التحاليل الطبية" icon={MedicalAnalysisIcon} bool />
                 <div className="bg-white rounded-lg p-6 mt-4">
                     <div className="flex justify-between">
@@ -109,6 +125,8 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                 </div>:<ButtonLoader/>}
                 </div>
                 <Toast textStyle={textToastStyle} progressColor={"green"}/>
+                </>
+                }
         </div>
     </div>
     );
