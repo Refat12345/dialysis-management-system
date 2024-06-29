@@ -102,7 +102,7 @@ function Header({ setSearchTerm }) {
           <CustomButton
             variant="solid"
             onClick={() => {
-              navigate(secretariaAccountRoute);
+              navigate("/app/secretaria_account");
             }}
             className={`bg-bgLogin text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
             title={
