@@ -55,9 +55,7 @@ import {
   dialysisByPatient,
   secretariatSideBar,
   patientOptionRoute,
-  disbursedMaterialsRoute
-
-  patientOptionRoute,
+  disbursedMaterialsRoute,
   assignMaterialToUserCenter
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
