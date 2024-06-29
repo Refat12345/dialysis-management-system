@@ -5,6 +5,7 @@ import { CustomTextField, CustomButton , ButtonLoader, CustomDatePicker,Toast} f
 import { useMedicalRecordState } from "../MedicalRecordState";
 import { useOutletContext } from "react-router-dom";
 import dayjs from "dayjs";
+import { textToastStyle } from "../../../../../data/data";
 import { useEditMedicalRecordMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 const PrecedentsDialog = ({type ,index}) => {
     const { state, updateState } = useMedicalRecordState();
@@ -13,12 +14,12 @@ const PrecedentsDialog = ({type ,index}) => {
     useEffect(() => {
         updateState(medicalRecord);
         updateState({isEdit:false})
+        updateState({isDateEndEdit:false})
     }, []);
     const postPrecedentData = () => {
         state.postPrecedents(state,medicalRecord.id,index,type,editMedicalRecord)
     }
     
-    const textToastStyle = { color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px" }; 
     return (
         <>
         <div dir="rtl" className="p-4 w-[400px]">
@@ -65,7 +66,7 @@ const PrecedentsDialog = ({type ,index}) => {
                     date = { dayjs(state.pharmacologicalPrecedents[index].dateEnd ) }
                     onSelect={(date)=>{
                         state.updatePharmacologicalPrecedent(index,{dateEnd: date})
-                        updateState({isEdit:true})
+                        updateState({isDateEndEdit:true})
                     }}
                 />
             }

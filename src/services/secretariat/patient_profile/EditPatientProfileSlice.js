@@ -25,7 +25,6 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
     }),
     editPrescriptions: builder.mutation({
         query: (prescriptions) => { 
-            console.log(prescriptions.object);
             return {
                 url: `updatePrescription/${prescriptions.prescriptionId}`,
                 method: 'POST',

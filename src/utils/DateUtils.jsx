@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useMemo } from "react";
 
 export const useFormatDate = (dateString) => {
@@ -95,4 +96,47 @@ export function convertDateToArabicFormat(dateString) {
   const formattedDate = `${day} ${months[month]} ${year}`;
   
   return formattedDate;
+}
+
+export function getHourInArabic(time) {
+  const hoursInArabic = [
+      "الساعة الثانية عشر", "الساعة الواحدة", "الساعة الثانية", 
+      "الساعة الثالثة", "الساعة الرابعة", "الساعة الخامسة", 
+      "الساعة السادسة", "الساعة السابعة", "الساعة الثامنة", 
+      "الساعة التاسعة", "الساعة العاشرة", "الساعة الحادية عشر"
+  ];
+
+  let [hours, minutes, seconds] = time.split(':').map(Number);
+
+  hours = hours % 12;
+
+  return hoursInArabic[hours];
+}
+
+
+export function convertDateString(dateString) {
+
+  const monthsMap = {
+      "يناير": "01",
+      "فبراير": "02",
+      "مارس": "03",
+      "أبريل": "04",
+      "مايو": "05",
+      "يونيو": "06",
+      "يوليو": "07",
+      "أغسطس": "08",
+      "سبتمبر": "09",
+      "أكتوبر": "10",
+      "نوفمبر": "11",
+      "ديسمبر": "12"
+  };
+
+
+  const parts = dateString.split('-');
+
+  const day = parts[0];
+  const month = monthsMap[parts[1]];
+  const year = parts[2];
+
+  return `${year}-${month}-${day}`;
 }

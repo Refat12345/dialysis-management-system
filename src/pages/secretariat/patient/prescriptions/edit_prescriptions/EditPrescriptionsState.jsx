@@ -6,7 +6,7 @@ const EditPrescriptionsStateContext = createContext();
 const EditPrescriptionsState = ({ children }) => {
     const [state, setState] = useState(
     {
-        Id: "",
+        id: "",
         name: "",
         dateOfStart: "",
         dateOfEnd: "",
@@ -29,7 +29,7 @@ const EditPrescriptionsState = ({ children }) => {
             "patientID": patientId,
             "medicines": [
                 {
-                    "id":data.Id,
+                    "id":data.id,
                     "name": data.name,
                     "dateOfStart": data.isEditStart === true ? data.dateOfStart.format("YYYY-MM-DD"):data.dateOfStart,
                     "dateOfEnd": data.isEditEnd === true ? data.dateOfEnd.format("YYYY-MM-DD"):data.dateOfEnd,

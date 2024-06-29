@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
+import { toast } from "react-toastify";
 const AddMedicalAnalysisStateContext = createContext();
 
 const AddMedicalAnalysisState = ({ children }) => {
@@ -31,27 +32,29 @@ const AddMedicalAnalysisState = ({ children }) => {
   const postData = (value) => {
     let valueOne = ""
     if((value.negative === true || value.positive === true) && value.value != ""){
-      console.log("a");
+      toast.warning("لا يمكن اختيار النتيجة و سلبي أو ايجابي معا")
+      return false
+    }else {
+      console.log("D");
+      if(value.negative === true) {
+        valueOne = "سلبي"
+      } else if (value.positive === true) {
+        valueOne = "ايجابي"
+      } else {
+        valueOne = value.value
+      }
+      let body = {
+        averageMin:value.averageMin,
+        averageMax:value.averageMax,
+        value:valueOne,
+        quarter:"Q2",
+        analysisTypeID:1,
+        analysisDate:value.analysisDate.format("YYYY-MM-DD"),
+        notes:value.notes,
+        userID:15
+      }
+      return body
     }
-    if(value.negative === true) {
-      valueOne = "سلبي"
-    } else if (value.positive === true) {
-      valueOne = "ايجابي"
-    } else {
-      valueOne = value.value
-    }
-    let body = {
-      averageMin:value.averageMin,
-      averageMax:value.averageMax,
-      value:valueOne,
-      quarter:"Q2",
-      analysisTypeID:1,
-      analysisDate:value.analysisDate.format("YYYY-MM-DD"),
-      notes:value.notes,
-      userID:15
-    }
-    console.log(body);
-    return body
   }
   const contextValue = {
     state,

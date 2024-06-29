@@ -2,7 +2,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Cards, PieCharts, DialysisSessions } from "../../index";
 import { PaginationComponent, PageLoader } from "../../../components/index";
-import { dialysisSessions  } from "../../../data/data";
 import { useGetCausesRenalFailureQuery, useGetCenterStatisticsQuery, useGetPieChartsQuery, useGetSessionsQuery } from "../../../services/manager_center/dashboard/DashboardSlice";
 const Dashboard = () => {
 
@@ -12,9 +11,9 @@ const Dashboard = () => {
     year:""
   })
   const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
+  const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading   } = useGetSessionsQuery();
   const {data: statisticsData, isSuccess: statisticsSuccess, isLoading: statisticsLoading , error } = useGetCenterStatisticsQuery()
-  const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
   useEffect(() => {
@@ -48,7 +47,7 @@ const Dashboard = () => {
       <div className={`flex flex-row-reverse justify-between ${height > 700 ? "mt-7" : "mt-5"}`}>
         <div className="flex flex-col md:w-[62%]">
           <PaginationComponent
-            data={dialysisSessions}
+            data={sessionData.message}
             RenderComponent={DialysisSessions}
             itemsPerPage={itemsPerPage}
             type="dashboard"

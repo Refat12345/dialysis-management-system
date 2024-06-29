@@ -4,35 +4,53 @@ import {
     CustomTextField,
     PublicHeader,
     SelectedTextFeild,
+    PageLoader,
     Toast
     } from "../../../../../components";
+import { textToastStyle } from "../../../../../data/data";
 import { useAddMedicalAnalysisState } from "./AddMedicalAnalysisState";
-import { MedicalRecord } from "../../../../../assets";
+import { MedicalAnalysisIcon } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
-import { useAddMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
+import { useAddMedicalAnalysisMutation, useGetAnalysisTypesQuery } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import { toast } from "react-toastify";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
     const { state, updateState } = useAddMedicalAnalysisState();
+    const {data,isSuccess,isLoading:isLoad} = useGetAnalysisTypesQuery()
     const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
-    const typeSelections = ["خضاب", "دم", "حديد"];
-    const unitSelections = ["mm", "cm", "ml"];
-    const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
+    const typeSelections = [];
+    const unitSelections = [];
+    
     const postData = async () => {
         try {
             let body = state.postData(state)
-            await addMedicalAnalysis(body);
-            toast("تم اضافة التحليل الطبي بنجاح")
+            if(body !=false){await addMedicalAnalysis(body);
+                toast("تم اضافة التحليل الطبي بنجاح")}
+            
         } catch (error) {
             console.error("Error adding medical analysis:", error);
         }
     };
-
+    if (isLoad) {
+        return (
+            <div className="flex-grow md:mr-48">
+                <div className="flex items-center justify-center h-screen">
+                    <PageLoader />
+                </div>
+            </div>
+        );}
+        if(isSuccess){
+            for (let index = 0; index < data.analysisTypes.length; index++) {
+                typeSelections.push(data.analysisTypes[index].analysisName)
+                unitSelections.push(data.analysisTypes[index].unitOfMeasurement) 
+            }
+        }
     return (
         <div dir="rtl" className="flex-grow bg-bgMedicalRecord md:mr-48 h-screen">
             <div className="mx-[2%]">
-                <PublicHeader title="التحاليل الطبية" icon={MedicalRecord} bool />
+                {(isSuccess && typeSelections.length > 0 && unitSelections.length > 0) && <>
+                <PublicHeader title="التحاليل الطبية" icon={MedicalAnalysisIcon} bool />
                 <div className="bg-white rounded-lg p-6 mt-4">
                     <div className="flex justify-between">
                         <div className="w-[30%]">
@@ -41,6 +59,9 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                                 label="نوع التحليل الطبي"
                                 value={state.analysisType === "" ? "نوع التحليل الطبي" : state.analysisType}
                                 onSelect={(val) => updateState({ analysisType: val })}
+                                allowNewSelection = {true}
+                                type={"اضافة نوع تحليل جديد"}
+                                placeholder = {"أدخل نوع التحليل الجديد"}
                 />
                         </div>
                         <div className="w-[20%]">
@@ -58,6 +79,10 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                                 label="الوحدة"
                                 value={state.unit === "" ? "الوحدة" : state.unit}
                                 onSelect={(val) => updateState({ unit: val })}
+                                placeholder={"ادخل الوحدة"}
+                                type={"اضافة وحدة جديدة" }
+                                allowNewSelection = {true}
+
                             />
                         </div>
                         <div className="w-[30%] self-center mt-7">
@@ -100,6 +125,8 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                 </div>:<ButtonLoader/>}
                 </div>
                 <Toast textStyle={textToastStyle} progressColor={"green"}/>
+                </>
+                }
         </div>
     </div>
     );

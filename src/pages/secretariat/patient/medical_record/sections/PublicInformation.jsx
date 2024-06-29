@@ -39,6 +39,9 @@ return (
                     value={state.causeRenalFailure === "" ? "سبب القصور الكلوي"  : state.causeRenalFailure}
                     filter={causeRenalFailureSelection.array}
                     onSelect={(val) => state.selectCauseRenalFailure(val)}
+                    placeholder={"أدخل سبب القصور الكلوي"}
+                    type={"اضافة سبب قصور كلوي جديد"}
+                    allowNewSelection = {true}
             />
             </div>
             <div className="w-[45%] ">
@@ -85,6 +88,9 @@ return (
                     value={state.vascularEntrance === "" ? "الوصل الوعائي"  : state.vascularEntrance}
                     filter={vascularEntranceSelection.array}
                     onSelect={(val) => state.selectVascularEntrance(val)}
+                    placeholder={"أدخل الوصل الوعائي"}
+                    type={"اضافة وصل وعائي جديد"}
+                    allowNewSelection = {true}
             />
                 </div>
                 <div className="w-[45%]  ">

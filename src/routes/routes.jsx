@@ -25,7 +25,7 @@ import {
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import {
   mainRoute,
-  managerCenterSideBar,
+
   patientProfileRoute,
   patientsRoute,
   usersRoute,
@@ -41,13 +41,11 @@ import {
   dialysisRoute,
   dialysisDetailsRoute,
   registerRoute,
-  invitationRoute,
   auditingRoute,
   secretariaAccountRoute,
   ordersRoute,
   settingRoute,
   globalInfoRoute,
-  dialysisSessionsRoute,
   globalNotesRoute,
   addPatintinfoRoute,
   addPrescriptionInfoRoute,
@@ -57,6 +55,9 @@ import {
   dialysisByPatient,
   secretariatSideBar,
   patientOptionRoute,
+  disbursedMaterialsRoute
+
+  patientOptionRoute,
   assignMaterialToUserCenter
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
@@ -65,8 +66,6 @@ import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import CreateSecretariaAccountState from "../pages/manager_center/secretaria_account/CreateSecretariaAccountState";
 import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_account/CreateSecretariaAccountPage";
 import EnterMedicalRecordState from "../pages/secretariat/patient/medical_record/EnterMedicalRecordState";
-
-import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 import MainLayout from "../pages/MainLayout";
 import SettingPage from "../pages/manager_center/setting/SettingPage";
 import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
@@ -79,7 +78,6 @@ import { PatientProvider } from "../pages/manager_center/patient/patient_list/Pa
 import { UserDetailsProvider } from "../pages/manager_center/users/user-details/UserDetailsState";
 import { GeneralDialysisProvider } from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import GeneralDialysisPage from "../pages/manager_center/dialysis/General/GeneralDialysisPage";
-import { DialysisDetailstProvider } from "../pages/manager_center/dialysis/DialysisPageState";
 import { SettingProvider } from "../pages/manager_center/setting/SettingState";
 import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
@@ -95,6 +93,8 @@ import AddPrespictionPage from "../pages/secretariat/patient/prescriptions/AddPr
 import AddPatientInfoPage from "../pages/secretariat/patient/AddPatientInfoPage";
 import AssignMaterialToUserCenter from "../components/AssignMaterialToUserCenter";
 import SecretariatDashboard from "../pages/secretariat/Dashboard/SecretariatDashboard";
+import OrdersState from "../pages/manager_center/orders/OrdersState";
+import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
 
 const router = createBrowserRouter([
   {
@@ -307,7 +307,9 @@ const router = createBrowserRouter([
       },
       {
         path: ordersRoute,
-        element: <OrdersPage />,
+        element: <OrdersState>
+            <OrdersPage />
+        </OrdersState>,
         errorElement: <ErrorPage />,
       },
       {
@@ -398,6 +400,12 @@ const router = createBrowserRouter([
 
         ],
       },
+      {
+        path:disbursedMaterialsRoute,
+        element :(
+          <DisbursedMaterials/>
+        )
+      }
     ],
   },
 ]);

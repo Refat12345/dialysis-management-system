@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // /* eslint-disable no-unused-vars */
 // import React from "react";
 // import CustomButton from "../../public/button/CustomButton";
@@ -74,7 +75,7 @@ import CustomButton from "../../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { bodyMeduimStyle } from "../../../utils/StyleUtils";
 import { useNavigate } from "react-router-dom";
-import { secretariaAccountRoute } from "../../../data/data";
+
 import { useUsers } from "../../../pages/manager_center/users/users-list/UserListState";
 import {  SelectedTextFeild } from "../..";
 import { useSelector } from "react-redux";

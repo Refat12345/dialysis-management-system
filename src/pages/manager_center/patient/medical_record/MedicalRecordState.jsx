@@ -40,6 +40,7 @@ const MedicalRecordState = ({ children }) => {
             },
         ],
         isEdit:false,
+        isDateEndEdit:false,
         updatePathologicalPrecedent: (index,value) => updatePathologicalPrecedent(index,value),
         updatePharmacologicalPrecedent: (index,value) => updatePharmacologicalPrecedent(index,value),
         updateSurgicalPrecedent: (index,value) => updateSurgicalPrecedent(index,value),
@@ -117,7 +118,7 @@ const MedicalRecordState = ({ children }) => {
                 id:data.pharmacologicalPrecedents[index].id ,
                 medicineName: data.pharmacologicalPrecedents[index].medicineName,
                 dateStart:  data.isEdit === true ? data.pharmacologicalPrecedents[index].dateStart.format("YYYY-MM-DD"): data.pharmacologicalPrecedents[index].dateStart,
-                dateEnd:  data.isEdit === true ? data.pharmacologicalPrecedents[index].dateEnd.format("YYYY-MM-DD"): data.pharmacologicalPrecedents[index].dateEnd,
+                dateEnd:  data.isDateEndEdit === true ? data.pharmacologicalPrecedents[index].dateEnd.format("YYYY-MM-DD"): data.pharmacologicalPrecedents[index].dateEnd,
                 generalDetails:data.pharmacologicalPrecedents[index].generalDetails
             }],
         }:{

@@ -3,6 +3,8 @@
 
 const Card = ({title,statistic}) => {
   const height = window.innerHeight; 
+  const width = window.innerWidth
+  const responsve = width < 1420 ? "min-w-[280px]" :"min-w-72"
   const style = {
   borderRadius: '50%',
   backgroundColor:"#fffbf4",
@@ -12,7 +14,7 @@ const Card = ({title,statistic}) => {
 }
   return (
     <>
-        <div style={styleComponent} className="px-6 max-w-xs min-w-80 mx-5 bg-white rounded-xl shadow-lg flex flex-row-reverse items-center text-right  ">
+        <div dir="ltr" style={styleComponent} className={`px-6 max-w-xs  mx-5 bg-white rounded-xl shadow-lg flex flex-row-reverse items-center text-right  ${responsve} `}>
             <div style={style} className=" flex justify-center items-center w-16 h-16 ">
             <img src={title.icon} alt="" />
             </div>

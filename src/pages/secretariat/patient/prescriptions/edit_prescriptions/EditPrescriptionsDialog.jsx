@@ -8,6 +8,7 @@ import {
     ButtonLoader,
     Toast
     } from "../../../../../components/index";
+import { textToastStyle } from "../../../../../data/data";    
 import { useEditPrescriptionsState } from "./EditPrescriptionsState"; 
 import dayjs from "dayjs";  
 import { useEditPrescriptionsMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
@@ -22,7 +23,6 @@ const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
     const postData = () => {
         state.postData(state , prescriptionId, patientId,editPrescriptions)
     }
-    const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
 
     return (
         <div dir="rtl" className="w-[400px]">

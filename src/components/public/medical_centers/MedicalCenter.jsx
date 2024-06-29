@@ -4,7 +4,7 @@ import EllipsisIcon from "../../../assets/icons/public/ellipsis.svg";
 import AlertDialog from "../dialog/Dialog";
 import MedicalCenterDetails from "./MedicalCenterDetails";
 
-const MedicalCenter = ({ icons, content }) => {
+const MedicalCenter = ({ icons, content ,role }) => {
 
   const title = ["العنوان","معلومات التواصل","تفاصيل عامة"] ;
   const height = window.innerHeight;
@@ -35,7 +35,7 @@ const MedicalCenter = ({ icons, content }) => {
     <div
       dir="rtl"
       className={`medical-center p-4 bg-white rounded-lg shadow-lg ${
-        isEllipsisHovered ? "" : "hover:cursor-pointer hover:bg-gray-100"
+        isEllipsisHovered ? "" : role === "admin" && "hover:cursor-pointer hover:bg-gray-100"
       }`}
     >
       <div className="flex flex-row justify-between">

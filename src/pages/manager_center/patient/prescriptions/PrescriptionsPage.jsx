@@ -2,10 +2,11 @@ import Prescriptions from "./sections/Prescriptions";
 import { useEffect, useState, useMemo } from "react";
 import { PageLoader } from "../../../../components";
 import { useGetPrescriptionsQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
-
+import { useParams } from "react-router-dom";
 const PrescriptionsPage = () => {
   const height = window.innerHeight;
-  const id = sessionStorage.getItem("patientId");
+  const { patientName } = useParams();
+  const id = useMemo(() => patientName, [patientName]);
   const { data, isSuccess, isLoading, isError } = useGetPrescriptionsQuery(id);
   const [prescriptions, setPrescriptions] = useState([]);
 

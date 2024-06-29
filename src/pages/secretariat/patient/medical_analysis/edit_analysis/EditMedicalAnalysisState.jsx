@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import { toast } from "react-toastify";
+import { convertDateString } from "../../../../../utils/DateUtils";
 const EditMedicalAnalysisStateContext = createContext();
 
 const EditMedicalAnalysisState = ({ children }) => {
@@ -13,6 +14,8 @@ const EditMedicalAnalysisState = ({ children }) => {
         notes: "",
         analysisName: "",
         userID:"",
+        averageMin: 11, 
+        averageMax: 111, 
         isEdit:false,
         postData : (value,method) => postData(value,method)
     }
@@ -27,18 +30,19 @@ const EditMedicalAnalysisState = ({ children }) => {
 
     const postData = async (data,method) => {
         const object = {
-            id: data.id,
+            Id: data.id,
             analysisName: data.analysisName,
             value: data.value, 
-            analysisDate: data.isEdit === true ? data.analysisDate.format("YYYY-MM-DD") :data.analysisDate, 
+            analysisDate: data.isEdit === true ? data.analysisDate.format("YYYY-MM-DD") :convertDateString(data.analysisDate), 
             notes: data.notes,
             userID: data.userID,
+            averageMin:data.averageMin,
+            averageMax:data.averageMax,
+            recurrenceInterval:6,
             unitOfMeasurement: data.unitOfMeasurement
         }
-        console.log(object);
         try {
             const response = await method(object)
-            console.log(response);
             toast("تم تعديل التحليل الطبي بنجاح")
             return response
         }catch(err){console.log(err); }
