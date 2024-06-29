@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { useGetCenterSettingQuery } from "../../../services/manager_center/setting/SettingSlice"; 
-
+import { useSelector } from "react-redux";
 const SettingContext = createContext();
 
 export const SettingProvider = ({ children }) => {
@@ -10,11 +10,16 @@ export const SettingProvider = ({ children }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [SettingTime, setSettingTime] = useState([]);
 
+  const user = useSelector((state) => state.user);
+  const centerIdString = user.centerID ? user.centerID.toString() : '14';
+
+
+
   const {
     data: setting,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetCenterSettingQuery();
+  } = useGetCenterSettingQuery(centerIdString);
 
   useEffect(() => {
     if (isUserSuccess && setting) {
@@ -30,7 +35,7 @@ export const SettingProvider = ({ children }) => {
       setIsSuccess(false);
     }
   }, [isUserSuccess, isUserLoading, setting]);
-
+console.log("SettingTime",SettingTime)
   return (
     <SettingContext.Provider value={{ SettingData, isLoading, isSuccess ,SettingTime, setSettingTime}}>
       {children}

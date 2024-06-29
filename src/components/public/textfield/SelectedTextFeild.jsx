@@ -13,7 +13,8 @@ const SelectedTextFeild = ({
   onSelect,
   allowNewSelection = false,
   type,
-  placeholder
+  placeholder,
+  onClick,
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newAnalysisType, setNewAnalysisType] = useState("");
@@ -29,7 +30,7 @@ const SelectedTextFeild = ({
   return (
     <div>
       <Menu dir="rtl" as="div" className="relative inline-block w-full">
-        <label className={`font-medium ${bodyMeduimStyle}`}>
+        <label onClick={onClick} className={`font-medium ${bodyMeduimStyle}`}>
           {!activeLabel ? "" : `${label}:`}
           <div className="h-1"></div>
           <Menu.Button
@@ -62,7 +63,10 @@ const SelectedTextFeild = ({
                 <Menu.Item key={index}>
                   {({ active }) => (
                     <div
-                      onClick={() => onSelect(content)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        onSelect(content);
+                      }}
                       className={`${
                         active
                           ? "bg-bgButtonColor text-white font-primaryRegular cursor-pointer"

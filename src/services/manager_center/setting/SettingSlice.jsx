@@ -1,14 +1,49 @@
-import {apiSlice} from '../../apiSlice'
+import { apiSlice } from "../../apiSlice";
 
 export const CenterSettingSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCenterSetting: builder.query({
-      query: () => ({
-        url: `/center/1`,
+      query: (id) => ({
+        url: `/center/${id}`,
         method: "GET",
       }),
+      providesTags: ["CenterSetting"],
+    }),
+    addShift: builder.mutation({
+      query: (shiftRecord) => {
+        return {
+          url: `shifts`,
+          method: "POST",
+          body: shiftRecord,
+        };
+      },
+    }),
+    addCenterContact: builder.mutation({
+      query: (telcomeRecord) => {
+        return {
+          url: `createCenterTelecoms`,
+          method: "POST",
+          body: telcomeRecord,
+        };
+      },
+      invalidatesTags: ["CenterSetting"],
+    }),
+    editShift: builder.mutation({
+      query: (shiftRecord) => {
+        return {
+          url: `updateShift`,
+          method: "POST",
+          body: shiftRecord,
+        };
+      },
+      invalidatesTags: ["CenterSetting"],
     }),
   }),
 });
 
-export const { useGetCenterSettingQuery } = CenterSettingSlice;
+export const {
+  useGetCenterSettingQuery,
+  useAddShiftMutation,
+  useAddCenterContactMutation,
+  useEditShiftMutation,
+} = CenterSettingSlice;

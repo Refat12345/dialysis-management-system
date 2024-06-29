@@ -21,13 +21,11 @@ export function Table({ data }) {
 
 
   const filteredData = data.map(item => ({
-    
     fullName: item.fullName,
     gender: item.gender,
     age:item.age,
     city:item.city,
     contactNumber:item.contactNumber
-
   }));
 
 

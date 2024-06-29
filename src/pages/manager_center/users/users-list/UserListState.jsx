@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { useGetUserQuery } from "../../../../services/manager_center/user/user_list/UserSlice"; 
+import { useSelector } from "react-redux";
 
 const UserContext = createContext();
 
@@ -12,26 +13,35 @@ export const UserProvider = ({ children }) => {
   const [selectedOption, setSelectedOption] = useState("ممرض");
   const [searchTerm, setSearchTerm] = useState('');
 
+  const user = useSelector((state) => state.user);
+
+console.log("rrr",user)
+  
+
   const translateOption = (option = "nurse") => {
     switch (option) {
       case "طبيب":
         return "doctor";
       case "ممرض":
         return "nurse";
-      case "سكرتاريا":
+      case "السكرتارية":
         return "secretary";
       default:
         return "unknown";
     }
   };
 
+ 
+
   const translatedOption = translateOption(selectedOption);
+  const centerIdString = user.centerID ? user.centerID.toString() : '14';
+
 
   const {
     data: users,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetUserQuery(translatedOption);
+  } = useGetUserQuery({ option: translatedOption, centerId: centerIdString });
 
   useEffect(() => {
     if (isUserSuccess && users) {

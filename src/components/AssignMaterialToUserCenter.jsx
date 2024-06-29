@@ -124,28 +124,7 @@ const AssignMaterialToUserCenter = () => {
     setSelectedItems([]);
   };
 
-  // const handleSubmit = async () => {
-  //     const medicalRecord = {
-  //       userID: 15,
-  //       centerID: 5,
-  //       materials: selectedItems.map(item => {
-  //         const materialName = item.label === 'وصل وعائي' ? item.selectedVascularAccess : item.label;
-  //         return {
-  //           materialName,
-  //           quantity: quantities[item.label] || 0
-  //         };
-  //       })
-  //     };
 
-  //     try {
-  //       const result = await assignMaterialToUser(medicalRecord).unwrap();
-  //       toast.success("تم إرسال  البيانات بنجاح!");
-  //       handleCloseDialog();
-
-  //     } catch (error) {
-  //       toast.error("حدث خطأ أثناء إرسال البيانات ");
-  //     }
-  //   };
   const handleSubmit = async () => {
     const isAllQuantitiesProvided = selectedItems.every(
       (item) => quantities[item.label]

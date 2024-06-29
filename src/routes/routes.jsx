@@ -53,6 +53,8 @@ import {
   addMedicalAnalysisRoute,
   enterDisbursedMedicines,
   dialysisByPatient,
+  secretariatSideBar,
+  patientOptionRoute
   disbursedMaterialsRoute
 
 } from "../data/data";
@@ -88,6 +90,8 @@ import { GeneralDetailsProvider } from "../pages/manager_center/generalNotes/Gen
 import MedicalRecordState from "../pages/manager_center/patient/medical_record/MedicalRecordState";
 import EditMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisState";
 import EditPrescriptionsState from "../pages/secretariat/patient/prescriptions/edit_prescriptions/EditPrescriptionsState";
+import AddPrespictionPage from "../pages/secretariat/patient/prescriptions/AddPrespictionPage";
+import AddPatientInfoPage from "../pages/secretariat/patient/AddPatientInfoPage";
 import OrdersState from "../pages/manager_center/orders/OrdersState";
 import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
 
@@ -356,6 +360,31 @@ const router = createBrowserRouter([
           </EnterDisbursedMedicinesState>
         ),
         errorElement: <ErrorPage />,
+      },
+      //////
+      {
+        path: patientOptionRoute,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: addPrescriptionInfoRoute,
+            element: (
+              <AddPrescriptionState>
+              <AddPrespictionPage />
+            </AddPrescriptionState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: addPatintinfoRoute,
+            element: (
+              <AddPaitentInfoState>
+              <AddPatientInfoPage />
+            </AddPaitentInfoState>
+            ),
+            errorElement: <ErrorPage />,
+          }
+        ],
       },
       {
         path:disbursedMaterialsRoute,

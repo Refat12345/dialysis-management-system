@@ -1,15 +1,10 @@
 /* eslint-disable react/prop-types */
 import setting from "./../../../../assets/icons/medical-center/users/user-details/setting.svg";
-
-
-
-import React, { useState } from "react";
+import { useState,useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
-
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import Button from "@mui/material/Button";
+import {useGetUserPermissionsQuery,useEditUserPermissionsMutation} from "./../../../../services/manager_center/user/user_details/UserDetailsSlice"
 
 
 const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
@@ -42,8 +37,29 @@ const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
 
 
 
-const MyButton = ({ text }) => {
-  
+const MyButton = ({ text ,id}) => {
+  const userIdString = id ? id.toString() : '14';
+  const { data: permession, isLoading: isUserpermessionLoading, isSuccess: isUserpermessionSuccess } = useGetUserPermissionsQuery(userIdString);
+  const [editUserPermissions] = useEditUserPermissionsMutation();
+
+  const permissionMap = {
+    "medicalRecord": "ادارة السجل الطبي",
+    "prescription": "ادارة الوصفات الطبية",
+  };
+  useEffect(() => {
+    if (isUserpermessionSuccess && !isUserpermessionLoading && permession) {
+      const newSwitchStates = { ...switchStates };
+      for (const permission of permession.permissions) {
+        const key = permissionMap[permission];
+        if (key) {
+          newSwitchStates[key] = true;
+        }
+      }
+      setSwitchStates(newSwitchStates);
+    }
+  }, [isUserpermessionSuccess, isUserpermessionLoading, permession]);
+
+
   const [open, setOpen] = useState(false);
   const [switchStates, setSwitchStates] = useState({
     "ادارة السجل الطبي": false,
@@ -67,6 +83,26 @@ const MyButton = ({ text }) => {
       [switchId]: !prevStates[switchId],
     }));
   };
+
+  const handleSave = async () => {
+    // تحويل الحالة switchStates إلى صيغة البيانات المتوقعة
+    const permissionNames = Object.entries(switchStates)
+      .filter(([_, enabled]) => enabled)
+      .map(([switchId]) => Object.keys(permissionMap).find(key => permissionMap[key] === switchId));
+
+    const newData = {
+      userId: userIdString, // استبدل هذا بالمعرف الفعلي للمستخدم
+      permissionNames,
+    };
+
+    try {
+      await editUserPermissions(newData);
+      console.log("تم تحديث الصلاحيات بنجاح");
+    } catch (error) {
+      console.error("حدث خطأ أثناء تحديث الصلاحيات", error);
+    }
+  };
+
 
   return (
     <>
@@ -106,10 +142,11 @@ const MyButton = ({ text }) => {
     </div>
      <div className="flex flex-row justify-center mb-3">
      <button
-      className="mt-5 bg-bgbutton h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-2xl ml-2"
-    >
-      {"حفظ   التغييرات"}
-    </button>
+        className="mt-5 bg-bgbutton h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-2xl ml-2"
+        onClick={handleSave}
+      >
+        {"حفظ   التغييرات"}
+      </button>
 
      </div>
     

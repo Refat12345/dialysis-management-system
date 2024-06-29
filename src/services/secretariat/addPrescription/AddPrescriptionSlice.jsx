@@ -19,7 +19,7 @@ export const AddPrescriptionSlice = apiSlice.injectEndpoints({
     getMedicineNames: builder.query({
         query: () => {
           return {
-            url: `getMedicineNames`,
+            url: `getMedicineNames/session`,
             method: "GET",
           };
         },

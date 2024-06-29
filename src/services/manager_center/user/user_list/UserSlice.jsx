@@ -1,12 +1,21 @@
 import { apiSlice } from "../../../apiSlice";
 
+
 const UserSlice = apiSlice.injectEndpoints({
+  
   endpoints: (builder) => ({
     getUser: builder.query({
-      query: (role) => ({
-        url: `/getCenterUsersByRole/0/${role}`,
-        method: "GET",
-      }),
+      
+      query: ({ option, centerId }) => {
+        console.log("id is ",centerId)
+        console.log("role",option)
+
+        return {
+          url: `/getCenterUsersByRole/${centerId}/${option}`,
+          method: "GET",
+        }
+       
+      },
     }),
   }),
 });

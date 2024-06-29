@@ -1,10 +1,12 @@
-/* eslint-disable react/prop-types */
 import { createContext, useState, useContext } from "react";
+import {useAddPatientInfoMutation} from "./../../services/secretariat/patient_profile/AddPatientProfileSlice"
 const AddPaitentInfoStateContext = createContext();
-
 const AddPaitentInfoState = ({ children }) => {
+  const [addPatientInfo, { isLoading, isSuccess, isError, error }] =
+  useAddPatientInfoMutation();
   const [state, setState] = useState({
     nationaltyNumber: "",
+    publicIncome: "",
     childreStatus: "",
     work: "",
     relativeRelation: "",
@@ -17,21 +19,25 @@ const AddPaitentInfoState = ({ children }) => {
     economicType: "",
     economicSource: "",
     location: "",
+    status: "",
+    reasonOfStatus :"",
+    maritalStatus :"",
+
     contactInfo: [
       {
         use: "",
-        type: "",
+        system: "",
         value: "",
       },
     ],
     addressInfo: [
       {
         use: "",
-        city: "",
+        cityName: "",
         line: "",
+        countryName: ""
       },
     ],
-
     selectGender: (val) => selectGender(val),
     selectLearn: (val) => selectLearn(val),
     selectEconomicSituation: (val) => selectEconomicSituation(val),
@@ -45,34 +51,38 @@ const AddPaitentInfoState = ({ children }) => {
     addAddressInfo: () => addAddressInfo(),
     removeAddressInfo: (index) => removeAddressInfo(index),
     selectrelativeRelation: (val) => selectrelativeRelation(val),
-  });
+    selectStatus: (val) => selectStatus(val),
+    selectMaritalStatus: (val) => selectMaritalStatus(val),
 
+
+  });
   const selectrelativeRelation = (value) => {
     updateState({ relativeRelation: value });
   };
   const selectLocation = (value) => {
     updateState({ location: value });
   };
+  const selectStatus = (value) => {
+    updateState({ status: value });
+  };
   const selectEconomicSource = (value) => {
     updateState({ economicSource: value });
   };
-
   const selectEconomicType = (value) => {
     updateState({ economicType: value });
   };
-
   const selectEconomicSituation = (value) => {
     updateState({ economicSituation: value });
   };
-
   const selectGender = (value) => {
     updateState({ genderValue: value });
   };
-
   const selectLearn = (value) => {
     updateState({ LearnValue: value });
   };
-  ///////////////////////////
+  const selectMaritalStatus = (value) => {
+    updateState({ maritalStatus: value });
+  };
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
       ...prevState,
@@ -81,7 +91,6 @@ const AddPaitentInfoState = ({ children }) => {
       ),
     }));
   };
-
   const updateAddressInfo = (index, newAddressInfo) => {
     setState((prevState) => ({
       ...prevState,
@@ -90,15 +99,13 @@ const AddPaitentInfoState = ({ children }) => {
       ),
     }));
   };
-
   const addContactInfo = () => {
-    const newContact = { use: "", type: "", value: "" };
+    const newContact = { use: "", system: "", value: "" };
     setState((prevState) => ({
       ...prevState,
       contactInfo: [...prevState.contactInfo, newContact],
     }));
   };
-
   const removeContactInfo = (index) => {
     setState((prevState) => {
       if (prevState.contactInfo.length > 1) {
@@ -110,7 +117,6 @@ const AddPaitentInfoState = ({ children }) => {
       return prevState;
     });
   };
-
   const addAddressInfo = () => {
     const newAddress = { use: "", city: "", line: "" };
     setState((prevState) => ({
@@ -118,7 +124,6 @@ const AddPaitentInfoState = ({ children }) => {
       addressInfo: [...prevState.addressInfo, newAddress],
     }));
   };
-
   const removeAddressInfo = (index) => {
     setState((prevState) => {
       if (prevState.addressInfo.length > 1) {
@@ -130,21 +135,16 @@ const AddPaitentInfoState = ({ children }) => {
       return prevState;
     });
   };
-
-  /////////////////
-
   const updateState = (newValues) => {
     setState((prevState) => ({
       ...prevState,
       ...newValues,
     }));
   };
-
   const contextValue = {
     state,
     updateState,
   };
-
   return (
     <AddPaitentInfoStateContext.Provider value={contextValue}>
       {children}

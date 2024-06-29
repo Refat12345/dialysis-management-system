@@ -17,6 +17,9 @@ const ContactSecretariaComponent = ({
   showDeleteButton,
   firstLabel,
   secondLabel,
+  type,
+  val,
+  onChangeCountryName
 }) => {
   function getTextFieldType() {
     switch (typeValue) {
@@ -43,6 +46,7 @@ const ContactSecretariaComponent = ({
   }
 
   return (
+    <>
     <Row
       dir="rtl"
       mainAxisAlignment="justify-evenly"
@@ -73,11 +77,31 @@ const ContactSecretariaComponent = ({
           label=""
           placeholder={getTextFieldType().placeholder}
           value={value}
-          // prefixIcon={<img src={LoginUserIcon} alt="" />}
           type={getTextFieldType().type}
           onChange={(e) => onChange(e)}
         />
+
+        
       </div>
+
+      {
+        type === "سكن" ?  <div dir="rtl" className="w-1/3 mr-4">
+        <CustomTextField
+          size="3"
+          required={true}
+          label=""
+          placeholder={getTextFieldType().placeholder}
+          value={val}
+          // prefixIcon={<img src={LoginUserIcon} alt="" />}
+          type={getTextFieldType().type}
+          onChange={(e) => onChangeCountryName(e)}
+        />
+
+        
+      </div> : null
+      }
+      
+      
       {showDeleteButton && (
         <button
           className="lg:w-10 md:w-9 w-8 h-10 flex justify-center items-center bg-white rounded-lg border border-gray-300 mr-2 mt-1 hover:bg-gray-200"
@@ -87,6 +111,8 @@ const ContactSecretariaComponent = ({
         </button>
       )}
     </Row>
+    </>
+    
   );
 };
 
