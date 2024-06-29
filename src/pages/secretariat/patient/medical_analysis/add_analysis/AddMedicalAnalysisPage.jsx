@@ -23,8 +23,9 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
     const postData = async () => {
         try {
             let body = state.postData(state)
-            await addMedicalAnalysis(body);
-            toast("تم اضافة التحليل الطبي بنجاح")
+            if(body !=false){await addMedicalAnalysis(body);
+                toast("تم اضافة التحليل الطبي بنجاح")}
+            
         } catch (error) {
             console.error("Error adding medical analysis:", error);
         }

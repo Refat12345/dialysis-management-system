@@ -59,9 +59,6 @@ export const dialysisByPatient = `dialysisByPatient`;
 export const disbursedMaterialsRoute = `disbursedMaterials`
 
 //Delete 
-export const addPatintinfoRoute = 'logOut'
-export const addPrescriptionInfoRoute = 'PrescriptionInfo'
-export const assignMaterialToUserCenter = "/assignMaterialToUserCenter";
 export const addPatintinfoRoute = 'addPatientInfo'
 export const addPrescriptionInfoRoute = 'PrescriptionInfo'
 export const assignMaterialToUserCenter = "assignMaterialToUserCenter";
@@ -90,7 +87,7 @@ export const managerCenterSideBar = {
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
     { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
-    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
+    { href: settingRoute, name: "الاعدادات", icon: SettingsIcon },
     { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
@@ -108,7 +105,8 @@ export const secretariatSideBar = {
     { href: "", name: "المواعيد", icon: AppointmentsIcon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
     { href: addPrescriptionInfoRoute, name: "الملاحظات", icon: NotesIcon },
-    { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
+    { href: settingRoute, name: "الاعدادات", icon: SettingsIcon },
+    { href: settingRoute, name: "اعدادات المركز", icon: SettingsIcon },
     { href: addPatintinfoRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };

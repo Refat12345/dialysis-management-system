@@ -54,7 +54,7 @@ import {
   enterDisbursedMedicines,
   dialysisByPatient,
   secretariatSideBar,
-  patientOptionRoute
+  patientOptionRoute,
   disbursedMaterialsRoute
 
 } from "../data/data";
@@ -64,8 +64,6 @@ import RegisterPage from "../pages/manager_center/auth/register/RegisterPage";
 import CreateSecretariaAccountState from "../pages/manager_center/secretaria_account/CreateSecretariaAccountState";
 import CreateSecretariaAccountPage from "../pages/manager_center/secretaria_account/CreateSecretariaAccountPage";
 import EnterMedicalRecordState from "../pages/secretariat/patient/medical_record/EnterMedicalRecordState";
-
-import RegisterCheckCodePage from "../pages/manager_center/auth/register/RegisterCheckCodePage";
 import MainLayout from "../pages/MainLayout";
 import SettingPage from "../pages/manager_center/setting/SettingPage";
 import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
@@ -78,7 +76,6 @@ import { PatientProvider } from "../pages/manager_center/patient/patient_list/Pa
 import { UserDetailsProvider } from "../pages/manager_center/users/user-details/UserDetailsState";
 import { GeneralDialysisProvider } from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import GeneralDialysisPage from "../pages/manager_center/dialysis/General/GeneralDialysisPage";
-import { DialysisDetailstProvider } from "../pages/manager_center/dialysis/DialysisPageState";
 import { SettingProvider } from "../pages/manager_center/setting/SettingState";
 import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";

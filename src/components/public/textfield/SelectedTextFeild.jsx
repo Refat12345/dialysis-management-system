@@ -17,13 +17,13 @@ const SelectedTextFeild = ({
   onClick,
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [newAnalysisType, setNewAnalysisType] = useState("");
+  const [newType, setNewType] = useState("");
 
   const handleAddNewType = () => {
-    if (newAnalysisType) {
-      onSelect(newAnalysisType);
+    if (newType) {
+      onSelect(newType);
       setIsDialogOpen(false);
-      setNewAnalysisType("");
+      setNewType("");
     }
   };
 
@@ -107,8 +107,8 @@ const SelectedTextFeild = ({
             <div dir="rtl" className="mt-2">
               <input
                 type="text"
-                value={newAnalysisType}
-                onChange={(e) => setNewAnalysisType(e.target.value)}
+                value={newType}
+                onChange={(e) => setNewType(e.target.value)}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-bgButtonColor"
                 placeholder={placeholder}
               />

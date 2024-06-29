@@ -26,7 +26,7 @@ const SurgicalPrecedentsDialog = ({state,updateState}) => {
         <div className="w-[47%] ">
         <CustomDatePicker
                 label={"تاريخ العملية"}
-                value = { dayjs(precedent.surgeryDate)}
+                date = { precedent.surgeryDate}
                 onSelect={(e) =>
                     state.updateSurgicalPrecedent(index,
                         {surgeryDate: e},

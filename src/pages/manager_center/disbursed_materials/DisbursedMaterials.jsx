@@ -11,7 +11,8 @@ const DisbursedMaterials = () => {
     const responsive = height < 630 ? (height <700 ? "mt-12" :"mt-24") :"mt-8"
     const handleInputChange = useCallback((e) => {
         setInput(e.target.value);
-      }, []);
+    }, []);
+
     return (
         <div dir="rtl" className="md:mr-48 flex-grow">
             <div className={` mx-[3%] ${responsive}`}>

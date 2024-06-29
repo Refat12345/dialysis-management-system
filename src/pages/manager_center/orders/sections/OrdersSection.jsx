@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from "react-redux";
 import { TableHeader , TableRow } from "../../../../components";
 const OrdersSection = ({data  }) => {
-    const columns = [
+    const adminColumns = [
         { key: "type", title: "نوع الطلب" },
         { key: "order", title: "مقدم الطلب" },
         { key: "content", title: "محتوى الطلب" },
@@ -9,9 +10,18 @@ const OrdersSection = ({data  }) => {
         { key: "Acceptance refusals", title: "" },
         { key : "details" , title : "" }
         ];
+        const secretaryColumns = [
+            { key: "type", title: "نوع الطلب" },
+            {key:"status" , title :"حالة الطلب"},
+            { key: "content", title: "محتوى الطلب" },
+            { key : "details" , title : "" }
+            ];
+        const user = useSelector((state)=>state.user)    
+        const columns = user.role === "secretary" ? secretaryColumns : adminColumns    
         const handleRowClick = () => {
             console.log("s");
         };
+        
         
         const getRowColor = (index) => {
             return index % 2 === 0 ? "bg-white" : "bg-bgOrders";
@@ -29,7 +39,14 @@ const OrdersSection = ({data  }) => {
                                 senderName:order.senderName,
                                 content:order.content
                             }
-                            return <TableRow key={index} row={object} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"orders"} id = {order.id}/>
+                            const secretaryObject = {
+                                type :order.type,
+                                requestStatus:order.requestStatus === "pending" ? "انتظار" : "تمت الموافقة",
+                                content:order.content
+                                
+                            }
+
+                            return <TableRow key={index} row={user.role === "secretary" ? secretaryObject : object} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"orders"} id = {order.id}/>
                             })}
                     </tbody>
             </table>

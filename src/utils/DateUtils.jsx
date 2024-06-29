@@ -112,3 +112,31 @@ export function getHourInArabic(time) {
 
   return hoursInArabic[hours];
 }
+
+
+export function convertDateString(dateString) {
+
+  const monthsMap = {
+      "يناير": "01",
+      "فبراير": "02",
+      "مارس": "03",
+      "أبريل": "04",
+      "مايو": "05",
+      "يونيو": "06",
+      "يوليو": "07",
+      "أغسطس": "08",
+      "سبتمبر": "09",
+      "أكتوبر": "10",
+      "نوفمبر": "11",
+      "ديسمبر": "12"
+  };
+
+
+  const parts = dateString.split('-');
+
+  const day = parts[0];
+  const month = monthsMap[parts[1]];
+  const year = parts[2];
+
+  return `${year}-${month}-${day}`;
+}
