@@ -56,7 +56,8 @@ import {
   secretariatSideBar,
   patientOptionRoute,
   disbursedMaterialsRoute,
-  assignMaterialToUserCenter
+  assignMaterialToUserCenter,
+  AddUserRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -93,6 +94,8 @@ import AssignMaterialToUserCenter from "../components/AssignMaterialToUserCenter
 import SecretariatDashboard from "../pages/secretariat/Dashboard/SecretariatDashboard";
 import OrdersState from "../pages/manager_center/orders/OrdersState";
 import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
+import AddUser from "../components/addUser/AddUser";
+import CreateUserState from "../components/addUser/CreateUserState";
 
 const router = createBrowserRouter([
   {
@@ -300,6 +303,16 @@ const router = createBrowserRouter([
           <CreateSecretariaAccountState>
             <CreateSecretariaAccountPage />
           </CreateSecretariaAccountState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: AddUserRoute,
+        element: (
+          <CreateUserState>
+            <AddUser />
+
+          </CreateUserState>
         ),
         errorElement: <ErrorPage />,
       },

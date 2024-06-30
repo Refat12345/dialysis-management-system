@@ -63,6 +63,8 @@ export const disbursedMaterialsRoute = `disbursedMaterials`
 export const addPatintinfoRoute = 'addPatientInfo'
 export const addPrescriptionInfoRoute = 'PrescriptionInfo'
 export const assignMaterialToUserCenter = "assignMaterialToUserCenter";
+export const AddUserRoute = 'addUser';
+
 
 // export const userDetailsRoute = `${usersRoute}/userDetails`;
 
