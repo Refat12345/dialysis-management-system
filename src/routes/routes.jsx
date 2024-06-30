@@ -57,7 +57,8 @@ import {
   patientOptionRoute,
   disbursedMaterialsRoute,
   assignMaterialToUserCenter,
-  AddUserRoute
+  AddUserRoute,
+  AddMedicalRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -96,6 +97,8 @@ import OrdersState from "../pages/manager_center/orders/OrdersState";
 import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
 import AddUser from "../components/addUser/AddUser";
 import CreateUserState from "../components/addUser/CreateUserState";
+import CreateMedicalState from "../components/AddMedicalCenter/CreateMedicalState";
+import AddMedicalCenter from "../components/AddMedicalCenter/AddMedicalCenter";
 
 const router = createBrowserRouter([
   {
@@ -316,6 +319,17 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
+      
+      {
+        path: AddMedicalRoute,
+        element: (
+          <CreateMedicalState>
+            <AddMedicalCenter />
+          </CreateMedicalState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      
       {
         path: ordersRoute,
         element: <OrdersState>
