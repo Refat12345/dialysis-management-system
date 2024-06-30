@@ -1,11 +1,12 @@
 import { apiSlice } from '../../apiSlice';
-
+import Cookies from "js-cookie"
 export const apiOrders = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllOrders: builder.query({
             query:()=>({
                 url:"all-requests",
-                method:"GET"
+                method:"GET",
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             }),
             providesTags:["Orders"]
         }),
@@ -13,7 +14,8 @@ export const apiOrders = apiSlice.injectEndpoints({
             query :(body) => ({
                 url:"change-request-status",
                 method:"POST",
-                body:body
+                body:body,
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             }),
             invalidatesTags:["Orders"]
         })

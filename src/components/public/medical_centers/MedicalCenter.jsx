@@ -62,7 +62,7 @@ const MedicalCenter = ({ icons, content ,role }) => {
         </p>
         <div className={`flex ${responsiveAddress} mb-2`}>
             <img className="w-5 h-5" src={icons.addressIcon} />
-            <p className={` font-primaryRegular ${responsiveAddressContent} ${width > 1320 ? "mr-2" :"mr-1.5"}`}>{content.address}</p>
+            <p className={` font-primaryRegular ${responsiveAddressContent} ${width > 1320 ? "mr-2" :"mr-1.5"} whitespace-nowrap overflow-hidden text-ellipsis`}>{content.address}</p>
         </div>
     </div>
   );

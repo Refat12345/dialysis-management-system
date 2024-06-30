@@ -73,7 +73,6 @@ const OrdersPage = () => {
     );
   }
 
-  console.log(orders)
 
   if (isSuccess && orders.length === 0) {
     return (

@@ -1,5 +1,5 @@
 import { apiSlice } from "../../apiSlice";
-
+import Cookies from "js-cookie"
 export const AddPatientProfileSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
     createMedicalRecord: builder.mutation({
@@ -9,6 +9,7 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
                 url: `createMedicalRecord`,
                 method: 'POST',
                 body: medicalRecord,
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             };
             
         },
@@ -18,7 +19,8 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
             return {
                 url: `addMedicalAnalysis`,
                 method: 'POST',
-                body: medicalAnalysis
+                body: medicalAnalysis,
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             };
         },
     }),

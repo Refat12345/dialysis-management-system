@@ -1,5 +1,5 @@
 import { apiSlice } from "../../../apiSlice";
-
+import Cookies from "js-cookie"
 export const TransferPatientSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         transferPatient:builder.mutation(
@@ -7,7 +7,8 @@ export const TransferPatientSlice = apiSlice.injectEndpoints({
                 query:(body)=>({
                     url:"patient-transfer-requests",
                     method:"POST",
-                    body:body
+                    body:body,
+                    headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
                 })
             }
         )
