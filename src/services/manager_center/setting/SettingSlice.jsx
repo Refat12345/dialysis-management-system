@@ -1,20 +1,23 @@
 import { apiSlice } from "../../apiSlice";
-
+import Cookies from "js-cookie"
 export const CenterSettingSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCenterSetting: builder.query({
       query: (id) => ({
         url: `/center/${id}`,
         method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
       }),
       providesTags: ["CenterSetting"],
     }),
     addShift: builder.mutation({
       query: (shiftRecord) => {
+        
         return {
           url: `shifts`,
           method: "POST",
           body: shiftRecord,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
     }),
@@ -24,6 +27,7 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
           url: `createCenterTelecoms`,
           method: "POST",
           body: telcomeRecord,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
       invalidatesTags: ["CenterSetting"],
@@ -34,6 +38,7 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
           url: `updateShift`,
           method: "POST",
           body: shiftRecord,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
       invalidatesTags: ["CenterSetting"],
@@ -45,6 +50,7 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
           url: `chairs`,
           method: "POST",
           body: chair,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
     }),

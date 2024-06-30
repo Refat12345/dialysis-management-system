@@ -1,11 +1,12 @@
 import { apiSlice } from "../../../apiSlice";
-
+import Cookies from "js-cookie"
 export const GeneralDetailsSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getGeneralDetails: builder.query({
       query: (status) => ({
         url: `getNotesByreceiverID/${status}`,
         method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
       }),
     }),
   }),

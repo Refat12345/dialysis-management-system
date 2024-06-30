@@ -1,6 +1,6 @@
 import { apiSlice } from "../../../apiSlice";
 
-
+import Cookies from "js-cookie"
 export const GeneralDialysisSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getGeneralDialysis: builder.query({
@@ -10,6 +10,7 @@ export const GeneralDialysisSlice = apiSlice.injectEndpoints({
           
           url: `getDialysisSessions/0/${month}/${year}`,
           method: "GET",
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
     }),
@@ -18,6 +19,7 @@ export const GeneralDialysisSlice = apiSlice.injectEndpoints({
         return {
           url: `getPatientDialysisSessions/${userId}/${month}/${year}`,
           method: "GET",
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
     }),

@@ -1,5 +1,5 @@
 import { apiSlice } from "../apiSlice"; 
-
+import Cookies from "js-cookie"
 export const AssignMaterialToUserCenterSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         AssignMaterialToUser: builder.mutation({
@@ -9,6 +9,7 @@ export const AssignMaterialToUserCenterSlice = apiSlice.injectEndpoints({
                 url: `assignMaterialToUserCenter`,
                 method: 'POST',
                 body: medicalRecord,
+                headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
                 
             };
             
