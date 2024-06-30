@@ -58,7 +58,8 @@ import {
   disbursedMaterialsRoute,
   assignMaterialToUserCenter,
   appointment,
-  notes
+  notes,
+  AddUserRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -97,6 +98,8 @@ import OrdersState from "../pages/manager_center/orders/OrdersState";
 import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
 import Appointment from "../pages/manager_center/appointment/Appointment";
 import Notes from "../pages/manager_center/notes/Notes";
+import AddUser from "../components/addUser/AddUser";
+import CreateUserState from "../components/addUser/CreateUserState";
 
 const router = createBrowserRouter([
   {
@@ -304,6 +307,16 @@ const router = createBrowserRouter([
           <CreateSecretariaAccountState>
             <CreateSecretariaAccountPage />
           </CreateSecretariaAccountState>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: AddUserRoute,
+        element: (
+          <CreateUserState>
+            <AddUser />
+
+          </CreateUserState>
         ),
         errorElement: <ErrorPage />,
       },

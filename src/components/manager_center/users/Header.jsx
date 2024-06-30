@@ -89,24 +89,46 @@ function Header({ setSearchTerm }) {
 
   const navigate = useNavigate();
   const { selectedOption, handleSelectChange,isSuccessMedicalCenters, isLoadingMedicalCenters,  MedicalCenters , handleSelectCenterChange,selectedCenterOption} = useUsers();
- if(isSuccessMedicalCenters && !isLoadingMedicalCenters && MedicalCenters){
-  console.log("MedicalCenters",MedicalCenters)
- }
+ 
   return (
     <>
     {
       isSuccessMedicalCenters && !isLoadingMedicalCenters && MedicalCenters && (
         <div className="mb-5 hidden sm:block ">
         <div className="flex justify-between mt-5">
-          <CustomButton
+
+          {
+            user.role === "admin" && (
+
+              <CustomButton
+              variant="solid"
+              onClick={() => {
+                navigate("/app/secretaria_account");
+              }}
+              className={`bg-bgLogin text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  <span className="text-sm">إضافة سكرتاريا</span>
+                  <div className="w-2"></div>
+                  <PlusIcon className="w-6 h-6 mr-2 text-gray700" />
+                </div>
+              }
+              radius="full"
+            />
+
+            )
+          }
+         
+
+<CustomButton
             variant="solid"
             onClick={() => {
-              navigate("/app/secretaria_account");
+              navigate("/app/addUser");
             }}
             className={`bg-bgLogin text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
             title={
               <div className="flex items-center justify-center">
-                <span className="text-sm">إضافة سكرتاريا</span>
+                <span className="text-sm">إضافة مستخدم</span>
                 <div className="w-2"></div>
                 <PlusIcon className="w-6 h-6 mr-2 text-gray700" />
               </div>

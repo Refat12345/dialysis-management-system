@@ -1,6 +1,11 @@
 export const genderFilter = {
-  array: ["أنثى", "ذكر"],
+  array: ["male", "female"],
   title: "الجنس",
+};
+
+export const rolefilter = {
+  array: ["nurse", "doctor","patient"],
+  title: "الدور",
 };
 export const useFilter = ["المنزل", "العمل"];
 export const typeContactFilter = ["الهاتف", "البريد الالكتروني"];
