@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
+import { useGetPatientQuery,useGetUnAcceptedPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
 import { useSelector } from "react-redux";
 const PatientContext = createContext();
 
@@ -37,6 +37,39 @@ export const PatientProvider = ({ children }) => {
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
   } = useGetPatientQuery({option: translatedOption, centerId: centerIdString });
+
+  ////////////////////////////
+
+  const [patientUnAcceptedData, setPatientUnAcceptedData] = useState([]);
+  const [isLoadingUnAccepted, setIsLoadingUnAccepted] = useState(false);
+  const [isSuccessUnAccepted, setIsSuccessUnAccepted] = useState(false);
+
+  const {
+    data: patientUn,
+    isLoading: isUserUnLoading,
+    isSuccess: isUserUnSuccess,
+  } = useGetUnAcceptedPatientQuery({centerId: centerIdString });
+
+  useEffect(() => {
+    if (isUserUnSuccess && patientUn) {
+      setPatientUnAcceptedData(patientUn.patients);
+      setIsLoadingUnAccepted(false);
+      setIsSuccessUnAccepted(true);
+    } else if (isUserUnLoading) {
+      setIsLoadingUnAccepted(true);
+      setIsSuccessUnAccepted(false);
+    } else {
+      setIsLoadingUnAccepted(false);
+      setIsSuccessUnAccepted(false);
+    }
+  }, [isUserUnSuccess, isUserUnLoading, patientUn]);
+
+
+
+
+
+
+  /////////////////////////
 
   useEffect(() => {
     if (isUserSuccess && patient) {
@@ -78,7 +111,11 @@ export const PatientProvider = ({ children }) => {
         setSelectedOption,
         handleSelectChange,
         setSearchTerm,
-        filteredDataSearch
+        filteredDataSearch,
+        isSuccessUnAccepted,
+        isLoadingUnAccepted,
+        patientUnAcceptedData
+
       }}
     >
       {children}

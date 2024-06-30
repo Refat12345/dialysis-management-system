@@ -38,7 +38,9 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
                 body: Info
             };
             
+            
         },
+        invalidatesTags:["globalInfo"]
     }),
 })
 });
