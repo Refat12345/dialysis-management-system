@@ -14,11 +14,11 @@ const PublicInformation = ({ state , updateState }) => {
         title: "زراعة كلية سابقة",
     };
     const vascularEntranceSelection = {
-        array:["قثطرة","فيستولا"],
+        array:["قثطرة مؤقتة","فيستولا" , "قثطرة دائمة"],
         title:"الوصل الوعائي"
     }
     const causeRenalFailureSelection = {
-        array:["ضغط دم","امراض قلبية","داء السكري"],
+        array:["ضغط دم","أمراض قلبية","داء السكري"],
         title:"سبب الفشل الكلوي"
     }
 

@@ -53,12 +53,13 @@ import {
   addMedicalAnalysisRoute,
   enterDisbursedMedicines,
   dialysisByPatient,
-  secretariatSideBar,
   patientOptionRoute,
   disbursedMaterialsRoute,
   assignMaterialToUserCenter,
   AddUserRoute,
-  AddMedicalRoute
+  AddMedicalRoute,
+  appointment,
+  notes
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -71,7 +72,6 @@ import SettingPage from "../pages/manager_center/setting/SettingPage";
 import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
 import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 import GeneralNotePage from "../pages/manager_center/generalNotes/GeneralNotePage";
-import AddPaitentInfo from "../components/addPaitentInfo/AddPaitentInfo";
 import AddPaitentInfoState from "../components/addPaitentInfo/AddPaitentInfoState";
 import { UserProvider } from "../pages/manager_center/users/users-list/UserListState";
 import { PatientProvider } from "../pages/manager_center/patient/patient_list/PaitientListState";
@@ -79,7 +79,6 @@ import { UserDetailsProvider } from "../pages/manager_center/users/user-details/
 import { GeneralDialysisProvider } from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import GeneralDialysisPage from "../pages/manager_center/dialysis/General/GeneralDialysisPage";
 import { SettingProvider } from "../pages/manager_center/setting/SettingState";
-import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
 import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/add_analysis/AddMedicalAnalysisState";
@@ -95,6 +94,8 @@ import AssignMaterialToUserCenter from "../components/AssignMaterialToUserCenter
 import SecretariatDashboard from "../pages/secretariat/Dashboard/SecretariatDashboard";
 import OrdersState from "../pages/manager_center/orders/OrdersState";
 import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
+import Appointment from "../pages/manager_center/appointment/Appointment";
+import Notes from "../pages/manager_center/notes/Notes";
 import AddUser from "../components/addUser/AddUser";
 import CreateUserState from "../components/addUser/CreateUserState";
 import CreateMedicalState from "../components/AddMedicalCenter/CreateMedicalState";
@@ -337,24 +338,8 @@ const router = createBrowserRouter([
         </OrdersState>,
         errorElement: <ErrorPage />,
       },
-      {
-        path: enterMedicalRecordRoute,
-        element: (
-          <EnterMedicalRecordState>
-            <EnterMedicalRecordPage />
-          </EnterMedicalRecordState>
-        ),
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: addMedicalAnalysisRoute,
-        element: (
-          <AddMedicalAnalysisState>
-            <AddMedicalAnalysisPage />
-          </AddMedicalAnalysisState>
-        ),
-        errorElement: <ErrorPage />,
-      },
+      
+      
       {
         path: settingRoute,
         element: (
@@ -364,24 +349,7 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
-      // {
-      //   path: addPatintinfoRoute,
-      //   element: (
-      //     <AddPaitentInfoState>
-      //       <AddPaitentInfo />
-      //     </AddPaitentInfoState>
-      //   ),
-      //   errorElement: <ErrorPage />,
-      // },
-      // {
-      //   path: addPrescriptionInfoRoute,
-      //   element: (
-      //     <AddPrescriptionState>
-      //       <AddPrescription />
-      //     </AddPrescriptionState>
-      //   ),
-      //   errorElement: <ErrorPage />,
-      // },
+    
       {
         path: enterDisbursedMedicines,
         element: (
@@ -406,6 +374,24 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: addMedicalAnalysisRoute,
+            element: (
+              <AddMedicalAnalysisState>
+                <AddMedicalAnalysisPage />
+              </AddMedicalAnalysisState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: enterMedicalRecordRoute,
+            element: (
+              <EnterMedicalRecordState>
+                <EnterMedicalRecordPage />
+              </EnterMedicalRecordState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
             path: addPatintinfoRoute,
             element: (
               <AddPaitentInfoState>
@@ -417,7 +403,7 @@ const router = createBrowserRouter([
           {
             path: assignMaterialToUserCenter,
             element: (
-             <AssignMaterialToUserCenter />
+            <AssignMaterialToUserCenter />
         
             ),
             errorElement: <ErrorPage />,
@@ -429,6 +415,18 @@ const router = createBrowserRouter([
         path:disbursedMaterialsRoute,
         element :(
           <DisbursedMaterials/>
+        )
+      },
+      {
+        path:appointment,
+        element :(
+          <Appointment/>
+        )
+      },
+      {
+        path:notes,
+        element :(
+          <Notes/>
         )
       }
     ],

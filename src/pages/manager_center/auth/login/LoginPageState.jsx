@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useLoginMutation } from "../../../../services/manager_center/auth/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { validateLoginForm } from "../../../../validator";
 import { showErrorToast, showSuccessToast } from "../../../../utils/toastUtils";
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../../../services/userSlice';
-import Cookies from "js-cookie"
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../../services/userSlice";
+import Cookies from "js-cookie";
 
 const LoginStateContext = createContext();
 
@@ -21,7 +22,6 @@ export const LoginStateProvider = ({ children }) => {
     errors: {},
   });
   const dispatch = useDispatch();
-
 
   const [loginApi, { error }] = useLoginMutation();
 
@@ -50,14 +50,17 @@ export const LoginStateProvider = ({ children }) => {
         nationalNumber: state.nationaltyNumber,
         password: state.password,
       }).unwrap();
-      Cookies.set("role",response.user.role)
+      Cookies.set("role", response.user.role);
       const token = Cookies.set("token", response.user.token);
-      dispatch(setUser(response.user))
+      dispatch(setUser(response.user));
       sessionStorage.setItem("user", JSON.stringify(response.user));
       showSuccessToast("login successfully");
-      if(token) {navigate("/app")}
+      if (token) {
+        navigate("/app");
+      }
     } catch (err) {
-      showErrorToast(err.data.error || error);
+      showErrorToast("حدثت مشكلة معنية حاول مجدداً");
+      setState((prevState) => ({ ...prevState, errors: {}, loading: false }));
     }
 
     setState((prevState) => ({ ...prevState, loading: false }));

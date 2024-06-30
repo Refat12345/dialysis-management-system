@@ -1,7 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
-const CreateSecretariaAccountStateContext = createContext();
 import dayjs from "dayjs";
+
+const CreateSecretariaAccountStateContext = createContext();
 
 const CreateSecretariaAccountState = ({ children }) => {
   const [state, setState] = useState({
@@ -24,16 +26,6 @@ const CreateSecretariaAccountState = ({ children }) => {
       },
     ],
     permissions: [],
-    selectGender: (val) => selectGender(val),
-    updateContactInfo: (index, info) => updateContactInfo(index, info),
-    updateAddressInfo: (index, info) => updateAddressInfo(index, info),
-    addContactInfo: () => addContactInfo(),
-    removeContactInfo: (index) => removeContactInfo(index),
-    addAddressInfo: () => addAddressInfo(),
-    removeAddressInfo: (index) => removeAddressInfo(index),
-    handleSelectPermission: (val) => handleSelectPermission(val),
-    removePermissions: (index) => removePermissions(index),
-    selectDate: (val) => selectDate(val),
   });
 
   const selectGender = (value) => {
@@ -45,7 +37,7 @@ const CreateSecretariaAccountState = ({ children }) => {
     console.log("Formatted Date:", formattedDate);
     updateState({ birthdate: dayjs(val) });
   };
-  
+
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
       ...prevState,
@@ -58,8 +50,8 @@ const CreateSecretariaAccountState = ({ children }) => {
   const updateAddressInfo = (index, newAddressInfo) => {
     setState((prevState) => ({
       ...prevState,
-      addressInfo: prevState.addressInfo.map((contact, i) =>
-        i === index ? { ...contact, ...newAddressInfo } : contact
+      addressInfo: prevState.addressInfo.map((address, i) =>
+        i === index ? { ...address, ...newAddressInfo } : address
       ),
     }));
   };
@@ -106,10 +98,7 @@ const CreateSecretariaAccountState = ({ children }) => {
 
   const handleSelectPermission = (val) => {
     setState((prevState) => {
-      // Check if the value is already included in the permissions array
       if (prevState.permissions.includes(val)) {
-        // If so, remove the value using the removePermissions function
-        // This should be done outside of setState to avoid direct mutation
         return {
           ...prevState,
           permissions: prevState.permissions.filter(
@@ -117,7 +106,6 @@ const CreateSecretariaAccountState = ({ children }) => {
           ),
         };
       } else {
-        // If the value is not included, add it to the permissions array
         return {
           ...prevState,
           permissions: [...prevState.permissions, val],
@@ -142,6 +130,16 @@ const CreateSecretariaAccountState = ({ children }) => {
 
   const contextValue = {
     state,
+    selectGender,
+    selectDate,
+    updateContactInfo,
+    updateAddressInfo,
+    addContactInfo,
+    removeContactInfo,
+    addAddressInfo,
+    removeAddressInfo,
+    handleSelectPermission,
+    removePermissions,
     updateState,
   };
 
@@ -159,6 +157,5 @@ CreateSecretariaAccountState.propTypes = {
 };
 
 // Custom hook to use the state
-// eslint-disable-next-line react-refresh/only-export-components
 export const useCreateSecretaryAccountState = () =>
   useContext(CreateSecretariaAccountStateContext);

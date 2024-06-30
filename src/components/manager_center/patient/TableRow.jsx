@@ -287,6 +287,12 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
       case "اضافة وصفة طبية":
         navigate(`/app/patient/${id}/PrescriptionInfo`);
         break;
+      case "اضافة تحليل طبي":
+        navigate(`/app/patient/${id}/addMedicalAnalysis`);
+        break;
+      case "اضافة سجل طبي":
+        navigate(`/app/patient/${id}/enterMedicalRecord`);
+        break;      
       case "اضافة المعلومات العامة":
         navigate(`/app/patient/${id}/addPatientInfo`);
         break;
@@ -303,6 +309,17 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
 
   const selectAdminValueOption = (value) => {
     updateState({ adminValue: value });
+    console.log("SS");
+    switch (value) {
+      case "نقل المريض":
+        navigate(`/app/medicalCenters`);
+        break;
+      case "تعطيل الحساب":
+        navigate(`/app/patient/${id}/addMedicalAnalysis`);
+        break;
+      default:
+        break;
+    }
   };
 
   const updateState = (newValues) => {
@@ -337,11 +354,13 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
       "اضافة وصفة طبية",
       "اضافة المعلومات العامة",
       "اضافة مستلزمات جلسة الغسيل",
+      "اضافة تحليل طبي",
+      "اضافة سجل طبي"
     ],
   };
 
   const adminFilter = {
-    array: ["سوري", "فلسطيني", "اردني", "اجنبي"],
+    array: ["نقل المريض", "تعطيل الحساب",],
   };
 
   return (
@@ -507,7 +526,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
                       }
                       filter={adminFilter.array}
                       onSelect={(val, event) => {
-                        state.selectSecertaryOption(val);
+                        state.selectAdminOption(val);
                         if (event !== undefined) {
                           event.stopPropagation();
                         }

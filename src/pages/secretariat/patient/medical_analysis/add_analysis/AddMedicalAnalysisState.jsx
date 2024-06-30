@@ -11,14 +11,12 @@ const AddMedicalAnalysisState = ({ children }) => {
         value: "",
         positive:false,
         negative:false,
-        unit:"",
+        unitOfMeasurement:"",
         analysisDate: null,
         notes: "",
-        quarter: "",
-        result:null,
-        analysisType: "",
+        analysisName: "",
         userID: "",
-        postData : (value) => postData(value)
+        postData : (value,id) => postData(value,id)
     }
   );
 
@@ -29,7 +27,7 @@ const AddMedicalAnalysisState = ({ children }) => {
     }));
   };
 
-  const postData = (value) => {
+  const postData = (value , id) => {
     let valueOne = ""
     if((value.negative === true || value.positive === true) && value.value != ""){
       toast.warning("لا يمكن اختيار النتيجة و سلبي أو ايجابي معا")
@@ -47,11 +45,12 @@ const AddMedicalAnalysisState = ({ children }) => {
         averageMin:value.averageMin,
         averageMax:value.averageMax,
         value:valueOne,
-        quarter:"Q2",
-        analysisTypeID:1,
+        analysisName:value.analysisName,
         analysisDate:value.analysisDate.format("YYYY-MM-DD"),
         notes:value.notes,
-        userID:15
+        unitOfMeasurement:value.unitOfMeasurement,
+        recurrenceInterval:2,
+        userID:id
       }
       return body
     }
