@@ -15,7 +15,7 @@ import {
   SettingsIcon,
   LogOutIcon,
   MedicalCentersIcon,
-  SecretaryImage
+  SecretarySideImage
 } from "../assets";
 import online from "../assets/icons/medical-center/users/users-list/online.svg";
 
@@ -104,7 +104,7 @@ export const secretariatSideBar = {
   header: {
     name: "ريما كباكيبي",
     title: "سكرتيرة الطحان الخيري",
-    icon: SecretaryImage,
+    icon: SecretarySideImage,
   },
   items: [
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
@@ -128,8 +128,7 @@ export const managerSideBar = {
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: appointment, name: "المواعيد", icon: AppointmentsIcon },
-    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
+    { href: medicalCentersRoute, name: "المراكز الطبية", icon: MedicalCentersIcon },
     { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href: loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },

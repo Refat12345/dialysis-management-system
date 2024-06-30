@@ -15,12 +15,16 @@ import dayjs from "dayjs";
 import { textToastStyle } from "../../../../../data/data";
 import { useParams } from "react-router-dom";
 import { useEditMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
-const EditMedicalAnalysisDialog = ({medicalAnalysis}) => {
-
+const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
+    let array=[]
+    for (let index = 0; index < analysisTypes.length; index++) {
+        array.push(analysisTypes[index].analysisName)
+        
+      }
     const {state , updateState} = useEditMedicalAnalysisState()
     const [editMedicalAnalysis,{isLoading}] = useEditMedicalAnalysisMutation()
     const { patientName } = useParams();
-    const typeSelections = ["خضاب", "دم", "حديد"];
+    const typeSelections = array;
     const unitOfMeasurementSelections = ["mm", "cm", "ml"];
     useEffect(()=>{
         updateState(medicalAnalysis)

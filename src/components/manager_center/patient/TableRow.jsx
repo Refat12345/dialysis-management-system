@@ -371,7 +371,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
         sessionStorage.setItem("patientId", userIdString);
       }}
     >
-      <td className="py-3 px-4 ">
+      <td dir="rtl" className="py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis ">
         <div>
           {type != "auditing" && type != "orders" ? (
             <img

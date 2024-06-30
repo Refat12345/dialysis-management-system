@@ -74,7 +74,7 @@ const MedicalAnalysisPage = () => {
                         {filteredAnalysis.map((analysisItem, index) => (
                             Cookies.get("role") === "secretary" ? <AlertDialog key={index} renderComponent={<div className="hover:cursor-pointer">
                                 <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
-                            </div>} contentComponent={<EditMedicalAnalysisDialog medicalAnalysis={analysisItem}/>}/> :<MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                            </div>} contentComponent={<EditMedicalAnalysisDialog medicalAnalysis={analysisItem} analysisTypes = {analysisTypes.analysisTypes}/>}/> :<MedicalAnalysis key={index} title={title} analysis={analysisItem} />
                         ))}
                     </div>
                 </div>

@@ -3,12 +3,12 @@
 import { Row ,CustomTextField ,CustomDatePicker, AlertDialog}  from "../../../../../components/index"
 import PathologicalPrecedentsDialog from "./dialog/PathologicalPrecedentsDialog"
 const PathologicalPrecedents = ({ state , updateState }) => {
-   
+
 
 return (
     <div className="paddingCard bg-white rounded-lg w-[49.2%]">
-        <form>
-        <Row mainAxisAlignment="justify-between" >
+       <form>
+       <Row mainAxisAlignment="justify-between" >
             <p className="pr-2 font-bold text-titleColor text-lg">السوابق المرضية</p>
             <div className="flex pl-3 ">
                 <div onClick={()=> state.addPathologicalPrecedent() } className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md">
@@ -41,15 +41,11 @@ return (
                 <div className="w-[48%]">
                     <CustomDatePicker
                         label = {"تاريخ التشخيص"}
-                        date = {precedent.medicalDiagnosisDate}
-                        onSelect={(e) => {
-                            console.log("SS");
-                            console.log(state);
+                        value = {precedent.medicalDiagnosisDate}
+                        onSelect={(e) =>
                             state.updatePathologicalPrecedent(index,
                                 {medicalDiagnosisDate: e},
                             )
-                            console.log(state);
-                        }
                         }
                     />  
                 </div>
