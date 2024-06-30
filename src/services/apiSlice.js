@@ -7,6 +7,7 @@ export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         credentials: 'same-origin',
         baseUrl: "http://localhost:8000/api/",
+        // baseUrl: "http://localhost:8080/graduation-backend/public/api/",
         headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
     }),
     
