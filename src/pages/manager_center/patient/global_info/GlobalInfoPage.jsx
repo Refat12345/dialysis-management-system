@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import PropTypes from "prop-types"; // Import PropTypes
 import { useContext } from "react";
 import {
   GlobalInfoAddressIcon,
@@ -22,10 +21,23 @@ import {
   bodyMeduimStyle,
   headlineMediumStyle,
 } from "../../../../utils/StyleUtils";
+import { PageLoader } from "../../../../components";
+import phone from "../../../../assets/icons/medical-center/users/users-list/phone.svg";
 
 const GlobalInfoPage = () => {
   const { state } = useContext(GlobalInfoStateContext);
 
+  if (!state) {
+    return (
+      <div className="flex-grow md:mr-48">
+        <div className="flex items-center justify-center h-screen">
+          <PageLoader />
+        </div>
+      </div>
+    );
+  }
+
+  console.log(`state: ${state.id}`);
   return (
     <div className="mx-auto">
       <div className="lg:columns-2 md:columns-2 sm:columns-2 columns-1 gap-y-5 md:gap-x-10 md:mx-10 sm:mx-7 sm:gap-x-5 mr-8 ml-2 gap-x-3 items-end transition-all">
@@ -34,7 +46,7 @@ const GlobalInfoPage = () => {
           headerIcon={GlobalInfoContactsIcon}
           cardContent={
             <div>
-              {state.contacts.map((e, index) => (
+              {state.userDetails.telecom.map((e, index) => (
                 <CardRow key={index} title={e.use} content={e.value} />
               ))}
             </div>
@@ -50,22 +62,29 @@ const GlobalInfoPage = () => {
           headerIcon={GlobalInfoSocietyIcon}
           cardContent={
             <div>
-              <CardRow title="عمر المريض" content={state.society.age} />
+              <CardRow
+                title="عمر المريض"
+                content={state.userDetails.age ?? 40}
+              />
               <CardRow
                 title="جنسية المريض"
-                content={state.society.nationality}
+                content={state.userDetails.generalInformation.nationality}
               />
               <CardRow
                 title="حالة انضمام المريض"
-                content={state.society.statusInvitation}
+                content={state.userDetails.generalInformation.status}
+                color="text-green400"
               />
               <CardRow
                 title="سبب الحالة"
-                content={state.society.reason ?? "لا يوجد"}
+                content={
+                  state.userDetails.generalInformation.reasonOfStatus ||
+                  "لا يوجد"
+                }
               />
               <CardRow
                 title="الحالة الاجتماعية"
-                content={state.society.maritalStatus}
+                content={state.userDetails.generalInformation.maritalStatus}
               />
             </div>
           }
@@ -77,23 +96,23 @@ const GlobalInfoPage = () => {
             <div>
               <CardRow
                 title="الدخل العام"
-                content={state.socialStatus.publicIncome}
+                content={state.userDetails.generalInformation.generalIncome}
               />
               <CardRow
                 title="نوع الدخل"
-                content={state.socialStatus.incomeType}
+                content={state.userDetails.generalInformation.incomeType}
               />
               <CardRow
                 title="مصدر الدخل"
-                content={state.socialStatus.incomeSource}
+                content={state.userDetails.generalInformation.sourceOfIncome}
               />
               <CardRow
                 title="طبيعة العمل"
-                content={state.socialStatus.workNature}
+                content={state.userDetails.generalInformation.workDetails}
               />
               <CardRow
                 title="مكان الإقامة"
-                content={state.socialStatus.placeOfResidence}
+                content={state.userDetails.generalInformation.residenceType}
               />
             </div>
           }
@@ -103,7 +122,7 @@ const GlobalInfoPage = () => {
           headerIcon={GlobalInfoUserProfileIcon}
           cardContent={
             <div>
-              <InfoCard patientInfo={state.patientInfo} />
+              <InfoCard patientInfo={state.userDetails} />
               <CardRow
                 title={
                   <span className="flex flex-row">
@@ -111,7 +130,7 @@ const GlobalInfoPage = () => {
                     <span className="pr-2">الجنس</span>
                   </span>
                 }
-                content={state.patientInfo.gender}
+                content={state.userDetails.gender}
               />
               <CardRow
                 title={
@@ -120,7 +139,16 @@ const GlobalInfoPage = () => {
                     <span className="pr-2">تاريخ الميلاد</span>
                   </span>
                 }
-                content={state.patientInfo.birthDate}
+                content={state.userDetails.dateOfBirth}
+              />
+              <CardRow
+                title={
+                  <span className="flex flex-row">
+                    <img src={phone} alt="" />
+                    <span className="pr-2">الرقم الوطني</span>
+                  </span>
+                }
+                content={state.userDetails.nationalNumber}
               />
             </div>
           }
@@ -130,8 +158,12 @@ const GlobalInfoPage = () => {
           headerIcon={GlobalInfoAddressIcon}
           cardContent={
             <div>
-              {state.address.map((e, index) => (
-                <CardRow key={index} title={e.use} content={e.value} />
+              {state.userDetails.address.map((e, index) => (
+                <CardRow
+                  key={index}
+                  title={e.use}
+                  content={`${e.countryName} - ${e.cityName} - ${e.line} `}
+                />
               ))}
             </div>
           }
@@ -143,15 +175,12 @@ const GlobalInfoPage = () => {
             <div>
               <CardRow
                 title="عدد الاولاد"
-                content={state.familyStatus.numberOfChild}
+                content={state.userDetails.patientCompanion.length}
               />
-              <CardRow
-                title="الحالة الصحية للأولاد"
-                content={state.familyStatus.ChildrenHealthStatus}
-              />
+              <CardRow title="الحالة الصحية للأولاد" content="غير محدد" />
               <CardRow
                 title="المستوى التعليمي"
-                content={state.familyStatus.education}
+                content={state.userDetails.generalInformation.educationalLevel}
               />
             </div>
           }
@@ -169,20 +198,22 @@ const InfoCard = ({ patientInfo }) => {
       </div>
       <div className="flex flex-col items-end justify-start px-1 pt-5">
         <div className={`font-bold ${headlineMediumStyle} mb-1 transition-all`}>
-          {patientInfo.name}
+          {patientInfo.fullName}
         </div>
         <div className="flex flex-row-reverse items-center justify-end">
-          {patientInfo.status === "enable" ? (
+          {patientInfo.accountStatus === "active" ? (
             <CheckIcon className="text-green400 w-6 h-6" />
           ) : (
             <XMarkIcon className="text-red-600 w-6 h-6" />
           )}
           <span
             className={`${
-              patientInfo.status === "enable" ? "text-green400" : "text-red-600"
+              patientInfo.accountStatus === "active"
+                ? "text-green400"
+                : "text-red-600"
             } mx-2 ${bodyMeduimStyle}`}
           >
-            {patientInfo.status === "enable" ? "مفعّل" : "غير مفعّل"}
+            {patientInfo.accountStatus === "active" ? "مفعّل" : "غير مفعّل"}
           </span>
         </div>
       </div>

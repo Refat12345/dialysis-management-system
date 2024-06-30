@@ -2,11 +2,11 @@
 
 import { bodyMeduimStyle } from "../../../../utils/StyleUtils";
 
-export const CardRow = ({ title, content }) => {
+export const CardRow = ({ title, content, color }) => {
   return (
     <div dir="rtl" className="flex flex-row my-1 px-3 py-1 w-full">
       <div className={`${bodyMeduimStyle} flex w-1/3`}>{title}:</div>
-      <div className={`${bodyMeduimStyle} font-bold w-2/3 px-1`}>{content}</div>
+      <div className={`${bodyMeduimStyle} ${color} font-bold w-2/3 px-1`}>{content}</div>
     </div>
   );
 };

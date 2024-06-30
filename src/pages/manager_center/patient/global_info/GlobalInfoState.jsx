@@ -1,69 +1,34 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import PropTypes from "prop-types";
-import { useFormatDate } from "../../../../utils/DateUtils";
+import { useGetGeneralDetailsQuery } from "../../../../services/manager_center/patient/global_info/GlobalInfoSlice";
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { PageLoader } from "../../../../components";
 
 export const GlobalInfoStateContext = createContext();
-const GlobalInfoState = ({ children }) => {
-  const [state, setState] = useState({
-    patientInfo: {
-      id: 1,
-      name: "أحمد أحمد",
-      gender: "ذكر",
-      birthDate: useFormatDate("30-4-2001"),
-      status: "enable",
-    },
-    contacts: [
-      { system: "phone", use: "المنزل", value: "0113160839" },
-      { system: "phone", use: "الموبايل", value: "0953681049" },
-      {
-        system: "email",
-        use: "البريد الالكتروني",
-        value: "waseemalbizreh@gmail.com",
-      },
-    ],
-    address: [
-      {
-        use: "المنزل",
-        type: "home",
-        value: "سوريا-دمشق-الصالحية بناء رقم(199)",
-      },
-      {
-        use: "العمل",
-        type: "work",
-        value: "سوريا-دمشق-الصالحية بناء رقم(199)",
-      },
-    ],
-    society: {
-      age: 23,
-      nationality: "سوري",
-      statusInvitation: "مقبول",
-      reason: null,
-      maritalStatus: "متزوج",
-    },
-    familyStatus: {
-      numberOfChild: 3,
-      ChildrenHealthStatus: "سالمين غانمين ببيت ابوهم",
-      education: "جامعي",
-    },
-    socialStatus: {
-      publicIncome: "ضعيف",
-      incomeType: "ثابت",
-      incomeSource: "وظيفة",
-      workNature: "يعمل كمساعد مهندس في شركة مرموقة",
-      placeOfResidence: "إيجار",
-    },
-  });
 
-  const updateState = (newValues) => {
-    setState((prevState) => ({
-      ...prevState,
-      ...newValues,
-    }));
-  };
+const GlobalInfoState = ({ children }) => {
+  const { patientName } = useParams();
+  const id = useMemo(() => patientName, [patientName]);
+
+  const { data, error, isLoading } = useGetGeneralDetailsQuery(id);
+
+  if (isLoading) {
+    return (
+      <div className="flex-grow md:mr-48">
+        <div className="flex items-center justify-center h-screen">
+          <PageLoader />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error loading data</div>;
+  }
 
   const contextValue = {
-    state,
-    updateState,
+    state: data, // Assuming the data structure from your API
   };
 
   return (
