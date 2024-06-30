@@ -23,7 +23,19 @@ export const PatientSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["hi"],
 
     }),
+
+    getUnAcceptedPatient: builder.query({
+      query: ({  centerId }) => {
+        console.log("centerIdkoko",centerId)
+        return {
+        url: `getCenterUnAcceptedPatients/${centerId}`,
+        method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+      }},
+      providesTags:["globalInfo"]
+    }),
+
   }),
 });
 
-export const { useGetPatientQuery,useAddToWaitingMutation } = PatientSlice;
+export const { useGetPatientQuery,useAddToWaitingMutation,useGetUnAcceptedPatientQuery } = PatientSlice;
