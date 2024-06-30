@@ -1,5 +1,5 @@
 import { Column, Row } from "../../components";
-import { useAddUserState } from "./CreateUserState";
+import { useAddCenterState } from "./CreateMedicalState";
 import { UserNumberIcon, LoginUserIcon } from "../../assets/index";
 import { CustomTextField } from "../../components";
 import UserImage from "../../assets/icons/medical-center/users/users-list/nurse.svg";
@@ -13,7 +13,7 @@ import { CustomDatePicker } from "../../components";
 import ContactSecretariaComponent from "../../pages/manager_center/secretaria_account/secretaria_sections/ContactSecretariaComponent";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import { CustomButton } from "../../components";
-import { useAddUserMutation } from "../../services/manager_center/user/AddUserSlice";
+import { useAddMedicalMutation } from "../../services/AddMedical/AddMedicalSlice"; 
 import {
   typeAddressFilter,
   genderFilter,
@@ -25,16 +25,16 @@ import { PublicHeader } from "../../components";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddUser = () => {
-  const { state, updateState } = useAddUserState();
-  const [addUser] = useAddUserMutation();
+const AddMedicalCenter = () => {
+  const { state, updateState } = useAddCenterState();
+  const [addMedical] = useAddMedicalMutation();
 
   return (
     <div
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-bgDashboard"
     >
-      <PublicHeader title={"إضافة مستخدم"} icon={UserImage} />
+      <PublicHeader title={"إضافة مركز طبي"} icon={UserImage} />
       <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
         <Row mainAxisAlignment="justify-evenly">
           <div className="w-1/2 mr-4">
@@ -69,6 +69,23 @@ const AddUser = () => {
               }
             />
           </div>
+          {/* // */}
+          <div className="w-1/2 mr-4">
+            <CustomTextField
+              size="3"
+              required={true}
+              label={"اسم المركز:"}
+              placeholder="اسم المركز"
+              value={state.centerName}
+              prefixIcon={<img src={LoginUserIcon} alt="" />}
+              type="text"
+              onChange={(e) =>
+                updateState({
+                    centerName: e.target.value,
+                })
+              }
+            />
+          </div>
         </Row>
         <div className={`${heightSmall}`}></div>
         <Row mainAxisAlignment="justify-evenly">
@@ -87,14 +104,7 @@ const AddUser = () => {
               onSelect={state.selectDate}
             />
           </div>
-          <div className="w-1/2 mr-4">
-            <SelectedTextFeild
-              label={rolefilter.title}
-              value={state.role === "" ? "الدور" : state.role}
-              filter={rolefilter.array}
-              onSelect={(val) => state.selectRole(val)}
-            />
-          </div>
+         
         </Row>
         <div className={`${heightSmall}`}></div>
         <div className="mr-4">
@@ -210,19 +220,34 @@ const AddUser = () => {
                   nationalNumber: state.nationaltyNumber,
                   dateOfBirth: state.birthdate.format("YYYY-MM-DD"),
                   gender: state.genderValue,
-                  role: state.role,
+                  centerName:state.centerName,
+                  role: "admin",
                   telecom: state.contactInfo,
                   address: state.addressInfo,
+                
                 };
                 try {
-                  const result = await addUser(data);
+                  const result = await addMedical(data);
                   console.log("Result:", result);
                   toast.success("تمت الاضافة بنجاح");
-                  // updateState({
-                   
-                  //   telecom: [""], 
-                  //   addressInfo: [""], 
-                  // });
+                  updateState({
+                    fullName:"",
+                    nationalNumber:"",
+                    dateOfBirth:"",
+                    centerName:"",
+                    gender:"",
+                    telecom: [ {
+                      use: "",
+                      system: "",
+                      value: "",
+                    },], 
+                    addressInfo: [ {
+                      use: "",
+                      cityName: "",
+                      line: "",
+                      countryName: ""
+                    },], 
+                  });
   
                  
                 } catch (error) {
@@ -248,4 +273,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddMedicalCenter;

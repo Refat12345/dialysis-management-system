@@ -216,6 +216,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import React from "react";
 import CustomDatePicker from "../public/datepicker/CustomDatePicker";
 import dayjs from "dayjs";  
+import CustomPP from "./CustomPP";
 
 function AddPrescription() {
   const { state, postData, userData } = useAddPrescriptionState();
@@ -328,8 +329,9 @@ function AddPrescription() {
                         placeholderText="اختر تاريخ البدء"
                         calendarAriaLabel="اختر تاريخ البدء"
                       /> */}
-                      <CustomDatePicker
+                      <CustomPP
                         label="تاريخ بداية أخذ الدواء"
+                        // date={}
                         onSelect={(date) => {
                           const year = date.year();
                           const month = date.month() + 1; 
@@ -373,8 +375,9 @@ function AddPrescription() {
                         placeholderText="اختر تاريخ النهاية"
                         calendarAriaLabel="اختر تاريخ النهاية"
                       /> */}
-                       <CustomDatePicker
+                       <CustomPP
                         label="تاريخ نهاية اخذ الدواء"
+                        // date={state.}
                         onSelect={(date) => {
                           const year = date.year();
                           const month = date.month() + 1; 
