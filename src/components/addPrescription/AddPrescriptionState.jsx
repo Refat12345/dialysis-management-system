@@ -119,6 +119,8 @@ const AddPrescriptionState = ({ children ,userId }) => {
     isSuccess: ismedicencesSuccess,
   } = useGetMedicineNamesQuery();
 
+  console.log("medicences",medicences)
+
   useEffect(() => {
     if (ismedicencesSuccess && medicences) {
       setUserData(medicences.medicine_names);

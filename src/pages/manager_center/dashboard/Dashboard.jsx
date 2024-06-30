@@ -31,7 +31,7 @@ const Dashboard = () => {
       
     );
   }
-
+  console.log(causeRenalData);
   if (!sessionSuccess || !statisticsSuccess  || !causeRenalSuccess) {
     return (
       <div className="flex-grow md:mr-48">
@@ -41,6 +41,7 @@ const Dashboard = () => {
       </div>
     );
   }
+  console.log(medicineDate);
   return (
     <div className="flex-grow md:mr-48 bg-bgDashboard h-screen">
       <Cards data={statisticsData[0]} />

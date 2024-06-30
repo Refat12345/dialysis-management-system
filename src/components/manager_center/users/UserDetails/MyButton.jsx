@@ -106,6 +106,7 @@ const MyButton = ({ text, id }) => {
 
     try {
       await editUserPermissions(newData);
+      console.log("newData",newData)
       console.log("تم تحديث الصلاحيات بنجاح");
     } catch (error) {
       console.error("حدث خطأ أثناء تحديث الصلاحيات", error);

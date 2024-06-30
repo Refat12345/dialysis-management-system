@@ -44,7 +44,7 @@ return (
                         {titleArray[4]}:
                     </span>
                     <span className={` font-bold mr-6 ${responsive}`}>
-                        {information.causeRenalFailure}
+                        {information.causeRenalFailure === "diabetes"  ? "داء السكري" :(information.causeRenalFailure === "heartDiseases" ? "أمراض قلبية" :(information.causeRenalFailure === "bloodPressure" ? "ضغط الدم" :information.causeRenalFailure))}
                     </span>
                 </div>
                 <div className="sessionStartDate flex ">

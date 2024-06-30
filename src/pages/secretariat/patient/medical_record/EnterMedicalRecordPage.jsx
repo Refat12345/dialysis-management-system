@@ -1,28 +1,32 @@
 /* eslint-disable no-unused-vars */
 import { PublicHeader ,CustomButton , Toast } from "../../../../components"
+import { useParams } from "react-router-dom";
 import { MedicalRecord } from "../../../../assets"
 import {PublicInformation ,PathologicalPrecedents,SurgicalPrecedents,PharmacologicalPrecedents} from "./sections/index"
 import { useEnterMedicalRecordState } from "./EnterMedicalRecordState";
 import "./style.css"
 import { toast } from 'react-toastify';
-import { textToastStyle } from "../../../../data/data";
+import { textToastStyle ,textErrorToastStyle } from "../../../../data/data";
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateMedicalRecordMutation } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
 
 const EnterMedicalRecordPage = () => {
 const { state , updateState } = useEnterMedicalRecordState();
-const [createMedicalRecord , {data,isError,isSuccess,isLoading}] = useCreateMedicalRecordMutation();
-
-
+const [createMedicalRecord , {data,isError,isSuccess,isLoading  ,error}] = useCreateMedicalRecordMutation();
+let { patientName } = useParams();
+let status=true
 
 const handlePost =async () => {
-  let body =state.postData(state);
+  let body =state.postData(state , patientName);
   try{
-    console.log(body)
     await createMedicalRecord(body).unwrap();
+    console.log(isError);
     toast("تم اضافة السجل الطبي بنجاح");
+
   }catch(error) {
+    status = false
+    toast.error("ليست لديك صلاحيات لاضافة السجل الطبي")
     console.log(error);
   }
 }
@@ -60,7 +64,7 @@ const handlePost =async () => {
             />
             
             </div>:<ButtonLoader/>}
-            <Toast textStyle={textToastStyle} progressColor={"green"}/>
+            <Toast textStyle={status ? textToastStyle :textErrorToastStyle} progressColor={"white"}/>
             </div>
             </div> 
         </div>

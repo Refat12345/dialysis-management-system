@@ -24,17 +24,17 @@ const month = {
     "8","9","10","11","12"
 ]
 }
-    const medicines = [
-        { id: 0, value: 30, label:medicinesTitle[0][0]},
-        { id: 1, value: 50 , label: medicinesTitle[0][1]  },
-        { id: 2, value: 30, label: medicinesTitle[0][2]},
+const medicines = [
+    { id: 0, value: medicineData.الحديد, label:medicinesTitle[0][0]},
+    { id: 1, value: medicineData.الهيبارين , label: medicinesTitle[0][1]  },
+    { id: 2, value: medicineData.الايبوتين, label: medicinesTitle[0][2]},
 ];
-    const causeRenalFailure = [
-        { id: 0, value: 63, label:causeRenalFailureTitle[0][0]},
-        { id: 1, value: 56 , label: causeRenalFailureTitle[0][1]  },
-        { id: 2, value: 32, label: causeRenalFailureTitle[0][2]},
-        { id: 3, value: 54, label: causeRenalFailureTitle[0][3]},
-    ];
+const causeRenalFailure = [
+    { id: 0, value: causeRenalData.diabetes, label:causeRenalFailureTitle[0][0]},
+    { id: 1, value: causeRenalData.heartDiseases , label: causeRenalFailureTitle[0][1]  },
+    { id: 2, value: causeRenalData.bloodPressure, label: causeRenalFailureTitle[0][2]},
+    { id: 3, value: causeRenalData.otherDiseases, label: causeRenalFailureTitle[0][3]},
+];
     const height = window.innerHeight;
     return (
     <div  className="mx-[10%] mt-10">

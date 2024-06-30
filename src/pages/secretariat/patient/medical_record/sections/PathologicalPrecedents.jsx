@@ -3,7 +3,7 @@
 import { Row ,CustomTextField ,CustomDatePicker, AlertDialog}  from "../../../../../components/index"
 import PathologicalPrecedentsDialog from "./dialog/PathologicalPrecedentsDialog"
 const PathologicalPrecedents = ({ state , updateState }) => {
-
+   
 
 return (
     <div className="paddingCard bg-white rounded-lg w-[49.2%]">
@@ -41,11 +41,15 @@ return (
                 <div className="w-[48%]">
                     <CustomDatePicker
                         label = {"تاريخ التشخيص"}
-                        value = {precedent.medicalDiagnosisDate}
-                        onSelect={(e) =>
+                        date = {precedent.medicalDiagnosisDate}
+                        onSelect={(e) => {
+                            console.log("SS");
+                            console.log(state);
                             state.updatePathologicalPrecedent(index,
                                 {medicalDiagnosisDate: e},
                             )
+                            console.log(state);
+                        }
                         }
                     />  
                 </div>
