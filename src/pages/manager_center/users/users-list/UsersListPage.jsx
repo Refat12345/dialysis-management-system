@@ -5,12 +5,14 @@ import ViewCard from "../../../../components/manager_center/users/ViewCard";
 import React, { useState, useEffect } from "react";
 import { PageLoader } from "../../../../components/index";
 import { useUsers } from "./UserListState";
+import { useSelector } from "react-redux";
+
 const UsersListPage = () => {
-  console.log("qqq")
   const { userData, isLoading, isSuccess, setSearchTerm, filteredData } =
     useUsers();
   const [searchTerm, setSearchTermState] = useState("");
   const [noResultsFound, setNoResultsFound] = useState(false);
+  const user = useSelector((state) => state.user);
 
 
 

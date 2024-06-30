@@ -7,6 +7,8 @@ export const PatientSlice = apiSlice.injectEndpoints({
         url: `getCenterUsersByRole/${centerId}/patient/${option}`,
         method: "GET",
       }),
+      providesTags: ["hi"],
+
     }),
 
     addToWaiting: builder.mutation({
@@ -16,6 +18,8 @@ export const PatientSlice = apiSlice.injectEndpoints({
           method: "POST",
         };
       },
+      invalidatesTags: ["hi"],
+
     }),
   }),
 });
