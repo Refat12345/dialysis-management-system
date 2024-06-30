@@ -58,6 +58,8 @@ export const userDetailsRoute = `${usersRoute}/:id`;
 export const dialysisByPatient = `dialysisByPatient`;
 
 export const disbursedMaterialsRoute = `disbursedMaterials`
+export const appointment = `appointment`
+export const notes = `notes`
 
 //Delete 
 export const addPatintinfoRoute = 'addPatientInfo'
@@ -79,17 +81,19 @@ export const managerCenterSideBar = {
     title: "مدير مركز حسن الطحان الخيري " ,
     icon: ManagerIcon,
   },
+  
   items: [
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: appointment, name: "المواعيد", icon: AppointmentsIcon },
     { href: dialysisRoute, name: "جلسات الغسيل", icon: DialysisSessionsIcon },
+    { href: disbursedMaterialsRoute, name: "المواد المصروفة", icon: DialysisSessionsIcon },
     { href: auditingRoute, name: "سجل العمليات", icon: LoggingICon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: "", name: "الملاحظات", icon: NotesIcon },
+    { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
+    { href:  loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -103,11 +107,11 @@ export const secretariatSideBar = {
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: appointment, name: "المواعيد", icon: AppointmentsIcon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: "", name: "الملاحظات", icon: NotesIcon },
+    { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
+    { href:  loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -121,11 +125,11 @@ export const managerSideBar = {
     { href: mainRoute, name: "الصفحة الرئيسية", icon: HomePageICon },
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
-    { href: "", name: "المواعيد", icon: AppointmentsIcon },
+    { href: appointment, name: "المواعيد", icon: AppointmentsIcon },
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
-    { href: "", name: "الملاحظات", icon: NotesIcon },
+    { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: "", name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -142,6 +146,7 @@ export const titleSession = {
   },
 };
 export const textToastStyle = {color:"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
+export const textErrorToastStyle = {color:"white", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
 
 
 export const healthInformation = {

@@ -13,23 +13,29 @@ import { MedicalAnalysisIcon } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
 import { useAddMedicalAnalysisMutation, useGetAnalysisTypesQuery } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
     const { state, updateState } = useAddMedicalAnalysisState();
-    const {data,isSuccess,isLoading:isLoad} = useGetAnalysisTypesQuery()
-    const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
+    const {data,isSuccess,isLoading:isLoad ,} = useGetAnalysisTypesQuery()
+    const [addMedicalAnalysis, {isLoading  ,error }] = useAddMedicalAnalysisMutation();
     const typeSelections = [];
     const unitSelections = [];
-    
+    let { patientName } = useParams();
     const postData = async () => {
         try {
-            let body = state.postData(state)
-            if(body !=false){await addMedicalAnalysis(body);
+            let body = state.postData(state , patientName)
+            console.log(body);
+            if(body !=false){
+        
+                await addMedicalAnalysis(body);
+                if(error.status === 200){
                 toast("تم اضافة التحليل الطبي بنجاح")}
+            }
             
         } catch (error) {
-            console.error("Error adding medical analysis:", error);
+            toast.error("ليس لديك صلاحيات لاضافة التحليل الطبي")
         }
     };
     if (isLoad) {
@@ -57,8 +63,8 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                             <SelectedTextFeild
                                 filter={typeSelections}
                                 label="نوع التحليل الطبي"
-                                value={state.analysisType === "" ? "نوع التحليل الطبي" : state.analysisType}
-                                onSelect={(val) => updateState({ analysisType: val })}
+                                value={state.analysisName === "" ? "نوع التحليل الطبي" : state.analysisName}
+                                onSelect={(val) => updateState({ analysisName: val })}
                                 allowNewSelection = {true}
                                 type={"اضافة نوع تحليل جديد"}
                                 placeholder = {"أدخل نوع التحليل الجديد"}
@@ -77,8 +83,8 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                             <SelectedTextFeild
                                 filter={unitSelections}
                                 label="الوحدة"
-                                value={state.unit === "" ? "الوحدة" : state.unit}
-                                onSelect={(val) => updateState({ unit: val })}
+                                value={state.unitOfMeasurement === "" ? "الوحدة" : state.unitOfMeasurement}
+                                onSelect={(val) => updateState({ unitOfMeasurement: val })}
                                 placeholder={"ادخل الوحدة"}
                                 type={"اضافة وحدة جديدة" }
                                 allowNewSelection = {true}

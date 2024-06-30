@@ -47,7 +47,7 @@ const EnterMedicalRecordState = ({ children }) => {
         updateSurgicalPrecedent : (index,value) => updateSurgicalPrecedent(index,value),
         updatePathologicalPrecedent :  (index,value) => updatePathologicalPrecedent(index,value),
         updatePharmacologicalPrecedent :(index,value) => updatePharmacologicalPrecedent(index,value),
-        postData :(data)=> postData(data)
+        postData :(data,id)=> postData(data,id)
         
 });
   
@@ -119,6 +119,7 @@ const EnterMedicalRecordState = ({ children }) => {
     };
 
     const updatePathologicalPrecedent = (index, newValue) => {
+      console.log("S");
       setState((prevState) => ({
         ...prevState,
         pathologicalPrecedents: prevState.pathologicalPrecedents.map((value, i) =>
@@ -148,7 +149,7 @@ const EnterMedicalRecordState = ({ children }) => {
     
     
 
-    const postData = (object) => {
+    const postData = (object ,id) => {
 
       let data = {
         vascularEntrance :object.vascularEntrance,
@@ -156,7 +157,7 @@ const EnterMedicalRecordState = ({ children }) => {
         dryWeight:object.dryWeight,
         dialysisStartDate:object.dialysisStartDate,
         kidneyTransplant:object.kidneyTransplant,
-        causeRenalFailure:object.causeRenalFailure,
+        causeRenalFailure:object.causeRenalFailure === "أمراض قلبية" ? "heartDiseases" : (object.causeRenalFailure === "ضغط الدم" ? "bloodPressure" :(object.causeRenalFailure === "داء السكري" ? "diabetes":object.causeRenalFailure)),
         surgicalPrecedents:object.surgicalPrecedents,
         pathologicalPrecedents:object.pathologicalPrecedents,
         pharmacologicalPrecedents:object.pharmacologicalPrecedents
@@ -213,7 +214,7 @@ const EnterMedicalRecordState = ({ children }) => {
           surgicalHistories:surgical,
           pathologicalHistories:pathological,
           pharmacologicalHistories:pharmacological,
-          userID:16, 
+          userID:id, 
         }
         return body;
     }

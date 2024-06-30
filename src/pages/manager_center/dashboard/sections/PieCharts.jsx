@@ -25,9 +25,9 @@ const month = {
   ]
 }
   const medicines = [
-    { id: 0, value: medicineData.iron, label:medicinesTitle[0][0]},
-    { id: 1, value: medicineData.heparin , label: medicinesTitle[0][1]  },
-    { id: 2, value: medicineData.epoetin, label: medicinesTitle[0][2]},
+    { id: 0, value: medicineData.الحديد, label:medicinesTitle[0][0]},
+    { id: 1, value: medicineData.الهيبارين , label: medicinesTitle[0][1]  },
+    { id: 2, value: medicineData.الايبوتين, label: medicinesTitle[0][2]},
   ];
   const causeRenalFailure = [
     { id: 0, value: causeRenalData.diabetes, label:causeRenalFailureTitle[0][0]},

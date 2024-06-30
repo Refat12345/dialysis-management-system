@@ -73,6 +73,8 @@ const OrdersPage = () => {
     );
   }
 
+  console.log(orders)
+
   if (isSuccess && orders.length === 0) {
     return (
       <div className="flex-grow md:mr-48">

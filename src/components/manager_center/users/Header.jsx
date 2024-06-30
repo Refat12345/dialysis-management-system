@@ -79,7 +79,6 @@ import { useNavigate } from "react-router-dom";
 import { useUsers } from "../../../pages/manager_center/users/users-list/UserListState";
 import {  SelectedTextFeild } from "../..";
 import { useSelector } from "react-redux";
- import { secretariaAccountRoute } from "../../../data/data";
 
 function Header({ setSearchTerm }) {
   const filter = {

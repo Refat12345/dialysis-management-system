@@ -9,7 +9,7 @@ const PatientListPage = () => {
   const { patientData, isLoading, isSuccess ,filteredDataSearch,setSearchTerm  } = usePatient();
   const [searchTerm, setSearchTermState] = useState("");
   const [noResultsFound, setNoResultsFound] = useState(false);
-
+  console.log(patientData);
   useEffect(() => {
     if (searchTerm) {
       if (filteredDataSearch.length) {

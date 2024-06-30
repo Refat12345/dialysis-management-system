@@ -39,7 +39,7 @@ return (
             <div className="w-[47%] ">
             <CustomDatePicker
                     label={"تاريخ العملية"}
-                    value = {precedent.surgeryDate}
+                    date = {precedent.surgeryDate}
                     onSelect={(e) =>
                         state.updateSurgicalPrecedent(index,
                             {surgeryDate: e},

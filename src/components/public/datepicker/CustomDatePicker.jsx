@@ -15,7 +15,7 @@ const CustomDatePicker = ({ label, onSelect, date ,type }) => {
     //Style the input element where the selected date is displayed.
     "& .MuiInputBase-root": {
       borderRadius: type === "audit" ? "100px" :"8px",
-      backgroundColor: "rgba(244,247,254,255)",
+      backgroundColor:type === "audit" ? "rgba(244,247,254,255)" :"#fff",
       height: type === "audit" ?"30px":"40px",
       fontSize: "16px",
       direction: "ltr",
