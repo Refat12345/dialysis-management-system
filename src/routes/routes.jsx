@@ -53,7 +53,6 @@ import {
   addMedicalAnalysisRoute,
   enterDisbursedMedicines,
   dialysisByPatient,
-  secretariatSideBar,
   patientOptionRoute,
   disbursedMaterialsRoute,
   assignMaterialToUserCenter,
@@ -72,7 +71,6 @@ import SettingPage from "../pages/manager_center/setting/SettingPage";
 import GlobalInfoState from "../pages/manager_center/patient/global_info/GlobalInfoState";
 import DialysisPage from "../pages/manager_center/dialysis/dialysisPage";
 import GeneralNotePage from "../pages/manager_center/generalNotes/GeneralNotePage";
-import AddPaitentInfo from "../components/addPaitentInfo/AddPaitentInfo";
 import AddPaitentInfoState from "../components/addPaitentInfo/AddPaitentInfoState";
 import { UserProvider } from "../pages/manager_center/users/users-list/UserListState";
 import { PatientProvider } from "../pages/manager_center/patient/patient_list/PaitientListState";
@@ -80,7 +78,6 @@ import { UserDetailsProvider } from "../pages/manager_center/users/user-details/
 import { GeneralDialysisProvider } from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import GeneralDialysisPage from "../pages/manager_center/dialysis/General/GeneralDialysisPage";
 import { SettingProvider } from "../pages/manager_center/setting/SettingState";
-import AddPrescription from "../components/addPrescription/AddPrescription";
 import AddPrescriptionState from "../components/addPrescription/AddPrescriptionState";
 
 import AddMedicalAnalysisState from "../pages/secretariat/patient/medical_analysis/add_analysis/AddMedicalAnalysisState";
@@ -392,7 +389,7 @@ const router = createBrowserRouter([
           {
             path: assignMaterialToUserCenter,
             element: (
-             <AssignMaterialToUserCenter />
+            <AssignMaterialToUserCenter />
         
             ),
             errorElement: <ErrorPage />,
