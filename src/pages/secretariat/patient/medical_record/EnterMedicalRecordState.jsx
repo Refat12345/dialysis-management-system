@@ -119,7 +119,6 @@ const EnterMedicalRecordState = ({ children }) => {
     };
 
     const updatePathologicalPrecedent = (index, newValue) => {
-      console.log("S");
       setState((prevState) => ({
         ...prevState,
         pathologicalPrecedents: prevState.pathologicalPrecedents.map((value, i) =>

@@ -33,12 +33,13 @@ export {default as MedicalCentersIcon} from "./icons/SideBar/MedicalCenterIcon.s
 
 //secretary
 export {default as SecretaryImage} from "./images/manager_center/secretary/secretary_image.png"
+export {default as SecretarySideImage} from "./images/manager_center/secretary/secretaryImage.jpeg"
 export {default as MedicalAnalysisIcon} from "./icons/secretary/MedicalAnalysisIcon.svg"
 //public
 export {default as MedicalRecord} from "./icons/public/record_svgrepo.com.svg"
 export {default as PlusIcon} from "./icons/public/plus.svg"
 export {default as TrashIcon} from "./icons/medical-center/users/secretary_account/trash-icon.svg"
-
+export {default as PatientImage} from "./images/manager_center/patient/PatientImage.jpeg"
 
 
 //addPaitentInfo

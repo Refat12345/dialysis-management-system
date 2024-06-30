@@ -40,7 +40,7 @@ return (
             <div className="w-[35%] ">
                 <CustomDatePicker
                     label = {"تاريخ بدء أخذ الدواء"}
-                    date = {precedent.dateStart}
+                    value = {precedent.dateStart}
                     onSelect={(e) =>
                         state.updatePharmacologicalPrecedent(index,
                             {dateStart: e},
@@ -51,7 +51,7 @@ return (
             <div className="w-[35%]">
                 <CustomDatePicker
                     label = {"تاريخ نهاية أخذ الدواء"}
-                    date = {precedent.dateEnd}
+                    value = {precedent.dateEnd}
                     onSelect={(e) =>
                         state.updatePharmacologicalPrecedent(index,
                             {dateEnd: e},

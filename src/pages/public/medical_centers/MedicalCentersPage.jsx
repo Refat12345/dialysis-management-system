@@ -71,7 +71,7 @@ const MedicalCentersPage = () => {
       </div>
     );
   }
-
+console.log(searchMedicalCenters);
   return (
     <div dir="rtl" className={`mr-48 w-full`}>
       <div className="mx-[4%]">

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  {PatientsIcon} from "../../../assets";
+import  {PatientImage} from "../../../assets";
 import "./style.css"
 const PatientCard = ({data}) => {
   return (
@@ -13,10 +13,10 @@ const PatientCard = ({data}) => {
           <p className="element  font-bold text-titleColor">{data.disbursedMaterials[0].centerName}</p>
           <div className="flex">
             <p className="element pl-3 ">حالة المواد : </p>
-            <p className="element text-green-500 font-bold">{data.disbursedMaterials[0].availableQuantity === 0 ?"تم استهلاكها" :"نشطة" }</p>
+            <p className={`element text-green-500 font-bold ${data.disbursedMaterials[0].availableQuantity === 0 ? "text-red-500":"text-green-500"}`}>{data.disbursedMaterials[0].availableQuantity === 0 ?"تم استهلاكها" :"نشطة" }</p>
           </div>
       </div>
-      <img src={PatientsIcon} className="w-16 h-16 self-center p-2"/>
+      <img src={PatientImage} className="w-24 h-24 self-center p-2"/>
       </div>
     </div>
   )

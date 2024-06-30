@@ -33,7 +33,6 @@ const AddMedicalAnalysisState = ({ children }) => {
       toast.warning("لا يمكن اختيار النتيجة و سلبي أو ايجابي معا")
       return false
     }else {
-      console.log("D");
       if(value.negative === true) {
         valueOne = "سلبي"
       } else if (value.positive === true) {

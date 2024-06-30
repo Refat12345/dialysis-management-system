@@ -19,7 +19,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
     const AddMedicalAnalysisPage = () => {
     const { state, updateState } = useAddMedicalAnalysisState();
     const {data,isSuccess,isLoading:isLoad ,} = useGetAnalysisTypesQuery()
-    const [addMedicalAnalysis, {isLoading  ,error }] = useAddMedicalAnalysisMutation();
+    const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
     const typeSelections = [];
     const unitSelections = [];
     let { patientName } = useParams();
@@ -30,8 +30,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
             if(body !=false){
         
                 await addMedicalAnalysis(body);
-                if(error.status === 200){
-                toast("تم اضافة التحليل الطبي بنجاح")}
+                toast("تم اضافة التحليل الطبي بنجاح")
             }
             
         } catch (error) {
