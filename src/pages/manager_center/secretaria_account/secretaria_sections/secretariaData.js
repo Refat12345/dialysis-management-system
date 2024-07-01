@@ -4,7 +4,7 @@ export const genderFilter = {
 };
 
 export const rolefilter = {
-  array: ["nurse", "doctor","patient"],
+  array: ["nurse", "doctor", "patient"],
   title: "الدور",
 };
 export const useFilter = ["المنزل", "العمل"];
@@ -28,6 +28,7 @@ export const typeAddressFilter = [
   "تدمر",
   "ريف دمشق",
 ];
+// Lists of permissions options and values
 export const permissionsOptions = [
   "إدارة السجل الطبي",
   "إدارة الوصفات الطبية",
@@ -35,3 +36,20 @@ export const permissionsOptions = [
   "إدارة جلسات الغسيل",
   "إدارة المعلومات العامة ( تعديل بيانات مركز - تعديل بيانات مستخدم )",
 ];
+// Function to get the English value based on the index
+export const permissionsOptionsValues = (index) => {
+  switch(index){
+    case 0:
+      return "medicalRecord";
+    case 1:
+      return "prescription";
+    case 2:
+      return "analysis";
+    case 3:
+      return "session";
+    case 4:
+      return "general";
+    default:
+      return "";
+  }
+};

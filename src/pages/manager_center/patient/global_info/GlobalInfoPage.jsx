@@ -130,7 +130,13 @@ const GlobalInfoPage = () => {
                     <span className="pr-2">الجنس</span>
                   </span>
                 }
-                content={state.userDetails.gender}
+                content={
+                  state.userDetails.gender == "male"
+                    ? "ذكر"
+                    : state.userDetails.gender == "female"
+                    ? "أنثى"
+                    : "غير محدد"
+                }
               />
               <CardRow
                 title={
