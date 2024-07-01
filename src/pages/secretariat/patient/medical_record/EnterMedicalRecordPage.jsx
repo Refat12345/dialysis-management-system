@@ -13,7 +13,7 @@ import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
 
 const EnterMedicalRecordPage = () => {
 const { state , updateState } = useEnterMedicalRecordState();
-const [createMedicalRecord , {data,isError,isSuccess,isLoading  ,error}] = useCreateMedicalRecordMutation();
+const [createMedicalRecord , {data,isError,isSuccess,isLoading  ,error:err}] = useCreateMedicalRecordMutation();
 let { patientName } = useParams();
 let status=true
 
@@ -21,11 +21,12 @@ const handlePost =async () => {
   let body =state.postData(state , patientName);
   try{
     await createMedicalRecord(body).unwrap();
-    console.log(isError);
+    
     toast("تم اضافة السجل الطبي بنجاح");
 
   }catch(error) {
     status = false
+    console.log(err);
     toast.error("ليست لديك صلاحيات لاضافة السجل الطبي")
     console.log(error);
   }
@@ -73,11 +74,5 @@ const handlePost =async () => {
 }
 
 export default EnterMedicalRecordPage
-
-
-
-
-
-
 
 

@@ -14,11 +14,11 @@ const PublicInformation = ({ state , updateState }) => {
         title: "زراعة كلية سابقة",
     };
     const vascularEntranceSelection = {
-        array:["قثطرة مؤقتة","فيستولا" , "قثطرة دائمة"],
+        array:["قثطرة دائمة", "قثطرة مؤقتة","فيستولا" ],
         title:"الوصل الوعائي"
     }
     const causeRenalFailureSelection = {
-        array:["ضغط دم","أمراض قلبية","داء السكري"],
+        array:["ضغط دم","امراض قلبية","داء السكري"],
         title:"سبب الفشل الكلوي"
     }
 
@@ -39,9 +39,10 @@ return (
                     value={state.causeRenalFailure === "" ? "سبب القصور الكلوي"  : state.causeRenalFailure}
                     filter={causeRenalFailureSelection.array}
                     onSelect={(val) => state.selectCauseRenalFailure(val)}
-                    placeholder={"أدخل سبب القصور الكلوي"}
-                    type={"اضافة سبب قصور كلوي جديد"}
                     allowNewSelection = {true}
+                    type={"اضافة سبب قصور كلوي"}
+                    placeholder={"أدخل سبب  القصور الكلوي"}
+
             />
             </div>
             <div className="w-[45%] ">
@@ -88,9 +89,6 @@ return (
                     value={state.vascularEntrance === "" ? "الوصل الوعائي"  : state.vascularEntrance}
                     filter={vascularEntranceSelection.array}
                     onSelect={(val) => state.selectVascularEntrance(val)}
-                    placeholder={"أدخل الوصل الوعائي"}
-                    type={"اضافة وصل وعائي جديد"}
-                    allowNewSelection = {true}
             />
                 </div>
                 <div className="w-[45%]  ">

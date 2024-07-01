@@ -1,11 +1,12 @@
 import { apiSlice } from "../../../apiSlice";
-
+import Cookies from "js-cookie"
 export const UserDetailsSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUserDetails: builder.query({
       query: (id) => ({
         url: `/user/${id}`,
         method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
       }),
     }),
 
@@ -28,6 +29,7 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
     query: (id) => ({
       url: `/getUserPermissions/${id}`,
       method: "GET",
+      headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
     }),
   }),
 
@@ -38,6 +40,7 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
             url: `updatePermissionsUser`,
             method: 'POST',
             body: medicalRecord,
+            headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
             
         };
         

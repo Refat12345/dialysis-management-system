@@ -1,11 +1,12 @@
 import { apiSlice } from "../../../apiSlice";
-
+import Cookies from "js-cookie"
 export const PatientSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPatient: builder.query({
       query: ({ option, centerId }) => ({
         url: `getCenterUsersByRole/${centerId}/patient/${option}`,
         method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
       }),
       providesTags: ["hi"],
 
@@ -16,12 +17,25 @@ export const PatientSlice = apiSlice.injectEndpoints({
         return {
           url: `updatePatientStatus/${id}/waiting`,
           method: "POST",
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
       invalidatesTags: ["hi"],
 
     }),
+
+    getUnAcceptedPatient: builder.query({
+      query: ({  centerId }) => {
+        console.log("centerIdkoko",centerId)
+        return {
+        url: `getCenterUnAcceptedPatients/${centerId}`,
+        method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+      }},
+      providesTags:["globalInfo"]
+    }),
+
   }),
 });
 
-export const { useGetPatientQuery,useAddToWaitingMutation } = PatientSlice;
+export const { useGetPatientQuery,useAddToWaitingMutation,useGetUnAcceptedPatientQuery } = PatientSlice;

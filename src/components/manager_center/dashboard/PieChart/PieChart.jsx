@@ -7,7 +7,7 @@ const PieChart = ({title,data}) => {
         height:window.innerHeight,
         width:window.innerWidth
     }
-    console.log(data);
+    
   return (
     <div className="flex flex-row-reverse justify-between bg-white shadow-2xl rounded-lg">
         {data.length === 3 ? (data[0].value === 0 ||data[0].value === undefined) &&( data[1].value === 0 || data[1].value === undefined) && (data[2].value === 0 || data[2].value === undefined) ? <p className="font-bold px-5 py-12">لا يوجد مستهلكات بعد </p> : <BasicPie colors = {colors} content = {data} size={size}/>:

@@ -1,5 +1,5 @@
 export const genderFilter = {
-  array: ["male", "female"],
+  array: ["ذكر", "انثى"],
   title: "الجنس",
 };
 

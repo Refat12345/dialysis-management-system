@@ -59,7 +59,8 @@ import {
   AddUserRoute,
   AddMedicalRoute,
   appointment,
-  notes
+  notes,
+  GetUnAcceptedPatientRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -100,6 +101,7 @@ import AddUser from "../components/addUser/AddUser";
 import CreateUserState from "../components/addUser/CreateUserState";
 import CreateMedicalState from "../components/AddMedicalCenter/CreateMedicalState";
 import AddMedicalCenter from "../components/AddMedicalCenter/AddMedicalCenter";
+import GetUnAcceptedPatient from "../components/manager_center/patient/GetUnAcceptedPatient";
 
 const router = createBrowserRouter([
   {
@@ -320,6 +322,20 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
+      /////
+
+      {
+        path: GetUnAcceptedPatientRoute,
+        element: (
+          <PatientProvider>
+                    <GetUnAcceptedPatient/>
+          </PatientProvider>
+           
+        ),
+        errorElement: <ErrorPage />,
+      },
+
+      ////
       
       {
         path: AddMedicalRoute,

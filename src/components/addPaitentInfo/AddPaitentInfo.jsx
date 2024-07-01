@@ -429,21 +429,21 @@ function AddPaitentInfo({id}) {
         <CustomButton
           variant="solid"
           onClick={async () => {
-            if (
-              !state.status ||
-              !state.LearnValue ||
-              !state.publicIncome ||
-              !state.economicType ||
-              !state.economicSource ||
-              !state.location ||
-              !state.username ||
-              !state.relativeRelation ||
-              !state.contactInfo ||
-              !state.addressInfo
-            ) {
-              alert("الرجاء ملء جميع الحقول");
-              return;
-            }
+            // if (
+            //   !state.status ||
+            //   !state.LearnValue ||
+            //   !state.publicIncome ||
+            //   !state.economicType ||
+            //   !state.economicSource ||
+            //   !state.location ||
+            //   !state.username ||
+            //   !state.relativeRelation ||
+            //   !state.contactInfo ||
+            //   !state.addressInfo
+            // ) {
+            //   alert("الرجاء ملء جميع الحقول");
+            //   return;
+            // }
 
             const data = {
               nationality: state.genderValue,
@@ -469,6 +469,7 @@ function AddPaitentInfo({id}) {
               const result = await addPatientInfo(data).unwrap();
               console.log("Result:", result);
               toast.success("تم إرسال البيانات  بنجاح!");
+
 
               updateState({
                 genderValue: "",
