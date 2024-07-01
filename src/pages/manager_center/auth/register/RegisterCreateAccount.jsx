@@ -14,7 +14,7 @@ import {
 } from "../../../../assets/index";
 
 const RegisterCreateAccount = () => {
-  const { state, updateState } = useRegisterState();
+  const { state, handleVisible, updateState } = useRegisterState();
 
   return (
     <div>
@@ -47,7 +47,7 @@ const RegisterCreateAccount = () => {
         value={state.password}
         prefixIcon={<img src={LoginPasswordIcon} alt="" />}
         suffixIcon={
-          <button onClick={(e) => state.handleVisible(e)}>
+          <button onClick={(e) => handleVisible(e)}>
             <PasswordVisibleIcon showPassword={state.showPassword} />
           </button>
         }
@@ -62,6 +62,7 @@ const RegisterCreateAccount = () => {
       <div className="w-auto">
         <CustomButton
           variant="solid"
+          type="submit" // Add this line
           className={`bg-bgLogin text-blue600 h-12 shadow-lg transition-all w-full font-bold ${headlineMediumStyle}`}
           loading={state.loading}
           title="التسجيل في النظام"

@@ -17,13 +17,14 @@ const RegisterCheckCodePage = () => {
         placeholder=""
         value={state.code}
         prefixIcon={<img src={CheckCodeIcon} alt="" />}
-        type="text"
+        type="number"
         onChange={(e) => updateState({ code: e.target.value })}
       />
       <Box height="30px" />
       <div className="w-auto">
         <CustomButton
           variant="solid"
+          type="submit" // Add this line
           className={`bg-bgLogin text-blue600 h-12 shadow-lg transition-all w-full font-bold ${headlineMediumStyle}`}
           loading={state.loading}
           title="التالي"
