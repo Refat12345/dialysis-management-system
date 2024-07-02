@@ -12,23 +12,31 @@ const DisbursedMaterials = () => {
     const [input,setInput] = useState("")
     const [search,setSearch] = useState([])
     const height = window.innerHeight;
+    console.log(useGetDisbursedMaterialsQuery());
+    if(isSuccess){console.log(disbursed);}
+    useEffect (()=>{
     
+        if(isSuccess){
+            setSearch(disbursed.data);
+        }
+    },[isSuccess])
+    if(isSuccess){console.log(disbursed.data[0]);}
     useEffect(() => {
         if (input.trim()) {
-            const searchArray = disbursed[0].filter(disbursed =>
-            disbursed.disbursedMaterials[0].centerName.toLowerCase().includes(input.toLowerCase())
+            const searchArray = disbursed.data.filter((disburseds) => {
+            
+            return disburseds.userDetails.fullName.toLowerCase().includes(input.toLowerCase())}
         );
             setSearch(searchArray);
-        } else {
-            setSearch(disbursed[0]);
-        }
-    }, [input, disbursed[0]]);
+        } 
+    }, [input]);
     const handleInputChange = useCallback((e) => {
         setInput(e.target.value);
     }, []);
+    
     if(isLoading){
         return (
-            <div className="flex-grow md:mr-48">
+            <div className="flex-grow m21-d:mr-48">
                 <div className="flex items-center justify-center h-screen">
                     <PageLoader />
                 </div>
@@ -37,7 +45,7 @@ const DisbursedMaterials = () => {
         ); 
     }
     
-    if(isSuccess && disbursed[0].length === 0 ) {
+    if(isSuccess && disbursed.data.length === 0 ) {
         return <>
         <div className="flex-grow md:mr-48">
         <div className="flex items-center justify-center h-screen">
@@ -45,6 +53,7 @@ const DisbursedMaterials = () => {
         </div>
         </div></>
     }
+
     return (
         isSuccess && <>
         <div dir="rtl" className="md:mr-48 flex-grow">

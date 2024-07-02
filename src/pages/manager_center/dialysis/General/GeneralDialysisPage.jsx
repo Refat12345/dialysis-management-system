@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import GeneralDialysis from "../../../../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis";
-import { PaginationComponent } from "../../../../components";
-import { GeneralDialysisProvider, useGeneralDialysis } from "../../../../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
+import { PaginationComponent , PageLoader} from "../../../../components";
+import { useGeneralDialysis } from "../../../../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import PatientHeader from "../../../../components/manager_center/patient/PatientHeader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import LoadingComponent from "../../../../components/public/LoadingComponent ";
-
 function GeneralDialysisPage({ type }) {
   const { patientName } = useParams();
   useEffect(() => {
@@ -39,7 +38,11 @@ function GeneralDialysisPage({ type }) {
     }
   }, [searchTerm, filteredDataSearch]);
   
-  if (isLoading) return <LoadingComponent />;
+  if (isLoading) return <div className="flex-grow md:mr-48">
+  <div className="flex items-center justify-center h-screen">
+      <PageLoader />
+  </div>
+</div>
 
 
   return (

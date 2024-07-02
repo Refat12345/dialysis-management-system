@@ -12,7 +12,9 @@ export const AddPrescriptionSlice = apiSlice.injectEndpoints({
               
             };
             
+            
         },
+        invalidatesTags: ['Prescriptions'],
     }),
     getMedicineNames: builder.query({
         query: () => {

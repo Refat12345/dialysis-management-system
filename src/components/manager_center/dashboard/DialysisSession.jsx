@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import Icon from "../../../assets/icons/medical-center/dashboard/Sessions/patient.svg"
-import { getHourInArabic } from "../../../utils/DateUtils";
 
-const DialysisSession = ({dialysis}) => {
+const DialysisSession = ({dialysis ,index}) => {
   
-
+  console.log(dialysis);
   let height = window.innerHeight;
   const width = window.innerWidth;
   let responsive = height > 618 ?  (height > 680 ? (height > 745 ? "my-2 text-ms" : "my-1.5 text-ms") : "my-1 text-s") : "my-1 text-xs";
@@ -18,8 +17,8 @@ const DialysisSession = ({dialysis}) => {
                 <p className={`content-center text pr-2 whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
             <p dir="rtl" className={` text-center w-[20.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
-            <p className={`text-center w-[20.5%]  ${responsive}`}>{getHourInArabic(dialysis.sessionStartTime)}</p>
-            <p className={`text-center w-[20.5%]  ${responsive}`}>{getHourInArabic(dialysis.sessionEndTime)}</p>
+            <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.startTime}</p>
+            <p className={`text-center w-[20.5%]  ${responsive}`}>{index === 0 ?"4:30" :(index === 1 ? "5:00" :(index === 2 ? "2:30":"3:00")) }</p>
             <p className={`text-center w-1/10  ${responsive} hidden sm:block`}>{dialysis.chair}</p>
             <p className={`w-1/10 ${responsive} pl-4 hidden sm:block`}>{dialysis.roomName}</p>
         </div>

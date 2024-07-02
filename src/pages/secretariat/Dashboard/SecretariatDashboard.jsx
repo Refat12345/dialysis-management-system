@@ -25,11 +25,8 @@ const SecretariatDashboard = () => {
   
   const handleAddToWaiting = async (id) => {
     try {
-      // استدعاء الدالة addToWaiting مع id المريض
       const result = await addToWaiting(id).unwrap();
-      // طباعة النتيجة
       console.log(result);
-      // تحديث البيانات أو إعادة تحميل الصفحة أو أي شيء آخر تريد القيام به بعد الإضافة إلى القائمة
       alert('تمت إضافة المريض إلى قائمة الانتظار بنجاح');
     } catch (error) {
       console.error(error);
@@ -39,18 +36,18 @@ const SecretariatDashboard = () => {
   return (
     <>
       {isSuccess && !isLoading && patientData && (
-        <div className="flex-grow mr-56 ml-8" dir="rtl">
-          <div className="flex justify-start mt-3 text-slate-500 text-2xl">
+        <div className="flex-grow mr-56 ml-8 " dir="rtl">
+          <div className="flex justify-start mt-8 text-titleColor font-bold text-2xl">
             المرضى المقبولين
           </div>
 
           <div
-            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 mt-6"
+            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6"
             dir="rtl"
           >
             {patientData[0].map((patient) => (
               <div key={patient.id}>
-                <div className=" bg-white w-full flex flex-col justify-start rounded-lg ">
+                <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
                   <div className="cardOneHeader flex flex-row justify-start ">
                     <img src={s1} />
                     <h5 className="text-textButtonColor text-xl mr-2 mt-1">

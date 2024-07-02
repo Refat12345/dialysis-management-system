@@ -17,6 +17,7 @@ import { useParams } from "react-router-dom";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
+        console.log("s");
     const { state, updateState } = useAddMedicalAnalysisState();
     const {data,isSuccess,isLoading:isLoad ,} = useGetAnalysisTypesQuery()
     const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
@@ -51,10 +52,12 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                 unitSelections.push(data.analysisTypes[index].unitOfMeasurement) 
             }
         }
+        console.log( typeSelections.length );
+        console.log(unitSelections.length);
     return (
         <div dir="rtl" className="flex-grow bg-bgMedicalRecord md:mr-48 h-screen">
             <div className="mx-[2%]">
-                {(isSuccess && typeSelections.length > 0 && unitSelections.length > 0) && <>
+                {(isSuccess && typeSelections.length >= 0 && unitSelections.length >= 0) && <>
                 <PublicHeader title="التحاليل الطبية" icon={MedicalAnalysisIcon} bool />
                 <div className="bg-white rounded-lg p-6 mt-4">
                     <div className="flex justify-between">

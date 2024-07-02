@@ -13,12 +13,12 @@ const DialysisSessions = ({data}) => {
         <p dir="rtl" className={`text-titleColor font-primaryBold text-2xl ${responsive}`} >{titleSession.title}</p>
         <div className={`p-2 bg-white rounded-lg shadow-lg 
         ${minHeight}
-         `}>
+        `}>
           <Title title={titleSession.dialysisTitle}/>
             {data.map((array,index)=>{
                 return <div key={index}>
                     <HorizontalLine />
-                    <DialysisSession dialysis= {array}/> 
+                    <DialysisSession dialysis= {array} index={index}/> 
                 </div>
             })}
         </div>    

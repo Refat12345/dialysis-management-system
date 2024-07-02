@@ -29,9 +29,15 @@ export const PatientProvider = ({ children }) => {
   const translatedOption = translateOption(selectedOption);
 
   const user = useSelector((state) => state.user);
-  const centerIdString = user.centerID ? user.centerID.toString() : '14';
 
-
+  let centerIdString = '14';  
+  
+  if (user.role === 'superAdmin') {
+    centerIdString = '0';
+  } else if (user.centerID) {
+    centerIdString = user.centerID.toString();
+  }
+  
   const {
     data: patient,
     isLoading: isUserLoading,

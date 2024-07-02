@@ -35,6 +35,7 @@ export default function DialogTimeCenter({ open, setOpen }) {
       centerID: user.centerID,
     };
     setIsLoading(true); 
+    console.log(newShift);
     try {
       const payload = await addShift(newShift).unwrap();
       console.log("وردية جديدة تمت إضافتها:", payload);
