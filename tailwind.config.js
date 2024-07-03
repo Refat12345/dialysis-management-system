@@ -40,7 +40,7 @@ export default {
         customBlue: "#eff3ff",
         cardInDialysisPage: "#f6f9ff",
         borderINCardInDialysisPage: "#f1f4fa",
-
+        bgUserColor:"rgba(240, 245, 255, 1)",
 
         bgDashboard: "rgba(244, 247, 254, 255)",
         textMenuColor: "rgba(117,117,117,1)",

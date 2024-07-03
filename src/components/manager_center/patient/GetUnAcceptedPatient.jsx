@@ -6,14 +6,14 @@ const GetUnAcceptedPatient = () => {
     const navigate = useNavigate();
 
   const { isSuccessUnAccepted, isLoadingUnAccepted, patientUnAcceptedData } = usePatient();
-
+  console.log(isSuccessUnAccepted);
     const handleCardClick = (patient) => {
     navigate(`/app/patient/${patient.id}/addPatientInfo`);
       };
 
   return (
     <>
-         {isSuccessUnAccepted && !isLoadingUnAccepted && patientUnAcceptedData && (
+        {isSuccessUnAccepted && !isLoadingUnAccepted && patientUnAcceptedData && (
         <div
           dir="rtl"
           className="w-full flex flex-col lg:mr-48 md:mr-48 h-screen bg-bgDashboard"

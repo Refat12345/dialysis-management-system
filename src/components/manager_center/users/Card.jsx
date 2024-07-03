@@ -11,7 +11,6 @@ import nurse from "../../../assets/icons/medical-center/users/users-list/nurse.s
 import nurseMan from "../../../assets/icons/medical-center/users/users-list/nurseMan.svg";
 import secretary from "../../../assets/icons/medical-center/users/users-list/secretary.svg";
 import { useNavigate } from "react-router-dom";
-import { userDetailsRoute } from "../../../data/data";
 
 export function RoleImage({ role, width, height }) {
   let imageSrc;
@@ -43,31 +42,19 @@ function Card({ data }) {
       : data.role;
   let displayGender = data.gender === "male" ? "ذكر" : "انثى";
   let displayStatus = data.accountStatus === "active" ? "نشط الان" : "غير نشط";
-
   const navigate = useNavigate();
-
   const handleCardClick = () => {
     navigate(`/app/users/${data.id}`);
   };
-
   return (
     <>
-      <style>
-        {`
-      .card-hover:hover {
-            background-color: #f3f3f3; 
-            cursor: pointer;
-          }
-        `}
-      </style>
-
       <div
-        className="card-hover bg-cardColor p-2 rounded-lg shadow-lg max-w-[300px] "
+        className="transition-transform transform hover:scale-105 hover:cursor-pointer bg-bgUserColor p-2 rounded-lg shadow-lg max-w-[300px] "
         onClick={() => handleCardClick()}
       >
         <div className="flex justify-between items-center">
           <svg
-            className="h-5 w-5 text-green-500 mb-3"
+            className="h-5 w-5 text-black mb-3"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -76,14 +63,12 @@ function Card({ data }) {
             <circle cx="5" cy="12" r="1" transform="rotate(90 5 12)" />
             <circle cx="19" cy="12" r="1" transform="rotate(90 19 12)" />
           </svg>
-
           <div className="flex flex-col ml-8">
             <div className="flex items-center">
               <h3 className="text-right text-base text-gray-700 font-semibold">
                 {data.fullName} ({displayRole})
               </h3>
             </div>
-
             <span className="text-sm  text-green-500 text-right">
               {displayStatus}
               <img
@@ -93,10 +78,8 @@ function Card({ data }) {
               />
             </span>
           </div>
-
           <RoleImage role={data.role} width={11} />
         </div>
-
         <div className="mt-2 px-2">
           <div className="flex items-end justify-end">
             <span className="ml-2 text-sm text-gray-600">{data.city}</span>
@@ -117,5 +100,6 @@ function Card({ data }) {
     </>
   );
 }
+
 
 export default Card;

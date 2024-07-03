@@ -421,7 +421,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
         <td>
           <div className="flex justify-end">
             <AlertDialog renderComponent={
-              <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
+              <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 transition-transform transform hover:scale-105">
               <p className="text-md text-center ">قبول</p>
             </div>
             }
@@ -429,7 +429,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
             />
             <AlertDialog
               renderComponent={
-                <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
+                <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 transition-transform transform hover:scale-105 ">
                   <p className="text-md text-center ">رفض</p>
                 </div>
               }
@@ -467,7 +467,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
             </div>
           ) : type === "orders" ? (
             <div
-              className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${
+              className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer transition-transform transform hover:scale-110 ${
                 index % 2 === 0 ? "hover:bg-gray-200" : "hover:bg-gray-300  "
               }`}
             >

@@ -19,7 +19,7 @@ export default function DropDown({ title, filter, colors, onSelect }) {
     <Menu dir="rtl" as="div" className="relative inline-block w-full">
       <div>
         <Menu.Button
-          className={`inline-flex justify-between w-[90%] rounded-full bg- px-3 py-1 text-sm font-primaryBold hover:bg-${colors.titleColor} border focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 ${color}`}
+          className={`inline-flex justify-between w-[90%] rounded-full bg- px-3 py-1 text-sm font-primaryBold hover:bg-${colors.titleColor} border focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 ${color} transition-transform transform hover:scale-105`}
         >
           {selectedValue}
           <ChevronDownIcon
