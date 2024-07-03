@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Header from "./sections/Header";
 import OrdersSection from "./sections/OrdersSection";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { PaginationComponent, PageLoader } from "../../../components";
 import { useGetAllOrdersQuery } from "../../../services/manager_center/orders/OrdersSlice";
 import { useSelector } from "react-redux";
@@ -53,15 +53,15 @@ const OrdersPage = () => {
     }
     if (inputValue !== "") {
       filteredArray = filteredArray.filter(order =>
-        order.order.toLowerCase().includes(inputValue.toLowerCase())
+        order.senderName.toLowerCase().includes(inputValue.toLowerCase())
       );
     }
     setFilteredOrders(filteredArray);
   }, [filter, inputValue, orders]);
 
-  const handleInputChange = useCallback((e) => {
+  const handleInputChange = (e) => {
     setInputValue(e.target.value);
-  }, []);
+  }
 
   if (isLoading) {
     return (

@@ -41,7 +41,6 @@ const Dashboard = () => {
       </div>
     );
   }
-  console.log(causeRenalData.causeRenalFailure);
   return (
     <div className="flex-grow md:mr-48 bg-bgDashboard h-screen">
       <Cards data={statisticsData[0]} />

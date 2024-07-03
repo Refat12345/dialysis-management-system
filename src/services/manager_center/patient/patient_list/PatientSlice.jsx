@@ -15,7 +15,7 @@ export const PatientSlice = apiSlice.injectEndpoints({
     addToWaiting: builder.mutation({
       query: (id) => {
         return {
-          url: `updatePatientStatus/${id}/waiting`,
+          url: `updatePatientStatus/${id}/انتظار`,
           method: "POST",
           headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };

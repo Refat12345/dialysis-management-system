@@ -16,7 +16,7 @@ export function Table({ data }) {
 
   const filter = {
     title: "نوع ",
-    array: ["مرضى مقبولين", "مرضى مرفوضين", "مرضى انتظار"],
+    array: ["مرضى مقبولين", "مرضى انتظار"],
   };
 
 

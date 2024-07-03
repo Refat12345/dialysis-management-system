@@ -63,7 +63,7 @@ const PatientListPage = () => {
           <PaginationComponent
             data={ filteredDataSearch.length ? filteredDataSearch.flat() :flattenedData}
             RenderComponent={Table}
-            itemsPerPage={4}
+            itemsPerPage={10}
           />
         )}
       </div>

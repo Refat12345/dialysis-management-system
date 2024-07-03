@@ -15,9 +15,7 @@ export const AddUserSlice = apiSlice.injectEndpoints({
             
         },
     }),
-})
+  }),
 });
 
-export const {
-useAddUserMutation
-} = AddUserSlice;
+export const { useAddUserMutation } = AddUserSlice;

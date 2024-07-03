@@ -283,16 +283,16 @@ import {
   heightSmall,
 } from "../utils/StyleUtils";
 const translations = {
-  الايبوتين: "ipotin",
-  الهيبارين: "heparin",
-  الحديد: "iron",
-  "وصل وريدي": "handarrived",
-  فيستولا: "festola",
-  ابر: "needle",
-  فلتر: "filter",
-  الدارة: "circut",
-  الحمض: "Acid",
-  البيكربونات: "Bicarbonate",
+  الايبوتين: "الايبوتين",
+  الهيبارين: "الهيبارين",
+  الحديد: "الحديد",
+  // "وصل وريدي": "handarrived",
+  فيستولا: "فيستولا",
+  ابر: "ابر",
+  فلتر: "فلتر",
+  الدارة: "الدارة",
+  الحمض: "الحمض",
+  البيكربونات: "البيكربونات",
 };
 
 const Card = ({
@@ -319,7 +319,8 @@ const Card = ({
         >
           <option value="">اختر...</option>
           <option value={translations["فيستولا"]}>فيستولا</option>
-          <option value={translations["وصل وريدي"]}>وصل وريدي</option>
+          <option value={translations["قثطرة مؤقتة"]}>قثطرة مؤقتة</option>
+          <option value={translations["قثطرة دائمة"]}>قثطرة دائمة</option>
         </select>
       ) : (
         <span className="ml-4 text-sm flex-grow">{label}</span>

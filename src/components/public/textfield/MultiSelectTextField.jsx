@@ -52,7 +52,10 @@ const MultiSelectTextField = ({
                 <Menu.Item key={index}>
                   {({ active }) => (
                     <button
-                      onClick={() => onSelect(content)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onSelect(content);
+                      }}
                       className={`${
                         active
                           ? `bg-gray-100 text-gray-900 font-primaryRegular`
@@ -75,7 +78,10 @@ const MultiSelectTextField = ({
           <CustomButton
             key={index}
             variant="solid"
-            onClick={() => onRemove(val)}
+            onClick={(e) => {
+              e.preventDefault();
+              onRemove(val);
+            }}
             className={`bg-bgSecretaria text-primaryFontColor h-8 transition-all font-medium border-2 m-1 ${bodyMeduimStyle}`}
             title={
               <div className="flex items-center justify-center">

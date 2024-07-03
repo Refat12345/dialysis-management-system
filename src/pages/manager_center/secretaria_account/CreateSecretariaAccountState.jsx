@@ -1,11 +1,18 @@
 /* eslint-disable react-refresh/only-export-components */
+// src/state/CreateSecretariaAccountState.js
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import dayjs from "dayjs";
+import { useAddUserMutation } from "../../../services/manager_center/user/AddUserSlice";
+import { showErrorToast, showSuccessToast } from "../../../utils/toastUtils";
+import { useNavigate } from "react-router-dom";
+import { permissionsOptionsValues } from "./secretaria_sections/secretariaData";
 
 const CreateSecretariaAccountStateContext = createContext();
 
 const CreateSecretariaAccountState = ({ children }) => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState({
     nationaltyNumber: "",
     username: "",
@@ -27,6 +34,8 @@ const CreateSecretariaAccountState = ({ children }) => {
     ],
     permissions: [],
   });
+
+  const [createUser, { isLoading }] = useAddUserMutation();
 
   const selectGender = (value) => {
     updateState({ genderValue: value });
@@ -128,6 +137,50 @@ const CreateSecretariaAccountState = ({ children }) => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const permissions = state.permissions.map((e, index) =>
+      permissionsOptionsValues(index)
+    );
+    if (state.nationaltyNumber.length > 11) {
+      showSuccessToast("الرقم الوطني لا يجب أن يكون أكبر من 11 رقم");
+      return;
+    }
+    if (state.genderValue == "") {
+      showSuccessToast("حقل الجنس مطلوب");
+      return;
+    }
+    const userData = {
+      fullName: state.username,
+      nationalNumber: state.nationaltyNumber,
+      dateOfBirth: state.birthdate ? state.birthdate.format("YYYY-MM-DD") : "",
+      gender: state.genderValue,
+      role: "secretary",
+      telecom: state.contactInfo.map((contact) => ({
+        system: contact.type,
+        value: contact.value,
+        use: contact.use,
+      })),
+      address: state.addressInfo.map((address) => ({
+        line: address.line,
+        use: address.use,
+        cityName: address.city,
+        countryName: "سوريا",
+      })),
+      permissionNames: permissions,
+    };
+
+    console.log(userData);
+    try {
+      await createUser(userData).unwrap();
+      showSuccessToast("تم إضافة سكرتاريا بنجاح");
+      navigate("/app");
+    } catch (err) {
+      showErrorToast("حدثت مشكلة معنية حاول مجدداً");
+      console.log(err);
+    }
+  };
+
   const contextValue = {
     state,
     selectGender,
@@ -141,6 +194,8 @@ const CreateSecretariaAccountState = ({ children }) => {
     handleSelectPermission,
     removePermissions,
     updateState,
+    handleSubmit,
+    isLoading,
   };
 
   return (

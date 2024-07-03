@@ -37,13 +37,9 @@ const CreateSecretariaAccountPage = () => {
     handleSelectPermission,
     removePermissions,
     updateState,
+    handleSubmit,
+    isLoading,
   } = useCreateSecretaryAccountState();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted", state);
-  };
 
   return (
     <div
@@ -134,7 +130,8 @@ const CreateSecretariaAccountPage = () => {
               <div className="h-3"></div>
               <CustomButton
                 variant="solid"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   addContactInfo();
                 }}
                 className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
@@ -178,7 +175,8 @@ const CreateSecretariaAccountPage = () => {
               <div className="h-3"></div>
               <CustomButton
                 variant="solid"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   addAddressInfo();
                 }}
                 className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
@@ -194,7 +192,7 @@ const CreateSecretariaAccountPage = () => {
             </Column>
             <div className="h-5"></div>
             <Column>
-              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-5/6`}>
                 {"الصلاحيات:"}
               </p>
               <div className="h-1"></div>
@@ -210,13 +208,16 @@ const CreateSecretariaAccountPage = () => {
               />
             </Column>
             <div className="h-5"></div>
-            <Row>
+            <Row mainAxisAlignment="justify-end">
               <CustomButton
                 variant="solid"
                 type="submit"
-                className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+                loading={isLoading}
+                className={`bg-bgbutton text-white h-10 transition-all font-semibold ${bodyMeduimStyle}`}
                 title={
                   <div className="flex items-center justify-center">
+                    <PlusIcon className="w-5 h-5 mr-1 text-white" />
+                    <div className="lg:w-2 md:w-2 w-1"></div>
                     <span className={`${bodySmallStyle}`}>حفظ المعلومات</span>
                   </div>
                 }
@@ -224,7 +225,6 @@ const CreateSecretariaAccountPage = () => {
               />
             </Row>
           </div>
-
           <div className="h-5"></div>
         </form>
       </div>

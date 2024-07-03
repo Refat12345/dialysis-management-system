@@ -226,6 +226,7 @@ const AddMedicalCenter = () => {
                   address: state.addressInfo,
                 
                 };
+                console.log("الداتا قبل الارسال",data)
                 try {
                   const result = await addMedical(data);
                   console.log("Result:", result);

@@ -17,14 +17,13 @@ import SupportLifeLogo from "../../../../components/manager_center/auth/SupportL
 import { PasswordVisibleIcon } from "../../../../components";
 
 const LoginPage = () => {
-  // eslint-disable-next-line no-unused-vars
   const { state, updateState, handleSubmit, handleVisible } = useLoginState();
   const navigate = useNavigate();
 
   return (
     <div className="grid grid-cols-2 gap-2 w-full h-[100vh] p-3 bg-[#f5f5f5]">
       <div
-        dir="rlt"
+        dir="rtl"
         className={`${loginMarginX} my-7 ${loginPaddingX} bg-white shadow-xl rounded-lg transition-all`}
       >
         <form
@@ -64,7 +63,7 @@ const LoginPage = () => {
             value={state.password}
             prefixIcon={<img src={LoginPasswordIcon} alt="" />}
             suffixIcon={
-              <button onClick={(e) => handleVisible(e)}>
+              <button onClick={(e) => handleVisible(e)} type="button">
                 <PasswordVisibleIcon showPassword={state.showPassword} />
               </button>
             }
@@ -82,6 +81,7 @@ const LoginPage = () => {
               variant="solid"
               className={`bg-bgLogin text-blue600 h-12 shadow-lg transition-all w-full font-bold ${headlineMediumStyle}`}
               loading={state.loading}
+              type="submit"
               title="تسجيل الدخول"
             />
           </div>
