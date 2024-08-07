@@ -89,6 +89,8 @@ export function Table({ data }) {
                   handleRowClick={handleRowClick}
                   getRowColor={() => getRowColor(index, row.name)}
                   type={"patient"}
+                  typeOFSelectedPatient={selectedOption}
+
                 />
               ))}
           </tbody>

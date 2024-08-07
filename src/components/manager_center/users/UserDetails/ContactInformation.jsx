@@ -10,15 +10,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { useEditUserMutation } from "../../../../services/manager_center/user/user_details/UserDetailsSlice";
 import CustomTextField from "../../../public/textfield/CustomTextField";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 
 function ContactInformation({ data, setData }) {
   const [editUser] = useEditUserMutation();
+  const user = useSelector((state) => state.user);
 
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState(
     JSON.parse(JSON.stringify(data.telecom))
   );
+
+  const [isLoading, setIsLoading] = useState(false); 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -40,6 +46,7 @@ function ContactInformation({ data, setData }) {
   };
 
   const handleSave = async () => {
+    setIsLoading(true); 
     const newData = {
       ...data,
       telecom: form,
@@ -50,19 +57,22 @@ function ContactInformation({ data, setData }) {
     try {
       await editUser(newData);
       console.log("تم تحديث البيانات بنجاح");
+      toast.success("تم تحديث البيانات بنجاح");
     } catch (error) {
       console.error("حدث خطأ أثناء تحديث البيانات", error);
+      toast.error("حدث خطأ أثناء تحديث البيانات");
     }
 
+    setIsLoading(false);  
     setIsEditing(false);
     setOpen(false);
   };
+  const { isLoading: isDetailsLoading, isSuccess } = useDetailsUsers();
 
-  const { isLoading, isSuccess } = useDetailsUsers();
 
   return (
     <>
-      {isSuccess && !isLoading && (
+      {isSuccess && !isDetailsLoading && (
         <div
           className="border p-4 rounded-xl bg-whiteCard"
           style={{ height: "300px" }}
@@ -73,12 +83,15 @@ function ContactInformation({ data, setData }) {
               className="flex flex-grow justify-start items-center"
             >
               <img src={contact} alt="Contact Information" />
-              <img
+              {
+                user.role === "secretary" ? <img
                 src={edit}
                 alt="Edit"
                 className="ml-2 cursor-pointer"
                 onClick={handleClickOpen}
-              />
+              />  : null
+              }
+              
             </div>
             <h3 className="text-xl text-bgtitle">معلومات التواصل</h3>
           </div>
@@ -104,12 +117,20 @@ function ContactInformation({ data, setData }) {
                 ))}
               </div>
               <div className="flex flex-row justify-center my-8">
-                <Button
+                {/* <Button
                   variant="contained"
                   onClick={handleSave}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded"
                 >
                   حفظ التغييرات
+                </Button> */}
+                  <Button
+                  variant="contained"
+                  onClick={handleSave}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded"
+                  disabled={isLoading} 
+                >
+                  {isLoading ? "جارٍ الحفظ..." : "حفظ التغييرات"}
                 </Button>
               </div>
             </DialogContent>

@@ -8,7 +8,8 @@ import {
   useGetUserPermissionsQuery,
   useEditUserPermissionsMutation,
 } from "./../../../../services/manager_center/user/user_details/UserDetailsSlice";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
   return (
     <label htmlFor={id} className="flex items-center cursor-pointer">
@@ -67,6 +68,8 @@ const MyButton = ({ text, id }) => {
   }, [isUserpermessionSuccess, isUserpermessionLoading, permession]);
 
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
+
   const [switchStates, setSwitchStates] = useState({
     "ادارة السجل الطبي": false,
     "ادارة الوصفات الطبية": false,
@@ -91,6 +94,7 @@ const MyButton = ({ text, id }) => {
   };
 
   const handleSave = async () => {
+    setIsLoading(true);  
     const permissionNames = Object.entries(switchStates)
       .filter(([_, enabled]) => enabled)
       .map(([switchId]) =>
@@ -106,11 +110,15 @@ const MyButton = ({ text, id }) => {
 
     try {
       await editUserPermissions(newData);
-      console.log("newData",newData)
+      console.log("newData", newData);
+      toast.success("تم تحديث الصلاحيات بنجاح");
       console.log("تم تحديث الصلاحيات بنجاح");
     } catch (error) {
+      toast.error("حدث خطأ أثناء تحديث الصلاحيات");
       console.error("حدث خطأ أثناء تحديث الصلاحيات", error);
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -154,8 +162,9 @@ const MyButton = ({ text, id }) => {
               <button
                 className="mt-5 bg-bgbutton h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-2xl ml-2"
                 onClick={handleSave}
+                disabled={isLoading}    
               >
-                {"حفظ   التغييرات"}
+                {isLoading ? "جارٍ الحفظ..." : "حفظ التغييرات"}
               </button>
             </div>
           </DialogContent>

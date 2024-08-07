@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetPatientQuery,useGetUnAcceptedPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
+import { useGetPatientQuery,useGetUnAcceptedPatientQuery,useGetHangingPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
 import { useSelector } from "react-redux";
 const PatientContext = createContext();
 
@@ -107,6 +107,32 @@ export const PatientProvider = ({ children }) => {
     setSelectedOption(event);
   };
 
+  // المعلق
+  const [hangingPatientData, setHangingPatientData] = useState([]);
+  const [isLoadinghangingPatient, setIsLoadinghangingPatient] = useState(false);
+  const [isSuccesshangingPatient, setIsSuccesshangingPatient] = useState(false);
+
+  const {
+    data: hangingPatient,
+    isLoading: ishangingPatientLoading,
+    isSuccess: ishangingPatientSuccess,
+  } = useGetHangingPatientQuery({centerId: centerIdString });
+
+  useEffect(() => {
+    if (ishangingPatientSuccess && hangingPatient) {
+      setHangingPatientData(hangingPatient);
+      setIsLoadinghangingPatient(false);
+      setIsSuccesshangingPatient(true);
+    } else if (ishangingPatientLoading) {
+      setIsLoadinghangingPatient(true);
+      setIsSuccesshangingPatient(false);
+    } else {
+      setIsLoadinghangingPatient(false);
+      setIsSuccesshangingPatient(false);
+    }
+  }, [ishangingPatientSuccess, ishangingPatientLoading, hangingPatient]);
+  
+
   return (
     <PatientContext.Provider
       value={{
@@ -120,7 +146,10 @@ export const PatientProvider = ({ children }) => {
         filteredDataSearch,
         isSuccessUnAccepted,
         isLoadingUnAccepted,
-        patientUnAcceptedData
+        patientUnAcceptedData,
+        hangingPatientData,
+        isLoadinghangingPatient,
+        isSuccesshangingPatient
 
       }}
     >

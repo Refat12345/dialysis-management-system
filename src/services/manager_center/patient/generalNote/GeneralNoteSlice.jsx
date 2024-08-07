@@ -1,8 +1,8 @@
 import { apiSlice } from "../../../apiSlice";
 import Cookies from "js-cookie"
-export const GeneralDetailsSlice = apiSlice.injectEndpoints({
+export const NotePatientSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getGeneralDetails: builder.query({
+    getNoteForPatient: builder.query({
       query: (status) => ({
         url: `getNotesByreceiverID/${status}`,
         method: "GET",
@@ -12,4 +12,4 @@ export const GeneralDetailsSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetGeneralDetailsQuery } = GeneralDetailsSlice;
+export const { useGetNoteForPatientQuery } = NotePatientSlice;

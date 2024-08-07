@@ -54,6 +54,37 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+
+    addMedicalData: builder.mutation({
+      query: (data) => {
+        console.log("adddd  is")
+
+        return {
+          url: `createMedicalCenter`,
+          method: "POST",
+          body: data,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+        };
+      },
+      invalidatesTags: ["CenterSetting"],
+
+    }),
+
+
+    updateMedicalData: builder.mutation({
+      query: (data) => {
+        console.log("uppp is" , data)
+        return {
+          url: `updateMedicalCenter`,
+          method: "POST",
+          body: data,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+        };
+      },
+      invalidatesTags: ["CenterSetting"],
+
+    }),
+    
   }),
 });
 
@@ -62,5 +93,7 @@ export const {
   useAddShiftMutation,
   useAddCenterContactMutation,
   useEditShiftMutation,
-  useAddChairMutation
+  useAddChairMutation,
+  useAddMedicalDataMutation,
+  useUpdateMedicalDataMutation
 } = CenterSettingSlice;

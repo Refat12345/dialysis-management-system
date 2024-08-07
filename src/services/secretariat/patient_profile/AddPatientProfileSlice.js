@@ -35,7 +35,9 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
             return {
                 url: `addPatientInfo`,
                 method: 'POST',
-                body: Info
+                body: Info,
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
+
             };
             
             

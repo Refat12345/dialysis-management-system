@@ -295,7 +295,10 @@ function Header({ setSearchTerm }) {
                     <SelectedTextFeild
                       activeLabel={false}
                       value={selectedCenterOption}
-                      filter={MedicalCenters?.centers?.map(
+                      // filter={MedicalCenters?.centers?.map(
+                      //   (center) => center.centerName
+                      // )}
+                      filter={MedicalCenters?.map(
                         (center) => center.centerName
                       )}
                       onSelect={handleSelectCenterChange}

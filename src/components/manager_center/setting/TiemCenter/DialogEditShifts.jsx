@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useEditShiftMutation } from "../../../../services/manager_center/setting/SettingSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export default function DialogEditShifts({ open, setOpen, data }) {
   const handleClose = () => {
     setOpen(false);

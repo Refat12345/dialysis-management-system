@@ -1,88 +1,233 @@
-/* eslint-disable no-unused-vars */
-import Dialog from "@mui/material/Dialog";
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
 
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
+import { useState } from "react";
+import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-function DialogCenterData({ open, setOpen }) {
-    const handleClose = () => {
-        setOpen(false);
-      };
-    const [farmManager, setFarmManager] = useState('');
-    const [charityAssociation, setCharityAssociation] = useState('');
-    const [farmAddress, setFarmAddress] = useState('');
-  
-    // دالة للتعامل مع تغييرات الإدخال
-    const handleInputChange = (e, setter) => setter(e.target.value);
-  
-    // دالة للتعامل مع إرسال النموذج
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // هنا يمكن إضافة الكود للتعامل مع بيانات النموذج
-      console.log({ farmManager, charityAssociation, farmAddress });
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import { CustomButton } from "../../../../components";
+import {
+  bodyMeduimStyle,
+  bodySmallStyle,
+  heightSmall,
+} from "../../../../utils/StyleUtils.js";
+import { useAddCenterContactMutation } from "../../../../services/manager_center/setting/SettingSlice";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  useAddMedicalDataMutation,
+  useUpdateMedicalDataMutation,
+} from "../../../../services/manager_center/setting/SettingSlice";
+import CustomTextField from "../../../public/textfield/CustomTextField";
+
+function DialogCenterData({ open, setOpen, data, type }) {
+  const [charityName, setCharityName] = useState(data.charityName || "");
+  const [line, setLine] = useState(
+    data["address"] && data["address"][0] ? data["address"][0].line : ""
+  );
+  const [use, setUse] = useState(
+    data["address"] && data["address"][0] ? data["address"][0].use : ""
+  );
+  const [cityName, setCityName] = useState(
+    data["address"] && data["address"][0] ? data["address"][0].cityName : ""
+  );
+  const [countryName, setCountryName] = useState(
+    data["address"] && data["address"][0] ? data["address"][0].countryName : ""
+  );
+
+  const user = useSelector((state) => state.user);
+  const [addMedicalData] = useAddMedicalDataMutation();
+  const [updataMedicalData] = useUpdateMedicalDataMutation();
+  const [loading, setLoading] = useState(false);
+
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCharityNameChange = (event) => {
+    setCharityName(event.target.value);
+  };
+
+  const handleLineChange = (event) => {
+    setLine(event.target.value);
+  };
+
+  const handleCityNameChange = (event) => {
+    setCityName(event.target.value);
+  };
+
+  const handleCountryNameChange = (event) => {
+    setCountryName(event.target.value);
+  };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   let newData = {
+  //     charityName: charityName,
+  //     address: 
+  //       {
+  //         line: line,
+  //         use: "المركز",
+  //         cityName: cityName,
+  //         countryName: countryName,
+  //       },
+      
+  //   };
+  //   try {
+  //     if (type === "add") {
+  //       if (charityName && line && cityName && countryName) {
+  //         await addMedicalData(newData).unwrap();
+  //         toast.success("تم إرسال البيانات بنجاح!");
+  //       } else {
+  //         toast.error("يرجى ملء جميع البيانات قبل الإرسال.");
+  //       }
+  //     } else {
+  //       newData = {
+  //         charityName: charityName,
+  //         id: user.centerID.toString(),
+  //         address: [
+  //           {
+  //             id: data.address[0].id,
+  //             line: line,
+  //             use: "المركز",
+  //             cityName: cityName,
+  //             countryName: countryName,
+  //           },
+  //         ],
+  //       };
+  //       await updataMedicalData(newData).unwrap();
+  //     }
+  //     toast.success("تم إرسال البيانات بنجاح!");
+  //     setOpen(false);
+  //   } catch (error) {
+  //     console.error("Failed to save the data:", error);
+  //   }
+  // };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    let newData = {
+      charityName: charityName,
+      address: {
+        line: line,
+        use: "المركز",
+        cityName: cityName,
+        countryName: countryName,
+      },
     };
+    try {
+      if (type === "add") {
+        if (charityName && line && cityName && countryName) {
+          await addMedicalData(newData).unwrap();
+          toast.success("تم إرسال البيانات بنجاح!");
+        } else {
+          toast.error("يرجى ملء جميع البيانات قبل الإرسال.");
+        }
+      } else {
+        newData = {
+          charityName: charityName,
+          id: user.centerID.toString(),
+          address: [
+            {
+              id: data.address[0].id,
+              line: line,
+              use: "المركز",
+              cityName: cityName,
+              countryName: countryName,
+            },
+          ],
+        };
+        await updataMedicalData(newData).unwrap();
+      }
+      toast.success("تم إرسال البيانات بنجاح!");
+      setOpen(false);
+    } catch (error) {
+      toast.error("حدث خطأ أثناء إرسال البيانات.");
+      console.error("Failed to save the data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
     <Dialog open={open} onClose={handleClose}>
-    <DialogTitle className="text-center ">
-      <span className=" text-4xl text-blue-700">{"صندوق العافية المركزي"}</span>
-    </DialogTitle>
-    <DialogContent className="p-4 w-full " dir="rtl">
-    <div className="flex flex-col items-center justify-center p-4">
-    
-      <form className="w-full max-w-lg" onSubmit={handleSubmit}>
-        <div className="mb-4 w-96">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="farm-manager">
-            مدير المركز:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="farm-manager"
+      <DialogTitle className="text-center ">
+        <span className=" text-4xl text-blue-700">
+          {"صندوق العافية المركزي"}
+        </span>
+      </DialogTitle>
+      <DialogContent className="p-4 w-full " dir="rtl">
+        <form className="w-full max-w-lg" onSubmit={handleSubmit}>
+          <CustomTextField
+            size="3"
+            required={true}
+            label={"الجمعية الخيرية التابعة للمركز"}
+            value={charityName}
             type="text"
-            placeholder=""
-            value={farmManager}
-            onChange={(e) => handleInputChange(e, setFarmManager)}
+            onChange={handleCharityNameChange}
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="charity-association">
-            الجمعية الخيرية  التابع لها المركز :
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="charity-association"
+
+          <CustomTextField
+            size="3"
+            required={true}
+            label={"الشارع"}
+            value={line}
             type="text"
-            placeholder=""
-            value={charityAssociation}
-            onChange={(e) => handleInputChange(e, setCharityAssociation)}
+            onChange={handleLineChange}
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="farm-address">
-            عنوان المركز:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="farm-address"
+
+          <CustomTextField
+            size="3"
+            required={true}
+            label={"اسم الحي"}
+            value={cityName}
             type="text"
-            placeholder=""
-            value={farmAddress}
-            onChange={(e) => handleInputChange(e, setFarmAddress)}
+            onChange={handleCityNameChange}
           />
-        </div>
-        <div className="flex items-center justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            حفظ
-          </button>
-        </div>
-      </form>
-    </div>
-    </DialogContent>
-  </Dialog>
-  )
+
+          <CustomTextField
+            size="3"
+            required={true}
+            label={"اسم المحافظة:"}
+            placeholder="اسم المستخدم"
+            value={countryName}
+            type="text"
+            onChange={handleCountryNameChange}
+          />
+          <DialogActions>
+            {/* <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              حفظ
+            </button> */}
+             <CustomButton
+              variant="solid"
+              
+              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  {loading ? (
+                    <span className={`${bodySmallStyle}`}>جاري التحميل...</span>
+                  ) : (
+                    <>
+                      <span className={`${bodySmallStyle}`}>حفظ التغييرات</span>
+                      <div className="lg:w-2 md:w-2 w-1"></div>
+                    </>
+                  )}
+                </div>
+              }
+              radius="full"
+              disabled={loading}
+            />
+          </DialogActions>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
-export default DialogCenterData
+export default DialogCenterData;

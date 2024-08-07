@@ -11,11 +11,14 @@ import { useAddCenterContactMutation } from "../../../../services/manager_center
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CustomButton from "../../../public/button/CustomButton";
+import { bodyMeduimStyle, bodySmallStyle } from "../../../../utils/StyleUtils";
 
 function DialogContactCenter({ open, setOpen }) {
   const [contactType, setContactType] = useState("");
   const [contactValue, setContactValue] = useState("");
   const [addCenterContact] = useAddCenterContactMutation();
+  const [loading, setLoading] = useState(false);
 
   const user = useSelector((state) => state.user);
 
@@ -45,11 +48,15 @@ function DialogContactCenter({ open, setOpen }) {
     };
 
     try {
+      setLoading(true);
       await addCenterContact(telecomsData).unwrap();
       toast.success("تم إرسال  البيانات بنجاح!");
       setOpen(false);
     } catch (error) {
       console.error("Failed to save the contact:", error);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -88,12 +95,26 @@ function DialogContactCenter({ open, setOpen }) {
             />
           </FormControl>
           <DialogActions>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              حفظ
-            </button>
+           
+             <CustomButton
+              variant="solid"
+              onClick={handleSubmit}
+              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  {loading ? (
+                    <span className={`${bodySmallStyle}`}>جاري التحميل...</span>
+                  ) : (
+                    <>
+                      <span className={`${bodySmallStyle}`}>حفظ</span>
+                      <div className="lg:w-2 md:w-2 w-1"></div>
+                    </>
+                  )}
+                </div>
+              }
+              radius="full"
+              disabled={loading}
+            />
           </DialogActions>
         </form>
       </DialogContent>

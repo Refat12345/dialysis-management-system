@@ -2,12 +2,15 @@ import { useGeneralDetails } from "../../../pages/manager_center/generalNotes/Ge
 import {PageLoader} from "../../../components/index";
 import GlobalNotes from "./GlobalNotes";
 function GlobalNoteView() {
+  
   const { generalDetails, isSuccess, isLoading } = useGeneralDetails();
+
 
   if (isLoading) return 
   <div className="flex items-center justify-center h-screen">
     <PageLoader />
   </div>;
+  
   if (!generalDetails.length) {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}>

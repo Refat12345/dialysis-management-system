@@ -22,12 +22,90 @@ import {
   rolefilter,
 } from "../../pages/manager_center/secretaria_account/secretaria_sections/secretariaData";
 import { PublicHeader } from "../../components";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useState } from "react";
 const AddUser = () => {
   const { state, updateState } = useAddUserState();
   const [addUser] = useAddUserMutation();
+  const [loading, setLoading] = useState(false);
+
+  let role;
+if (state.role === 'patient') {
+    role = 'مريض';
+} else if (state.role === 'doctor') {
+    role = 'طبيب';
+} else if (state.role === 'nurse') {
+    role = 'ممرض';
+} else {
+    role = state.role;
+}
+
+const handelAddUser = async () => {
+  if (
+    !state.username ||
+    !state.nationaltyNumber ||
+    !state.birthdate ||
+    !state.genderValue ||
+    !state.role ||
+    state.contactInfo.some(
+      (contact) =>
+        !contact.use || !contact.system || !contact.value
+    ) ||
+    state.addressInfo.some(
+      (address) =>
+        !address.use ||
+        !address.cityName ||
+        !address.line ||
+        !address.countryName
+    )
+  ) {
+    toast.error("يرجى تعبئة جميع الحقول");
+    return;
+  }
+
+  if (state.nationaltyNumber.length !== 11) {
+    toast.error("يجب أن يحتوي الرقم الوطني على 11 خانة");
+    return;
+  }
+
+
+  const data = {
+    fullName: state.username,
+    nationalNumber: state.nationaltyNumber,
+    dateOfBirth: state.birthdate.format("YYYY-MM-DD"),
+    gender: state.genderValue,
+    role: state.role,
+    telecom: state.contactInfo,
+    address: state.addressInfo,
+  };
+
+  try {
+    setLoading(true);
+    const result = await addUser(data);
+    console.log("Result:", result);
+    toast.success("تمت الاضافة بنجاح");
+
+    updateState({
+      username: "",
+      nationaltyNumber: "",
+      birthdate: null,
+      genderValue: "",
+      role: "",
+      contactInfo: [{ use: "", system: "", value: "" }],
+      addressInfo: [
+        { use: "", cityName: "", line: "", countryName: "" },
+      ],
+    });
+  } catch (error) {
+    toast.error("حدث خطأ اثناء الاضافة");
+  }
+  finally {
+    setLoading(false);
+
+  }
+
+};
 
   return (
     <div
@@ -90,7 +168,8 @@ const AddUser = () => {
           <div className="w-1/2 mr-4">
             <SelectedTextFeild
               label={rolefilter.title}
-              value={state.role === "" ? "الدور" : state.role}
+              // value={state.role === "" ? "الدور" : state.role}
+              value={role === "" ? "الدور" : role}
               filter={rolefilter.array}
               onSelect={(val) => state.selectRole(val)}
             />
@@ -190,7 +269,7 @@ const AddUser = () => {
               className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
               title={
                 <div className="flex items-center justify-center">
-                  <span className={`${bodySmallStyle}`}>إضافة عناون</span>
+                  <span className={`${bodySmallStyle}`}>إضافة عنوان</span>
                   <div className="lg:w-2 md:w-2 w-1"></div>
                   <PlusIcon className="w-5 h-5 mr-1 text-white" />
                 </div>
@@ -200,11 +279,32 @@ const AddUser = () => {
           </Column>
           <div className="h-5"></div>
 
-        
           <div className="flex justify-center">
-          <CustomButton
+            {/* <CustomButton
               variant="solid"
               onClick={async () => {
+                if (
+                  !state.username ||
+                  !state.nationaltyNumber ||
+                  !state.birthdate ||
+                  !state.genderValue ||
+                  !state.role ||
+                  state.contactInfo.some(
+                    (contact) =>
+                      !contact.use || !contact.system || !contact.value
+                  ) ||
+                  state.addressInfo.some(
+                    (address) =>
+                      !address.use ||
+                      !address.cityName ||
+                      !address.line ||
+                      !address.countryName
+                  )
+                ) {
+                  toast.error("يرجى تعبئة جميع الحقول");
+                  return;
+                }
+
                 const data = {
                   fullName: state.username,
                   nationalNumber: state.nationaltyNumber,
@@ -214,22 +314,32 @@ const AddUser = () => {
                   telecom: state.contactInfo,
                   address: state.addressInfo,
                 };
+
                 try {
+                  setLoading(true);
                   const result = await addUser(data);
                   console.log("Result:", result);
                   toast.success("تمت الاضافة بنجاح");
-                  // updateState({
-                   
-                  //   telecom: [""], 
-                  //   addressInfo: [""], 
-                  // });
-  
-                 
+
+                  updateState({
+                    username: "",
+                    nationaltyNumber: "",
+                    birthdate: null,
+                    genderValue: "",
+                    role: "",
+                    contactInfo: [{ use: "", system: "", value: "" }],
+                    addressInfo: [
+                      { use: "", cityName: "", line: "", countryName: "" },
+                    ],
+                  });
                 } catch (error) {
-                    toast.error("حدث خطأ اثناء الاضافة");
+                  toast.error("حدث خطأ اثناء الاضافة");
+                }
+                finally {
+                  setLoading(false);
+
                 }
               }}
-
               className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
               title={
                 <div className="flex items-center justify-center">
@@ -239,9 +349,27 @@ const AddUser = () => {
                 </div>
               }
               radius="full"
+            /> */}
+             <CustomButton
+              variant="solid"
+              onClick={handelAddUser}
+              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  {loading ? (
+                    <span className={`${bodySmallStyle}`}>جاري التحميل...</span>
+                  ) : (
+                    <>
+                      <span className={`${bodySmallStyle}`}>اضافة</span>
+                      <div className="lg:w-2 md:w-2 w-1"></div>
+                    </>
+                  )}
+                </div>
+              }
+              radius="full"
+              disabled={loading}
             />
           </div>
-          
         </div>
       </div>
     </div>

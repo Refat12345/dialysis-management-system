@@ -12,11 +12,12 @@ import {PageLoader} from "../../../components";
 import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
 const SecretariatDashboard = () => {
   const {
-    patientData,
-    isLoading,
-    isSuccess,
+    hangingPatientData,
+    isLoadinghangingPatient,
+    isSuccesshangingPatient
+  
   } = usePatient();
-  console.log(patientData);
+  console.log(hangingPatientData);
   const [addToWaiting] = useAddToWaitingMutation();
   
   const handleAddToWaiting = async (id) => {
@@ -40,17 +41,17 @@ const SecretariatDashboard = () => {
 
   return (
     <>
-      {isSuccess && !isLoading && patientData && (
+      {isSuccesshangingPatient && !isLoadinghangingPatient && hangingPatientData && (
         <div className="flex-grow mr-56 ml-8 " dir="rtl">
           <div className="flex justify-start mt-8 text-titleColor font-bold text-2xl">
-            المرضى المقبولين
+            المرضى المعلقين
           </div>
 
           <div
             className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6"
             dir="rtl"
           >
-            {patientData[0].map((patient) => (
+            {hangingPatientData[0].map((patient) => (
               <div key={patient.id}>
                 <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
                   <div className="cardOneHeader flex flex-row justify-start ">

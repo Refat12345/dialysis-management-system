@@ -4,7 +4,7 @@ export const genderFilter = {
 };
 
 export const rolefilter = {
-  array: ["nurse", "doctor", "patient"],
+  array: ["ممرض", "طبيب", "مريض"],
   title: "الدور",
 };
 export const useFilter = ["المنزل", "العمل"];

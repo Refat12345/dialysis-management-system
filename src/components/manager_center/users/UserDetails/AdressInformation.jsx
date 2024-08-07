@@ -9,16 +9,22 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useEditUserMutation } from "../../../../services/manager_center/user/user_details/UserDetailsSlice";
 import CustomTextField from "../../../public/textfield/CustomTextField";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
+
 function AdressInformation({ data, setData }) {
   const [editUser] = useEditUserMutation();
+  const user = useSelector((state) => state.user);
 
-  const { isLoading, isSuccess } = useDetailsUsers();
+  const { isLoading: isDetailsLoading, isSuccess } = useDetailsUsers();
 
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState(
     JSON.parse(JSON.stringify(data.address))
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,6 +47,7 @@ function AdressInformation({ data, setData }) {
   };
 
   const handleSave = async () => {
+    setIsLoading(true);
     const newData = {
       ...data,
       address: form,
@@ -48,23 +55,25 @@ function AdressInformation({ data, setData }) {
     setEditedData(newData);
     setData(newData);
 
-    try {
-     
+    console.log("iii",newData)
 
+    try {
       const returnedData = await editUser(newData);
+      toast.success("تم تحديث البيانات بنجاح");
       console.log("تم تحديث البيانات بنجاح");
-      console.log("البيانات الراجعة من الخادم:", returnedData);
     } catch (error) {
+      toast.error("حدث خطأ أثناء تحديث البيانات");
       console.error("حدث خطأ أثناء تحديث البيانات", error);
     }
 
+    setIsLoading(false);
     setIsEditing(false);
     setOpen(false);
   };
 
   return (
     <>
-      {isSuccess && !isLoading && data.length != 0 && (
+      {isSuccess && !isDetailsLoading && data.length != 0 && (
         <div className="border p-4 rounded-xl bg-whiteCard">
           <div className="flex flex-row justify-end  mt-2 mb-2 ">
             <div
@@ -72,12 +81,15 @@ function AdressInformation({ data, setData }) {
               className="flex flex-grow justify-start items-center"
             >
               <img src={location} alt="Contact Information" />
-              <img
+              {
+                user.role === "secretary" ?  <img
                 src={edit}
                 alt="Edit"
                 className="ml-2 cursor-pointer "
                 onClick={handleClickOpen}
-              />
+              /> : null
+              }
+             
             </div>
             <h3 className="text-xl text-bgtitle">العنوان</h3>
           </div>
@@ -105,8 +117,9 @@ function AdressInformation({ data, setData }) {
                   variant="contained"
                   onClick={handleSave}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded"
+                  disabled={isLoading}
                 >
-                  حفظ التغييرات
+                  {isLoading ? "جارٍ الحفظ..." : "حفظ التغييرات"}
                 </Button>
               </div>
             </DialogContent>

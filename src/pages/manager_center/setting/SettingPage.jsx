@@ -73,9 +73,9 @@ function SettingPage() {
                 <GeneralAboutCenter data={SettingData.center} />
                 <div className="grid grid-cols-1 gap-3 ">
                   <Cards data={SettingData.center} />
-                  {SettingData.center.shifts && <TimeCenter data={SettingData.center.shifts}   setSettingTime={setSettingTime} SettingTime={SettingTime} />}
-                  {SettingData.center.telecom && <ContactCenter data={SettingData.center.telecom} />}
-                  {/* <NoteCenter  /> */}
+                   <TimeCenter data={SettingData.center.shifts}   setSettingTime={setSettingTime} SettingTime={SettingTime} />
+                   <ContactCenter data={SettingData.center.telecom} />
+                  <NoteCenter  data={SettingData.center.description} />
                 </div>
               </div>
             </div>

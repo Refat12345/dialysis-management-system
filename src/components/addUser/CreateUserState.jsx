@@ -43,9 +43,22 @@ const CreateUserState = ({ children }) => {
   const selectGender = (value) => {
     updateState({ genderValue: value });
   };
+  // const selectRole = (value) => {
+  //   updateState({ role: value });
+  // };
   const selectRole = (value) => {
-    updateState({ role: value });
-  };
+    let role;
+    if (value === 'مريض') {
+        role = 'patient';
+    } else if (value === 'طبيب') {
+        role = 'doctor';
+    } else if (value === 'ممرض') {
+        role = 'nurse';
+    } else {
+        role = value;
+    }
+    updateState({ role: role });
+};
 
   const selectDate = (val) => {
     const formattedDate = dayjs(val).format("YYYY-MM-DD");
