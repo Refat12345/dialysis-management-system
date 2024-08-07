@@ -28,7 +28,7 @@ function NationalInformation({ data }) {
             <MyButton text={"خيارات الحساب"} />
           ) : null}
 
-          { user.role === "admin" ? (
+          { user.role === "admin" &&  data.role === "secretary" ? (
             <>
               <MyButton text={"عرض الصلاحيات"} id={data.id} />
             </>

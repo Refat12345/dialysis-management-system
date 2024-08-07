@@ -1,4 +1,5 @@
 import { apiSlice } from "../../services/apiSlice";
+import Cookies from "js-cookie"
 
 export const AddMedicalSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,6 +11,7 @@ export const AddMedicalSlice = apiSlice.injectEndpoints({
           url: `createUser`,
           method: "POST",
           body: shiftRecord,
+          headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
         };
       },
     }),

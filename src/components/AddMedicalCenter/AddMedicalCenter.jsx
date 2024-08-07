@@ -13,21 +13,77 @@ import { CustomDatePicker } from "../../components";
 import ContactSecretariaComponent from "../../pages/manager_center/secretaria_account/secretaria_sections/ContactSecretariaComponent";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import { CustomButton } from "../../components";
-import { useAddMedicalMutation } from "../../services/AddMedical/AddMedicalSlice"; 
+import { useAddMedicalMutation } from "../../services/AddMedical/AddMedicalSlice";
 import {
   typeAddressFilter,
   genderFilter,
   typeContactFilter,
   useFilter,
-  rolefilter,
 } from "../../pages/manager_center/secretaria_account/secretaria_sections/secretariaData";
 import { PublicHeader } from "../../components";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 const AddMedicalCenter = () => {
   const { state, updateState } = useAddCenterState();
   const [addMedical] = useAddMedicalMutation();
+  const [loading, setLoading] = useState(false);
+
+  const handleAddMedical = async () => {
+    if (!state.username || !state.nationaltyNumber || !state.birthdate || !state.genderValue || !state.centerName) {
+      toast.error("يرجى تعبئة كل الحقول");
+      return;
+    }
+    if (state.nationaltyNumber.length !== 11) {
+      toast.error("يجب أن يحتوي الرقم الوطني على 11 خانة");
+      return;
+    }
+
+
+    setLoading(true);
+    const data = {
+      fullName: state.username,
+      nationalNumber: state.nationaltyNumber,
+      dateOfBirth: state.birthdate.format("YYYY-MM-DD"),
+      gender: state.genderValue,
+      centerName: state.centerName,
+      role: "admin",
+      telecom: state.contactInfo,
+      address: state.addressInfo,
+    };
+    try {
+      const result = await addMedical(data);
+      console.log("Result:", result);
+      toast.success("تمت الاضافة بنجاح");
+      updateState({
+        username: "",
+        nationaltyNumber: "",
+        birthdate: null,
+        centerName: "",
+        genderValue: "",
+        contactInfo: [
+          {
+            use: "",
+            system: "",
+            value: "",
+          },
+        ],
+        addressInfo: [
+          {
+            use: "",
+            cityName: "",
+            line: "",
+            countryName: "",
+          },
+        ],
+      });
+    } catch (error) {
+      toast.error("حدث خطأ اثناء الاضافة");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
@@ -69,7 +125,6 @@ const AddMedicalCenter = () => {
               }
             />
           </div>
-          {/* // */}
           <div className="w-1/2 mr-4">
             <CustomTextField
               size="3"
@@ -81,7 +136,7 @@ const AddMedicalCenter = () => {
               type="text"
               onChange={(e) =>
                 updateState({
-                    centerName: e.target.value,
+                  centerName: e.target.value,
                 })
               }
             />
@@ -104,7 +159,6 @@ const AddMedicalCenter = () => {
               onSelect={state.selectDate}
             />
           </div>
-         
         </Row>
         <div className={`${heightSmall}`}></div>
         <div className="mr-4">
@@ -200,7 +254,7 @@ const AddMedicalCenter = () => {
               className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
               title={
                 <div className="flex items-center justify-center">
-                  <span className={`${bodySmallStyle}`}>إضافة عناون</span>
+                  <span className={`${bodySmallStyle}`}>إضافة عنوان</span>
                   <div className="lg:w-2 md:w-2 w-1"></div>
                   <PlusIcon className="w-5 h-5 mr-1 text-white" />
                 </div>
@@ -210,64 +264,27 @@ const AddMedicalCenter = () => {
           </Column>
           <div className="h-5"></div>
 
-        
           <div className="flex justify-center">
-          <CustomButton
+            <CustomButton
               variant="solid"
-              onClick={async () => {
-                const data = {
-                  fullName: state.username,
-                  nationalNumber: state.nationaltyNumber,
-                  dateOfBirth: state.birthdate.format("YYYY-MM-DD"),
-                  gender: state.genderValue,
-                  centerName:state.centerName,
-                  role: "admin",
-                  telecom: state.contactInfo,
-                  address: state.addressInfo,
-                
-                };
-                console.log("الداتا قبل الارسال",data)
-                try {
-                  const result = await addMedical(data);
-                  console.log("Result:", result);
-                  toast.success("تمت الاضافة بنجاح");
-                  updateState({
-                    fullName:"",
-                    nationalNumber:"",
-                    dateOfBirth:"",
-                    centerName:"",
-                    gender:"",
-                    telecom: [ {
-                      use: "",
-                      system: "",
-                      value: "",
-                    },], 
-                    addressInfo: [ {
-                      use: "",
-                      cityName: "",
-                      line: "",
-                      countryName: ""
-                    },], 
-                  });
-  
-                 
-                } catch (error) {
-                    toast.error("حدث خطأ اثناء الاضافة");
-                }
-              }}
-
+              onClick={handleAddMedical}
               className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
               title={
                 <div className="flex items-center justify-center">
-                  <span className={`${bodySmallStyle}`}>اضافة</span>
-                  <div className="lg:w-2 md:w-2 w-1"></div>
-                  <PlusIcon className="w-5 h-5 mr-1 text-white" />
+                  {loading ? (
+                    <span className={`${bodySmallStyle}`}>جاري التحميل...</span>
+                  ) : (
+                    <>
+                      <span className={`${bodySmallStyle}`}>اضافة</span>
+                      <div className="lg:w-2 md:w-2 w-1"></div>
+                    </>
+                  )}
                 </div>
               }
               radius="full"
+              disabled={loading}
             />
           </div>
-          
         </div>
       </div>
     </div>

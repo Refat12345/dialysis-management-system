@@ -1,24 +1,41 @@
-/* eslint-disable react/prop-types */
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useState,useContext } from "react";
-import { DataContext } from "../DataContext";
+import { useState } from "react";
+import { useAddMedicalDataMutation } from "../../../../services/manager_center/setting/SettingSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CustomButton from "../../../public/button/CustomButton";
+import { bodyMeduimStyle, bodySmallStyle } from "../../../../utils/StyleUtils";
 
-function DialogNote({ open, setOpen }) {
-    const { data, setData } = useContext(DataContext);
+function DialogNote({ open, setOpen, data }) {
+  const [addMedicalData] = useAddMedicalDataMutation();
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
   };
-  const [farmManager, setFarmManager] = useState(data.NoteContent);
+  const [noteContent, setNoteContent] = useState(data);
 
   const handleInputChange = (e, setter) => setter(e.target.value);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setData({ ...data, NoteContent: farmManager });
-    setOpen(false);
+  const handleSubmit =  async (e) => {
+    event.preventDefault();
+    const newData = {
+      description: noteContent,
+    
+    };
+    try {
+      setLoading(true);
+      await addMedicalData(newData).unwrap();
+      toast.success("تم إرسال البيانات بنجاح!");
+      setOpen(false);
+    } catch (error) {
+      console.error("Failed to save the data:", error);
+    }
+    finally {
+      setLoading(false);
+    }
   };
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -33,19 +50,38 @@ function DialogNote({ open, setOpen }) {
   <div className="mb-4 w-96">
     <textarea
       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-72"
-      id="farm-manager"
+      id="note-content"
       placeholder="أدخل النص هنا..."
-      value={farmManager}
-      onChange={(e) => handleInputChange(e, setFarmManager)}
+      value={noteContent}
+      onChange={(e) => handleInputChange(e, setNoteContent)}
     />
   </div>
   <div className="flex items-center justify-center">
-    <button
+    {/* <button
       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       type="submit"
     >
       حفظ
-    </button>
+    </button> */}
+     <CustomButton
+              variant="solid"
+              onClick={handleSubmit}
+              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
+              title={
+                <div className="flex items-center justify-center">
+                  {loading ? (
+                    <span className={`${bodyMeduimStyle}`}>جاري التحميل...</span>
+                  ) : (
+                    <>
+                      <span className={`${bodySmallStyle}`}>اضافة</span>
+                      <div className="lg:w-2 md:w-2 w-1"></div>
+                    </>
+                  )}
+                </div>
+              }
+              radius="full"
+              disabled={loading}
+            />
   </div>
 </form>
         </div>

@@ -32,9 +32,26 @@ export const UserProvider = ({ children }) => {
     isSuccess: medicalSuccess,
   } = useGetMedicalCenterQuery();
 
+  // useEffect(() => {
+  //   if (medicalSuccess && medicalCenters) {
+  //     setmedicalCenters(medicalCenters);
+  //     setIsLoadingMedicalCenters(false);
+  //     setIsSuccessMedicalCenters(true);
+  //   } else if (medicalLoading) {
+  //     setIsLoadingMedicalCenters(true);
+  //     setIsSuccessMedicalCenters(false);
+  //   } else {
+  //     setIsLoadingMedicalCenters(false);
+  //     setIsSuccessMedicalCenters(false);
+  //   }
+  // }, [medicalSuccess, medicalLoading, medicalCenters]);
   useEffect(() => {
     if (medicalSuccess && medicalCenters) {
-      setmedicalCenters(medicalCenters);
+      const centersWithAll = [
+        { id: 0, centerName: "الكل" },
+        ...medicalCenters.centers,
+      ];
+      setmedicalCenters(centersWithAll);
       setIsLoadingMedicalCenters(false);
       setIsSuccessMedicalCenters(true);
     } else if (medicalLoading) {
@@ -45,6 +62,7 @@ export const UserProvider = ({ children }) => {
       setIsSuccessMedicalCenters(false);
     }
   }, [medicalSuccess, medicalLoading, medicalCenters]);
+
   //////
 
   const translateOption = (option = "الكل") => {
@@ -102,12 +120,24 @@ export const UserProvider = ({ children }) => {
     setSelectedOption(event);
   };
 
-  const handleSelectCenterChange = (selectedCenterName) => {
-    const selectedCenter = MedicalCenters.centers.find(
-      (center) => center.centerName === selectedCenterName
-    );
-    setSelectedCenterOption(selectedCenterName);
+  // const handleSelectCenterChange = (selectedCenterName) => {
+  //   const selectedCenter = MedicalCenters.centers.find(
+  //     (center) => center.centerName === selectedCenterName
+  //   );
+  //   setSelectedCenterOption(selectedCenterName);
 
+  //   setSelectedCenterId(selectedCenter.id);
+  // };
+  const handleSelectCenterChange = (selectedCenterName) => {
+    let selectedCenter;
+    if (selectedCenterName === "الكل") {
+      selectedCenter = { id: 0, centerName: "الكل" };
+    } else {
+      selectedCenter = MedicalCenters.find(
+        (center) => center.centerName === selectedCenterName
+      );
+    }
+    setSelectedCenterOption(selectedCenterName);
     setSelectedCenterId(selectedCenter.id);
   };
 

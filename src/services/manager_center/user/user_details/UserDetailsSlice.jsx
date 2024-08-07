@@ -35,7 +35,7 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
 
   EditUserPermissions: builder.mutation({
     query: (medicalRecord) => { 
-        console.log("koi",medicalRecord)
+        console.log("NEW PER IS ",medicalRecord)
         return {
             url: `updatePermissionsUser`,
             method: 'POST',

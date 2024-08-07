@@ -1,4 +1,3 @@
-
 // /* eslint-disable react-hooks/rules-of-hooks */
 // /* eslint-disable no-unused-vars */
 // /* eslint-disable react/prop-types */
@@ -46,8 +45,6 @@
 //         break;
 //     }
 
-
-
 //   };
 
 //   const selectAdminValueOption = (value) => {
@@ -73,7 +70,6 @@
 //   const handleClose = () => {
 //     setOpen(false);
 //   };
-
 
 //   const [open, setOpen] = useState(false);
 
@@ -250,10 +246,6 @@
 
 // export default TableRow;
 
-
-
-
-
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
@@ -268,16 +260,29 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SelectedTextFeild from "../../public/textfield/SelectedTextFeild";
 import OrdersStatus from "../../../pages/manager_center/orders/sections/OrderStatus";
-function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { useAddFromWaitingToPendingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
+
+function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSelectedPatient}) {
   const navigate = useNavigate();
-  const user = useSelector((state)=>state.user)
+  const user = useSelector((state) => state.user);
   const userIdString = id ? id.toString() : "14";
+  const [addFromWaitingToPending] = useAddFromWaitingToPendingMutation();
+
+
+
   const [state, setState] = useState({
     secrtaryValue: "",
     adminValue: "",
+    secrtaryWaitingValue: "",
+
 
     selectSecertaryOption: (val) => selectSecertaryOption(val),
     selectAdminOption: (val) => selectAdminValueOption(val),
+    selectSecertaryWaitingOption: (val) => selectSecertaryWaitingOption(val),
+
   });
 
   const selectSecertaryOption = (value) => {
@@ -292,7 +297,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
         break;
       case "اضافة سجل طبي":
         navigate(`/app/patient/${id}/enterMedicalRecord`);
-        break;      
+        break;
       case "اضافة المعلومات العامة":
         navigate(`/app/patient/${id}/addPatientInfo`);
         break;
@@ -306,6 +311,31 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
         break;
     }
   };
+
+  const selectSecertaryWaitingOption = async (value) => {
+    updateState({ secrtaryWaitingValue: value });
+
+    const data = {
+      centerID: user.centerID.toString(),
+      userID: userIdString,
+    };
+
+    try {
+      const result = await addFromWaitingToPending(data);
+      console.log("Result:", result);
+      toast.success("تمت الاضافة بنجاح");
+    } catch (error) {
+      toast.error("حدث خطأ اثناء الاضافة",error);
+    }
+
+    
+
+
+
+    
+  };
+
+  
 
   const selectAdminValueOption = (value) => {
     updateState({ adminValue: value });
@@ -342,7 +372,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
     setOpen(false);
   };
 
-
   const [open, setOpen] = useState(false);
 
   const handleMenuClick = (event) => {
@@ -355,12 +384,18 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
       "اضافة المعلومات العامة",
       "اضافة مستلزمات جلسة الغسيل",
       "اضافة تحليل طبي",
-      "اضافة سجل طبي"
+      "اضافة سجل طبي",
     ],
   };
 
   const adminFilter = {
-    array: ["نقل المريض", "تعطيل الحساب",],
+    array: ["نقل المريض", "تعطيل الحساب"],
+  };
+
+  const secrtaryWaitingFilter = {
+    array: [
+      "َضم المريص للمركز",
+    ],
   };
 
   return (
@@ -371,7 +406,10 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
         sessionStorage.setItem("patientId", userIdString);
       }}
     >
-      <td dir="rtl" className="py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis ">
+      <td
+        dir="rtl"
+        className="py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis "
+      >
         <div>
           {type != "auditing" && type != "orders" ? (
             <img
@@ -385,7 +423,9 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
           <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
         </div>
       </td>
-      <td className={`py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis`}>
+      <td
+        className={`py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis`}
+      >
         {type === "auditing"
           ? convertDateToArabicFormat(object.connectTow)
           : object.connectTow}
@@ -410,22 +450,42 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
           {object.connectFive}
         </td>
       )}
+      {/* {object.connectFive !== undefined &&
+      object.connectFive !== null &&
+        type === "patient"  ? (
+        <td
+          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
+          dir="ltr"
+        >
+          {object.connectFive}
+        </td>
+      ) : (
+        <td
+          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
+          dir="ltr"
+        >
+          لا يوجد
+        </td>
+      )} */}
       {object.connectSix != undefined && type != "auditing" && (
         <td className="py-3 w-48" dir="ltr">
           {object.connectSix}
         </td>
       )}
 
-      {(type === "orders" && user.role !="secretary") && <td className="w-[1px]"></td>}
-      {(type === "orders" && user.role !="secretary") && (
+      {type === "orders" && user.role != "secretary" && (
+        <td className="w-[1px]"></td>
+      )}
+      {type === "orders" && user.role != "secretary" && (
         <td>
           <div className="flex justify-end">
-            <AlertDialog renderComponent={
-              <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
-              <p className="text-md text-center ">قبول</p>
-            </div>
-            }
-            contentComponent={<OrdersStatus id={id} type={"accepted"}/>}
+            <AlertDialog
+              renderComponent={
+                <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
+                  <p className="text-md text-center ">قبول</p>
+                </div>
+              }
+              contentComponent={<OrdersStatus id={id} type={"accepted"} />}
             />
             <AlertDialog
               renderComponent={
@@ -498,7 +558,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
               />
               {open && (
                 <>
-                  {user.role === "secretary" && (
+                  {user.role === "secretary" && typeOFSelectedPatient != "مرضى انتظار" && (
                     <SelectedTextFeild
                       activeLabel={false}
                       onClick={(event) => event.stopPropagation()}
@@ -516,13 +576,32 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
                       }}
                     />
                   )}
-                  {user.role === "admin" && ( <SelectedTextFeild
+                  {/* // */}
+                  {user.role === "secretary" && typeOFSelectedPatient === "مرضى انتظار" &&  (
+                    <SelectedTextFeild
                       activeLabel={false}
                       onClick={(event) => event.stopPropagation()}
                       value={
-                        state.adminValue === ""
+                        state.secrtaryWaitingValue === ""
                           ? "اختر"
-                          : state.adminValue
+                          : state.secrtaryWaitingValue
+                      }
+                      filter={secrtaryWaitingFilter.array}
+                      onSelect={(val, event) => {
+                        state.selectSecertaryWaitingOption(val);
+                        if (event !== undefined) {
+                          event.stopPropagation();
+                        }
+                      }}
+                    />
+                  )}
+                  {/* // */}
+                  {user.role === "admin" && (
+                    <SelectedTextFeild
+                      activeLabel={false}
+                      onClick={(event) => event.stopPropagation()}
+                      value={
+                        state.adminValue === "" ? "اختر" : state.adminValue
                       }
                       filter={adminFilter.array}
                       onSelect={(val, event) => {
@@ -531,7 +610,8 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
                           event.stopPropagation();
                         }
                       }}
-                    />)}
+                    />
+                  )}
                 </>
               )}
             </>
@@ -543,9 +623,3 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
 }
 
 export default TableRow;
-
-
-
-
-
-

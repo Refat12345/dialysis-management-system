@@ -25,15 +25,20 @@ import {
   bodySmallStyle,
   heightSmall,
 } from "../../utils/StyleUtils";
-
+import { useState } from "react";
 import ContactSecretariaComponent from "../../pages/manager_center/secretaria_account/secretaria_sections/ContactSecretariaComponent";
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
 
 function AddPaitentInfo({id}) {
 
+  const [isLoading, setIsLoading] = useState(false); 
+
+
   const { state, updateState } = useAddPaitentInfoState();
   const [addPatientInfo] = useAddPatientInfoMutation();
+
+
 
 
   const genderFilter = {
@@ -287,7 +292,6 @@ function AddPaitentInfo({id}) {
         </div>
       </div>
 
-      {/* /////////////////////// //////////////////////////////*/}
       <div className="mt-7"></div>
       <HeaderTextField text={"مرافق المريض"} width={"كامل"} />
       <div className="mt-3"></div>
@@ -429,21 +433,24 @@ function AddPaitentInfo({id}) {
         <CustomButton
           variant="solid"
           onClick={async () => {
-            // if (
-            //   !state.status ||
-            //   !state.LearnValue ||
-            //   !state.publicIncome ||
-            //   !state.economicType ||
-            //   !state.economicSource ||
-            //   !state.location ||
-            //   !state.username ||
-            //   !state.relativeRelation ||
-            //   !state.contactInfo ||
-            //   !state.addressInfo
-            // ) {
-            //   alert("الرجاء ملء جميع الحقول");
-            //   return;
-            // }
+            setIsLoading(true);  
+
+            if (
+              !state.status ||
+              !state.LearnValue ||
+              !state.publicIncome ||
+              !state.economicType ||
+              !state.economicSource ||
+              !state.location ||
+              !state.username ||
+              !state.relativeRelation ||
+              !state.contactInfo ||
+              !state.addressInfo
+            ) {
+              alert("الرجاء ملء جميع الحقول");
+              setIsLoading(false); 
+              return;
+            }
 
             const data = {
               nationality: state.genderValue,
@@ -464,7 +471,6 @@ function AddPaitentInfo({id}) {
               telecomDataArray: state.contactInfo,
               address: state.addressInfo,
             };
-            console.log("is", data);
             try {
               const result = await addPatientInfo(data).unwrap();
               console.log("Result:", result);
@@ -494,6 +500,8 @@ function AddPaitentInfo({id}) {
             } catch (error) {
               toast.error("حدث خطأ اثناء الاضافة");
             }
+            setIsLoading(false);
+
           }}
           className={`w-40  bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
           title={
@@ -503,6 +511,9 @@ function AddPaitentInfo({id}) {
             </div>
           }
           radius="full"
+          loading={isLoading}
+
+          
         />
       </div>
     </div>

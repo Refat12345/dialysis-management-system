@@ -12,7 +12,6 @@ function UserDetailsView() {
 
   const [data, setData] = useState(null);
 
-console.log(userData);
   useEffect(() => {
     if (isSuccess && !isLoading && userData) {
       const { userDetails } = userData;
