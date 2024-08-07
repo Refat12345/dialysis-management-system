@@ -1,14 +1,16 @@
 import { CustomButton } from "../../../components";
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useUsers } from "../../manager_center/users/users-list/UserListState";
 import s1 from "./../../../assets/icons/s1.svg";
 import { useAddToWaitingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import {
   bodyMeduimStyle,
   bodySmallStyle,
+  heightSmall,
 } from "../../../utils/StyleUtils";
-import {PageLoader} from "../../../components";
+import { PatientProvider } from "../../manager_center/patient/patient_list/PaitientListState";
 import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
 const SecretariatDashboard = () => {
   const {
@@ -29,15 +31,6 @@ const SecretariatDashboard = () => {
       console.error(error);
     }
   };
-  if (isLoading) {
-    return (
-      <div className="flex-grow md:mr-48">
-        <div className="flex items-center justify-center h-screen">
-          <PageLoader />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -56,9 +49,9 @@ const SecretariatDashboard = () => {
                 <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
                   <div className="cardOneHeader flex flex-row justify-start ">
                     <img src={s1} />
-                    <p className="text-textButtonColor text-lg mr-2 mt-1 font-bold">
+                    <h5 className="text-textButtonColor text-xl mr-2 mt-1">
                       {patient.fullName}
-                    </p>
+                    </h5>
                   </div>
 
                   <div className="cardGrid grid grid-cols-2 ">
@@ -67,14 +60,14 @@ const SecretariatDashboard = () => {
 
                       <h4 className="text-right mr-2">العنوان</h4>
                     </div>
-                    <h4 className="text-right font-bold">{patient.city}</h4>
+                    <h4 className="text-right">{patient.city}</h4>
 
                     <div className="flex flex-row justify-start mt-2">
                       <img className="w-5 h-5" src={s1} />
 
                       <h4 className="text-right mr-2">رقم التواصل</h4>
                     </div>
-                    <h4 className="text-right font-bold">{patient.contactNumber}</h4>
+                    <h4 className="text-right">{patient.contactNumber}</h4>
                   </div>
 
                   <div className="flex justify-end mt-3 ml-5 mb-4">

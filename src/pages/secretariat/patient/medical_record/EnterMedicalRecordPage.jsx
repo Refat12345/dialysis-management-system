@@ -27,6 +27,7 @@ const handlePost =async () => {
   }catch(error) {
     status = false
     console.log(err);
+    console.log(err.status);
     toast.error("ليست لديك صلاحيات لاضافة السجل الطبي")
     console.log(error);
   }

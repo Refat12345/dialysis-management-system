@@ -8,7 +8,8 @@ const AppointmentsSlice = apiSlice.injectEndpoints(
                     url:`centerappointments/${id}`,
                     method:"GET",
                     headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
-                })
+                }),
+                providesTags:["Appointment"]
             }),
             getShifts:builder.query({
                 query:(id)=>({

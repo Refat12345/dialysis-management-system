@@ -3,13 +3,19 @@
 import AppointmentDialog from "../../../pages/public/appointment/sections/Dialog";
 import { useState } from "react";
 
-const TableComponent = ({ shift, appointments, chairNumbers, role }) => {
+const TableComponent = ({ shift, appointments, chairNumbers, role ,patientID }) => {
   const daysOfWeek = ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
   const [open, setOpen] = useState(false);
-  const body = useState({
+  const [body,setBody] = useState({
     appointmentID:"",
-    userID:""
+    userID:patientID
   });
+  const updateState = (newValues) => {
+    setBody((prevState) => ({
+      ...prevState,
+      ...newValues,
+    }));
+  };
   
   const prepareData = (appointments, shift) => {
     const data = {};
@@ -41,10 +47,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role }) => {
   const handleClick = (day, chairNumber) => {
     const appointmentData = data[chairNumber][day];
     if (role === "secretary" && appointmentData.patientName === "لا يوجد") {
-      body.appointmentID = appointmentData.appointmentID
-      console.log("Shift ID:", appointmentData.shiftID);
-      console.log("Appointment ID:", appointmentData.appointmentID);
-      console.log("Chair ID:", appointmentData.chairID);
+      updateState({appointmentID:appointmentData.appointmentID})
       setOpen(true);
     }
   };
@@ -83,7 +86,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role }) => {
           ))}
         </tbody>
       </table>
-      <AppointmentDialog open={open} setOpen={setOpen} />
+      <AppointmentDialog open={open} setOpen={setOpen} body = {body} />
     </div>
   );
 };
