@@ -1,6 +1,3 @@
-import { CustomButton } from "../../../components";
-/* eslint-disable no-unused-vars */
-
 import React, { useState, useEffect } from "react";
 import { useUsers } from "../../manager_center/users/users-list/UserListState";
 import s1 from "./../../../assets/icons/s1.svg";
@@ -12,12 +9,13 @@ import {
 } from "../../../utils/StyleUtils";
 import { PatientProvider } from "../../manager_center/patient/patient_list/PaitientListState";
 import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
+import { CustomButton } from "../../../components";
+
 const SecretariatDashboard = () => {
   const {
     hangingPatientData,
     isLoadinghangingPatient,
     isSuccesshangingPatient
-  
   } = usePatient();
   console.log(hangingPatientData);
   const [addToWaiting] = useAddToWaitingMutation();
@@ -40,69 +38,76 @@ const SecretariatDashboard = () => {
             المرضى المعلقين
           </div>
 
-          <div
-            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6"
-            dir="rtl"
-          >
-            {hangingPatientData[0].map((patient) => (
-              <div key={patient.id}>
-                <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
-                  <div className="cardOneHeader flex flex-row justify-start ">
-                    <img src={s1} />
-                    <h5 className="text-textButtonColor text-xl mr-2 mt-1">
-                      {patient.fullName}
-                    </h5>
-                  </div>
-
-                  <div className="cardGrid grid grid-cols-2 ">
-                    <div className="flex flex-row justify-start ">
-                      <img className="w-5 h-5" src={s1} />
-
-                      <h4 className="text-right mr-2">العنوان</h4>
+          {hangingPatientData[0].length === 0 ? (
+                        <div className="flex justify-center items-center h-screen">
+                        <h2 className="text-2xl font-bold text-gray-500">لا يوجد مرضى معلقين</h2>
+                      </div>
+          
+          ) : (
+            <div
+              className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6"
+              dir="rtl"
+            >
+              {hangingPatientData[0].map((patient) => (
+                <div key={patient.id}>
+                  <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
+                    <div className="cardOneHeader flex flex-row justify-start ">
+                      <img src={s1} />
+                      <h5 className="text-textButtonColor text-xl mr-2 mt-1">
+                        {patient.fullName}
+                      </h5>
                     </div>
-                    <h4 className="text-right">{patient.city}</h4>
 
-                    <div className="flex flex-row justify-start mt-2">
-                      <img className="w-5 h-5" src={s1} />
+                    <div className="cardGrid grid grid-cols-2 ">
+                      <div className="flex flex-row justify-start ">
+                        <img className="w-5 h-5" src={s1} />
 
-                      <h4 className="text-right mr-2">رقم التواصل</h4>
+                        <h4 className="text-right mr-2">العنوان</h4>
+                      </div>
+                      <h4 className="text-right">{patient.city}</h4>
+
+                      <div className="flex flex-row justify-start mt-2">
+                        <img className="w-5 h-5" src={s1} />
+
+                        <h4 className="text-right mr-2">رقم التواصل</h4>
+                      </div>
+                      <h4 className="text-right">{patient.contactNumber}</h4>
                     </div>
-                    <h4 className="text-right">{patient.contactNumber}</h4>
-                  </div>
 
-                  <div className="flex justify-end mt-3 ml-5 mb-4">
-                    <CustomButton
-                      variant="solid"
-                      onClick={() => {}}
-                      className={`bg-blue-800 text-white h-8 transition-all font-semibold ${bodyMeduimStyle} `}
-                      title={
-                        <div className="flex items-center justify-center">
-                          <span className={`${bodySmallStyle}`}>
-                            اعطاء موعد
-                          </span>
-                          <div className="lg:w-2 md:w-2 w-1"></div>
-                        </div>
-                      }
-                    />
+                    <div className="flex justify-end mt-3 ml-5 mb-4">
+                      <CustomButton
+                        variant="solid"
+                        onClick={() => {}}
+                        className={`bg-blue-800 text-white h-8 transition-all font-semibold ${bodyMeduimStyle} `}
+                        title={
+                          <div className="flex items-center justify-center">
+                            <span className={`${bodySmallStyle}`}>
+                              اعطاء موعد
+                            </span>
+                            <div className="lg:w-2 md:w-2 w-1"></div>
+                          </div>
+                        }
+                      />
 
-                    <CustomButton
-                      variant="solid"
-                      onClick={() => handleAddToWaiting(patient.id)} 
-                      className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle} mr-2`}
-                      title={
-                        <div className="flex items-center justify-center">
-                          <span className={`${bodySmallStyle}`}>
-                            اضافة الى قائمة الانتظار
-                          </span>
-                          <div className="lg:w-2 md:w-2 w-1"></div>
-                        </div>
-                      }
-                    />
+                      <CustomButton
+                        variant="solid"
+                        onClick={() => handleAddToWaiting(patient.id)} 
+                        className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle} mr-2`}
+                        title={
+                          <div className="flex items-center justify-center">
+                            <span className={`${bodySmallStyle}`}>
+                              اضافة الى قائمة الانتظار
+                            </span>
+                            <div className="lg:w-2 md:w-2 w-1"></div>
+                          </div>
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>

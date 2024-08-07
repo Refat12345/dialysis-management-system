@@ -260,7 +260,7 @@ function AddPaitentInfo({id}) {
             />
           </div>
 
-          <div className="w-3/4 mr-4 mt-3">
+          {/* <div className="w-3/4 mr-4 mt-3">
             <HeaderTextField icon={home_location} text={"حالة الحساب"} />
             <div className="mt-3"></div>
 
@@ -270,8 +270,8 @@ function AddPaitentInfo({id}) {
               filter={statusFilter.array}
               onSelect={(val) => state.selectStatus(val)}
             />
-          </div>
-          {state.status === "مرفوض" || state.status === "انتظار" ? (
+          </div> */}
+          {/* {state.status === "مرفوض" || state.status === "انتظار" ? (
             <div className="w-3/4 mr-4 mt-3">
               <div className="mt-3"></div>
 
@@ -288,7 +288,7 @@ function AddPaitentInfo({id}) {
                 }
               />
             </div>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
 
@@ -436,7 +436,6 @@ function AddPaitentInfo({id}) {
             setIsLoading(true);  
 
             if (
-              !state.status ||
               !state.LearnValue ||
               !state.publicIncome ||
               !state.economicType ||
@@ -455,7 +454,8 @@ function AddPaitentInfo({id}) {
             const data = {
               nationality: state.genderValue,
               maritalStatus: state.maritalStatus,
-              status: state.status,
+              // status: state.status,
+              status: "معلق",
               reasonOfStatus: state.reasonOfStatus,
               educationalLevel: state.LearnValue,
               generalIncome: state.publicIncome,
@@ -475,8 +475,6 @@ function AddPaitentInfo({id}) {
               const result = await addPatientInfo(data).unwrap();
               console.log("Result:", result);
               toast.success("تم إرسال البيانات  بنجاح!");
-
-
               updateState({
                 genderValue: "",
                 maritalStatus: "",
