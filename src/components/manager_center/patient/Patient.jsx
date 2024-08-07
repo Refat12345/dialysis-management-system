@@ -61,7 +61,7 @@ export function Table({ data }) {
         `}
       </style>
 
-      <div className="overflow-x-auto  ml-11 min-h-customAbove600" dir="rtl">
+      <div className="overflow-x-auto   min-h-customAbove600" dir="rtl">
      
         <div className="flex justify-between mb-5 mt-5">
           <h2 className="text-customPurple text-customSize">المرضى</h2>

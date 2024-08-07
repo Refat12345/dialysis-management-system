@@ -1,3 +1,259 @@
+/* eslint-disable react/prop-types */
+
+// // /* eslint-disable react-hooks/rules-of-hooks */
+// // /* eslint-disable no-unused-vars */
+// // /* eslint-disable react/prop-types */
+// // import patient from "../../../assets/icons/medical-center/patient/patient.svg";
+// // import React, { useState } from "react";
+// // import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
+// // import ChevronIcon from "../../../assets/icons/public/chevron-left.svg";
+// // import { useFormatDate } from "../../../utils/DateUtils";
+// // import AlertDialog from "../../public/dialog/Dialog";
+// // import AuditingDetailsDialog from "../../public/auditing/AuditingDetailsDialog";
+// // import { useSelector } from "react-redux";
+// // import { useNavigate } from "react-router-dom";
+// // import RejectOrder from "../../../pages/manager_center/orders/sections/OrderStatus";
+// // import SelectedTextFeild from "../../public/textfield/SelectedTextFeild";
+// // import OrdersStatus from "../../../pages/manager_center/orders/sections/OrderStatus";
+// // function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
+// //   const navigate = useNavigate();
+// //   const user = useSelector((state)=>state.user)
+// //   const userIdString = id ? id.toString() : "14";
+// //   const [state, setState] = useState({
+// //     secrtaryValue: "",
+// //     adminValue: "",
+
+// //     selectSecertaryOption: (val) => selectSecertaryOption(val),
+// //     selectAdminOption: (val) => selectAdminValueOption(val),
+// //   });
+
+// //   const selectSecertaryOption = (value) => {
+// //     updateState({ secrtaryValue: value });
+
+// //     switch (value) {
+// //       case "اضافة وصفة طبية":
+// //         navigate(`/app/patient/${id}/PrescriptionInfo`);
+// //         break;
+// //       case "اضافة المعلومات العامة":
+// //         navigate(`/app/patient/${id}/addPatientInfo`);
+// //         break;
+// //       case "اردني":
+// //         history.push("/path-for-jordanian");
+// //         break;
+// //       case "اجنبي":
+// //         history.push("/path-for-foreigner");
+// //         break;
+// //       default:
+// //         break;
+// //     }
+
+
+
+// //   };
+
+// //   const selectAdminValueOption = (value) => {
+// //     updateState({ adminValue: value });
+// //   };
+
+// //   const updateState = (newValues) => {
+// //     setState((prevState) => ({
+// //       ...prevState,
+// //       ...newValues,
+// //     }));
+// //   };
+
+// //   const object = {
+// //     connectOne: Object.values(row)[0],
+// //     connectTow: Object.values(row)[1],
+// //     connectThree: Object.values(row)[2],
+// //     connectFour: Object.values(row)[3],
+// //     connectFive: Object.values(row)[4],
+// //     connectSix: Object.values(row)[5],
+// //     connectSeven: Object.values(row)[6],
+// //   };
+// //   const handleClose = () => {
+// //     setOpen(false);
+// //   };
+
+
+// //   const [open, setOpen] = useState(false);
+
+// //   const handleMenuClick = (event) => {
+// //     event.stopPropagation();
+// //     setOpen(!open);
+// //   };
+// //   const secrtaryFilter = {
+// //     array: ["اضافة وصفة طبية", "اضافة المعلومات العامة"],
+// //   };
+
+// //   const adminFilter = {
+// //     array: ["سوري", "فلسطيني", "اردني", "اجنبي"],
+// //   };
+
+// //   return (
+// //     <tr
+// //       className={`text-right border-b ${getRowColor(index)}`}
+// //       onClick={() => {
+// //         handleRowClick(userIdString);
+// //         sessionStorage.setItem("patientId", userIdString);
+// //       }}
+// //     >
+// //       <td className="py-3 px-4 ">
+// //         <div>
+// //           {type != "auditing" && type != "orders" ? (
+// //             <img
+// //               className="inline-block w-6 h-6 mr-0"
+// //               src={patient}
+// //               alt="Patient"
+// //             />
+// //           ) : (
+// //             ""
+// //           )}
+// //           <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
+// //         </div>
+// //       </td>
+// //       <td className={`py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis`}>
+// //         {type === "auditing"
+// //           ? useFormatDate(object.connectTow)
+// //           : object.connectTow}
+// //       </td>
+// //       {type === "orders" ? (
+// //         <td className="py-3 px-4">
+// //           <p className="whitespace-nowrap overflow-hidden text-ellipsis w-[90%]">
+// //             {object.connectThree}
+// //           </p>
+// //         </td>
+// //       ) : (
+// //         <td className="py-3 px-4">{object.connectThree}</td>
+// //       )}
+// //       {object.connectFour != undefined && (
+// //         <td className="py-3 px-4 ">{object.connectFour}</td>
+// //       )}
+// //       {object.connectFive != undefined && type != "auditing" && (
+// //         <td
+// //           className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
+// //           dir="ltr"
+// //         >
+// //           {object.connectFive}
+// //         </td>
+// //       )}
+// //       {object.connectSix != undefined && type != "auditing" && (
+// //         <td className="py-3 w-48" dir="ltr">
+// //           {object.connectSix}
+// //         </td>
+// //       )}
+
+// //       {(type === "orders" && user.role !="secretary") && <td className="w-[1px]"></td>}
+// //       {(type === "orders" && user.role !="secretary") && (
+// //         <td>
+// //           <div className="flex justify-end">
+// //             <AlertDialog renderComponent={
+// //               <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
+// //               <p className="text-md text-center ">قبول</p>
+// //             </div>
+// //             }
+// //             contentComponent={<OrdersStatus id={id} type={"accepted"}/>}
+// //             />
+// //             <AlertDialog
+// //               renderComponent={
+// //                 <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
+// //                   <p className="text-md text-center ">رفض</p>
+// //                 </div>
+// //               }
+// //               contentComponent={<OrdersStatus id={id} type={"rejected"} />}
+// //             />
+// //           </div>
+// //         </td>
+// //       )}
+// //       {type != "dialysis" && (
+// //         <td
+// //           className={`py-3 ${type != "orders" ? "pr-12" : "pr-0"}`}
+// //           align={`${type === "orders" ? "right" : ""} ${
+// //             type === "orders" && "w-16"
+// //           }`}
+// //         >
+// //           {type === "auditing" ? (
+// //             <div
+// //               className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${
+// //                 index % 2 === 0 ? "hover:bg-gray-200" : "hover:bg-gray-300"
+// //               }`}
+// //             >
+// //               <AlertDialog
+// //                 renderComponent={
+// //                   <img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />
+// //                 }
+// //                 contentComponent={
+// //                   <AuditingDetailsDialog
+// //                     oldData={object.connectFive}
+// //                     newData={object.connectSix}
+// //                     details={object.connectSeven}
+// //                   />
+// //                 }
+// //                 titleButton={"رجوع"}
+// //               />
+// //             </div>
+// //           ) : type === "orders" ? (
+// //             <div
+// //               className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${
+// //                 index % 2 === 0 ? "hover:bg-gray-200" : "hover:bg-gray-300  "
+// //               }`}
+// //             >
+// //               <AlertDialog
+// //                 renderComponent={
+// //                   <img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />
+// //                 }
+// //                 contentComponent={
+// //                   <div dir="rtl" className=" flex flex-col ">
+// //                     <p className="self-center text-lg font-bold mb-5">
+// //                       تفاصيل الطلب :
+// //                     </p>
+// //                     <p className="text-base text-titleColor font-bold">
+// //                       {object.connectThree}
+// //                     </p>
+// //                   </div>
+// //                 }
+// //                 titleButton={"رجوع"}
+// //               />
+// //             </div>
+// //           ) : (
+// //             <>
+// //               <img
+// //                 onClick={handleMenuClick}
+// //                 className="w-5 h-5 pr-18 -ml-4"
+// //                 src={down}
+// //                 alt="Patient"
+// //               />
+// //               {open && user.role === "secretary" && (
+// //                 <SelectedTextFeild
+// //                   activeLabel={false}
+// //                   onClick={(event) => event.stopPropagation()}
+// //                   value={
+// //                     state.secrtaryValue === "" ? "اختر" : state.secrtaryValue
+// //                   }
+// //                   filter={secrtaryFilter.array}
+// //                   onSelect={(val, event) => {
+// //                     state.selectSecertaryOption(val);
+// //                     // event.stopPropagation();
+// //                     if (event !== undefined) {
+// //                       event.stopPropagation();
+// //                     }
+
+// //                   }}
+// //                 />
+// //               )}
+// //             </>
+// //           )}
+// //         </td>
+// //       )}
+// //     </tr>
+// //   );
+// // }
+
+// // export default TableRow;
+
+
+
+
 
 // /* eslint-disable react-hooks/rules-of-hooks */
 // /* eslint-disable no-unused-vars */
@@ -6,14 +262,14 @@
 // import React, { useState } from "react";
 // import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
 // import ChevronIcon from "../../../assets/icons/public/chevron-left.svg";
-// import { useFormatDate } from "../../../utils/DateUtils";
+// import { convertDateToArabicFormat } from "../../../utils/DateUtils";
 // import AlertDialog from "../../public/dialog/Dialog";
 // import AuditingDetailsDialog from "../../public/auditing/AuditingDetailsDialog";
 // import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
-// import RejectOrder from "../../../pages/manager_center/orders/sections/OrderStatus";
 // import SelectedTextFeild from "../../public/textfield/SelectedTextFeild";
 // import OrdersStatus from "../../../pages/manager_center/orders/sections/OrderStatus";
+// import DropDown from "../../public/drop_down/DropDown";
 // function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
 //   const navigate = useNavigate();
 //   const user = useSelector((state)=>state.user)
@@ -33,11 +289,17 @@
 //       case "اضافة وصفة طبية":
 //         navigate(`/app/patient/${id}/PrescriptionInfo`);
 //         break;
+//       case "اضافة تحليل طبي":
+//         navigate(`/app/patient/${id}/addMedicalAnalysis`);
+//         break;
+//       case "اضافة سجل طبي":
+//         navigate(`/app/patient/${id}/enterMedicalRecord`);
+//         break;      
 //       case "اضافة المعلومات العامة":
 //         navigate(`/app/patient/${id}/addPatientInfo`);
 //         break;
-//       case "اردني":
-//         history.push("/path-for-jordanian");
+//       case "اضافة مستلزمات جلسة الغسيل":
+//         navigate(`/app/patient/${id}/assignMaterialToUserCenter`);
 //         break;
 //       case "اجنبي":
 //         history.push("/path-for-foreigner");
@@ -45,13 +307,24 @@
 //       default:
 //         break;
 //     }
-
-
-
 //   };
 
+//   const colors = {
+//     titleColor:"primaryColor",
+//     contentColor:"bgButtonColor"
+// }
 //   const selectAdminValueOption = (value) => {
 //     updateState({ adminValue: value });
+//     switch (value) {
+//       case "نقل المريض":
+//         navigate(`/app/medicalCenters`);
+//         break;
+//       case "تعطيل الحساب":
+//         navigate(`/app/patient/${id}/addMedicalAnalysis`);
+//         break;
+//       default:
+//         break;
+//     }
 //   };
 
 //   const updateState = (newValues) => {
@@ -82,11 +355,17 @@
 //     setOpen(!open);
 //   };
 //   const secrtaryFilter = {
-//     array: ["اضافة وصفة طبية", "اضافة المعلومات العامة"],
+//     array: [
+//       "اضافة وصفة طبية",
+//       "اضافة المعلومات العامة",
+//       "اضافة مستلزمات جلسة الغسيل",
+//       "اضافة تحليل طبي",
+//       "اضافة سجل طبي"
+//     ],
 //   };
 
 //   const adminFilter = {
-//     array: ["سوري", "فلسطيني", "اردني", "اجنبي"],
+//     array: ["نقل المريض", "تعطيل الحساب",],
 //   };
 
 //   return (
@@ -97,7 +376,7 @@
 //         sessionStorage.setItem("patientId", userIdString);
 //       }}
 //     >
-//       <td className="py-3 px-4 ">
+//       <td dir="rtl" className="py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis ">
 //         <div>
 //           {type != "auditing" && type != "orders" ? (
 //             <img
@@ -113,7 +392,7 @@
 //       </td>
 //       <td className={`py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis`}>
 //         {type === "auditing"
-//           ? useFormatDate(object.connectTow)
+//           ? convertDateToArabicFormat(object.connectTow)
 //           : object.connectTow}
 //       </td>
 //       {type === "orders" ? (
@@ -147,7 +426,7 @@
 //         <td>
 //           <div className="flex justify-end">
 //             <AlertDialog renderComponent={
-//               <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
+//               <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 transition-transform transform hover:scale-105">
 //               <p className="text-md text-center ">قبول</p>
 //             </div>
 //             }
@@ -155,7 +434,7 @@
 //             />
 //             <AlertDialog
 //               renderComponent={
-//                 <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
+//                 <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 transition-transform transform hover:scale-105 ">
 //                   <p className="text-md text-center ">رفض</p>
 //                 </div>
 //               }
@@ -193,7 +472,7 @@
 //             </div>
 //           ) : type === "orders" ? (
 //             <div
-//               className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${
+//               className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer transition-transform transform hover:scale-110 ${
 //                 index % 2 === 0 ? "hover:bg-gray-200" : "hover:bg-gray-300  "
 //               }`}
 //             >
@@ -216,29 +495,60 @@
 //             </div>
 //           ) : (
 //             <>
+//               <DropDown
+//               filter={secrtaryFilter.array}
+//               onSelect={(val, event) => {
+//                 state.selectSecertaryOption(val);
+//                 if (event !== undefined) {
+//                   event.stopPropagation();
+//                 }
+//               }}
+//               colors={colors}
+              
+//               />
 //               <img
 //                 onClick={handleMenuClick}
 //                 className="w-5 h-5 pr-18 -ml-4"
 //                 src={down}
 //                 alt="Patient"
 //               />
-//               {open && user.role === "secretary" && (
-//                 <SelectedTextFeild
-//                   activeLabel={false}
-//                   onClick={(event) => event.stopPropagation()}
-//                   value={
-//                     state.secrtaryValue === "" ? "اختر" : state.secrtaryValue
-//                   }
-//                   filter={secrtaryFilter.array}
-//                   onSelect={(val, event) => {
-//                     state.selectSecertaryOption(val);
-//                     // event.stopPropagation();
-//                     if (event !== undefined) {
-//                       event.stopPropagation();
-//                     }
-
-//                   }}
-//                 />
+//               {open && (
+//                 <>
+//                   {user.role === "secretary" && (
+//                     <SelectedTextFeild
+//                       activeLabel={false}
+//                       onClick={(event) => event.stopPropagation()}
+//                       value={
+//                         state.secrtaryValue === ""
+//                           ? "اختر"
+//                           : state.secrtaryValue
+//                       }
+//                       filter={secrtaryFilter.array}
+//                       onSelect={(val, event) => {
+//                         state.selectSecertaryOption(val);
+//                         if (event !== undefined) {
+//                           event.stopPropagation();
+//                         }
+//                       }}
+//                     />
+//                   )}
+//                   {user.role === "admin" && ( <SelectedTextFeild
+//                       activeLabel={false}
+//                       onClick={(event) => event.stopPropagation()}
+//                       value={
+//                         state.adminValue === ""
+//                           ? "اختر"
+//                           : state.adminValue
+//                       }
+//                       filter={adminFilter.array}
+//                       onSelect={(val, event) => {
+//                         state.selectAdminOption(val);
+//                         if (event !== undefined) {
+//                           event.stopPropagation();
+//                         }
+//                       }}
+//                     />)}
+//                 </>
 //               )}
 //             </>
 //           )}
@@ -250,15 +560,8 @@
 
 // export default TableRow;
 
-
-
-
-
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import patient from "../../../assets/icons/medical-center/patient/patient.svg";
-import React, { useState } from "react";
+import  { useState } from "react";
 import down from "../../../assets/icons/medical-center/patient/chevron-down.svg";
 import ChevronIcon from "../../../assets/icons/public/chevron-left.svg";
 import { convertDateToArabicFormat } from "../../../utils/DateUtils";
@@ -337,9 +640,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
     connectFive: Object.values(row)[4],
     connectSix: Object.values(row)[5],
     connectSeven: Object.values(row)[6],
-  };
-  const handleClose = () => {
-    setOpen(false);
   };
 
 
@@ -421,7 +721,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
         <td>
           <div className="flex justify-end">
             <AlertDialog renderComponent={
-              <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 transition-transform transform hover:scale-105">
+              <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
               <p className="text-md text-center ">قبول</p>
             </div>
             }
@@ -429,7 +729,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
             />
             <AlertDialog
               renderComponent={
-                <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 transition-transform transform hover:scale-105 ">
+                <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
                   <p className="text-md text-center ">رفض</p>
                 </div>
               }
@@ -467,7 +767,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
             </div>
           ) : type === "orders" ? (
             <div
-              className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer transition-transform transform hover:scale-110 ${
+              className={`border border-gray-300 rounded-md w-7 pr-[3px] hover:cursor-pointer ${
                 index % 2 === 0 ? "hover:bg-gray-200" : "hover:bg-gray-300  "
               }`}
             >
@@ -543,7 +843,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id }) {
 }
 
 export default TableRow;
-
 
 
 

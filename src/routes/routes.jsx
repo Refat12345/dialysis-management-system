@@ -6,7 +6,6 @@ import {
   PatientListPage,
   ErrorPage,
   UsersListPage,
-  Dashboard,
   MedicalRecordPage,
   PrecedentsSection,
   MedicalAnalysisPage,
@@ -14,18 +13,17 @@ import {
   MedicalCentersPage,
   LoginPage,
   UserDetailsPage,
-  GeneralDialysis,
   AuditingPage,
   OrdersPage,
   GlobalInfoPage,
   EnterMedicalRecordPage,
   AddMedicalAnalysisPage,
-  MainPage
+  MainPage,
+  Appointment
 } from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import {
   mainRoute,
-
   patientProfileRoute,
   patientsRoute,
   usersRoute,
@@ -92,10 +90,8 @@ import EditPrescriptionsState from "../pages/secretariat/patient/prescriptions/e
 import AddPrespictionPage from "../pages/secretariat/patient/prescriptions/AddPrespictionPage";
 import AddPatientInfoPage from "../pages/secretariat/patient/AddPatientInfoPage";
 import AssignMaterialToUserCenter from "../components/AssignMaterialToUserCenter";
-import SecretariatDashboard from "../pages/secretariat/Dashboard/SecretariatDashboard";
 import OrdersState from "../pages/manager_center/orders/OrdersState";
 import DisbursedMaterials from "../pages/manager_center/disbursed_materials/DisbursedMaterials";
-import Appointment from "../pages/manager_center/appointment/Appointment";
 import Notes from "../pages/manager_center/notes/Notes";
 import AddUser from "../components/addUser/AddUser";
 import CreateUserState from "../components/addUser/CreateUserState";

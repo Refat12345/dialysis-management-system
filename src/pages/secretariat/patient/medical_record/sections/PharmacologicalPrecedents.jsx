@@ -10,10 +10,10 @@ return (
         <Row mainAxisAlignment="justify-between" >
             <p className="pr-2 font-bold text-titleColor text-lg">السوابق الدوائية</p>
             <div className="flex pl-3 ">
-                <div onClick={()=>state.addPharmacologicalPrecedents()} className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor rounded-full text-md">
+                <div onClick={()=>state.addPharmacologicalPrecedents()} className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor rounded-full text-md">
                     <p className="">اضافة سابقة أخرى</p> 
                 </div>
-                {state.pharmacologicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
+                {state.pharmacologicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
                     <p className="">الكل</p> 
                 </div>}  contentComponent={<PharmacologicalPrecedentsDialog state={state} updateState={updateState}/>}/>}
             </div> 

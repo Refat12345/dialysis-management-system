@@ -24,6 +24,7 @@ export {default as UserDetailsPage} from "./manager_center/users/user-details/Us
 export {default as GeneralDialysis} from "../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysis"
 export {default as AuditingPage} from "./public/auditing/AuditingPage"
 export {default as MainPage} from "./public/MainPage"
+export {default as Appointment} from "./public/appointment/AppointmentPage"
 
 //error
 export {default as ErrorPage} from "./error/ErrorPage"

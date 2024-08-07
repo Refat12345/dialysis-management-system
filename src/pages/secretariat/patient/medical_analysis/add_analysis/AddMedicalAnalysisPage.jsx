@@ -121,7 +121,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                     {!isLoading ? <div className=""> <CustomButton
                         variant="solid"
                         onClick={postData}
-                        className="bg-bgbutton text-white h-8 transition-all font-bold text-md hover:cursor-pointer"
+                        className="bg-bgbutton text-white h-8 font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110"
                         title={
                             <div className="flex items-center justify-center">
                                 <span>إضافة التحليل</span>

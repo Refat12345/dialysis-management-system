@@ -1,9 +1,11 @@
+// 
+
 /* eslint-disable react/prop-types */
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-export default function DropDown({ title, filter, colors, onSelect }) {
+export default function DropDown({ title, filter, colors, onSelect , type }) {
   const [selectedValue, setSelectedValue] = useState(title);
 
   const color = `bg-${colors.titleColor} text-${colors.textColor} border-${colors.textColor}`;
@@ -45,6 +47,7 @@ export default function DropDown({ title, filter, colors, onSelect }) {
                   {({ active }) => (
                     <button
                       onClick={() => {
+                        
                         handleItemClick(content);
                         onSelect(content);
                       }}
@@ -60,7 +63,7 @@ export default function DropDown({ title, filter, colors, onSelect }) {
                 </Menu.Item>
               );
             })}
-            <Menu.Item>
+            {type != "shift" && <Menu.Item>
               {({ active }) => (
                 <button
                   onClick={handleReset}
@@ -73,7 +76,7 @@ export default function DropDown({ title, filter, colors, onSelect }) {
                   {"الكل"}
                 </button>
               )}
-            </Menu.Item>
+            </Menu.Item>}
           </div>
         </Menu.Items>
       </Transition>

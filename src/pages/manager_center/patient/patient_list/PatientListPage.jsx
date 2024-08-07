@@ -37,7 +37,8 @@ const PatientListPage = () => {
     
     <>
     {isSuccess && !isLoading && flattenedData && (
-      <div className="flex-grow mr-56 ml-8">
+      <div className="flex-grow mr-48">
+        <div className="mx-[2%]">
         <PatientHeader type={"patient"}
           setSearchTerm={(term) => {
             setSearchTermState(term);
@@ -66,6 +67,7 @@ const PatientListPage = () => {
             itemsPerPage={10}
           />
         )}
+        </div>
       </div>
     )}
   </>

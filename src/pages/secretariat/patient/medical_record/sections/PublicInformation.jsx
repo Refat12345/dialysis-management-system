@@ -62,7 +62,7 @@ return (
                     size = "3"
                     required={true}
                     placeholder={"الوزن الجاف"}
-                    type="text"
+                    type="number"
                     value = {state.dryWeight}
                     onChange = {(e) =>
                         updateState({

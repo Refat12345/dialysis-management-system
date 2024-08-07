@@ -13,10 +13,10 @@
              <p className="pr-2 font-bold text-titleColor text-lg">السوابق الجراحية</p>
              <div className="flex pl-3 ">
                  
-                 <div onClick={()=>state.addSurgicalPrecedents()} className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor rounded-full text-md ">
+                 <div onClick={()=>state.addSurgicalPrecedents()} className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor rounded-full text-md ">
                      <p className="">اضافة سابقة أخرى</p> 
                  </div>
-                 {state.surgicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton hover:bg-black hover:text-white hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
+                 {state.surgicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
                      <p className="">الكل</p> 
                  </div>}  contentComponent={<SurgicalPrecedentsDialog state={state} updateState={updateState}/>}/>}
              </div> 
