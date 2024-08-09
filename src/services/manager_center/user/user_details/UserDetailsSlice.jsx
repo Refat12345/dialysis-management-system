@@ -12,14 +12,16 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
 
     EditUser: builder.mutation({
       query: (medicalRecord) => { 
-          console.log("koi",medicalRecord)
+          console.log("editDATA",medicalRecord)
           return {
               url: `updateUser`,
               method: 'POST',
               body: medicalRecord,
-              headers: {
-                  'Authorization': 'Bearer 53|qd2zsftESjcGb6ePvjjsCMSJAlzhkwqrk0rkaf5B1c176c9f'
-                }
+              // headers: {
+              //     'Authorization': 'Bearer 53|qd2zsftESjcGb6ePvjjsCMSJAlzhkwqrk0rkaf5B1c176c9f'
+              //   }
+              headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+
           };
           
       },

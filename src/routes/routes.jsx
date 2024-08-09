@@ -60,7 +60,8 @@ import {
   AddMedicalRoute,
   appointment,
   notes,
-  GetUnAcceptedPatientRoute
+  GetUnAcceptedPatientRoute,
+  userInvites
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -102,6 +103,7 @@ import CreateUserState from "../components/addUser/CreateUserState";
 import CreateMedicalState from "../components/AddMedicalCenter/CreateMedicalState";
 import AddMedicalCenter from "../components/AddMedicalCenter/AddMedicalCenter";
 import GetUnAcceptedPatient from "../components/manager_center/patient/GetUnAcceptedPatient";
+import UserInvites from "../pages/manager_center/users/UserInvites";
 
 const router = createBrowserRouter([
   {
@@ -365,6 +367,16 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
+
+      {
+        path: userInvites,
+        element: (
+          <UserProvider>
+            <UserInvites />
+          </UserProvider>
+        ),
+        errorElement: <ErrorPage />,
+      },
     
       {
         path: enterDisbursedMedicines,
@@ -442,7 +454,10 @@ const router = createBrowserRouter([
       {
         path:notes,
         element :(
-          <Notes/>
+          // <Notes/>
+          <GeneralDetailsProvider>
+          <GeneralNotePage type={"sidebar"} />
+        </GeneralDetailsProvider>
         )
       }
     ],

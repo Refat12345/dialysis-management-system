@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import {
   useGetUserQuery,
   useGetMedicalCenterQuery,
+  useGetUserInvitesQuery
 } from "../../../../services/manager_center/user/user_list/UserSlice";
 import { useSelector } from "react-redux";
 
@@ -17,6 +18,58 @@ export const UserProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const user = useSelector((state) => state.user);
+  const centerIdString = user.centerID ? user.centerID.toString() : "14";
+
+
+  //getInvites
+  const [userInvites, setUserInvites] = useState([]);
+
+  const [isUserInvitesLoading, setIsUserInvitesLoading] = useState(false);
+  const [isUserInvitesSuccess, setIsUserInvitesSuccess] = useState(false);
+
+  const [searchTermForInvites, setSearchTermForInvites] = useState("");
+  const [filteredDataForInvites, setFilteredDataForInvites] = useState([]);
+
+
+  const {
+    data: userinvitedata,
+    isLoading: userinviteloading,
+    isSuccess: userinvitesucess,
+  } = useGetUserInvitesQuery(centerIdString);
+
+  useEffect(() => {
+    if (userinvitesucess && userinvitedata) {
+      setUserInvites(userinvitedata.data);
+      setIsUserInvitesLoading(false);
+      setIsUserInvitesSuccess(true);
+    } else if (userinviteloading) {
+      setIsUserInvitesLoading(true);
+      setIsUserInvitesSuccess(false);
+    } else {
+      setIsUserInvitesLoading(false);
+      setIsUserInvitesSuccess(false);
+    }
+  }, [userinvitesucess, userinviteloading, userinvitedata]);
+
+  useEffect(() => {
+    if (searchTermForInvites !== "") {
+      const flatUserData = userInvites.flat();
+      const filtered = flatUserData.filter((user) =>
+        user.fullName.toLowerCase().includes(searchTermForInvites.toLowerCase())
+      );
+      console.log(filtered);
+      setFilteredDataForInvites(filtered);
+    } else {
+      setFilteredDataForInvites(userInvites);
+    }
+  }, [searchTermForInvites, userInvites]);
+
+  
+
+
+
+
+  //EndGetInvites
 
   /////
   const [MedicalCenters, setmedicalCenters] = useState([]);
@@ -81,7 +134,6 @@ export const UserProvider = ({ children }) => {
   };
 
   const translatedOption = translateOption(selectedOption);
-  const centerIdString = user.centerID ? user.centerID.toString() : "14";
 
   const {
     data: users,
@@ -120,14 +172,7 @@ export const UserProvider = ({ children }) => {
     setSelectedOption(event);
   };
 
-  // const handleSelectCenterChange = (selectedCenterName) => {
-  //   const selectedCenter = MedicalCenters.centers.find(
-  //     (center) => center.centerName === selectedCenterName
-  //   );
-  //   setSelectedCenterOption(selectedCenterName);
-
-  //   setSelectedCenterId(selectedCenter.id);
-  // };
+ 
   const handleSelectCenterChange = (selectedCenterName) => {
     let selectedCenter;
     if (selectedCenterName === "الكل") {
@@ -157,6 +202,12 @@ export const UserProvider = ({ children }) => {
         MedicalCenters,
         handleSelectCenterChange,
         selectedCenterOption,
+        isUserInvitesSuccess,
+        isUserInvitesLoading,
+        userInvites,
+        setSearchTermForInvites,
+        filteredDataForInvites
+
       }}
     >
       {children}

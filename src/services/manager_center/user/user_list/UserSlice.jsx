@@ -27,7 +27,17 @@ const UserSlice = apiSlice.injectEndpoints({
        
       },
     }),
+
+    getUserInvites: builder.query({
+      query: (id) => {
+        return {
+          url: `/getCode/${id}`,
+          method: "GET",
+        }
+       
+      },
+    }),
   }),
 });
 
-export const { useGetUserQuery,useGetMedicalCenterQuery } = UserSlice;
+export const { useGetUserQuery,useGetMedicalCenterQuery,useGetUserInvitesQuery } = UserSlice;

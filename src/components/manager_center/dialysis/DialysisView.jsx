@@ -17,6 +17,8 @@ export default function DialysisView() {
   if (isLoading) return <LoadingComponent />;
   if (!patientData) return <div>No data available</div>;
 
+  console.log("opop",patientData)
+
   
   
 
@@ -39,7 +41,7 @@ export default function DialysisView() {
 
       <MachineData data={patientData}  />
 
-      <NotesSessionData />
+      <NotesSessionData notes={patientData.dialysisSession.sessionNotes} />
     </div>
 
       )

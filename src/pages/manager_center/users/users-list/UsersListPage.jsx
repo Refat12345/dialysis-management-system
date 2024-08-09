@@ -12,8 +12,8 @@ const UsersListPage = () => {
     useUsers();
   const [searchTerm, setSearchTermState] = useState("");
   const [noResultsFound, setNoResultsFound] = useState(false);
-  const user = useSelector((state) => state.user);
 
+  const user = useSelector((state) => state.user);
 
 
   useEffect(() => {
