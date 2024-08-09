@@ -7,8 +7,10 @@ import { toast } from "react-toastify";
 import ButtonLoader from "../../../public/loader/ButtonLoader";
 import Toast from "../../../public/toast/Toast";
 import { textToastStyle } from "../../../../data/data";
+import { useParams } from "react-router-dom";
 
-const TransferPatient = ({destinationCenterID,patientID}) => {
+const TransferPatient = ({destinationCenterID}) => {
+    let {id} = useParams();
     
     const [userInput, setUserInput] = useState('');
     const [transferPatient,{isLoading }] = useTransferPatientMutation()
@@ -22,7 +24,7 @@ const TransferPatient = ({destinationCenterID,patientID}) => {
                 centerPatientID:user.centerID,
                 cause:userInput,
                 destinationCenterID:destinationCenterID,
-                patientID:patientID
+                patientID:id
             }
             console.log(body);
             await transferPatient(body)

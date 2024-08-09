@@ -41,7 +41,12 @@ export default {
         cardInDialysisPage: "#f6f9ff",
         borderINCardInDialysisPage: "#f1f4fa",
         bgUserColor:"rgba(240, 245, 255, 1)",
-
+        bgCardOne:"rgba(237, 106, 94, 0.16)",
+        bgCardTow:"rgba(222, 222, 234, 1)",
+        bgCardThree:"rgba(17, 110, 65, 0.16)",
+        bgCardFour:"rgba(170, 106, 23, 0.16)",
+        bgCardFife:"rgba(90, 139, 176, 0.16)",
+        
         bgDashboard: "rgba(244, 247, 254, 255)",
         textMenuColor: "rgba(117,117,117,1)",
         healthInformationTitle: "rgba(89,91,153,255)",

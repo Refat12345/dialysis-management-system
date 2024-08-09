@@ -59,7 +59,9 @@ export const dialysisByPatient = `dialysisByPatient`;
 
 export const disbursedMaterialsRoute = `disbursedMaterials`
 export const appointment = `appointment`
+export const assignAppointmentRoute = `appointment/:id`
 export const notes = `notes`
+export const transferPatientRoute = "medicalCenter/:id" 
 
 //Delete 
 export const addPatintinfoRoute = 'addPatientInfo'

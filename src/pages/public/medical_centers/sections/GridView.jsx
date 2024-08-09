@@ -14,11 +14,11 @@ const GridView = ({data}) => {
     const responsive =  (height > 630 ? (height > 700 ?(width>1410 ? "min-h-centerAbove700_1400" : "min-h-centerAbove700") : "min-h-centerUnder700") : "min-h-centerUnder630" )
     const user = useSelector((state)=>state.user)
 return (
-    <div className={`grid grid-cols-3 xl:grid-cols-4  bg-bgSideButton shadow-inner  rounded-lg p-4 gap-3 ${responsive}`}>
+    <div className={`grid grid-cols-3 xl:grid-cols-4 content-start bg-bgSideButton shadow-inner  rounded-lg p-4 gap-3  ${responsive}`}>
     {data.map((medicalCenter , index)=>{
         return user.role === "admin" ?<AlertDialog key={index} 
                 renderComponent={<MedicalCenter icons={icons} content={medicalCenter} role={"admin"} key={index}/>} 
-                contentComponent={<TransferPatient patientID={"15"} destinationCenterID={medicalCenter.id} key={index}/>} 
+                contentComponent={<TransferPatient  destinationCenterID={medicalCenter.id} key={index}/>} 
                 /> :<div>
                     <MedicalCenter icons={icons} content={medicalCenter} key={index} role={"super"} />
                 </div>

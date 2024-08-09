@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useUsers } from "../../manager_center/users/users-list/UserListState";
+
 import s1 from "./../../../assets/icons/s1.svg";
 import { useAddToWaitingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import {
   bodyMeduimStyle,
   bodySmallStyle,
-  heightSmall,
 } from "../../../utils/StyleUtils";
-import { PatientProvider } from "../../manager_center/patient/patient_list/PaitientListState";
 import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
 import { CustomButton } from "../../../components";
+import { useNavigate } from "react-router-dom";
 
 const SecretariatDashboard = () => {
   const {
@@ -17,6 +15,7 @@ const SecretariatDashboard = () => {
     isLoadinghangingPatient,
     isSuccesshangingPatient
   } = usePatient();
+  const navigate = useNavigate()
   console.log(hangingPatientData);
   const [addToWaiting] = useAddToWaitingMutation();
   
@@ -77,8 +76,10 @@ const SecretariatDashboard = () => {
                     <div className="flex justify-end mt-3 ml-5 mb-4">
                       <CustomButton
                         variant="solid"
-                        onClick={() => {}}
-                        className={`bg-blue-800 text-white h-8 transition-all font-semibold ${bodyMeduimStyle} `}
+                        onClick={() => {
+                          navigate(`/app/appointment/${patient.id}`)
+                        }}
+                        className={`bg-blue-800 text-white h-8 transition-all font-semibold ${bodyMeduimStyle} hover:cursor-pointer `}
                         title={
                           <div className="flex items-center justify-center">
                             <span className={`${bodySmallStyle}`}>
@@ -92,7 +93,7 @@ const SecretariatDashboard = () => {
                       <CustomButton
                         variant="solid"
                         onClick={() => handleAddToWaiting(patient.id)} 
-                        className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle} mr-2`}
+                        className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle} mr-2 hover:cursor-pointer`}
                         title={
                           <div className="flex items-center justify-center">
                             <span className={`${bodySmallStyle}`}>

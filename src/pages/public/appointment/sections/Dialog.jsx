@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import { ButtonLoader, CustomButton } from "../../../../components";
 import { useAssignAppointmentMutation } from "../../../../services/manager_center/appointment/assignAppointmentSlice";
@@ -13,13 +12,12 @@ function AppointmentDialog({ open, setOpen ,body}) {
   const handleClose = () => {
     setOpen(false);
   };
-  const [assignAppointment,{isLoading  ,error:err}] = useAssignAppointmentMutation()
+  const [assignAppointment,{isLoading, error:err}] = useAssignAppointmentMutation()
 
   const handlePost = async ()=>{
     try{
-     const response = await assignAppointment(body).unwrap()
-     console.log(response);
-     
+      const response = await assignAppointment(body).unwrap()
+      console.log(response);
       toast.success("تم حجز الموعد بنجاح")
     }catch(error){
       console.log(err);
@@ -28,19 +26,18 @@ function AppointmentDialog({ open, setOpen ,body}) {
   }
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle className="text-center ">
+      <DialogContent className="p-4 w-full " dir="rtl">
         <p className="font-bold text-titleColor text-xl">
             هل أنت متأكد من حجز الموعد
         </p>
-      </DialogTitle>
-      <DialogContent className="p-4 w-full " dir="rtl">
+        <div className="mb-3"></div>
         <div className="flex justify-center">
             {!isLoading ? <CustomButton
             variant="solid"
             onClick={handlePost}
             className={` bg-bgbutton text-white h-8  font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110 `}
             title={
-              <div className="flex items-center justify-center">
+              <div >
                 <span className={``}>
                   نعم
                 </span>

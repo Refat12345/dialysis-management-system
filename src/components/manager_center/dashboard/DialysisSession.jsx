@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 
 import Icon from "../../../assets/icons/medical-center/dashboard/Sessions/patient.svg"
+import { getHourInArabic } from "../../../utils/DateUtils";
 
-const DialysisSession = ({dialysis ,index}) => {
+const DialysisSession = ({dialysis}) => {
   
   console.log(dialysis);
   let height = window.innerHeight;
@@ -11,16 +12,15 @@ const DialysisSession = ({dialysis ,index}) => {
 
   return (
     <>
-        <div className={`flex flex-row-reverse  bg-white rounded-md mx-4 my-4 mb-2 ${width<640 ?"justify-between":""}`}>
-            <div dir="rtl" className="flex w-[18.5%] ">
+        <div className={`flex flex-row-reverse font-bold   bg-white rounded-md mx-4 my-4 mb-2 ${width<640 ?"justify-between":""}`}>
+            <div dir="rtl" className="flex w-[22.5%] ">
                 <img src={Icon} alt=""/>
                 <p className={`content-center text pr-2 whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
-            <p dir="rtl" className={` text-center w-[20.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
-            <p className={`text-center w-[20.5%]  ${responsive}`}>{dialysis.startTime}</p>
-            <p className={`text-center w-[20.5%]  ${responsive}`}>{index === 0 ?"4:30" :(index === 1 ? "5:00" :(index === 2 ? "2:30":"3:00")) }</p>
-            <p className={`text-center w-1/10  ${responsive} hidden sm:block`}>{dialysis.chair}</p>
-            <p className={`w-1/10 ${responsive} pl-4 hidden sm:block`}>{dialysis.roomName}</p>
+            <p dir="rtl" className={` text-center w-[25.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
+            <p className={`text-center w-[25.5%]  ${responsive}`}>{getHourInArabic(dialysis.startTime)}</p>
+            <p className={`text-center w-[14%]  ${responsive} hidden sm:block`}>{dialysis.chair}</p>
+            <p dir="rtl" className={`w-[16%] ${responsive} pl-4 hidden sm:block text-center whitespace-nowrap overflow-hidden text-ellipsis`}>{dialysis.roomName}</p>
         </div>
     </>
    

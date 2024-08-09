@@ -1,76 +1,75 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+import { PaginationComponent, Search, PageLoader, HorizontalLine } from "../../../components";
+import "./style.css";
+import Grid from "./sections/Grid";
+import { useState, useCallback, useEffect } from "react";
+import { useGetDisbursedMaterialsQuery } from "../../../services/manager_center/disbursed_materials/DisbursedMaterialsSlice";
 
-import { PaginationComponent, Search ,PageLoader ,HorizontalLine } from "../../../components"
-import "./style.css"
-import Grid from "./sections/Grid"
-import { useState ,useCallback ,useEffect} from "react"
-import { useGetDisbursedMaterialsQuery } from "../../../services/manager_center/disbursed_materials/DisbursedMaterialsSlice"
 const DisbursedMaterials = () => {
-    const {data:disbursed,isSuccess,isLoading} = useGetDisbursedMaterialsQuery()
-    const [input,setInput] = useState("")
-    const [search,setSearch] = useState([])
-    const height = window.innerHeight;
-    console.log(useGetDisbursedMaterialsQuery());
-    if(isSuccess){console.log(disbursed);}
-    useEffect (()=>{
-    
-        if(isSuccess){
+    const { data: disbursed, isSuccess, isLoading } = useGetDisbursedMaterialsQuery();
+    const [input, setInput] = useState("");
+    const [search, setSearch] = useState([]);
+
+    useEffect(() => {
+        if (isSuccess) {
             setSearch(disbursed.data);
         }
-    },[isSuccess])
-    if(isSuccess){console.log(disbursed.data[0]);}
+    }, [isSuccess, disbursed]);
+
     useEffect(() => {
-        if (input.trim()) {
-            const searchArray = disbursed.data.filter((disburseds) => {
-            
-            return disburseds.userDetails.fullName.toLowerCase().includes(input.toLowerCase())}
-        );
+        if (isSuccess) {
+            let searchArray = disbursed.data;
+            if (input !== "") {
+                searchArray = disbursed.data.filter((disburseds) => 
+                    disburseds.userDetails.fullName.toLowerCase().includes(input.toLowerCase())
+                );
+            }
             setSearch(searchArray);
-        } 
-    }, [input]);
+        }
+    }, [input, disbursed, isSuccess]);
+
     const handleInputChange = useCallback((e) => {
         setInput(e.target.value);
     }, []);
-    
-    if(isLoading){
+
+    if (isLoading) {
         return (
             <div className="flex-grow m21-d:mr-48">
                 <div className="flex items-center justify-center h-screen">
                     <PageLoader />
                 </div>
             </div>
-            
-        ); 
+        );
     }
-    
-    if(isSuccess && disbursed.data.length === 0 ) {
-        return <>
-        <div className="flex-grow md:mr-48">
-        <div className="flex items-center justify-center h-screen">
-            <p className="font-bold text-2xl">لا يوجد مستهلكات مصروفة</p>
-        </div>
-        </div></>
+
+    if (isSuccess && disbursed.data.length === 0) {
+        return (
+            <div className="flex-grow md:mr-48">
+                <div className="flex items-center justify-center h-screen">
+                    <p className="font-bold text-2xl">لا يوجد مستهلكات مصروفة</p>
+                </div>
+            </div>
+        );
     }
 
     return (
-        isSuccess && <>
-        <div dir="rtl" className="md:mr-48 flex-grow">
-            <div className={` mx-[3%] mt-5`}>
-                <Search handleInputValue={handleInputChange}/>
-                <div className="mb-4"></div>
-                <HorizontalLine/>
-                <div className="mb-4"></div>
-                <div className="flex justify-between">
-                    <p className="text-titleColor font-bold text-2xl">المستهلكات المصروفة</p>
+        isSuccess && (
+            <div dir="rtl" className="md:mr-48 flex-grow">
+                <div className={`mx-[3%] mt-5`}>
+                    <Search handleInputValue={handleInputChange} />
+                    <div className="mb-4"></div>
+                    <HorizontalLine />
+                    <div className="mb-4"></div>
+                    <div className="flex justify-between">
+                        <p className="text-titleColor font-bold text-2xl">المستهلكات المصروفة</p>
+                    </div>
+                    <div className="margin"></div>
+                    {search.length > 0 && (
+                        <PaginationComponent RenderComponent={Grid} data={search} itemsPerPage={12} />
+                    )}
                 </div>
-                <div className="margin"></div>
-                {search.length > 0 && <PaginationComponent RenderComponent={Grid} data={search} itemsPerPage={12} />}
             </div>
-        </div>
-        </>
-)
-}
+        )
+    );
+};
 
-export default DisbursedMaterials
+export default DisbursedMaterials;

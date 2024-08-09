@@ -1,0 +1,23 @@
+
+@media (max-width: 1300px) {
+.element {
+    min-width: 220px ; 
+}
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+    .element {
+        min-width: 260px ; 
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1420px) {
+    .element {
+        min-width: 280px ; 
+    }
+}
+@media (min-width: 1420px)  {
+    .element {
+        min-width: 288px ; 
+    }
+}

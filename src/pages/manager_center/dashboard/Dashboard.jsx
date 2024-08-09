@@ -12,7 +12,7 @@ const Dashboard = () => {
   })
   const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
   const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
-  const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading   } = useGetSessionsQuery();
+  const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading ,error:err   } = useGetSessionsQuery();
   const {data: statisticsData, isSuccess: statisticsSuccess, isLoading: statisticsLoading , error } = useGetCenterStatisticsQuery()
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
@@ -31,7 +31,7 @@ const Dashboard = () => {
       
     );
   }
-  console.log(causeRenalData);
+  
   if (!sessionSuccess || !statisticsSuccess  || !causeRenalSuccess) {
     return (
       <div className="flex-grow md:mr-48">

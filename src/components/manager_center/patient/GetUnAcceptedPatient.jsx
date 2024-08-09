@@ -26,7 +26,7 @@ const GetUnAcceptedPatient = () => {
   };
 
   const handleAddMedicalRecord = () => {
-    navigate(`/app/patient/${selectedPatient.id}/addMedicalRecord`);
+    navigate(`/app/patient/${selectedPatient.id}/enterMedicalRecord`);
     setShowDropdown(false);
   };
 

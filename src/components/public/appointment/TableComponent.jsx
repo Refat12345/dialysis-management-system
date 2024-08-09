@@ -1,28 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-
 import AppointmentDialog from "../../../pages/public/appointment/sections/Dialog";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 
-const TableComponent = ({ shift, appointments, chairNumbers, role ,patientID }) => {
+const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm ,patientID }) => {
   const daysOfWeek = ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
   const [open, setOpen] = useState(false);
-  const [body,setBody] = useState({
-    appointmentID:"",
-    userID:patientID
+  const [body, setBody] = useState({
+    appointmentID: "",
+    userID: patientID
   });
+  const [highlightedCells, setHighlightedCells] = useState({});
+
   const updateState = (newValues) => {
     setBody((prevState) => ({
       ...prevState,
       ...newValues,
     }));
   };
-  
-  const prepareData = (appointments, shift) => {
-    const data = {};
+
+  const data = useMemo(() => {
+    const preparedData = {};
     chairNumbers.forEach(chairNumber => {
-      data[chairNumber] = {};
+      preparedData[chairNumber] = {};
       daysOfWeek.forEach(day => {
-        data[chairNumber][day] = { patientName: "لا يوجد", shiftID: null, appointmentID: null, chairID: chairNumber };
+        preparedData[chairNumber][day] = { patientName: "لا يوجد", shiftID: null, appointmentID: null, chairID: chairNumber };
       });
     });
 
@@ -30,7 +32,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role ,patientID }) 
       .filter(appointment => appointment.shiftName === shift)
       .forEach(appointment => {
         if (chairNumbers.includes(appointment.chairNumber)) {
-          data[appointment.chairNumber][appointment.day] = {
+          preparedData[appointment.chairNumber][appointment.day] = {
             patientName: appointment.patientName || "لا يوجد",
             shiftID: appointment.shiftID,
             appointmentID: appointment.id,
@@ -39,18 +41,33 @@ const TableComponent = ({ shift, appointments, chairNumbers, role ,patientID }) 
         }
       });
 
-    return data;
-  };
-
-  const data = prepareData(appointments, shift);
+    return preparedData;
+  }, [appointments, shift, chairNumbers]);
 
   const handleClick = (day, chairNumber) => {
     const appointmentData = data[chairNumber][day];
     if (role === "secretary" && appointmentData.patientName === "لا يوجد") {
-      updateState({appointmentID:appointmentData.appointmentID})
+      updateState({ appointmentID: appointmentData.appointmentID });
       setOpen(true);
     }
   };
+
+  useEffect(() => {
+    const newHighlightedCells = {};
+    if (searchTerm.trim() !== "") {
+      chairNumbers.forEach(chairNumber => {
+        daysOfWeek.forEach(day => {
+          if (data[chairNumber][day].patientName.includes(searchTerm)) {
+            if (!newHighlightedCells[chairNumber]) {
+              newHighlightedCells[chairNumber] = {};
+            }
+            newHighlightedCells[chairNumber][day] = true;
+          }
+        });
+      });
+    }
+    setHighlightedCells(newHighlightedCells);
+  }, [searchTerm, data]);
 
   return (
     <div className="overflow-x-auto">
@@ -75,8 +92,8 @@ const TableComponent = ({ shift, appointments, chairNumbers, role ,patientID }) 
               </td>
               {daysOfWeek.map(day => (
                 <td
-                  onClick={() => handleClick(day, chairNumber)}
-                  className={`py-4 whitespace-nowrap font-bold text-sm text-center text-gray-500 border-r bg-primaryColor mr-2 ${role === "secretary" && data[chairNumber][day].patientName === "لا يوجد" ? " hover:bg-black hover:text-white hover:cursor-pointer transition-transform transform hover:scale-105" : ""}`}
+                  onClick={() =>patientID !=undefined && handleClick(day, chairNumber)}
+                  className={`py-4 whitespace-nowrap font-bold text-sm text-center text-gray-500 border-r bg-primaryColor mr-2 ${role === "secretary" && data[chairNumber][day].patientName === "لا يوجد" ? `${patientID !=undefined ? " hover:bg-black hover:text-white hover:cursor-pointer transition-transform transform hover:scale-105":""}` : ""} ${highlightedCells[chairNumber] && highlightedCells[chairNumber][day] ? "bg-titleColor text-white" : ""}`}
                   key={day}
                 >
                   {data[chairNumber][day].patientName}
@@ -86,7 +103,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role ,patientID }) 
           ))}
         </tbody>
       </table>
-      <AppointmentDialog open={open} setOpen={setOpen} body = {body} />
+      <AppointmentDialog open={open} setOpen={setOpen} body={body} />
     </div>
   );
 };

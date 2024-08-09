@@ -4,15 +4,22 @@ import TableComponent from '../../../components/public/appointment/TableComponen
 import { Search, DropDown, PageLoader } from "../../../components/index";
 import { useGetAppointmentsQuery, useGetChairsQuery, useGetShiftsQuery } from '../../../services/manager_center/appointment/GetAppointmentsSlice';
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useCallback  } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Appointment = () => {
     const user = useSelector((state) => state.user);
+    let { id } = useParams();
+    
     const { data: appointmentsData, isSuccess: appointmentsSuccess, isLoading: appointmentsLoading } = useGetAppointmentsQuery(user.centerID);
     const { data: shiftsData, isSuccess: shiftsSuccess, isLoading: shiftsLoading } = useGetShiftsQuery(user.centerID);
     const { data: chairsData, isSuccess: chairsSuccess, isLoading: chairsLoading } = useGetChairsQuery(user.centerID);
     
     const [shift, setShift] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const handleInputChange = useCallback((e) => {
+        setSearchTerm(e.target.value);
+      }, []);
 
     useEffect(() => {
         if (shiftsSuccess && shiftsData[0].length > 0) {
@@ -20,6 +27,14 @@ const Appointment = () => {
         }
     }, [shiftsSuccess, shiftsData]);
 
+    if(shiftsSuccess && shiftsData[0] === "لا توجد ورديات متاحة لهذا المركز"){
+        return <div className="flex-grow md:mr-48">
+            <div className="flex items-center justify-center h-screen">
+            <p className="font-bold text-2xl">لا يوجد جدول مواعيد</p>
+            </div>
+        </div>
+    }
+   
     const filters = [
         {
             title: "الوردية",
@@ -29,12 +44,19 @@ const Appointment = () => {
 
     const chairNumbers = chairsSuccess ? chairsData.message.map(chair => chair.chairNumber) : [];
 
+    if(chairsSuccess && chairNumbers === 0) {
+        return <div className="flex-grow md:mr-48">
+                    <div className="flex items-center justify-center h-screen">
+                    <p className="font-bold text-2xl">لا يوجد جدول مواعيد</p>
+                    </div>
+                </div>
+    }
     const colors = {
         titleColor: "primaryColor",
         contentColor: "bgButtonColor",
         textColor: "textMenuColor"
     };
-
+        
     if (appointmentsLoading || shiftsLoading || chairsLoading) {
         return (
             <div className="flex-grow md:mr-48">
@@ -44,7 +66,7 @@ const Appointment = () => {
             </div>
         );
     }
-
+   
     if (appointmentsSuccess && shiftsSuccess && chairsSuccess) {
         return (
             <div dir="rtl" className="md:mr-48 flex-grow">
@@ -61,7 +83,7 @@ const Appointment = () => {
                                     type="shift"
                                 />
                             </div>
-                            <Search />
+                            <Search handleInputValue={handleInputChange} />
                         </div>
                     </div>
                     <TableComponent
@@ -69,6 +91,9 @@ const Appointment = () => {
                         chairNumbers={chairNumbers}
                         shift={shift}
                         role={user.role}
+                        searchTerm={searchTerm}
+                        patientID =  {id}
+                        
                     />
                 </header>
             </div>

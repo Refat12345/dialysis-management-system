@@ -56,9 +56,11 @@ import {
   assignMaterialToUserCenter,
   AddUserRoute,
   AddMedicalRoute,
+  assignAppointmentRoute,
   appointment,
   notes,
-  GetUnAcceptedPatientRoute
+  GetUnAcceptedPatientRoute,
+  transferPatientRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -395,20 +397,16 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: enterMedicalRecordRoute,
+            path: assignAppointmentRoute,
             element: (
-              <EnterMedicalRecordState>
-                <EnterMedicalRecordPage />
-              </EnterMedicalRecordState>
+              <Appointment/>
             ),
             errorElement: <ErrorPage />,
           },
           {
-            path: addPatintinfoRoute,
+            path: transferPatientRoute,
             element: (
-              <AddPaitentInfoState>
-              <AddPatientInfoPage />
-            </AddPaitentInfoState>
+              <MedicalCentersPage/>
             ),
             errorElement: <ErrorPage />,
           },
@@ -439,6 +437,12 @@ const router = createBrowserRouter([
         path:notes,
         element :(
           <Notes/>
+        )
+      },
+      {
+        path:assignAppointmentRoute,
+        element :(
+          <Appointment/>
         )
       }
     ],

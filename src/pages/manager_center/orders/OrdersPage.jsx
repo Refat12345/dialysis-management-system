@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
+
+import { useState, useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { useGetAllOrdersQuery } from "../../../services/manager_center/orders/OrdersSlice";
 import Header from "./sections/Header";
 import OrdersSection from "./sections/OrdersSection";
-import { useState, useEffect, useMemo } from "react";
 import { PaginationComponent, PageLoader } from "../../../components";
-import { useGetAllOrdersQuery } from "../../../services/manager_center/orders/OrdersSlice";
-import { useSelector } from "react-redux";
 
 const OrdersPage = () => {
   const { data, isLoading, isSuccess } = useGetAllOrdersQuery();
@@ -12,7 +14,8 @@ const OrdersPage = () => {
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [filter, setFilter] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const user = useSelector((state)=>state.user)
+  const user = useSelector((state) => state.user);
+  
   const itemsPerPage = useMemo(() => {
     const height = window.innerHeight;
     if (height > 800) return 11;
@@ -25,25 +28,23 @@ const OrdersPage = () => {
   useEffect(() => {
     if (isSuccess && data) {
       const ordersData = data[0];
-      if(user.role === "secretary") {
-        const secretaryOrders = ordersData.filter((order)=>{
-          console.log(user.id );
-          const item =  order.senderid === user.id && order 
-          const filterItem = item.senderName === user.fullName && item 
-          return filterItem
-        }
-      )
-      setOrders(secretaryOrders);
-      setFilteredOrders(secretaryOrders);
-      } else{
-        const array = ordersData.filter(order=> order.requestStatus === "pending")
+      if (user.role === "secretary") {
+        const secretaryOrders = ordersData.filter((order) => {
+          console.log(user.id);
+          const item = order.senderid === user.id && order;
+          const filterItem = item.senderName === user.fullName && item;
+          return filterItem;
+        });
+        setOrders(secretaryOrders);
+        setFilteredOrders(secretaryOrders);
+      } else {
+        const array = ordersData.filter(order => order.requestStatus === "pending");
         setOrders(array);
         setFilteredOrders(array);
       }
-    
-      
     }
   }, [isSuccess, data]);
+
   useEffect(() => {
     let filteredArray = orders;
     if (filter !== "") {
@@ -61,7 +62,7 @@ const OrdersPage = () => {
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
-  }
+  };
 
   if (isLoading) {
     return (
@@ -72,7 +73,6 @@ const OrdersPage = () => {
       </div>
     );
   }
-
 
   if (isSuccess && orders.length === 0) {
     return (

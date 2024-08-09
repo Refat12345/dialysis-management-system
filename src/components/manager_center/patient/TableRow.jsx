@@ -352,14 +352,11 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
       case "اضافة تحليل طبي":
         navigate(`/app/patient/${id}/addMedicalAnalysis`);
         break;
-      case "اضافة سجل طبي":
-        navigate(`/app/patient/${id}/enterMedicalRecord`);
-        break;
-      case "اضافة المعلومات العامة":
-        navigate(`/app/patient/${id}/addPatientInfo`);
-        break;
       case "اضافة مستلزمات جلسة الغسيل":
         navigate(`/app/patient/${id}/assignMaterialToUserCenter`);
+        break;
+      case "اعطاء موعد":
+        navigate(`/app/patient/${id}/appointment/${id}`);
         break;
       case "اجنبي":
         history.push("/path-for-foreigner");
@@ -396,10 +393,9 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
 
   const selectAdminValueOption = (value) => {
     updateState({ adminValue: value });
-    console.log("SS");
     switch (value) {
       case "نقل المريض":
-        navigate(`/app/medicalCenters`);
+        navigate(`/app/patient/${id}/medicalCenter/${id}`);
         break;
       case "تعطيل الحساب":
         navigate(`/app/patient/${id}/addMedicalAnalysis`);
@@ -438,10 +434,9 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
   const secrtaryFilter = {
     array: [
       "اضافة وصفة طبية",
-      "اضافة المعلومات العامة",
       "اضافة مستلزمات جلسة الغسيل",
       "اضافة تحليل طبي",
-      "اضافة سجل طبي",
+      "اعطاء موعد",
     ],
   };
 
