@@ -60,8 +60,7 @@ import {
   appointment,
   notes,
   GetUnAcceptedPatientRoute,
-  userInvites
-  GetUnAcceptedPatientRoute,
+  userInvites,
   transferPatientRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";

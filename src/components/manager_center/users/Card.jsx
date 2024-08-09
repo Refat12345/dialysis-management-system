@@ -170,7 +170,7 @@ function Card({ data }) {
   return (
     <>
       <div
-        className="transition-transform transform hover:scale-105 hover:cursor-pointer bg-bgUserColor p-2 rounded-lg shadow-lg max-w-[300px] "
+        className="transition-transform transform hover:scale-105 hover:cursor-pointer bg-bgUserColor p-2 rounded-lg shadow-lg max-w-[300px] w-[300px] h-[180px] "
         onClick={() => handleCardClick()}
       >
         <div className="flex justify-between items-center">
