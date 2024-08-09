@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useGetPatientQuery,useGetUnAcceptedPatientQuery,useGetHangingPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
 import { useSelector } from "react-redux";
+import { useGetMedicalCenterQuery } from "../../../../services/manager_center/user/user_list/UserSlice";
 const PatientContext = createContext();
 
 export const PatientProvider = ({ children }) => {
@@ -37,12 +38,60 @@ export const PatientProvider = ({ children }) => {
   } else if (user.centerID) {
     centerIdString = user.centerID.toString();
   }
+
+    //
+    const [MedicalCenters, setmedicalCenters] = useState([]);
+    const [isLoadingMedicalCenters, setIsLoadingMedicalCenters] = useState(false);
+    const [isSuccessMedicalCenters, setIsSuccessMedicalCenters] = useState(false);
+    const [selectedCenterOption, setSelectedCenterOption] = useState("الكل");
+    const [selectedCenterId, setSelectedCenterId] = useState(0);
+  
+  
+    const {
+      data: medicalCenters,
+      isLoading: medicalLoading,
+      isSuccess: medicalSuccess,
+    } = useGetMedicalCenterQuery();
+  
+   
+    useEffect(() => {
+      if (medicalSuccess && medicalCenters) {
+        const centersWithAll = [
+          { id: 0, centerName: "الكل" },
+          ...medicalCenters.centers,
+        ];
+        setmedicalCenters(centersWithAll);
+        setIsLoadingMedicalCenters(false);
+        setIsSuccessMedicalCenters(true);
+      } else if (medicalLoading) {
+        setIsLoadingMedicalCenters(true);
+        setIsSuccessMedicalCenters(false);
+      } else {
+        setIsLoadingMedicalCenters(false);
+        setIsSuccessMedicalCenters(false);
+      }
+    }, [medicalSuccess, medicalLoading, medicalCenters]);
+  
+    const handleSelectCenterChange = (selectedCenterName) => {
+      let selectedCenter;
+      if (selectedCenterName === "الكل") {
+        selectedCenter = { id: 0, centerName: "الكل" };
+      } else {
+        selectedCenter = MedicalCenters.find(
+          (center) => center.centerName === selectedCenterName
+        );
+      }
+      setSelectedCenterOption(selectedCenterName);
+      setSelectedCenterId(selectedCenter.id);
+    };
+  
+    //
   
   const {
     data: patient,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetPatientQuery({option: translatedOption, centerId: centerIdString });
+  } = useGetPatientQuery({option: translatedOption, centerId: centerIdString,role:user.role,selectedCenterId:selectedCenterId });
 
   ////////////////////////////
 
@@ -131,6 +180,8 @@ export const PatientProvider = ({ children }) => {
       setIsSuccesshangingPatient(false);
     }
   }, [ishangingPatientSuccess, ishangingPatientLoading, hangingPatient]);
+
+
   
 
   return (
@@ -149,7 +200,10 @@ export const PatientProvider = ({ children }) => {
         patientUnAcceptedData,
         hangingPatientData,
         isLoadinghangingPatient,
-        isSuccesshangingPatient
+        isSuccesshangingPatient,
+        MedicalCenters,
+        handleSelectCenterChange,
+        selectedCenterOption,
 
       }}
     >

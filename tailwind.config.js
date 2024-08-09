@@ -68,6 +68,7 @@ export default {
         whiteCard: "#ffffff",
         addPaitentInfoPage:"#f6f9ff",
         appointmentColor:"rgba(154, 184, 255, 0.5)",
+        UserInviteCard:"#F4F2F1",
 
         //blue
         blue400: "#9AB8FF80",

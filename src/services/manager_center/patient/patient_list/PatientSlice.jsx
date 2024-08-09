@@ -4,9 +4,11 @@ export const PatientSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
  
     getPatient: builder.query({
-      query: ({ option, centerId }) => {
+      query: ({ option, centerId,role,selectedCenterId }) => {
+        const id = role === 'superAdmin' ? selectedCenterId : centerId;
+
         return {
-          url: `getCenterUsersByRole/${option === "انتظار" ? 0 : centerId}/patient/${option}`,
+          url: `getCenterUsersByRole/${option === "انتظار" ? 0 : id}/patient/${option}`,
           method: "GET",
           headers: { "Authorization": `Bearer ${Cookies.get("token")}` }
         };

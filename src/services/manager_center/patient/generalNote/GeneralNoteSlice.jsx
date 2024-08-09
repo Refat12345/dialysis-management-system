@@ -9,7 +9,18 @@ export const NotePatientSlice = apiSlice.injectEndpoints({
         headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
       }),
     }),
+
+    sendNote: builder.mutation({
+      query: (data) => {
+        return {
+          url: `createNote`,
+          method: "POST",
+          body: data,
+          headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetNoteForPatientQuery } = NotePatientSlice;
+export const { useGetNoteForPatientQuery,useSendNoteMutation } = NotePatientSlice;

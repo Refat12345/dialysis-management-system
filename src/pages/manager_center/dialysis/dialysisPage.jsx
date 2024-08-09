@@ -5,14 +5,11 @@ import { useParams } from "react-router-dom";
 import { DialysisDetailstProvider } from "./DialysisPageState";
 
 export default function DialysisPage() {
-  // const { id } = useParams();
-  // console.log("from from from ");
-  // console.log(id);
+  
   let { id: initialId } = useParams();
 
   const id = useMemo(() => initialId, [initialId]);
 
-  console.log("ID is now stable:", id);
 
   return (
     <>

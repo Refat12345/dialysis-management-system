@@ -10,7 +10,6 @@ export const GeneralDetailsProvider = ({ children, userId }) => {
 
   const userIdString = userId ? userId.toString() : "14";
 
-
   const {
     data: users,
     isLoading: isUserLoading,
