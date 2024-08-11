@@ -8,7 +8,7 @@ const medicinesTitle =[["حديد","هيبارين","ايبوتين"],["rgba(181
 const causeRenalFailureTitle =[["أمراض قلبية","ضغط الدم","داء السكري", "أمراض أخرى"],[  "rgba(237, 106, 94, 1)" ,"rgba(140, 73, 67, 1)","rgba(17, 110, 65, 1)","rgba(46, 48, 125, 0.25)"]]
 
 
-const PieCharts = ({ causeRenalData, medicineData}) => {
+const PieCharts = ({ causeRenalData, medicineData ,date,setValue}) => {
   
 const medicines = [
     { id: 0, value: medicineData.الحديد, label:medicinesTitle[0][0]},
@@ -40,10 +40,14 @@ const colors = {
     <div  className="mx-[1%] md:mx-[2%] lg:mx-[6%] xl:mx-[10%] mt-10">
         <div  className="flex mb-2">
         <div className="w-[20%]">
-        <DropDown colors={colors} filter={filters[0].array} title={filters[0].title}/>
+        <DropDown colors={colors} filter={filters[0].array} title={filters[0].title} onSelect={(val)=>{
+            setValue({...date,month:val})
+        }}/>
         </div>
         <div className="w-[20%]">
-        <DropDown colors={colors} filter={filters[1].array} title={filters[1].title}/>
+        <DropDown colors={colors} filter={filters[1].array} title={filters[1].title} onSelect={(val)=>{
+              setValue({...date,year:val})
+        }}/>
         </div>
         </div>
         <div className={`flex flex-row-reverse  justify-between  `}>

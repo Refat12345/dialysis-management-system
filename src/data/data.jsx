@@ -33,7 +33,7 @@ export const patientRoute = "patient";
 export const usersRoute = "users";
 export const dialysisRoute = "dialysis";
 export const enterDisbursedMedicines = "enterDisbursedMedicines"
-export const dialysisDetailsRoute = `${dialysisRoute}/dialysisDetails/:id`;
+export const dialysisDetailsRoute = `dialysisDetails/:id`;
 
 export const auditingRoute = 'auditing'
 export const secretariaAccountRoute = 'secretaria_account';
@@ -59,9 +59,8 @@ export const dialysisByPatient = `dialysisByPatient`;
 
 export const disbursedMaterialsRoute = `disbursedMaterials`
 export const appointment = `appointment`
-export const assignAppointmentRoute = `appointment/:id`
+export const assignAppointmentRoute = `${appointment}/:id`
 export const notes = `notes`
-export const transferPatientRoute = "medicalCenter/:id" 
 export const userInvites = `UserInvites`
 
 

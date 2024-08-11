@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
+import { validateMedicalRecordForm, validatePathologicalPrecedentForm, validatePharmacologicalForm, validateSurgicalPrecedentForm } from "./validator";
 
 const EnterMedicalRecordStateContext = createContext();
 
@@ -13,6 +14,7 @@ const EnterMedicalRecordState = ({ children }) => {
         dialysisStartDate:null,
         kidneyTransplant:"",
         vascularEntrance:"",
+        errors:{},
         surgicalPrecedents: [
           {
             surgeryName: "",
@@ -41,9 +43,9 @@ const EnterMedicalRecordState = ({ children }) => {
         selectDryWeight : (val) => selectDryWeight(val),
         selectKidneyTransplant: (val)=> selectKidneyTransplant(val),
         selectVascularEntrance: (val) => selectVascularEntrance(val),
-        addSurgicalPrecedents: () => addSurgicalPrecedents(),
-        addPathologicalPrecedent : () => addPathologicalPrecedent(),
-        addPharmacologicalPrecedents : () => addPharmacologicalPrecedents(),
+        addSurgicalPrecedents: (surgeryName) => addSurgicalPrecedents(surgeryName),
+        addPathologicalPrecedent : (illnessName) => addPathologicalPrecedent(illnessName),
+        addPharmacologicalPrecedents : (medicineName) => addPharmacologicalPrecedents(medicineName),
         updateSurgicalPrecedent : (index,value) => updateSurgicalPrecedent(index,value),
         updatePathologicalPrecedent :  (index,value) => updatePathologicalPrecedent(index,value),
         updatePharmacologicalPrecedent :(index,value) => updatePharmacologicalPrecedent(index,value),
@@ -77,7 +79,21 @@ const EnterMedicalRecordState = ({ children }) => {
       }));
     };
 
-    const addPathologicalPrecedent = () => {
+    const addPathologicalPrecedent = (illnessName) => {
+      
+      setState((prevState) => ({ ...prevState, errors: {} }));
+      // Validate the form data
+      const validationErrors = validatePathologicalPrecedentForm({
+        illnessName:illnessName
+      });
+    
+      if (Object.keys(validationErrors).length > 0) {
+        setState((prevState) => ({
+          ...prevState,
+          errors: validationErrors
+        }));
+        return;
+      }
       const newPrecedent = {
         illnessName: "",
         medicalDiagnosisDate: null,
@@ -90,7 +106,21 @@ const EnterMedicalRecordState = ({ children }) => {
       }));
     };
 
-    const addPharmacologicalPrecedents = () => {
+    const addPharmacologicalPrecedents = (medicineName) => {
+      setState((prevState) => ({ ...prevState, errors: {} }));
+      // Validate the form data
+      const validationErrors = validatePharmacologicalForm({
+        medicineName:medicineName
+      });
+    
+      if (Object.keys(validationErrors).length > 0) {
+        setState((prevState) => ({
+          ...prevState,
+          errors: validationErrors
+        }));
+        return;
+      }
+
       const newPrecedent = {
         medicineName: "",
         dateStart: null,
@@ -105,7 +135,20 @@ const EnterMedicalRecordState = ({ children }) => {
     };
 
 
-    const addSurgicalPrecedents = () => {
+    const addSurgicalPrecedents = (surgeryName) => {
+      setState((prevState) => ({ ...prevState, errors: {} }));
+      // Validate the form data
+      const validationErrors = validateSurgicalPrecedentForm({
+        surgeryName:surgeryName
+      });
+  
+      if (Object.keys(validationErrors).length > 0) {
+        setState((prevState) => ({
+          ...prevState,
+          errors: validationErrors
+        }));
+        return;
+      }
       const newPrecedent = {
         surgeryName: "",
         surgeryDate: null,
@@ -162,7 +205,25 @@ const EnterMedicalRecordState = ({ children }) => {
         pharmacologicalPrecedents:object.pharmacologicalPrecedents
       }
 
+      setState((prevState) => ({ ...prevState, errors: {} }));
 
+      // Validate the form data
+      const validationErrors = validateMedicalRecordForm({
+        causeRenalFailure: data.causeRenalFailure,
+        bloodType: data.bloodType,
+        dryWeight:data.dryWeight,
+        dialysisStartDate:data.dialysisStartDate,
+        kidneyTransplant:data.kidneyTransplant,
+        vascularEntrance:data.vascularEntrance
+      });
+  
+      if (Object.keys(validationErrors).length > 0) {
+        setState((prevState) => ({
+          ...prevState,
+          errors: validationErrors
+        }));
+        return;
+      }
         let surgical =  data.surgicalPrecedents.length >= 1 ?( data.surgicalPrecedents[data.surgicalPrecedents.length-1].surgeryName === "" ? 
         data.surgicalPrecedents.slice(0,-1) :data.surgicalPrecedents) :[];
 
@@ -215,6 +276,7 @@ const EnterMedicalRecordState = ({ children }) => {
           pharmacologicalHistories:pharmacological,
           userID:id, 
         }
+        
         return body;
     }
 

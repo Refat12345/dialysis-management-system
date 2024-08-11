@@ -8,6 +8,7 @@ import PieChart from "../../../../components/manager_center/dashboard/PieChart/P
 
 
 const PieCharts = ({setValue ,date, causeRenalData, medicineData}) => {
+ 
   const colors = {
     titleColor:"primaryColor",
     contentColor:"bgButtonColor"

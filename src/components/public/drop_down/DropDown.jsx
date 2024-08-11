@@ -5,7 +5,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-export default function DropDown({ title, filter, colors, onSelect , type }) {
+export default function DropDown({ title, filter, colors, onSelect , type , manager }) {
   const [selectedValue, setSelectedValue] = useState(title);
 
   const color = `bg-${colors.titleColor} text-${colors.textColor} border-${colors.textColor}`;
@@ -14,8 +14,13 @@ export default function DropDown({ title, filter, colors, onSelect , type }) {
     setSelectedValue(value);
   };
   const handleReset = () => {
+   if(manager !=undefined){
+    setSelectedValue("المراكز الطبية");
+    onSelect("المراكز الطبية")
+   }else{
     setSelectedValue(title);
     onSelect(title);
+   }
   };
   return (
     <Menu dir="rtl" as="div" className="relative inline-block w-full">

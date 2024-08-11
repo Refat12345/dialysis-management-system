@@ -1,16 +1,20 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { useState } from "react"
 import { Row , CustomTextField ,CustomDatePicker ,AlertDialog} from "../../../../../components/index"
 import PharmacologicalPrecedentsDialog from "./dialog/PharmacologicalPrecedentsDialog"
 const PharmacologicalPrecedents = ({ state , updateState }) => {
-
+const [medicineName,setMedicineName] = useState("")
 
 return (
     <div className="paddingCard bg-white rounded-lg  w-[49.2%]">
         <Row mainAxisAlignment="justify-between" >
             <p className="pr-2 font-bold text-titleColor text-lg">السوابق الدوائية</p>
             <div className="flex pl-3 ">
-                <div onClick={()=>state.addPharmacologicalPrecedents()} className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor rounded-full text-md">
+                <div onClick={()=>{
+                    state.addPharmacologicalPrecedents(medicineName)
+                    setMedicineName("")
+                }} className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor rounded-full text-md">
                     <p className="">اضافة سابقة أخرى</p> 
                 </div>
                 {state.pharmacologicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
@@ -31,12 +35,21 @@ return (
                     type="text"
                     value = {precedent.medicineName}
                     onChange = {(e) =>
+                    {
+                        setMedicineName(e.target.value)
                         state.updatePharmacologicalPrecedent(index,
                             {medicineName: e.target.value},
                         )
                     }
+                    }
                 />
+                {state.errors.medicineName && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.medicineName}
             </div>
+        )}
+            </div>
+
             <div className="w-[35%] ">
                 <CustomDatePicker
                     label = {"تاريخ بدء أخذ الدواء"}

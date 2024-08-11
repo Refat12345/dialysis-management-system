@@ -30,7 +30,6 @@ const OrdersPage = () => {
       const ordersData = data[0];
       if (user.role === "secretary") {
         const secretaryOrders = ordersData.filter((order) => {
-          console.log(user.id);
           const item = order.senderid === user.id && order;
           const filterItem = item.senderName === user.fullName && item;
           return filterItem;

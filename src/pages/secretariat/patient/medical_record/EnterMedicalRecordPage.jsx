@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { PublicHeader ,CustomButton , Toast } from "../../../../components"
+import { PublicHeader ,CustomButton  } from "../../../../components"
 import { useParams } from "react-router-dom";
 import { MedicalRecord } from "../../../../assets"
 import {PublicInformation ,PathologicalPrecedents,SurgicalPrecedents,PharmacologicalPrecedents} from "./sections/index"
 import { useEnterMedicalRecordState } from "./EnterMedicalRecordState";
 import "./style.css"
 import { toast } from 'react-toastify';
-import { textToastStyle ,textErrorToastStyle } from "../../../../data/data";
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateMedicalRecordMutation } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
@@ -19,17 +18,14 @@ let status=true
 
 const handlePost =async () => {
   let body =state.postData(state , patientName);
+  if(body != undefined) {
   try{
     await createMedicalRecord(body).unwrap();
-    
-    toast("تم اضافة السجل الطبي بنجاح");
+    toast.success("تم اضافة السجل الطبي بنجاح");
 
   }catch(error) {
-    status = false
-    console.log(err);
-    console.log(err.status);
-    toast.error("ليست لديك صلاحيات لاضافة السجل الطبي")
     console.log(error);
+  }
   }
 }
 
@@ -65,7 +61,6 @@ const handlePost =async () => {
               radius="full"
             />
             </div>:<ButtonLoader/>}
-            <Toast textStyle={status ? textToastStyle :textErrorToastStyle} progressColor={"white"}/>
             </div>
             </div> 
         </div>

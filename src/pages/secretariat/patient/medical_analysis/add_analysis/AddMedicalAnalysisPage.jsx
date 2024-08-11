@@ -5,9 +5,7 @@ import {
     PublicHeader,
     SelectedTextFeild,
     PageLoader,
-    Toast
     } from "../../../../../components";
-import { textToastStyle } from "../../../../../data/data";
 import { useAddMedicalAnalysisState } from "./AddMedicalAnalysisState";
 import { MedicalAnalysisIcon } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
@@ -17,7 +15,7 @@ import { useParams } from "react-router-dom";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
-        console.log("s");
+
     const { state, updateState } = useAddMedicalAnalysisState();
     const {data,isSuccess,isLoading:isLoad ,} = useGetAnalysisTypesQuery()
     const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
@@ -25,17 +23,19 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
     const unitSelections = [];
     let { patientName } = useParams();
     const postData = async () => {
-        try {
-            let body = state.postData(state , patientName)
-            console.log(body);
-            if(body !=false){
-        
-                await addMedicalAnalysis(body);
-                toast("تم اضافة التحليل الطبي بنجاح")
+        let body = state.postData(state , patientName)
+        if(body != undefined){
+            try {  
+                if(body !=false){
+                    await addMedicalAnalysis(body);
+                    toast.success("تم اضافة التحليل الطبي بنجاح")
+                }
+                
+            }catch (error) {
+                console.log(error);
+                
+                toast.error("ليس لديك صلاحيات لاضافة التحليل الطبي")
             }
-            
-        } catch (error) {
-            toast.error("ليس لديك صلاحيات لاضافة التحليل الطبي")
         }
     };
     if (isLoad) {
@@ -52,8 +52,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                 unitSelections.push(data.analysisTypes[index].unitOfMeasurement) 
             }
         }
-        console.log( typeSelections.length );
-        console.log(unitSelections.length);
+
     return (
         <div dir="rtl" className="flex-grow bg-bgMedicalRecord md:mr-48 h-screen">
             <div className="mx-[2%]">
@@ -71,6 +70,11 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                                 type={"اضافة نوع تحليل جديد"}
                                 placeholder = {"أدخل نوع التحليل الجديد"}
                 />
+                    {state.errors.analysisName && (
+                        <div dir="rtl" className="text-red-500 text-sm mt-1">
+                            {state.errors.analysisName}
+                        </div>
+                    )}
                         </div>
                         <div className="w-[20%]">
                             <CustomTextField
@@ -80,6 +84,11 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                                 value={state.value}
                                 onChange={(val) => updateState({ value: val.target.value })}
                             />
+                            {state.errors.value && (
+                                <div dir="rtl" className="text-red-500 text-sm mt-1">
+                                    {state.errors.value}
+                                </div>
+                            )}
                         </div>
                         <div className="w-[10%]">
                             <SelectedTextFeild
@@ -92,6 +101,11 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                                 allowNewSelection = {true}
 
                             />
+                            {state.errors.unitOfMeasurement && (
+                                <div dir="rtl" className="text-red-500 text-sm mt-1">
+                                    {state.errors.unitOfMeasurement}
+                                </div>
+                            )}
                         </div>
                         <div className="w-[30%] self-center mt-7">
                             <CheckBox state={state} updateState={updateState} />
@@ -104,6 +118,11 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                         label="تاريخ التحليل"
                         onSelect={(val) => updateState({ analysisDate: val })}
                         />
+                        {state.errors.analysisDate && (
+                                <div dir="rtl" className="text-red-500 text-sm mt-1">
+                                    {state.errors.analysisDate}
+                                </div>
+                            )}
                     </div>
                     <div className="w-[3%]" />
                     <div className="w-[65%]">
@@ -132,7 +151,6 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                     />
                 </div>:<ButtonLoader/>}
                 </div>
-                <Toast textStyle={textToastStyle} progressColor={"green"}/>
                 </>
                 }
         </div>

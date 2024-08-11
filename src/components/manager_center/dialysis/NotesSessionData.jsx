@@ -33,7 +33,7 @@
 export default function NotesSessionData({ notes }) {
   return (
     <div className="w-full">
-      <div className="bg-cardInDialysisPage shadow-md rounded-lg overflow-hidden">
+      <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="p-4">
           <h4 className="text-xl font-semibold text-textButtonColor">
             ملاحظات الجلسة

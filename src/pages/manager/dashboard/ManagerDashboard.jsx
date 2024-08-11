@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Cards from "./sections/Cards";
 import { DropDown, PageLoader } from "../../../components";
 import { useState, useEffect } from "react";
@@ -16,7 +17,7 @@ const ManagerDashboard = () => {
     year: "",
   });
   const [id, setId] = useState(0);
-  
+  const [centerName,setCenterName] = useState("المراكز الطبية")
   // Query hooks
   const {
     data: medicalCenters,
@@ -29,7 +30,12 @@ const ManagerDashboard = () => {
     isSuccess: medicineSuccess,
     isLoading: medicineLoading,
     refetch: reMedicines,
-  } = useGetMedicinesQuery(id);
+  } = useGetMedicinesQuery({
+    year:date.year,
+    month:date.month,
+    id:id
+  });
+  
 
   const {
     data: causeRenalData,
@@ -45,6 +51,19 @@ const ManagerDashboard = () => {
     refetch: reStatistics,
   } = useGetAllStatisticsQuery(id);
 
+  useEffect(()=>{
+    if (centerName === "المراكز الطبية") {
+      setId(0);
+    } else {
+      const selectedCenter = medicalCenters.centers.find(
+        (array) => array.centerName === centerName
+      );
+      if (selectedCenter) {
+        setId(selectedCenter.id);
+      }
+    }
+  },[centerName])
+
   // Refetch data when id changes
   useEffect(() => {
     if (id !== null) {
@@ -53,6 +72,12 @@ const ManagerDashboard = () => {
       reMedicines();
     }
   }, [id, reStatistics, reCause, reMedicines]);
+
+  useEffect(() => {
+    if(date.month != "" && date.year != "" ){
+      reMedicines();
+    }
+}, [date, reMedicines]);
 
   // Handle loading state
   if (medicineLoading || causeRenalLoading || statisticsLoading || medicalCentersLoading) {
@@ -74,7 +99,7 @@ const ManagerDashboard = () => {
   }
 
   const filters = {
-    title: "المراكز الطبية",
+    title:centerName,
     array: arrays,
   };
 
@@ -89,25 +114,17 @@ const ManagerDashboard = () => {
     medicineSuccess &&
     causeRenalSuccess &&
     statisticsSuccess && (
-      <div className="flex-grow md:mr-48 bg-bgMedicalRecord h-screen ">
-        <div className="mx-[2%] h-screen">
-          <div dir="rtl" className="w-[20%] mt-8 ">
+      <div className="flex-grow md:mr-48 bg-bgMedicalRecord  ">
+        <div className="mx-[2%] h-screen mt-8">
+          <div dir="rtl" className="w-[20%]  ">
             <DropDown
               colors={colors}
               filter={filters.array}
               title={filters.title}
               onSelect={(val) => {
-                if (val === "المراكز الطبية") {
-                  setId(0);
-                } else {
-                  const selectedCenter = medicalCenters.centers.find(
-                    (array) => array.centerName === val
-                  );
-                  if (selectedCenter) {
-                    setId(selectedCenter.id);
-                  }
-                }
+                setCenterName(val)
               }}
+              manager={true}
             />
           </div>
           <Cards data={statistics[0]} />

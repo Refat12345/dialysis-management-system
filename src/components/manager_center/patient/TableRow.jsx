@@ -383,10 +383,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
     }
 
     
-
-
-
-    
   };
 
   
@@ -395,7 +391,7 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
     updateState({ adminValue: value });
     switch (value) {
       case "نقل المريض":
-        navigate(`/app/patient/${id}/medicalCenter/${id}`);
+        navigate(`/app/patient/${id}/medicalCenters`);
         break;
       case "تعطيل الحساب":
         navigate(`/app/patient/${id}/addMedicalAnalysis`);
@@ -502,23 +498,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
           {object.connectFive}
         </td>
       )}
-      {/* {object.connectFive !== undefined &&
-      object.connectFive !== null &&
-        type === "patient"  ? (
-        <td
-          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
-          dir="ltr"
-        >
-          {object.connectFive}
-        </td>
-      ) : (
-        <td
-          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
-          dir="ltr"
-        >
-          لا يوجد
-        </td>
-      )} */}
       {object.connectSix != undefined && type != "auditing" && (
         <td className="py-3 w-48" dir="ltr">
           {object.connectSix}
@@ -588,11 +567,11 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
                   <img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />
                 }
                 contentComponent={
-                  <div dir="rtl" className=" flex flex-col ">
-                    <p className="self-center text-lg font-bold mb-5">
-                      تفاصيل الطلب :
+                  <div dir="rtl" className=" flex flex-col min-w-[400px] ">
+                    <p className="self-center text-lg font-bold mb-3">
+                      تفاصيل الطلب
                     </p>
-                    <p className="text-base text-titleColor font-bold">
+                    <p className="text-base text-center text-titleColor font-bold">
                       {object.connectThree}
                     </p>
                   </div>

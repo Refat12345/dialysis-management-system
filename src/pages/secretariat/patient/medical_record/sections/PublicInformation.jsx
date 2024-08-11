@@ -44,6 +44,11 @@ return (
                     placeholder={"أدخل سبب  القصور الكلوي"}
 
             />
+            {state.errors.causeRenalFailure && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.causeRenalFailure}
+            </div>
+        )}
             </div>
             <div className="w-[45%] ">
                 <SelectedTextFeild
@@ -52,6 +57,11 @@ return (
                     filter={bloodSelection.array}
                     onSelect={(val) => state.selectBloodType(val)}
             />
+            {state.errors.bloodType && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.bloodType}
+            </div>
+        )}
             </div>
         </Row>
         <div className="mgPublicInfo"></div>
@@ -70,6 +80,11 @@ return (
                         })
                     }
                 />
+                {state.errors.dryWeight && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.dryWeight}
+            </div>
+        )}
             </div>
             <div className="w-[45%] ">
             <CustomDatePicker
@@ -78,7 +93,11 @@ return (
                 onSelect={(e)=>{ 
                     updateState({dialysisStartDate:e})
                 }}/>
-
+            {state.errors.dialysisStartDate && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.dialysisStartDate}
+            </div>
+        )}
             </div>
         </Row>
         <div className="mgPublicInfo">
@@ -90,6 +109,11 @@ return (
                     filter={vascularEntranceSelection.array}
                     onSelect={(val) => state.selectVascularEntrance(val)}
             />
+                {state.errors.vascularEntrance && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.vascularEntrance}
+            </div>
+        )}
                 </div>
                 <div className="w-[45%]  ">
                 <SelectedTextFeild
@@ -98,6 +122,11 @@ return (
                     filter={kidneyTransplantSelection.array}
                     onSelect={(val) => state.selectKidneyTransplant(val)}
             />
+                {state.errors.kidneyTransplant && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.kidneyTransplant}
+            </div>
+        )}
                 
                 </div>
                 </Row>

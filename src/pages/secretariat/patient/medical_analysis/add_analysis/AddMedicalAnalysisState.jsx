@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import { toast } from "react-toastify";
+import { validateMedicalAnalysisForm } from "./validator";
 const AddMedicalAnalysisStateContext = createContext();
 
 const AddMedicalAnalysisState = ({ children }) => {
@@ -16,6 +17,7 @@ const AddMedicalAnalysisState = ({ children }) => {
         notes: "",
         analysisName: "",
         userID: "",
+        errors:{},
         postData : (value,id) => postData(value,id)
     }
   );
@@ -39,6 +41,23 @@ const AddMedicalAnalysisState = ({ children }) => {
         valueOne = "ايجابي"
       } else {
         valueOne = value.value
+      }
+      setState((prevState) => ({ ...prevState, errors: {} }));
+
+      // Validate the form data
+      const validationErrors = validateMedicalAnalysisForm({
+        value:valueOne,
+        analysisName:value.analysisName,
+        analysisDate:value.analysisDate,
+        unitOfMeasurement:value.unitOfMeasurement,
+      });
+  
+      if (Object.keys(validationErrors).length > 0) {
+        setState((prevState) => ({
+          ...prevState,
+          errors: validationErrors
+        }));
+        return;
       }
       let body = {
         averageMin:value.averageMin,

@@ -52,7 +52,9 @@ const MedicalCenter = ({ icons, content ,role }) => {
                   onMouseLeave={handleEllipsisMouseLeave}
                 />
               }
-              contentComponent={<MedicalCenterDetails title={title} content={content} />}
+              contentComponent={<div className="min-w-[300px]">
+                <MedicalCenterDetails title={title} content={content} />
+              </div>}
               titleButton={"رجوع"}
           />
         </div>
