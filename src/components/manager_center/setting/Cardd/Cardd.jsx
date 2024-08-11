@@ -1,10 +1,14 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import DialogContactCenter from "../Contact/DialogContactCenter";
 import { useState, useEffect } from "react";
 import DialogTimeCenter from "../TiemCenter/DialogTimeCenter";
 import DialogCardd from "./DialogCardd";
+import { useSelector } from "react-redux";
+
 function Cardd({ data, title, icon }) {
   const [open, setOpen] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const height = window.innerHeight;
 
@@ -12,16 +16,19 @@ function Cardd({ data, title, icon }) {
     borderRadius: "50%",
     backgroundColor: "#e4e9f4",
   };
+
   const styleComponent = {
     marginTop: height > 700 ? "24px" : height < 620 ? "10px" : "16px",
+    cursor: title === "اجمالي الكراسي" && user.role === "secretary" ? "pointer" : "default"
   };
+
   const responsiveWidth = "w-full sm:w-1/2 md:w-1/3 lg:w-3/4";
   const responsiveHeight = "h-auto";
   const responsiveMargin = "mx-5 my-2";
   const overflowClass = "overflow-hidden";
 
   const handleClick = () => {
-    if (title === "اجمالي الكراسي") {
+    if (title === "اجمالي الكراسي" && user.role === "secretary") {
       setOpen(true);
     }
   };

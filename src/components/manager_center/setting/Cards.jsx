@@ -7,8 +7,11 @@ import edit from "./../../../assets/icons/medical-center/setting/edit.svg";
 import { DataContext } from "./DataContext";
 import { statisticMedicalInfo } from "../../../data/data";
 import Cardd from "./Cardd/Cardd";
+import { useSelector } from "react-redux";
 
 function Cards({ data }) {
+  const user = useSelector((state) => state.user);
+
   return (
     <>
       <div className="flex flex-col bg-white border border-indigo-300 rounded-xl ">

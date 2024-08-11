@@ -454,7 +454,6 @@ function AddPaitentInfo({id}) {
             const data = {
               nationality: state.genderValue,
               maritalStatus: state.maritalStatus,
-              // status: state.status,
               status: "معلق",
               reasonOfStatus: state.reasonOfStatus,
               educationalLevel: state.LearnValue,

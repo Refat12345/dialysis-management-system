@@ -2,6 +2,7 @@
 import medical from "./../../../../assets/icons/medical-center/setting/MedicalCenter.svg";
 import edit from "./../../../../assets/icons/medical-center/setting/edit.svg";
 import add from "./../../../../assets/icons/medical-center/setting/addtime.svg";
+import { useSelector } from "react-redux";
 
 import { useState } from "react";
 import DialogCenterData from "./DialogCenterData";
@@ -9,11 +10,12 @@ import DialogCenterData from "./DialogCenterData";
 function GeneralAboutCenter({ data }) {
   const [open, setOpen] = useState(false);
   const [type, settype] = useState(false);
+  const user = useSelector((state) => state.user);
 
   return (
     <div className=" w-80 pb-20 pl-5 pr-5 bg-white border border-indigo-300 rounded-3xl mb-7 pt-5 ">
       <div className="flex justify-end ">
-        {!data.charityName && (
+        {!data.charityName && user.role === "secretary" && (
           <button
             className="bg-white h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-xl flex items-center mb-5"
             onClick={() => {
@@ -26,7 +28,7 @@ function GeneralAboutCenter({ data }) {
           </button>
         )}
 
-        {data.charityName && (
+        {data.charityName && user.role === "secretary" && (
           <button
             className="bg-white h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded-xl flex items-center mb-5"
             onClick={() => {

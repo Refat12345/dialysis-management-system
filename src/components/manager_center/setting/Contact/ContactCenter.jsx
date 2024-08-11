@@ -85,9 +85,14 @@ function ContactCenter({ data }) {
                 onClick={() => setOpen(true)}
                 style={{ cursor: "pointer" }}
               >
-                <img src={addTimeIcon} alt="إضافة وقت" />
+                {
+                  user.role === "secretary" && (
+                    <img src={addTimeIcon} alt="إضافة وقت" />
+                  )
+                }
+               
               </div>
-              {!isEmpty && (
+              {!isEmpty && user.role === "secretary" && (
                 <button
                   className="bg-white h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded flex items-center ml-7"
                   onClick={() => setOpenEditTelcome(true)}

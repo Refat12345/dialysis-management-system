@@ -35,7 +35,6 @@ export const SettingProvider = ({ children }) => {
       setIsSuccess(false);
     }
   }, [isUserSuccess, isUserLoading, setting]);
-console.log("SettingTime",SettingTime)
   return (
     <SettingContext.Provider value={{ SettingData, isLoading, isSuccess ,SettingTime, setSettingTime}}>
       {children}
