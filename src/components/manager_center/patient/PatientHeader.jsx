@@ -17,13 +17,11 @@ function PatientHeader({ setSearchTerm, type }) {
             className=" overflow-x-auto flex justify-between items-center"
             dir="rtl"
           >
-            <input
-              dir="rtl"
-              type="text"
-              placeholder="البحث"
-              className="bg-search mt-5 text-right w-1/4 p-2.5 h-10 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
-              onChange={(e) => setSearchTerm(e.target.value)}
+            <div className="mt-6">
+            <Search
+            handleInputValue={(e) => setSearchTerm(e.target.value)}
             />
+            </div>
             {user.role === "secretary" && (
               <CustomButton
                 variant="solid"
@@ -45,11 +43,7 @@ function PatientHeader({ setSearchTerm, type }) {
           <div
             className=" overflow-x-auto " dir="rtl"
           >
-            <div className="mt-6">
-            <Search
-            handleInputValue={(e) => setSearchTerm(e.target.value)}
-            />
-            </div>
+            
     
           </div>
         </>
