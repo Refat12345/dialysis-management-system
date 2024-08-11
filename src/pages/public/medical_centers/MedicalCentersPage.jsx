@@ -44,7 +44,7 @@ const MedicalCentersPage = () => {
   };
 
   const height = window.innerHeight;
-  const responsive = height > 603 ? (height > 700 ? (height < 710 ? "mb-7 mt-8" : "mb-8 mt-10") : (height > 630 ? "mb-5 mt-7" : "mb-4 mt-6")) : "mb-2 mt-4";
+  const responsive = height > 603 ? (height > 700 ? (height < 710 ? "mb-7 mt-8" : "mb-[29px] mt-[37px]") : (height > 630 ? (height>660 ? "mb-7 mt-10":"mb-5 mt-7") : "mb-4 mt-6")) : "mb-2 mt-4";
 
   if (isLoading) {
     return (
@@ -58,7 +58,7 @@ const MedicalCentersPage = () => {
 
   if (isError || !isSuccess) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen  ">
         <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك</p>
       </div>
     );

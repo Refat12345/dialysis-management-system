@@ -242,8 +242,9 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (medicalSuccess && medicalCenters) {
       const centersWithAll = [
-        { id: 0, centerName: "الكل" },
+        
         ...medicalCenters.centers,
+        { id: 0, centerName: "الكل" },
       ];
       setmedicalCenters(centersWithAll);
       setIsLoadingMedicalCenters(false);

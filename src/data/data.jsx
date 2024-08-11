@@ -62,6 +62,7 @@ export const appointment = `appointment`
 export const assignAppointmentRoute = `${appointment}/:id`
 export const notes = `notes`
 export const userInvites = `UserInvites`
+export const logoutRoute = "logout"
 
 
 
@@ -103,7 +104,7 @@ export const managerCenterSideBar = {
     { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href:  userInvites, name: "الدعوات", icon: DialysisSessionsIcon },
-    { href:  loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+    { href:  logoutRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -121,7 +122,7 @@ export const secretariatSideBar = {
     { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
     { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href:  loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+    { href:  logoutRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 
@@ -138,7 +139,7 @@ export const managerSideBar = {
     { href: medicalCentersRoute, name: "المراكز الطبية", icon: MedicalCentersIcon },
     { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
-    { href: loginRoute, name: "تسجيل الخروج", icon: LogOutIcon },
+    { href: logoutRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],
 };
 

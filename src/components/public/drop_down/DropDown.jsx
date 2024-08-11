@@ -68,7 +68,7 @@ export default function DropDown({ title, filter, colors, onSelect , type , mana
                 </Menu.Item>
               );
             })}
-            {type != "shift" && <Menu.Item>
+            {(type != "shift") && <Menu.Item>
               {({ active }) => (
                 <button
                   onClick={handleReset}

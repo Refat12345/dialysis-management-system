@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { useGetPatientQuery
@@ -45,7 +47,7 @@ export const PatientProvider = ({ children }) => {
     const [MedicalCenters, setmedicalCenters] = useState([]);
     const [isLoadingMedicalCenters, setIsLoadingMedicalCenters] = useState(false);
     const [isSuccessMedicalCenters, setIsSuccessMedicalCenters] = useState(false);
-    const [selectedCenterOption, setSelectedCenterOption] = useState("الكل");
+    const [selectedCenterOption, setSelectedCenterOption] = useState("المراكز الطبية");
     const [selectedCenterId, setSelectedCenterId] = useState(0);
   
   
@@ -59,8 +61,9 @@ export const PatientProvider = ({ children }) => {
     useEffect(() => {
       if (medicalSuccess && medicalCenters) {
         const centersWithAll = [
-          { id: 0, centerName: "الكل" },
+          
           ...medicalCenters.centers,
+          { id: 0, centerName: "الكل" },
         ];
         setmedicalCenters(centersWithAll);
         setIsLoadingMedicalCenters(false);

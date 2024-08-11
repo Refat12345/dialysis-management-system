@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Cards, PieCharts, DialysisSessions } from "../../index";
 import { PaginationComponent, PageLoader } from "../../../components/index";
+import Cookies from "js-cookie"
 import { useGetCausesRenalFailureQuery, useGetCenterStatisticsQuery, useGetPieChartsQuery, useGetSessionsQuery } from "../../../services/manager_center/dashboard/DashboardSlice";
 const Dashboard = () => {
 
@@ -10,6 +11,8 @@ const Dashboard = () => {
     month:"",
     year:""
   })
+  console.log(Cookies.get("token"));
+  
   const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
   const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading ,error:err   } = useGetSessionsQuery();

@@ -2,12 +2,13 @@
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useLoginMutation } from "../../../../services/manager_center/auth/AuthSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { validateLoginForm } from "../../../../validator";
 import { showErrorToast, showSuccessToast } from "../../../../utils/toastUtils";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../services/userSlice";
 import Cookies from "js-cookie";
+
 
 const LoginStateContext = createContext();
 
@@ -50,10 +51,10 @@ export const LoginStateProvider = ({ children }) => {
         nationalNumber: state.nationaltyNumber,
         password: state.password,
       }).unwrap();
-      Cookies.set("role", response.user.role);
-      const token = Cookies.set("token", response.user.token);
-      dispatch(setUser(response.user));
-      sessionStorage.setItem("user", JSON.stringify(response.user));
+      const jsonString = JSON.stringify(response.user);
+      localStorage.setItem("myObject", jsonString);
+      const token = response.user.token;
+      localStorage.setItem("tokens", response.user.token);
       showSuccessToast("login successfully");
       if (token) {
         navigate("/app");
