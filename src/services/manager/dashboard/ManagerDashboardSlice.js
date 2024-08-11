@@ -19,10 +19,11 @@ const ManagerDashboardSlice = apiSlice.injectEndpoints(
             })
         }),
         getMedicines:builder.query ({
-            query :(id)=>{
-                console.log(id);
+            query :(body)=>{
+                console.log(body);
+                
             return{
-            url:`getAllPieCharts/${id}`,
+            url:`${body.month != "" && body.year != "" ?`getAllPieCharts/${body.id}/${body.month}/${body.year}` :`getAllPieCharts/${body.id}`}`,
             method:"GET",
             headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             }},

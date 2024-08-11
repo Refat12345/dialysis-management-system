@@ -5,8 +5,6 @@ import { useState } from "react";
 import { useTransferPatientMutation } from "../../../../services/manager_center/patient/patient_trasfer/PatientTransferSlice";
 import { toast } from "react-toastify";
 import ButtonLoader from "../../../public/loader/ButtonLoader";
-import Toast from "../../../public/toast/Toast";
-import { textToastStyle } from "../../../../data/data";
 import { useParams } from "react-router-dom";
 
 const TransferPatient = ({destinationCenterID}) => {
@@ -28,7 +26,7 @@ const TransferPatient = ({destinationCenterID}) => {
             }
             console.log(body);
             await transferPatient(body)
-            toast("طلبك قيد المعالجة")
+            toast.success("طلبك قيد المعالجة")
 
         }catch(err){console.log(err);}
     }
@@ -42,7 +40,6 @@ return (
                 > {"تأكيد"}
                 </button>:
                 <ButtonLoader/>}
-                <Toast progressColor={"green"} textStyle={textToastStyle}/>
             </div>
         </form> 
     </div> 

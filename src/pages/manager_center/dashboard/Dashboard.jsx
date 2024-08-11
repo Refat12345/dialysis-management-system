@@ -54,7 +54,7 @@ const Dashboard = () => {
           />
         </div>
         <div className="hidden lg2:block w-1/3">
-          <PieCharts medicineData={medicineDate.pieChart} causeRenalData = {causeRenalData.causeRenalFailure} loading= {medicineLoading} setValue={setDate} date= {date} />
+          <PieCharts medicineData={medicineDate.pieChart} causeRenalData = {causeRenalData.causeRenalFailure}  setValue={setDate} date= {date} />
         </div>
       </div>
     </div>

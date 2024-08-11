@@ -1,17 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { useState } from "react"
 import { Row ,CustomTextField ,CustomDatePicker, AlertDialog}  from "../../../../../components/index"
 import PathologicalPrecedentsDialog from "./dialog/PathologicalPrecedentsDialog"
 const PathologicalPrecedents = ({ state , updateState }) => {
-
+const [illnessName,setIllnessName] = useState("")
 
 return (
     <div className="paddingCard bg-white rounded-lg w-[49.2%]">
-       <form>
-       <Row mainAxisAlignment="justify-between" >
+    <form>
+        <Row mainAxisAlignment="justify-between" >
             <p className="pr-2 font-bold text-titleColor text-lg">السوابق المرضية</p>
             <div className="flex pl-3 ">
-                <div onClick={()=> state.addPathologicalPrecedent() } className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md">
+                <div onClick={()=>{
+                    state.addPathologicalPrecedent(illnessName)
+                    setIllnessName("")
+                } } className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md">
                     <p className="">اضافة سابقة أخرى</p> 
                 </div>
                 {state.pathologicalPrecedents.length >1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
@@ -32,11 +36,19 @@ return (
                                 type="text"
                                 value = {precedent.illnessName}
                                 onChange = {(e) =>
+                                {
+                                    setIllnessName(e.target.value)
                                     state.updatePathologicalPrecedent(index,
                                         {illnessName: e.target.value}
                                     )
+                                }
                     }
                 />
+                {state.errors.illnessName && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.illnessName}
+            </div>
+        )}
                 </div>
                 <div className="w-[48%]">
                     <CustomDatePicker

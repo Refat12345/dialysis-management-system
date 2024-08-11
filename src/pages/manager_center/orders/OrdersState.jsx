@@ -30,7 +30,11 @@ const OrdersState = ({ children }) => {
         }
         try {
             await changeStatus(body)
-            toast(type === "rejected"?"تم رفض الطلب بنجاح":"تم قبول الطلب بنجاح")
+            if(type === "rejected") {
+                toast.error("تم رفض الطلب بنجاح")
+            } else {
+                toast.success("تم قبول الطلب بنجاح")
+            }
         }catch(err){console.log(err);}
     }
 return (

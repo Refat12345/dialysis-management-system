@@ -4,8 +4,7 @@ import Icon from "../../../assets/icons/medical-center/dashboard/Sessions/patien
 import { getHourInArabic } from "../../../utils/DateUtils";
 
 const DialysisSession = ({dialysis}) => {
-  
-  console.log(dialysis);
+
   let height = window.innerHeight;
   const width = window.innerWidth;
   let responsive = height > 618 ?  (height > 680 ? (height > 745 ? "my-2 text-ms" : "my-1.5 text-ms") : "my-1 text-s") : "my-1 text-xs";

@@ -19,6 +19,7 @@ function AppointmentDialog({ open, setOpen ,body}) {
       const response = await assignAppointment(body).unwrap()
       console.log(response);
       toast.success("تم حجز الموعد بنجاح")
+      setOpen(false);
     }catch(error){
       console.log(err);
       

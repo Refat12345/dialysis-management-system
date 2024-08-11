@@ -16,7 +16,7 @@ const SecretariatDashboard = () => {
     isSuccesshangingPatient
   } = usePatient();
   const navigate = useNavigate()
-  console.log(hangingPatientData);
+
   const [addToWaiting] = useAddToWaitingMutation();
   
   const handleAddToWaiting = async (id) => {

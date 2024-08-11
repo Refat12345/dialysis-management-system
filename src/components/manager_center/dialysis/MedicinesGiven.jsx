@@ -54,7 +54,7 @@ function MedicinesGiven({ medicines }) {
   return (
     <div>
       <div className="w-full">
-        <div className="cardd bg-cardInDialysisPage shadow-md rounded-lg overflow-hidden">
+        <div className="cardd bg-white shadow-md rounded-lg overflow-hidden">
           <div className="cardThreeHeader">
             <h2 className="text-xl font-semibold text-textButtonColor">
               الأدوية المعطاة
@@ -78,10 +78,10 @@ function MedicinesGiven({ medicines }) {
                   key={index}
                   className="tabledata flex justify-start items-center border-b"
                 >
-                  <span className="sapn1 text-lg text-gray-700 flex-1 border-l-2">
+                  <span className="sapn1 text-lg text-gray-700 flex-1 border-l-2 font-bold">
                     {medicine.medicineName}
                   </span>
-                  <span className="span2 text-lg text-gray-700 flex-1 pr-3">
+                  <span className="span2 text-lg text-gray-700 flex-1 pr-3 font-bold">
                     {medicine.value}
                   </span>
                 </div>

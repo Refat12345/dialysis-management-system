@@ -2,18 +2,22 @@
 
 /* eslint-disable no-unused-vars */
  /* eslint-disable react/prop-types */
- import { Row ,CustomDatePicker ,CustomTextField ,AlertDialog} from "../../../../../components/index"
+ import { useState } from "react";
+import { Row ,CustomDatePicker ,CustomTextField ,AlertDialog} from "../../../../../components/index"
  import SurgicalPrecedentsDialog from "./dialog/SurgicalPrecedentsDialog";
  
  const SurgicalPrecedents = ({ state , updateState }) => {
-  
+    const [surgeryName ,setSurgeryName] = useState("")
  return (
      <div className="paddingCard bg-white rounded-lg w-[49.2%]">
          <Row mainAxisAlignment="justify-between" >
              <p className="pr-2 font-bold text-titleColor text-lg">السوابق الجراحية</p>
              <div className="flex pl-3 ">
                  
-                 <div onClick={()=>state.addSurgicalPrecedents()} className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor rounded-full text-md ">
+                 <div onClick={()=>{
+                    state.addSurgicalPrecedents(surgeryName)
+                    setSurgeryName("")
+                 }} className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor rounded-full text-md ">
                      <p className="">اضافة سابقة أخرى</p> 
                  </div>
                  {state.surgicalPrecedents.length > 1 && <AlertDialog titleButton={"رجوع"} renderComponent={ <div className="py-1 px-3 bg-bgSideButton transition-transform transform hover:scale-110 hover:cursor-pointer text-titleColor  rounded-full text-md mr-2">
@@ -32,9 +36,16 @@
                      placeholder={"اسم العملية"}
                      type="text"
                      value = {precedent.surgeryName}
-                     onChange={(e) => state.updateSurgicalPrecedent(index,{surgeryName: e.target.value})}
+                     onChange={(e) => {
+                        setSurgeryName(e.target.value)
+                        state.updateSurgicalPrecedent(index,{surgeryName: e.target.value})
+                     }}
              />
-             
+             {state.errors.surgeryName && (
+            <div dir="rtl" className="text-red-500 text-sm mt-1">
+            {state.errors.surgeryName}
+            </div>
+        )}
              </div>
              <div className="w-[47%] ">
              <CustomDatePicker

@@ -76,7 +76,7 @@ function GeneralDialysis({ data ,type2 }) {
   };
 
   const handleRowClick = (userId) => {
-    navigate(`${dialysisDetailsRoute.replace(":id", userId)}`);
+    navigate(`/app/dialysisDetails/${userId}`);
   };
 
   return (

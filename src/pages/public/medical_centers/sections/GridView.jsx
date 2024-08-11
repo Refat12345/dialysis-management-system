@@ -17,10 +17,10 @@ return (
     <div className={`grid grid-cols-3 xl:grid-cols-4 content-start bg-bgSideButton shadow-inner  rounded-lg p-4 gap-3  ${responsive}`}>
     {data.map((medicalCenter , index)=>{
         return user.role === "admin" ?<AlertDialog key={index} 
-                renderComponent={<MedicalCenter icons={icons} content={medicalCenter} role={"admin"} key={index}/>} 
-                contentComponent={<TransferPatient  destinationCenterID={medicalCenter.id} key={index}/>} 
-                /> :<div>
-                    <MedicalCenter icons={icons} content={medicalCenter} key={index} role={"super"} />
+                renderComponent={<MedicalCenter icons={icons} content={medicalCenter} role={"admin"} />} 
+                contentComponent={<TransferPatient  destinationCenterID={medicalCenter.id} />} 
+                /> :<div key={index}>
+                    <MedicalCenter icons={icons} content={medicalCenter}  role={"super"} />
                 </div>
             
 

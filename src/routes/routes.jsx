@@ -60,8 +60,7 @@ import {
   appointment,
   notes,
   GetUnAcceptedPatientRoute,
-  userInvites,
-  transferPatientRoute
+  userInvites
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -295,7 +294,9 @@ const router = createBrowserRouter([
       },
       {
         path: dialysisDetailsRoute,
-        element: <DialysisPage />,
+        element: (
+          <DialysisPage />
+        ),
         errorElement: <ErrorPage />,
       },
       {
@@ -409,6 +410,24 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: enterMedicalRecordRoute,
+            element: (
+              <EnterMedicalRecordState>
+                <EnterMedicalRecordPage />
+              </EnterMedicalRecordState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: addPatintinfoRoute,
+            element: (
+              <AddPaitentInfoState>
+                <AddPatientInfoPage />
+              </AddPaitentInfoState>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
             path: assignAppointmentRoute,
             element: (
               <Appointment/>
@@ -416,7 +435,7 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: transferPatientRoute,
+            path: medicalCentersRoute,
             element: (
               <MedicalCentersPage/>
             ),

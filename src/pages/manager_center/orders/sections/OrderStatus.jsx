@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
-import {ButtonLoader , Toast} from "../../../../components"
+import {ButtonLoader } from "../../../../components"
 import { useEffect } from "react";
 import { useOrdersState } from "../OrdersState";
 import { useChangeStatusMutation } from "../../../../services/manager_center/orders/OrdersSlice";
@@ -19,8 +19,7 @@ const OrdersStatus = ({id , type}) => {
         event.stopPropagation();
         state.postData(state,changeStatus,type)
     }
-    const textToastStyle = {color:type === "rejected" ? "red":"green", textAlign:"center" ,fontWeight:"bold", fontSize:"22px"};
-    
+
 return (
     <div dir="rtl">
             <p className=" flex justify-center text-lg text-titleColor font-primaryBold ">{type === "rejected" ? "هل أنت متأكد من رفض الطلب":"هل أنت متأكد من قبول الطلب"}</p>
@@ -29,7 +28,6 @@ return (
                 > {"تأكيد"}
                 </button>:<ButtonLoader/> }
             </div>
-            <Toast progressColor={type === "rejected" ?"red":"green"} textStyle={textToastStyle}/>
     </div> 
 )
 }
