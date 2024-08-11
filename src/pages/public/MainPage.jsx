@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Dashboard from "../manager_center/dashboard/Dashboard.jsx";
 import SecretariatDashboard from "../secretariat/Dashboard/SecretariatDashboard";
 import ManagerDashboard from "../manager/dashboard/ManagerDashboard.jsx";
-import { PatientProvider } from "../manager_center/patient/patient_list/PaitientListState.jsx";
+import { SecretariaDashboardProvider } from "../secretariat/Dashboard/SecretariaDashboardState.jsx";
 const MainPage = () => {
   const user = useSelector((state) => state.user);
   return (
@@ -11,9 +11,9 @@ const MainPage = () => {
       {user.role === "admin" ? (
         <Dashboard />
       ) : user.role === "secretary" ? (
-        <PatientProvider>
+        <SecretariaDashboardProvider>
           <SecretariatDashboard />
-        </PatientProvider>
+        </SecretariaDashboardProvider>
       ) : (
         <ManagerDashboard />
       )}

@@ -56,7 +56,9 @@ export default function SendNote({ open, setOpen }) {
     };
   
     return (
-      <Dialog open={open} onClose={handleClose}>
+      <>
+      <ToastContainer/>
+        <Dialog open={open} onClose={handleClose}>
         <DialogTitle className="text-center ">
           <span className=" text-4xl text-blue-700">{"ارسال ملاحظة"}</span>
         </DialogTitle>
@@ -125,6 +127,8 @@ export default function SendNote({ open, setOpen }) {
                   <span className="mr-1">مدير المركز</span>
                 </label>
 
+             
+
 
               </div>
               <div className="flex justify-center w-full">
@@ -138,7 +142,8 @@ export default function SendNote({ open, setOpen }) {
             </form>
           </div>
         </DialogContent>
-        <ToastContainer />
       </Dialog>
+      </>
+    
     );
   }

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // /* eslint-disable react/prop-types */
 // import { createContext, useContext, useState, useEffect } from 'react';
 // import { useGetUserDetailsQuery } from '../../../../services/manager_center/user/user_details/UserDetailsSlice'; 

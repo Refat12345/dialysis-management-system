@@ -17,9 +17,7 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
               url: `updateUser`,
               method: 'POST',
               body: medicalRecord,
-              // headers: {
-              //     'Authorization': 'Bearer 53|qd2zsftESjcGb6ePvjjsCMSJAlzhkwqrk0rkaf5B1c176c9f'
-              //   }
+             
               headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
 
           };
@@ -37,7 +35,6 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
 
   EditUserPermissions: builder.mutation({
     query: (medicalRecord) => { 
-        console.log("NEW PER IS ",medicalRecord)
         return {
             url: `updatePermissionsUser`,
             method: 'POST',

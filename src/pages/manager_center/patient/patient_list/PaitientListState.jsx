@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetPatientQuery,useGetUnAcceptedPatientQuery,useGetHangingPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
+import { useGetPatientQuery
+   } 
+  from "../../../../services/manager_center/patient/patient_list/PatientSlice";
 import { useSelector } from "react-redux";
 import { useGetMedicalCenterQuery } from "../../../../services/manager_center/user/user_list/UserSlice";
 const PatientContext = createContext();
@@ -93,38 +95,7 @@ export const PatientProvider = ({ children }) => {
     isSuccess: isUserSuccess,
   } = useGetPatientQuery({option: translatedOption, centerId: centerIdString,role:user.role,selectedCenterId:selectedCenterId });
 
-  ////////////////////////////
-
-  const [patientUnAcceptedData, setPatientUnAcceptedData] = useState([]);
-  const [isLoadingUnAccepted, setIsLoadingUnAccepted] = useState(false);
-  const [isSuccessUnAccepted, setIsSuccessUnAccepted] = useState(false);
-
-  const {
-    data: patientUn,
-    isLoading: isUserUnLoading,
-    isSuccess: isUserUnSuccess,
-  } = useGetUnAcceptedPatientQuery({centerId: centerIdString });
-
-  useEffect(() => {
-    if (isUserUnSuccess && patientUn) {
-      setPatientUnAcceptedData(patientUn.patients);
-      setIsLoadingUnAccepted(false);
-      setIsSuccessUnAccepted(true);
-    } else if (isUserUnLoading) {
-      setIsLoadingUnAccepted(true);
-      setIsSuccessUnAccepted(false);
-    } else {
-      setIsLoadingUnAccepted(false);
-      setIsSuccessUnAccepted(false);
-    }
-  }, [isUserUnSuccess, isUserUnLoading, patientUn]);
-
-
-
-
-
-
-  /////////////////////////
+ 
 
   useEffect(() => {
     if (isUserSuccess && patient) {
@@ -156,32 +127,7 @@ export const PatientProvider = ({ children }) => {
     setSelectedOption(event);
   };
 
-  // المعلق
-  const [hangingPatientData, setHangingPatientData] = useState([]);
-  const [isLoadinghangingPatient, setIsLoadinghangingPatient] = useState(false);
-  const [isSuccesshangingPatient, setIsSuccesshangingPatient] = useState(false);
-
-  const {
-    data: hangingPatient,
-    isLoading: ishangingPatientLoading,
-    isSuccess: ishangingPatientSuccess,
-  } = useGetHangingPatientQuery({centerId: centerIdString });
-
-  useEffect(() => {
-    if (ishangingPatientSuccess && hangingPatient) {
-      setHangingPatientData(hangingPatient);
-      setIsLoadinghangingPatient(false);
-      setIsSuccesshangingPatient(true);
-    } else if (ishangingPatientLoading) {
-      setIsLoadinghangingPatient(true);
-      setIsSuccesshangingPatient(false);
-    } else {
-      setIsLoadinghangingPatient(false);
-      setIsSuccesshangingPatient(false);
-    }
-  }, [ishangingPatientSuccess, ishangingPatientLoading, hangingPatient]);
-
-
+  
   
 
   return (
@@ -195,12 +141,6 @@ export const PatientProvider = ({ children }) => {
         handleSelectChange,
         setSearchTerm,
         filteredDataSearch,
-        isSuccessUnAccepted,
-        isLoadingUnAccepted,
-        patientUnAcceptedData,
-        hangingPatientData,
-        isLoadinghangingPatient,
-        isSuccesshangingPatient,
         MedicalCenters,
         handleSelectCenterChange,
         selectedCenterOption,

@@ -13,6 +13,7 @@ const GlobalInfoState = ({ children }) => {
 
   const { data, error, isLoading } = useGetGeneralDetailsQuery(id);
 
+
   if (isLoading) {
     return (
       <div className="flex-grow md:mr-48">

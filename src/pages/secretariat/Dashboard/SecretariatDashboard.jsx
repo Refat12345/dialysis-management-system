@@ -5,16 +5,17 @@ import {
   bodyMeduimStyle,
   bodySmallStyle,
 } from "../../../utils/StyleUtils";
-import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
+// import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
 import { CustomButton } from "../../../components";
 import { useNavigate } from "react-router-dom";
+import { useSecretariaDashboard } from "./SecretariaDashboardState";
 
 const SecretariatDashboard = () => {
   const {
     hangingPatientData,
     isLoadinghangingPatient,
     isSuccesshangingPatient
-  } = usePatient();
+  } = useSecretariaDashboard();
   const navigate = useNavigate()
 
   const [addToWaiting] = useAddToWaitingMutation();

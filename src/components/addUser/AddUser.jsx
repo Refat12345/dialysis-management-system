@@ -41,6 +41,66 @@ const AddUser = () => {
     role = state.role;
   }
 
+  // const handelAddUser = async () => {
+  //   if (
+  //     !state.username ||
+  //     !state.nationaltyNumber ||
+  //     !state.birthdate ||
+  //     !state.genderValue ||
+  //     !state.role ||
+  //     state.contactInfo.some(
+  //       (contact) => !contact.use || !contact.system || !contact.value
+  //     ) ||
+  //     state.addressInfo.some(
+  //       (address) =>
+  //         !address.use ||
+  //         !address.cityName ||
+  //         !address.line ||
+  //         !address.countryName
+  //     )
+  //   ) {
+  //     toast.error("يرجى تعبئة جميع الحقول");
+  //     return;
+  //   }
+
+  //   if (state.nationaltyNumber.length !== 11) {
+      
+  //     toast.error("يجب أن يحتوي الرقم الوطني على 11 خانة");
+  //     return;
+  //   }
+
+  //   const data = {
+  //     fullName: state.username,
+  //     nationalNumber: state.nationaltyNumber,
+  //     dateOfBirth: state.birthdate.format("YYYY-MM-DD"),
+  //     gender: state.genderValue,
+  //     role: state.role,
+  //     telecom: state.contactInfo,
+  //     address: state.addressInfo,
+  //   };
+
+  //   try {
+  //     setLoading(true);
+  //     const result = await addUser(data);
+  //     toast.success("تمت الاضافة بنجاح");
+  //     console.log("Result:", result);
+
+  //     updateState({
+  //       username: "",
+  //       nationaltyNumber: "",
+  //       birthdate: null,
+  //       genderValue: "",
+  //       role: "",
+  //       contactInfo: [{ use: "", system: "", value: "" }],
+  //       addressInfo: [{ use: "", cityName: "", line: "", countryName: "" }],
+  //     });
+  //   } catch (error) {
+  //     toast.error("حدث خطأ اثناء الاضافة");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handelAddUser = async () => {
     if (
       !state.username ||
@@ -62,13 +122,12 @@ const AddUser = () => {
       toast.error("يرجى تعبئة جميع الحقول");
       return;
     }
-
+  
     if (state.nationaltyNumber.length !== 11) {
-      
       toast.error("يجب أن يحتوي الرقم الوطني على 11 خانة");
       return;
     }
-
+  
     const data = {
       fullName: state.username,
       nationalNumber: state.nationaltyNumber,
@@ -78,24 +137,29 @@ const AddUser = () => {
       telecom: state.contactInfo,
       address: state.addressInfo,
     };
-
+  
     try {
       setLoading(true);
       const result = await addUser(data);
-      toast.success("تمت الاضافة بنجاح");
-      console.log("Result:", result);
 
-      updateState({
-        username: "",
-        nationaltyNumber: "",
-        birthdate: null,
-        genderValue: "",
-        role: "",
-        contactInfo: [{ use: "", system: "", value: "" }],
-        addressInfo: [{ use: "", cityName: "", line: "", countryName: "" }],
-      });
+      if (result.data === undefined ) {
+        toast.error(`حدث خطأ: ${result.error.data['error']}`);
+      } else {
+        toast.success("تمت الاضافة بنجاح");
+        console.log("Result:", result);
+        // updateState({
+        //   username: "",
+        //   nationaltyNumber: "",
+        //   birthdate: null,
+        //   genderValue: "",
+        //   role: "",
+        //   contactInfo: [{ use: "", system: "", value: "" }],
+        //   addressInfo: [{ use: "", cityName: "", line: "", countryName: "" }],
+        // });
+      }
     } catch (error) {
       toast.error("حدث خطأ اثناء الاضافة");
+      console.log("Error:", error);
     } finally {
       setLoading(false);
     }
