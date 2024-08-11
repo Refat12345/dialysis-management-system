@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import {
@@ -35,8 +36,12 @@ export const UserProvider = ({ children }) => {
     data: userinvitedata,
     isLoading: userinviteloading,
     isSuccess: userinvitesucess,
-  } = useGetUserInvitesQuery(centerIdString);
+  } = useGetUserInvitesQuery({id:centerIdString,role:user.role});
 
+
+
+
+  
   useEffect(() => {
     if (userinvitesucess && userinvitedata) {
       setUserInvites(userinvitedata.data);
@@ -85,20 +90,9 @@ export const UserProvider = ({ children }) => {
     isSuccess: medicalSuccess,
   } = useGetMedicalCenterQuery();
 
-  // useEffect(() => {
-  //   if (medicalSuccess && medicalCenters) {
-  //     setmedicalCenters(medicalCenters);
-  //     setIsLoadingMedicalCenters(false);
-  //     setIsSuccessMedicalCenters(true);
-  //   } else if (medicalLoading) {
-  //     setIsLoadingMedicalCenters(true);
-  //     setIsSuccessMedicalCenters(false);
-  //   } else {
-  //     setIsLoadingMedicalCenters(false);
-  //     setIsSuccessMedicalCenters(false);
-  //   }
-  // }, [medicalSuccess, medicalLoading, medicalCenters]);
+
   useEffect(() => {
+    console.log("qppppppppppppppp")
     if (medicalSuccess && medicalCenters) {
       const centersWithAll = [
         

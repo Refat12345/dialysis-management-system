@@ -8,6 +8,8 @@ export const NotePatientSlice = apiSlice.injectEndpoints({
         method: "GET",
         headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
       }),
+      providesTags: ["note"],
+
     }),
 
     sendNote: builder.mutation({
@@ -19,6 +21,7 @@ export const NotePatientSlice = apiSlice.injectEndpoints({
           headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
         };
       },
+      invalidatesTags: ["note"],
     }),
   }),
 });

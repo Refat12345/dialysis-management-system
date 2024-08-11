@@ -1,21 +1,18 @@
 import { useState } from "react";
 import { usePatient } from "../../../pages/manager_center/patient/patient_list/PaitientListState";
 import { useNavigate } from "react-router-dom";
-
+import patientt from "./../../../assets/icons/medical-center/users/users-list/nurseMan.svg"
+import PageLoader from "../../public/loader/PageLoader";
 const GetUnAcceptedPatient = () => {
   const navigate = useNavigate();
   const { isSuccessUnAccepted, isLoadingUnAccepted, patientUnAcceptedData } =
     usePatient();
 
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [selectedPatient, setSelectedPatient] = useState(null);
-
-  // const handleCardClick = (patient) => {
-  //   navigate(`/app/patient/${patient.id}/addPatientInfo`);
-  // };
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   const handleIconClick = (event, patient) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     setSelectedPatient(patient);
     setShowDropdown(!showDropdown);
   };
@@ -30,6 +27,17 @@ const GetUnAcceptedPatient = () => {
     setShowDropdown(false);
   };
 
+  if (isLoadingUnAccepted)
+    return (
+      <div className="flex-grow md:mr-48">
+        <div className="flex items-center justify-center h-screen">
+          <PageLoader />
+        </div>
+      </div>
+    );
+
+    if (!patientUnAcceptedData.length ) return <div>No data available</div>;
+
   return (
     <>
       {isSuccessUnAccepted && !isLoadingUnAccepted && patientUnAcceptedData && (
@@ -42,7 +50,6 @@ const GetUnAcceptedPatient = () => {
               <div
                 key={patient.id}
                 className=" rounded-lg  overflow-hidden shadow-lg p-4 bg-white cursor-pointer transform hover:scale-105 transition-transform duration-200 ease-in-out relative"
-                // onClick={() => handleCardClick(patient)}
               >
                 <svg
                   className="h-5 w-5 text-green-500 mb-3 absolute top-2 left-2 cursor-pointer"
@@ -73,20 +80,24 @@ const GetUnAcceptedPatient = () => {
                   </div>
                 )}
 
-
-
-                <div className="font-bold text-xl mb-2 text-blue-600">
+                {/* <div className="font-bold text-xl mb-2 text-blue-600">
                   {patient.fullName}
-                </div>
-                <p className="text-gray-700 text-base">
-                  الحالة:{" "}
-                  <span className="font-semibold">{patient.accountStatus}</span>
-                </p>
+                </div> */}
+                <div className="font-bold text-xl mb-2 text-blue-600 flex items-center">
+  <img
+    src={patientt}     
+    
+    className="h-9 w-9 rounded-full ml-2"
+  />
+    <span>{patient.fullName}</span>
+
+</div>
+
                 <p className="text-gray-700 text-base">
                   الجنس: <span className="font-semibold">{patient.gender}</span>
                 </p>
                 <p className="text-gray-700 text-base">
-                  الدور: <span className="font-semibold">{patient.role}</span>
+                  الدور: <span className="font-semibold">{"مريض"}</span>
                 </p>
                 <p className="text-gray-700 text-base">
                   المدينة: <span className="font-semibold">{patient.city}</span>

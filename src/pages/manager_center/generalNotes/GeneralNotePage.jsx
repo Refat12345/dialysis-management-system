@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import GlobalNoteView from "../../../components/manager_center/globalNotes/GlobalNoteView";
 import { GeneralDetailsProvider } from "./GeneralNoteState";
 import { useParams } from "react-router-dom";

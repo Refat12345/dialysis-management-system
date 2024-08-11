@@ -20,7 +20,8 @@ function DialogNote({ open, setOpen, data }) {
   const handleInputChange = (e, setter) => setter(e.target.value);
 
   const handleSubmit = async (e) => {
-    event.preventDefault();
+    e.preventDefault();
+    console.log("مرحبا ادخال");
     const newData = {
       description: noteContent,
     };
@@ -42,7 +43,8 @@ function DialogNote({ open, setOpen, data }) {
       </DialogTitle>
       <DialogContent className="p-4 w-full " dir="rtl">
         <div className="flex flex-col items-center justify-center p-4">
-          <form className="w-full max-w-lg" onSubmit={handleSubmit}>
+          {/* <form className="w-full max-w-lg" onSubmit={handleSubmit}> */}
+          <form className="w-full max-w-lg">
             <div className="mb-4 w-96">
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-72"
@@ -52,13 +54,7 @@ function DialogNote({ open, setOpen, data }) {
                 onChange={(e) => handleInputChange(e, setNoteContent)}
               />
             </div>
-            <div className="flex items-center justify-center">
-              {/* <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      type="submit"
-    >
-      حفظ
-    </button> */}
+            <div className="flex flex-col items-center justify-center ">
               <CustomButton
                 variant="solid"
                 onClick={handleSubmit}
@@ -80,6 +76,8 @@ function DialogNote({ open, setOpen, data }) {
                 radius="full"
                 disabled={loading}
               />
+
+           
             </div>
           </form>
         </div>
