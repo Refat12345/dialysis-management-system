@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { globalInfoRoute, patientsRoute } from "../../../data/data";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./TableRow";
 import TableHeader from "./TableHeader";
 import { usePatient } from "../../../pages/manager_center/patient/patient_list/PaitientListState";
-import { SelectedTextFeild } from "../..";
-import { useEffect, useState } from "react";
+import { DropDown, } from "../..";
+
 import { useSelector } from "react-redux";
 
 export function Table({ data }) {
@@ -19,10 +18,7 @@ export function Table({ data }) {
     selectedCenterOption,
   } = usePatient();
 
-  const filter = {
-    title: "نوع ",
-    array: ["مرضى مقبولين", "مرضى انتظار"],
-  };
+
   const user = useSelector((state) => state.user);
 
   const filteredData = data.map((item) => ({
@@ -42,6 +38,16 @@ export function Table({ data }) {
   const getRowColor = (index) => {
     return index % 2 === 0 ? "bg-firstRow" : "bg-secondRow";
   };
+  const colors = {
+    titleColor: "primaryColor",
+    contentColor: "bgButtonColor",
+    textColor: "textMenuColor",
+}
+const patientFilter = {
+    title :"مرضى مقبولين",
+    array :["مرضى مقبولين" ,"مرضى مرفوضين" ,"مرضى انتظار"
+    ]
+}
 
   const columns = [
     { key: "name", title: "الاسم" },
@@ -62,49 +68,32 @@ export function Table({ data }) {
         `}
       </style>
 
-      <div className="overflow-x-auto  ml-11 min-h-customAbove600" dir="rtl">
-        {/* <div className="flex justify-between mb-5 mt-5">
-          <h2 className="text-customPurple text-customSize">المرضى</h2>
-
-          <div className="relative w-full flex flex-row-reverse  ">
-            <SelectedTextFeild
-              activeLabel={false}
-              value={selectedOption}
-              filter={filter.array}
-              onSelect={handleSelectChange}
-            />
-            {user.role === "superAdmin" && (
-              <SelectedTextFeild
-                activeLabel={false}
-                value={selectedCenterOption}
-                filter={MedicalCenters?.map((center) => center.centerName)}
-                onSelect={handleSelectCenterChange}
-              />
-            )}
+      <div className="overflow-x-auto  min-h-customAbove600" dir="rtl">
+        
+        <div className="flex  mb-5 mt-5">
+          
+          <div className=" w-full flex    ">
+          <div className="w-[20%]">
+          <DropDown
+          colors={colors}
+          filter={patientFilter.array}
+          title={patientFilter.title}
+          onSelect={handleSelectChange}
+          type={"shift"}
+          />
           </div>
           
-        </div> */}
-
-        <div className="flex  mb-5 mt-5">
-          <h2 className="text-customPurple text-customSize">المرضى</h2>
-
-          <div className=" w-full flex flex-row-reverse    ">
-          <SelectedTextFeild
-              activeLabel={false}
-              value={selectedOption}
-              filter={filter.array}
-              onSelect={handleSelectChange}
-              type2={"superAdmin"}
-            />
             {user.role === "superAdmin" && (
-              <SelectedTextFeild
-                activeLabel={false}
-                value={selectedCenterOption}
-                filter={MedicalCenters?.map((center) => center.centerName)}
-                onSelect={handleSelectCenterChange}
-                type2={"superAdmin"}
 
-              />
+              <div className="w-[20%]">
+              <DropDown
+              colors={colors}
+              filter={MedicalCenters?.map((center) => center.centerName)}
+              title={selectedCenterOption}
+              onSelect={handleSelectCenterChange}
+              type={"shift"}
+          />
+          </div>
             )}
           </div>
         </div>

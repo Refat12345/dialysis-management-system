@@ -19,9 +19,7 @@ const ManagerDashboardSlice = apiSlice.injectEndpoints(
             })
         }),
         getMedicines:builder.query ({
-            query :(body)=>{
-                console.log(body);
-                
+            query :(body)=>{ 
             return{
             url:`${body.month != "" && body.year != "" ?`getAllPieCharts/${body.id}/${body.month}/${body.year}` :`getAllPieCharts/${body.id}`}`,
             method:"GET",

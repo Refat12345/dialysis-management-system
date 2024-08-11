@@ -22,10 +22,10 @@ const causeRenalFailure = [
     { id: 3, value: causeRenalData.otherDiseases, label: causeRenalFailureTitle[0][3]},
 ];
 const filters = [{
-    title:"الشهر",
+    title:date.month === "" ? "الشهر":date.month,
     array:["1","2","3","4","5","6","7","8","9","10","11","12",]
 },{
-    title:"السنة",
+    title:date.year === ""?"السنة":date.year,
     array:["2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036"]
 }
 ]
@@ -41,12 +41,12 @@ const colors = {
         <div  className="flex mb-2">
         <div className="w-[20%]">
         <DropDown colors={colors} filter={filters[0].array} title={filters[0].title} onSelect={(val)=>{
-            setValue({...date,month:val})
+                setValue({...date,month:val})
         }}/>
         </div>
         <div className="w-[20%]">
         <DropDown colors={colors} filter={filters[1].array} title={filters[1].title} onSelect={(val)=>{
-              setValue({...date,year:val})
+                setValue({...date,year:val})
         }}/>
         </div>
         </div>

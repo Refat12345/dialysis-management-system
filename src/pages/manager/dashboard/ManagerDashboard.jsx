@@ -10,12 +10,14 @@ import {
   useGetCauseRenalQuery,
   useGetMedicinesQuery,
 } from "../../../services/manager/dashboard/ManagerDashboardSlice";
-
+import Cookies from "js-cookie"
 const ManagerDashboard = () => {
   const [date, setDate] = useState({
     month: "",
-    year: "",
+    year: ""
   });
+  console.log(Cookies.get("token"));
+  
   const [id, setId] = useState(0);
   const [centerName,setCenterName] = useState("المراكز الطبية")
   // Query hooks
@@ -77,7 +79,7 @@ const ManagerDashboard = () => {
     if(date.month != "" && date.year != "" ){
       reMedicines();
     }
-}, [date, reMedicines]);
+}, [date]);
 
   // Handle loading state
   if (medicineLoading || causeRenalLoading || statisticsLoading || medicalCentersLoading) {

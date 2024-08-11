@@ -202,12 +202,12 @@ import { bodyMeduimStyle } from "../../../utils/StyleUtils";
 import { useNavigate } from "react-router-dom";
 import { secretariaAccountRoute } from "../../../data/data";
 import { useUsers } from "../../../pages/manager_center/users/users-list/UserListState";
-import { SelectedTextFeild } from "../..";
+import { DropDown, Search, SelectedTextFeild } from "../..";
 import { useSelector } from "react-redux";
 
 function Header({ setSearchTerm }) {
   const filter = {
-    title: "نوع ",
+    title: "نوع المستخدم",
     array: ["طبيب", "السكرتارية", "ممرض", "الكل"],
   };
   const user = useSelector((state) => state.user);
@@ -222,7 +222,16 @@ function Header({ setSearchTerm }) {
     handleSelectCenterChange,
     selectedCenterOption,
   } = useUsers();
-
+  const colors = {
+    titleColor: "primaryColor",
+    contentColor: "bgButtonColor",
+    textColor: "textMenuColor",
+}
+const patientFilter = {
+  title :"مرضى مقبولين",
+  array :["مرضى مقبولين" ,"مرضى مرفوضين" ,"مرضى انتظار"
+  ]
+}
   return (
     <>
       {isSuccessMedicalCenters &&
@@ -281,20 +290,21 @@ function Header({ setSearchTerm }) {
                   radius="full"
                 />
               )}
-              <div className="flex items-end justify-end pr-2 w-2/4">
-                <div className="relative w-2/12 mr-4">
-                  <SelectedTextFeild
-                    activeLabel={false}
-                    value={selectedOption}
-                    filter={filter.array}
-                    onSelect={handleSelectChange}
-                  />
+              <div className="flex items-end justify-end pr-2 w-[60%]">
+                <div className="relative w-[50%] ">
+                  <DropDown
+                  colors={colors}
+                  filter={filter.array}
+                  title={filter.title}
+                  onSelect={handleSelectChange} 
+                  type={"shift"}
+          />
                 </div>
                 {user.role === "superAdmin" && (
-                  <div className="relative w-2/12 mr-4">
-                    <SelectedTextFeild
-                      activeLabel={false}
-                      value={selectedCenterOption}
+                  <div className="relative w-[50%] mr-4">
+                    <DropDown
+                      colors={colors}
+                      title={"المراكز الطبية"}
                       // filter={MedicalCenters?.centers?.map(
                       //   (center) => center.centerName
                       // )}
@@ -302,15 +312,16 @@ function Header({ setSearchTerm }) {
                         (center) => center.centerName
                       )}
                       onSelect={handleSelectCenterChange}
+                      type={"shift"}
                     />
                   </div>
                 )}
-                <input
-                  type="text"
-                  placeholder="...البحث"
-                  className="bg-search text-right w-5/12 p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600"
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                <div dir="rtl">
+                <Search
+                handleInputValue={(e) => setSearchTerm(e.target.value)}
                 />
+                </div>
+            
               </div>
             </div>
           </div>

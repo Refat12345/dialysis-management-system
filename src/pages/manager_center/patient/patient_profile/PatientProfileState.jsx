@@ -5,11 +5,9 @@ import { useNavigate } from "react-router-dom";
 import {
   globalInfoRoute,
   medicalRecordRoute,
-  dialysisSessionsRoute,
   medicalAnalysisRoute,
   prescriptionsRoute,
   globalNotesRoute,
-  dialysisRoute,
   dialysisByPatient,
 } from "../../../../data/data";
 

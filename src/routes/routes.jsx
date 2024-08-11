@@ -1,6 +1,6 @@
 
 /* eslint-disable no-unused-vars */
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter , Navigate} from "react-router-dom";
 import {
   PatientProfilePage,
   PatientListPage,
@@ -19,7 +19,8 @@ import {
   EnterMedicalRecordPage,
   AddMedicalAnalysisPage,
   MainPage,
-  Appointment
+  Appointment,
+  LogOut
 } from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import {
@@ -60,7 +61,8 @@ import {
   appointment,
   notes,
   GetUnAcceptedPatientRoute,
-  userInvites
+  userInvites,
+  logoutRoute
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -101,14 +103,12 @@ import CreateMedicalState from "../components/AddMedicalCenter/CreateMedicalStat
 import AddMedicalCenter from "../components/AddMedicalCenter/AddMedicalCenter";
 import GetUnAcceptedPatient from "../components/manager_center/patient/GetUnAcceptedPatient";
 import UserInvites from "../pages/manager_center/users/UserInvites";
-
+import HomePage from "../pages/public/home_page/HomePage";
 const router = createBrowserRouter([
   {
-    path: loginRoute,  
-    element: (
-      <LoginStateProvider>
-        <LoginPage />
-      </LoginStateProvider>
+    path: '/',  
+    element:(
+      <HomePage/>
     ),
     errorElement: <ErrorPage />,
   },
@@ -122,10 +122,17 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
+  
   {
     path: '/app', 
     element: <MainLayout />,  
     children: [
+      {
+        path:logoutRoute,
+        element :(
+          <LogOut/>
+        )
+      },
       {
         path: "",
         element: (
@@ -139,10 +146,6 @@ const router = createBrowserRouter([
         path: mainRoute,
         element: (
             <MainPage />
-            // <PatientProvider>
-            // <SecretariatDashboard/>
-
-            // </PatientProvider>
 
         ),
         errorElement: <ErrorPage />,
@@ -478,8 +481,10 @@ const router = createBrowserRouter([
         element :(
           <Appointment/>
         )
-      }
+      },
+      
     ],
+    
   },
 ]);
 

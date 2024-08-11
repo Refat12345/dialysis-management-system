@@ -3,7 +3,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const savedUser = JSON.parse(sessionStorage.getItem("user")) || {
+const savedUser ={
     id: "",
     fullName: "",
     nationalNumber: "",
