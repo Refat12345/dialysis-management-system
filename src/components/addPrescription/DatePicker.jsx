@@ -7,9 +7,7 @@ import { useAddPrescriptionState } from "./AddPrescriptionState";
 const DatePickerr = ({label ,contact , index}) => {
   const { state, updateState } = useAddPrescriptionState();
 
-    // const [day, setDay] = useState('');
-    // const [month, setMonth] = useState('');
-    // const [year, setYear] = useState('');
+
   
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
     const months = [

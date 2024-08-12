@@ -12,7 +12,6 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
 
     EditUser: builder.mutation({
       query: (medicalRecord) => { 
-          console.log("editDATA",medicalRecord)
           return {
               url: `updateUser`,
               method: 'POST',

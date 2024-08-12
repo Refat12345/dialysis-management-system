@@ -54,7 +54,6 @@ const AddMedicalCenter = () => {
     };
     try {
       const result = await addMedical(data);
-      console.log("Result:", result);
       toast.success("تمت الاضافة بنجاح");
       updateState({
         username: "",

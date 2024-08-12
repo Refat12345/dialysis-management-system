@@ -71,7 +71,6 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
 
     try {
       const result = await addFromWaitingToPending(data);
-      console.log("Result:", result);
       toast.success("تمت الاضافة بنجاح");
     } catch (error) {
       toast.error("حدث خطأ اثناء الاضافة",error);
@@ -96,7 +95,6 @@ const handleEllipsisMouseLeave = () => {
 
 
   const selectAdminValueOption = (value) => {
-    console.log("a");
     
     updateState({ adminValue: value });
     switch (value) {

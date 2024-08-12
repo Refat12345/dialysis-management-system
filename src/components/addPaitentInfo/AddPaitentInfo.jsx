@@ -472,7 +472,6 @@ function AddPaitentInfo({id}) {
             };
             try {
               const result = await addPatientInfo(data).unwrap();
-              console.log("Result:", result);
               toast.success("تم إرسال البيانات  بنجاح!");
               updateState({
                 genderValue: "",
