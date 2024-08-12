@@ -35,7 +35,7 @@ function GlobalNoteView({ type }) {
   }
   return (
     <>
-      {isSuccess && !isLoading && generalDetails && (
+      {isSuccess && !isLoading  && (
         <>
           <div dir="rtl" className="relative mt-2">
             <span className="text-blue-500 text-lg ">الملاحظات العامة</span>
