@@ -50,7 +50,6 @@ const CreateMedicalState = ({ children }) => {
 
   const selectDate = (val) => {
     const formattedDate = dayjs(val).format("YYYY-MM-DD");
-    console.log("Formatted Date:", formattedDate);
     updateState({ birthdate: dayjs(val) });
   };
   
@@ -114,10 +113,8 @@ const CreateMedicalState = ({ children }) => {
 
   const handleSelectPermission = (val) => {
     setState((prevState) => {
-      // Check if the value is already included in the permissions array
       if (prevState.permissions.includes(val)) {
-        // If so, remove the value using the removePermissions function
-        // This should be done outside of setState to avoid direct mutation
+        
         return {
           ...prevState,
           permissions: prevState.permissions.filter(
@@ -125,7 +122,6 @@ const CreateMedicalState = ({ children }) => {
           ),
         };
       } else {
-        // If the value is not included, add it to the permissions array
         return {
           ...prevState,
           permissions: [...prevState.permissions, val],

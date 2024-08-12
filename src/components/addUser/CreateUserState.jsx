@@ -43,9 +43,7 @@ const CreateUserState = ({ children }) => {
   const selectGender = (value) => {
     updateState({ genderValue: value });
   };
-  // const selectRole = (value) => {
-  //   updateState({ role: value });
-  // };
+  
   const selectRole = (value) => {
     let role;
     if (value === 'مريض') {
@@ -62,7 +60,6 @@ const CreateUserState = ({ children }) => {
 
   const selectDate = (val) => {
     const formattedDate = dayjs(val).format("YYYY-MM-DD");
-    console.log("Formatted Date:", formattedDate);
     updateState({ birthdate: dayjs(val) });
   };
   

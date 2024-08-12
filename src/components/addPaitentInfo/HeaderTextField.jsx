@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import pait from "./../../assets/icons/medical-center/patient/patient.svg";
 function HeaderTextField({ icon, text ,width }) {
   return (

@@ -6,14 +6,7 @@ function SessionData({data}) {
 
   
   
-  // const [sessionData, setSessionData] = useState({
-  //   nurseName: "سعيد الحوزاني",
-  //   centerName: "حسن حبنكة",
-  //   supervisingDoctor: "سعيد محمد",
-  //   sessionStatus: "منتهية",
-  //   sessionDate: "2024 كانون2 الثاني",
-  // });
-
+  
  
 
   const sessionData = {

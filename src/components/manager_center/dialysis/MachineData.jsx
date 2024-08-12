@@ -3,15 +3,7 @@
 import React, { useState } from 'react';
 
 export default function MachineData({data}) {
-    // const [machineData, setMachineData] = useState({
-    //     sodiumConcentration: '140 mEq/L',
-    //     pumpSpeed: '300 مل/د',
-    //     venousPressure: '150 mmHg',
-    //     filterType: 'FX CorDiax',
-    //     filterColorPostSession: 'أصفر فاتح',
-    //     vascularAccess: 'قثطرة دائمة'
-    //   });
-
+    
       
   const machineData = {
     sodiumConcentration: data.dialysisSession.naConcentration,

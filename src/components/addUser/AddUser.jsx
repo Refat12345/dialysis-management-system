@@ -86,7 +86,6 @@ const AddUser = () => {
         toast.error(`حدث خطأ: ${result.error.data["error"]}`);
       } else {
         toast.success("تمت الاضافة بنجاح");
-        console.log("Result:", result);
         updateState({
           username: "",
           nationaltyNumber: "",
@@ -99,7 +98,6 @@ const AddUser = () => {
       }
     } catch (error) {
       toast.error("حدث خطأ اثناء الاضافة");
-      console.log("Error:", error);
     } finally {
       setLoading(false);
     }
