@@ -96,8 +96,7 @@ const handleEllipsisMouseLeave = () => {
 
 
   const selectAdminValueOption = (value) => {
-    console.log("a");
-    
+  
     updateState({ adminValue: value });
     switch (value) {
       case "نقل المريض":
@@ -127,9 +126,7 @@ const handleEllipsisMouseLeave = () => {
     connectSix: Object.values(row)[5],
     connectSeven: Object.values(row)[6],
   };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
 
   const [open, setOpen] = useState(false);
 
@@ -155,11 +152,6 @@ const handleEllipsisMouseLeave = () => {
       "َضم المريص للمركز",
     ],
   };
-  const patientFilter = {
-    title :"مرضى مقبولين",
-    array :["مرضى مقبولين" ,"مرضى مرفوضين" ,"مرضى انتظار"
-    ]
-}
   return (
     <tr
       className={`text-right border-b ${getRowColor(index)}`}

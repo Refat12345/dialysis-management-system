@@ -4,7 +4,7 @@ import AppointmentDialog from "../../../pages/public/appointment/sections/Dialog
 import { useState, useEffect, useMemo } from "react";
 
 const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm ,patientID }) => {
-  const daysOfWeek = ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
+  const daysOfWeek = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"];
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState({
     appointmentID: "",
@@ -28,25 +28,28 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm ,p
       });
     });
 
-    appointments
-      .filter(appointment => appointment.shiftName === shift)
-      .forEach(appointment => {
-        if (chairNumbers.includes(appointment.chairNumber)) {
-          preparedData[appointment.chairNumber][appointment.day] = {
-            patientName: appointment.patientName || "لا يوجد",
-            shiftID: appointment.shiftID,
-            appointmentID: appointment.id,
-            chairID: appointment.chairID
-          };
-        }
-      });
+    appointments.forEach(appointment => {
+      if (chairNumbers.includes(appointment.chairNumber)) {
+        preparedData[appointment.chairNumber][appointment.day] = {
+          patientName: appointment.patientName || "لا يوجد",
+          shiftID: appointment.shiftID,
+          appointmentID: appointment.id, 
+          chairID: appointment.chairID
+        };
+      }
+    });
 
     return preparedData;
   }, [appointments, shift, chairNumbers]);
-
+  
+  
   const handleClick = (day, chairNumber) => {
+
+
     const appointmentData = data[chairNumber][day];
     if (role === "secretary" && appointmentData.patientName === "لا يوجد") {
+      console.log(appointmentData.appointmentID);
+      
       updateState({ appointmentID: appointmentData.appointmentID });
       setOpen(true);
     }

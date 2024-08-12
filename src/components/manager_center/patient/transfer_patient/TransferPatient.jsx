@@ -8,8 +8,7 @@ import ButtonLoader from "../../../public/loader/ButtonLoader";
 import { useParams } from "react-router-dom";
 
 const TransferPatient = ({destinationCenterID}) => {
-    let {id} = useParams();
-    
+    let { patientName } = useParams();
     const [userInput, setUserInput] = useState('');
     const [transferPatient,{isLoading }] = useTransferPatientMutation()
     const user = useSelector((state)=>state.user) 
@@ -22,7 +21,7 @@ const TransferPatient = ({destinationCenterID}) => {
                 centerPatientID:user.centerID,
                 cause:userInput,
                 destinationCenterID:destinationCenterID,
-                patientID:id
+                patientID:patientName
             }
             console.log(body);
             await transferPatient(body)

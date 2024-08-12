@@ -27,7 +27,7 @@ const HealthInformationDialog = ({ medicalRecord }) => {
     };
 
     const vascularEntranceSelection = {
-        array: ["قثطرة", "فيستولا"],
+        array:["قثطرة دائمة", "قثطرة مؤقتة","فيستولا" ],
         title: "الوصل الوعائي",
     };
 
@@ -63,7 +63,7 @@ const HealthInformationDialog = ({ medicalRecord }) => {
             <div className="mb-3"></div>
             <SelectedTextFeild
                 label={"سبب القصور الكلوي"}
-                value={state.causeRenalFailure}
+                value={state.causeRenalFailure === "diabetes" ? "داء السكري" : (state.causeRenalFailure === "heartDiseases" ? "أمراض قلبية" :(state.causeRenalFailure === "bloodPressure" ? "ضغط الدم" :state.causeRenalFailure))}
                 filter={causeRenalFailureSelection.array}
                 onSelect={(e) => updateState({ causeRenalFailure: e })}
             />

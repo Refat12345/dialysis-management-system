@@ -67,8 +67,8 @@ console.log(isEllipsisHovered);
       <style>
         {`
         tbody  tr:hover {
-            background-color: ${isEllipsisHovered ? "" : `${user.role === "admin" && "#f3f3f3"}`}; 
-            cursor: ${isEllipsisHovered ? "" : `${user.role === "admin" && "pointer"}`};
+            background-color: ${isEllipsisHovered ? "" : "#f3f3f3"};
+            cursor: ${isEllipsisHovered ? "" :"pointer"}};
           }
         `}
 

@@ -37,7 +37,7 @@ function NationalInformation({ data }) {
 
         <div className="flex flex-col mr-6 justify-center">
           <div className="flex items-center">
-            <h3 className="text-right text-base text-gray-700 font-semibold text-lg">
+            <h3 className="text-right  text-gray-700 font-semibold text-lg">
               {data.fullName} ({displayRole})
             </h3>
           </div>
@@ -60,17 +60,17 @@ function NationalInformation({ data }) {
       <div className="flex flex-row-reverse mb-5 mt-5 ">
         <div className="flex flex-col gap-2">
           <h3 className="text-right">الجنس</h3>
-          <h3 className="text-right">{displayGender}</h3>
+          <h3 className="text-right text-titleColor font-bold">{displayGender}</h3>
         </div>
 
         <div className="flex flex-col gap-2 mr-36">
           <h3 className="text-right">الرقم الوطني </h3>
-          <h3 className="text-right">{data.nationalNumber}</h3>
+          <h3 className="text-right text-titleColor font-bold">{data.nationalNumber}</h3>
         </div>
 
         <div className="flex flex-col gap-2 mr-36 ">
           <h3 className="text-right">تاريخ الميلاد </h3>
-          <h3 className="text-right">{data.dateOfBirth}</h3>
+          <h3 className="text-right text-titleColor font-bold">{data.dateOfBirth}</h3>
         </div>
       </div>
     </div>

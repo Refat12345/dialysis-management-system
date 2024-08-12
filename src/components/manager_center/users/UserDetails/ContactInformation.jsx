@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import contact from "./../../../../assets/icons/medical-center/users/user-details/ContactInformation.svg";
 import edit from "./../../../../assets/icons/medical-center/setting/edit.svg";
@@ -10,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { useEditUserMutation } from "../../../../services/manager_center/user/user_details/UserDetailsSlice";
 import CustomTextField from "../../../public/textfield/CustomTextField";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 
@@ -93,7 +94,7 @@ function ContactInformation({ data, setData }) {
               }
               
             </div>
-            <h3 className="text-xl text-bgtitle">معلومات التواصل</h3>
+            <h3 className="text-xl text-bgtitle font-bold">معلومات التواصل</h3>
           </div>
 
           <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
@@ -152,7 +153,7 @@ function ContactInformation({ data, setData }) {
               ).map((card, index) => (
                 <div dir="ltr" key={index}>
                   <p className="text-right"> {card.system}</p>
-                  <p className="text-right"> {card.values.join(", ")}</p>
+                  <p className="text-right text-titleColor font-bold"> {card.values.join(", ")}</p>
                 </div>
               ))}
             </div>

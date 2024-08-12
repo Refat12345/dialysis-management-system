@@ -7,6 +7,7 @@ import { useAssignAppointmentMutation } from "../../../../services/manager_cente
 import { toast } from "react-toastify";
 
 function AppointmentDialog({ open, setOpen ,body}) {
+  console.log(body);
   
 
   const handleClose = () => {
@@ -16,6 +17,7 @@ function AppointmentDialog({ open, setOpen ,body}) {
 
   const handlePost = async ()=>{
     try{
+    
       const response = await assignAppointment(body).unwrap()
       console.log(response);
       toast.success("تم حجز الموعد بنجاح")

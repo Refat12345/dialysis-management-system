@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 const Appointment = () => {
     const user = useSelector((state) => state.user);
     let { id } = useParams();
-    
+  
     const { data: appointmentsData, isSuccess: appointmentsSuccess, isLoading: appointmentsLoading } = useGetAppointmentsQuery(user.centerID);
     const { data: shiftsData, isSuccess: shiftsSuccess, isLoading: shiftsLoading } = useGetShiftsQuery(user.centerID);
     const { data: chairsData, isSuccess: chairsSuccess, isLoading: chairsLoading } = useGetChairsQuery(user.centerID);
@@ -79,7 +79,7 @@ const Appointment = () => {
                                     colors={colors}
                                     filter={filters[0].array}
                                     onSelect={setShift}
-                                    title={shift || filters[0].title}
+                                    title={shift}
                                     type="shift"
                                 />
                             </div>

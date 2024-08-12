@@ -23,6 +23,7 @@ const MedicalAnalysisPage = () => {
         quarter: ""
     });
 
+
     useEffect(() => {
         if (isSuccess && data?.analysis) {
             setAnalysis(data.analysis);
