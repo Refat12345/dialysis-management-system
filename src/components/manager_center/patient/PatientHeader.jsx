@@ -14,13 +14,11 @@ function PatientHeader({ setSearchTerm, type }) {
       {type === "patient" ? (
         <>
           <div
-            className=" overflow-x-auto flex justify-between items-center"
+            className="  overflow-x-auto flex justify-between items-center"
             dir="rtl"
           >
             <div className="mt-6">
-            <Search
-            handleInputValue={(e) => setSearchTerm(e.target.value)}
-            />
+              <Search handleInputValue={(e) => setSearchTerm(e.target.value)} />
             </div>
             {user.role === "secretary" && (
               <CustomButton
@@ -28,7 +26,7 @@ function PatientHeader({ setSearchTerm, type }) {
                 onClick={() => {
                   navigate("/app/getunacceptedpatient");
                 }}
-                className={`bg-bgLogin mt-5 ml-8 text-gray700 h-10 shadow-xl transition-all font-semibold pr-6 ${bodyMeduimStyle}`}
+                className={`bg-bgLogin mt-5  text-gray700 h-8 shadow-xl transition-all font-semibold pr-6 ${bodyMeduimStyle}`}
                 title={
                   <div className="flex items-center justify-center">
                     <div className="w-2"></div>
@@ -40,12 +38,7 @@ function PatientHeader({ setSearchTerm, type }) {
             )}
           </div>
 
-          <div
-            className=" overflow-x-auto " dir="rtl"
-          >
-            
-    
-          </div>
+          {/* <div className=" overflow-x-auto " dir="rtl"></div> */}
         </>
       ) : (
         <div className="mr-56 overflow-x-auto  " dir="rtl">
