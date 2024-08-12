@@ -8,6 +8,7 @@ import { usePatient } from "../../../pages/manager_center/patient/patient_list/P
 import { DropDown, } from "../..";
 
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 export function Table({ data }) {
   const {
@@ -57,15 +58,20 @@ const patientFilter = {
     { key: "phone", title: "الهاتف" },
     { key: "icon", title: "" },
   ];
+  const [isEllipsisHovered, setIsEllipsisHovered] = useState(false);
+
+console.log(isEllipsisHovered);
+
   return (
     <>
       <style>
         {`
         tbody  tr:hover {
-            background-color: #f3f3f3; 
-            cursor: pointer;
+            background-color: ${isEllipsisHovered ? "" : `${user.role === "admin" && "#f3f3f3"}`}; 
+            cursor: ${isEllipsisHovered ? "" : `${user.role === "admin" && "pointer"}`};
           }
         `}
+
       </style>
 
       <div className="overflow-x-auto  min-h-customAbove600" dir="rtl">
@@ -112,6 +118,7 @@ const patientFilter = {
                 getRowColor={() => getRowColor(index, row.name)}
                 type={"patient"}
                 typeOFSelectedPatient={selectedOption}
+                setIsEllipsisHovered = {setIsEllipsisHovered}
               />
             ))}
           </tbody>
