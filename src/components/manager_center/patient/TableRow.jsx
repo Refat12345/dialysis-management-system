@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAddFromWaitingToPendingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import DropDownPatient from "../../../pages/manager_center/patient/patient_list/Menu";
 
-function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSelectedPatient}) {
+function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSelectedPatient ,setIsEllipsisHovered}) {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const userIdString = id ? id.toString() : "14";
@@ -85,6 +85,14 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
     contentColor: "bgButtonColor",
     textColor: "textMenuColor",
 }
+const handleEllipsisMouseEnter = () => {
+  setIsEllipsisHovered(true);
+};
+
+const handleEllipsisMouseLeave = () => {
+  setIsEllipsisHovered(false);
+};
+
 
 
   const selectAdminValueOption = (value) => {
@@ -287,7 +295,9 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
             </div>
           ) : (
             <div
-            className="h-full w-full"
+            className="h-full w-full "
+            onMouseEnter={handleEllipsisMouseEnter}
+            onMouseLeave={handleEllipsisMouseLeave}
             onClick={handleMenuClick}>
               <DropDownPatient
               colors={colors}

@@ -291,7 +291,7 @@ const patientFilter = {
                 />
               )}
               <div className="flex items-end justify-end pr-2 w-[60%]">
-                <div className="relative w-[50%] ">
+                <div className={`relative ${user.role === "admin" ? "w-[30%] mr-3":"w-[50%]"}`}>
                   <DropDown
                   colors={colors}
                   filter={filter.array}
@@ -305,9 +305,6 @@ const patientFilter = {
                     <DropDown
                       colors={colors}
                       title={"المراكز الطبية"}
-                      // filter={MedicalCenters?.centers?.map(
-                      //   (center) => center.centerName
-                      // )}
                       filter={MedicalCenters?.map(
                         (center) => center.centerName
                       )}
