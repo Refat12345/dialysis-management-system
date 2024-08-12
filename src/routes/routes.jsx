@@ -104,6 +104,9 @@ import AddMedicalCenter from "../components/AddMedicalCenter/AddMedicalCenter";
 import GetUnAcceptedPatient from "../components/manager_center/patient/GetUnAcceptedPatient";
 import UserInvites from "../pages/manager_center/users/UserInvites";
 import HomePage from "../pages/public/home_page/HomePage";
+import { UserInvitesProvider } from "../pages/manager_center/users/UserInvitesState";
+import { UnAccepectedPatientProvider } from "../pages/manager_center/patient/UnAccepectedPatient";
+
 const router = createBrowserRouter([
   {
     path: '/',  
@@ -331,9 +334,9 @@ const router = createBrowserRouter([
       {
         path: GetUnAcceptedPatientRoute,
         element: (
-          <PatientProvider>
+          <UnAccepectedPatientProvider>
                     <GetUnAcceptedPatient/>
-          </PatientProvider>
+          </UnAccepectedPatientProvider>
            
         ),
         errorElement: <ErrorPage />,
@@ -373,9 +376,9 @@ const router = createBrowserRouter([
       {
         path: userInvites,
         element: (
-          <UserProvider>
+          <UserInvitesProvider>
             <UserInvites />
-          </UserProvider>
+          </UserInvitesProvider>
         ),
         errorElement: <ErrorPage />,
       },

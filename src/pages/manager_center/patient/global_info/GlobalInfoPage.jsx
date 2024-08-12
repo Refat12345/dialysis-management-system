@@ -37,10 +37,51 @@ const GlobalInfoPage = () => {
     );
   }
 
-  console.log(`state: ${state.id}`);
   return (
-    <div className="mx-auto">
+    <div className="mx-auto" dir="rtl">
       <div className="lg:columns-2 md:columns-2 sm:columns-2 columns-1 gap-y-5 md:gap-x-10 md:mx-10 sm:mx-7 sm:gap-x-5 mr-8 ml-2 gap-x-3 items-end transition-all">
+        <GlobalInfoCard
+          headerTitle={<span>معلومات حساب المريض</span>}
+          headerIcon={GlobalInfoUserProfileIcon}
+          cardContent={
+            <div>
+              <InfoCard patientInfo={state.userDetails} />
+              <CardRow
+                title={
+                  <span className="flex flex-row">
+                    <img src={GlobalInfoGenderIcon} alt="" />
+                    <span className="pr-2">الجنس</span>
+                  </span>
+                }
+                content={
+                  state.userDetails.gender == "male"
+                    ? "ذكر"
+                    : state.userDetails.gender == "female"
+                    ? "أنثى"
+                    : "غير محدد"
+                }
+              />
+              <CardRow
+                title={
+                  <span className="flex flex-row">
+                    <img src={GlobalInfoPatientBirthdateIcon} alt="" />
+                    <span className="pr-2">تاريخ الميلاد</span>
+                  </span>
+                }
+                content={state.userDetails.dateOfBirth}
+              />
+              <CardRow
+                title={
+                  <span className="flex flex-row">
+                    <img src={phone} alt="" />
+                    <span className="pr-2">الرقم الوطني</span>
+                  </span>
+                }
+                content={state.userDetails.nationalNumber}
+              />
+            </div>
+          }
+        />
         <GlobalInfoCard
           headerTitle={<span>معلومات التواصل</span>}
           headerIcon={GlobalInfoContactsIcon}
@@ -117,48 +158,7 @@ const GlobalInfoPage = () => {
             </div>
           }
         />
-        <GlobalInfoCard
-          headerTitle={<span>معلومات حساب المريض</span>}
-          headerIcon={GlobalInfoUserProfileIcon}
-          cardContent={
-            <div>
-              <InfoCard patientInfo={state.userDetails} />
-              <CardRow
-                title={
-                  <span className="flex flex-row">
-                    <img src={GlobalInfoGenderIcon} alt="" />
-                    <span className="pr-2">الجنس</span>
-                  </span>
-                }
-                content={
-                  state.userDetails.gender == "male"
-                    ? "ذكر"
-                    : state.userDetails.gender == "female"
-                    ? "أنثى"
-                    : "غير محدد"
-                }
-              />
-              <CardRow
-                title={
-                  <span className="flex flex-row">
-                    <img src={GlobalInfoPatientBirthdateIcon} alt="" />
-                    <span className="pr-2">تاريخ الميلاد</span>
-                  </span>
-                }
-                content={state.userDetails.dateOfBirth}
-              />
-              <CardRow
-                title={
-                  <span className="flex flex-row">
-                    <img src={phone} alt="" />
-                    <span className="pr-2">الرقم الوطني</span>
-                  </span>
-                }
-                content={state.userDetails.nationalNumber}
-              />
-            </div>
-          }
-        />
+
         <GlobalInfoCard
           headerTitle={<span>عنوان المستخدم</span>}
           headerIcon={GlobalInfoAddressIcon}
@@ -188,6 +188,62 @@ const GlobalInfoPage = () => {
                 title="المستوى التعليمي"
                 content={state.userDetails.generalInformation.educationalLevel}
               />
+            </div>
+          }
+        />
+        {/* ////// */}
+        <GlobalInfoCard
+          headerTitle={
+            <span>
+              معلومات المرافق العامة{" "}
+              <span className="text-blue600">(الحالة الاجتماعية)</span>
+            </span>
+          }
+          headerIcon={GlobalInfoSocietyIcon}
+          cardContent={
+            <div>
+              <CardRow
+                title="اسم المرافق"
+                content={state.userDetails.patientCompanion[0]["fullName"]}
+              />
+              <CardRow
+                title="صلة القرابة"
+                content={
+                  state.userDetails.patientCompanion[0]["degreeOfKinship"]
+                }
+              />
+            </div>
+          }
+        />
+
+        <GlobalInfoCard
+          headerTitle={<span>معلومات التواصل للمرافق</span>}
+          headerIcon={GlobalInfoContactsIcon}
+          cardContent={
+            <div>
+              {state.userDetails.patientCompanion[0]["telecom"].map(
+                (e, index) => (
+                  <CardRow key={index} title={e.use} content={e.value} />
+                )
+              )}
+            </div>
+          }
+        />
+
+        <GlobalInfoCard
+          headerTitle={<span>عنوان المرافق</span>}
+          headerIcon={GlobalInfoAddressIcon}
+          cardContent={
+            <div>
+              {state.userDetails.patientCompanion[0]["address"].map(
+                (e, index) => (
+                  <CardRow
+                    key={index}
+                    title={e.use}
+                    content={`${e.countryName} - ${e.cityName} - ${e.line} `}
+                  />
+                )
+              )}
             </div>
           }
         />

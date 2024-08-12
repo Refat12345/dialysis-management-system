@@ -14,21 +14,9 @@ const UsersListPage = () => {
   const [noResultsFound, setNoResultsFound] = useState(false);
 
   const user = useSelector((state) => state.user);
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+ 
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  
 
   useEffect(() => {
     if (searchTerm) {
@@ -52,8 +40,6 @@ const UsersListPage = () => {
     );
   if (!userData.length && !searchTerm) return <div>No data available</div>;
 
-  console.log("عرض",width)
-  console.log("طول",height)
 
   return (
     <>

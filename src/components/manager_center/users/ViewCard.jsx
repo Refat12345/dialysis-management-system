@@ -34,11 +34,11 @@ function ViewCard({ data }) {
       ? height > 700
         ? height > 740
           ? height > 800
-            ? "min-h-AuditAbove800"
-            : "min-h-AuditAbove740"
-          : "min-h-AuditAbove700"
-        : "min-h-AuditAbove630"
-      : "min-h-AuditUnder630";
+            ? "min-h-AuditAbovee800"
+            : "min-h-AuditAbovee740"
+          : "min-h-AuditAbovee700"
+        : "min-h-AuditAbovee630"
+      : "min-h-AuditUnderr630";
   return (
     // <div
     //   dir="rtl"

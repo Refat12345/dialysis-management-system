@@ -3,10 +3,11 @@ import { usePatient } from "../../../pages/manager_center/patient/patient_list/P
 import { useNavigate } from "react-router-dom";
 import patientt from "./../../../assets/icons/medical-center/users/users-list/nurseMan.svg"
 import PageLoader from "../../public/loader/PageLoader";
+import { useUnAccepectedPatient } from "../../../pages/manager_center/patient/UnAccepectedPatient";
 const GetUnAcceptedPatient = () => {
   const navigate = useNavigate();
   const { isSuccessUnAccepted, isLoadingUnAccepted, patientUnAcceptedData } =
-    usePatient();
+    useUnAccepectedPatient();
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);

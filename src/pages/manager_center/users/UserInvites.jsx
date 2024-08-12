@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { PageLoader } from "../../../components";
 import nurse from "./../../../assets/icons/medical-center/users/users-list/doctor.svg";
-import { useUsers } from "./users-list/UserListState";
 import { useState, useEffect } from "react";
 import secretary from "../../../assets/icons/medical-center/users/users-list/secretary.svg";
 import doctor from "../../../assets/icons/medical-center/users/users-list/doctor.svg";
 import { ManagerIcon } from "./../../../assets";
+import { useUserInvites } from "./UserInvitesState";
 export function RoleImage({ role, width, height }) {
   let imageSrc;
   switch (role) {
@@ -64,7 +64,7 @@ const UserInvites = () => {
     userInvites,
     filteredDataForInvites,
     setSearchTermForInvites,
-  } = useUsers();
+  } = useUserInvites();
 
   const [searchTerm, setSearchTermState] = useState("");
   const [noResultsFound, setNoResultsFound] = useState(false);
