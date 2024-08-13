@@ -5,15 +5,9 @@ const DialysisDetailsContext = createContext();
 
 export const DialysisDetailstProvider = ({ children ,id}) => {
 
-  console.log("ID received in DialysisDetailstProvider:", id);
+  const userIdString = id ? id.toString() : null;
 
-
-
-  const userIdString = id ? id.toString() : '14';
-
-  
-
-  const { data: patient, isLoading: isUserLoading, isSuccess: isUserSuccess } = useGetDialysisDetailsQuery (userIdString);
+  const { data: patient, isLoading: isUserLoading, isSuccess: isUserSuccess } = useGetDialysisDetailsQuery (userIdString,{skip: !userIdString,});
 
   
 

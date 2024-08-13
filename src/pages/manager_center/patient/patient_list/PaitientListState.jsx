@@ -2,9 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
-import { useGetPatientQuery
-   } 
-  from "../../../../services/manager_center/patient/patient_list/PatientSlice";
+import { useGetPatientQuery } from "../../../../services/manager_center/patient/patient_list/PatientSlice";
 import { useSelector } from "react-redux";
 import { useGetMedicalCenterQuery } from "../../../../services/manager_center/user/user_list/UserSlice";
 const PatientContext = createContext();
@@ -35,70 +33,71 @@ export const PatientProvider = ({ children }) => {
 
   const user = useSelector((state) => state.user);
 
-  let centerIdString = '14';  
-  
-  if (user.role === 'superAdmin') {
-    centerIdString = '0';
+  let centerIdString = "14";
+
+  if (user.role === "superAdmin") {
+    centerIdString = "0";
   } else if (user.centerID) {
     centerIdString = user.centerID.toString();
   }
 
-    //
-    const [MedicalCenters, setmedicalCenters] = useState([]);
-    const [isLoadingMedicalCenters, setIsLoadingMedicalCenters] = useState(false);
-    const [isSuccessMedicalCenters, setIsSuccessMedicalCenters] = useState(false);
-    const [selectedCenterOption, setSelectedCenterOption] = useState("المراكز الطبية");
-    const [selectedCenterId, setSelectedCenterId] = useState(0);
-  
-  
-    const {
-      data: medicalCenters,
-      isLoading: medicalLoading,
-      isSuccess: medicalSuccess,
-    } = useGetMedicalCenterQuery();
-  
-   
-    useEffect(() => {
-      if (medicalSuccess && medicalCenters) {
-        const centersWithAll = [
-          
-          ...medicalCenters.centers,
-          { id: 0, centerName: "الكل" },
-        ];
-        setmedicalCenters(centersWithAll);
-        setIsLoadingMedicalCenters(false);
-        setIsSuccessMedicalCenters(true);
-      } else if (medicalLoading) {
-        setIsLoadingMedicalCenters(true);
-        setIsSuccessMedicalCenters(false);
-      } else {
-        setIsLoadingMedicalCenters(false);
-        setIsSuccessMedicalCenters(false);
-      }
-    }, [medicalSuccess, medicalLoading, medicalCenters]);
-  
-    const handleSelectCenterChange = (selectedCenterName) => {
-      let selectedCenter;
-      if (selectedCenterName === "الكل") {
-        selectedCenter = { id: 0, centerName: "الكل" };
-      } else {
-        selectedCenter = MedicalCenters.find(
-          (center) => center.centerName === selectedCenterName
-        );
-      }
-      setSelectedCenterOption(selectedCenterName);
-      setSelectedCenterId(selectedCenter.id);
-    };
-  
-    //
-  
+  //
+  const [MedicalCenters, setmedicalCenters] = useState([]);
+  const [isLoadingMedicalCenters, setIsLoadingMedicalCenters] = useState(false);
+  const [isSuccessMedicalCenters, setIsSuccessMedicalCenters] = useState(false);
+  const [selectedCenterOption, setSelectedCenterOption] =
+    useState("المراكز الطبية");
+  const [selectedCenterId, setSelectedCenterId] = useState(0);
+
+  const {
+    data: medicalCenters,
+    isLoading: medicalLoading,
+    isSuccess: medicalSuccess,
+  } = useGetMedicalCenterQuery();
+
+  useEffect(() => {
+    if (medicalSuccess && medicalCenters) {
+      const centersWithAll = [
+        ...medicalCenters.centers,
+        { id: 0, centerName: "الكل" },
+      ];
+      setmedicalCenters(centersWithAll);
+      setIsLoadingMedicalCenters(false);
+      setIsSuccessMedicalCenters(true);
+    } else if (medicalLoading) {
+      setIsLoadingMedicalCenters(true);
+      setIsSuccessMedicalCenters(false);
+    } else {
+      setIsLoadingMedicalCenters(false);
+      setIsSuccessMedicalCenters(false);
+    }
+  }, [medicalSuccess, medicalLoading, medicalCenters]);
+
+  const handleSelectCenterChange = (selectedCenterName) => {
+    let selectedCenter;
+    if (selectedCenterName === "الكل") {
+      selectedCenter = { id: 0, centerName: "الكل" };
+    } else {
+      selectedCenter = MedicalCenters.find(
+        (center) => center.centerName === selectedCenterName
+      );
+    }
+    setSelectedCenterOption(selectedCenterName);
+    setSelectedCenterId(selectedCenter.id);
+  };
+
+  //
+
   const {
     data: patient,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetPatientQuery({option: translatedOption, centerId: centerIdString,role:user.role,selectedCenterId:selectedCenterId });
-
- 
+  } = useGetPatientQuery({
+    option: translatedOption,
+    centerId: centerIdString,
+    role: user.role,
+    selectedCenterId: selectedCenterId,
+  });
 
   useEffect(() => {
     if (isUserSuccess && patient) {
@@ -130,9 +129,6 @@ export const PatientProvider = ({ children }) => {
     setSelectedOption(event);
   };
 
-  
-  
-
   return (
     <PatientContext.Provider
       value={{
@@ -147,7 +143,6 @@ export const PatientProvider = ({ children }) => {
         MedicalCenters,
         handleSelectCenterChange,
         selectedCenterOption,
-
       }}
     >
       {children}

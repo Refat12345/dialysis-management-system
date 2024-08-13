@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import { useState } from "react";
 // import medicalContact from "./../../../../assets/icons/medical-center/setting/medicalContact.svg";
 // import editIcon from "./../../../../assets/icons/medical-center/setting/edit.svg";
@@ -80,18 +81,16 @@ function ContactCenter({ data }) {
         <div className="flex flex-grow justify-end items-center gap-3">
           {
             <>
-              <div
-                className="border p-4 rounded-xl h-4 flex justify-center items-center hover:bg-slate-300 text-black"
-                onClick={() => setOpen(true)}
-                style={{ cursor: "pointer" }}
-              >
-                {
-                  user.role === "secretary" && (
-                    <img src={addTimeIcon} alt="إضافة وقت" />
-                  )
-                }
-               
-              </div>
+              {user.role === "secretary" && (
+                <div
+                  className="border p-4 rounded-xl h-4 flex justify-center items-center hover:bg-slate-300 text-black"
+                  onClick={() => setOpen(true)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={addTimeIcon} alt="إضافة وقت" />
+                </div>
+              )}
+
               {!isEmpty && user.role === "secretary" && (
                 <button
                   className="bg-white h-9 border-2 p-4 hover:bg-slate-300 text-black font-bold py-1 px-4 rounded flex items-center ml-7"
@@ -119,9 +118,13 @@ function ContactCenter({ data }) {
           </div>
         ))}
       </div>
-      <DialogEditTelcome open={openEditTelcome} setOpen={setOpenEditTelcome} data={data} />
+      <DialogEditTelcome
+        open={openEditTelcome}
+        setOpen={setOpenEditTelcome}
+        data={data}
+      />
 
-      <DialogContactCenter open={open} setOpen={setOpen}  />
+      <DialogContactCenter open={open} setOpen={setOpen} />
     </div>
   );
 }

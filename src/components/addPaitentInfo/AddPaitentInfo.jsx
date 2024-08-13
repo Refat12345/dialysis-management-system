@@ -260,35 +260,6 @@ function AddPaitentInfo({id}) {
             />
           </div>
 
-          {/* <div className="w-3/4 mr-4 mt-3">
-            <HeaderTextField icon={home_location} text={"حالة الحساب"} />
-            <div className="mt-3"></div>
-
-            <SelectedTextFeild
-              label={"الحالة"}
-              value={state.status === "" ? "اختر الحالة" : state.status}
-              filter={statusFilter.array}
-              onSelect={(val) => state.selectStatus(val)}
-            />
-          </div> */}
-          {/* {state.status === "مرفوض" || state.status === "انتظار" ? (
-            <div className="w-3/4 mr-4 mt-3">
-              <div className="mt-3"></div>
-
-              <CustomTextField
-                size="3"
-                required={true}
-                label={"السبب"}
-                value={state.reasonOfStatus}
-                type="text"
-                onChange={(e) =>
-                  updateState({
-                    reasonOfStatus: e.target.value,
-                  })
-                }
-              />
-            </div>
-          ) : null} */}
         </div>
       </div>
 

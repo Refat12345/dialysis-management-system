@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 
-
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
@@ -22,18 +21,16 @@ function TimeCenter({ data }) {
     <div className="border p-4 rounded-xl bg-whiteCard overflow-hidden">
       <div className="flex flex-row-reverse   mt-2 mb-2 ">
         <div className="flex flex-grow justify-end items-center gap-3">
-          <div className="border p-4 rounded-xl h-4 flex justify-center items-center hover:bg-slate-300 text-black">
-           {
-            user.role === "secretary" &&  (
-               <img
-              src={addTime}
-              alt="إضافة وقت"
-              onClick={() => setOpen(true)}
-              style={{ cursor: "pointer" }}
-            />
-            )
-           }
-          </div>
+          {user.role === "secretary" && (
+            <div className="border p-4 rounded-xl h-4 flex justify-center items-center hover:bg-slate-300 text-black">
+              <img
+                src={addTime}
+                alt="إضافة وقت"
+                onClick={() => setOpen(true)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+          )}
 
           {!isEmpty && user.role === "secretary" && (
             <button
