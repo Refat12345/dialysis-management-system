@@ -291,14 +291,14 @@ const patientFilter = {
                 />
               )}
               <div className="flex items-end justify-end pr-2 w-[60%]">
-                <div className={`relative ${user.role === "admin" ? "w-[30%] mr-3":"w-[50%]"}`}>
+                <div className={`relative ${(user.role === "admin" || user.role === "secretary") ? "w-[30%] mr-3":"w-[50%]"}`}>
                   <DropDown
                   colors={colors}
                   filter={filter.array}
                   title={filter.title}
                   onSelect={handleSelectChange} 
                   type={"shift"}
-          />
+                  />
                 </div>
                 {user.role === "superAdmin" && (
                   <div className="relative w-[50%] mr-4">

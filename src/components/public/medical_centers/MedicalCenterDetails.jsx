@@ -3,7 +3,8 @@
 
 const MedicalCenterDetails= ({title,content}) => {
     const height = window.innerHeight;
-
+    console.log(content);
+    
     const responsiveContent = height > 603 ? (height>700 ? "mb-5" : "mb-3") : "mb-1";
     const responsiveTitle = height > 603 ? (height>700 ? "mb-3" : "mb-1") : "mb-0";
     const responsiveTelecom = height > 603 ? (height>700 ? "mb-3" : "mb-2") : "mb-1";

@@ -35,6 +35,7 @@ export {default as CustomButton} from "./public/button/CustomButton"
 export {default as PageLoader} from './public/loader/PageLoader'
 export {default as ButtonLoader} from './public/loader/ButtonLoader'
 export {default as Toast} from './public/toast/Toast'
+export {default as Text} from "./public/title/Text"
 
 
 //login

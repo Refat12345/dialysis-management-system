@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import location from "./../../../../assets/icons/medical-center/users/user-details/locationInformation.svg";
 import edit from "./../../../../assets/icons/medical-center/setting/edit.svg";
@@ -91,7 +92,7 @@ function AdressInformation({ data, setData }) {
               }
              
             </div>
-            <h3 className="text-xl text-bgtitle">العنوان</h3>
+            <h3 className="text-xl text-bgtitle font-bold">العنوان</h3>
           </div>
 
           <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
@@ -141,7 +142,7 @@ function AdressInformation({ data, setData }) {
               ).map((card, index) => (
                 <div dir="ltr" key={index}>
                   <p className="text-right"> {card.use}</p>
-                  <p className="text-right"> {card.values.join(", ")}</p>
+                  <p className="text-right text-titleColor font-bold"> {card.values.join(", ")}</p>
                 </div>
               ))}
             </div>

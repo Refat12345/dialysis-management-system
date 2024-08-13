@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 const Appointment = () => {
     const user = useSelector((state) => state.user);
     let { id } = useParams();
-    
+  
     const { data: appointmentsData, isSuccess: appointmentsSuccess, isLoading: appointmentsLoading } = useGetAppointmentsQuery(user.centerID);
     const { data: shiftsData, isSuccess: shiftsSuccess, isLoading: shiftsLoading } = useGetShiftsQuery(user.centerID);
     const { data: chairsData, isSuccess: chairsSuccess, isLoading: chairsLoading } = useGetChairsQuery(user.centerID);
@@ -56,7 +56,8 @@ const Appointment = () => {
         contentColor: "bgButtonColor",
         textColor: "textMenuColor"
     };
-        
+
+
     if (appointmentsLoading || shiftsLoading || chairsLoading) {
         return (
             <div className="flex-grow md:mr-48">
@@ -66,7 +67,7 @@ const Appointment = () => {
             </div>
         );
     }
-   
+    
     if (appointmentsSuccess && shiftsSuccess && chairsSuccess) {
         return (
             <div dir="rtl" className="md:mr-48 flex-grow">
@@ -79,7 +80,7 @@ const Appointment = () => {
                                     colors={colors}
                                     filter={filters[0].array}
                                     onSelect={setShift}
-                                    title={shift || filters[0].title}
+                                    title={shift}
                                     type="shift"
                                 />
                             </div>

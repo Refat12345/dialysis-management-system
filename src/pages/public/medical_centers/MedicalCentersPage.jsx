@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-key */
 
 import { useState, useEffect } from "react";
-import { PageLoader, PaginationComponent, Search } from "../../../components";
+import { PageLoader, PaginationComponent, Search, Text } from "../../../components";
 import GridView from "./sections/GridView";
 import { useGetMedicalCentersQuery } from "../../../services/public/medical_centers/ShowMedicalCentersSlice";
 import { useSelector } from "react-redux";
@@ -58,17 +58,13 @@ const MedicalCentersPage = () => {
 
   if (isError || !isSuccess) {
     return (
-      <div className="flex items-center justify-center h-screen  ">
-        <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك</p>
-      </div>
+        <Text text={"خطأ بجلب البيانات أعد المحاولة من فضلك"}/>
     );
   }
 
   if (isSuccess && medicalCenters.length === 0) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="font-bold text-2xl">لا يوجد مراكز طبية بعد</p>
-      </div>
+     <Text text={"لا يوجد مراكز طبية بعد"}/>
     );
   }
 

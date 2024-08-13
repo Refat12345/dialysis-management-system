@@ -43,7 +43,7 @@ function UserDetailsView() {
     }
   }, [isSuccess, isLoading, userData]);
 
-  if (isLoading) return  <div className="flex items-center justify-center h-screen">
+  if (isLoading) return  <div className="flex items-center justify-center h-screen bg-white">
   <PageLoader />
 </div>;
   if (!userData) return <div>No data available</div>;
@@ -55,7 +55,7 @@ function UserDetailsView() {
     <>
       {isSuccess && !isLoading && data &&  (
         <div>
-          <h3 dir="rtl" className="-mt-12 pb-6 text-2xl text-blue-700">
+          <h3 dir="rtl" className="-mt-12 pb-6 text-2xl text-titleColor font-bold">
             تفاصيل الحساب
           </h3>
           <div className="grid grid-cols-2 gap-4 p-4">

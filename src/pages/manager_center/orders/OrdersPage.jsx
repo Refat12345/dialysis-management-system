@@ -88,13 +88,18 @@ const OrdersPage = () => {
       <div className="mx-[3%] mt-5">
         <Header setFilter={setFilter} handleChange={handleInputChange} role={user.role} />
         <div className="mb-4"></div>
-        {filteredOrders.length > 0 && (
+        {filteredOrders.length > 0 ? (
           <PaginationComponent
             RenderComponent={OrdersSection}
             data={filteredOrders}
             itemsPerPage={itemsPerPage}
           />
-        )}
+        ):<div className="flex-grow ">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <p className="font-bold text-2xl mr-48">لا يوجد طلبات</p>
+        </div>
+      </div>
+      }
       </div>
     </div>
   );

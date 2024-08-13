@@ -23,6 +23,7 @@ const MedicalAnalysisPage = () => {
         quarter: ""
     });
 
+
     useEffect(() => {
         if (isSuccess && data?.analysis) {
             setAnalysis(data.analysis);
@@ -47,21 +48,23 @@ const MedicalAnalysisPage = () => {
 
     if (isLoading || loading) {
         return (
-            <div className="flex items-center justify-center h-screen">
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="mr-48">
                 <PageLoader />
             </div>
+        </div>
         );}
     if(isError || !isSuccess || !success) {
         return (
-            <div className="flex items-center justify-center h-screen">
-                <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <p className="font-bold text-2xl mr-48">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
             </div>
         );
     }
     if (isSuccess && analysis.length === 0) {
         return (
-            <div className="flex items-center justify-center h-screen">
-                <p className="font-bold text-2xl">لا يوجد تحاليل طبية لهذا المريض</p>
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <p className="font-bold text-2xl mr-48">لا يوجد تحاليل طبية لهذا المريض</p>
             </div>
         );}
     return (

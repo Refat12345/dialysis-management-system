@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { dialysisRoute, dialysisDetailsRoute } from "../../../../data/data";
 import { useGeneralDialysis } from "./GeneralDialysisState";
 import SelectedTextFeild from "../../../public/textfield/SelectedTextFeild";
+import DropDown from "../../../public/drop_down/DropDown";
 function GeneralDialysis({ data ,type2 }) {
   const navigate = useNavigate();
 
@@ -78,7 +79,10 @@ function GeneralDialysis({ data ,type2 }) {
   const handleRowClick = (userId) => {
     navigate(`/app/dialysisDetails/${userId}`);
   };
-
+  const colors = {
+    titleColor:"primaryColor",
+    contentColor:"bgButtonColor"
+}
   return (
     <>
     {
@@ -88,31 +92,26 @@ function GeneralDialysis({ data ,type2 }) {
           dir="rtl"
         >
           <div className="flex justify-between mb-5 mt-5">
-            <h2 className="text-customPurple text-customSize">جلسات الغسيل</h2>
+            <h2 className="text-titleColor font-bold text-customSize w-[30%]">جلسات الغسيل</h2>
 
+            <div className="w-full flex justify-end">
             <div className="relative w-1/5 ">
-              <SelectedTextFeild
-                activeLabel={false}
-                value={selectedYearOption === "" ? "اختر السنة" : selectedYearOption}
+              <DropDown
+                colors={colors}
+                title={selectedYearOption === "" ? "اختر السنة" : selectedYearOption}
                 filter={filterYear.array}
                 onSelect={handleSelectYearChange}
               />
-
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <img className="w-5 h-5 " src={down} alt="Patient" />
-              </div>
             </div>
 
             <div className="relative w-1/5 ">
-              <SelectedTextFeild
-                activeLabel={false}
-                value={selectedMonthOption === "" ? "اختر الشهر" : selectedMonthOption}
+              <DropDown
+                colors={colors}
+                title={selectedMonthOption === "" ? "اختر الشهر" : selectedMonthOption}
                 filter={filterMonth.array}
                 onSelect={handleSelectMonthChange}
               />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <img className="w-5 h-5 " src={down} alt="Patient" />
-              </div>
+            </div>
             </div>
           </div>
           <table className="min-w-full bg-white">
