@@ -56,7 +56,8 @@ const Appointment = () => {
         contentColor: "bgButtonColor",
         textColor: "textMenuColor"
     };
-        
+
+
     if (appointmentsLoading || shiftsLoading || chairsLoading) {
         return (
             <div className="flex-grow md:mr-48">
@@ -66,7 +67,7 @@ const Appointment = () => {
             </div>
         );
     }
-   
+    
     if (appointmentsSuccess && shiftsSuccess && chairsSuccess) {
         return (
             <div dir="rtl" className="md:mr-48 flex-grow">

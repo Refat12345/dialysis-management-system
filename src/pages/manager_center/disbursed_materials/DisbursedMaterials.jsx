@@ -1,8 +1,9 @@
-import { PaginationComponent, Search, PageLoader, HorizontalLine } from "../../../components";
+import { PaginationComponent, Search, PageLoader, HorizontalLine, Text } from "../../../components";
 import "./style.css";
 import Grid from "./sections/Grid";
 import { useState, useCallback, useEffect } from "react";
 import { useGetDisbursedMaterialsQuery } from "../../../services/manager_center/disbursed_materials/DisbursedMaterialsSlice";
+import TextSearch from "../../../components/public/title/TextSearch";
 
 const DisbursedMaterials = () => {
     const { data: disbursed, isSuccess, isLoading } = useGetDisbursedMaterialsQuery();
@@ -33,7 +34,7 @@ const DisbursedMaterials = () => {
 
     if (isLoading) {
         return (
-            <div className="flex-grow m21-d:mr-48">
+            <div className="flex-grow mr-48">
                 <div className="flex items-center justify-center h-screen">
                     <PageLoader />
                 </div>
@@ -43,11 +44,7 @@ const DisbursedMaterials = () => {
 
     if (isSuccess && disbursed.data.length === 0) {
         return (
-            <div className="flex-grow md:mr-48">
-                <div className="flex items-center justify-center h-screen">
-                    <p className="font-bold text-2xl">لا يوجد مستهلكات مصروفة</p>
-                </div>
-            </div>
+            <Text text={"لا يوجد مستهلكات مصروفة"}/>
         );
     }
 
@@ -63,9 +60,9 @@ const DisbursedMaterials = () => {
                         <p className="text-titleColor font-bold text-2xl">المستهلكات المصروفة</p>
                     </div>
                     <div className="margin"></div>
-                    {search.length > 0 && (
+                    {search.length > 0 ? (
                         <PaginationComponent RenderComponent={Grid} data={search} itemsPerPage={12} />
-                    )}
+                    ): <TextSearch text={"لا يوجد نتائج مطابقة"}/>}
                 </div>
             </div>
         )

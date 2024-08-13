@@ -43,7 +43,7 @@ function UserDetailsView() {
     }
   }, [isSuccess, isLoading, userData]);
 
-  if (isLoading) return  <div className="flex items-center justify-center h-screen">
+  if (isLoading) return  <div className="flex items-center justify-center h-screen bg-white">
   <PageLoader />
 </div>;
   if (!userData) return <div>No data available</div>;

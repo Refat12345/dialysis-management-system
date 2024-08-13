@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { Outlet } from "react-router-dom";
-import { AlertDialog, HealthInformation, NavItemRecord, PageLoader } from "../../../../components";
+import { AlertDialog, HealthInformation, NavItemRecord, PageLoader, Text } from "../../../../components";
 import { healthInformation } from "../../../../data/data";
 import PharmacologicalIcon from "../../../../assets/icons/medical-center/medical_record/Pharmacological-Icon.svg";
 import PathologicalIcon from "../../../../assets/icons/medical-center/medical_record/Pathological-Icon.svg";
@@ -43,22 +43,20 @@ const MedicalRecordPage = () => {
 
   if (isLoading) {
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="mr-48">
             <PageLoader />
+          </div>
         </div>
     );}
 
 if(isError || !isSuccess) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="font-bold text-2xl">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
-      </div>
+      <Text text={"خطأ بجلب البيانات أعد المحاولة من فضلك "}/>
     );
 }
 if(medicalRecord === "لا يوجد سجل طبي لهذاالمريض") {
-  return <div className="flex items-center justify-center h-screen">
-      <p className="font-bold text-2xl">لا يوجد سجل طبي لهذا المريض</p>
-  </div>
+  return <Text text={"لا يوجد سجل طبي لهذا المريض"}/>
 }
   return (
     <div className="flex-grow">

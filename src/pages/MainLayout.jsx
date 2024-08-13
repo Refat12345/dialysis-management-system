@@ -24,7 +24,7 @@ const MainLayout = () => {
         }
     }, [dispatch]);
 
-    if (!myObject) {
+    if  (!myObject) {
         return (
             <div className="flex-grow">
                 <div className="flex items-center justify-center h-screen">
@@ -33,15 +33,22 @@ const MainLayout = () => {
             </div>
         );
     }
+    const sideBarData = myObject?.role === "admin" 
+    ? managerCenterSideBar 
+    : (myObject?.role === "secretary" 
+        ? secretariatSideBar 
+        : managerSideBar);
 
-    const sideBarData = myObject?.role === "admin" ? managerCenterSideBar : (myObject?.role === "secretary" ? secretariatSideBar : managerSideBar);
-    sideBarData.header.name = myObject?.fullName;
-    myObject?.role === "secretary" ? sideBarData.header.title = `مركز ${myObject?.centerName}` : (myObject?.role === "admin" ? sideBarData.header.title = `مدير مركز ${myObject?.centerName}` : sideBarData.header.title);
-
+        sideBarData.header.name = myObject?.fullName;
+        myObject?.role === "secretary" 
+                ? sideBarData.header.title = `مركز ${myObject?.centerName}` 
+                : (myObject?.role === "admin" 
+                ? sideBarData.header.title = `مركز ${myObject?.centerName}` 
+                : sideBarData.header.title);
     return (
         <>
             <SideBar sideBarData={sideBarData} />
-            <Outlet />
+            <Outlet  />
         </>
     );
 };

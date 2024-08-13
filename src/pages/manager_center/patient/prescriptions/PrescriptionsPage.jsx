@@ -1,6 +1,6 @@
 import Prescriptions from "./sections/Prescriptions";
 import { useEffect, useState, useMemo } from "react";
-import { PageLoader } from "../../../../components";
+import { PageLoader, Text } from "../../../../components";
 import { useGetPrescriptionsQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
 import { useParams } from "react-router-dom";
 const PrescriptionsPage = () => {
@@ -28,24 +28,22 @@ const PrescriptionsPage = () => {
 
   if (isLoading) {
     return (
-        <div className="flex items-center justify-center h-screen">
-            <PageLoader />
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="mr-48">
+              <PageLoader />
+            </div>
         </div>
     );}
 
 if(isError || !isSuccess) {
     return (
-        <div className="flex items-center justify-center h-screen">
-            <p className="font-bold text-2xl" >خطأ بجلب البيانات أعد المحاولة من فضلك</p>
-        </div>
+        <Text text={"خطأ بجلب البيانات أعد المحاولة من فضلك"}/>
     );
 }
 
 if (isSuccess && prescriptions.length === 0) {
   return (
-      <div className="flex items-center justify-center h-screen">
-          <p className="font-bold text-2xl">لا يوجد وصفات طبية لهذا المريض</p>
-      </div>
+      <Text text={"لا يوجد وصفات طبية لهذا المريض"}/>
   );}
 
   return (

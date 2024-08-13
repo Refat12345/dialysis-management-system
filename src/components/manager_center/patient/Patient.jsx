@@ -60,7 +60,7 @@ const patientFilter = {
   ];
   const [isEllipsisHovered, setIsEllipsisHovered] = useState(false);
 
-console.log(isEllipsisHovered);
+
 
   return (
     <>

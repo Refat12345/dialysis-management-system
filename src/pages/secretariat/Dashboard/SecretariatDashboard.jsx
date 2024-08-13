@@ -39,8 +39,8 @@ const SecretariatDashboard = () => {
           </div>
 
           {hangingPatientData[0].length === 0 ? (
-                        <div className="flex justify-center items-center h-screen">
-                        <h2 className="text-2xl font-bold text-gray-500">لا يوجد مرضى معلقين</h2>
+                        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <h2 className="text-2xl font-bold text-gray-500 mr-48">لا يوجد مرضى معلقين</h2>
                       </div>
           
           ) : (
