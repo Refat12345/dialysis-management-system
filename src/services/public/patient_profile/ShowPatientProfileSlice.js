@@ -11,11 +11,17 @@ export const ShowPatientProfileSlice = apiSlice.injectEndpoints({
             providesTags: ['MedicalRecord'],
         }),
         getMedicalAnalysis: builder.query({
-            query: (id) => ({
-                url: `showMedicalAnalysis/${id}`,
-                method: 'GET',
-                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
-            }),
+            
+            query: (id) => {
+                { 
+                    return {
+                        url: `showMedicalAnalysis/${id}`,
+                        method: 'GET',
+                        headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
+                    };
+                }
+                
+        },
             providesTags: ['MedicalAnalysis'],
         }),
         getPrescriptions: builder.query({

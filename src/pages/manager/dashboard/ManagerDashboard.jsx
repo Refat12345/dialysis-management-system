@@ -10,13 +10,13 @@ import {
   useGetCauseRenalQuery,
   useGetMedicinesQuery,
 } from "../../../services/manager/dashboard/ManagerDashboardSlice";
-import Cookies from "js-cookie"
+
 const ManagerDashboard = () => {
   const [date, setDate] = useState({
     month: "",
     year: ""
   });
-  console.log(Cookies.get("token"));
+ 
   
   const [id, setId] = useState(0);
   const [centerName,setCenterName] = useState("المراكز الطبية")

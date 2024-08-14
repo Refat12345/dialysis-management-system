@@ -8,7 +8,7 @@ const PathologicalPrecedentsDialog = ({state}) => {
     let array = state.pathologicalPrecedents.slice(0,-1)
     return (
         array.map((precedent, index) => {
-            console.log(precedent.medicalDiagnosisDate);
+        
             return (
                 <div key={index}>
                     <div dir="rtl" className="paddingCard bg-bgMedicalRecord rounded-lg ">

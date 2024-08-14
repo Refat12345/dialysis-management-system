@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import Dialog from "@mui/material/Dialog";
@@ -7,9 +8,7 @@ import { useAssignAppointmentMutation } from "../../../../services/manager_cente
 import { toast } from "react-toastify";
 
 function AppointmentDialog({ open, setOpen ,body}) {
-  console.log(body);
-  
-
+ 
   const handleClose = () => {
     setOpen(false);
   };
@@ -19,7 +18,6 @@ function AppointmentDialog({ open, setOpen ,body}) {
     try{
     
       const response = await assignAppointment(body).unwrap()
-      console.log(response);
       toast.success("تم حجز الموعد بنجاح")
       setOpen(false);
     }catch(error){

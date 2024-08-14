@@ -1,5 +1,6 @@
 import { apiSlice } from "../../apiSlice";
 import Cookies from "js-cookie"
+import { incrementOrderCount } from "../orders/OrdersSlice";
 export const CenterSettingSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCenterSetting: builder.query({
@@ -20,6 +21,15 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
           headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
+      invalidatesTags:["Orders"],
+      async onQueryStarted(shift, { dispatch, queryFulfilled }) {
+        try {
+            await queryFulfilled;
+            dispatch(incrementOrderCount());
+        } catch (err) {
+            console.error("Failed to create medical record: ", err);
+        }
+    },
     }),
     addCenterContact: builder.mutation({
       query: (telcomeRecord) => {
@@ -53,6 +63,16 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
           headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };
       },
+      invalidatesTags:["Orders"],
+      async onQueryStarted(chair, { dispatch, queryFulfilled }) {
+        try {
+            await queryFulfilled;
+            dispatch(incrementOrderCount());
+        } catch (err) {
+            console.error("Failed to create medical record: ", err);
+        }
+    },
+    
     }),
 
     addMedicalData: builder.mutation({
@@ -88,6 +108,7 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
   }),
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const {
   useGetCenterSettingQuery,
   useAddShiftMutation,

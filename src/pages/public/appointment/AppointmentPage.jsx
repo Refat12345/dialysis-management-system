@@ -1,10 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import TableComponent from '../../../components/public/appointment/TableComponent';
 import { Search, DropDown, PageLoader } from "../../../components/index";
 import { useGetAppointmentsQuery, useGetChairsQuery, useGetShiftsQuery } from '../../../services/manager_center/appointment/GetAppointmentsSlice';
 import { useSelector } from 'react-redux';
-import { useState, useEffect ,useCallback  } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Appointment = () => {
@@ -17,46 +15,51 @@ const Appointment = () => {
     
     const [shift, setShift] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
+    
     const handleInputChange = useCallback((e) => {
         setSearchTerm(e.target.value);
-      }, []);
-
+    }, []);
+    
     useEffect(() => {
-        if (shiftsSuccess && shiftsData[0].length > 0) {
+        if (shiftsSuccess && Array.isArray(shiftsData[0]) && shiftsData[0].length > 0) {
             setShift(shiftsData[0][0].name);
         }
     }, [shiftsSuccess, shiftsData]);
 
-    if(shiftsSuccess && shiftsData[0] === "لا توجد ورديات متاحة لهذا المركز"){
-        return <div className="flex-grow md:mr-48">
-            <div className="flex items-center justify-center h-screen">
-            <p className="font-bold text-2xl">لا يوجد جدول مواعيد</p>
+    if (shiftsSuccess && shiftsData[0] === "لا توجد ورديات متاحة لهذا المركز") {
+        return (
+            <div className="flex-grow md:mr-48">
+                <div className="flex items-center justify-center h-screen">
+                    <p className="font-bold text-2xl">لا يوجد جدول مواعيد</p>
+                </div>
             </div>
-        </div>
+        );
     }
    
     const filters = [
         {
-            title: "الوردية",
+            title: shift || "الوردية",  
             array: shiftsSuccess ? shiftsData[0].map(shift => shift.name) : []
         },
     ];
 
     const chairNumbers = chairsSuccess ? chairsData.message.map(chair => chair.chairNumber) : [];
 
-    if(chairsSuccess && chairNumbers === 0) {
-        return <div className="flex-grow md:mr-48">
-                    <div className="flex items-center justify-center h-screen">
+    if (chairsSuccess && chairNumbers.length === 0) {
+        return (
+            <div className="flex-grow md:mr-48">
+                <div className="flex items-center justify-center h-screen">
                     <p className="font-bold text-2xl">لا يوجد جدول مواعيد</p>
-                    </div>
                 </div>
+            </div>
+        );
     }
+    
     const colors = {
         titleColor: "primaryColor",
         contentColor: "bgButtonColor",
         textColor: "textMenuColor"
     };
-
 
     if (appointmentsLoading || shiftsLoading || chairsLoading) {
         return (
@@ -80,7 +83,7 @@ const Appointment = () => {
                                     colors={colors}
                                     filter={filters[0].array}
                                     onSelect={setShift}
-                                    title={shift}
+                                    title={shift || "الوردية"}  // تأكد من وجود قيمة للـ title
                                     type="shift"
                                 />
                             </div>
@@ -93,8 +96,7 @@ const Appointment = () => {
                         shift={shift}
                         role={user.role}
                         searchTerm={searchTerm}
-                        patientID =  {id}
-                        
+                        patientID={id}
                     />
                 </header>
             </div>
