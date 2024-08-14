@@ -11,8 +11,7 @@ const Dashboard = () => {
     month:"",
     year:""
   })
-  console.log(Cookies.get("token"));
-  
+
   const {data :medicineDate , isSuccess:medicineSuccess, isLoading: medicineLoading ,refetch} = useGetPieChartsQuery(date)
   const { data: causeRenalData, isSuccess: causeRenalSuccess, isLoading: causeRenalLoading } = useGetCausesRenalFailureQuery();
   const { data: sessionData, isSuccess: sessionSuccess, isLoading: sessionLoading ,error:err   } = useGetSessionsQuery();

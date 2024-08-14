@@ -1,19 +1,27 @@
 import { apiSlice } from "../../apiSlice";
 import Cookies from "js-cookie"
+import { incrementOrderCount } from "../../manager_center/orders/OrdersSlice";
 export const AddPatientProfileSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-    createMedicalRecord: builder.mutation({
-        query: (medicalRecord) => { 
-            console.log(medicalRecord);
-            return {
-                url: `createMedicalRecord`,
-                method: 'POST',
-                body: medicalRecord,
-                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
-            };
-            
-        },
-    }),
+        createMedicalRecord: builder.mutation({
+            query: (medicalRecord) => { 
+                return {
+                    url: `createMedicalRecord`,
+                    method: 'POST',
+                    body: medicalRecord,
+                    headers: {'Authorization': `Bearer ${Cookies.get("token")}`},
+                };
+            },
+            invalidatesTags:  ['Orders'],
+            async onQueryStarted(medicalRecord, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(incrementOrderCount());
+                } catch (err) {
+                    console.error("Failed to create medical record: ", err);
+                }
+            }
+        }),
     addMedicalAnalysis: builder.mutation({
         query: (medicalAnalysis) => { 
             return {
@@ -22,6 +30,7 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
                 body: medicalAnalysis,
                 headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             };
+            
         },
     }),
     getAnalysisTypes:builder.query({
@@ -37,12 +46,17 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: Info,
                 headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
-
             };
-            
-            
         },
-        invalidatesTags:["globalInfo"]
+        invalidatesTags: ['Orders', 'globalInfo'],
+        async onQueryStarted(addPatientInfo, { dispatch, queryFulfilled }) {
+            try {
+                await queryFulfilled;
+                dispatch(incrementOrderCount());
+            } catch (err) {
+                console.error("Failed to create medical record: ", err);
+            }
+        },
     }),
 })
 });

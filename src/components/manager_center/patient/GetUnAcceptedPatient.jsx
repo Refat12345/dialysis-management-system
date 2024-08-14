@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { usePatient } from "../../../pages/manager_center/patient/patient_list/PaitientListState";
 import { useNavigate } from "react-router-dom";
 import patientt from "./../../../assets/icons/medical-center/users/users-list/nurseMan.svg"
 import PageLoader from "../../public/loader/PageLoader";
@@ -44,16 +43,16 @@ const GetUnAcceptedPatient = () => {
       {isSuccessUnAccepted && !isLoadingUnAccepted && patientUnAcceptedData && (
         <div
           dir="rtl"
-          className="w-full flex flex-col lg:mr-48 md:mr-48 h-screen bg-bgDashboard "
+          className="w-full flex flex-col lg:mr-48 md:mr-48 h-screen bg-bgMedicalRecord "
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
             {patientUnAcceptedData.map((patient) => (
               <div
                 key={patient.id}
-                className=" rounded-lg  overflow-hidden shadow-lg p-4 bg-white cursor-pointer transform hover:scale-105 transition-transform duration-200 ease-in-out relative"
+                className=" rounded-lg  overflow-hidden shadow-lg p-4 bg-white  duration-200 ease-in-out relative"
               >
                 <svg
-                  className="h-5 w-5 text-green-500 mb-3 absolute top-2 left-2 cursor-pointer"
+                  className="h-6 w-6 text-black mb-3 absolute top-2 left-2 rounded-full hover:bg-gray-100 transform hover:scale-105 transition-transform cursor-pointer"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -84,7 +83,7 @@ const GetUnAcceptedPatient = () => {
                 {/* <div className="font-bold text-xl mb-2 text-blue-600">
                   {patient.fullName}
                 </div> */}
-                <div className="font-bold text-xl mb-2 text-blue-600 flex items-center">
+                <div className="font-bold text-xl mb-2 text-titleColor flex items-center">
   <img
     src={patientt}     
     

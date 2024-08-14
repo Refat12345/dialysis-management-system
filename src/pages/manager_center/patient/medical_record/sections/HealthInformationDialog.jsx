@@ -11,7 +11,6 @@ const HealthInformationDialog = ({ medicalRecord }) => {
     const { state, updateState } = useMedicalRecordState();
     const [editMedicalRecord,{data,isLoading}] = useEditMedicalRecordMutation()
     useEffect(() => {
-        console.log("s");
         updateState(medicalRecord);
         updateState({isEdit:false})
     }, [medicalRecord]);

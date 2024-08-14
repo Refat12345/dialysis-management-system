@@ -18,7 +18,7 @@ const PublicInformation = ({ state , updateState }) => {
         title:"الوصل الوعائي"
     }
     const causeRenalFailureSelection = {
-        array:["ضغط دم","أمراض قلبية","داء السكري"],
+        array:["ضغط الدم","أمراض قلبية","داء السكري"],
         title:"سبب الفشل الكلوي"
     }
 

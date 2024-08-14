@@ -119,7 +119,7 @@ export const secretariatSideBar = {
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: appointment, name: "المواعيد", icon: AppointmentsIcon },
-    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon },
+    { href: ordersRoute, name: "الطلبات", icon: OrdersIcon  },
     { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href:  logoutRoute, name: "تسجيل الخروج", icon: LogOutIcon },

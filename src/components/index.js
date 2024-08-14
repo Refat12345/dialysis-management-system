@@ -36,7 +36,7 @@ export {default as PageLoader} from './public/loader/PageLoader'
 export {default as ButtonLoader} from './public/loader/ButtonLoader'
 export {default as Toast} from './public/toast/Toast'
 export {default as Text} from "./public/title/Text"
-
+export {default as PublicLoader} from "./public/loader/PublicLoader"
 
 //login
 export { default as PasswordVisibleIcon } from "./manager_center/auth/PasswordVisibleIcon";
