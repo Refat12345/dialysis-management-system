@@ -2,7 +2,7 @@
 import { PaginationComponent, SideBar } from "../../../../components";
 import Header from "../../../../components/manager_center/users/Header";
 import ViewCard from "../../../../components/manager_center/users/ViewCard";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { PageLoader } from "../../../../components/index";
 import { useUsers } from "./UserListState";
 import { useSelector } from "react-redux";
@@ -14,7 +14,14 @@ const UsersListPage = () => {
   const [noResultsFound, setNoResultsFound] = useState(false);
 
   const user = useSelector((state) => state.user);
- 
+  const itemsPerPage = useMemo(() => {
+    const height = window.innerHeight;
+    if (height > 800) return 12;
+    if (height > 740) return 12;
+    if (height > 700) return 12;
+    if (height > 630) return 8;
+    return 8;
+  }, [window.innerHeight]);
 
   
 
@@ -71,7 +78,7 @@ const UsersListPage = () => {
             <PaginationComponent
               data={filteredData.length ? filteredData[0] : userData[0]}
               RenderComponent={ViewCard}
-              itemsPerPage={12}
+              itemsPerPage={itemsPerPage}
             />
           )}
         </div>

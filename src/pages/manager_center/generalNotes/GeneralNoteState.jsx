@@ -8,13 +8,13 @@ export const GeneralDetailsProvider = ({ children, userId }) => {
 
 
 
-  const userIdString = userId ? userId.toString() : "14";
-
+  const userIdString = userId ? userId.toString() : null;
+ 
   const {
     data: users,
     isLoading: isUserLoading,
     isSuccess: isUserSuccess,
-  } = useGetNoteForPatientQuery(userIdString);
+  } = useGetNoteForPatientQuery(userIdString,{ skip: !userIdString, });
 
   
   const [generalDetails, setGeneralDetails] = useState([]);
