@@ -12,6 +12,7 @@ import SelectedTextFeild from "../public/textfield/SelectedTextFeild";
 import "react-datepicker/dist/react-datepicker.css";
 import React from "react";
 import CustomPP from "./CustomPP";
+import { ToastContainer } from "react-toastify";
 
 function AddPrescription() {
   const { state, postData, userData } = useAddPrescriptionState();
@@ -21,6 +22,7 @@ function AddPrescription() {
 
   return (
     <>
+    <ToastContainer/>
       <div
         dir="rtl"
         className="w-full flex flex-col md:mr-48 bg-addPaitentInfoPage"

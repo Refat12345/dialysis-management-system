@@ -137,7 +137,7 @@ export const managerSideBar = {
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: medicalCentersRoute, name: "المراكز الطبية", icon: MedicalCentersIcon },
-    { href: notes, name: "الملاحظات", icon: NotesIcon },
+    // { href: notes, name: "الملاحظات", icon: NotesIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href: logoutRoute, name: "تسجيل الخروج", icon: LogOutIcon },
   ],

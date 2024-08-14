@@ -22,7 +22,7 @@ function ViewCard({ data }) {
     <div
       dir="rtl"
       className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  auto-rows-min -mt-4 ${responsive}`}
-      style={{ rowGap: '3px', columnGap: '20px' }} // إضافة الفجوات هنا
+      style={{ rowGap: '3px', columnGap: '20px' }}    
 
     >
       {flatUserData.map((card, index) => (

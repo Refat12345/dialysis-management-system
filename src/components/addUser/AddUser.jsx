@@ -55,8 +55,8 @@ const AddUser = () => {
         (address) =>
           !address.use ||
           !address.cityName ||
-          !address.line ||
-          !address.countryName
+          !address.line 
+          
       )
     ) {
       toast.error("يرجى تعبئة جميع الحقول");
@@ -228,34 +228,52 @@ const AddUser = () => {
               </p>
               <div className="h-1"></div>
               {state.addressInfo.map((contact, index) => (
+                // <ContactSecretariaComponent
+                //   key={index}
+                //   selectUse={(val) =>
+                //     state.updateAddressInfo(index, { use: val })
+                //   }
+                //   useValue={contact.use}
+                //   filterUse={useFilter}
+                //   filterType={typeAddressFilter}
+                //   typeValue={contact.cityName}
+                //   selectType={(val) =>
+                //     state.updateAddressInfo(index, { cityName: val })
+                //   }
+                //   value={contact.line}
+                //   onChange={(val) => {
+                //     state.updateAddressInfo(index, { line: val.target.value });
+                //   }}
+                //   onRemove={() => state.removeAddressInfo(index)}
+                //   showDeleteButton={state.addressInfo.length > 1}
+                //   firstLabel={"الاستخدام"}
+                //   secondLabel={"المدينة"}
+                //   type={"سكن"}
+                //   val={contact.countryName}
+                //   onChangeCountryName={(val) => {
+                //     state.updateAddressInfo(index, {
+                //       countryName: val.target.value,
+                //     });
+                //   }}
+                // />
                 <ContactSecretariaComponent
-                  key={index}
-                  selectUse={(val) =>
-                    state.updateAddressInfo(index, { use: val })
-                  }
-                  useValue={contact.use}
-                  filterUse={useFilter}
-                  filterType={typeAddressFilter}
-                  typeValue={contact.cityName}
-                  selectType={(val) =>
-                    state.updateAddressInfo(index, { cityName: val })
-                  }
-                  value={contact.line}
-                  onChange={(val) => {
-                    state.updateAddressInfo(index, { line: val.target.value });
-                  }}
-                  onRemove={() => state.removeAddressInfo(index)}
-                  showDeleteButton={state.addressInfo.length > 1}
-                  firstLabel={"الاستخدام"}
-                  secondLabel={"المدينة"}
-                  type={"سكن"}
-                  val={contact.countryName}
-                  onChangeCountryName={(val) => {
-                    state.updateAddressInfo(index, {
-                      countryName: val.target.value,
-                    });
-                  }}
-                />
+                key={index}
+                selectUse={(val) => state.updateAddressInfo(index, { use: val })}
+                useValue={contact.use}
+                filterUse={useFilter}
+                filterType={typeAddressFilter}
+                typeValue={contact.cityName}
+                selectType={(val) => state.updateAddressInfo(index, { cityName: val })}
+                value={contact.line}
+                onChange={(val) => {
+                  state.updateAddressInfo(index, { line: val.target.value })
+                }}
+                onRemove={() => state.removeAddressInfo(index)}
+                showDeleteButton={state.addressInfo.length > 1}
+                firstLabel={"الاستخدام"}
+                secondLabel={"المدينة"}
+              />
+
               ))}
               <div className="h-3"></div>
               <CustomButton

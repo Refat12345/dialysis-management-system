@@ -254,7 +254,7 @@ const GlobalInfoPage = () => {
 
 const InfoCard = ({ patientInfo }) => {
   return (
-    <div className="flex flex-row-reverse">
+    <div className="flex flex-row" >
       <div className="px-3 pt-4 pb-2">
         <img className="w-16" src={GlobalInfoPatientAvatar} alt="" />
       </div>

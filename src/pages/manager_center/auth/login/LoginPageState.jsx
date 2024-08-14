@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { useLoginMutation } from "../../../../services/manager_center/auth/AuthSlice";
+import { useLoginMutation ,useSendDeviceTokenMutation } from "../../../../services/manager_center/auth/AuthSlice";
 import { useNavigate  } from "react-router-dom";
 import { validateLoginForm } from "../../../../validator";
 import { showErrorToast, showSuccessToast } from "../../../../utils/toastUtils";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../services/userSlice";
 import Cookies from "js-cookie";
-
+import { generateToken } from "../../../../notifications/firebase";
 
 const LoginStateContext = createContext();
 
@@ -25,6 +25,7 @@ export const LoginStateProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   const [loginApi, { error }] = useLoginMutation();
+  const [sendDeviceTokenApi] = useSendDeviceTokenMutation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,8 +57,24 @@ export const LoginStateProvider = ({ children }) => {
       const token = response.user.token;
       localStorage.setItem("tokens", response.user.token);
       showSuccessToast("login successfully");
+      //send device Token
+      const deviceToken = await generateToken();
+      
+
       if (token) {
         navigate("/app");
+        
+        const sendDeviceTokenResponse = await sendDeviceTokenApi({
+          deviceToken,
+          deviceID: "9398",
+          token : response.user.token
+        }).unwrap();
+  
+        if (sendDeviceTokenResponse.success) {
+          console.log("Device token sent successfully");
+        } else {
+          console.error("Failed to send device token:", sendDeviceTokenResponse.error);
+        }
       }
     } catch (err) {
       showErrorToast("حدثت مشكلة معنية حاول مجدداً");

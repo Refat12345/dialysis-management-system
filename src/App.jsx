@@ -1,10 +1,18 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes";
-
+import { generateToken ,messaging } from "./notifications/firebase";
+import { onMessage } from "firebase/messaging";
 const App = () => {
-  return (
+ useEffect(()=> {
+    generateToken();
+     onMessage(messaging,(payload) => {
+      console.log(payload)
+    })
+
+  },[])
+  return ( 
     <div className="flex flex-row-reverse">
         <RouterProvider router={router} />
     </div>
