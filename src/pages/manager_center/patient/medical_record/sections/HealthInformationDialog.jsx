@@ -106,8 +106,7 @@ const HealthInformationDialog = ({ medicalRecord }) => {
                         }
                         radius="full"
                     />
-                </div>:<ButtonLoader/>}
-                <Toast textStyle={textToastStyle} progressColor={"green"}/>    
+                </div>:<ButtonLoader/>} 
         </div>
         </>
     );

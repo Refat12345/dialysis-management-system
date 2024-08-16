@@ -29,3 +29,4 @@ export const generateToken = async () => {
 };
 
 export { deviceToken };
+

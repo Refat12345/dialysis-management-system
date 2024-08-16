@@ -7,6 +7,7 @@ import { useGetAllOrdersQuery } from "../../../services/manager_center/orders/Or
 import Header from "./sections/Header";
 import OrdersSection from "./sections/OrdersSection";
 import { PaginationComponent, PageLoader } from "../../../components";
+import { ToastContainer } from "react-toastify";
 
 const OrdersPage = () => {
   const { data, isLoading, isSuccess } = useGetAllOrdersQuery();
@@ -85,6 +86,7 @@ const OrdersPage = () => {
 
   return (
     <div dir="rtl" className="flex-grow md:mr-48">
+      <ToastContainer position="top-right" />
       <div className="mx-[3%] mt-5">
         <Header setFilter={setFilter} handleChange={handleInputChange} role={user.role} />
         <div className="mb-4"></div>

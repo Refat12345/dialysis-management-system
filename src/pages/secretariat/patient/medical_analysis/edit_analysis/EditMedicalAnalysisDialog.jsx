@@ -6,15 +6,16 @@ import {
     CustomTextField,
     SelectedTextFeild,
     CustomButton,
-    ButtonLoader,Toast
+    ButtonLoader
     } from "../../../../../components/index";
 import { convertDate } from "../../../../../utils/DateUtils";
 import CheckBox from "../add_analysis/sections/CheckBox";
 import { useEditMedicalAnalysisState } from "./EditMedicalAnalysisState";
 import dayjs from "dayjs";
-import { textToastStyle } from "../../../../../data/data";
+
 import { useParams } from "react-router-dom";
 import { useEditMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
+import { ToastContainer } from "react-toastify";
 const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
     let array=[]
     for (let index = 0; index < analysisTypes.length; index++) {
@@ -39,6 +40,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
         <div dir="rtl" className="w-[400px]">
             {state.value != "" ?    
             <>
+            <ToastContainer position="top-right"/>
             <SelectedTextFeild
                     filter={typeSelections}
                     label="نوع التحليل الطبي"
@@ -88,7 +90,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
                 { !isLoading ? <div className="flex justify-center"> <CustomButton
                         variant="solid"
                         onClick={postData}
-                        className="bg-bgbutton text-white h-8 transition-all font-bold text-md hover:cursor-pointer"
+                        className="bg-bgbutton text-white h-8  font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110"
                         title={
                             <div className="">
                                 <span>تعديل</span>
@@ -100,7 +102,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
                 </div>:<div className="flex justify-center">
                 <ButtonLoader/>
                 </div>}
-                <Toast textStyle={textToastStyle} progressColor={"green"}/>
+                
                 </>:<ButtonLoader/>
                 }
     </div>

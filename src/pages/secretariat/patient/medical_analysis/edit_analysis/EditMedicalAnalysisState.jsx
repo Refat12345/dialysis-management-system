@@ -42,8 +42,8 @@ const EditMedicalAnalysisState = ({ children }) => {
             unitOfMeasurement: data.unitOfMeasurement
         }
         try {
-            const response = await method(object)
-            toast("تم تعديل التحليل الطبي بنجاح")
+            const response = await method(object).unwrap()
+            toast.success("تم تعديل التحليل الطبي بنجاح")
             return response
         }catch(err){console.log(err); }
 }

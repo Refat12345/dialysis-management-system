@@ -10,7 +10,7 @@ import { useAddMedicalAnalysisState } from "./AddMedicalAnalysisState";
 import { MedicalAnalysisIcon } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
 import { useAddMedicalAnalysisMutation, useGetAnalysisTypesQuery } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
@@ -27,13 +27,11 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
         if(body != undefined){
             try {  
                 if(body !=false){
-                    await addMedicalAnalysis(body);
+                    await addMedicalAnalysis(body).unwrap();
                     toast.success("تم اضافة التحليل الطبي بنجاح")
                 }
                 
             }catch (error) {
-                console.log(error);
-                
                 toast.error("ليس لديك صلاحيات لاضافة التحليل الطبي")
             }
         }
@@ -55,6 +53,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     return (
         <div dir="rtl" className="flex-grow bg-bgMedicalRecord md:mr-48 h-screen">
+            <ToastContainer position="top-right"/>
             <div className="mx-[2%]">
                 {(isSuccess && typeSelections.length >= 0 && unitSelections.length >= 0) && <>
                 <PublicHeader title="التحاليل الطبية" icon={MedicalAnalysisIcon} bool />
