@@ -44,7 +44,7 @@ const EditPrescriptionsState = ({ children }) => {
                 object:object
             }
             const response = await method(body).unwrap()
-            toast("تم تعديل الدواء بنجاح")
+            toast.success("تم تعديل الدواء بنجاح")
             return response
         }catch(err){console.log(err);}
 }

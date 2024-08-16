@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
-import { CustomTextField, CustomButton , ButtonLoader, CustomDatePicker,Toast} from "../../../../../components/index";
+import { CustomTextField, CustomButton , ButtonLoader, CustomDatePicker} from "../../../../../components/index";
 import { useMedicalRecordState } from "../MedicalRecordState";
 import { useOutletContext } from "react-router-dom";
 import dayjs from "dayjs";
-import { textToastStyle } from "../../../../../data/data";
+
 import { useEditMedicalRecordMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 const PrecedentsDialog = ({type ,index}) => {
     const { state, updateState } = useMedicalRecordState();
@@ -105,7 +105,7 @@ const PrecedentsDialog = ({type ,index}) => {
                     />
                 </div>:<ButtonLoader/>
         }
-        <Toast textStyle={textToastStyle} progressColor={"green"}/>  
+        
 
         </div>
         </>       

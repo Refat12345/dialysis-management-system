@@ -5,7 +5,7 @@ import { MedicalRecord } from "../../../../assets"
 import {PublicInformation ,PathologicalPrecedents,SurgicalPrecedents,PharmacologicalPrecedents} from "./sections/index"
 import { useEnterMedicalRecordState } from "./EnterMedicalRecordState";
 import "./style.css"
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateMedicalRecordMutation } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
@@ -22,9 +22,8 @@ const handlePost =async () => {
   try{
     await createMedicalRecord(body).unwrap();
     toast.success("تم اضافة السجل الطبي بنجاح");
-
-  }catch(error) {
-    console.log(error);
+  }catch(error) {    
+    toast.error(error.data.error)
   }
   }
 }
@@ -33,6 +32,7 @@ const handlePost =async () => {
     <div dir="rtl" className="parent flex-grow  h-screen bg-bgMedicalRecord">
         <div className="md:mr-48 bg-bgMedicalRecord">
             <div className="mx-[1.5%]">
+              <ToastContainer position="top-right"/>
                 <PublicHeader  title={"السجل الطبي"} icon={MedicalRecord} bool={true} />
                 <div className="flex justify-between">
                 <PublicInformation state={state} updateState={updateState}/>

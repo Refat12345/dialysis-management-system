@@ -94,7 +94,7 @@ const MedicalRecordState = ({ children }) => {
         }
         try{
             const response = await method(object).unwrap()
-            toast("تم تعديل السجل الطبي بنجاح")
+            toast.success("تم تعديل السجل الطبي بنجاح")
             return response
         }catch(err){
             console.log(err);
@@ -135,7 +135,7 @@ const MedicalRecordState = ({ children }) => {
         console.log(object);
         try{
             await method(object).unwrap()
-            toast("تم تعديل السابقة بنجاح")
+            toast.success("تم تعديل السابقة بنجاح")
 
         }catch(err){console.log(err)}
 

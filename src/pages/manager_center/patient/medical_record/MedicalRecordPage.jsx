@@ -11,6 +11,7 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie"
 import HealthInformationDialog from "./sections/HealthInformationDialog";
+import { ToastContainer } from "react-toastify";
 
 const precedents = [
   {
@@ -61,6 +62,7 @@ if(medicalRecord === "لا يوجد سجل طبي لهذاالمريض") {
   return (
     <div className="flex-grow">
       <>
+        <ToastContainer position="top-right" />
           {Cookies.get("role") != "secretary" ?<HealthInformation title={healthInformation} information={medicalRecord} /> : <AlertDialog renderComponent={<div className="hover:cursor-pointer">
             <HealthInformation title={healthInformation} information={medicalRecord} />
           </div>}

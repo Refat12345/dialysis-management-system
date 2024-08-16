@@ -55,12 +55,14 @@ export const LoginStateProvider = ({ children }) => {
       localStorage.setItem("myObject", jsonString);
       const token = response.user.token;
       localStorage.setItem("tokens", response.user.token);
-      showSuccessToast("login successfully");
+      showSuccessToast("تم تسجيل الدخول بنجاح");
       if (token) {
         navigate("/app");
       }
     } catch (err) {
-      showErrorToast("حدثت مشكلة معنية حاول مجدداً");
+      console.log(err);
+      if(err.data.error === "Invalid nationalNumber or password"){showErrorToast("خطأ بالرقم الوطني أو كلمة المرور");}
+      else{showErrorToast("حدثت مشكلة معنية حاول مجدداً");}
       setState((prevState) => ({ ...prevState, errors: {}, loading: false }));
     }
 

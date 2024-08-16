@@ -6,12 +6,13 @@ import {
     CustomTextField,
     CustomButton,
     ButtonLoader,
-    Toast
+
     } from "../../../../../components/index";
-import { textToastStyle } from "../../../../../data/data";    
+
 import { useEditPrescriptionsState } from "./EditPrescriptionsState"; 
 import dayjs from "dayjs";  
 import { useEditPrescriptionsMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
+import { ToastContainer } from "react-toastify";
 const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
     const [editPrescriptions , {isLoading}] = useEditPrescriptionsMutation()
     const {state , updateState} = useEditPrescriptionsState()
@@ -26,6 +27,7 @@ const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
 
     return (
         <div dir="rtl" className="w-[400px]">
+            <ToastContainer position="top-right"/>
             <CustomTextField
                     label="اسم الدواء"
                     value={state.name}
@@ -67,7 +69,7 @@ const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
                 { !isLoading ?  <CustomButton
                         variant="solid"
                         onClick={postData}
-                        className="bg-bgbutton text-white h-8 transition-all font-bold text-md hover:cursor-pointer"
+                        className="bg-bgbutton text-white h-8 transition-transform transform hover:scale-110 font-bold text-md hover:cursor-pointer"
                         title={
                             <div className="">
                                 <span>تعديل</span>
@@ -78,7 +80,7 @@ const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
                     />
                 :<ButtonLoader/>}
                 </div>
-                <Toast textStyle={textToastStyle} progressColor={"green"}/>
+            
 
     </div>
     );

@@ -29,7 +29,9 @@ const OrdersState = ({ children }) => {
             new_status:data.new_status  
         }
         try {
-            await changeStatus(body)
+            const response =await changeStatus(body)
+            console.log(response);
+            
             if(type === "rejected") {
                 toast.error("تم رفض الطلب بنجاح")
             } else {

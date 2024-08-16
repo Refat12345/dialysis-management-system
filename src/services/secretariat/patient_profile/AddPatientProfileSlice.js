@@ -15,8 +15,10 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
             invalidatesTags:  ['Orders'],
             async onQueryStarted(medicalRecord, { dispatch, queryFulfilled }) {
                 try {
-                    await queryFulfilled;
-                    dispatch(incrementOrderCount());
+                    const { data, error } = await queryFulfilled;
+                    if (data && !error) {
+                        dispatch(incrementOrderCount());
+                    }
                 } catch (err) {
                     console.error("Failed to create medical record: ", err);
                 }
@@ -34,10 +36,13 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
         },
     }),
     getAnalysisTypes:builder.query({
-        query:()=>({
+        query:()=>{
+            console.log(Cookies.get("token"));
+            return{
             url:"getAnalysisTypes",
-            method:"GET"
-        })
+            method:"GET",
+            headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
+        }}
     }),
     addPatientInfo: builder.mutation({
         query: (Info) => { 

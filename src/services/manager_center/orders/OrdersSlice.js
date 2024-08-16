@@ -8,7 +8,7 @@ export const ordersSlice = createSlice({
         totalOrdersCount: 0,
     },
     reducers: {
-    incrementOrderCount: (state) => {
+    incrementOrderCount: (state) => { 
         state.totalOrdersCount += 1;
     },
     decrementOrderCount: (state) => {
@@ -48,12 +48,16 @@ export const apiOrders = apiSlice.injectEndpoints({
             },
         }),
         changeStatus: builder.mutation({
-            query :(body) => ({
+    
+            query :(body) =>{
+                console.log(Cookies.get("token"));
+                
+                return{
                 url:"change-request-status",
                 method:"POST",
                 body:body,
                 headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
-            }),
+            }},
             invalidatesTags:["Orders"],
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
