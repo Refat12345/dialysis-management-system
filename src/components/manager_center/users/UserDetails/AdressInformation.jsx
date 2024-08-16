@@ -56,7 +56,6 @@
 //     setEditedData(newData);
 //     setData(newData);
 
-
 //     try {
 //       const returnedData = await editUser(newData);
 //       toast.success("تم تحديث البيانات بنجاح");
@@ -89,7 +88,7 @@
 //                 onClick={handleClickOpen}
 //               /> : null
 //               }
-             
+
 //             </div>
 //             <h3 className="text-xl text-bgtitle font-bold">العنوان</h3>
 //           </div>
@@ -213,14 +212,21 @@ function AdressInformation({ data, setData }) {
     setEditedData(newData);
     setData(newData);
 
-
     try {
-      const returnedData = await editUser(newData);
+      const returnedData = await editUser(newData).unwrap();
       toast.success("تم تحديث البيانات بنجاح");
-      console.log("تم تحديث البيانات بنجاح");
     } catch (error) {
-      toast.error("حدث خطأ أثناء تحديث البيانات");
-      console.error("حدث خطأ أثناء تحديث البيانات", error);
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        toast.error(errorMessage);
+      } else {
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
     }
 
     setIsLoading(false);
@@ -238,15 +244,14 @@ function AdressInformation({ data, setData }) {
               className="flex flex-grow justify-start items-center"
             >
               <img src={location} alt="Contact Information" />
-              {
-                user.role === "secretary" ?  <img
-                src={edit}
-                alt="Edit"
-                className="ml-2 cursor-pointer "
-                onClick={handleClickOpen}
-              /> : null
-              }
-             
+              {user.role === "secretary" ? (
+                <img
+                  src={edit}
+                  alt="Edit"
+                  className="ml-2 cursor-pointer "
+                  onClick={handleClickOpen}
+                />
+              ) : null}
             </div>
             <h3 className="text-xl text-bgtitle font-bold">العنوان</h3>
           </div>
@@ -293,13 +298,16 @@ function AdressInformation({ data, setData }) {
                     };
                   }
                   // acc[card.use].values.push(card.cityName);
-                  acc[card.use].values.push(card.cityName,card.line);
+                  acc[card.use].values.push(card.cityName, card.line);
                   return acc;
                 }, {})
               ).map((card, index) => (
                 <div dir="ltr" key={index}>
                   <p className="text-right"> {card.use}</p>
-                  <p className="text-right text-titleColor font-bold"> {card.values.join(", ")}</p>
+                  <p className="text-right text-titleColor font-bold">
+                    {" "}
+                    {card.values.join(", ")}
+                  </p>
                 </div>
               ))}
             </div>

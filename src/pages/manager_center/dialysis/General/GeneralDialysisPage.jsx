@@ -92,11 +92,11 @@ function GeneralDialysisPage({ type }) {
        
           isSuccessByPatient &&
           !isLoadingByPatient && (
-            <div className="flex-grow ">
+            <div className="flex-grow -mt-8">
               <PaginationComponent
                 data={userByPatient.dialysisSessions}
                 RenderComponent={GeneralDialysis}
-                itemsPerPage={4}
+                itemsPerPage={8}
               />
             </div>
           )}

@@ -1,27 +1,19 @@
 import { apiSlice } from "../../services/apiSlice";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
 export const AddMedicalSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-  
     addMedical: builder.mutation({
       query: (shiftRecord) => {
-        console.log("pppp",shiftRecord)
         return {
           url: `createUser`,
           method: "POST",
           body: shiftRecord,
-          headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
+          headers: { Authorization: `Bearer ${Cookies.get("token")}` },
         };
       },
     }),
-   
-    
-
-   
   }),
 });
 
-export const {
-  useAddMedicalMutation
-} = AddMedicalSlice;
+export const { useAddMedicalMutation } = AddMedicalSlice;

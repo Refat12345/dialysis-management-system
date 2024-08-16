@@ -21,7 +21,7 @@ import {
   useFilter,
 } from "../../pages/manager_center/secretaria_account/secretaria_sections/secretariaData";
 import { PublicHeader } from "../../components";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
@@ -53,7 +53,7 @@ const AddMedicalCenter = () => {
       address: state.addressInfo,
     };
     try {
-      const result = await addMedical(data);
+      const result = await addMedical(data).unwrap();
       toast.success("تمت الاضافة بنجاح");
       updateState({
         username: "",
@@ -78,14 +78,30 @@ const AddMedicalCenter = () => {
         ],
       });
     } catch (error) {
-      toast.error("حدث خطأ اثناء الاضافة");
-    } finally {
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
+    }
+    finally {
       setLoading(false);
     }
   };
 
   return (
-    <div
+    <>
+    <ToastContainer/>
+     <div
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-bgDashboard"
     >
@@ -215,34 +231,56 @@ const AddMedicalCenter = () => {
             </p>
             <div className="h-1"></div>
             {state.addressInfo.map((contact, index) => (
+              // <ContactSecretariaComponent
+              //   key={index}
+              //   selectUse={(val) =>
+              //     state.updateAddressInfo(index, { use: val })
+              //   }
+              //   useValue={contact.use}
+              //   filterUse={useFilter}
+              //   filterType={typeAddressFilter}
+              //   typeValue={contact.cityName}
+              //   selectType={(val) =>
+              //     state.updateAddressInfo(index, { cityName: val })
+              //   }
+              //   value={contact.line}
+              //   onChange={(val) => {
+              //     state.updateAddressInfo(index, { line: val.target.value });
+              //   }}
+              //   onRemove={() => state.removeAddressInfo(index)}
+              //   showDeleteButton={state.addressInfo.length > 1}
+              //   firstLabel={"الاستخدام"}
+              //   secondLabel={"المدينة"}
+              //   type={"سكن"}
+              //   val={contact.countryName}
+              //   onChangeCountryName={(val) => {
+              //     state.updateAddressInfo(index, {
+              //       countryName: val.target.value,
+              //     });
+              //   }}
+              // />
               <ContactSecretariaComponent
-                key={index}
-                selectUse={(val) =>
-                  state.updateAddressInfo(index, { use: val })
-                }
-                useValue={contact.use}
-                filterUse={useFilter}
-                filterType={typeAddressFilter}
-                typeValue={contact.cityName}
-                selectType={(val) =>
-                  state.updateAddressInfo(index, { cityName: val })
-                }
-                value={contact.line}
-                onChange={(val) => {
-                  state.updateAddressInfo(index, { line: val.target.value });
-                }}
-                onRemove={() => state.removeAddressInfo(index)}
-                showDeleteButton={state.addressInfo.length > 1}
-                firstLabel={"الاستخدام"}
-                secondLabel={"المدينة"}
-                type={"سكن"}
-                val={contact.countryName}
-                onChangeCountryName={(val) => {
-                  state.updateAddressInfo(index, {
-                    countryName: val.target.value,
-                  });
-                }}
-              />
+              key={index}
+              selectUse={(val) =>
+                state.updateAddressInfo(index, { use: val })
+              }
+              useValue={contact.use}
+              filterUse={useFilter}
+              filterType={typeAddressFilter}
+              typeValue={contact.cityName}
+              selectType={(val) =>
+                state.updateAddressInfo(index, { cityName: val })
+              }
+              value={contact.line}
+              onChange={(val) => {
+                state.updateAddressInfo(index, { line: val.target.value });
+              }}
+              onRemove={() => state.removeAddressInfo(index)}
+              showDeleteButton={state.addressInfo.length > 1}
+              firstLabel={"الاستخدام"}
+              secondLabel={"المدينة"}
+            />
+
             ))}
             <div className="h-3"></div>
             <CustomButton
@@ -287,6 +325,8 @@ const AddMedicalCenter = () => {
         </div>
       </div>
     </div>
+    </>
+   
   );
 };
 

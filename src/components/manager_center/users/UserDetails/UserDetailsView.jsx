@@ -6,6 +6,7 @@ import {
 import { useState, useEffect } from "react";
 import PageLoader from "../../../public/loader/PageLoader";
 import AdressInformation from "./AdressInformation";
+import { ToastContainer } from "react-toastify";
 
 function UserDetailsView() {
   const { userData, isLoading, isSuccess } = useDetailsUsers();
@@ -53,6 +54,8 @@ function UserDetailsView() {
   return (
     
     <>
+        <ToastContainer/>
+
       {isSuccess && !isLoading && data &&  (
         <div>
           <h3 dir="rtl" className="-mt-12 pb-6 text-2xl text-titleColor font-bold">

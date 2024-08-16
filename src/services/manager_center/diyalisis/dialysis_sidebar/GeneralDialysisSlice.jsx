@@ -7,7 +7,7 @@ export const GeneralDialysisSlice = apiSlice.injectEndpoints({
       query: ({ month, year ,centeId}) => {
         console.log("lllll",centeId,month,year)
         return {
-          url: `getDialysisSessions/0/${month}/${year}`,
+          url: `getDialysisSessions/${centeId}/${month}/${year}`,
           method: "GET",
           headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
         };

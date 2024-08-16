@@ -83,6 +83,7 @@ function GeneralDialysis({ data ,type2 }) {
     titleColor:"primaryColor",
     contentColor:"bgButtonColor"
 }
+
   return (
     <>
     {

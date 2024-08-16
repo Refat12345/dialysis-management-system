@@ -58,23 +58,23 @@ export const LoginStateProvider = ({ children }) => {
       localStorage.setItem("tokens", response.user.token);
       showSuccessToast("login successfully");
       //send device Token
-      const deviceToken = await generateToken();
+      // const deviceToken = await generateToken();
       
 
       if (token) {
         navigate("/app");
         
-        const sendDeviceTokenResponse = await sendDeviceTokenApi({
-          deviceToken,
-          deviceID: "9398",
-          token : response.user.token
-        }).unwrap();
+        // const sendDeviceTokenResponse = await sendDeviceTokenApi({
+        //   deviceToken,
+        //   deviceID: "9398",
+        //   token : response.user.token
+        // }).unwrap();
   
-        if (sendDeviceTokenResponse.success) {
-          console.log("Device token sent successfully");
-        } else {
-          console.error("Failed to send device token:", sendDeviceTokenResponse.error);
-        }
+        // if (sendDeviceTokenResponse.success) {
+        //   console.log("Device token sent successfully");
+        // } else {
+        //   console.error("Failed to send device token:", sendDeviceTokenResponse.error);
+        // }
       }
     } catch (err) {
       showErrorToast("حدثت مشكلة معنية حاول مجدداً");

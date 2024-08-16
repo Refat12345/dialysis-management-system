@@ -10,8 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AddPrescriptionStateContext = createContext();
 
-const AddPrescriptionState = ({ children ,userId }) => {
-  const userIdString = userId ? userId.toString() : '14';
+const AddPrescriptionState = ({ children, userId }) => {
+  const userIdString = userId ? userId.toString() : "14";
   const [userData, setUserData] = useState([]);
   const [isLoadingmedicences, setIsLoadingmedicences] = useState(false);
   const [isSuccessmedicences, setIsSuccessmedicences] = useState(false);
@@ -119,8 +119,6 @@ const AddPrescriptionState = ({ children ,userId }) => {
     isSuccess: ismedicencesSuccess,
   } = useGetMedicineNamesQuery();
 
-  
-
   useEffect(() => {
     if (ismedicencesSuccess && medicences) {
       setUserData(medicences.medicine_names);
@@ -135,7 +133,6 @@ const AddPrescriptionState = ({ children ,userId }) => {
     }
   }, [ismedicencesSuccess, ismedicencesLoading, medicences]);
 
-
   const postData = async (prescriptionInfo) => {
     const isAllFieldsFilled = prescriptionInfo.every(
       (info) =>
@@ -149,41 +146,48 @@ const AddPrescriptionState = ({ children ,userId }) => {
         info.note &&
         info.amount
     );
-  
+
     if (!isAllFieldsFilled) {
       toast.error("يرجى ملء جميع الحقول قبل الإرسال.");
       return;
     }
-  
+
     const transformedData = transformPrescriptionData(prescriptionInfo);
     try {
-      const response = await createPrescription(transformedData);
-      console.log("response",response)
-      if (response.data === undefined) {
-        toast.error(`حدث خطأ: ${response.error.data["error"]}`);
+      const response = await createPrescription(transformedData).unwrap();
+
+      toast.success("تم إرسال الوصفة الطبية بنجاح!");
+      setState({
+        ...state,
+        prescriptionInfo: [
+          {
+            prescriptionName: "",
+            dayStart: "",
+            dayEnd: "",
+            monthStart: "",
+            monthEnd: "",
+            yearStart: "",
+            yearEnd: "",
+            note: "",
+            amount: "",
+          },
+        ],
+      });
+    } catch (error) {
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
       }
-      else {
-       toast.success("تم إرسال الوصفة الطبية بنجاح!");
-  setState({
-          ...state,
-          prescriptionInfo: [
-            {
-              prescriptionName: "",
-              dayStart: "",
-              dayEnd: "",
-              monthStart: "",
-              monthEnd: "",
-              yearStart: "",
-              yearEnd: "",
-              note: "",
-              amount: "",
-            },
-          ],
-        });
-      } 
-       
-    } catch (err) {
-      toast.error("حدث خطأ أثناء إرسال الوصفة الطبية");
     }
   };
   const contextValue = {
