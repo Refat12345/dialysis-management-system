@@ -8,6 +8,7 @@ import { dataCenterLocation, dataCenterTime } from "../../../data/data";
 import TimeCenter from "../../../components/manager_center/setting/TiemCenter/TimeCenter";
 import { SettingProvider, useSetting } from "./SettingState";
 import LoadingComponent from "../../../components/public/LoadingComponent ";
+import { ToastContainer } from "react-toastify";
 
 function SettingPage() {
   const { SettingData, isLoading, isSuccess, SettingTime, setSettingTime } =
@@ -17,6 +18,7 @@ function SettingPage() {
   return (
     <SettingProvider>
       <>
+      <ToastContainer/>
         {isSuccess && !isLoading && (
           <div className="bg-cardDetailsColor w-full">
             <div
