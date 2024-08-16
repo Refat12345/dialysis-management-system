@@ -22,7 +22,7 @@ const CreateUserState = ({ children }) => {
         use: "",
         cityName: "",
         line: "",
-        countryName: ""
+        countryName: "سوريا"
       },
     ],
     permissions: [],
@@ -72,11 +72,19 @@ const CreateUserState = ({ children }) => {
     }));
   };
 
+  // const updateAddressInfo = (index, newAddressInfo) => {
+  //   setState((prevState) => ({
+  //     ...prevState,
+  //     addressInfo: prevState.addressInfo.map((contact, i) =>
+  //       i === index ? { ...contact, ...newAddressInfo } : contact
+  //     ),
+  //   }));
+  // };
   const updateAddressInfo = (index, newAddressInfo) => {
     setState((prevState) => ({
       ...prevState,
       addressInfo: prevState.addressInfo.map((contact, i) =>
-        i === index ? { ...contact, ...newAddressInfo } : contact
+        i === index ? { ...contact, ...newAddressInfo, countryName: "سوريا" } : contact
       ),
     }));
   };

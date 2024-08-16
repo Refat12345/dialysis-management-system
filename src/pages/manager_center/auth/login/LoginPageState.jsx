@@ -1,14 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { useLoginMutation } from "../../../../services/manager_center/auth/AuthSlice";
-import { useNavigate  } from "react-router-dom";
+import {
+  useLoginMutation,
+  useSendDeviceTokenMutation,
+} from "../../../../services/manager_center/auth/AuthSlice";
+import { useNavigate } from "react-router-dom";
 import { validateLoginForm } from "../../../../validator";
 import { showErrorToast, showSuccessToast } from "../../../../utils/toastUtils";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../services/userSlice";
 import Cookies from "js-cookie";
-
+import {
+  fcmToken,
+  getMachineId,
+} from "../../../../firebase/firebase-messaging";
 
 const LoginStateContext = createContext();
 
@@ -25,6 +31,7 @@ export const LoginStateProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   const [loginApi, { error }] = useLoginMutation();
+  const [sendDeviceTokenApi] = useSendDeviceTokenMutation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,9 +62,28 @@ export const LoginStateProvider = ({ children }) => {
       localStorage.setItem("myObject", jsonString);
       const token = response.user.token;
       localStorage.setItem("tokens", response.user.token);
-      showSuccessToast("تم تسجيل الدخول بنجاح");
+      showSuccessToast("login successfully");
+      //send device Token
+      const deviceToken = fcmToken;
+      const deviceId = getMachineId();
+
       if (token) {
         navigate("/app");
+
+        const sendDeviceTokenResponse = await sendDeviceTokenApi({
+          deviceToken,
+          deviceID: deviceId,
+          token: response.user.token,
+        }).unwrap();
+
+        if (sendDeviceTokenResponse.success) {
+          console.log("Device token sent successfully");
+        } else {
+          console.error(
+            "Failed to send device token:",
+            sendDeviceTokenResponse.error
+          );
+        }
       }
     } catch (err) {
       console.log(err);

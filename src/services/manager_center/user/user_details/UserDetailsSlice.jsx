@@ -15,8 +15,7 @@ export const UserDetailsSlice = apiSlice.injectEndpoints({
           return {
               url: `updateUser`,
               method: 'POST',
-              body: medicalRecord,
-             
+              body: medicalRecord,        
               headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
 
           };
