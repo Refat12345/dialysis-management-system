@@ -11,12 +11,12 @@ const DialysisSession = ({dialysis}) => {
 
   return (
     <>
-        <div className={`flex flex-row-reverse font-bold   bg-white rounded-md mx-4 my-4 mb-2 ${width<640 ?"justify-between":""}`}>
-            <div dir="rtl" className="flex w-[22.5%] ">
+        <div className={`flex flex-row-reverse font-bold   bg-white rounded-md ml-3 mr-3 my-4 mb-2 ${width<640 ?"justify-between":""}`}>
+            <div dir="rtl" className="flex w-[25%] ">
                 <img src={Icon} alt=""/>
-                <p className={`content-center text pr-2 whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
+                <p className={`content-center text pr-[6px] whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
-            <p dir="rtl" className={` text-center w-[25.5%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
+            <p dir="rtl" className={` text-center w-[22%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
             <p className={`text-center w-[25.5%]  ${responsive}`}>{getHourInArabic(dialysis.startTime)}</p>
             <p className={`text-center w-[14%]  ${responsive} hidden sm:block`}>{dialysis.chair}</p>
             <p dir="rtl" className={`w-[16%] ${responsive} pl-4 hidden sm:block text-center whitespace-nowrap overflow-hidden text-ellipsis`}>{dialysis.roomName}</p>

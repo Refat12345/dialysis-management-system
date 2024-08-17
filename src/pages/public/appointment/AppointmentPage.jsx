@@ -8,12 +8,12 @@ import { useParams } from 'react-router-dom';
 const Appointment = () => {
     const user = useSelector((state) => state.user);
     let { id } = useParams();
-  
+
     const { data: appointmentsData, isSuccess: appointmentsSuccess, isLoading: appointmentsLoading } = useGetAppointmentsQuery(user.centerID);
     const { data: shiftsData, isSuccess: shiftsSuccess, isLoading: shiftsLoading } = useGetShiftsQuery(user.centerID);
     const { data: chairsData, isSuccess: chairsSuccess, isLoading: chairsLoading } = useGetChairsQuery(user.centerID);
     
-    const [shift, setShift] = useState("");
+    const [shift, setShift] = useState(""); 
     const [searchTerm, setSearchTerm] = useState("");
     
     const handleInputChange = useCallback((e) => {
@@ -38,7 +38,7 @@ const Appointment = () => {
    
     const filters = [
         {
-            title: shift || "الوردية",  
+            title: shift || (shiftsSuccess && shiftsData[0].length > 0 ? shiftsData[0][0].name : "الوردية"),
             array: shiftsSuccess ? shiftsData[0].map(shift => shift.name) : []
         },
     ];
@@ -83,7 +83,7 @@ const Appointment = () => {
                                     colors={colors}
                                     filter={filters[0].array}
                                     onSelect={setShift}
-                                    title={shift || "الوردية"}  
+                                    title={shift || (shiftsSuccess && shiftsData[0].length > 0 ? shiftsData[0][0].name : "الوردية")}
                                     type="shift"
                                 />
                             </div>

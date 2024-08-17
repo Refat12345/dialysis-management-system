@@ -18,11 +18,14 @@ const Dashboard = () => {
   const {data: statisticsData, isSuccess: statisticsSuccess, isLoading: statisticsLoading , error } = useGetCenterStatisticsQuery()
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
+  
   useEffect(() => {
-      if(date.month != "" && date.year != "" ){
+      
+      if(date.month != "" || date.year != "" ){
         refetch();
       }
   }, [date, refetch]);
+
   if (sessionLoading || statisticsLoading  || causeRenalLoading) {
     return (
       <div className="flex-grow md:mr-48">
@@ -32,6 +35,11 @@ const Dashboard = () => {
       </div>
       
     );
+  }
+
+  if(medicineSuccess){
+    console.log(medicineDate);
+    
   }
   
   if (!sessionSuccess || !statisticsSuccess  || !causeRenalSuccess) {

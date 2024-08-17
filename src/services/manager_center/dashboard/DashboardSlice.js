@@ -26,7 +26,7 @@ export const apiDashboard = apiSlice.injectEndpoints({
         getPieCharts:builder.query({
             query :(data)=>{
                 return{
-                url:data.month != "" && data.year != "" ?`getPieCharts/${data.month}/${data.year}`:"getPieCharts",
+                url:((data.month != "" && data.year != "" )||(data.month != "الشهر" && data.year != "السنة" ) ) ?`getPieCharts/${data.month}/${data.year}`:"getPieCharts",
                 method:"GET",
                 headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
             }
