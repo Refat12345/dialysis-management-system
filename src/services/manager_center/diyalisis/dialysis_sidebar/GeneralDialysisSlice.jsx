@@ -5,7 +5,7 @@ export const GeneralDialysisSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getGeneralDialysis: builder.query({
       query: ({ month, year ,centeId}) => {
-        console.log("lllll",centeId,month,year)
+    
         return {
           url: `getDialysisSessions/${centeId}/${month}/${year}`,
           method: "GET",
@@ -24,6 +24,7 @@ export const GeneralDialysisSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+// eslint-disable-next-line react-refresh/only-export-components
 export const {  useGetGeneralDialysisQuery,useGetDialysisByPatientQuery } = GeneralDialysisSlice;
 
 

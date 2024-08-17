@@ -37,10 +37,7 @@ const Dashboard = () => {
     );
   }
 
-  if(medicineSuccess){
-    console.log(medicineDate);
-    
-  }
+
   
   if (!sessionSuccess || !statisticsSuccess  || !causeRenalSuccess) {
     return (

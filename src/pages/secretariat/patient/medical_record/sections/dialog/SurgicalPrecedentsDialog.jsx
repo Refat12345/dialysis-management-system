@@ -8,7 +8,6 @@ const SurgicalPrecedentsDialog = ({state,updateState}) => {
   return (
     
     array.map((precedent,index)=>{
-        console.log(dayjs(precedent.surgeryDate));
         return <div dir="rtl" key={index} >
                 <div className="paddingCard bg-bgMedicalRecord rounded-lg ">
                 <Row mainAxisAlignment="justify-evenly">

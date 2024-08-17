@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import s1 from "./../../../assets/icons/s1.svg";
 import { useAddToWaitingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
@@ -23,7 +24,6 @@ const SecretariatDashboard = () => {
   const handleAddToWaiting = async (id) => {
     try {
       const result = await addToWaiting(id).unwrap();
-      console.log(result);
       alert('تمت إضافة المريض إلى قائمة الانتظار بنجاح');
     } catch (error) {
       console.error(error);

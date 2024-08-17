@@ -43,11 +43,9 @@ export const getFCMToken = async () => {
       fcmToken = await getToken(messaging, {
         vapidKey: vapidKey,
       });
-      console.log(`Device token ===================> ${fcmToken}`);
 
       //Init Foreground Messaging
       onMessage(messaging, (payload) => {
-        console.log(payload);
       });
     } catch (e) {
       console.log(e);

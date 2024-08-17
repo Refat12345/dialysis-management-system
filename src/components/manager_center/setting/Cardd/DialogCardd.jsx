@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import Dialog from "@mui/material/Dialog";
 import { useState, useContext } from "react";
@@ -36,7 +37,6 @@ function DialogCardd({ open, setOpen }) {
       await addChair(chairData)
         .unwrap()
         .then((result) => {
-          console.log(result);
         });
       toast.success("  تم إرسال  البيانات بنجاح بانتظار الموافقة");
       setState({

@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAddShiftMutation } from "../../../../services/manager_center/setting/SettingSlice";
 import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function DialogTimeCenter({ open, setOpen }) {
   const handleClose = () => {
@@ -35,15 +35,15 @@ export default function DialogTimeCenter({ open, setOpen }) {
       centerID: user.centerID,
     };
     setIsLoading(true); 
-    console.log(newShift);
+
     try {
       const payload = await addShift(newShift).unwrap();
-      console.log("وردية جديدة تمت إضافتها:", payload);
+      
       toast.success(" وردية جديدة تمت إضافتها بانتظار الموافقة:");
 
       setOpen(false);
     } catch (error) {
-      console.error("خطأ في إضافة وردية:", error);
+      
       toast.error("خطأ في إضافة وردية:");
     }
     setIsLoading(false); 

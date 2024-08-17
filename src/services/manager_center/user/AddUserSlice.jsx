@@ -7,7 +7,7 @@ export const AddUserSlice = apiSlice.injectEndpoints({
 
     addUser: builder.mutation({
         query: (Info) => { 
-            console.log("info in add user ",Info)
+        
             return {
                 url: `createUser`,
                 method: 'POST',

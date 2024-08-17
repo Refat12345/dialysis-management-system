@@ -67,8 +67,6 @@ export const LoginStateProvider = ({ children }) => {
       const deviceToken = fcmToken;
       const deviceId = getMachineId();
 
-      console.log("deviceId",deviceId)
-
       if (token) {
         navigate("/app");
 
@@ -78,8 +76,6 @@ export const LoginStateProvider = ({ children }) => {
             deviceID: deviceId,
             token: response.user.token,
           }).unwrap();
-
-          console.log("success success success")
   
         }
         catch (error) {

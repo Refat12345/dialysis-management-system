@@ -2,20 +2,20 @@
 
 import { PieChart } from '@mui/x-charts/PieChart';
 
-export default function BasicPie({content,colors,size}) {
+export default function BasicPie({content,colors,size ,type}) {
+
+  const totalValue = content.reduce((acc, item) => acc + item.value, 0);
 
   const series = [
     {
       data: content,
-      arcLabel: (item) => `${((item.value / totalValue) * 100).toFixed(0)}%`,
+      arcLabel: type === "medicine"? (item) => item.value === 0 ? '' : `${item.value}`: (item) => item.value === 0 ? '' : `${((item.value / totalValue) * 100).toFixed(0)}%`,
       innerRadius: '50%', 
     },
   ];
 
   const width = size.width > 1340 ? (size.width > 1420 ? 220 : 205) :(size.width>1290?(size.width>1200?170:150):190);
   const height = size.height >600 ? (size.height> 630 ? (size.height > 700 ? 160 : 140) :130): 120;
-
-  const totalValue = series[0].data.reduce((acc, item) => acc + item.value, 0);
 
   return (
     <div dir="rtl" className='my-5' >
@@ -35,4 +35,3 @@ export default function BasicPie({content,colors,size}) {
     </div>
   );
 }
-

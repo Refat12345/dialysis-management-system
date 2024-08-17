@@ -77,7 +77,7 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
 
     addMedicalData: builder.mutation({
       query: (data) => {
-        console.log("adddd  is")
+  
 
         return {
           url: `createMedicalCenter`,
@@ -93,7 +93,7 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
 
     updateMedicalData: builder.mutation({
       query: (data) => {
-        console.log("uppp is" , data)
+    
         return {
           url: `updateMedicalCenter`,
           method: "POST",

@@ -50,8 +50,6 @@ export const apiOrders = apiSlice.injectEndpoints({
         changeStatus: builder.mutation({
     
             query :(body) =>{
-                console.log(Cookies.get("token"));
-                
                 return{
                 url:"change-request-status",
                 method:"POST",

@@ -1,14 +1,16 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
+
 import setting from "./../../../../assets/icons/medical-center/users/user-details/setting.svg";
 import { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import {
   useGetUserPermissionsQuery,
   useEditUserPermissionsMutation,
 } from "./../../../../services/manager_center/user/user_details/UserDetailsSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ToggleSwitch = ({ id, name, label, enabled, setEnabled }) => {
   return (
@@ -110,9 +112,7 @@ const MyButton = ({ text, id }) => {
 
     try {
       await editUserPermissions(newData);
-      console.log("newData", newData);
       toast.success("تم تحديث الصلاحيات بنجاح");
-      console.log("تم تحديث الصلاحيات بنجاح");
     } catch (error) {
       toast.error("حدث خطأ أثناء تحديث الصلاحيات");
       console.error("حدث خطأ أثناء تحديث الصلاحيات", error);
@@ -133,12 +133,13 @@ const MyButton = ({ text, id }) => {
 
       {text === "عرض الصلاحيات" ? (
         <Dialog open={open} onClose={handleClose}>
-          <DialogTitle className="text-center ">
-            <span className=" text-4xl text-blue-700">
+        
+          <DialogContent className="p-4">
+            <div className="text-center mb-6">
+            <span className=" text-3xl font-bold text-titleColor">
               {"الصلاحيات المتاحة"}
             </span>
-          </DialogTitle>
-          <DialogContent className="p-4">
+            </div>
             <div dir="rtl" className="grid grid-cols-2 gap-11 mt-5">
               {Object.keys(switchStates).map((switchId, index, array) => {
                 const isLastItem = index === array.length - 1;

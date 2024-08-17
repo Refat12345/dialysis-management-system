@@ -43,7 +43,7 @@ export const UserInvitesProvider = ({ children }) => {
       const filtered = flatUserData.filter((user) =>
         user.fullName.toLowerCase().includes(searchTermForInvites.toLowerCase())
       );
-      console.log(filtered);
+  
       setFilteredDataForInvites(filtered);
     } else {
       setFilteredDataForInvites(userInvites);
@@ -62,6 +62,7 @@ export const UserInvitesProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useUserInvites = () => {
   const context = useContext(UserInvitesContext);
   if (context === undefined) {

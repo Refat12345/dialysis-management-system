@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
@@ -48,7 +49,6 @@ export const RegisterStateProvider = ({ children }) => {
         password: state.password,
       }).unwrap();
       showSuccessToast("تم إنشاء الحساب، الرجاء تسجيل الدخول");
-      console.log("Verify response:", response);
       navigate("/");
     } catch (error) {
       showErrorToast("حدثت مشكلة معنية حاول مجدداً");
@@ -61,7 +61,6 @@ export const RegisterStateProvider = ({ children }) => {
       const response = await getUserByVerificationCode({
         verificationCode: state.code,
       }).unwrap();
-      console.log("User response:", response);
       showSuccessToast("الرقم المدخل صحيح");
       updateState({
         nationaltyNumber: response.user.nationalNumber,

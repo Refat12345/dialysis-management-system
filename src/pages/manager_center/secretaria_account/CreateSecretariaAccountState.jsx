@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 // src/state/CreateSecretariaAccountState.js
 import { createContext, useState, useContext } from "react";
@@ -43,7 +44,6 @@ const CreateSecretariaAccountState = ({ children }) => {
 
   const selectDate = (val) => {
     const formattedDate = dayjs(val).format("YYYY-MM-DD");
-    console.log("Formatted Date:", formattedDate);
     updateState({ birthdate: dayjs(val) });
   };
 
@@ -169,8 +169,6 @@ const CreateSecretariaAccountState = ({ children }) => {
       })),
       permissionNames: permissions,
     };
-
-    console.log(userData);
     try {
       await createUser(userData).unwrap();
       showSuccessToast("تم إضافة سكرتاريا بنجاح");

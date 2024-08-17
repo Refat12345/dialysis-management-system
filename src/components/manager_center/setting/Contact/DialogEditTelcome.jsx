@@ -1,13 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import { useAddCenterContactMutation } from "../../../../services/manager_center/setting/SettingSlice";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,7 +42,6 @@ const handleSubmit = async (e) => {
   
     try {
       await editTelcome(dataToSend).unwrap();
-      console.log("تم تحديث معلومة الاتصال  ");
       toast.success("تم تحديث معلومة الاتصال  ");
     } catch (error) {
       console.error("خطأ في تحديث معلومة الاتصال:", error);

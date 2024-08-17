@@ -51,7 +51,7 @@ export const PatientSlice = apiSlice.injectEndpoints({
 
     addFromWaitingToPending : builder.mutation({
       query: (data) => {
-        console.log("aaa",data)
+       
         return {
           url: `associateUserWithMyMedicalCenter`,
           method: "POST",
@@ -66,4 +66,5 @@ export const PatientSlice = apiSlice.injectEndpoints({
   }),
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const { useGetPatientQuery,useAddToWaitingMutation,useGetUnAcceptedPatientQuery ,useGetHangingPatientQuery ,useAddFromWaitingToPendingMutation} = PatientSlice;

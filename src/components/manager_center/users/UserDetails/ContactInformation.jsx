@@ -11,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { useEditUserMutation } from "../../../../services/manager_center/user/user_details/UserDetailsSlice";
 import CustomTextField from "../../../public/textfield/CustomTextField";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 
@@ -46,43 +46,8 @@ function ContactInformation({ data, setData }) {
     });
   };
 
-  // const handleSave = async () => {
-  //   setIsLoading(true);
-  //   const newData = {
-  //     ...data,
-  //     telecom: form,
-  //   };
-  //   setEditedData(newData);
-  //   setData(newData);
+  
 
-  //   try {
-  //     const response = await editUser(newData);
-  //     console.log(response); // طباعة الاستجابة الكاملة
-
-  //     if (response.status === 200) {
-  //       console.log("تم تحديث البيانات بنجاح");
-  //       toast.success("تم تحديث البيانات بنجاح");
-  //     } else if (response.status === 400) {
-  //       const errorMessage = response.data.error || "حدث خطأ أثناء تحديث البيانات";
-  //       console.error(errorMessage);
-  //       toast.error(errorMessage);
-  //     } else if (response.status === 403) {
-  //       const errorMessage = response.data.error || "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
-  //       console.error(errorMessage);
-  //       toast.error(errorMessage);
-  //     } else {
-  //       console.error(`حدث خطأ أثناء تحديث البيانات: ${response.error.data.error}`);
-  //       toast.error(`حدث خطأ أثناء تحديث البيانات: ${response.error.data.error}`);
-  //     }
-  //   } catch (error) {
-  //     console.error("حدث خطأ أثناء تحديث البيانات", error);
-  //     toast.error("حدث خطأ أثناء تحديث البيانات");
-  //   }
-
-  //   setIsLoading(false);
-  //   setIsEditing(false);
-  //   setOpen(false);
-  // };
 
   const handleSave = async () => {
     setIsLoading(true);
@@ -95,7 +60,7 @@ function ContactInformation({ data, setData }) {
 
     try {
       const response = await editUser(newData).unwrap();
-      console.log("تم تحديث البيانات بنجاح");
+      
       toast.success("تم تحديث البيانات بنجاح");
     } catch (error) {
       if (error.status === 400) {

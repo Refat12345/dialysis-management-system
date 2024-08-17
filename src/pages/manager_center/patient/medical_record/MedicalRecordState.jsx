@@ -132,7 +132,6 @@ const MedicalRecordState = ({ children }) => {
                 }
             ],
         }) 
-        console.log(object);
         try{
             await method(object).unwrap()
             toast.success("تم تعديل السابقة بنجاح")

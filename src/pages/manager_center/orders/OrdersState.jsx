@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types"; // Import PropTypes
@@ -30,7 +31,6 @@ const OrdersState = ({ children }) => {
         }
         try {
             const response =await changeStatus(body)
-            console.log(response);
             
             if(type === "rejected") {
                 toast.error("تم رفض الطلب بنجاح")

@@ -37,7 +37,6 @@ export default function DialogEditShifts({ open, setOpen, data }) {
 
     try {
       await Promise.all(promises); 
-      console.log("تم تحديث جميع الورديات بنجاح");
       toast.success("تم تحديث الوردية:");
     } catch (error) {
       console.error("خطأ في تحديث الورديات:", error);
