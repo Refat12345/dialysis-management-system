@@ -53,7 +53,20 @@ function DialogContactCenter({ open, setOpen }) {
       toast.success("تم إرسال  البيانات بنجاح!");
       setOpen(false);
     } catch (error) {
-      console.error("Failed to save the contact:", error);
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
     }
     finally {
       setLoading(false);

@@ -11,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { useEditUserMutation } from "../../../../services/manager_center/user/user_details/UserDetailsSlice";
 import CustomTextField from "../../../public/textfield/CustomTextField";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 
@@ -25,7 +25,7 @@ function ContactInformation({ data, setData }) {
     JSON.parse(JSON.stringify(data.telecom))
   );
 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -46,8 +46,46 @@ function ContactInformation({ data, setData }) {
     });
   };
 
+  // const handleSave = async () => {
+  //   setIsLoading(true);
+  //   const newData = {
+  //     ...data,
+  //     telecom: form,
+  //   };
+  //   setEditedData(newData);
+  //   setData(newData);
+
+  //   try {
+  //     const response = await editUser(newData);
+  //     console.log(response); // طباعة الاستجابة الكاملة
+
+  //     if (response.status === 200) {
+  //       console.log("تم تحديث البيانات بنجاح");
+  //       toast.success("تم تحديث البيانات بنجاح");
+  //     } else if (response.status === 400) {
+  //       const errorMessage = response.data.error || "حدث خطأ أثناء تحديث البيانات";
+  //       console.error(errorMessage);
+  //       toast.error(errorMessage);
+  //     } else if (response.status === 403) {
+  //       const errorMessage = response.data.error || "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+  //       console.error(errorMessage);
+  //       toast.error(errorMessage);
+  //     } else {
+  //       console.error(`حدث خطأ أثناء تحديث البيانات: ${response.error.data.error}`);
+  //       toast.error(`حدث خطأ أثناء تحديث البيانات: ${response.error.data.error}`);
+  //     }
+  //   } catch (error) {
+  //     console.error("حدث خطأ أثناء تحديث البيانات", error);
+  //     toast.error("حدث خطأ أثناء تحديث البيانات");
+  //   }
+
+  //   setIsLoading(false);
+  //   setIsEditing(false);
+  //   setOpen(false);
+  // };
+
   const handleSave = async () => {
-    setIsLoading(true); 
+    setIsLoading(true);
     const newData = {
       ...data,
       telecom: form,
@@ -56,20 +94,31 @@ function ContactInformation({ data, setData }) {
     setData(newData);
 
     try {
-      await editUser(newData);
+      const response = await editUser(newData).unwrap();
       console.log("تم تحديث البيانات بنجاح");
       toast.success("تم تحديث البيانات بنجاح");
     } catch (error) {
-      console.error("حدث خطأ أثناء تحديث البيانات", error);
-      toast.error("حدث خطأ أثناء تحديث البيانات");
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
     }
 
-    setIsLoading(false);  
+    setIsLoading(false);
     setIsEditing(false);
     setOpen(false);
   };
   const { isLoading: isDetailsLoading, isSuccess } = useDetailsUsers();
-
 
   return (
     <>
@@ -84,15 +133,14 @@ function ContactInformation({ data, setData }) {
               className="flex flex-grow justify-start items-center"
             >
               <img src={contact} alt="Contact Information" />
-              {
-                user.role === "secretary" ? <img
-                src={edit}
-                alt="Edit"
-                className="ml-2 cursor-pointer"
-                onClick={handleClickOpen}
-              />  : null
-              }
-              
+              {user.role === "secretary" ? (
+                <img
+                  src={edit}
+                  alt="Edit"
+                  className="ml-2 cursor-pointer"
+                  onClick={handleClickOpen}
+                />
+              ) : null}
             </div>
             <h3 className="text-xl text-bgtitle font-bold">معلومات التواصل</h3>
           </div>
@@ -125,11 +173,11 @@ function ContactInformation({ data, setData }) {
                 >
                   حفظ التغييرات
                 </Button> */}
-                  <Button
+                <Button
                   variant="contained"
                   onClick={handleSave}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded"
-                  disabled={isLoading} 
+                  disabled={isLoading}
                 >
                   {isLoading ? "جارٍ الحفظ..." : "حفظ التغييرات"}
                 </Button>
@@ -153,7 +201,10 @@ function ContactInformation({ data, setData }) {
               ).map((card, index) => (
                 <div dir="ltr" key={index}>
                   <p className="text-right"> {card.system}</p>
-                  <p className="text-right text-titleColor font-bold"> {card.values.join(", ")}</p>
+                  <p className="text-right text-titleColor font-bold">
+                    {" "}
+                    {card.values.join(", ")}
+                  </p>
                 </div>
               ))}
             </div>

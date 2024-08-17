@@ -9,7 +9,7 @@ export default function NotesSessionData({ notes }) {
             ملاحظات الجلسة
           </h4>
         </div>
-        <div className="p-4">
+        <div className="p-4 max-h-[300px] overflow-y-auto">
           {notes.length === 0 ? (
             <div className="text-gray-500 h-20">لا توجد ملاحظات</div>
           ) : (

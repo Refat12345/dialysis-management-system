@@ -52,11 +52,7 @@ const AddUser = () => {
         (contact) => !contact.use || !contact.system || !contact.value
       ) ||
       state.addressInfo.some(
-        (address) =>
-          !address.use ||
-          !address.cityName ||
-          !address.line 
-          
+        (address) => !address.use || !address.cityName || !address.line
       )
     ) {
       toast.error("يرجى تعبئة جميع الحقول");
@@ -80,11 +76,7 @@ const AddUser = () => {
 
     try {
       setLoading(true);
-      const result = await addUser(data);
-
-      if (result.data === undefined) {
-        toast.error(`حدث خطأ: ${result.error.data["error"]}`);
-      } else {
+      const result = await addUser(data).unwrap();
         toast.success("تمت الاضافة بنجاح");
         updateState({
           username: "",
@@ -95,9 +87,22 @@ const AddUser = () => {
           contactInfo: [{ use: "", system: "", value: "" }],
           addressInfo: [{ use: "", cityName: "", line: "", countryName: "" }],
         });
-      }
+      
     } catch (error) {
-      toast.error("حدث خطأ اثناء الاضافة");
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
     } finally {
       setLoading(false);
     }
@@ -228,52 +233,28 @@ const AddUser = () => {
               </p>
               <div className="h-1"></div>
               {state.addressInfo.map((contact, index) => (
-                // <ContactSecretariaComponent
-                //   key={index}
-                //   selectUse={(val) =>
-                //     state.updateAddressInfo(index, { use: val })
-                //   }
-                //   useValue={contact.use}
-                //   filterUse={useFilter}
-                //   filterType={typeAddressFilter}
-                //   typeValue={contact.cityName}
-                //   selectType={(val) =>
-                //     state.updateAddressInfo(index, { cityName: val })
-                //   }
-                //   value={contact.line}
-                //   onChange={(val) => {
-                //     state.updateAddressInfo(index, { line: val.target.value });
-                //   }}
-                //   onRemove={() => state.removeAddressInfo(index)}
-                //   showDeleteButton={state.addressInfo.length > 1}
-                //   firstLabel={"الاستخدام"}
-                //   secondLabel={"المدينة"}
-                //   type={"سكن"}
-                //   val={contact.countryName}
-                //   onChangeCountryName={(val) => {
-                //     state.updateAddressInfo(index, {
-                //       countryName: val.target.value,
-                //     });
-                //   }}
-                // />
+               
                 <ContactSecretariaComponent
-                key={index}
-                selectUse={(val) => state.updateAddressInfo(index, { use: val })}
-                useValue={contact.use}
-                filterUse={useFilter}
-                filterType={typeAddressFilter}
-                typeValue={contact.cityName}
-                selectType={(val) => state.updateAddressInfo(index, { cityName: val })}
-                value={contact.line}
-                onChange={(val) => {
-                  state.updateAddressInfo(index, { line: val.target.value })
-                }}
-                onRemove={() => state.removeAddressInfo(index)}
-                showDeleteButton={state.addressInfo.length > 1}
-                firstLabel={"الاستخدام"}
-                secondLabel={"المدينة"}
-              />
-
+                  key={index}
+                  selectUse={(val) =>
+                    state.updateAddressInfo(index, { use: val })
+                  }
+                  useValue={contact.use}
+                  filterUse={useFilter}
+                  filterType={typeAddressFilter}
+                  typeValue={contact.cityName}
+                  selectType={(val) =>
+                    state.updateAddressInfo(index, { cityName: val })
+                  }
+                  value={contact.line}
+                  onChange={(val) => {
+                    state.updateAddressInfo(index, { line: val.target.value });
+                  }}
+                  onRemove={() => state.removeAddressInfo(index)}
+                  showDeleteButton={state.addressInfo.length > 1}
+                  firstLabel={"الاستخدام"}
+                  secondLabel={"المدينة"}
+                />
               ))}
               <div className="h-3"></div>
               <CustomButton

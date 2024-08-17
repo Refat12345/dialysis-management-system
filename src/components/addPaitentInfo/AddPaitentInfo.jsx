@@ -107,6 +107,8 @@ function AddPaitentInfo({id}) {
     title: "صلة القرابة",
   };
   return (
+    <>
+     <ToastContainer/>
     <div
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage"
@@ -353,32 +355,28 @@ function AddPaitentInfo({id}) {
           </p>
           <div className="h-1"></div>
           {state.addressInfo.map((contact, index) => (
+          
             <ContactSecretariaComponent
-              key={index}
-              selectUse={(val) => state.updateAddressInfo(index, { use: val })}
-              useValue={contact.use}
-              filterUse={useFilter}
-              filterType={typeAddressFilter}
-              typeValue={contact.cityName}
-              selectType={(val) =>
-                state.updateAddressInfo(index, { cityName: val })
-              }
-              value={contact.line}
-              onChange={(val) => {
-                state.updateAddressInfo(index, { line: val.target.value });
-              }}
-              onRemove={() => state.removeAddressInfo(index)}
-              showDeleteButton={state.addressInfo.length > 1}
-              firstLabel={"الاستخدام"}
-              secondLabel={"المدينة"}
-              type={"سكن"}
-              val={contact.countryName}
-              onChangeCountryName={(val) => {
-                state.updateAddressInfo(index, {
-                  countryName: val.target.value,
-                });
-              }}
-            />
+                  key={index}
+                  selectUse={(val) =>
+                    state.updateAddressInfo(index, { use: val })
+                  }
+                  useValue={contact.use}
+                  filterUse={useFilter}
+                  filterType={typeAddressFilter}
+                  typeValue={contact.cityName}
+                  selectType={(val) =>
+                    state.updateAddressInfo(index, { cityName: val })
+                  }
+                  value={contact.line}
+                  onChange={(val) => {
+                    state.updateAddressInfo(index, { line: val.target.value });
+                  }}
+                  onRemove={() => state.removeAddressInfo(index)}
+                  showDeleteButton={state.addressInfo.length > 1}
+                  firstLabel={"الاستخدام"}
+                  secondLabel={"المدينة"}
+                />
           ))}
           <div className="h-3"></div>
           <CustomButton
@@ -465,7 +463,19 @@ function AddPaitentInfo({id}) {
               });
 
             } catch (error) {
-              toast.error("حدث خطأ اثناء الاضافة");
+              if (error.status === 400) {
+                const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+                console.error(errorMessage);
+                toast.error(errorMessage);
+              } else if (error.status === 403) {
+                const errorMessage =
+                  error.data.error ||
+                  "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+                console.error(errorMessage);
+                toast.error(errorMessage);
+              } else {
+                toast.error("حدث خطأ   ",error);
+              }
             }
             setIsLoading(false);
 
@@ -484,6 +494,8 @@ function AddPaitentInfo({id}) {
         />
       </div>
     </div>
+    </>
+   
   );
 }
 

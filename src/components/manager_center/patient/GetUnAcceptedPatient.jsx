@@ -36,7 +36,13 @@ const GetUnAcceptedPatient = () => {
       </div>
     );
 
-    if (!patientUnAcceptedData.length ) return <div>No data available</div>;
+    if (!patientUnAcceptedData.length) {
+      return (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <h2 className="text-2xl font-bold text-gray-500 mr-48">لا يوجد مرضى لدراسة حالتهم</h2>
+                      </div>
+      );
+    }
 
   return (
     <>

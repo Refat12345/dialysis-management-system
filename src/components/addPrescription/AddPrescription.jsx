@@ -1,4 +1,3 @@
-
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { bodyMeduimStyle } from "../../utils/StyleUtils";
@@ -13,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import React from "react";
 import CustomPP from "./CustomPP";
 import { ToastContainer } from "react-toastify";
+import { TrashIcon } from "./../../assets";
 
 function AddPrescription() {
   const { state, postData, userData } = useAddPrescriptionState();
@@ -22,16 +22,16 @@ function AddPrescription() {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div
         dir="rtl"
-        className="w-full flex flex-col md:mr-48 bg-addPaitentInfoPage"
+        className="w-full flex flex-col md:mr-48 bg-bgSecretaria h-screen "
       >
         <PublicHeader icon={addPrespictionIcon} title={"اضافة وصفة طبية"} />
 
-        <div className=" border p-3 rounded-xl m-3">
+        <div className="border p-3 rounded-xl m-3 bg-white ">
           <div className="flex flex-row justify-between p-4">
-            <span className="mr-2">ادوية الوصفة</span>
+            <span className="mr-2 font-bold">أدوية الوصفة</span>
             <div className="ml-3">
               <CustomButton
                 variant="solid"
@@ -55,34 +55,46 @@ function AddPrescription() {
             <React.Fragment key={index}>
               <div
                 key={index}
-                className="bg-slate-200 border p-3 rounded-xl m-3 "
+                className="relative bg-white border border-gray-300 p-3 rounded-xl m-3"
               >
+                {state.prescriptionInfo.length > 1 ? (
+                  <img
+                    src={TrashIcon}
+                    className="absolute top-2 left-2 w-7 h-7 cursor-pointer"
+                    onClick={() => state.removeContactInfo(index)}
+                  />
+                ) : null}
+
                 <div className="grid grid-cols-2">
                   <div>
                     <div className="w-1/2 mr-4 mt-3">
                       <div className="mt-3"></div>
 
                       <SelectedTextFeild
-                        activeLabel={false}
+                        filter={userData}
+                        label="اسم الدواء"
                         value={
                           contact.prescriptionName === ""
                             ? "اختر الدواء"
                             : contact.prescriptionName
                         }
-                        filter={userData}
                         onSelect={(val) => {
                           state.updateContactInfo(index, {
                             prescriptionName: val,
                           });
                         }}
+                        allowNewSelection={true}
+                        type={"اضافة نوع دواء جديد"}
+                        placeholder={"أدخل نوع الدواء الجديد"}
                       />
                     </div>
                   </div>
-                  <div className="w-1/2 mr-4 mt-3">
+
+                  <div className="w-1/2 mr-4 ">
                     <div className="mt-3"></div>
 
                     <SelectedTextFeild
-                      activeLabel={false}
+                      label="الكمية"
                       value={
                         contact.amount === undefined
                           ? "اختر الكمية"
@@ -97,14 +109,13 @@ function AddPrescription() {
                     />
                   </div>
 
-                  <div className=" mr-3 mt-2 p-5 w-80">
+                  <div className="mr-3 mt-2 p-5 w-80">
                     <div className="flex flex-col items-start justify-center">
-                     
                       <CustomPP
                         label="تاريخ بداية أخذ الدواء"
                         onSelect={(date) => {
                           const year = date.year();
-                          const month = date.month() + 1; 
+                          const month = date.month() + 1;
                           const day = date.date();
                           state.updateContactInfo(index, {
                             yearStart: year,
@@ -112,18 +123,17 @@ function AddPrescription() {
                             dayStart: day,
                           });
                         }}
-                      />{" "}
+                      />
                     </div>
                   </div>
 
                   <div className="mr-3 mt-2 p-5 w-80">
                     <div className="flex flex-col items-start justify-center">
-                    
-                       <CustomPP
+                      <CustomPP
                         label="تاريخ نهاية اخذ الدواء"
                         onSelect={(date) => {
                           const year = date.year();
-                          const month = date.month() + 1; 
+                          const month = date.month() + 1;
                           const day = date.date();
                           state.updateContactInfo(index, {
                             yearEnd: year,
@@ -161,13 +171,12 @@ function AddPrescription() {
               onClick={() => {
                 postData(state.prescriptionInfo);
               }}
-              className={`bg-headerTable w-full text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
+              className={`bg-headerTable w-28 text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ml-3 ${bodyMeduimStyle}`}
               title={
                 <div className="flex items-center justify-center">
                   <span className="text-sm w-full"> حفظ </span>
                 </div>
               }
-              radius="full"
             />
           </div>
         </div>

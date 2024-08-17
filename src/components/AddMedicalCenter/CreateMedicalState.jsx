@@ -9,8 +9,8 @@ const CreateMedicalState = ({ children }) => {
     username: "",
     genderValue: "",
     birthdate: null,
-    role:"",
-    centerName:"",
+    role: "",
+    centerName: "",
     contactInfo: [
       {
         use: "",
@@ -23,7 +23,7 @@ const CreateMedicalState = ({ children }) => {
         use: "",
         cityName: "",
         line: "",
-        countryName: ""
+        countryName: "سوريا",
       },
     ],
     permissions: [],
@@ -38,7 +38,6 @@ const CreateMedicalState = ({ children }) => {
     removePermissions: (index) => removePermissions(index),
     selectDate: (val) => selectDate(val),
     selectRole: (val) => selectRole(val),
-
   });
 
   const selectGender = (value) => {
@@ -52,7 +51,7 @@ const CreateMedicalState = ({ children }) => {
     const formattedDate = dayjs(val).format("YYYY-MM-DD");
     updateState({ birthdate: dayjs(val) });
   };
-  
+
   const updateContactInfo = (index, newContactInfo) => {
     setState((prevState) => ({
       ...prevState,
@@ -66,7 +65,9 @@ const CreateMedicalState = ({ children }) => {
     setState((prevState) => ({
       ...prevState,
       addressInfo: prevState.addressInfo.map((contact, i) =>
-        i === index ? { ...contact, ...newAddressInfo } : contact
+        i === index
+          ? { ...contact, ...newAddressInfo, countryName: "سوريا" }
+          : contact
       ),
     }));
   };
@@ -114,7 +115,6 @@ const CreateMedicalState = ({ children }) => {
   const handleSelectPermission = (val) => {
     setState((prevState) => {
       if (prevState.permissions.includes(val)) {
-        
         return {
           ...prevState,
           permissions: prevState.permissions.filter(
@@ -164,5 +164,4 @@ CreateMedicalState.propTypes = {
 
 // Custom hook to use the state
 // eslint-disable-next-line react-refresh/only-export-components
-export const useAddCenterState = () =>
-  useContext(UseAddMedicalStateContext);
+export const useAddCenterState = () => useContext(UseAddMedicalStateContext);
