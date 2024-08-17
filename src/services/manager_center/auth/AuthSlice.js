@@ -38,6 +38,10 @@ export const apiAuth = apiSlice.injectEndpoints({
     // }),
     sendDeviceToken: builder.mutation({
       query: (Info) => { 
+
+       
+
+        console.log("Info",Info)
         
 
           return {
