@@ -38,15 +38,18 @@ export const apiAuth = apiSlice.injectEndpoints({
     // }),
     sendDeviceToken: builder.mutation({
       query: (Info) => { 
-          console.log("info sendDeviceToken ",Info)
-          console.log("info token ",Info.token)
+
+       
+
+        console.log("Info",Info)
+        
 
           return {
               url: `senddeviceTokenDeviceID`,
               method: 'POST',
               body: {
                 deviceToken : Info.deviceToken,
-                deviceID : "4"
+                deviceID : Info.deviceID
               },
               headers:{"Authorization" : `Bearer ${Info.token}`}
           };
