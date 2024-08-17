@@ -83,7 +83,7 @@ const Appointment = () => {
                                     colors={colors}
                                     filter={filters[0].array}
                                     onSelect={setShift}
-                                    title={shift || "الوردية"}  // تأكد من وجود قيمة للـ title
+                                    title={shift || "الوردية"}  
                                     type="shift"
                                 />
                             </div>
