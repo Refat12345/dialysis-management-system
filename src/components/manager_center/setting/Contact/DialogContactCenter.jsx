@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+
+
 import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -21,7 +24,6 @@ function DialogContactCenter({ open, setOpen }) {
   const [loading, setLoading] = useState(false);
 
   const user = useSelector((state) => state.user);
-
 
   const handleClose = () => {
     setOpen(false);
@@ -50,7 +52,7 @@ function DialogContactCenter({ open, setOpen }) {
     try {
       setLoading(true);
       await addCenterContact(telecomsData).unwrap();
-      toast.success("تم إرسال  البيانات بنجاح!");
+      toast.success("تم إرسال البيانات بنجاح!");
       setOpen(false);
     } catch (error) {
       if (error.status === 400) {
@@ -67,22 +69,21 @@ function DialogContactCenter({ open, setOpen }) {
         console.error("حدث خطأ أثناء تحديث البيانات", error);
         toast.error("حدث خطأ أثناء تحديث البيانات");
       }
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle className="text-center ">
-        <span className=" text-4xl text-blue-700">
-          {"صندوق العافية المركزي"}
+      <DialogTitle className="text-center">
+      <span style={{ color: "#e0bf7d" }} className="text-4xl ">
+          {"اضافة معلومة اتصال "}
         </span>
       </DialogTitle>
-      <DialogContent className="p-4 w-full " dir="rtl">
-        <form className="w-full max-w-lg" onSubmit={handleSubmit}>
-          <FormControl fullWidth className="mb-4">
+      <DialogContent className="p-4 w-full h-48" dir="rtl">
+        <form className="w-full max-w-lg h-full" onSubmit={handleSubmit}>
+          <FormControl fullWidth className="mb-3 h-12">
             <InputLabel id="contact-type-label">نوع معلومة التواصل</InputLabel>
             <Select
               labelId="contact-type-label"
@@ -91,15 +92,18 @@ function DialogContactCenter({ open, setOpen }) {
               label="نوع معلومة التواصل"
               onChange={handleTypeChange}
             >
-              <MenuItem value={"mobile"}>جوال</MenuItem>
-              <MenuItem value={"email"}>ايميل</MenuItem>
-              <MenuItem value={"landline"}>ارضي</MenuItem>
+              <MenuItem value={"جوال"}>جوال</MenuItem>
+              <MenuItem value={"بريد الكتروني"}>ايميل</MenuItem>
+              <MenuItem value={"ارضي"}>ارضي</MenuItem>
             </Select>
           </FormControl>
-          <FormControl fullWidth className="mb-4">
+
+          <div className="mt-5 mb-5"></div>
+
+          <FormControl fullWidth className="h-12 ">
             <InputLabel htmlFor="contact-value">القيمة</InputLabel>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className=" h-full shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="contact-value"
               type="text"
               placeholder=""
@@ -107,28 +111,28 @@ function DialogContactCenter({ open, setOpen }) {
               onChange={handleValueChange}
             />
           </FormControl>
-          <DialogActions>
-           
-             <CustomButton
-              variant="solid"
-              onClick={handleSubmit}
-              className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle}`}
-              title={
-                <div className="flex items-center justify-center">
-                  {loading ? (
-                    <span className={`${bodySmallStyle}`}>جاري التحميل...</span>
-                  ) : (
-                    <>
-                      <span className={`${bodySmallStyle}`}>حفظ</span>
-                      <div className="lg:w-2 md:w-2 w-1"></div>
-                    </>
-                  )}
-                </div>
-              }
-              radius="full"
-              disabled={loading}
-            />
-          </DialogActions>
+
+          <DialogActions className="flex justify-center items-center mt-4">
+  <CustomButton
+    variant="solid"
+    onClick={handleSubmit}
+    className={`bg-bgbutton text-white h-8  transition-all font-semibold ${bodyMeduimStyle}`}
+    title={
+      <div className="flex items-center justify-center">
+        {loading ? (
+          <span className={`${bodySmallStyle}`}>جاري التحميل...</span>
+        ) : (
+          <>
+            <span className={`${bodySmallStyle}`}>حفظ</span>
+            <div className="lg:w-2 md:w-2 w-1"></div>
+          </>
+        )}
+      </div>
+    }
+    radius="full"
+    disabled={loading}
+  />
+</DialogActions>
         </form>
       </DialogContent>
     </Dialog>

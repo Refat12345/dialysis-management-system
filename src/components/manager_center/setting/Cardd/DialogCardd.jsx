@@ -46,10 +46,21 @@ function DialogCardd({ open, setOpen }) {
 
       setOpen(false);
     } catch (error) {
-      toast.error("حدث خطأ اثناء الاضافة");
-
-      console.error("Failed to add chair:", error);
-    }
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
+    } 
   };
 
   return (
@@ -92,7 +103,7 @@ function DialogCardd({ open, setOpen }) {
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
-                disabled={isLoading} // تعطيل الزر أثناء التحميل
+                disabled={isLoading} 
               >
                 {isLoading ? "جارٍ التحميل..." : "حفظ"}
               </button>

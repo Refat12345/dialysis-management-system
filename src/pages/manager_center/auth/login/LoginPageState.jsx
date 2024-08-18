@@ -66,6 +66,7 @@ export const LoginStateProvider = ({ children }) => {
       //send device Token
       const deviceToken = fcmToken;
       const deviceId = getMachineId();
+     
 
       if (token) {
         navigate("/app");
