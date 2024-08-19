@@ -7,9 +7,8 @@ const Medicine = ({medicine,title , doctor}) => {
     let parentResponsive = height > 600 ? ( height > 700 ?"mb-6" : "mb-4" ) : "mb-2";
     let responsive = height > 600 ? ( height > 700 ? "mb-3" : "mb-2" ) : "mb-1";
     let responsiveBottom = height > 600 ? ( height > 700 ? "mb-2" : "mb-1" ): "mb-0";
-   
 
-  return (
+return (
     <div  dir="rtl" className={`flex flex-row justify-between p-4 rounded-lg bg-white ${parentResponsive}`}>
         <div className="doctor status ">
             <p className="text-lg font-bold mb-4"> 

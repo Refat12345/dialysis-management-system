@@ -19,6 +19,7 @@ export function Table({ data }) {
     selectedCenterOption,
   } = usePatient();
 
+  const height = window.innerHeight
 
   const user = useSelector((state) => state.user);
 
@@ -61,9 +62,10 @@ const patientFilter = {
   const [isEllipsisHovered, setIsEllipsisHovered] = useState(false);
 
 
-
+  let responsive = height>620 ? ( height>680 ? ( height > 740 ? (height > 800 ? "min-h-PatientAbove800" :"min-h-PatientAbove740") : "min-h-PatientAbove700") : "min-h-PatientAbove630") : "min-h-PatientUnder630"
+ 
   return (
-    <>
+    <div className={`${responsive}`}>
       <style>
         {`
         tbody  tr:hover {
@@ -74,7 +76,7 @@ const patientFilter = {
 
       </style>
 
-      <div className="overflow-x-auto  min-h-customAbove600" dir="rtl">
+      <div className="overflow-x-auto " dir="rtl">
         
         <div className="flex  mb-5 mt-5">
           
@@ -124,6 +126,6 @@ const patientFilter = {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }

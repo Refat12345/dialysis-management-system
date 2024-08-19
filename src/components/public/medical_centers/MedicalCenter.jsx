@@ -9,6 +9,9 @@ const MedicalCenter = ({ icons, content ,role }) => {
   const title = ["العنوان","معلومات التواصل","تفاصيل عامة"] ;
   const height = window.innerHeight;
   const width = window.innerWidth;
+  
+  console.log(content);
+  
 
   const responsiveCenterIcon = height > 600 ? (height > 700 ? "w-[23.8%]" : (height > 630 ? "w-[22%]":"w-[21.2%]")) : "w-[20%]"
   const responsiveCenterName = height > 600 ? (height > 700 ? "mt-3 text-17 " : (height > 630 ? "mt-2 text-base" : "mt-1.5 text-base")) : "mt-2 text-sm";

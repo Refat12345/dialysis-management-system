@@ -8,6 +8,7 @@ import { useAddUserMutation } from "../../../services/manager_center/user/AddUse
 import { showErrorToast, showSuccessToast } from "../../../utils/toastUtils";
 import { useNavigate } from "react-router-dom";
 import { permissionsOptionsValues } from "./secretaria_sections/secretariaData";
+import { toast } from "react-toastify";
 
 const CreateSecretariaAccountStateContext = createContext();
 
@@ -171,10 +172,9 @@ const CreateSecretariaAccountState = ({ children }) => {
     };
     try {
       await createUser(userData).unwrap();
-      showSuccessToast("تم إضافة سكرتاريا بنجاح");
-      navigate("/app");
+      toast.success("تم إضافة سكرتاريا بنجاح");
     } catch (err) {
-      showErrorToast("حدثت مشكلة معنية حاول مجدداً");
+      toast.error("حدثت مشكلة معنية حاول مجدداً");
       console.log(err);
     }
   };

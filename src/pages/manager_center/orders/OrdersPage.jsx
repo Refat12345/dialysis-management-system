@@ -21,7 +21,7 @@ const OrdersPage = () => {
     const height = window.innerHeight;
     if (height > 800) return 11;
     if (height > 740) return 10;
-    if (height > 700) return 9;
+    if (height > 670) return 9;
     if (height > 630) return 8;
     return 7;
   }, [window.innerHeight]);

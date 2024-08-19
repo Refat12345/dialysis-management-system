@@ -1,5 +1,4 @@
 import { apiSlice } from "../../apiSlice";
-import Cookies from "js-cookie"
 
 export const apiAuth = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -27,15 +26,7 @@ export const apiAuth = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    // sendDeviceToken: builder.mutation({
-      
-    //   query: (data) => ({
-    //     url: "senddeviceTokenDeviceID",
-    //     method: "POST",
-    //     body: data,
-    //     headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
-    //   }),
-    // }),
+
     sendDeviceToken: builder.mutation({
       query: (Info) => { 
           return {

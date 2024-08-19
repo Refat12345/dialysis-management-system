@@ -14,7 +14,6 @@ export const ShowPatientProfileSlice = apiSlice.injectEndpoints({
             
             query: (id) => {
                 console.log(Cookies.get("token"));
-                
                 { 
                     return {
                         url: `showMedicalAnalysis/${id}`,
