@@ -25,10 +25,13 @@ const UserSlice = apiSlice.injectEndpoints({
     }),
 
     getUserInvites: builder.query({
-      query: ({ id }) => {
+      query: ({ id ,role}) => {
+        const idd = role === "superAdmin" ? 0 : id;
+
         return {
-          url: `/getCode/${id}`,
+          url: `/getCode/${idd}`,
           method: "GET",
+          headers: {"Authorization" : `Bearer ${Cookies.get("token")} `}
         };
       },
     }),

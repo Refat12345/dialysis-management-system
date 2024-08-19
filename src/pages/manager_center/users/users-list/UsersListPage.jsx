@@ -45,7 +45,8 @@ const UsersListPage = () => {
         </div>
       </div>
     );
-  if (!userData.length && !searchTerm) return <div>No data available</div>;
+
+  
 
 
   return (

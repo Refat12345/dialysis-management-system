@@ -71,27 +71,27 @@ export const LoginStateProvider = ({ children }) => {
       if (token) {
         navigate("/app");
 
-        try {
-          const sendDeviceTokenResponse = await sendDeviceTokenApi({
-            deviceToken:deviceToken,
-            deviceID: deviceId,
-            token: response.user.token,
-          }).unwrap();
+        // try {
+        //   const sendDeviceTokenResponse = await sendDeviceTokenApi({
+        //     deviceToken:deviceToken,
+        //     deviceID: deviceId,
+        //     token: response.user.token,
+        //   }).unwrap();
   
-        }
-        catch (error) {
-          if (error.status === 400) {
-            const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
-            console.error(errorMessage);
-          } else if (error.status === 403) {
-            const errorMessage =
-              error.data.error ||
-              "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
-            console.error(errorMessage);
-          } else {
-            console.error("حدث خطأ أثناء تحديث البيانات", error);
-          }
-        } 
+        // }
+        // catch (error) {
+        //   if (error.status === 400) {
+        //     const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        //     console.error(errorMessage);
+        //   } else if (error.status === 403) {
+        //     const errorMessage =
+        //       error.data.error ||
+        //       "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        //     console.error(errorMessage);
+        //   } else {
+        //     console.error("حدث خطأ أثناء تحديث البيانات", error);
+        //   }
+        // } 
 
      
         

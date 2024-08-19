@@ -21,7 +21,7 @@ export const UserInvitesProvider = ({ children }) => {
     data: userinvitedata,
     isLoading: userinviteloading,
     isSuccess: userinvitesucess,
-  } = useGetUserInvitesQuery({ id: centerIdString });
+  } = useGetUserInvitesQuery({ id: centerIdString ,role: user.role });
 
   useEffect(() => {
     if (userinvitesucess && userinvitedata) {

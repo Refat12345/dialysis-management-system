@@ -90,7 +90,14 @@ const UserInvites = () => {
       </div>
     );
 
-  if (!userInvites) return <div>No data available</div>;
+  if (userInvites.length === 0 ) 
+    return (
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <h2 className="text-2xl font-bold text-gray-500 mr-48">لا يوجد دعوات </h2>
+  </div>
+  )
+
+ 
 
   const dataToDisplay = filteredDataForInvites.length
     ? filteredDataForInvites
