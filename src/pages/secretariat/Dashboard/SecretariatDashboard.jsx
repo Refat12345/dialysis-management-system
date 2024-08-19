@@ -7,7 +7,7 @@ import {
   bodySmallStyle,
 } from "../../../utils/StyleUtils";
 // import { usePatient } from "../../manager_center/patient/patient_list/PaitientListState";
-import { CustomButton } from "../../../components";
+import { CustomButton, PageLoader } from "../../../components";
 import { useNavigate } from "react-router-dom";
 import { useSecretariaDashboard } from "./SecretariaDashboardState";
 
@@ -29,6 +29,15 @@ const SecretariatDashboard = () => {
       console.error(error);
     }
   };
+
+  if (isLoadinghangingPatient)
+    return (
+      <div className="flex-grow md:mr-48">
+        <div className="flex items-center justify-center h-screen">
+          <PageLoader />
+        </div>
+      </div>
+    );
 
   return (
     <>
