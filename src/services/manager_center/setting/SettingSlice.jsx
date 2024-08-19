@@ -104,6 +104,30 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["CenterSetting"],
 
     }),
+
+    updateChair: builder.mutation({
+      query: (data) => {
+
+        console.log("rrrr",data)
+    
+        return {
+          url: `updateChair`,
+          method: "POST",
+          body: data,
+          headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+        };
+      },
+
+    }),
+
+    getChairInCenter: builder.query({
+      query: (id) =>
+         ({
+        url: `/getChairsInCenter/${id}`,
+        method: "GET",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+      }),
+    }),
     
   }),
 });
@@ -116,5 +140,7 @@ export const {
   useEditShiftMutation,
   useAddChairMutation,
   useAddMedicalDataMutation,
-  useUpdateMedicalDataMutation
+  useUpdateMedicalDataMutation,
+  useUpdateChairMutation,
+  useGetChairInCenterQuery
 } = CenterSettingSlice;

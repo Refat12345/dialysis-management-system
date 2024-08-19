@@ -18,7 +18,7 @@ function SettingPage() {
   return (
     <SettingProvider>
       <>
-      <ToastContainer/>
+        <ToastContainer />
         {isSuccess && !isLoading && (
           <div className="bg-cardDetailsColor w-full">
             <div
@@ -36,9 +36,13 @@ function SettingPage() {
                 <GeneralAboutCenter data={SettingData.center} />
                 <div className="grid grid-cols-1 gap-3 ">
                   <Cards data={SettingData.center} />
-                   <TimeCenter data={SettingData.center.shifts}   setSettingTime={setSettingTime} SettingTime={SettingTime} />
-                   <ContactCenter data={SettingData.center.telecom} />
-                  <NoteCenter  data={SettingData.center.description} />
+                  <TimeCenter
+                    data={SettingData.center.shifts}
+                    setSettingTime={setSettingTime}
+                    SettingTime={SettingTime}
+                  />
+                  <ContactCenter data={SettingData.center.telecom} />
+                  <NoteCenter data={SettingData.center.description} />
                 </div>
               </div>
             </div>

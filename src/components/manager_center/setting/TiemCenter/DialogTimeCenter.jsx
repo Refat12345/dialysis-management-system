@@ -52,8 +52,9 @@ export default function DialogTimeCenter({ open, setOpen }) {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle className="text-center ">
-        <span className=" text-4xl text-blue-700">{"اضافة وردية"}</span>
-      </DialogTitle>
+      <span style={{ color: "#e0bf7d" }} className="text-4xl ">
+          {"اضافة وردية"}
+        </span>      </DialogTitle>
       <DialogContent className="p-4 w-full " dir="rtl">
         <div className=" mx-auto p-4  w-full">
           <form onSubmit={handleSubmit}>
@@ -110,7 +111,7 @@ export default function DialogTimeCenter({ open, setOpen }) {
 
             <div className="flex items-center justify-center">
             <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-bgbutton  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
                 disabled={isLoading} 
               >

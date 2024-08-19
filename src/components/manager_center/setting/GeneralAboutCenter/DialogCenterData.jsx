@@ -62,49 +62,7 @@ function DialogCenterData({ open, setOpen, data, type }) {
     setCountryName(event.target.value);
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   let newData = {
-  //     charityName: charityName,
-  //     address: 
-  //       {
-  //         line: line,
-  //         use: "المركز",
-  //         cityName: cityName,
-  //         countryName: countryName,
-  //       },
-      
-  //   };
-  //   try {
-  //     if (type === "add") {
-  //       if (charityName && line && cityName && countryName) {
-  //         await addMedicalData(newData).unwrap();
-  //         toast.success("تم إرسال البيانات بنجاح!");
-  //       } else {
-  //         toast.error("يرجى ملء جميع البيانات قبل الإرسال.");
-  //       }
-  //     } else {
-  //       newData = {
-  //         charityName: charityName,
-  //         id: user.centerID.toString(),
-  //         address: [
-  //           {
-  //             id: data.address[0].id,
-  //             line: line,
-  //             use: "المركز",
-  //             cityName: cityName,
-  //             countryName: countryName,
-  //           },
-  //         ],
-  //       };
-  //       await updataMedicalData(newData).unwrap();
-  //     }
-  //     toast.success("تم إرسال البيانات بنجاح!");
-  //     setOpen(false);
-  //   } catch (error) {
-  //     console.error("Failed to save the data:", error);
-  //   }
-  // };
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -168,8 +126,8 @@ function DialogCenterData({ open, setOpen, data, type }) {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle className="text-center ">
-        <span className=" text-4xl text-blue-700">
-          {"صندوق العافية المركزي"}
+      <span style={{ color: "#e0bf7d" }} className="text-4xl ">
+          {"تعديل معلومات المركز"}
         </span>
       </DialogTitle>
       <DialogContent className="p-4 w-full " dir="rtl">

@@ -34,7 +34,7 @@ export const apiAuth = apiSlice.injectEndpoints({
               method: 'POST',
               body: {
                 deviceToken : Info.deviceToken,
-                deviceID : Info.deviceID
+                deviceID : "1"
               },
               headers:{"Authorization" : `Bearer ${Info.token}`}
           };

@@ -1,10 +1,8 @@
-
-
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import patient from "../../../assets/icons/medical-center/patient/patient.svg";
-import  { useState } from "react";
+import { useState } from "react";
 import ChevronIcon from "../../../assets/icons/public/chevron-left.svg";
 import { convertDateToArabicFormat } from "../../../utils/DateUtils";
 import AlertDialog from "../../public/dialog/Dialog";
@@ -17,24 +15,29 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAddFromWaitingToPendingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import DropDownPatient from "../../../pages/manager_center/patient/patient_list/Menu";
 
-function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSelectedPatient ,setIsEllipsisHovered}) {
+function TableRow({
+  row,
+  index,
+  handleRowClick,
+  getRowColor,
+  type,
+  id,
+  typeOFSelectedPatient,
+  setIsEllipsisHovered,
+}) {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const userIdString = id ? id.toString() : "14";
   const [addFromWaitingToPending] = useAddFromWaitingToPendingMutation();
-
-
 
   const [state, setState] = useState({
     secrtaryValue: "",
     adminValue: "",
     secrtaryWaitingValue: "",
 
-
     selectSecertaryOption: (val) => selectSecertaryOption(val),
     selectAdminOption: (val) => selectAdminValueOption(val),
     selectSecertaryWaitingOption: (val) => selectSecertaryWaitingOption(val),
-
   });
 
   const selectSecertaryOption = (value) => {
@@ -73,30 +76,24 @@ function TableRow({ row, index, handleRowClick, getRowColor, type, id ,typeOFSel
       const result = await addFromWaitingToPending(data);
       toast.success("تمت الاضافة بنجاح");
     } catch (error) {
-      toast.error("حدث خطأ اثناء الاضافة",error);
+      toast.error("حدث خطأ اثناء الاضافة", error);
     }
-
-    
   };
 
   const colors = {
     titleColor: "primaryColor",
     contentColor: "bgButtonColor",
     textColor: "textMenuColor",
-}
-const handleEllipsisMouseEnter = () => {
-  setIsEllipsisHovered(true);
-};
+  };
+  const handleEllipsisMouseEnter = () => {
+    setIsEllipsisHovered(true);
+  };
 
-const handleEllipsisMouseLeave = () => {
-  setIsEllipsisHovered(false);
-};
-
-
+  const handleEllipsisMouseLeave = () => {
+    setIsEllipsisHovered(false);
+  };
 
   const selectAdminValueOption = (value) => {
-    
-  
     updateState({ adminValue: value });
     switch (value) {
       case "نقل المريض":
@@ -127,7 +124,6 @@ const handleEllipsisMouseLeave = () => {
     connectSeven: Object.values(row)[6],
   };
 
-
   const [open, setOpen] = useState(false);
 
   const handleMenuClick = (event) => {
@@ -148,9 +144,7 @@ const handleEllipsisMouseLeave = () => {
   };
 
   const secrtaryWaitingFilter = {
-    array: [
-      "َضم المريص للمركز",
-    ],
+    array: ["َضم المريص للمركز"],
   };
   return (
     <tr
@@ -287,19 +281,31 @@ const handleEllipsisMouseLeave = () => {
             </div>
           ) : (
             <div
-            className="h-full w-full "
-            onMouseEnter={handleEllipsisMouseEnter}
-            onMouseLeave={handleEllipsisMouseLeave}
-            onClick={handleMenuClick}>
-              <DropDownPatient
-              colors={colors}
-              filter={user.role === "admin" ?adminFilter.array :(typeOFSelectedPatient != "مرضى انتظار" ?secrtaryFilter.array :secrtaryWaitingFilter.array)}
-              onSelect={(val)=>{
-                user.role === "admin" ?state.selectAdminOption(val):(typeOFSelectedPatient != "مرضى انتظار" ? state.selectSecertaryOption(val):state.selectSecertaryWaitingOption(val))
-              }}
-              />
+              className="h-full w-full "
+              onMouseEnter={handleEllipsisMouseEnter}
+              onMouseLeave={handleEllipsisMouseLeave}
+              onClick={handleMenuClick}
+            >
+              {user.role != "superAdmin" && (
+                <DropDownPatient
+                  colors={colors}
+                  filter={
+                    user.role === "admin"
+                      ? adminFilter.array
+                      : typeOFSelectedPatient != "مرضى انتظار"
+                      ? secrtaryFilter.array
+                      : secrtaryWaitingFilter.array
+                  }
+                  onSelect={(val) => {
+                    user.role === "admin"
+                      ? state.selectAdminOption(val)
+                      : typeOFSelectedPatient != "مرضى انتظار"
+                      ? state.selectSecertaryOption(val)
+                      : state.selectSecertaryWaitingOption(val);
+                  }}
+                />
+              )}
             </div>
-          
           )}
         </td>
       )}
