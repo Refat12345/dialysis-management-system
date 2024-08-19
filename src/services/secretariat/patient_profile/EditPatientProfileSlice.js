@@ -30,7 +30,8 @@ export const AddPatientProfileSlice = apiSlice.injectEndpoints({
             return {
                 url: `updatePrescription/${prescriptions.prescriptionId}`,
                 method: 'POST',
-                body: prescriptions.object
+                body: prescriptions.object,
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
             };
         },
         invalidatesTags: ['Prescriptions'],

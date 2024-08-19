@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { PaginationComponent } from "../../../../components";
-import { useState,useEffect } from "react";
+import { useState,useEffect ,useMemo } from "react";
 import { Table } from "../../../../components/manager_center/patient/Patient";
 import { usePatient } from "./PaitientListState";
 import {PageLoader} from "../../../../components/index"
@@ -22,6 +23,18 @@ const PatientListPage = () => {
     }
   }, [searchTerm, filteredDataSearch]);
 
+
+  const itemsPerPage = useMemo(() => {
+    const height = window.innerHeight;
+    if (height > 800) return 10;
+    if (height > 740) return 9;
+    if (height > 700) return 8;
+    if (height > 680) return 8;
+    if (height > 620) return 7;
+    return 6;
+  }, [window.innerHeight]);
+
+  
   if (isLoading) return <div className="flex-grow md:mr-48">
   <div className="flex items-center justify-center h-screen">
     <PageLoader />
@@ -64,7 +77,7 @@ const PatientListPage = () => {
           <PaginationComponent
             data={ filteredDataSearch.length ? filteredDataSearch.flat() :flattenedData}
             RenderComponent={Table}
-            itemsPerPage={10}
+            itemsPerPage={itemsPerPage}
           />
         )}
         </div>

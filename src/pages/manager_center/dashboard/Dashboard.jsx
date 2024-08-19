@@ -19,6 +19,8 @@ const Dashboard = () => {
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
   
+  console.log(useGetPieChartsQuery(date));
+  
   useEffect(() => {
       
       if(date.month != "" || date.year != "" ){
@@ -48,6 +50,8 @@ const Dashboard = () => {
       </div>
     );
   }
+  console.log(medicineDate);
+  
   return (
     <div className="flex-grow md:mr-48 bg-bgDashboard h-screen">
       <Cards data={statisticsData[0]} />

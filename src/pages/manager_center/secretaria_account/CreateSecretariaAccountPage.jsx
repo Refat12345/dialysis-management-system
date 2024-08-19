@@ -22,6 +22,7 @@ import {
 } from "./secretaria_sections/secretariaData";
 import MultiSelectTextField from "../../../components/public/textfield/MultiSelectTextField";
 import { PublicHeader } from "../../../components";
+import { ToastContainer } from "react-toastify";
 
 const CreateSecretariaAccountPage = () => {
   const {
@@ -47,6 +48,7 @@ const CreateSecretariaAccountPage = () => {
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-bgDashboard"
     >
       <PublicHeader title={"إضافة سكرتاريا"} icon={SecretaryImage} />
+      <ToastContainer position="top-right"/>
       <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
         <form onSubmit={handleSubmit}>
           <Row mainAxisAlignment="justify-evenly">

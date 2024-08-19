@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 const TransferPatient = ({destinationCenterID}) => {
     let { patientName } = useParams();
     const [userInput, setUserInput] = useState('');
-    const [transferPatient,{isLoading }] = useTransferPatientMutation()
+    const [transferPatient,{isLoading ,error }] = useTransferPatientMutation()
     const user = useSelector((state)=>state.user) 
     const handleUserInput = (event) => {
         setUserInput(event.target.value);
@@ -23,10 +23,15 @@ const TransferPatient = ({destinationCenterID}) => {
                 destinationCenterID:destinationCenterID,
                 patientID:patientName
             }
-            await transferPatient(body)
+            console.log(body);
+            
+            await transferPatient(body).unwrap()
             toast.success("طلبك قيد المعالجة")
 
-        }catch(err){console.log(err);}
+        }catch(err){console.log(err);
+            console.log(error);
+            
+        }
     }
 return (
     <div dir="rtl">

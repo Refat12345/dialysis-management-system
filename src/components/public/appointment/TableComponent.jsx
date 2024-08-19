@@ -47,6 +47,8 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
         ...prev,
         appointmentID: appointmentData.appointmentID,
       }));
+      console.log(appointmentData);
+      
       setOpen(true);
     }
   };

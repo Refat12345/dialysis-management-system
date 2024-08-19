@@ -28,8 +28,6 @@ export const apiOrders = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllOrders: builder.query({
             query:()=>{
-            
-                
             return{
                 url:"all-requests",
                 method:"GET",
