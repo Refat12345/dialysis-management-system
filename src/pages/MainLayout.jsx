@@ -49,7 +49,8 @@ const MainLayout = () => {
                 const secretaryOrders = ordersData.filter((order) => {
                     const item = order.senderid === myObject?.id && order;
                     const filterItem = item.senderName === myObject?.fullName && item;
-                    return filterItem;
+                    const finalItem = filterItem.requestStatus != "approved"
+                    return finalItem;
                 });
                 dispatch(setTotalOrdersCount(secretaryOrders.length)); 
             } else if (myObject?.role === "admin") {

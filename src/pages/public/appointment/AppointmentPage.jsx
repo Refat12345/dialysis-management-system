@@ -4,6 +4,7 @@ import { useGetAppointmentsQuery, useGetChairsQuery, useGetShiftsQuery } from '.
 import { useSelector } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const Appointment = () => {
     const user = useSelector((state) => state.user);
@@ -70,10 +71,11 @@ const Appointment = () => {
             </div>
         );
     }
-    
+
     if (appointmentsSuccess && shiftsSuccess && chairsSuccess) {
         return (
             <div dir="rtl" className="md:mr-48 flex-grow">
+                <ToastContainer position='top-right'/>
                 <header className="App-header mx-[3%] mt-12">
                     <div className="flex justify-between mb-3">
                         <h1 className="text-2xl font-bold mb-4 text-titleColor">جدول المواعيد</h1>

@@ -1,27 +1,27 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/jsx-key */
-
 import { useState, useEffect } from "react";
 import { PageLoader, PaginationComponent, Search, Text } from "../../../components";
 import GridView from "./sections/GridView";
 import { useGetMedicalCentersQuery } from "../../../services/public/medical_centers/ShowMedicalCentersSlice";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const MedicalCentersPage = () => {
   const { data, isSuccess, isLoading, isError } = useGetMedicalCentersQuery();
   const [medicalCenters, setMedicalCenters] = useState([]);
   const [searchMedicalCenters, setSearchMedicalCenters] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user);
+  
   useEffect(() => {
     if (isSuccess && data?.medicalCenters) {
       if (user.role === "superAdmin") {
         setMedicalCenters(data.medicalCenters);
         setSearchMedicalCenters(data.medicalCenters);
       } else {
-        const array = data.medicalCenters.filter(medicalCenter=>
-          medicalCenter.centerName != user.centerName)
+        const array = data.medicalCenters.filter(medicalCenter =>
+          medicalCenter.centerName !== user.centerName
+        );
         setMedicalCenters(array);
         setSearchMedicalCenters(array);
       }
@@ -44,7 +44,7 @@ const MedicalCentersPage = () => {
   };
 
   const height = window.innerHeight;
-  const responsive = height > 603 ? (height > 700 ? (height < 710 ? "mb-7 mt-8" : "mb-[29px] mt-[37px]") : (height > 630 ? (height>660 ? "mb-7 mt-10":"mb-5 mt-7") : "mb-4 mt-6")) : "mb-2 mt-4";
+  const responsive = height > 603 ? (height > 700 ? (height < 710 ? "mb-7 mt-8" : "mb-[29px] mt-[37px]") : (height > 630 ? (height > 660 ? "mb-7 mt-10" : "mb-5 mt-7") : "mb-4 mt-6")) : "mb-2 mt-4";
 
   if (isLoading) {
     return (
@@ -57,25 +57,24 @@ const MedicalCentersPage = () => {
   }
 
   if (isError || !isSuccess) {
-    return (
-        <Text text={"خطأ بجلب البيانات أعد المحاولة من فضلك"}/>
-    );
+    return <Text text={"خطأ بجلب البيانات أعد المحاولة من فضلك"} />;
   }
 
   if (isSuccess && medicalCenters.length === 0) {
-    return (
-     <Text text={"لا يوجد مراكز طبية بعد"}/>
-    );
+    return <Text text={"لا يوجد مراكز طبية بعد"} />;
   }
 
   return (
     <div dir="rtl" className={`mr-48 w-full`}>
+      <ToastContainer position="top-right" />
       <div className="mx-[4%]">
         <div className="flex flex-row-reverse justify-between">
           <Search handleInputValue={handleInputValue} />
           <p className={`text-2xl text-titleSideColor font-bold ${responsive}`}>{"مراكز غسيل الكلى"}</p>
         </div>
-        {searchMedicalCenters.length > 0 && <PaginationComponent data={searchMedicalCenters} RenderComponent={GridView} itemsPerPage={12} />}
+        {searchMedicalCenters.length > 0 && (
+          <PaginationComponent data={searchMedicalCenters} RenderComponent={GridView} itemsPerPage={12} />
+        )}
       </div>
     </div>
   );

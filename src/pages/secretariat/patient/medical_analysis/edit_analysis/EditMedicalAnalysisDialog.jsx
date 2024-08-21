@@ -35,7 +35,9 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
     const postData =  () => {
         state.postData(state,editMedicalAnalysis)
     }
-
+    
+    console.log(dayjs(state.analysisDate));
+    
     return (
         <div dir="rtl" className="w-[400px]">
             {state.value != "" ?    

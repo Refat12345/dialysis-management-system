@@ -23,8 +23,6 @@ const TransferPatient = ({destinationCenterID}) => {
                 destinationCenterID:destinationCenterID,
                 patientID:patientName
             }
-            console.log(body);
-            
             await transferPatient(body).unwrap()
             toast.success("طلبك قيد المعالجة")
 

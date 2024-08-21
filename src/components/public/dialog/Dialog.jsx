@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-export default function AlertDialog({renderComponent , contentComponent ,titleButton}) {
-  const [open, setOpen] = React.useState(false);
+export default function AlertDialog({renderComponent , contentComponent ,titleButton , type}) {
+  const [open, setOpen] = React.useState(type=== "medicalCenter" ? true : false);
 
   const handleClickOpen = (event) => {
     event.stopPropagation();

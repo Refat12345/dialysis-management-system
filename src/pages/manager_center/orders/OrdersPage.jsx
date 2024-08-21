@@ -33,7 +33,8 @@ const OrdersPage = () => {
         const secretaryOrders = ordersData.filter((order) => {
           const item = order.senderid === user.id && order;
           const filterItem = item.senderName === user.fullName && item;
-          return filterItem;
+          const finalItem = filterItem.requestStatus != "approved"
+          return finalItem;
         });
         setOrders(secretaryOrders);
         setFilteredOrders(secretaryOrders);

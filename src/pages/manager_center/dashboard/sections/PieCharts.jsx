@@ -50,7 +50,7 @@ const month = {
               }}/>
         </div>
         <div className={`${height > 700 ?"mt-2" :"mt-1"}`}></div>  
-        <div className="shadow-lg  ">
+        <div className="shadow-lg flex-grow ">
           <PieChart title = {medicinesTitle} data = {medicines}/>
         </div>
         <div className={`shadow-lg ${window.innerHeight>720 ?"mt-7":"mt-4"}`}>

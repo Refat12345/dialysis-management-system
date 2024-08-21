@@ -80,16 +80,18 @@ const patientFilter = {
         
         <div className="flex  mb-5 mt-5">
           
-          <div className=" w-full flex    ">
-          <div className="w-[20%]">
-          <DropDown
-          colors={colors}
-          filter={patientFilter.array}
-          title={patientFilter.title}
-          onSelect={handleSelectChange}
-          type={"shift"}
-          />
-          </div>
+          <div className=" w-full flex">
+          
+<div className="w-[20%] relative z-50">
+  <DropDown
+    colors={colors}
+    filter={patientFilter.array}
+    title={patientFilter.title}
+    onSelect={handleSelectChange}
+    type={"shift"}
+  />
+</div>
+
           
             {user.role === "superAdmin" && (
 

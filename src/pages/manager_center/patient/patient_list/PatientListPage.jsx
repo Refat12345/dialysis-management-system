@@ -5,6 +5,7 @@ import { Table } from "../../../../components/manager_center/patient/Patient";
 import { usePatient } from "./PaitientListState";
 import {PageLoader} from "../../../../components/index"
 import PatientHeader from "../../../../components/manager_center/patient/PatientHeader";
+import { useSelector } from "react-redux";
 const PatientListPage = () => {
 
   const { patientData, isLoading, isSuccess ,filteredDataSearch,setSearchTerm  } = usePatient();
@@ -23,15 +24,25 @@ const PatientListPage = () => {
     }
   }, [searchTerm, filteredDataSearch]);
 
+  const user = useSelector((state)=>state.user)
 
-  const itemsPerPage = useMemo(() => {
+  const itemsPerPage =  useMemo(() => {
     const height = window.innerHeight;
-    if (height > 800) return 10;
-    if (height > 740) return 9;
-    if (height > 700) return 8;
-    if (height > 680) return 8;
-    if (height > 620) return 7;
+    if(user.role === "superAdmin"){
+      if (height > 800) return 11;
+      if (height > 740) return 10;
+      if (height > 700) return 9;
+      if (height > 680) return 9;
+      if (height > 620) return 8;
+      return 7;
+    } else {
+      if (height > 800) return 10;
+      if (height > 740) return 9;
+      if (height > 700) return 8;
+      if (height > 680) return 8;
+      if (height > 620) return 7;
     return 6;
+    }
   }, [window.innerHeight]);
 
   

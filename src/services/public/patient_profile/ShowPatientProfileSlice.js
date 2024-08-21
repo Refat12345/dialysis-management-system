@@ -3,11 +3,12 @@ import Cookies from "js-cookie"
 export const ShowPatientProfileSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getMedicalRecord: builder.query({
-            query: (id) => ({
+            query: (id) => {
+                return{
                 url: `showMedicalRecord/${id}`,
                 method: 'GET',
                 headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
-            }),
+            }},
             providesTags: ['MedicalRecord'],
         }),
         getMedicalAnalysis: builder.query({

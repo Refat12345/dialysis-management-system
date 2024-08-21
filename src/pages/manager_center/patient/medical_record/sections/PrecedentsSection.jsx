@@ -17,16 +17,22 @@ const PrecedentsSection = ({title , type}) => {
         medicalRecord.pharmacologicalPrecedents != undefined &&  setPrecedents(medicalRecord.pharmacologicalPrecedents)
     }
 },[type,medicalRecord])
+    const text = type === "surgical" ? "جراحية":(type === "pathological"? "مرضية" : "دوائية" )
     return (
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+            precedents.length != 0 ? <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 ">
                 {precedents.map((data,index)=>{
                     return Cookies.get("role") === "secretary" ? <AlertDialog key={index}
-                        contentComponent={ <PrecedentsDialog type = {type} index={index} key={index}/> } renderComponent={<div className="hover:cursor-pointer">
+                        contentComponent={ <PrecedentsDialog type = {type} index={index} key={index}/> } renderComponent={<div className="flex h-full hover:cursor-pointer">
                             <CardRecord key={index} object = {data} title={title}/>
                         </div>} 
-                    /> : <CardRecord key={index} object = {data} title={title}/>
-                })}
+                /> : <div className="flex h-full">
+                    <CardRecord key={index} object = {data} title={title}/>
                 </div>
+                })}
+                </div> :
+                <div className="flex justify-center" style={{ height: 'calc(100vh - 73vh)' }}>
+                    <p className="content-center font-bold text-titleColor text-xl">{"لا يوجد سوابق " +text}</p>
+                </div> 
 )
 }
 

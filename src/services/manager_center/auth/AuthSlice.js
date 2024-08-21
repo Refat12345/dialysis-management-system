@@ -1,5 +1,5 @@
 import { apiSlice } from "../../apiSlice";
-
+import Cookies from "js-cookie"
 export const apiAuth = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // Login 
@@ -17,6 +17,14 @@ export const apiAuth = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+    }),
+    // LogOut
+    logout:builder.mutation({
+      query:()=>({
+        url:"logout",
+        method:"POST",
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+      })
     }),
     // Get User by Verification Code
     getUserByVerificationCode: builder.mutation({
@@ -44,4 +52,4 @@ export const apiAuth = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation ,useSendDeviceTokenMutation} = apiAuth;
+export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation ,useSendDeviceTokenMutation ,useLogoutMutation} = apiAuth;

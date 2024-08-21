@@ -21,14 +21,14 @@ export default function GeneralNotePage({ type }) {
     <>
       <GeneralDetailsProvider userId={id}>
         {type === "sidebar" ? (
-          <div className="flex-grow mr-56 ml-8" dir="rtl">
-            <span className="text-blue-500 text-lg mt-2 ">
+          <div className="flex-grow mr-56 ml-8 mt-8" dir="rtl">
+            <span className="text-titleColor font-bold text-xl mt-2 ">
               الملاحظات العامة
             </span>
             {type === "sidebar" && (
               <button
                 onClick={() => setOpen(true)}
-                className=" mt-2 h-8 w-28 absolute left-7  text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                className=" mt-2 h-8 w-28 absolute left-7  text-white bg-titleColor hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
               >
                 ارسال ملاحظة
               </button>

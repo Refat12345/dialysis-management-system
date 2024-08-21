@@ -2,6 +2,7 @@ import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import { toast } from "react-toastify";
 import { validateMedicalAnalysisForm } from "./validator";
+import dayjs from "dayjs";
 const AddMedicalAnalysisStateContext = createContext();
 
 const AddMedicalAnalysisState = ({ children }) => {
@@ -13,7 +14,7 @@ const AddMedicalAnalysisState = ({ children }) => {
         positive:false,
         negative:false,
         unitOfMeasurement:"",
-        analysisDate: null,
+        analysisDate: dayjs("04-أغسطس-2024"),
         notes: "",
         analysisName: "",
         userID: "",

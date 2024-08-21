@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
-
 import DialogContent from "@mui/material/DialogContent";
-import { CustomButton } from "../../../components";
+import { ButtonLoader, CustomButton } from "../../../components";
 import Cookies from "js-cookie"
 import { useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../../../services/manager_center/auth/AuthSlice";
 function LogOut() {
     
     const [open, setOpen] = useState(true);
@@ -12,6 +12,10 @@ function LogOut() {
     const handleClose = () => {
     setOpen(false);
     };
+    // const[logout,{isLoading,isSuccess,}] = useLogoutMutation();
+    // if(isSuccess){
+        
+    // }
 return (
     <Dialog open={open} onClose={handleClose}>
         <DialogContent className="p-4 w-full " dir="rtl">
@@ -37,6 +41,7 @@ return (
                             localStorage.removeItem("myObject");
                             Cookies.remove("token")
                             sessionStorage.removeItem('sideBarActiveItem');
+                            // const response = logout().unwrap()
                             navigator("/")
                         }}
                         className="bg-bgbutton text-white h-8 w-14 font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110"

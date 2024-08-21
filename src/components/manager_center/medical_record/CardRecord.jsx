@@ -12,7 +12,7 @@ let childResponsive = height > 600? ( height > 700 ? "mb-4" : "mb-3") : "mb-2";
 let contentResponsive = height > 600 ? ( height>740 ? "leading-[2]" : "leading-[1.5]" ) : "";
 
     return(
-        <div dir="rtl" className={`bg-white rounded-lg shadow-xl ${parentResponsive}`}>
+        <div dir="rtl" className={`flex-grow bg-white rounded-lg shadow-xl ${parentResponsive}`}>
                             {result.map((array,index) =>{
                                 return <div key={index} className={`${childResponsive}`}>
                                             <span className="">
