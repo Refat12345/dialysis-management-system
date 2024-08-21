@@ -6,9 +6,9 @@ export const PatientSlice = apiSlice.injectEndpoints({
     getPatient: builder.query({
       query: ({ option, centerId,role,selectedCenterId }) => {
         const id = role === 'superAdmin' ? selectedCenterId : centerId;
-
         return {
-          url: `getCenterUsersByRole/${option === "انتظار" ? 0 : id}/patient/${option}`,
+          // url: `getCenterUsersByRole/${option === "انتظار" ? 0 : id}/patient/${option}`,
+          url : `getCenterUsersByRole/${(option === "مرفوض" || option === "انتظار") ? 0 : id}/patient/${option}`,
           method: "GET",
           headers: { "Authorization": `Bearer ${Cookies.get("token")}` }
         };
@@ -51,6 +51,7 @@ export const PatientSlice = apiSlice.injectEndpoints({
 
     addFromWaitingToPending : builder.mutation({
       query: (data) => {
+      console.log("yyyyy",data)
        
         return {
           url: `associateUserWithMyMedicalCenter`,

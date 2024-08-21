@@ -28,6 +28,8 @@ function TableRow({
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const userIdString = id ? id.toString() : "14";
+  console.log(`Received ID: ${id}, Index: ${index}`);
+
   const [addFromWaitingToPending] = useAddFromWaitingToPendingMutation();
 
   const [state, setState] = useState({
@@ -66,6 +68,8 @@ function TableRow({
 
   const selectSecertaryWaitingOption = async (value) => {
     updateState({ secrtaryWaitingValue: value });
+
+    console.log("id in selectedSecertary is ",userIdString)
 
     const data = {
       centerID: user.centerID.toString(),
@@ -144,7 +148,7 @@ function TableRow({
   };
 
   const secrtaryWaitingFilter = {
-    array: ["َضم المريص للمركز"],
+    array: ["َضم المريض للمركز"],
   };
   return (
     <tr
@@ -292,14 +296,14 @@ function TableRow({
                   filter={
                     user.role === "admin"
                       ? adminFilter.array
-                      : typeOFSelectedPatient != "مرضى انتظار"
+                      : typeOFSelectedPatient !== "مرضى انتظار" && typeOFSelectedPatient !== "مرضى مرفوضين"
                       ? secrtaryFilter.array
                       : secrtaryWaitingFilter.array
                   }
                   onSelect={(val) => {
                     user.role === "admin"
                       ? state.selectAdminOption(val)
-                      : typeOFSelectedPatient != "مرضى انتظار"
+                      : typeOFSelectedPatient !== "مرضى انتظار" && typeOFSelectedPatient !== "مرضى مرفوضين"
                       ? state.selectSecertaryOption(val)
                       : state.selectSecertaryWaitingOption(val);
                   }}

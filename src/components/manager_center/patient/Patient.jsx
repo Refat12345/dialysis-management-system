@@ -109,7 +109,7 @@ const patientFilter = {
         <table className="min-w-full bg-white">
           <TableHeader columns={columns} color="bg-headerTable" />
 
-          <tbody className="text-gray-700">
+          {/* <tbody className="text-gray-700">
             {filteredData.map((row, index) => (
               <TableRow
                 id={data[index].id}
@@ -123,7 +123,25 @@ const patientFilter = {
                 setIsEllipsisHovered = {setIsEllipsisHovered}
               />
             ))}
-          </tbody>
+          </tbody> */}
+          <tbody className="text-gray-700">
+  {filteredData.map((row, index) => {
+    console.log(`Row ID: ${data[index].id}, Index: ${index}`);
+    return (
+      <TableRow
+        id={data[index].id}
+        key={index}
+        row={row}
+        index={index}
+        handleRowClick={handleRowClick}
+        getRowColor={() => getRowColor(index, row.name)}
+        type={"patient"}
+        typeOFSelectedPatient={selectedOption}
+        setIsEllipsisHovered={setIsEllipsisHovered}
+      />
+    );
+  })}
+</tbody>
         </table>
       </div>
     </div>

@@ -27,21 +27,8 @@ export const apiAuth = apiSlice.injectEndpoints({
       }),
     }),
 
-    sendDeviceToken: builder.mutation({
-      query: (Info) => { 
-          return {
-              url: `senddeviceTokenDeviceID`,
-              method: 'POST',
-              body: {
-                deviceToken : Info.deviceToken,
-                deviceID : "1"
-              },
-              headers:{"Authorization" : `Bearer ${Info.token}`}
-          };
-          
-      },
-  }),
+  
   }),
 });
 
-export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation ,useSendDeviceTokenMutation} = apiAuth;
+export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation } = apiAuth;
