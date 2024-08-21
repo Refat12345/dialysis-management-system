@@ -39,5 +39,4 @@ export const apiAuth = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation } = apiAuth;
-export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation ,useSendDeviceTokenMutation ,useLogoutMutation} = apiAuth;
+export const { useLoginMutation, useVerifyMutation, useGetUserByVerificationCodeMutation ,useLogoutMutation} = apiAuth;

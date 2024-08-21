@@ -28,7 +28,6 @@ function TableRow({
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const userIdString = id ? id.toString() : "14";
-  console.log(`Received ID: ${id}, Index: ${index}`);
 
   const [addFromWaitingToPending] = useAddFromWaitingToPendingMutation();
 
@@ -39,7 +38,7 @@ function TableRow({
 
     selectSecertaryOption: (val) => selectSecertaryOption(val),
     selectAdminOption: (val) => selectAdminValueOption(val),
-    selectSecertaryWaitingOption: (val) => selectSecertaryWaitingOption(val),
+    selectSecertaryWaitingOption: (val ,id) => selectSecertaryWaitingOption(val,id),
   });
 
   const selectSecertaryOption = (value) => {
@@ -66,16 +65,12 @@ function TableRow({
     }
   };
 
-  const selectSecertaryWaitingOption = async (value) => {
+  const selectSecertaryWaitingOption = async (value ,id) => {
     updateState({ secrtaryWaitingValue: value });
-
-    console.log("id in selectedSecertary is ",userIdString)
-
     const data = {
       centerID: user.centerID.toString(),
-      userID: userIdString,
+      userID: id,
     };
-
     try {
       const result = await addFromWaitingToPending(data);
       toast.success("تمت الاضافة بنجاح");
@@ -305,7 +300,7 @@ function TableRow({
                       ? state.selectAdminOption(val)
                       : typeOFSelectedPatient !== "مرضى انتظار" && typeOFSelectedPatient !== "مرضى مرفوضين"
                       ? state.selectSecertaryOption(val)
-                      : state.selectSecertaryWaitingOption(val);
+                      : state.selectSecertaryWaitingOption(val ,id);
                   }}
                 />
               )}
