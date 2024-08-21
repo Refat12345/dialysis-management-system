@@ -3,7 +3,6 @@ import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import {
   useLoginMutation,
-  useSendDeviceTokenMutation,
 } from "../../../../services/manager_center/auth/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { validateLoginForm } from "../../../../validator";
@@ -11,10 +10,7 @@ import { showErrorToast, showSuccessToast } from "../../../../utils/toastUtils";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../services/userSlice";
 import Cookies from "js-cookie";
-import {
-  fcmToken,
-  getMachineId,
-} from "../../../../firebase/firebase-messaging";
+
 
 const LoginStateContext = createContext();
 
@@ -31,7 +27,6 @@ export const LoginStateProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   const [loginApi, { error }] = useLoginMutation();
-  const [sendDeviceTokenApi] = useSendDeviceTokenMutation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,38 +58,12 @@ export const LoginStateProvider = ({ children }) => {
       const token = response.user.token;
       localStorage.setItem("tokens", response.user.token);
       showSuccessToast("login successfully");
-      //send device Token
-      const deviceToken = fcmToken;
-      const deviceId = getMachineId();
+   
      
 
       if (token) {
         navigate("/app");
-
-        // try {
-        //   const sendDeviceTokenResponse = await sendDeviceTokenApi({
-        //     deviceToken:deviceToken,
-        //     deviceID: deviceId,
-        //     token: response.user.token,
-        //   }).unwrap();
-  
-        // }
-        // catch (error) {
-        //   if (error.status === 400) {
-        //     const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
-        //     console.error(errorMessage);
-        //   } else if (error.status === 403) {
-        //     const errorMessage =
-        //       error.data.error ||
-        //       "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
-        //     console.error(errorMessage);
-        //   } else {
-        //     console.error("حدث خطأ أثناء تحديث البيانات", error);
-        //   }
-        // } 
-
-     
-        
+      
       }
     } catch (err) {
       console.log(err);
