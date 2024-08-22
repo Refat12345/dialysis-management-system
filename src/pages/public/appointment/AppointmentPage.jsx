@@ -71,7 +71,7 @@ const Appointment = () => {
             </div>
         );
     }
-
+    
     if (appointmentsSuccess && shiftsSuccess && chairsSuccess) {
         return (
             <div dir="rtl" className="md:mr-48 flex-grow">

@@ -44,7 +44,7 @@ const MedicalRecordState = ({ children }) => {
         updatePathologicalPrecedent: (index,value) => updatePathologicalPrecedent(index,value),
         updatePharmacologicalPrecedent: (index,value) => updatePharmacologicalPrecedent(index,value),
         updateSurgicalPrecedent: (index,value) => updateSurgicalPrecedent(index,value),
-        postHealthInfo:(data,id,method) => postHealthInfo(data,id,method),
+        postHealthInfo:(data,id,method,setOpen) => postHealthInfo(data,id,method,setOpen),
         postPrecedents : (data,id,index,type,method) => postPrecedents(data,id,index,type,method)
     };
     const [state, setState] = useState(initialRecord);
@@ -82,7 +82,7 @@ const MedicalRecordState = ({ children }) => {
         ),
         }));
     };  
-    const postHealthInfo = async (data,id,method)=>{
+    const postHealthInfo = async (data,id,method , setOpen)=>{
         const object = {
         id:id,
         causeRenalFailure: data.causeRenalFailure,
@@ -95,6 +95,7 @@ const MedicalRecordState = ({ children }) => {
         try{
             const response = await method(object).unwrap()
             toast.success("تم تعديل السجل الطبي بنجاح")
+            setOpen(false)
             return response
         }catch(err){
             console.log(err);

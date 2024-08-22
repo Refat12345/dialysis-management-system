@@ -65,6 +65,7 @@ const OrdersPage = () => {
     setInputValue(e.target.value);
   };
 
+  
   if (isLoading) {
     return (
       <div className="flex-grow md:mr-48">
@@ -84,7 +85,7 @@ const OrdersPage = () => {
       </div>
     );
   }
-
+  
   return (
     <div dir="rtl" className="flex-grow md:mr-48">
       <ToastContainer position="top-right" />

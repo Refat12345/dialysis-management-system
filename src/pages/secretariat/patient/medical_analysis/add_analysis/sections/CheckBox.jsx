@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 const CheckBox = ({ state, updateState }) => {
-
     const handleCheckboxChange = (checkboxNumber) => {
       if (checkboxNumber === 1) {
         if(state.negative === true) {

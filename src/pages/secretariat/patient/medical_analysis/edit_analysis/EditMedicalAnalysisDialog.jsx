@@ -16,32 +16,46 @@ import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
 import { useEditMedicalAnalysisMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 import { ToastContainer } from "react-toastify";
-const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
+const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes , setOpen}) => {
     let array=[]
+    let unit = []
     for (let index = 0; index < analysisTypes.length; index++) {
         array.push(analysisTypes[index].analysisName)
-        
-      }
+        unit.push(analysisTypes[index].unitOfMeasurement)
+    }
+    
+    
+    
     const {state , updateState} = useEditMedicalAnalysisState()
     const [editMedicalAnalysis,{isLoading}] = useEditMedicalAnalysisMutation()
     const { patientName } = useParams();
     const typeSelections = array;
-    const unitOfMeasurementSelections = ["mm", "cm", "ml"];
+    const unitOfMeasurementSelections = unit;
     useEffect(()=>{
+        updateState({negative:false})
+        updateState({positive:false})
         updateState(medicalAnalysis)
         updateState({userID:patientName})
         updateState({isEdit:false})
+        if(medicalAnalysis.value === "سلبي" || medicalAnalysis.value === "ايجابي") {
+
+            if(medicalAnalysis.value === "سلبي") {
+                updateState({negative:true})
+            } else {
+                updateState({positive:true})
+            }
+        }
     },[medicalAnalysis])
     const postData =  () => {
         state.postData(state,editMedicalAnalysis)
     }
-    
-    console.log(dayjs(state.analysisDate));
+
     
     return (
         <div dir="rtl" className="w-[400px]">
-            {state.value != "" ?    
-            <>
+            {
+                state.value != "" ?    
+            <div>
             <ToastContainer position="top-right"/>
             <SelectedTextFeild
                     filter={typeSelections}
@@ -50,13 +64,19 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
                     onSelect={(val) => updateState({ analysisName: val })}
                 />
                 <div className="mb-3"></div>
-                <CustomTextField
+                {
+                    (medicalAnalysis.value === "سلبي" ||  medicalAnalysis.value === "ايجابي") ? <>
+                        <p className="mb-1">النتيجة:</p>
+                        <CheckBox state={state} updateState={updateState} />
+                        
+                    </>: <CustomTextField
                     label="القيمة/النتيجة:"
                     placeholder="القيمة/النتيجة"
                     size="3"
                     value={state.value}
                     onChange={(val) => updateState({ value: val.target.value })}
                 />
+                }
                 <div className="mb-3"></div>
                 <SelectedTextFeild
                     filter={unitOfMeasurementSelections}
@@ -83,13 +103,21 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
                     onChange={(val) => updateState({ notes: val.target.value })}
                 />  
                 <div className="mb-4"></div>
-                {
-                    medicalAnalysis.value === "سلبي" ||  medicalAnalysis.value === "ايجابي" && <>
-                        <CheckBox state={state} updateState={updateState} />
-                        <div className="mb-4"></div>
-                    </>
-                }
-                { !isLoading ? <div className="flex justify-center"> <CustomButton
+                
+                { !isLoading ? <div className="flex justify-center">
+                    <CustomButton
+                        variant="solid"
+                        onClick={()=>setOpen(false)}
+                        className="bg-bgbutton text-white h-8  font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110 ml-2"
+                        title={
+                            <div className="">
+                                <span>رجوع</span>
+                                <div className="lg:w-2 md:w-2 w-1" />
+                            </div>
+                        }
+                        radius="full"
+                    />
+                    <CustomButton
                         variant="solid"
                         onClick={postData}
                         className="bg-bgbutton text-white h-8  font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110"
@@ -105,10 +133,12 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes}) => {
                 <ButtonLoader/>
                 </div>}
                 
-                </>:<ButtonLoader/>
-                }
+                </div>:<ButtonLoader/>
+            }
     </div>
     );
 };
 
 export default EditMedicalAnalysisDialog;
+
+

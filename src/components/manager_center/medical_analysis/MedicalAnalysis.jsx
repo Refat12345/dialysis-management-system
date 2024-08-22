@@ -13,7 +13,7 @@ return (
             </div>
             <div className="content flex flex-col ">
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
-                <span dir="rtl" className ={`content-center font-bold mb-3 ${analysis.value === "سلبي" ? "text-red-500":"text-green-600" } `}>{analysis.unitOfMeasurement != null && analysis.unitOfMeasurement} / {analysis.value} </span>
+                <span dir="rtl" className ={`content-center font-bold mb-3 ${analysis.value === "سلبي" ? "text-red-500":"text-green-600" } `}>{analysis.value} / {analysis.unitOfMeasurement != null && analysis.unitOfMeasurement} </span>
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{formatDate(analysis.analysisDate)}</span>
             </div>
             <div className="w-[40%]">

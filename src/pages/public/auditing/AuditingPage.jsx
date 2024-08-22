@@ -5,9 +5,11 @@ import Header from "./sections/Header";
 import AuditSection from "./sections/AuditSection";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { useGetAuditingQuery } from "../../../services/manager_center/auditing/AuditingSlice";
+import { useSelector } from "react-redux";
 
 const AuditingPage = () => {
-  const { data, isSuccess, isLoading } = useGetAuditingQuery(1);
+  const user = useSelector((state)=>state.user)
+  const { data, isSuccess, isLoading } = useGetAuditingQuery(user.centerID);
   const [auditing, setAuditing] = useState([]);
   const [filter, setFilter] = useState({
     date: null,
@@ -29,6 +31,8 @@ const AuditingPage = () => {
       setAuditing(data.logs);
     }
   }, [isSuccess, data]);
+
+
 
   const filteredAuditing = useMemo(() => {
     return auditing.filter((audit) => {

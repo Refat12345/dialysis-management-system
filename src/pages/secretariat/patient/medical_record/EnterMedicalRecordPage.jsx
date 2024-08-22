@@ -22,6 +22,37 @@ const handlePost =async () => {
   try{
     await createMedicalRecord(body).unwrap();
     toast.success("تم اضافة السجل الطبي بنجاح");
+    updateState({
+      causeRenalFailure: "",
+      bloodType: "",
+      dryWeight: "",
+      dialysisStartDate:null,
+      kidneyTransplant:"",
+      vascularEntrance:"",
+      errors:{},
+      surgicalPrecedents: [
+        {
+          surgeryName: "",
+          surgeryDate: null,
+          generalDetails: "",
+        }
+      ],
+      pathologicalPrecedents: [
+        {
+          illnessName: "",
+          medicalDiagnosisDate: null,
+          generalDetails: "",
+        }
+      ],
+      pharmacologicalPrecedents: [
+        {
+          medicineName: "",
+          dateStart: null,
+          dateEnd: null,
+          generalDetails:""
+        }
+        
+      ],})
   }catch(error) {    
     toast.error(error.data.error)
   }

@@ -39,8 +39,8 @@ export const auditingRoute = 'auditing'
 export const secretariaAccountRoute = 'secretaria_account';
 export const ordersRoute = 'orders';
 export const settingRoute = "setting";
-export const patientProfileRoute = `${patientsRoute}/:patientName`;
-export const patientOptionRoute = `${patientRoute}/:patientName`;
+export const patientProfileRoute = `${patientsRoute}/:patientName/:status`;
+export const patientOptionRoute = `${patientRoute}/:patientName/:status`;
 
 
 export const medicalRecordRoute = `medical-record`;

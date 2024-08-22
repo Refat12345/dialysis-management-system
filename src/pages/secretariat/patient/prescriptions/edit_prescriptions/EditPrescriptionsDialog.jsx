@@ -13,7 +13,7 @@ import { useEditPrescriptionsState } from "./EditPrescriptionsState";
 import dayjs from "dayjs";  
 import { useEditPrescriptionsMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 import { ToastContainer } from "react-toastify";
-const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
+const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId,setOpen}) => {
     const [editPrescriptions , {isLoading}] = useEditPrescriptionsMutation()
     const {state , updateState} = useEditPrescriptionsState()
     useEffect(()=>{
@@ -66,6 +66,18 @@ const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId}) => {
                 />  
                 <div className="mb-5"></div>
                 <div className="flex justify-center">
+                <CustomButton
+                        variant="solid"
+                        onClick={()=>setOpen(false)}
+                        className="bg-bgbutton text-white h-8 transition-transform transform hover:scale-110 font-bold text-md hover:cursor-pointer ml-2"
+                        title={
+                            <div className="">
+                                <span>رجوع</span>
+                                <div className="lg:w-2 md:w-2 w-1" />
+                            </div>
+                        }
+                        radius="full"
+                    />
                 { !isLoading ?  <CustomButton
                         variant="solid"
                         onClick={postData}

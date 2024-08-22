@@ -2,11 +2,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Cards, PieCharts, DialysisSessions } from "../../index";
 import { PaginationComponent, PageLoader } from "../../../components/index";
-import Cookies from "js-cookie"
 import { useGetCausesRenalFailureQuery, useGetCenterStatisticsQuery, useGetPieChartsQuery, useGetSessionsQuery } from "../../../services/manager_center/dashboard/DashboardSlice";
+
 const Dashboard = () => {
-
-
   const [date,setDate] = useState({
     month:"",
     year:""

@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAddFromWaitingToPendingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import DropDownPatient from "../../../pages/manager_center/patient/patient_list/Menu";
+import PublicDialog from "../../public/dialog/AlertDialog";
 
 function TableRow({
   row,
@@ -41,21 +42,23 @@ function TableRow({
     selectSecertaryWaitingOption: (val ,id) => selectSecertaryWaitingOption(val,id),
   });
 
+ 
+  
   const selectSecertaryOption = (value) => {
     updateState({ secrtaryValue: value });
 
     switch (value) {
       case "اضافة وصفة طبية":
-        navigate(`/app/patient/${id}/PrescriptionInfo`);
+        navigate(`/app/patient/acceptable/${id}/PrescriptionInfo`);
         break;
       case "اضافة تحليل طبي":
-        navigate(`/app/patient/${id}/addMedicalAnalysis`);
+        navigate(`/app/patient/acceptable/${id}/addMedicalAnalysis`);
         break;
       case "اضافة مستلزمات جلسة الغسيل":
-        navigate(`/app/patient/${id}/assignMaterialToUserCenter`);
+        navigate(`/app/patient/acceptable/${id}/assignMaterialToUserCenter`);
         break;
       case "اعطاء موعد":
-        navigate(`/app/patient/${id}/appointment/${id}`);
+        navigate(`/app/patient/acceptable/${id}/appointment/${id}`);
         break;
       case "اجنبي":
         history.push("/path-for-foreigner");
@@ -96,7 +99,7 @@ function TableRow({
     updateState({ adminValue: value });
     switch (value) {
       case "نقل المريض":
-        navigate(`/app/patient/${id}/medicalCenters`);
+        navigate(`/app/patient/acceptable/${id}/medicalCenters`);
         break;
       case "تعطيل الحساب":
         navigate(`/app/patient/${id}/addMedicalAnalysis`);
@@ -124,6 +127,8 @@ function TableRow({
   };
 
   const [open, setOpen] = useState(false);
+  const [acceptOrder, setAcceptOrder] = useState(false);
+  const [rejectOrder, setRejectOrder] = useState(false);
 
   const handleMenuClick = (event) => {
     event.stopPropagation();
@@ -209,22 +214,19 @@ function TableRow({
       {type === "orders" && user.role != "secretary" && (
         <td>
           <div className="flex justify-end">
-            <AlertDialog
-              renderComponent={
-                <div className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
+              <div onClick={()=>setAcceptOrder(true)} className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
                   <p className="text-md text-center ">قبول</p>
-                </div>
-              }
-              contentComponent={<OrdersStatus id={id} type={"accepted"} />}
-            />
-            <AlertDialog
-              renderComponent={
-                <div className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
+              </div>
+              <PublicDialog component={<OrdersStatus id={id} type={"accepted"} setOpen={setAcceptOrder}/>} open={acceptOrder} setOpen={setAcceptOrder}/>
+          
+            <div onClick={()=>setRejectOrder(true)} className=" rounded-full text-red-500 border-2 border-red-500 hover:cursor-pointer hover:bg-red-100 hover:text-black ml-5 w-16 ">
                   <p className="text-md text-center ">رفض</p>
-                </div>
-              }
-              contentComponent={<OrdersStatus id={id} type={"rejected"} />}
+            </div>
+            <PublicDialog component={<OrdersStatus id={id} type={"rejected"} setOpen={setRejectOrder}/>}
+            open={rejectOrder} setOpen={setRejectOrder}
+          
             />
+
           </div>
         </td>
       )}
@@ -286,7 +288,8 @@ function TableRow({
               onClick={handleMenuClick}
             >
               {user.role != "superAdmin" && (
-                <DropDownPatient
+                <div className="">
+                  <DropDownPatient
                   colors={colors}
                   filter={
                     user.role === "admin"
@@ -303,6 +306,7 @@ function TableRow({
                       : state.selectSecertaryWaitingOption(val ,id);
                   }}
                 />
+                </div>
               )}
             </div>
           )}

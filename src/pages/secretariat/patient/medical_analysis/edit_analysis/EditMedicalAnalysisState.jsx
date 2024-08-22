@@ -12,6 +12,8 @@ const EditMedicalAnalysisState = ({ children }) => {
         unitOfMeasurement:"",
         analysisDate: null,
         notes: "",
+        positive:false,
+        negative:false,
         analysisName: "",
         userID:"",
         averageMin: 11, 
@@ -29,10 +31,20 @@ const EditMedicalAnalysisState = ({ children }) => {
 };
 
     const postData = async (data,method) => {
+        console.log("s");
+        
+        let valueOne = ""
+        if(data.negative === true) {
+            valueOne = "سلبي"
+        } else if (data.positive === true) {
+            valueOne = "ايجابي"
+        } else {
+            valueOne = data.value
+        }
         const object = {
             Id: data.id,
             analysisName: data.analysisName,
-            value: data.value, 
+            value:valueOne, 
             analysisDate: data.isEdit === true ? data.analysisDate.format("YYYY-MM-DD") :convertDateString(data.analysisDate), 
             notes: data.notes,
             userID: data.userID,

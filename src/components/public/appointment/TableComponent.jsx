@@ -16,7 +16,6 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
     userID: patientID || ""
   });
 
-  
   const data = useMemo(() => {
     const preparedData = {};
     chairNumbers.forEach(chairNumber => {
@@ -47,6 +46,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
         ...prev,
         appointmentID: appointmentData.appointmentID,
       }));
+
       setOpen(true);
     }
   };
