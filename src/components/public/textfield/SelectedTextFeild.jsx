@@ -112,18 +112,18 @@ const SelectedTextFeild = ({
       <Dialog
         open={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-50 inset-0 overflow-y-auto"
       >
-        <div className="flex items-center justify-center min-h-screen px-4">
-          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-          <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full p-6">
+        <div className="flex items-center justify-center min-h-screen px-4 ">
+          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30 " />
+          <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full p-6 ">
             <Dialog.Title
               dir="rtl"
               className="text-lg font-medium text-gray-900"
             >
               {type}
             </Dialog.Title>
-            <div dir="rtl" className="mt-2">
+            <div dir="rtl" className="mt-2 ">
               <input
                 type="text"
                 value={newType}

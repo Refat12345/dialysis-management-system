@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { AlertDialog, MedicalAnalysis, PageLoader  } from "../../../../components";
+import { MedicalAnalysis, PageLoader  } from "../../../../components";
 import Header from "./sections/Header";
 import { useEffect, useState, useMemo } from "react";
 import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
@@ -8,21 +8,23 @@ import Cookies from "js-cookie"
 import { useParams } from "react-router-dom";
 import EditMedicalAnalysisDialog from "../../../secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisDialog"
 import { useGetAnalysisTypesQuery } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
+import PublicDialog from "../../../../components/public/dialog/AlertDialog";
 
 const MedicalAnalysisPage = () => {
-
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
     const { patientName } = useParams();
+    const { status } = useParams();
     const id = useMemo(() => patientName, [patientName]);
-    const { data, isSuccess, isLoading ,isError} = useGetMedicalAnalysisQuery(id);
-    const {data:analysisTypes,isSuccess:success,isLoading:loading} = useGetAnalysisTypesQuery()
+    const [open, setOpen] = useState(false);
+    const [selectedAnalysis, setSelectedAnalysis] = useState(null);
+    const { data, isSuccess, isLoading, isError } = useGetMedicalAnalysisQuery(id);
+    const { data: analysisTypes, isSuccess: success, isLoading: loading } = useGetAnalysisTypesQuery();
     const [analysis, setAnalysis] = useState([]);
     const [filters, setFilters] = useState({
         type: "",
         date: "",
         quarter: ""
     });
-
 
     useEffect(() => {
         if (isSuccess && data?.analysis) {
@@ -37,7 +39,7 @@ const MedicalAnalysisPage = () => {
         }
         if (filters.date !== "" && filters.date !== "الشهر") {
             filteredAnalysis = filteredAnalysis.filter((ana) => {
-                return formatDate(ana.analysisDate).includes(filters.date)
+                return formatDate(ana.analysisDate).includes(filters.date);
             });
         }
         if (filters.quarter !== "" && filters.quarter !== " الربع") {
@@ -49,15 +51,16 @@ const MedicalAnalysisPage = () => {
     if (isLoading || loading) {
         return (
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="mr-48">
-                <PageLoader />
+                <div className="mr-48">
+                    <PageLoader />
+                </div>
             </div>
-        </div>
-        );}
-    if(isError || !isSuccess || !success) {
+        );
+    }
+    if (isError || !isSuccess || !success) {
         return (
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <p className="font-bold text-2xl mr-48">خطأ بجلب البيانات أعد المحاولة من فضلك </p>
+                <p className="font-bold text-2xl mr-48">خطأ بجلب البيانات أعد المحاولة من فضلك</p>
             </div>
         );
     }
@@ -66,25 +69,36 @@ const MedicalAnalysisPage = () => {
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <p className="font-bold text-2xl mr-48">لا يوجد تحاليل طبية لهذا المريض</p>
             </div>
-        );}
+        );
+    }
     return (
-            (success && analysisTypes.analysisTypes.length > 0) &&  
-            <>
+        (success && analysisTypes.analysisTypes.length > 0) &&
+        <>
             <div dir="rtl" className="flex-grow">
                 <div className="ml-[1%]">
                     <Header value={filters} setFilters={setFilters} analysisTypes={analysisTypes.analysisTypes} />
                     <div className="analysis">
                         {filteredAnalysis.map((analysisItem, index) => (
-                            Cookies.get("role") === "secretary" ? <AlertDialog key={index} renderComponent={<div className="hover:cursor-pointer">
-                                <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
-                            </div>} contentComponent={<EditMedicalAnalysisDialog medicalAnalysis={analysisItem} analysisTypes = {analysisTypes.analysisTypes}/>}/> :<MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                            Cookies.get("role") === "secretary" ?
+                                <div key={index}>
+                                    <div onClick={() => {
+                                        if(status === "acceptable"){
+                                            setSelectedAnalysis(analysisItem)
+                                            setOpen(true)
+                                    }
+                                    }} className={`${status === "acceptable" && "hover:cursor-pointer"}`}>
+                                        <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                                    </div>
+                                    <PublicDialog component={<EditMedicalAnalysisDialog medicalAnalysis={selectedAnalysis} analysisTypes={analysisTypes.analysisTypes} setOpen={setOpen} />}
+                                        open={open} setOpen={setOpen}
+                                    />
+                                </div>
+                                : <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
                         ))}
                     </div>
                 </div>
             </div>
-            </>
-
+        </>
     );
 };
-
 export default MedicalAnalysisPage;

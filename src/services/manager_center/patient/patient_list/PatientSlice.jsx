@@ -51,8 +51,6 @@ export const PatientSlice = apiSlice.injectEndpoints({
 
     addFromWaitingToPending : builder.mutation({
       query: (data) => {
-      console.log("yyyyy",data)
-       
         return {
           url: `associateUserWithMyMedicalCenter`,
           method: "POST",

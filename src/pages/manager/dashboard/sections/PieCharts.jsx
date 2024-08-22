@@ -50,7 +50,7 @@ const colors = {
         }}/>
         </div>
         </div>
-        <div className={`flex justify-between  `}>
+        <div className={`flex flex-row-reverse justify-between  `}>
         <div className={`shadow-lg w-[45%] xl:w-[40%]  `} style={{ height: 'calc(100vh - 73vh)' }}>
         <p dir="rtl"className="bg-white px-5 py-3 text-lg font-bold"> نسب أسباب القصور الكلوي</p>  
         {<PieChart title = {causeRenalFailureTitle} data = {causeRenalFailure} />} 

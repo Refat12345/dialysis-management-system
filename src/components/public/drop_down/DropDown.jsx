@@ -44,7 +44,7 @@ export default function DropDown({ title, filter, colors, onSelect , type , mana
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-50 max-h-[250px] overflow-y-auto">
+        <Menu.Items className="fixed right-54 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none  max-h-[250px] overflow-y-auto z-[9999]">
           <div className="px-1 py-1">
             {filter.map((content, index) => {
               return (

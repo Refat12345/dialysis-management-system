@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
 import { TableHeader , TableRow } from "../../../../components";
-const OrdersSection = ({data  }) => {
+const OrdersSection = ({ data }) => {
     const adminColumns = [
         { key: "type", title: "نوع الطلب" },
         { key: "order", title: "مقدم الطلب" },

@@ -7,7 +7,7 @@ import { useMedicalRecordState } from "../MedicalRecordState";
 import { useEditMedicalRecordMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 import dayjs from "dayjs";
 import { textToastStyle } from "../../../../../data/data";
-const HealthInformationDialog = ({ medicalRecord }) => {
+const HealthInformationDialog = ({ medicalRecord ,setOpen }) => {
     const { state, updateState } = useMedicalRecordState();
     const [editMedicalRecord,{data,isLoading}] = useEditMedicalRecordMutation()
     useEffect(() => {
@@ -37,7 +37,8 @@ const HealthInformationDialog = ({ medicalRecord }) => {
     
     const postHealthInfoData = async() => {
         try{
-            const response = state.postHealthInfo(state,medicalRecord.id,editMedicalRecord);
+            const response = state.postHealthInfo(state,medicalRecord.id,editMedicalRecord , setOpen);
+            
         }catch(err) {
             console.log(err);
         }
@@ -94,6 +95,19 @@ const HealthInformationDialog = ({ medicalRecord }) => {
             />
         </div>
         <div className="flex justify-center">
+        <div className="ml-2"> <CustomButton
+                        variant="solid"
+                        onClick={()=>setOpen(false)}
+                        className="bg-bgbutton text-white h-8 transition-all font-bold text-md hover:cursor-pointer"
+                        title={
+                            <div className="">
+                                <span>رجوع</span>
+                                <div className="lg:w-2 md:w-2 w-1" />
+                            </div>
+                        }
+                        radius="full"
+                    />
+                </div>
         { !isLoading ? <div className=""> <CustomButton
                         variant="solid"
                         onClick={postHealthInfoData}
@@ -106,7 +120,8 @@ const HealthInformationDialog = ({ medicalRecord }) => {
                         }
                         radius="full"
                     />
-                </div>:<ButtonLoader/>} 
+                </div>:<ButtonLoader/>
+        } 
         </div>
         </>
     );

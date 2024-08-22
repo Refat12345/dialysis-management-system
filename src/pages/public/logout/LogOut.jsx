@@ -20,36 +20,23 @@ return (
     <Dialog open={open} onClose={handleClose}>
         <DialogContent className="p-4 w-full " dir="rtl">
             <div>
-                <p className="font-bold text-xl text-titleColor mb-4">هل أنت متأكد من تسجيل الخروج ؟</p>
+                <p className="font-bold text-lg text-titleColor mb-4">هل أنت متأكد من تسجيل الخروج ؟</p>
                 <div className="flex justify-center ">
-                
-                <CustomButton
-                        variant="solid"
-                        onClick={()=>{
-                            setOpen(false)
-                        }}
-                        className="bg-bgbutton text-white h-8 w-14 font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110 ml-4"
-                        title={
-                            <span>لا</span>
-                        }
-                        radius="full"
-                    />
-                    <CustomButton
-                        variant="solid"
-                        onClick={ () =>  {
+                <button  onClick={()=>setOpen(false)} className={`bg-bgbutton w-16 font-primaryBold text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg ml-2`}
+                > {"لا"}
+                </button>
+                <button  onClick={()=>
+                    {
                             localStorage.removeItem("tokens")
                             localStorage.removeItem("myObject");
                             Cookies.remove("token")
                             sessionStorage.removeItem('sideBarActiveItem');
                             // const response = logout().unwrap()
                             navigator("/")
-                        }}
-                        className="bg-bgbutton text-white h-8 w-14 font-bold text-md hover:cursor-pointer transition-transform transform hover:scale-110"
-                        title={
-                            <span>نعم</span>
-                        }
-                        radius="full"
-                    />
+                    }
+                } className={`bg-bgbutton w-16  font-primaryBold text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg `}
+                > {"نعم"}
+                </button>
                 </div>
             </div>
         </DialogContent>

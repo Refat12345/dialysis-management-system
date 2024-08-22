@@ -31,10 +31,12 @@ export function Table({ data }) {
     contactNumber: item.contactNumber,
   }));
 
+  const status = selectedOption === "مرضى مقبولين" ? "acceptable" :(selectedOption === "مرضى انتظار" ?"waiting" :"Rejected")
+  
   const navigate = useNavigate();
 
   const handleRowClick = (patientName) => {
-    navigate(`/app/patients/${patientName}/global-info`);
+    navigate(`/app/patients/${patientName}/${status}/global-info`);
   };
 
   const getRowColor = (index) => {

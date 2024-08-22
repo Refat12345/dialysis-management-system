@@ -9,7 +9,7 @@ const OrdersState = ({ children }) => {
         request_id:"",
         causes:"",
         new_status:"",
-        postData:(data,changeStatus,type)=>postData(data,changeStatus,type)
+        postData:(data,changeStatus,type ,setOpen)=>postData(data,changeStatus,type,setOpen)
     });
 
     const updateState = (newValues) => {
@@ -24,7 +24,7 @@ const OrdersState = ({ children }) => {
         state,
         updateState,
     };
-    const postData = async(data,changeStatus,type)=>{
+    const postData = async(data,changeStatus,type,setOpen)=>{
         const body = {
             request_id:data.request_id,
             new_status:data.new_status  
@@ -34,8 +34,10 @@ const OrdersState = ({ children }) => {
             
             if(type === "rejected") {
                 toast.error("تم رفض الطلب بنجاح")
+                setOpen(false)
             } else {
                 toast.success("تم قبول الطلب بنجاح")
+                setOpen(false)
             }
         }catch(err){console.log(err);}
     }
