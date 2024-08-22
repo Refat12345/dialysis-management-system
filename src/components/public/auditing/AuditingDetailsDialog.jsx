@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { translateMedicalTerms } from "../../../data/data"
+
 const AuditingDetailsDialog = ({oldData , newData , details}) => {
   return (
     <div>
@@ -11,7 +13,7 @@ const AuditingDetailsDialog = ({oldData , newData , details}) => {
         </div>
         <div className="details w-80 mb-5 ">
             <p className="text-titleSideColor text-md mb-1">تفاصيل العملية :</p>
-            <p className="font-bold">{details}</p>
+            <p className="font-bold">تم تعديل  {translateMedicalTerms(details)}</p>
         </div>
         <div className=" oldData mb-5">
             <p className="text-titleSideColor text-md mb-1">البيانات القديمة :</p>

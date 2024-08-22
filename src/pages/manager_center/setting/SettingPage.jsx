@@ -22,7 +22,7 @@ function SettingPage() {
         {isSuccess && !isLoading && (
           <div className="bg-cardDetailsColor w-full">
             <div
-              className="flex-grow mr-56 ml-8 h-max mt-3 bg-cardDetailsColor "
+              className="flex-grow mr-56 ml-8 mt-3 bg-cardDetailsColor h-screen "
               dir="rtl"
             >
               <div className="flex items-center mb-3">

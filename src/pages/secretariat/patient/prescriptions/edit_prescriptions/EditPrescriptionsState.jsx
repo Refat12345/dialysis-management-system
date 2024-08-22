@@ -46,7 +46,21 @@ const EditPrescriptionsState = ({ children }) => {
             const response = await method(body).unwrap()
             toast.success("تم تعديل الدواء بنجاح")
             return response
-        }catch(err){console.log(err);}
+        }catch (error) {
+            if (error.status === 400) {
+                const errorMessage = error.data.error;
+                console.error(errorMessage);
+                toast.error(errorMessage);
+            } else if (error.status === 403) {
+                const errorMessage =
+                error.data.error 
+                console.error(errorMessage);
+                toast.error(errorMessage);
+            } else {
+                console.error("حدث خطأ أثناء تحديث البيانات", error);
+                toast.error("حدث خطأ أثناء تحديث البيانات");
+            }
+        }
 }
     const contextValue = {
         state,

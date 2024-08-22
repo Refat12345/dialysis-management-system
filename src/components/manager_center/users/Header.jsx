@@ -277,14 +277,13 @@ const patientFilter = {
                 <CustomButton
                   variant="solid"
                   onClick={() => {
-                    navigate("/app/addMedical");
+                    // navigate("/app/addMedical");
                   }}
-                  className={`bg-bgLogin text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ${bodyMeduimStyle}`}
+                  className={`bg-white pl-6 ${bodyMeduimStyle}`}
                   title={
                     <div className="flex items-center justify-center">
-                      <span className="text-sm">إضافة مركز طبي</span>
+                      
                       <div className="w-2"></div>
-                      <PlusIcon className="w-6 h-6 mr-2 text-gray700" />
                     </div>
                   }
                   radius="full"

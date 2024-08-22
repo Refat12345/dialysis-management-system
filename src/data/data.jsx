@@ -63,7 +63,7 @@ export const assignAppointmentRoute = `${appointment}/:id`
 export const notes = `notes`
 export const userInvites = `UserInvites`
 export const logoutRoute = "logout"
-
+export const addMedicalCentersRoute = "addMedicalCenters"
 
 
 //Delete 
@@ -73,7 +73,6 @@ export const assignMaterialToUserCenter = "assignMaterialToUserCenter";
 export const AddUserRoute = 'addUser';
 export const AddMedicalRoute = 'addMedical';
 export const GetUnAcceptedPatientRoute = 'getunacceptedpatient';
-
 
 
 // export const userDetailsRoute = `${usersRoute}/userDetails`;
@@ -137,6 +136,7 @@ export const managerSideBar = {
     { href: usersRoute, name: "المستخدمين", icon: UsersIcon },
     { href: patientsRoute, name: "المرضى", icon: PatientIcon },
     { href: medicalCentersRoute, name: "المراكز الطبية", icon: MedicalCentersIcon },
+    { href: AddMedicalRoute, name: "اضافة مركز طبي", icon: MedicalCentersIcon },
     { href:  userInvites, name: "الدعوات", icon: DialysisSessionsIcon },
     { href: settingRoute, name: "الاعدادت", icon: SettingsIcon },
     { href: logoutRoute, name: "تسجيل الخروج", icon: LogOutIcon },
@@ -181,6 +181,42 @@ export const pharmacologicalTitle = [
   "تاريخ نهاية أخذ الدواء",
   "تفاصيل عامة",
 ];
+
+export const translateMedicalTerms = (englishTerm) => {
+  const translationDict = {
+    "dryWeight": "الوزن الجاف",
+    "vascularEntrance":"الوصل الوعائي",
+    "bloodType": "زمرة الدم",
+    "kidneyTransplant": "زراعة كلية",
+    "causeRenalFailure": "سبب القصور الكلوي",
+    "dialysisStartDate": "تاريخ بدء جلسات الغسيل",
+    "surgeryName": "اسم العملية",
+    "surgeryDate": "تاريخ العملية",
+    "generalDetails": "تفاصيل العملية",
+    "medicineName": "اسم الدواء",
+    "dateStart": "تاريخ بدء اخذ الدواء",
+    "dateEnd": "تاريخ نهاية اخذ الدواء",
+    "illnessName": "اسم المرض",
+    "medicalDiagnosisDate": "تاريخ التشخيص",
+    "averageMin": "المعدل الأدنى",
+    "averageMax": "المعدل الأقصى",
+    "value": "القيمة",
+    "analysisDate": "تاريخ اخذ التحليل",
+    "notes": "ملاحظات",
+    "analysisTypeID": "نوع التحليل",
+    "analysisName": "اسم التحليل",
+    "unitOfMeasurement": "وحدة القياس",
+    "recurrenceInterval": "فترة التكرار",
+    "MedicalRecord":"السجل الطبي",
+    "MedicalAnalysis":"التحاليل",
+    "SurgicalHistory":"السوابق الجراحية",
+    "PharmacologicalHistory":"السوابق الدوائية",
+    "PathologicalHistory":"السوابق المرضية",
+  };
+
+  return translationDict[englishTerm] || "الترجمة غير متوفرة";
+}
+
 
 //==============
 

@@ -11,6 +11,7 @@ const AuditSection = ({data}) => {
         const handleRowClick = () => {
             console.log("s");
         };
+        console.log(data);
         
         const getRowColor = (index) => {
             return index % 2 === 0 ? "bg-white" : "bg-cardDetailsColor";
@@ -24,13 +25,13 @@ const AuditSection = ({data}) => {
                     <tbody className="text-gray-700">
                         {data.map((audit,index)=>{
                             const object = {
-                                operation: audit.operation,
+                                operation: audit.destinationOfOperation,
                                 date:audit.date,
-                                affectedUser: audit.affectedUser,
                                 affectorUser: audit.affectorUser,
+                                affectedUser: audit.affectedUser,
                                 oldData: audit.oldData,
                                 newData: audit.newData,
-                                destinationOfOperation: audit.destinationOfOperation
+                                destinationOfOperation: audit.operation
                             }
                             return <TableRow key={index} row={object} getRowColor={()=>getRowColor(index)} handleRowClick={handleRowClick} type={"auditing"}/>
                             })}

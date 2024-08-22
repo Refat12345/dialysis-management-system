@@ -97,8 +97,20 @@ const MedicalRecordState = ({ children }) => {
             toast.success("تم تعديل السجل الطبي بنجاح")
             setOpen(false)
             return response
-        }catch(err){
-            console.log(err);
+        }catch (error) {
+            if (error.status === 400) {
+                const errorMessage = error.data.error;
+                console.error(errorMessage);
+                toast.error(errorMessage);
+            } else if (error.status === 403) {
+                const errorMessage =
+                error.data.error 
+                console.error(errorMessage);
+                toast.error(errorMessage);
+            } else {
+                console.error("حدث خطأ أثناء تحديث البيانات", error);
+                toast.error("حدث خطأ أثناء تحديث البيانات");
+            }
         }
         
     }
@@ -137,7 +149,21 @@ const MedicalRecordState = ({ children }) => {
             await method(object).unwrap()
             toast.success("تم تعديل السابقة بنجاح")
 
-        }catch(err){console.log(err)}
+        }catch (error) {
+            if (error.status === 400) {
+                const errorMessage = error.data.error;
+                console.error(errorMessage);
+                toast.error(errorMessage);
+            } else if (error.status === 403) {
+                const errorMessage =
+                error.data.error 
+                console.error(errorMessage);
+                toast.error(errorMessage);
+            } else {
+                console.error("حدث خطأ أثناء تحديث البيانات", error);
+                toast.error("حدث خطأ أثناء تحديث البيانات");
+            }
+        }
 
     }
     const contextValue = {

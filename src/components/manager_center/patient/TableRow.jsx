@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAddFromWaitingToPendingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import DropDownPatient from "../../../pages/manager_center/patient/patient_list/Menu";
 import PublicDialog from "../../public/dialog/AlertDialog";
+import { translateMedicalTerms } from "../../../data/data";
 
 function TableRow({
   row,
@@ -172,7 +173,7 @@ function TableRow({
           ) : (
             ""
           )}
-          <h1 className="inline-block pr-2 pl-0 ml-0">{object.connectOne}</h1>
+          <h1 className="inline-block pr-2 pl-0 ml-0">{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
         </div>
       </td>
       <td

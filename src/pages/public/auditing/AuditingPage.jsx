@@ -6,7 +6,7 @@ import AuditSection from "./sections/AuditSection";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { useGetAuditingQuery } from "../../../services/manager_center/auditing/AuditingSlice";
 import { useSelector } from "react-redux";
-
+import { translateMedicalTerms } from "../../../data/data";
 const AuditingPage = () => {
   const user = useSelector((state)=>state.user)
   const { data, isSuccess, isLoading } = useGetAuditingQuery(user.centerID);
@@ -39,7 +39,7 @@ const AuditingPage = () => {
       const matchesOperation =
         filter.operation === "" ||
         filter.operation === "العملية" ||
-        audit.operation.toLowerCase().includes(filter.operation.toLowerCase());
+        translateMedicalTerms(audit.destinationOfOperation).toLowerCase().includes(filter.operation.toLowerCase());
       let dayStr 
       let monthStr 
       let year 
@@ -56,7 +56,7 @@ const AuditingPage = () => {
       }
       const matchesInput =
         inputValue === "" ||
-        audit.affectorUser.toLowerCase().includes(inputValue.toLowerCase());
+        audit.affectedUser.toLowerCase().includes(inputValue.toLowerCase());
       return matchesOperation && matchesDate && matchesInput;
     });
   }, [filter, inputValue, auditing]);

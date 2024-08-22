@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import { CustomDatePicker, DropDown, Search } from "../../../../components"
+import {  DropDown, Search } from "../../../../components"
+import PublicDatePicker from "../../../../components/public/datepicker/PublicDatePicker"
 const Header = ({value,setFilter,setInputValue}) => {
     const filters = [
         {
             title:"العملية",
-            array:["السجل الطبي","التحاليل","معلومات المركز","الوصفات"]
+            array:["السجل الطبي","التحاليل","السوابق المرضية","السوابق الجراحية","السوابق الدوائية","جلسة الغسيل"]
         },
     ]
     const colors = {
@@ -23,7 +24,7 @@ const Header = ({value,setFilter,setInputValue}) => {
                                             setFilter({...value,operation:val})
                                 }} />
                             })}
-                            <CustomDatePicker
+                            <PublicDatePicker
                             date={value.date}
                             onSelect={(val)=>{
                                 setFilter({...value,date:val})

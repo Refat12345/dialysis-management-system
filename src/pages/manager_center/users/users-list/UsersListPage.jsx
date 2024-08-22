@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { PaginationComponent, SideBar } from "../../../../components";
+import { PaginationComponent } from "../../../../components";
 import Header from "../../../../components/manager_center/users/Header";
 import ViewCard from "../../../../components/manager_center/users/ViewCard";
 import React, { useState, useEffect,useMemo } from "react";

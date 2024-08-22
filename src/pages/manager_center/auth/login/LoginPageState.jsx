@@ -58,9 +58,6 @@ export const LoginStateProvider = ({ children }) => {
       const token = response.user.token;
       localStorage.setItem("tokens", response.user.token);
       showSuccessToast("login successfully");
-   
-     
-
       if (token) {
         navigate("/app");
       

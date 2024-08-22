@@ -18,7 +18,7 @@ export const AssignMaterialToUserCenterSlice = apiSlice.injectEndpoints({
                 await queryFulfilled;
                 dispatch(incrementOrderCount());
             } catch (err) {
-                console.error("Failed to create medical record: ", err);
+                console.error(err);
             }
         }
     }),
