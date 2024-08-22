@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { PageLoader } from "../../../components";
+import { PageLoader, Search } from "../../../components";
 import nurse from "./../../../assets/icons/medical-center/users/users-list/doctor.svg";
 import { useState, useEffect } from "react";
 import secretary from "../../../assets/icons/medical-center/users/users-list/secretary.svg";
@@ -33,7 +33,7 @@ const BusinessCard = ({
   role,
 }) => {
   return (
-    <div className="w-full  rounded overflow-hidden shadow-lg p-4 bg-UserInviteCard">
+    <div className="w-full  rounded overflow-hidden shadow-lg p-4 bg-white">
       <div className="flex items-center ">
         <RoleImage role={role} width={11} className="mr-4" />
 
@@ -108,17 +108,15 @@ const UserInvites = () => {
   return (
     <>
       {isUserInvitesSuccess && userInvites && (
-        <div className="flex-grow mr-56 ml-8 mt-3" dir="rtl">
-          <input
-            type="text"
-            placeholder="...البحث"
-            className="bg-search text-right w-3/12 p-2.5 text-gray-500 border rounded-full shadow-sm outline-none appearance-none focus:border-indigo-600 mb-4"
-            onChange={(e) => {
-              setSearchTermForInvites(e.target.value);
-              setSearchTermState(e.target.value);
-            }}
+        <div className="flex-grow mr-48 bg-bgMedicalRecord  " dir="rtl">
+          <div className="mx-[2%] mt-5">
+          <Search
+          handleInputValue={(e) => {
+            setSearchTermForInvites(e.target.value);
+            setSearchTermState(e.target.value);
+          }}
           />
-
+            <div className="mb-5"></div>
           {noResultsFound ? (
             <div
               className="no-results-message"
@@ -141,6 +139,7 @@ const UserInvites = () => {
               ))}
             </div>
           )}
+          </div>
         </div>
       )}
     </>

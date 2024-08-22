@@ -178,7 +178,8 @@ const AssignMaterialToUserCenter = () => {
     }
   };
   return (
-    <div className="flex-grow mr-56" dir="rtl">
+    <div className="flex-grow mr-48 bg-bgMedicalRecord  h-screen" dir="rtl">
+      <div className="mx-[1%]">
       <PublicHeader icon={ii} title={"لوازم جلسة الغسيل"} />
       <div className="grid grid-cols-3 gap-4">
         {cardsData.map((item, index) => (
@@ -262,6 +263,7 @@ const AssignMaterialToUserCenter = () => {
           </div>
         </Dialog.Content>
       </Dialog.Root>
+      </div>
     </div>
    
   );
