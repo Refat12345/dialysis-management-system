@@ -3,7 +3,8 @@
 
 const MedicalCenterDetails= ({title,content}) => {
     const height = window.innerHeight;
-
+    console.log(content);
+    
     const responsiveContent = height > 603 ? (height>700 ? "mb-5" : "mb-3") : "mb-1";
     const responsiveTitle = height > 603 ? (height>700 ? "mb-3" : "mb-1") : "mb-0";
     const responsiveTelecom = height > 603 ? (height>700 ? "mb-3" : "mb-2") : "mb-1";
@@ -23,7 +24,7 @@ return (
             <p className={`text-base text-titleSideColor font-bold ${responsiveTelecom}`}>{title[1]}:</p>
             {content.telecom.map((telecom,index)=>{
                 return <div key={index}>
-                        <p className={`text-sm  font-bold text-red-500  ${responsiveUse}`}>{telecom.use}:</p>
+                        <p className={`text-sm  font-bold text-red-500  ${responsiveUse}`}>{telecom.system}:</p>
                         <p className={`text-sm font-bold  ${responsiveTelecom}`}>{telecom.value}</p>
                 </div>
             })}
