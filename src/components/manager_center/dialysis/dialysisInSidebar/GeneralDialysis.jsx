@@ -9,7 +9,7 @@ import { dialysisRoute, dialysisDetailsRoute } from "../../../../data/data";
 import { useGeneralDialysis } from "./GeneralDialysisState";
 import SelectedTextFeild from "../../../public/textfield/SelectedTextFeild";
 import DropDown from "../../../public/drop_down/DropDown";
-function GeneralDialysis({ data ,type2 }) {
+function GeneralDialysis({ data, type2 }) {
   const navigate = useNavigate();
 
   const {
@@ -23,9 +23,7 @@ function GeneralDialysis({ data ,type2 }) {
     userByPatient,
     isLoadingByPatient,
     isSuccessByPatient,
-
   } = useGeneralDialysis();
-
 
   if (isLoading || !userData || !userData.dialysisSessions) {
     return <div>جاري تحميل البيانات...</div>;
@@ -39,7 +37,6 @@ function GeneralDialysis({ data ,type2 }) {
     chair: item.chair,
     roomName: item.roomName,
   }));
-  
 
   const columns = [
     { key: "name", title: "اسم المريض" },
@@ -80,117 +77,142 @@ function GeneralDialysis({ data ,type2 }) {
     navigate(`/app/dialysisDetails/${userId}`);
   };
   const colors = {
-    titleColor:"primaryColor",
-    contentColor:"bgButtonColor"
-}
+    titleColor: "primaryColor",
+    contentColor: "bgButtonColor",
+  };
+  let height = window.innerHeight;
+
+  let responsive =
+    height > 630
+      ? height > 670
+        ? height > 740
+          ? height > 800
+            ? "min-h-AuditAbove8000"
+            : "min-h-AuditAbove7400"
+          : "min-h-AuditAbove7000"
+        : "min-h-AuditAbove6300"
+      : "min-h-AuditUnder6300";
 
   return (
     <>
-    {
-      type2 === "dialysis" ?  isSuccess && !isLoading && userData && (
-        <div
-          className="flex-grow overflow-x-auto mr-56 ml-8 h-full mt-2 min-h-customAbove600"
-          dir="rtl"
-        >
-          <div className="flex justify-between mb-5 mt-5">
-            <h2 className="text-titleColor font-bold text-customSize w-[30%]">جلسات الغسيل</h2>
+      {type2 === "dialysis"
+        ? isSuccess &&
+          !isLoading &&
+          userData && (
+            <div
+              className={`flex-grow overflow-x-auto mr-56 ml-8  mt-2 ${responsive} `}
+              // className={`flex-grow overflow-x-auto mr-56 ml-8 h-full mt-2 min-h-customAbove600 `}
+              dir="rtl"
+            >
+              <div className="flex justify-between mb-5 mt-5">
+                <h2 className="text-titleColor font-bold text-customSize w-[30%]">
+                  جلسات الغسيل
+                </h2>
 
-            <div className="w-full flex justify-end">
-            <div className="relative w-1/5 ">
-              <DropDown
-                colors={colors}
-                title={selectedYearOption === "" ? "اختر السنة" : selectedYearOption}
-                filter={filterYear.array}
-                onSelect={handleSelectYearChange}
-              />
-            </div>
+                <div className="w-full flex justify-end">
+                  <div className="relative w-1/5 ">
+                    <DropDown
+                      colors={colors}
+                      title={
+                        selectedYearOption === ""
+                          ? "اختر السنة"
+                          : selectedYearOption
+                      }
+                      filter={filterYear.array}
+                      onSelect={handleSelectYearChange}
+                    />
+                  </div>
 
-            <div className="relative w-1/5 ">
-              <DropDown
-                colors={colors}
-                title={selectedMonthOption === "" ? "اختر الشهر" : selectedMonthOption}
-                filter={filterMonth.array}
-                onSelect={handleSelectMonthChange}
-              />
-            </div>
-            </div>
-          </div>
-          <table className="min-w-full bg-white">
-            <TableHeader columns={columns} color="bg-headerTable" />
-
-            <tbody className="text-gray-700">
-              {filteredData.map((row, index) => (
-                <TableRow
-                  id={data[index].id}
-                  key={index}
-                  row={row}
-                  index={index}
-                  handleRowClick={handleRowClick}
-                  getRowColor={() => getRowColor(index, row.name)}
-                  type={"dialysis"}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) 
-      :
-
-      isSuccessByPatient && !isLoadingByPatient && userByPatient && (
-        <div
-          className="flex-grow overflow-x-auto  ml-8 h-full mt-2 min-h-customAbove600"
-          dir="rtl"
-        >
-          <div className="flex justify-between mb-5 mt-5">
-            <h2 className="text-customPurple text-customSize">جلسات الغسيل</h2>
-
-            <div className="relative w-1/5 ">
-              <SelectedTextFeild
-                activeLabel={false}
-                value={selectedYearOption}
-                filter={filterYear.array}
-                onSelect={handleSelectYearChange}
-              />
-
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <img className="w-5 h-5 " src={down} alt="Patient" />
+                  <div className="relative w-1/5 ">
+                    <DropDown
+                      colors={colors}
+                      title={
+                        selectedMonthOption === ""
+                          ? "اختر الشهر"
+                          : selectedMonthOption
+                      }
+                      filter={filterMonth.array}
+                      onSelect={handleSelectMonthChange}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
+              <table className="min-w-full bg-white">
+                <TableHeader columns={columns} color="bg-headerTable" />
 
-            <div className="relative w-1/5 ">
-              <SelectedTextFeild
-                activeLabel={false}
-                value={selectedMonthOption}
-                filter={filterMonth.array}
-                onSelect={handleSelectMonthChange}
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <img className="w-5 h-5 " src={down} alt="Patient" />
+                <tbody className="text-gray-700">
+                  {filteredData.map((row, index) => (
+                    <TableRow
+                      id={data[index].id}
+                      key={index}
+                      row={row}
+                      index={index}
+                      handleRowClick={handleRowClick}
+                      getRowColor={() => getRowColor(index, row.name)}
+                      type={"dialysis"}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        : isSuccessByPatient &&
+          !isLoadingByPatient &&
+          userByPatient && (
+            <div
+            className={`flex-grow overflow-x-auto  ml-8  mt-2 ${responsive} `}
+
+              dir="rtl"
+            >
+              <div className="flex justify-between mb-5 mt-5">
+                <h2 className="text-customPurple text-customSize">
+                  جلسات الغسيل
+                </h2>
+
+                <div className="relative w-1/5 ">
+                  <SelectedTextFeild
+                    activeLabel={false}
+                    value={selectedYearOption}
+                    filter={filterYear.array}
+                    onSelect={handleSelectYearChange}
+                  />
+
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <img className="w-5 h-5 " src={down} alt="Patient" />
+                  </div>
+                </div>
+
+                <div className="relative w-1/5 ">
+                  <SelectedTextFeild
+                    activeLabel={false}
+                    value={selectedMonthOption}
+                    filter={filterMonth.array}
+                    onSelect={handleSelectMonthChange}
+                  />
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <img className="w-5 h-5 " src={down} alt="Patient" />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <table className="min-w-full bg-white">
-            <TableHeader columns={columns} color="bg-headerTable" />
+              <table className="min-w-full bg-white">
+                <TableHeader columns={columns} color="bg-headerTable" />
 
-            <tbody className="text-gray-700">
-              {filteredData.map((row, index) => (
-                <TableRow
-                  id={data[index].id}
-                  key={index}
-                  row={row}
-                  index={index}
-                  handleRowClick={handleRowClick}
-                  getRowColor={() => getRowColor(index, row.name)}
-                  type={"dialysis"}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) 
-      
-    }
-     
+                <tbody className="text-gray-700">
+                  {filteredData.map((row, index) => (
+                    <TableRow
+                      id={data[index].id}
+                      key={index}
+                      row={row}
+                      index={index}
+                      handleRowClick={handleRowClick}
+                      getRowColor={() => getRowColor(index, row.name)}
+                      type={"dialysis"}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
     </>
   );
 }

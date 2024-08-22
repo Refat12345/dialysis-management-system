@@ -125,7 +125,14 @@ export default {
         AuditAbovee740:"602px",
         AuditAbovee700:"560px",
         AuditAbovee630:"511px",
-        AuditUnderr630:"462px"
+        AuditUnderr630:"462px",
+//////////////////جلسات الغسيل سايدبار
+AuditAbove8000 : "635px",
+AuditAbove7400 : "585px",
+AuditAbove7000 :"541px" ,
+AuditAbove6300 : "486px",
+AuditUnder6300 : "441"
+
         
       },
     },

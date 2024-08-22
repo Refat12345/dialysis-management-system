@@ -3,7 +3,7 @@ import GeneralDialysis from "../../../../components/manager_center/dialysis/dial
 import { PaginationComponent , PageLoader} from "../../../../components";
 import { useGeneralDialysis } from "../../../../components/manager_center/dialysis/dialysisInSidebar/GeneralDialysisState";
 import PatientHeader from "../../../../components/manager_center/patient/PatientHeader";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useMemo } from "react";
 import { useParams } from "react-router-dom";
 function GeneralDialysisPage({ type }) {
   const { patientName } = useParams();
@@ -12,6 +12,14 @@ function GeneralDialysisPage({ type }) {
   }, [patientName]);
 
   
+  const itemsPerPage = useMemo(() => {
+    const height = window.innerHeight;
+    if (height > 800) return 10;
+    if (height > 740) return 9;
+    if (height > 670) return 8;
+    if (height > 630) return 7;
+    return 6;
+  }, [window.innerHeight]);
 
   const {
     userData,
@@ -82,7 +90,7 @@ function GeneralDialysisPage({ type }) {
                   }
                   type2={"dialysis"}
                   RenderComponent={GeneralDialysis}
-                  itemsPerPage={4}
+                  itemsPerPage={itemsPerPage}
                 />
               )}
             </div>
@@ -96,7 +104,7 @@ function GeneralDialysisPage({ type }) {
               <PaginationComponent
                 data={userByPatient.dialysisSessions}
                 RenderComponent={GeneralDialysis}
-                itemsPerPage={8}
+                itemsPerPage={itemsPerPage}
               />
             </div>
           )}
