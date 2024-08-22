@@ -110,7 +110,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                         date={state.analysisDate}
                         label="تاريخ التحليل"
                         onSelect={(val) => updateState({ analysisDate: val })}
-                        />
+                    />
                         {state.errors.analysisDate && (
                                 <div dir="rtl" className="text-red-500 text-sm mt-1">
                                     {state.errors.analysisDate}
