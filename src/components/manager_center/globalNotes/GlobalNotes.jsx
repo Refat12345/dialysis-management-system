@@ -21,12 +21,12 @@ function GlobalNotes({ note, type }) {
             <h4 className="text-right">مرسل الملاحظة</h4>
             <h4 className="text-right">{note.senderName}</h4>
 
-            {type !== "sidebar" ? (
+            {/* {type !== "sidebar" ? (
               <>
                 <h4 className="text-right">مستقبل الملاحظة</h4>
                 <h4 className="text-right">{note.receiverName}</h4>
               </>
-            ) : null}
+            ) : null} */}
 
             <h4 className="text-right">التاريخ والوقت</h4>
             <h4 className="text-right">{note.date}</h4>

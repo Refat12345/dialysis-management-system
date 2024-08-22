@@ -5,6 +5,7 @@ export const AssignMaterialToUserCenterSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         AssignMaterialToUser: builder.mutation({
         query: (medicalRecord) => { 
+            console.log("medical",medicalRecord)
             return {
                 url: `assignMaterialToUserCenter`,
                 method: 'POST',

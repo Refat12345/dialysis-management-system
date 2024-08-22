@@ -20,7 +20,7 @@ function SettingPage() {
       <>
         <ToastContainer />
         {isSuccess && !isLoading && (
-          <div className="bg-cardDetailsColor w-full">
+          <div className="bg-cardDetailsColor w-full h-screen">
             <div
               className="flex-grow mr-56 ml-8 mt-3 bg-cardDetailsColor h-screen "
               dir="rtl"

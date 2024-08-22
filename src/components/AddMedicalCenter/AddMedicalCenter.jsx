@@ -2,7 +2,6 @@ import { Column, Row } from "../../components";
 import { useAddCenterState } from "./CreateMedicalState";
 import { UserNumberIcon, LoginUserIcon } from "../../assets/index";
 import { CustomTextField } from "../../components";
-import UserImage from "../../assets/icons/medical-center/users/users-list/nurse.svg";
 import { SelectedTextFeild } from "../../components";
 import {
   bodyMeduimStyle,
@@ -24,6 +23,8 @@ import { PublicHeader } from "../../components";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import medical from "./../../assets/icons/medical-center/setting/MedicalCenter.svg";
+
 
 const AddMedicalCenter = () => {
   const { state, updateState } = useAddCenterState();
@@ -105,7 +106,7 @@ const AddMedicalCenter = () => {
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-bgDashboard"
     >
-      <PublicHeader title={"إضافة مركز طبي"} icon={UserImage} />
+      <PublicHeader title={"إضافة مركز طبي"} icon={medical} />
       <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
         <Row mainAxisAlignment="justify-evenly">
           <div className="w-1/2 mr-4">

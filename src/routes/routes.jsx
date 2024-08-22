@@ -1,6 +1,5 @@
-
 /* eslint-disable no-unused-vars */
-import { createBrowserRouter , Navigate} from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import {
   PatientProfilePage,
   PatientListPage,
@@ -20,7 +19,7 @@ import {
   AddMedicalAnalysisPage,
   MainPage,
   Appointment,
-  LogOut
+  LogOut,
 } from "../pages/index";
 import { PatientProfileStateProvider } from "../pages/manager_center/patient/patient_profile/PatientProfileState";
 import {
@@ -62,7 +61,7 @@ import {
   notes,
   GetUnAcceptedPatientRoute,
   userInvites,
-  logoutRoute
+  logoutRoute,
 } from "../data/data";
 import { LoginStateProvider } from "../pages/manager_center/auth/login/LoginPageState";
 import { RegisterStateProvider } from "../pages/manager_center/auth/register/RegisterPageState";
@@ -106,13 +105,12 @@ import UserInvites from "../pages/manager_center/users/UserInvites";
 import HomePage from "../pages/public/home_page/HomePage";
 import { UserInvitesProvider } from "../pages/manager_center/users/UserInvitesState";
 import { UnAccepectedPatientProvider } from "../pages/manager_center/patient/UnAccepectedPatient";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
-    path: '/',  
-    element:(
-      <HomePage/>
-    ),
+    path: "/",
+    element: <HomePage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -125,32 +123,24 @@ const router = createBrowserRouter([
     //TODO: u may have to add loader
     errorElement: <ErrorPage />,
   },
-  
+
   {
-    path: '/app', 
-    element: <MainLayout />,  
+    path: "/app",
+    element: <MainLayout />,
     children: [
       {
-        path:logoutRoute,
-        element :(
-          <LogOut/>
-        )
+        path: logoutRoute,
+        element: <LogOut />,
       },
       {
         path: "",
-        element: (
-            <MainPage />
-
-        ),
-        index:true,
+        element: <MainPage />,
+        index: true,
         errorElement: <ErrorPage />,
       },
       {
         path: mainRoute,
-        element: (
-            <MainPage />
-
-        ),
+        element: <MainPage />,
         errorElement: <ErrorPage />,
       },
       {
@@ -207,39 +197,36 @@ const router = createBrowserRouter([
             ),
             children: [
               {
-                path: '',
+                path: "",
                 element: (
                   <PrecedentsSection
                     title={pathologicalTitle}
-                    type={'pathological'}
+                    type={"pathological"}
                   />
                 ),
                 index: true,
               },
               {
-                path: 'pathologicalHistory',
+                path: "pathologicalHistory",
                 element: (
                   <PrecedentsSection
                     title={pathologicalTitle}
-                    type={'pathological'}
+                    type={"pathological"}
                   />
                 ),
               },
               {
-                path: 'surgicalHistory',
+                path: "surgicalHistory",
                 element: (
-                  <PrecedentsSection
-                    title={surgicalTitle}
-                    type={'surgical'}
-                  />
+                  <PrecedentsSection title={surgicalTitle} type={"surgical"} />
                 ),
               },
               {
-                path: 'pharmacologicalHistory',
+                path: "pharmacologicalHistory",
                 element: (
                   <PrecedentsSection
                     title={pharmacologicalTitle}
-                    type={'pharmacological'}
+                    type={"pharmacological"}
                   />
                 ),
               },
@@ -282,7 +269,6 @@ const router = createBrowserRouter([
             ),
             errorElement: <ErrorPage />,
           },
-          
         ],
       },
       {
@@ -294,16 +280,14 @@ const router = createBrowserRouter([
         path: dialysisRoute,
         element: (
           <GeneralDialysisProvider>
-            <GeneralDialysisPage type={'general'} />
+            <GeneralDialysisPage type={"general"} />
           </GeneralDialysisProvider>
         ),
         errorElement: <ErrorPage />,
       },
       {
         path: dialysisDetailsRoute,
-        element: (
-          <DialysisPage />
-        ),
+        element: <DialysisPage />,
         errorElement: <ErrorPage />,
       },
       {
@@ -325,7 +309,6 @@ const router = createBrowserRouter([
         element: (
           <CreateUserState>
             <AddUser />
-
           </CreateUserState>
         ),
         errorElement: <ErrorPage />,
@@ -336,15 +319,14 @@ const router = createBrowserRouter([
         path: GetUnAcceptedPatientRoute,
         element: (
           <UnAccepectedPatientProvider>
-                    <GetUnAcceptedPatient/>
+            <GetUnAcceptedPatient />
           </UnAccepectedPatientProvider>
-           
         ),
         errorElement: <ErrorPage />,
       },
 
       ////
-      
+
       {
         path: AddMedicalRoute,
         element: (
@@ -354,16 +336,17 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
-      
+
       {
         path: ordersRoute,
-        element: <OrdersState>
+        element: (
+          <OrdersState>
             <OrdersPage />
-        </OrdersState>,
+          </OrdersState>
+        ),
         errorElement: <ErrorPage />,
       },
-      
-      
+
       {
         path: settingRoute,
         element: (
@@ -383,7 +366,7 @@ const router = createBrowserRouter([
         ),
         errorElement: <ErrorPage />,
       },
-    
+
       {
         path: enterDisbursedMedicines,
         element: (
@@ -402,8 +385,8 @@ const router = createBrowserRouter([
             path: addPrescriptionInfoRoute,
             element: (
               <AddPrescriptionState>
-              <AddPrespictionPage />
-            </AddPrescriptionState>
+                <AddPrespictionPage />
+              </AddPrescriptionState>
             ),
             errorElement: <ErrorPage />,
           },
@@ -436,59 +419,48 @@ const router = createBrowserRouter([
           },
           {
             path: assignAppointmentRoute,
-            element: (
-              <Appointment/>
-            ),
+            element: <Appointment />,
             errorElement: <ErrorPage />,
           },
           {
             path: medicalCentersRoute,
-            element: (
-              <MedicalCentersPage/>
-            ),
+            element: <MedicalCentersPage />,
             errorElement: <ErrorPage />,
           },
           {
             path: assignMaterialToUserCenter,
             element: (
-            <AssignMaterialToUserCenter />
-        
+              <>
+                <ToastContainer />
+                <AssignMaterialToUserCenter />
+              </>
             ),
             errorElement: <ErrorPage />,
           },
-
         ],
       },
       {
-        path:disbursedMaterialsRoute,
-        element :(
-          <DisbursedMaterials/>
-        )
+        path: disbursedMaterialsRoute,
+        element: <DisbursedMaterials />,
       },
       {
-        path:appointment,
-        element :(
-          <Appointment/>
-        )
+        path: appointment,
+        element: <Appointment />,
       },
       {
-        path:notes,
-        element :(
+        path: notes,
+        element: (
           // <Notes/>
           <GeneralDetailsProvider>
-          <GeneralNotePage type={"sidebar"} />
-        </GeneralDetailsProvider>
-        )
+            <GeneralNotePage type={"sidebar"} />
+          </GeneralDetailsProvider>
+        ),
       },
       {
-        path:assignAppointmentRoute,
-        element :(
-          <Appointment/>
-        )
+        path: assignAppointmentRoute,
+        element: <Appointment />,
       },
-      
     ],
-    
   },
 ]);
 
