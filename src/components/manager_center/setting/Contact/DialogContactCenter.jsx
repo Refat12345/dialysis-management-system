@@ -45,6 +45,7 @@ function DialogContactCenter({ open, setOpen }) {
         {
           system: contactType,
           value: contactValue,
+          use:"مركز طبي"
         },
       ],
     };

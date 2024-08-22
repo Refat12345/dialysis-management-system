@@ -77,6 +77,8 @@ export const CenterSettingSlice = apiSlice.injectEndpoints({
 
     addMedicalData: builder.mutation({
       query: (data) => {
+
+        
   
 
         return {
