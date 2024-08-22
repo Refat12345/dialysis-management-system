@@ -1,6 +1,6 @@
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
-import { bodyMeduimStyle } from "../../utils/StyleUtils";
+import { bodyMeduimStyle, bodySmallStyle } from "../../utils/StyleUtils";
 import CustomTextField from "../public/textfield/CustomTextField";
 import AddPrescriptionState, {
   useAddPrescriptionState,
@@ -15,7 +15,7 @@ import { ToastContainer } from "react-toastify";
 import { TrashIcon } from "./../../assets";
 
 function AddPrescription() {
-  const { state, postData, userData } = useAddPrescriptionState();
+  const { state, postData, userData, loading } = useAddPrescriptionState();
   const amount = {
     array: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   };
@@ -172,11 +172,22 @@ function AddPrescription() {
                 postData(state.prescriptionInfo);
               }}
               className={`bg-headerTable w-28 text-gray700 h-10 shadow-xl transition-all font-semibold pl-6 ml-3 ${bodyMeduimStyle}`}
+            
               title={
                 <div className="flex items-center justify-center">
-                  <span className="text-sm w-full"> حفظ </span>
+                  {loading ? (
+                    <span >
+                      جاري التحميل...
+                    </span>
+                  ) : (
+                    <>
+                      <span >حفظ</span>
+                      
+                    </>
+                  )}
                 </div>
               }
+              disabled={loading}
             />
           </div>
         </div>

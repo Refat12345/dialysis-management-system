@@ -66,6 +66,8 @@ const UserInvites = () => {
     setSearchTermForInvites,
   } = useUserInvites();
 
+  console.log("invite ",userInvites)
+
   const [searchTerm, setSearchTermState] = useState("");
   const [noResultsFound, setNoResultsFound] = useState(false);
 

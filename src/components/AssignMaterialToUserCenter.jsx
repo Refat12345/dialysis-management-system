@@ -26,6 +26,8 @@ const translations = {
   الهيبارين: "الهيبارين",
   الحديد: "الحديد",
   فيستولا: "فيستولا",
+  قثطرة_مؤقتة:"قثطرة مؤقتة",
+  قثطرة_دائمة:"قثطرة دائمة",
   ابر: "ابر",
   فلتر: "فلتر",
   الدارة: "الدارة",
@@ -56,7 +58,7 @@ const Card = ({
         >
           <option value="">اختر...</option>
           <option value={translations["فيستولا"]}>فيستولا</option>
-          <option value={translations["وصل وريدي"]}>وصل وريدي</option>
+          {/* <option value={translations["وصل وريدي"]}>وصل وريدي</option> */}
           <option value={translations["قثطرة مؤقتة"]}>قثطرة مؤقتة</option>
           <option value={translations["قثطرة دائمة"]}>قثطرة دائمة</option>
         </select>
@@ -156,8 +158,21 @@ const AssignMaterialToUserCenter = () => {
       toast.success("تم إرسال  البيانات بنجاح!");
       handleCloseDialog();
     } catch (error) {
-      toast.error("حدث خطأ أثناء إرسال البيانات ");
-    } finally {
+      if (error.status === 400) {
+        const errorMessage = error.data.error || "حدث خطأ أثناء تحديث البيانات";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else if (error.status === 403) {
+        const errorMessage =
+          error.data.error ||
+          "ليس لديك التصاريح اللازمة للوصول إلى هذه الـ API";
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("حدث خطأ أثناء تحديث البيانات", error);
+        toast.error("حدث خطأ أثناء تحديث البيانات");
+      }
+    }finally {
       setLoading(false);
     }
   };
@@ -247,6 +262,7 @@ const AssignMaterialToUserCenter = () => {
         </Dialog.Content>
       </Dialog.Root>
     </div>
+   
   );
 };
 export default AssignMaterialToUserCenter;

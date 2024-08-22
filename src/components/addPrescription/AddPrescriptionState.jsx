@@ -15,6 +15,8 @@ const AddPrescriptionState = ({ children, userId }) => {
   const [userData, setUserData] = useState([]);
   const [isLoadingmedicences, setIsLoadingmedicences] = useState(false);
   const [isSuccessmedicences, setIsSuccessmedicences] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [state, setState] = useState({
     prescriptionInfo: [
       {
@@ -154,6 +156,8 @@ const AddPrescriptionState = ({ children, userId }) => {
 
     const transformedData = transformPrescriptionData(prescriptionInfo);
     try {
+      setLoading(true);
+
       const response = await createPrescription(transformedData).unwrap();
 
       toast.success("تم إرسال الوصفة الطبية بنجاح!");
@@ -189,6 +193,9 @@ const AddPrescriptionState = ({ children, userId }) => {
         toast.error("حدث خطأ أثناء تحديث البيانات");
       }
     }
+    finally {
+      setLoading(false);
+    }
   };
   const contextValue = {
     state,
@@ -197,6 +204,7 @@ const AddPrescriptionState = ({ children, userId }) => {
     isLoadingmedicences,
     isSuccessmedicences,
     userData,
+    loading
   };
 
   return (
