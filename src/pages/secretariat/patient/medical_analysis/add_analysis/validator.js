@@ -20,12 +20,6 @@ const validateAnalysisDate = (analysisDate)=>{
     return null;
 }
 
-const validateUnitOfMeasurement = (unitOfMeasurement)=>{
-    if (!unitOfMeasurement.trim()) {
-        return "الرجاء ادخال الوحدة";
-    }
-    return null;
-}
 
 
 export const validateMedicalAnalysisForm = (formData) => {
@@ -46,11 +40,7 @@ export const validateMedicalAnalysisForm = (formData) => {
         validationErrors.analysisDate = analysisDate;
     }
 
-    const unitOfMeasurement = validateUnitOfMeasurement(formData.unitOfMeasurement);
-    if (unitOfMeasurement) {
-        validationErrors.unitOfMeasurement = unitOfMeasurement;
-    }
-
+  
 
     return validationErrors;
 };

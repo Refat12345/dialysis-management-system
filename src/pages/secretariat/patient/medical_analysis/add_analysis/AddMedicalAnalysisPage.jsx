@@ -98,13 +98,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
                                 placeholder={"ادخل الوحدة"}
                                 type={"اضافة وحدة جديدة" }
                                 allowNewSelection = {true}
-
                             />
-                            {state.errors.unitOfMeasurement && (
-                                <div dir="rtl" className="text-red-500 text-sm mt-1">
-                                    {state.errors.unitOfMeasurement}
-                                </div>
-                            )}
                         </div>
                         <div className="w-[30%] self-center mt-7">
                             <CheckBox state={state} updateState={updateState} />
