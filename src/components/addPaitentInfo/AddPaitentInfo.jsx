@@ -47,7 +47,7 @@ function AddPaitentInfo({id}) {
   };
 
   const relativeRelationFilter = {
-    array: ["اخ", "ابن عم", "ام", "اب"],
+    array: ["اخ", "ابن عم", "ام", "اب" ,"ابن","بنت","زوج"],
     title: "صلة القرابة",
   };
 
@@ -78,7 +78,7 @@ function AddPaitentInfo({id}) {
     "ريف دمشق",
   ];
   const LearnFilter = {
-    array: ["ثانوي", "جامعي"],
+    array: ["ثانوي", "جامعي","اعدادي","ابتدائي"],
     title: "التعليم",
   };
 
@@ -93,17 +93,17 @@ function AddPaitentInfo({id}) {
   };
 
   const economicSourceFilter = {
-    array: ["عقد عمل", "وظيفة"],
+    array: ["عقد عمل", "وظيفة","عمر حر"],
     title: "وظيفة",
   };
 
   const location = {
-    array: ["ايجار", "ملك"],
+    array: ["ايجار", "ملك","مستضاف"],
     title: "ايجار",
   };
 
   const maritalStatusFilter = {
-    array: ["اعزب", "متزوج"],
+    array: ["اعزب", "متزوج" ,"أرملة"],
     title: "صلة القرابة",
   };
   return (

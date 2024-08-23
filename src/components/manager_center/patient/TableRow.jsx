@@ -50,16 +50,16 @@ function TableRow({
 
     switch (value) {
       case "اضافة وصفة طبية":
-        navigate(`/app/patient/acceptable/${id}/PrescriptionInfo`);
+        navigate(`/app/patient/${id}/acceptable/PrescriptionInfo`);
         break;
       case "اضافة تحليل طبي":
-        navigate(`/app/patient/acceptable/${id}/addMedicalAnalysis`);
+        navigate(`/app/patient/${id}/acceptable/addMedicalAnalysis`);
         break;
       case "اضافة مستلزمات جلسة الغسيل":
-        navigate(`/app/patient/acceptable/${id}/assignMaterialToUserCenter`);
+        navigate(`/app/patient/${id}/acceptable/assignMaterialToUserCenter`);
         break;
       case "اعطاء موعد":
-        navigate(`/app/patient/acceptable/${id}/appointment/${id}`);
+        navigate(`/app/patient/${id}/acceptable/appointment/${id}`);
         break;
       case "اجنبي":
         history.push("/path-for-foreigner");
@@ -100,7 +100,7 @@ function TableRow({
     updateState({ adminValue: value });
     switch (value) {
       case "نقل المريض":
-        navigate(`/app/patient/acceptable/${id}/medicalCenters`);
+        navigate(`/app/patient/${id}/acceptable/medicalCenters`);
         break;
       case "تعطيل الحساب":
         navigate(`/app/patient/${id}/addMedicalAnalysis`);

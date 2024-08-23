@@ -18,12 +18,12 @@ const GetUnAcceptedPatient = () => {
   };
 
   const handleAddGeneralInfo = () => {
-    navigate(`/app/patient/hanging/${selectedPatient.id}/addPatientInfo`);
+    navigate(`/app/patient/${selectedPatient.id}/hanging/addPatientInfo`);
     setShowDropdown(false);
   };
 
   const handleAddMedicalRecord = () => {
-    navigate(`/app/patient/hanging/${selectedPatient.id}/enterMedicalRecord`);
+    navigate(`/app/patient/${selectedPatient.id}/hanging/enterMedicalRecord`);
     setShowDropdown(false);
   };
 
