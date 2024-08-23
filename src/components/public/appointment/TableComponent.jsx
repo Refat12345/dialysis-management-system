@@ -8,7 +8,7 @@ import AppointmentDialog from "../../../pages/public/appointment/sections/Dialog
 import { useState, useEffect, useMemo } from "react";
 
 const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, patientID }) => {
-  const daysOfWeek = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+  const daysOfWeek = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس',"الجمعة"];
   const [highlightedCells, setHighlightedCells] = useState({});
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState({

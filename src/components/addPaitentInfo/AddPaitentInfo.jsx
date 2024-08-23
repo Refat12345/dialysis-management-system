@@ -93,7 +93,7 @@ function AddPaitentInfo({id}) {
   };
 
   const economicSourceFilter = {
-    array: ["عقد عمل", "وظيفة","عمر حر"],
+    array: ["عقد عمل", "وظيفة","عمل حر","تجارة"],
     title: "وظيفة",
   };
 
@@ -126,6 +126,7 @@ function AddPaitentInfo({id}) {
               value={state.genderValue === "" ? "الجنسية" : state.genderValue}
               filter={genderFilter.array}
               onSelect={(val) => state.selectGender(val)}
+
             />
           </div>
           <div className="w-3/4 mr-4 mt-3">
@@ -167,6 +168,9 @@ function AddPaitentInfo({id}) {
               }
               filter={economicTypeFilter.array}
               onSelect={(val) => state.selectEconomicType(val)}
+              allowNewSelection = {true}
+              type={"اضافة نوع دخل"}
+              placeholder={"أدخل نوع الدخل"}
             />
           </div>
           <div className="w-3/4 mr-4 mt-3">
@@ -179,6 +183,9 @@ function AddPaitentInfo({id}) {
               }
               filter={economicSourceFilter.array}
               onSelect={(val) => state.selectEconomicSource(val)}
+              allowNewSelection = {true}
+              type={"اضافة مصدر دخل "}
+              placeholder={"أدخل مصدر الدخل"}
             />
           </div>
         </div>
@@ -197,6 +204,9 @@ function AddPaitentInfo({id}) {
               }
               filter={maritalStatusFilter.array}
               onSelect={(val) => state.selectMaritalStatus(val)}
+              allowNewSelection = {true}
+              type={"اضافة حالة اجتماعية"}
+              placeholder={"أدخل الحالة الاجتماعية"}
             />
             <div className="mt-3"></div>
 
@@ -295,6 +305,9 @@ function AddPaitentInfo({id}) {
             }
             filter={relativeRelationFilter.array}
             onSelect={(val) => state.selectrelativeRelation(val)}
+            allowNewSelection = {true}
+            type={"اضافة صلة قرابة"}
+            placeholder={"أدخل صلة القرابة"}
           />
         </div>
       </Row>
