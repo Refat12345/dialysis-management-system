@@ -78,7 +78,7 @@ const UsersListPage = () => {
             </div>
           ) : (
             <PaginationComponent
-              data={filteredData.length ? filteredData[0] : userData[0]}
+              data={filteredData.length ? filteredData.flat() : userData.flat()}
               RenderComponent={ViewCard}
               itemsPerPage={itemsPerPage}
             />
