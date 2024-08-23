@@ -415,7 +415,7 @@ function AddPaitentInfo({id}) {
               !state.contactInfo ||
               !state.addressInfo
             ) {
-              alert("الرجاء ملء جميع الحقول");
+              toast.warning("الرجاء ملء جميع الحقول");
               setIsLoading(false); 
               return;
             }
@@ -433,7 +433,7 @@ function AddPaitentInfo({id}) {
               residenceType: state.location,
               fullName: state.username,
               degreeOfKinship: state.relativeRelation,
-              patientID: id.toString(),
+              patientID: id,
               childrenNumber: state.nationaltyNumber,
               healthStateChildren: state.childreStatus,
               telecomDataArray: state.contactInfo,
