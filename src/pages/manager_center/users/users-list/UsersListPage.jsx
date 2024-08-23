@@ -38,6 +38,7 @@ const UsersListPage = () => {
     }
   }, [searchTerm, filteredData]);
 
+console.log("daaa",filteredData)
   if (isLoading)
     return (
       <div className="flex-grow md:mr-48">
@@ -78,7 +79,7 @@ const UsersListPage = () => {
             </div>
           ) : (
             <PaginationComponent
-              data={filteredData.length ? filteredData[0] : userData[0]}
+              data={filteredData.length ? filteredData.flat() : userData.flat()}
               RenderComponent={ViewCard}
               itemsPerPage={itemsPerPage}
             />
