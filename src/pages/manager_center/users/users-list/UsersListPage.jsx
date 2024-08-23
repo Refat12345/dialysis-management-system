@@ -38,7 +38,6 @@ const UsersListPage = () => {
     }
   }, [searchTerm, filteredData]);
 
-console.log("daaa",filteredData)
   if (isLoading)
     return (
       <div className="flex-grow md:mr-48">
