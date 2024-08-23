@@ -12,11 +12,11 @@ return (
     <div  dir="rtl" className={`flex flex-row justify-between p-4 rounded-lg bg-white ${parentResponsive}`}>
         <div className="doctor status ">
             <p className="text-lg font-bold mb-4"> 
-                الطبيب: {doctor}
+                {doctor}
             </p>
-            <div className={`rounded-full p-1  w-[60%] ${medicine.status === "active" ?"bg-green-100" :"bg-bgMedicineStatus"} `}>
+            {/* <div className={`rounded-full p-1  w-[60%] ${medicine.status === "active" ?"bg-green-100" :"bg-bgMedicineStatus"} `}>
                 <p className={`text-center pr- ${medicine.status === "active" ? "text-green-500 " :"text-titleSideColor"}`}>{medicine.status === "nonActive" ? "منتهية" :"نشطة" }</p>
-            </div>
+            </div> */}
         </div>
         <div className="title text-base ">
             <p className={`${responsive}`}>{arrayTitle[0]}:</p>
