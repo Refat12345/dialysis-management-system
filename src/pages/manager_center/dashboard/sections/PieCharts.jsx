@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { DropDown } from "../../../../components";
+
 import PieChart from "../../../../components/manager_center/dashboard/PieChart/PieChart"
 
 
@@ -7,24 +7,24 @@ import PieChart from "../../../../components/manager_center/dashboard/PieChart/P
   const causeRenalFailureTitle =[["داء السكري","أمراض قلبية","ضغط الدم", "أمراض أخرى"],["#c9a05b" , "#ddc994" ,"#a43939","#116e41"]]
 
 
-const PieCharts = ({setValue ,date, causeRenalData, medicineData}) => {
+const PieCharts = ({ causeRenalData, medicineData}) => {
  
-  const colors = {
-    titleColor:"primaryColor",
-    contentColor:"bgButtonColor"
-}
-const year = {
-    title :"السنة",
-    array :["2024","2025","2026","2027","2028","2029","2030",
-      "2031","2032","2033","2034","2035"
-    ]
-}
-const month = {
-  title :"الشهر",
-  array :["1","2","3","4","5","6","7",
-    "8","9","10","11","12"
-  ]
-}
+//   const colors = {
+//     titleColor:"primaryColor",
+//     contentColor:"bgButtonColor"
+// }
+// const year = {
+//     title :"السنة",
+//     array :["2024","2025","2026","2027","2028","2029","2030",
+//       "2031","2032","2033","2034","2035"
+//     ]
+// }
+// const month = {
+//   title :"الشهر",
+//   array :["1","2","3","4","5","6","7",
+//     "8","9","10","11","12"
+//   ]
+// }
   const medicines = [
     { id: 0, value: medicineData.الحديد, label:medicinesTitle[0][0]},
     { id: 1, value: medicineData.الهيبارين , label: medicinesTitle[0][1]  },
@@ -39,8 +39,8 @@ const month = {
   const height = window.innerHeight;
   return (
     <>
-    <div className={`${height > 700 ?"mt-5 ml-[8%]" :"mt-3 ml-[8%]"}`}>
-        <div className="flex justify-between">
+    <div className={`${height > 700 ?"mt-14 ml-[8%]" :"mt-10 ml-[8%]"}`}>
+        {/* <div className="flex justify-between">
         
               <DropDown colors={colors} filter={ month.array} title={month.title} onSelect={(val) => {
                 setValue({...date,month:val})
@@ -48,7 +48,7 @@ const month = {
               <DropDown colors={colors} filter={ year.array} title={year.title} onSelect={(val) => {
                 setValue({...date,year:val})
               }}/>
-        </div>
+        </div> */}
         <div className={`${height > 700 ?"mt-2" :"mt-1"}`}></div>  
         <div className="shadow-lg flex-grow ">
           <PieChart title = {medicinesTitle} data = {medicines}/>

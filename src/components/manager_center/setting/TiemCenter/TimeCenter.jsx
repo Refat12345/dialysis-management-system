@@ -43,15 +43,15 @@ function TimeCenter({ data }) {
           )}
         </div>
 
-        <h3 className="text-xl text-blue700 ">الورديات:</h3>
-        <img className="ml-2" src={time} />
+        <h3 className="text-xl text-titleColor  ">الورديات:</h3>
+        <img className="ml-2 w-8 h-8" src={time} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data.map((card, index) => (
           <div key={index} className=" p-3 rounded-lg">
             <h3 className="text-right">{card.name}</h3>
-            <p className="text-right">
+            <p className="text-right font-bold text-black">
               {card.shiftStart} إلى {card.shiftEnd}
             </p>
           </div>

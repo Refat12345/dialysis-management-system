@@ -75,11 +75,11 @@ const ManagerDashboard = () => {
     }
   }, [id, reStatistics, reCause, reMedicines]);
 
-  useEffect(() => {
-    if(date.month != "" && date.year != "" ){
-      reMedicines();
-    }
-}, [date]);
+//   useEffect(() => {
+//     if(date.month != "" && date.year != "" ){
+//       reMedicines();
+//     }
+// }, [date]);
 
   // Handle loading state
   if (medicineLoading || causeRenalLoading || statisticsLoading || medicalCentersLoading) {
@@ -116,7 +116,7 @@ const ManagerDashboard = () => {
     medicineSuccess &&
     causeRenalSuccess &&
     statisticsSuccess && (
-      <div className="flex-grow md:mr-48 bg-bgMedicalRecord  ">
+      <div className="flex-grow md:mr-48  bg-bgMedicalRecord  ">
         <div className="mx-[2%] h-screen mt-8">
           <div dir="rtl" className="w-[20%]  ">
             <DropDown

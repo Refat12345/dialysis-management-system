@@ -61,7 +61,6 @@ function GeneralDialysis({ data, type2 }) {
       "2024",
       "2025",
       "2026",
-      "2026",
       "2027",
       "2028",
       "2029",
@@ -164,34 +163,38 @@ function GeneralDialysis({ data, type2 }) {
 
               dir="rtl"
             >
-              <div className="flex justify-between mb-5 mt-5">
-                <h2 className="text-customPurple text-customSize">
+              <div className="flex  mb-5 mt-5">
+                <h2 className="text-titleColor font-bold text-customSize">
                   جلسات الغسيل
                 </h2>
-
-                <div className="relative w-1/5 ">
-                  <SelectedTextFeild
-                    activeLabel={false}
-                    value={selectedYearOption}
+                <div className="flex flex-grow  justify-end">
+                <div className="relative w-[22%] mr-5 self-center  ">
+                  <DropDown
+                    colors={colors}
+                    title={
+                      selectedYearOption === ""
+                        ? "اختر السنة"
+                        : selectedYearOption
+                    }
                     filter={filterYear.array}
                     onSelect={handleSelectYearChange}
+                    type={"shift"}
                   />
-
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <img className="w-5 h-5 " src={down} alt="Patient" />
-                  </div>
                 </div>
 
-                <div className="relative w-1/5 ">
-                  <SelectedTextFeild
-                    activeLabel={false}
-                    value={selectedMonthOption}
-                    filter={filterMonth.array}
-                    onSelect={handleSelectMonthChange}
-                  />
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <img className="w-5 h-5 " src={down} alt="Patient" />
-                  </div>
+                <div className="relative w-[22%] self-center  ">
+                <DropDown
+                      colors={colors}
+                      title={
+                        selectedMonthOption === ""
+                          ? "اختر الشهر"
+                          : selectedMonthOption
+                      }
+                      filter={filterMonth.array}
+                      onSelect={handleSelectMonthChange}
+                      type={"shift"}
+                    />
+                </div>
                 </div>
               </div>
               <table className="min-w-full bg-white">

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import DialogNote from "./DialogNote";
 import { useSelector } from "react-redux";
@@ -14,7 +15,7 @@ function NoteCenter({ data }) {
         onClick={() => setOpen(true)}
       >
         <div className="flex flex-row justify-between items-center"> 
-        <span  className="block">
+        <span  className="block text-titleColor mb-1 text-xl">
           تفاصيل عامة :
         </span>
         {user.role === "secretary" && (
@@ -29,7 +30,7 @@ function NoteCenter({ data }) {
           )}
         </div>
         
-        {data}
+        <p className="font-bold text-black">{data}</p>
       </div>
       <DialogNote open={open} setOpen={setOpen} data={data} />
     </>

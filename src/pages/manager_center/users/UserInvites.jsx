@@ -108,7 +108,7 @@ const UserInvites = () => {
   return (
     <>
       {isUserInvitesSuccess && userInvites && (
-        <div className="flex-grow mr-48 bg-bgMedicalRecord  " dir="rtl">
+        <div className="flex-grow mr-48 min-h-screen bg-bgMedicalRecord  " dir="rtl">
           <div className="mx-[2%] mt-5">
           <Search
           handleInputValue={(e) => {

@@ -173,7 +173,7 @@ function TableRow({
           ) : (
             ""
           )}
-          <h1 className="inline-block pr-2 pl-0 ml-0">{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
+          <h1 className="inline-block pr-1 pl-0 ml-0">{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
         </div>
       </td>
       <td

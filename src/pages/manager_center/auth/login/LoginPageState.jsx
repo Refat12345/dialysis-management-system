@@ -27,51 +27,53 @@ export const LoginStateProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   const [loginApi, { error }] = useLoginMutation();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     setState((prevState) => ({ ...prevState, errors: {}, loading: true }));
 
-    // Validate the form data
     const validationErrors = validateLoginForm({
-      nationaltyNumber: state.nationaltyNumber,
-      // password: state.password,
-      password: "Waseem@123",
+        nationaltyNumber: state.nationaltyNumber,
+        password: "Waseem@123", 
     });
 
     if (Object.keys(validationErrors).length > 0) {
-      setState((prevState) => ({
-        ...prevState,
-        errors: validationErrors,
-        loading: false,
-      }));
-      return;
+        setState((prevState) => ({
+            ...prevState,
+            errors: validationErrors,
+            loading: false,
+        }));
+        return;
     }
 
     try {
-      const response = await loginApi({
-        nationalNumber: state.nationaltyNumber,
-        password: state.password,
-      }).unwrap();
-      const jsonString = JSON.stringify(response.user);
-      localStorage.setItem("myObject", jsonString);
-      const token = response.user.token;
-      localStorage.setItem("tokens", response.user.token);
-      showSuccessToast("login successfully");
-      if (token) {
-        navigate("/app");
-      
-      }
+        const response = await loginApi({
+            nationalNumber: state.nationaltyNumber,
+            password: state.password,
+        }).unwrap();
+
+        const jsonString = JSON.stringify(response.user);
+        localStorage.setItem("myObject", jsonString);
+        const token = response.user.token;
+        localStorage.setItem("tokens", token);
+
+        showSuccessToast("تم تسجيل الدخول بنجاح");
+
+        if (token) {
+            navigate("/app");
+            window.location.reload();  
+        }
     } catch (err) {
-      console.log(err);
-      if(err.data.error === "Invalid nationalNumber or password"){showErrorToast("خطأ بالرقم الوطني أو كلمة المرور");}
-      else{showErrorToast("حدثت مشكلة معنية حاول مجدداً");}
-      setState((prevState) => ({ ...prevState, errors: {}, loading: false }));
+        console.log(err);
+        if (err.data.error === "Invalid nationalNumber or password") {
+            showErrorToast("خطأ بالرقم الوطني أو كلمة المرور");
+        } else {
+            showErrorToast("حدثت مشكلة معنية حاول مجدداً");
+        }
+        setState((prevState) => ({ ...prevState, errors: {}, loading: false }));
     }
 
     setState((prevState) => ({ ...prevState, loading: false }));
-  };
-
+};
   const handleVisible = (event) => {
     event.preventDefault();
     setState((prevState) => ({

@@ -17,16 +17,14 @@ const Dashboard = () => {
   const height = window.innerHeight;
   const itemsPerPage = useMemo(() => (height > 599 ? (height > 819 ? 7 : 6) : 5), [height]);
   
-  console.log(useGetPieChartsQuery(date));
-  
-  useEffect(() => {
+  // useEffect(() => {
       
-      if(date.month != "" || date.year != "" ){
-        refetch();
-      }
-  }, [date, refetch]);
+  //     if(date.month != "" || date.year != "" ){
+  //       refetch();
+  //     }
+  // }, [date, refetch]);
 
-  if (sessionLoading || statisticsLoading  || causeRenalLoading) {
+  if (sessionLoading || statisticsLoading  || causeRenalLoading || medicineLoading) {
     return (
       <div className="flex-grow md:mr-48">
         <div className="flex items-center justify-center h-screen">
@@ -39,7 +37,7 @@ const Dashboard = () => {
 
 
   
-  if (!sessionSuccess || !statisticsSuccess  || !causeRenalSuccess) {
+  if (!sessionSuccess || !statisticsSuccess  || !causeRenalSuccess || !medicineSuccess) {
     return (
       <div className="flex-grow md:mr-48">
       <div className="flex items-center justify-center h-screen">
@@ -48,10 +46,11 @@ const Dashboard = () => {
       </div>
     );
   }
-  console.log(medicineDate);
+
+  
   
   return (
-    <div className="flex-grow md:mr-48 bg-bgDashboard h-screen">
+    <div className="flex-grow md:mr-48 bg-bgDashboard  min-h-screen">
       <Cards data={statisticsData[0]} />
       <div className={`flex flex-row-reverse justify-between ${height > 700 ? "mt-7" : "mt-5"}`}>
         <div className="flex flex-col md:w-[62%]">

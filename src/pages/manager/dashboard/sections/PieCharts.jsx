@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import { DropDown } from "../../../../components";
@@ -21,24 +22,25 @@ const causeRenalFailure = [
     { id: 2, value: causeRenalData.bloodPressure, label: causeRenalFailureTitle[0][2]},
     { id: 3, value: causeRenalData.otherDiseases, label: causeRenalFailureTitle[0][3]},
 ];
-const filters = [{
-    title:date.month === "" ? "الشهر":date.month,
-    array:["1","2","3","4","5","6","7","8","9","10","11","12",]
-},{
-    title:date.year === ""?"السنة":date.year,
-    array:["2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036"]
-}
-]
 
-const colors = {
-    titleColor: "primaryColor",
-    contentColor: "bgButtonColor",
-    textColor: "textMenuColor",
-}
+// const filters = [{
+//     title:date.month === "" ? "الشهر":date.month,
+//     array:["1","2","3","4","5","6","7","8","9","10","11","12",]
+// },{
+//     title:date.year === ""?"السنة":date.year,
+//     array:["2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036"]
+// }
+// ]
+
+// const colors = {
+//     titleColor: "primaryColor",
+//     contentColor: "bgButtonColor",
+//     textColor: "textMenuColor",
+// }
 
     return (
     <div  className="mx-[1%] md:mx-[2%] lg:mx-[6%] xl:mx-[10%] mt-10">
-        <div  className="flex mb-2">
+        {/* <div  className="flex mb-2">
         <div className="w-[20%]">
         <DropDown colors={colors} filter={filters[0].array} title={filters[0].title} onSelect={(val)=>{
                 setValue({...date,month:val})
@@ -49,7 +51,7 @@ const colors = {
                 setValue({...date,year:val})
         }}/>
         </div>
-        </div>
+        </div> */}
         <div className={`flex flex-row-reverse justify-between  `}>
         <div className={`shadow-lg w-[45%] xl:w-[40%]  `} style={{ height: 'calc(100vh - 73vh)' }}>
         <p dir="rtl"className="bg-white px-5 py-3 text-lg font-bold"> نسب أسباب القصور الكلوي</p>  

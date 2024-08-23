@@ -19,7 +19,7 @@ function Cards({ data }) {
     <>
       <div className="flex flex-col bg-white border border-indigo-300 rounded-xl ">
         <div className="flex flex-row items-center justify-between w-full">
-          <span className=" text-lg text-blue700 pr-4">الاحصائيات</span>
+          <span className=" text-lg text-titleColor font-bold pr-4">الاحصائيات</span>
           {user.role === "secretary" && (
             <button
               onClick={() => setOpen(true)}

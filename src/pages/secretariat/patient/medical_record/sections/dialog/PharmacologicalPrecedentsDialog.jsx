@@ -65,7 +65,7 @@ const PharmacologicalPrecedentsDialog = ({state,updateState}) => {
             </div>
         </Row>
                 </div>
-                <div className="mgButton"></div>
+            
                 </div>
             })}
     </div>

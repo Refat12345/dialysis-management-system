@@ -20,13 +20,13 @@ function SettingPage() {
       <>
         <ToastContainer />
         {isSuccess && !isLoading && (
-          <div className="bg-cardDetailsColor w-full h-screen">
+          <div className="bg-bgSetting w-full h-screen">
             <div
-              className="flex-grow mr-56 ml-8 mt-3 bg-cardDetailsColor h-screen "
+              className="flex-grow mr-56 ml-8 mt-3 bg-bgSetting h-screen "
               dir="rtl"
             >
               <div className="flex items-center mb-3">
-                <span className="text-2xl text-blue-700 mr-2 ml-5">
+                <span className="text-xl font-bold text-titleColor mr-2 ml-5">
                   معلومات المركز
                 </span>
                 <hr className="custom-hrr flex-grow " />

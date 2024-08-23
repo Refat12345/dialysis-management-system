@@ -23,10 +23,12 @@ import {
 } from "../../../../utils/StyleUtils";
 import { PageLoader } from "../../../../components";
 import phone from "../../../../assets/icons/medical-center/users/users-list/phone.svg";
+import { calculateAge } from "../../../../utils/DateUtils";
 
 const GlobalInfoPage = () => {
   const { state } = useContext(GlobalInfoStateContext);
-
+  console.log(state);
+  
   if (!state) {
     return (
       <div className="flex-grow md:mr-48">
@@ -54,11 +56,7 @@ const GlobalInfoPage = () => {
                   </span>
                 }
                 content={
-                  state.userDetails.gender == "male"
-                    ? "ذكر"
-                    : state.userDetails.gender == "female"
-                    ? "أنثى"
-                    : "غير محدد"
+                  state.userDetails.gender 
                 }
               />
               <CardRow
@@ -83,17 +81,6 @@ const GlobalInfoPage = () => {
           }
         />
         <GlobalInfoCard
-          headerTitle={<span>معلومات التواصل</span>}
-          headerIcon={GlobalInfoContactsIcon}
-          cardContent={
-            <div>
-              {state.userDetails.telecom.map((e, index) => (
-                <CardRow key={index} title={e.use} content={e.value} />
-              ))}
-            </div>
-          }
-        />
-        <GlobalInfoCard
           headerTitle={
             <span>
               معلومات المريض العامة{" "}
@@ -105,7 +92,7 @@ const GlobalInfoPage = () => {
             <div>
               <CardRow
                 title="عمر المريض"
-                content={state.userDetails.age ?? 40}
+                content={calculateAge(state.userDetails.dateOfBirth)}
               />
               <CardRow
                 title="جنسية المريض"
@@ -127,6 +114,17 @@ const GlobalInfoPage = () => {
                 title="الحالة الاجتماعية"
                 content={state.userDetails.generalInformation.maritalStatus}
               />
+            </div>
+          }
+        />
+         <GlobalInfoCard
+          headerTitle={<span>معلومات التواصل</span>}
+          headerIcon={GlobalInfoContactsIcon}
+          cardContent={
+            <div>
+              {state.userDetails.telecom.map((e, index) => (
+                <CardRow key={index} title={e.use} content={e.value} />
+              ))}
             </div>
           }
         />
@@ -253,6 +251,7 @@ const GlobalInfoPage = () => {
 };
 
 const InfoCard = ({ patientInfo }) => {
+
   return (
     <div className="flex flex-row" >
       <div className="px-3 pt-4 pb-2">
@@ -263,19 +262,19 @@ const InfoCard = ({ patientInfo }) => {
           {patientInfo.fullName}
         </div>
         <div className="flex flex-row-reverse items-center justify-end">
-          {patientInfo.accountStatus === "active" ? (
+          {patientInfo.accountStatus === "verified" ? (
             <CheckIcon className="text-green400 w-6 h-6" />
           ) : (
             <XMarkIcon className="text-red-600 w-6 h-6" />
           )}
           <span
             className={`${
-              patientInfo.accountStatus === "active"
+              patientInfo.accountStatus === "verified"
                 ? "text-green400"
                 : "text-red-600"
             } mx-2 ${bodyMeduimStyle}`}
           >
-            {patientInfo.accountStatus === "active" ? "مفعّل" : "غير مفعّل"}
+            {patientInfo.accountStatus === "verified" ? "مفعّل" : "غير مفعّل"}
           </span>
         </div>
       </div>

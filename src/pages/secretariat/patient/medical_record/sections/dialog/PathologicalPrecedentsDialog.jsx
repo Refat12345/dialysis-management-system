@@ -58,7 +58,7 @@ const PathologicalPrecedentsDialog = ({state}) => {
                             </div>
                         </Row>
                     </div>  
-                    <div className="mgButton"></div>
+                    
                 </div>  
             )
         })

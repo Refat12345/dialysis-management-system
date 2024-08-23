@@ -25,18 +25,15 @@ return (
                 <button  onClick={()=>setOpen(false)} className={`bg-bgbutton w-16 font-primaryBold text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg ml-2`}
                 > {"لا"}
                 </button>
-                <button  onClick={()=>
-                    {
-                            localStorage.removeItem("tokens")
-                            localStorage.removeItem("myObject");
-                            Cookies.remove("token")
-                            sessionStorage.removeItem('sideBarActiveItem');
-                            // const response = logout().unwrap()
-                            navigator("/")
-                    }
-                } className={`bg-bgbutton w-16  font-primaryBold text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg `}
-                > {"نعم"}
-                </button>
+                <button onClick={() => {
+                    localStorage.removeItem("tokens");
+                    localStorage.removeItem("myObject");
+                    Cookies.remove("token");
+                    sessionStorage.removeItem('sideBarActiveItem');
+                    window.location.replace("/");  // إعادة التوجيه وإعادة تحميل الصفحة بالكامل
+                }}
+                className={`bg-bgbutton w-16  font-primaryBold text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-lg `}
+                >{"نعم"}</button>
                 </div>
             </div>
         </DialogContent>

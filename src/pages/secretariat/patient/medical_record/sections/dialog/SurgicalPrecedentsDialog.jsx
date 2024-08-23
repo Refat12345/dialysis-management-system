@@ -53,7 +53,7 @@ const SurgicalPrecedentsDialog = ({state,updateState}) => {
             </div>
     </Row>
                 </div>
-                <div className="mgButton"></div>
+                
         </div>
     })
   )

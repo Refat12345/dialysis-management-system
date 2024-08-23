@@ -53,6 +53,8 @@ const EditMedicalAnalysisState = ({ children }) => {
             recurrenceInterval:6,
             unitOfMeasurement: data.unitOfMeasurement
         }
+        console.log(object);
+        
         try {
             const response = await method(object).unwrap()
             toast.success("تم تعديل التحليل الطبي بنجاح")

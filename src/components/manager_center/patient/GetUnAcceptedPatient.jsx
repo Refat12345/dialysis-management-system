@@ -49,7 +49,7 @@ const GetUnAcceptedPatient = () => {
       {isSuccessUnAccepted && !isLoadingUnAccepted && patientUnAcceptedData && (
         <div
           dir="rtl"
-          className="w-full flex flex-col lg:mr-48 md:mr-48 h-screen bg-bgMedicalRecord "
+          className="w-full flex flex-col lg:mr-48 md:mr-48 min-h-screen bg-bgMedicalRecord "
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
             {patientUnAcceptedData.map((patient) => (

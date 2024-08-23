@@ -46,7 +46,7 @@ export default {
         bgCardThree:"rgba(17, 110, 65, 0.16)",
         bgCardFour:"rgba(170, 106, 23, 0.16)",
         bgCardFife:"rgba(90, 139, 176, 0.16)",
-        
+        bgSetting:"rgba(228,233,244,255)",
         bgDashboard: "rgba(244, 247, 254, 255)",
         textMenuColor: "rgba(117,117,117,1)",
         healthInformationTitle: "rgba(89,91,153,255)",

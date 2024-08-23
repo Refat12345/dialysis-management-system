@@ -47,7 +47,7 @@ function AddPaitentInfo({id}) {
   };
 
   const relativeRelationFilter = {
-    array: ["اخ", "ابن عم", "ام", "اب" ,"ابن","بنت","زوج"],
+    array: ["اب" , "ام","ابن","بنت","زوج","اخ", "ابن عم" ],
     title: "صلة القرابة",
   };
 

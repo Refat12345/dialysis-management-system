@@ -17,20 +17,51 @@ const MainLayout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     const jsonString = localStorage.getItem("myObject");
+    //     if (jsonString) {
+    //         const parsedObject = JSON.parse(jsonString);
+    //         setMyObject(parsedObject);
+    //         dispatch(setUser(parsedObject));
+    //         Cookies.set("token", parsedObject.token);
+    //         Cookies.set("role", parsedObject.role);
+    //         sessionStorage.setItem("user", parsedObject);
+    //         setTokenSet(true);
+    //     }
+    //     setLoading(false); 
+    // }, [dispatch]);
+
+
     useEffect(() => {
         const jsonString = localStorage.getItem("myObject");
         if (jsonString) {
             const parsedObject = JSON.parse(jsonString);
-            setMyObject(parsedObject);
-            dispatch(setUser(parsedObject));
-            Cookies.set("token", parsedObject.token);
-            Cookies.set("role", parsedObject.role);
-            sessionStorage.setItem("user", parsedObject);
-            setTokenSet(true);
+            
+            // تحقق من أن الكائن يحتوي على البيانات المطلوبة
+            if (parsedObject.id && parsedObject.token) {
+                if (!myObject || myObject.id !== parsedObject.id) {
+                    setMyObject(parsedObject);
+                    dispatch(setUser(parsedObject));
+                    Cookies.set("token", parsedObject.token);
+                    Cookies.set("role", parsedObject.role);
+                    sessionStorage.setItem("user", parsedObject);
+                    setTokenSet(true);
+                }
+            } else {
+                // إذا كان الكائن غير صالح، أعد تعيين البيانات
+                setMyObject(null);
+                Cookies.remove("token");
+                sessionStorage.removeItem("user");
+            }
+        } else {
+            setMyObject(null);
+            Cookies.remove("token");
+            sessionStorage.removeItem("user");
         }
-        setLoading(false); 
-    }, [dispatch]);
+        setLoading(false);
+    }, [dispatch, myObject]);
 
+    
     useEffect(() => {
         if (!loading && !myObject) {
             navigate("/"); 
