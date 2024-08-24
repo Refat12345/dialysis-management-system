@@ -75,6 +75,8 @@ const AuditingPage = () => {
     );
   }
 
+
+
   return (
     <div dir="rtl" className="flex-grow md:mr-48 ">
       {isLoading ? (
