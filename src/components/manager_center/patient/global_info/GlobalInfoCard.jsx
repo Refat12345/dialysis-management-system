@@ -25,7 +25,7 @@ const GlobalInfoCard = ({ headerTitle, headerIcon, cardContent }) => {
   return (
     <div className="bg-cardColor shadow rounded-lg break-inside-avoid pb-2 mb-5">
       <CardHeader title={headerTitle} icon={headerIcon} />
-      <div className="py-1">{cardContent}</div>
+      <div className="py-1 ">{cardContent}</div>
     </div>
   );
 };

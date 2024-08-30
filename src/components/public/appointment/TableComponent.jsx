@@ -92,7 +92,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
               {daysOfWeek.map(day => (
                 <td
                   onClick={() => patientID && handleClick(day, chairNumber)}
-                  className={`py-4 whitespace-nowrap font-bold text-sm text-center text-gray-500 border-r bg-primaryColor mr-2 
+                  className={`py-4 whitespace-nowrap font-bold text-sm text-center text-gray-500 border-r bg-primaryColor mr-2 ${data[chairNumber][day].patientName != "لا يوجد" && "filter blur-sm  "}
                     ${role === "secretary" && data[chairNumber][day].patientName === "لا يوجد" && patientID ? 
                     " hover:bg-black hover:text-white hover:cursor-pointer transition-transform transform hover:scale-105" : ""} 
                     ${highlightedCells[chairNumber] && highlightedCells[chairNumber][day] ? "bg-titleColor text-white" : ""}`}

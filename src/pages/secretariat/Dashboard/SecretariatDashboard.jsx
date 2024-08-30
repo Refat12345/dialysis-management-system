@@ -62,7 +62,7 @@ const SecretariatDashboard = () => {
                   <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
                     <div className="cardOneHeader flex flex-row justify-start ">
                       <img src={s1} />
-                      <h5 className="text-titleColor font-bold  text-xl mr-2 mt-1">
+                      <h5 className="text-titleColor font-bold  text-xl mr-2 mt-1 filter blur-sm">
                         {patient.fullName}
                       </h5>
                     </div>
@@ -80,7 +80,7 @@ const SecretariatDashboard = () => {
 
                         <h4 className="text-right mr-2">رقم التواصل</h4>
                       </div>
-                      <h4 className="text-right text-titleColor font-bold">{patient.contactNumber}</h4>
+                      <h4 className="text-right text-titleColor font-bold filter blur-sm">{patient.contactNumber}</h4>
                     </div>
 
                     <div className="flex justify-end mt-3 ml-5 mb-4">

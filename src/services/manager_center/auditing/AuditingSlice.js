@@ -9,10 +9,19 @@ const AuditingSlice = apiSlice.injectEndpoints(
                     method:"GET",
                     headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
                 })
-        })
+                
+        }),
+        getMedicineAudit:builder.query({
+            query:(id)=>({
+                url:`getMedicineTakenWithRelations/${id}/medicine`,
+                method:"GET",
+                headers:{'Authorization': `Bearer ${Cookies.get("token")}`},
+            })
+            
+    })
     }
 )
 }
 )
 
-export const {useGetAuditingQuery} = AuditingSlice
+export const {useGetAuditingQuery , useGetMedicineAuditQuery} = AuditingSlice

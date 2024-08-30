@@ -5,7 +5,7 @@ const PatientCard = ({data}) => {
   return (
     <div className="bg-white rounded-lg shadow-lg border border-gray-200 hover:cursor-pointer transition-transform transform hover:scale-105">
       <div className="w-full bg-black rounded-t-lg text-white p-2">
-          <p className="text-lg font-semibold">{data.userDetails.fullName}</p>
+          <p className="text-lg font-semibold filter blur-sm">{data.userDetails.fullName}</p>
       </div>
       <div className="flex justify-between items-center p-4">
         <div className="flex flex-col">

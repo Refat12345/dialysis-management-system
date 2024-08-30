@@ -212,6 +212,7 @@ export const translateMedicalTerms = (englishTerm) => {
     "SurgicalHistory":"السوابق الجراحية",
     "PharmacologicalHistory":"السوابق الدوائية",
     "PathologicalHistory":"السوابق المرضية",
+    "SessionMedicine":"جلسة الغسيل"
   };
 
   return translationDict[englishTerm] || "الترجمة غير متوفرة";

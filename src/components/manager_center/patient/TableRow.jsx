@@ -26,6 +26,7 @@ function TableRow({
   id,
   typeOFSelectedPatient,
   setIsEllipsisHovered,
+  operation
 }) {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -161,7 +162,7 @@ function TableRow({
     >
       <td
         dir="rtl"
-        className="py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis "
+        className="py-3 px-4 whitespace-nowrap overflow-hidden text-ellipsis  "
       >
         <div>
           {type != "auditing" && type != "orders" ? (
@@ -173,7 +174,7 @@ function TableRow({
           ) : (
             ""
           )}
-          <h1 className="inline-block pr-1 pl-0 ml-0">{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
+          <h1 className={`inline-block pr-1 pl-0 ml-0 ${(type === "patient" || type === "dialysis") && "filter blur-sm "}`} >{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
         </div>
       </td>
       <td
@@ -193,11 +194,11 @@ function TableRow({
         <td className="py-3 px-4">{object.connectThree}</td>
       )}
       {object.connectFour != undefined && (
-        <td className="py-3 px-4 ">{object.connectFour}</td>
+        <td className={`py-3 px-4 ${type === "auditing" && "filter blur-sm"}`}>{object.connectFour}</td>
       )}
       {object.connectFive != undefined && type != "auditing" && (
         <td
-          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
+          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""} ${type === "patient" && "filter blur-sm"}`}
           dir="ltr"
         >
           {object.connectFive}
@@ -249,11 +250,14 @@ function TableRow({
                   <img className="w-5 h-5" src={ChevronIcon} alt="AUDIT" />
                 }
                 contentComponent={
-                  <AuditingDetailsDialog
+                  <div className="min-w-[300px]">
+                      <AuditingDetailsDialog
+                    operation={operation}
                     oldData={object.connectFive}
                     newData={object.connectSix}
                     details={object.connectSeven}
                   />
+                  </div>
                 }
                 titleButton={"رجوع"}
               />

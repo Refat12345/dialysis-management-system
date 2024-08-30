@@ -258,7 +258,7 @@ const InfoCard = ({ patientInfo }) => {
         <img className="w-16" src={GlobalInfoPatientAvatar} alt="" />
       </div>
       <div className="flex flex-col items-end justify-start px-1 pt-5">
-        <div className={`font-bold ${headlineMediumStyle} mb-1 transition-all`}>
+        <div className={`font-bold ${headlineMediumStyle} mb-1 transition-all filter blur-sm`}>
           {patientInfo.fullName}
         </div>
         <div className="flex flex-row-reverse items-center justify-end">

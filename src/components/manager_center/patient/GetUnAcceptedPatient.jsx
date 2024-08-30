@@ -95,7 +95,7 @@ const GetUnAcceptedPatient = () => {
     
     className="h-9 w-9 rounded-full ml-2"
   />
-    <span>{patient.fullName}</span>
+    <span className="filter blur-sm">{patient.fullName}</span>
 
 </div>
 
