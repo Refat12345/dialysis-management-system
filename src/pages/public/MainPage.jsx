@@ -8,14 +8,14 @@ const MainPage = () => {
   const user = useSelector((state) => state.user);
   return (
     <>
-      {user.role === "admin" ? (
-        <Dashboard />
-      ) : user.role === "secretary" ? (
-        <SecretariaDashboardProvider>
-          <SecretariatDashboard />
-        </SecretariaDashboardProvider>
+      {user.role === "admin" ? ( <Dashboard />
+      ) : user.role === "secretary" ? 
+      (
+          <SecretariaDashboardProvider>
+            <SecretariatDashboard />
+          </SecretariaDashboardProvider>
       ) : (
-        <ManagerDashboard />
+          <ManagerDashboard />
       )}
     </>
   );

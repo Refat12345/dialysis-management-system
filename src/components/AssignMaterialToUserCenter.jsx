@@ -10,7 +10,7 @@ import s3 from "./../assets/icons/s3.svg";
 import s4 from "./../assets/icons/s4.svg";
 import s5 from "./../assets/icons/s5.svg";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import CustomButton from "./public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -72,6 +72,9 @@ const Card = ({
 };
 const AssignMaterialToUserCenter = () => {
   const user = useSelector((state) => state.user);
+  const location = useLocation();
+  const dataReceived = location.state;
+  
   let { patientName } = useParams();
   const [assignMaterialToUser, { isLoading, isError }] =
     useAssignMaterialToUserMutation();
@@ -180,7 +183,7 @@ const AssignMaterialToUserCenter = () => {
   return (
     <div className="flex-grow mr-48 bg-bgMedicalRecord  h-screen" dir="rtl">
       <div className="mx-[1%]">
-      <PublicHeader icon={ii} title={"لوازم جلسة الغسيل"} />
+      <PublicHeader icon={ii} title={"لوازم جلسة الغسيل"} name = {dataReceived.name}  />
       <div className="grid grid-cols-3 gap-4">
         {cardsData.map((item, index) => (
           <Card

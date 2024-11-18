@@ -49,10 +49,11 @@ const MedicalCenter = ({ icons, content, role ,id}) => {
     <div
       dir="rtl"
       className={`medical-center p-4 bg-white rounded-lg shadow-lg ${
-        isEllipsisHovered ? "" : "hover:cursor-pointer hover:bg-gray-100"
+        isEllipsisHovered ? "" : "hover:cursor-pointer hover:bg-gray-100 transition-transform transform hover:scale-105"
       }`}
     >
       <div className="flex flex-row justify-between">
+        <ToastContainer position="top-right"/>
         <div className={`${responsiveCenterIcon}`}>
           <img src={icons.centerIcon} />
         </div>
@@ -97,7 +98,7 @@ const MedicalCenter = ({ icons, content, role ,id}) => {
           {content.address === "" ? "لا يوجد عنوان بعد" : content.address}
         </p>
       </div>
-      <CenterDialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} id = {id} />
+      <CenterUserDialog type = {"Center"} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} id = {id} />
     </div>
   );
 };
@@ -168,25 +169,34 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import ButtonLoader from "../loader/ButtonLoader";
 import { useBlockMedicalCenterMutation } from "../../../services/manager/block_medical_center/BlockMedicalCenter";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import { useBlocPatientMutation } from "../../../services/manager_center/patient/block_patient/block_pateint";
 
-export function CenterDialog({ dialogOpen, setDialogOpen ,id }) {
+export function CenterUserDialog({ dialogOpen, setDialogOpen ,id , type}) {
+  console.log(id);
+  
  
   const handleClose = (event) => {
     event.stopPropagation()
     setDialogOpen(false);
   };
 
-  const[blockMedicalCenter , {isLoading ,error:err}] = useBlockMedicalCenterMutation()
+  const[blockMedicalCenter , {isLoading}] = useBlockMedicalCenterMutation()
+  const[blocPatient , {isLoading:loading}] = useBlocPatientMutation()
 
   const handlePost = async (event)=>{
     event.stopPropagation()
     try{
-      await blockMedicalCenter(id).unwrap()
-      toast.success("تم تعطيل المركز بنجاح")
+      if(type === "user") {
+        await blocPatient(id).unwrap()
+        toast.success("تم تعطيل حساب المستخدم بنجاح")
+      } else {
+        await blockMedicalCenter(id).unwrap()
+        toast.success("تم تعطيل المركز بنجاح")
+      }
       setDialogOpen(false);
     }catch(error){
-      console.log(err);
+      toast.error("حدث خطأ معين")
       
     }
   }
@@ -196,7 +206,7 @@ export function CenterDialog({ dialogOpen, setDialogOpen ,id }) {
     
       <DialogContent className="p-4 w-full" dir="rtl">
       <p className="font-bold text-titleColor text-lg">
-            هل أنت متأكد من تعطيل المركز
+        {"هل أنت متأكد من تعطيل حساب " + (type ==="user" ? "المستخدم" : "المركز")}
         </p>
         <div className="mb-3"></div>
         <div className="flex justify-center">
@@ -205,7 +215,7 @@ export function CenterDialog({ dialogOpen, setDialogOpen ,id }) {
           >{"لا"}
           </button>
             <div className="mr-3"></div>
-          {!isLoading ? 
+          { (type === "user" ? !loading : !isLoading) ? 
             <button onClick={handlePost}
             className='mb-1 w-14 bg-bgButtonColor text-white hover:bg-bgSideButton hover:text-titleSideColor py-1 px-3 rounded-md font-primaryBold transition-transform transform hover:scale-105'
           >{"نعم"}

@@ -26,7 +26,7 @@ function PatientHeader({ setSearchTerm, type }) {
                 onClick={() => {
                   navigate("/app/getunacceptedpatient");
                 }}
-                className={`bg-bgLogin mt-5  text-gray700 h-8 shadow-xl transition-all font-semibold pr-6 ${bodyMeduimStyle}`}
+                className={`bg-bgLogin mt-5  text-gray700 h-8 hover:cursor-pointer shadow-md transition-all hover:scale-90 font-semibold pr-3 ${bodyMeduimStyle}`}
                 title={
                   <div className="flex items-center justify-center">
                     <div className="w-2"></div>

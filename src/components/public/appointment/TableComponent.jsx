@@ -7,13 +7,17 @@
 import AppointmentDialog from "../../../pages/public/appointment/sections/Dialog";
 import { useState, useEffect, useMemo } from "react";
 
-const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, patientID }) => {
-  const daysOfWeek = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس',"الجمعة"];
+const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, patientID , patientName }) => {
+  const daysOfWeek = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
   const [highlightedCells, setHighlightedCells] = useState({});
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState({
     appointmentID: "",
-    userID: patientID || ""
+    userID: patientID || "",
+    patientName:patientName,
+    chairNumber:"",
+    day:""
+
   });
 
   const data = useMemo(() => {
@@ -45,6 +49,8 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
       setBody(prev => ({
         ...prev,
         appointmentID: appointmentData.appointmentID,
+        day:day,
+        chairNumber:chairNumber
       }));
 
       setOpen(true);
@@ -92,7 +98,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
               {daysOfWeek.map(day => (
                 <td
                   onClick={() => patientID && handleClick(day, chairNumber)}
-                  className={`py-4 whitespace-nowrap font-bold text-sm text-center text-gray-500 border-r bg-primaryColor mr-2 ${data[chairNumber][day].patientName != "لا يوجد" && "filter blur-sm  "}
+                  className={`py-4 whitespace-nowrap font-bold text-sm text-center text-gray-500 border-r bg-primaryColor mr-2 
                     ${role === "secretary" && data[chairNumber][day].patientName === "لا يوجد" && patientID ? 
                     " hover:bg-black hover:text-white hover:cursor-pointer transition-transform transform hover:scale-105" : ""} 
                     ${highlightedCells[chairNumber] && highlightedCells[chairNumber][day] ? "bg-titleColor text-white" : ""}`}
@@ -105,7 +111,7 @@ const TableComponent = ({ shift, appointments, chairNumbers, role, searchTerm, p
           ))}
         </tbody>
       </table>
-      <AppointmentDialog open={open} setOpen={setOpen} body={body}/>
+      <AppointmentDialog open={open} setOpen={setOpen} body={body} />
     </div>
   );
 };

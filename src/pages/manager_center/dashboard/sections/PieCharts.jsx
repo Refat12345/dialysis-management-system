@@ -25,11 +25,12 @@ const PieCharts = ({ causeRenalData, medicineData}) => {
 //     "8","9","10","11","12"
 //   ]
 // }
-  const medicines = [
-    { id: 0, value: medicineData.الحديد, label:medicinesTitle[0][0]},
-    { id: 1, value: medicineData.الهيبارين , label: medicinesTitle[0][1]  },
-    { id: 2, value: medicineData.الايبوتين, label: medicinesTitle[0][2]},
-  ];
+const largeValues = medicineData.الحديد > 1000;
+const medicines = [
+  { id: 0, value: largeValues ? medicineData.الحديد / 100 : medicineData.الحديد, label: medicinesTitle[0][0]},
+  { id: 1, value:  medicineData.الهيبارين, label: medicinesTitle[0][1]},
+  { id: 2, value:  medicineData.الايبوتين, label: medicinesTitle[0][2]},
+];
   const causeRenalFailure = [
     { id: 0, value: causeRenalData.diabetes, label:causeRenalFailureTitle[0][0]},
     { id: 1, value: causeRenalData.heartDiseases , label: causeRenalFailureTitle[0][1]  },

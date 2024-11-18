@@ -69,7 +69,7 @@ export default {
         addPaitentInfoPage:"#f6f9ff",
         appointmentColor:"rgba(154, 184, 255, 0.5)",
         UserInviteCard:"#F4F2F1",
-
+        dialysisDetails:"#dae1f4",
         //blue
         blue400: "#9AB8FF80",
         blue600: "#2E307D",
@@ -127,11 +127,11 @@ export default {
         AuditAbovee630:"511px",
         AuditUnderr630:"462px",
 //////////////////جلسات الغسيل سايدبار
-AuditAbove8000 : "635px",
-AuditAbove7400 : "585px",
-AuditAbove7000 :"541px" ,
-AuditAbove6300 : "486px",
-AuditUnder6300 : "441"
+        AuditAbove8000 : "635px",
+        AuditAbove7400 : "585px",
+        AuditAbove7000 :"541px" ,
+        AuditAbove6300 : "486px",
+        AuditUnder6300 : "441"
 
         
       },

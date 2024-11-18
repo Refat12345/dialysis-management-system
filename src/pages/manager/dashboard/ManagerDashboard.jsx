@@ -10,6 +10,7 @@ import {
   useGetCauseRenalQuery,
   useGetMedicinesQuery,
 } from "../../../services/manager/dashboard/ManagerDashboardSlice";
+import TextSearch from "../../../components/public/title/TextSearch";
 
 const ManagerDashboard = () => {
   const [date, setDate] = useState({
@@ -111,6 +112,11 @@ const ManagerDashboard = () => {
     textColor: "textMenuColor",
   };
 
+  if(!medicalCentersSuccess || !medicineSuccess || !causeRenalSuccess || !statisticsSuccess){
+    return (
+      <TextSearch text={"خطأ أثناء جلب البيانات أعد المحاولة من فضلك"}/>)
+  
+  }
   return (
     medicalCentersSuccess &&
     medicineSuccess &&

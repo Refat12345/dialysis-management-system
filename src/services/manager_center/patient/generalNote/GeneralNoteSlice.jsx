@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { apiSlice } from "../../../apiSlice";
 import Cookies from "js-cookie"
 export const NotePatientSlice = apiSlice.injectEndpoints({

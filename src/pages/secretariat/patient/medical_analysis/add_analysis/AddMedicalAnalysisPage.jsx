@@ -11,11 +11,12 @@ import { MedicalAnalysisIcon } from "../../../../../assets";
 import CheckBox from "./sections/CheckBox";
 import { useAddMedicalAnalysisMutation, useGetAnalysisTypesQuery } from "../../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import { toast, ToastContainer } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
 
     const AddMedicalAnalysisPage = () => {
-
+    const location = useLocation();
+    const dataReceived = location.state;
     const { state, updateState } = useAddMedicalAnalysisState();
     const {data,isSuccess,isLoading:isLoad ,} = useGetAnalysisTypesQuery()
     const [addMedicalAnalysis, {isLoading }] = useAddMedicalAnalysisMutation();
@@ -56,7 +57,7 @@ import ButtonLoader from "../../../../../components/public/loader/ButtonLoader";
             <ToastContainer position="top-right"/>
             <div className="mx-[2%]">
                 {(isSuccess && typeSelections.length >= 0 && unitSelections.length >= 0) && <>
-                <PublicHeader title="التحاليل الطبية" icon={MedicalAnalysisIcon} bool />
+                <PublicHeader title="التحاليل الطبية" icon={MedicalAnalysisIcon} bool name={dataReceived.name} />
                 <div className="bg-white rounded-lg p-6 mt-4">
                     <div className="flex justify-between">
                         <div className="w-[30%]">

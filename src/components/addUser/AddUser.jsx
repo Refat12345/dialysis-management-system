@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Column, Row } from "../../components";
 import { useAddUserState } from "./CreateUserState";
 import { UserNumberIcon, LoginUserIcon } from "../../assets/index";
@@ -120,6 +121,7 @@ const AddUser = () => {
           <Row mainAxisAlignment="justify-evenly">
             <div className="w-1/2 mr-4">
               <CustomTextField
+              customType={"add"}
                 size="3"
                 required={true}
                 label={"اسم المستخدم:"}
@@ -136,6 +138,7 @@ const AddUser = () => {
             </div>
             <div className="w-1/2 mr-4">
               <CustomTextField
+              customType={"add"}
                 size="3"
                 required={true}
                 label={"الرقم الوطني:"}
@@ -155,6 +158,7 @@ const AddUser = () => {
           <Row mainAxisAlignment="justify-evenly">
             <div className="w-1/2 mr-4">
               <SelectedTextFeild
+              selectType={"add"}
                 label={genderFilter.title}
                 value={state.genderValue === "" ? "الجنس" : state.genderValue}
                 filter={genderFilter.array}
@@ -163,6 +167,7 @@ const AddUser = () => {
             </div>
             <div className="w-1/2 mr-4">
               <CustomDatePicker
+              type={"add"}
                 label="تاريخ الميلاد"
                 date={state.birthdate}
                 onSelect={state.selectDate}
@@ -170,6 +175,7 @@ const AddUser = () => {
             </div>
             <div className="w-1/2 mr-4">
               <SelectedTextFeild
+              selectType={"add"}
                 label={rolefilter.title}
                 value={role === "" ? "الدور" : role}
                 filter={rolefilter.array}
@@ -180,7 +186,7 @@ const AddUser = () => {
           <div className={`${heightSmall}`}></div>
           <div className="mr-4">
             <Column>
-              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-full`}>
                 {"معلومات التواصل:"}
               </p>
               <div className="h-1"></div>
@@ -228,12 +234,11 @@ const AddUser = () => {
             </Column>
             <div className="h-3"></div>
             <Column>
-              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-full`}>
                 {"العنوان:"}
               </p>
               <div className="h-1"></div>
               {state.addressInfo.map((contact, index) => (
-               
                 <ContactSecretariaComponent
                   key={index}
                   selectUse={(val) =>

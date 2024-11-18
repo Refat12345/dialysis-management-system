@@ -33,7 +33,7 @@ const Header = ({value,setFilter,setInputValue}) => {
                         </div>
                     </div>
                     <div className="self-end">
-                        <Search handleInputValue={setInputValue}/>
+                        <Search handleInputValue={setInputValue} placeholder={"بحث حسب المتأثر بالعملية ..."}/>
                     </div>
                 </div>
             </div>

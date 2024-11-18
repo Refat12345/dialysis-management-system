@@ -14,7 +14,7 @@ const Header = ({setFilter ,handleChange , role}) => {
     <div dir="rtl">
         {role != "secretary"?
         <>
-            <Search handleInputValue={handleChange}/>
+            <Search handleInputValue={handleChange} placeholder={"بحث حسب مقدم الطلب ..."}/>
             <div className="mb-4"></div>
             <HorizontalLine/>
             <div className="mb-4"></div>

@@ -1,15 +1,17 @@
 import TableComponent from '../../../components/public/appointment/TableComponent';
-import { Search, DropDown, PageLoader } from "../../../components/index";
+import { Search, DropDown, PublicLoader } from "../../../components/index";
 import { useGetAppointmentsQuery, useGetChairsQuery, useGetShiftsQuery } from '../../../services/manager_center/appointment/GetAppointmentsSlice';
 import { useSelector } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import TextSearch from '../../../components/public/title/TextSearch';
 
 const Appointment = () => {
     const user = useSelector((state) => state.user);
     let { id } = useParams();
-
+    const location = useLocation();
+    const dataReceived = location.state;
     const { data: appointmentsData, isSuccess: appointmentsSuccess, isLoading: appointmentsLoading } = useGetAppointmentsQuery(user.centerID);
     const { data: shiftsData, isSuccess: shiftsSuccess, isLoading: shiftsLoading } = useGetShiftsQuery(user.centerID);
     const { data: chairsData, isSuccess: chairsSuccess, isLoading: chairsLoading } = useGetChairsQuery(user.centerID);
@@ -46,6 +48,7 @@ const Appointment = () => {
 
     const chairNumbers = chairsSuccess ? chairsData.message.map(chair => chair.chairNumber) : [];
 
+    
     if (chairsSuccess && chairNumbers.length === 0) {
         return (
             <div className="flex-grow md:mr-48">
@@ -64,11 +67,13 @@ const Appointment = () => {
 
     if (appointmentsLoading || shiftsLoading || chairsLoading) {
         return (
-            <div className="flex-grow md:mr-48">
-                <div className="flex items-center justify-center h-screen">
-                    <PageLoader />
-                </div>
-            </div>
+            <PublicLoader/>
+        );
+    }
+
+    if(!appointmentsSuccess || !shiftsSuccess || !chairsSuccess) {
+        return (
+            <TextSearch text={"خطأ أثناء جلب البيانات أعد المحاولة من فضلك"}/>
         );
     }
     
@@ -93,6 +98,7 @@ const Appointment = () => {
                         </div>
                     </div>
                     <TableComponent
+                        patientName = {dataReceived != undefined ? dataReceived.name : ""}
                         appointments={appointmentsData.appointments}
                         chairNumbers={chairNumbers}
                         shift={shift}

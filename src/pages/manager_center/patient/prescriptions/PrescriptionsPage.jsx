@@ -1,6 +1,6 @@
 import Prescriptions from "./sections/Prescriptions";
 import { useEffect, useState, useMemo } from "react";
-import { PageLoader, Text } from "../../../../components";
+import { PublicLoader, Text } from "../../../../components";
 import { useGetPrescriptionsQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
 import { useParams } from "react-router-dom";
 const PrescriptionsPage = () => {
@@ -9,6 +9,7 @@ const PrescriptionsPage = () => {
   const id = useMemo(() => patientName, [patientName]);
   const { data, isSuccess, isLoading, isError } = useGetPrescriptionsQuery(id);
   const [prescriptions, setPrescriptions] = useState([]);
+  
 
   useEffect(() => {
     if (isSuccess && data?.prescriptions) {
@@ -28,11 +29,7 @@ const PrescriptionsPage = () => {
 
   if (isLoading) {
     return (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="mr-48">
-              <PageLoader />
-            </div>
-        </div>
+        <PublicLoader/>
     );}
 
 if(isError || !isSuccess) {

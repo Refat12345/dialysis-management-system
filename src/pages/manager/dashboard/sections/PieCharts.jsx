@@ -11,8 +11,9 @@ const causeRenalFailureTitle =[["أمراض قلبية","ضغط الدم","دا�
 
 const PieCharts = ({ causeRenalData, medicineData ,date,setValue}) => {
   
+const largeValues = medicineData.الحديد > 1000;
 const medicines = [
-    { id: 0, value: medicineData.الحديد, label:medicinesTitle[0][0]},
+    { id: 0, value: largeValues ? medicineData.الحديد / 100 : medicineData.الحديد , label:medicinesTitle[0][0]},
     { id: 1, value: medicineData.الهيبارين , label: medicinesTitle[0][1]  },
     { id: 2, value: medicineData.الايبوتين, label: medicinesTitle[0][2]},
 ];

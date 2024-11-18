@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useGeneralDetails } from "../../../pages/manager_center/generalNotes/GeneralNoteState";
-import { PageLoader } from "../../../components/index";
+import {  PublicLoader } from "../../../components/index";
 import GlobalNotes from "./GlobalNotes";
 
 function GlobalNoteView({ type }) {
@@ -8,9 +8,7 @@ function GlobalNoteView({ type }) {
 
   if (isLoading)
     return (
-      <div className="flex items-center justify-center h-screen">
-        <PageLoader />
-      </div>
+      <PublicLoader/>
     );
 
   if (!generalDetails.length) {
@@ -35,6 +33,9 @@ function GlobalNoteView({ type }) {
       {isSuccess && !isLoading && (
         <>
           <div dir="rtl" className="relative mt-2">
+          <span className="text-titleSideColor text-2xl font-primaryBold ">
+            الملاحظات
+          </span>
             {generalDetails.map((card, index) => {
               return <GlobalNotes key={index} note={card} type={type} />;
             })}

@@ -1,21 +1,21 @@
 
 const validateValue = (value) =>{
     if ((value != "سلبي" || value != "ايجابي" ) && value === ""){
-        return "الرجاء ادخال قيمة التحليل";
+        return "الرجاء إدخال قيمة التحليل";
     }
     return null;
 }
 
 const validateAnalysisName = (analysisName)=>{
     if (!analysisName.trim()) {
-        return "الرجاء ادخال اسم التحليل";
+        return "الرجاء إدخال اسم التحليل";
     }
     return null;
 }
 
 const validateAnalysisDate = (analysisDate)=>{
     if (analysisDate === null) {
-        return "الرجاء ادخال تاريخ التحليل";
+        return "الرجاء إدخال تاريخ التحليل";
     }
     return null;
 }

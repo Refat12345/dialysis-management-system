@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { useGetGeneralDialysisQuery,useGetDialysisByPatientQuery } from "../../../../services/manager_center/diyalisis/dialysis_sidebar/GeneralDialysisSlice"; 
 import { createContext, useContext, useState, useEffect } from "react";
@@ -5,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const GeneralDialysisContext = createContext();
 
-export const GeneralDialysisProvider = ({ children ,userId}) => {
+export const GeneralDialysisProvider = ({ children}) => {
 
   const storedPatientName = localStorage.getItem('patientName');
   const userIdString = storedPatientName ? storedPatientName.toString() : '14';

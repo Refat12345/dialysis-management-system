@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+
 import SessionData from "./SessionData";
 import WeightData from "./WeightData";
 import PBData from "./PBData";
@@ -7,7 +7,7 @@ import MedicinesGiven from "./MedicinesGiven";
 import MachineData from "./MachineData";
 import NotesSessionData from "./NotesSessionData";
 import { useDialysisDetails } from "../../../pages/manager_center/dialysis/DialysisPageState";
-import PageLoader from "../../public/loader/PageLoader";
+import PublicLoader from "../../public/loader/PublicLoader";
 
 export default function DialysisView() {
 
@@ -16,11 +16,7 @@ export default function DialysisView() {
  
   if (isLoading) {
     return (
-      <div className="flex-grow md:mr-48 bg-white">
-        <div className="flex items-center justify-center h-screen">
-          <PageLoader />
-        </div>
-      </div>
+      <PublicLoader/>
     );
   }
   if (!patientData) return <div>No data available</div>;

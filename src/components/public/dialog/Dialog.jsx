@@ -1,11 +1,19 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-
+import { useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-export default function AlertDialog({renderComponent , contentComponent ,titleButton }) {
+export default function AlertDialog({renderComponent , contentComponent ,titleButton ,state }) {
   const [open, setOpen] = React.useState(false);
 
+  useEffect((event)=>{ 
+    if(state){
+      event.stopPropagation();
+      setOpen(true);
+    }
+  },[
+    state
+  ])
   const handleClickOpen = (event) => {
     event.stopPropagation();
     setOpen(true);

@@ -10,12 +10,13 @@ import AuditingDetailsDialog from "../../public/auditing/AuditingDetailsDialog";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import OrdersStatus from "../../../pages/manager_center/orders/sections/OrderStatus";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAddFromWaitingToPendingMutation } from "../../../services/manager_center/patient/patient_list/PatientSlice";
 import DropDownPatient from "../../../pages/manager_center/patient/patient_list/Menu";
 import PublicDialog from "../../public/dialog/AlertDialog";
 import { translateMedicalTerms } from "../../../data/data";
+import {  CenterUserDialog } from "../../public/medical_centers/MedicalCenter";
 
 function TableRow({
   row,
@@ -28,39 +29,61 @@ function TableRow({
   setIsEllipsisHovered,
   operation
 }) {
+
+  const object = {
+    connectOne: Object.values(row)[0],
+    connectTow: Object.values(row)[1],
+    connectThree: Object.values(row)[2],
+    connectFour: Object.values(row)[3],
+    connectFive: Object.values(row)[4],
+    connectSix: Object.values(row)[5],
+    connectSeven: Object.values(row)[6],
+  };
+
+
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const userIdString = id ? id.toString() : "14";
 
   const [addFromWaitingToPending] = useAddFromWaitingToPendingMutation();
-
   const [state, setState] = useState({
     secrtaryValue: "",
     adminValue: "",
     secrtaryWaitingValue: "",
 
-    selectSecertaryOption: (val) => selectSecertaryOption(val),
-    selectAdminOption: (val) => selectAdminValueOption(val),
-    selectSecertaryWaitingOption: (val ,id) => selectSecertaryWaitingOption(val,id),
+    selectSecertaryOption: (val,patientID,patientName) => selectSecertaryOption(val,patientID,patientName),
+    selectAdminOption: (val,patientID) => selectAdminValueOption(val,patientID),
+    selectSecertaryWaitingOption: (val ,patientID) => selectSecertaryWaitingOption(val,patientID),
   });
 
  
   
-  const selectSecertaryOption = (value) => {
+  const selectSecertaryOption = (value,patientID,patientName) => {
     updateState({ secrtaryValue: value });
 
     switch (value) {
       case "اضافة وصفة طبية":
-        navigate(`/app/patient/${id}/acceptable/PrescriptionInfo`);
+        navigate(`/app/patient/${patientID}/acceptable/PrescriptionInfo`, {state: {
+          name : patientName
+        }
+      });
         break;
       case "اضافة تحليل طبي":
-        navigate(`/app/patient/${id}/acceptable/addMedicalAnalysis`);
+        navigate(`/app/patient/${patientID}/acceptable/addMedicalAnalysis`, {state: {
+          name : patientName
+        }
+      });
         break;
       case "اضافة مستلزمات جلسة الغسيل":
-        navigate(`/app/patient/${id}/acceptable/assignMaterialToUserCenter`);
+        navigate(`/app/patient/${patientID}/acceptable/assignMaterialToUserCenter`, {state: {
+          name : patientName
+        }
+      });
         break;
       case "اعطاء موعد":
-        navigate(`/app/patient/${id}/acceptable/appointment/${id}`);
+        navigate(`/app/patient/${patientID}/acceptable/appointment/${patientID}`, {state: {
+          name : patientName
+        }});
         break;
       case "اجنبي":
         history.push("/path-for-foreigner");
@@ -70,11 +93,11 @@ function TableRow({
     }
   };
 
-  const selectSecertaryWaitingOption = async (value ,id) => {
+  const selectSecertaryWaitingOption = async (value ,patientID) => {
     updateState({ secrtaryWaitingValue: value });
     const data = {
       centerID: user.centerID.toString(),
-      userID: id,
+      userID: patientID,
     };
     try {
       const result = await addFromWaitingToPending(data);
@@ -97,14 +120,19 @@ function TableRow({
     setIsEllipsisHovered(false);
   };
 
-  const selectAdminValueOption = (value) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const handleClick = () => {
+    setDialogOpen(true);
+  }
+
+  const selectAdminValueOption = (value,patientID) => {
     updateState({ adminValue: value });
     switch (value) {
       case "نقل المريض":
-        navigate(`/app/patient/${id}/acceptable/medicalCenters`);
+        navigate(`/app/patient/${patientID}/acceptable/medicalCenters`);
         break;
       case "تعطيل الحساب":
-        navigate(`/app/patient/${id}/addMedicalAnalysis`);
+        handleClick()
         break;
       default:
         break;
@@ -118,15 +146,6 @@ function TableRow({
     }));
   };
 
-  const object = {
-    connectOne: Object.values(row)[0],
-    connectTow: Object.values(row)[1],
-    connectThree: Object.values(row)[2],
-    connectFour: Object.values(row)[3],
-    connectFive: Object.values(row)[4],
-    connectSix: Object.values(row)[5],
-    connectSeven: Object.values(row)[6],
-  };
 
   const [open, setOpen] = useState(false);
   const [acceptOrder, setAcceptOrder] = useState(false);
@@ -174,7 +193,7 @@ function TableRow({
           ) : (
             ""
           )}
-          <h1 className={`inline-block pr-1 pl-0 ml-0 ${(type === "patient" || type === "dialysis") && "filter blur-sm "}`} >{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
+          <h1 className={`inline-block pr-1 pl-0 ml-0`} >{ type === "auditing" ? translateMedicalTerms(object.connectOne) : object.connectOne }</h1>
         </div>
       </td>
       <td
@@ -194,11 +213,11 @@ function TableRow({
         <td className="py-3 px-4">{object.connectThree}</td>
       )}
       {object.connectFour != undefined && (
-        <td className={`py-3 px-4 ${type === "auditing" && "filter blur-sm"}`}>{object.connectFour}</td>
+        <td className={`py-3 px-4 `}>{object.connectFour}</td>
       )}
       {object.connectFive != undefined && type != "auditing" && (
         <td
-          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""} ${type === "patient" && "filter blur-sm"}`}
+          className={`py-3 w-48 ${type === "dialysis" ? "pr-6" : ""}`}
           dir="ltr"
         >
           {object.connectFive}
@@ -216,6 +235,7 @@ function TableRow({
       {type === "orders" && user.role != "secretary" && (
         <td>
           <div className="flex justify-end">
+            
               <div onClick={()=>setAcceptOrder(true)} className="rounded-full border-2 border-green-500 text-green-500 hover:cursor-pointer hover:bg-green-50 hover:text-black ml-4 w-16 ">
                   <p className="text-md text-center ">قبول</p>
               </div>
@@ -292,6 +312,7 @@ function TableRow({
               onMouseLeave={handleEllipsisMouseLeave}
               onClick={handleMenuClick}
             >
+              <ToastContainer position="top-right"/>
               {user.role != "superAdmin" && (
                 <div className="">
                   <DropDownPatient
@@ -305,12 +326,13 @@ function TableRow({
                   }
                   onSelect={(val) => {
                     user.role === "admin"
-                      ? state.selectAdminOption(val)
+                      ? state.selectAdminOption(val,id)
                       : typeOFSelectedPatient !== "مرضى انتظار" && typeOFSelectedPatient !== "مرضى مرفوضين"
-                      ? state.selectSecertaryOption(val)
+                      ? state.selectSecertaryOption(val,id,object.connectOne)
                       : state.selectSecertaryWaitingOption(val ,id);
                   }}
                 />
+                <CenterUserDialog type = {"user"} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} id = {id} />
                 </div>
               )}
             </div>

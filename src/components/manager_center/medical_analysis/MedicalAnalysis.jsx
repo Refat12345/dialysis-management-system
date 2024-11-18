@@ -2,6 +2,10 @@
 
 import { formatDate } from "../../../utils/DateUtils"
 const MedicalAnalysis = ({title,analysis}) => {
+    console.log(analysis.unitOfMeasurement);
+    console.log(analysis.value);
+    
+    
 return (
         <div dir="rtl" className="bg-primaryColor rounded-lg  shadow-inner shadow-grey-200 p-4 pl-2 pb-0 overflow-y-auto mb-4">
         <div className="flex flex-row justify-between ">
@@ -14,7 +18,7 @@ return (
             <div className="content flex flex-col ">
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{analysis.analysisName}</span>
                 <div  className="flex">
-                    <span  className ={`content-center font-bold mb-3 ${analysis.value === "سلبي" ? "text-red-500":"text-green-600" } `}>{analysis.unitOfMeasurement != null && analysis.unitOfMeasurement} - </span>
+                    <span  className ={`content-center font-bold mb-3 ${analysis.value === "سلبي" ? "text-red-500":"text-green-600" } `}>{(analysis.unitOfMeasurement != null ) && analysis.unitOfMeasurement +"-"} </span>
                     <span className ={`content-center mr-[3px] font-bold mb-3 ${analysis.value === "سلبي" ? "text-red-500":"text-green-600" } `}> {analysis.value}</span>
                 </div>
                 <span className ={`content-center font-bold text-titleSideColor mb-3 `}>{formatDate(analysis.analysisDate)}</span>

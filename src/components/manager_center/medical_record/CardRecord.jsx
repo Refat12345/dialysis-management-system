@@ -19,9 +19,7 @@ let contentResponsive = height > 600 ? ( height>740 ? "leading-[2]" : "leading-[
                                             {title[index]}:
                                             </span>
                                             <span className= {`font-primaryBold whitespace-normal text-justify break-words  mr-[2%] ${contentResponsive}`}>
-                                                {result.length === 3 ? (
-                                                    index === 1 ? convertDateToArabicFormat(array) : array
-                                                ): (index === 1 || index === 2 ? convertDateToArabicFormat(array) : array)}
+                                                {(index === 1 && array != null)? convertDateToArabicFormat(array) : (array != null ? array : "لا يوجد")}
                                             </span>
                                         </div>
                             })}

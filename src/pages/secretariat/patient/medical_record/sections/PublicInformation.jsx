@@ -31,7 +31,7 @@ const PublicInformation = ({ state , updateState }) => {
         }
     }
 return (
-    <div className="paddingCard bg-white rounded-lg  w-[49.2%]">
+    <div className="paddingCard bg-white rounded-lg ">
         <Row mainAxisAlignment="justify-evenly">
             <div className="w-[45%] ">
                 <SelectedTextFeild

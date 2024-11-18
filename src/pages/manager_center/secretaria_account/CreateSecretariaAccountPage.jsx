@@ -49,13 +49,14 @@ const CreateSecretariaAccountPage = () => {
     >
       <PublicHeader title={"إضافة سكرتاريا"} icon={SecretaryImage} />
       <ToastContainer position="top-right"/>
-      <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all">
+      <div className="h-screen lg:pt-4 md:pt-4 pt-2 lg:pl-10 md:pl-8 pl-4 transition-all ml-[10%]">
         <form onSubmit={handleSubmit}>
           <Row mainAxisAlignment="justify-evenly">
             <div className="w-1/2 mr-4">
               <CustomTextField
                 size="3"
                 required={true}
+                customType={"add"}
                 label={"اسم المستخدم:"}
                 placeholder="اسم المستخدم"
                 value={state.username}
@@ -73,6 +74,7 @@ const CreateSecretariaAccountPage = () => {
                 size="3"
                 required={true}
                 label={"الرقم الوطني:"}
+                customType={"add"}
                 placeholder="الرقم الوطني"
                 value={state.nationaltyNumber}
                 prefixIcon={<img src={UserNumberIcon} alt="" />}
@@ -89,6 +91,7 @@ const CreateSecretariaAccountPage = () => {
           <Row mainAxisAlignment="justify-evenly">
             <div className="w-1/2 mr-4">
               <SelectedTextFeild
+                selectType={"add"}
                 label={genderFilter.title}
                 value={state.genderValue === "" ? "الجنس" : state.genderValue}
                 filter={genderFilter.array}
@@ -97,6 +100,7 @@ const CreateSecretariaAccountPage = () => {
             </div>
             <div className="w-1/2 mr-4">
               <CustomDatePicker
+              type={"add"}
                 label="تاريخ الميلاد"
                 date={state.birthdate}
                 onSelect={selectDate}
@@ -106,7 +110,7 @@ const CreateSecretariaAccountPage = () => {
           <div className={`${heightSmall}`}></div>
           <div className="mr-4">
             <Column>
-              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-full`}>
                 {"معلومات التواصل:"}
               </p>
               <div className="h-1"></div>
@@ -151,7 +155,7 @@ const CreateSecretariaAccountPage = () => {
             </Column>
             <div className="h-3"></div>
             <Column>
-              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+              <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-full`}>
                 {"العنوان:"}
               </p>
               <div className="h-1"></div>
@@ -194,7 +198,7 @@ const CreateSecretariaAccountPage = () => {
             </Column>
             <div className="h-5"></div>
             <Column>
-              <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-5/6`}>
+              <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-5/6`}>
                 {"الصلاحيات:"}
               </p>
               <div className="h-1"></div>
@@ -215,10 +219,9 @@ const CreateSecretariaAccountPage = () => {
                 variant="solid"
                 type="submit"
                 loading={isLoading}
-                className={`bg-bgbutton text-white h-10 transition-all font-semibold ${bodyMeduimStyle}`}
+                className={`bg-bgbutton text-white h-8 transition-all font-semibold hover:cursor-pointer ${bodyMeduimStyle}`}
                 title={
                   <div className="flex items-center justify-center">
-                    <PlusIcon className="w-5 h-5 mr-1 text-white" />
                     <div className="lg:w-2 md:w-2 w-1"></div>
                     <span className={`${bodySmallStyle}`}>حفظ المعلومات</span>
                   </div>

@@ -23,7 +23,10 @@ export const apiAuth = apiSlice.injectEndpoints({
       query:()=>({
         url:"logout",
         method:"POST",
-        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`}
+        headers:{"Authorization" : `Bearer ${Cookies.get("token")}`},
+        body:{
+          "deviceToken":"sss"
+        },
       })
     }),
     // Get User by Verification Code

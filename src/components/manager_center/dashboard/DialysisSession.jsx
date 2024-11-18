@@ -14,7 +14,7 @@ const DialysisSession = ({dialysis}) => {
         <div className={`flex flex-row-reverse font-bold   bg-white rounded-md ml-3 mr-3 my-4 mb-2 ${width<640 ?"justify-between":""}`}>
             <div dir="rtl" className="flex w-[25%] ">
                 <img src={Icon} alt=""/>
-                <p className={`content-center text pr-[6px] whitespace-nowrap overflow-hidden text-ellipsis filter blur-sm ${responsive} `}>{dialysis.patientName}</p>
+                <p className={`content-center text pr-[6px] whitespace-nowrap overflow-hidden text-ellipsis ${responsive} `}>{dialysis.patientName}</p>
             </div>
             <p dir="rtl" className={` text-center w-[22%] whitespace-nowrap overflow-hidden text-ellipsis ${responsive}`}>{dialysis.nurseName}</p>
             <p className={`text-center w-[25.5%]  ${responsive}`}>{getHourInArabic(dialysis.startTime)}</p>

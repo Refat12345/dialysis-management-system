@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MedicalAnalysis, PageLoader  } from "../../../../components";
+import { MedicalAnalysis, PublicLoader  } from "../../../../components";
 import Header from "./sections/Header";
 import { useEffect, useState, useMemo } from "react";
 import { useGetMedicalAnalysisQuery } from "../../../../services/public/patient_profile/ShowPatientProfileSlice";
@@ -9,11 +9,11 @@ import { useParams } from "react-router-dom";
 import EditMedicalAnalysisDialog from "../../../secretariat/patient/medical_analysis/edit_analysis/EditMedicalAnalysisDialog"
 import { useGetAnalysisTypesQuery } from "../../../../services/secretariat/patient_profile/AddPatientProfileSlice";
 import PublicDialog from "../../../../components/public/dialog/AlertDialog";
+import TextSearch from "../../../../components/public/title/TextSearch";
 
 const MedicalAnalysisPage = () => {
     const title = ["اسم التحليل", "القيمة", "تاريخ أخذ التحليل", "ملاحظات"];
-    const { patientName } = useParams();
-    const { status } = useParams();
+    const { patientName, status } = useParams();
     const id = useMemo(() => patientName, [patientName]);
     const [open, setOpen] = useState(false);
     const [selectedAnalysis, setSelectedAnalysis] = useState(null);
@@ -33,37 +33,22 @@ const MedicalAnalysisPage = () => {
     }, [isSuccess, data]);
 
     const filteredAnalysis = useMemo(() => {
-        let filteredAnalysis = analysis;
-        if (filters.type !== "" && filters.type !== "نوع التحليل") {
-            filteredAnalysis = filteredAnalysis.filter(ana => ana.analysisName.includes(filters.type));
-        }
-        if (filters.date !== "" && filters.date !== "الشهر") {
-            filteredAnalysis = filteredAnalysis.filter((ana) => {
-                return formatDate(ana.analysisDate).includes(filters.date);
-            });
-        }
-        if (filters.quarter !== "" && filters.quarter !== " الربع") {
-            filteredAnalysis = filteredAnalysis.filter(ana => ana.quarter.includes(filters.quarter));
-        }
-        return filteredAnalysis;
+        return analysis.filter(ana => {
+            const matchesType = filters.type === "" || filters.type === "نوع التحليل" || ana.analysisName.includes(filters.type);
+            const matchesDate = filters.date === "" || filters.date === "الشهر" || formatDate(ana.analysisDate).includes(filters.date);
+            const matchesQuarter = filters.quarter === "" || filters.quarter === " الربع" || ana.quarter.includes(filters.quarter);
+            return matchesType && matchesDate && matchesQuarter;
+        });
     }, [filters, analysis]);
 
     if (isLoading || loading) {
-        return (
-            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="mr-48">
-                    <PageLoader />
-                </div>
-            </div>
-        );
+        return <PublicLoader />;
     }
+
     if (isError || !isSuccess || !success) {
-        return (
-            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <p className="font-bold text-2xl mr-48">خطأ بجلب البيانات أعد المحاولة من فضلك</p>
-            </div>
-        );
+        return <TextSearch text={"خطأ أثناء جلب البيانات أعد المحاولة من فضلك"} />;
     }
+    
     if (isSuccess && analysis.length === 0) {
         return (
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -71,34 +56,42 @@ const MedicalAnalysisPage = () => {
             </div>
         );
     }
-    return (
-        (success && analysisTypes.analysisTypes.length > 0) &&
-        <>
+    
+
+
+    if( success && analysisTypes.analysisTypes.length > 0) {
+        return (
             <div dir="rtl" className="flex-grow">
                 <div className="ml-[1%]">
                     <Header value={filters} setFilters={setFilters} analysisTypes={analysisTypes.analysisTypes} />
                     <div className="analysis">
                         {filteredAnalysis.map((analysisItem, index) => (
-                            Cookies.get("role") === "secretary" ?
-                                <div key={index}>
+                            <div key={index}>
+                                {Cookies.get("role") === "secretary" ? (
                                     <div onClick={() => {
-                                        if(status === "acceptable"){
-                                            setSelectedAnalysis(analysisItem)
-                                            setOpen(true)
-                                    }
+                                        if (status === "acceptable") {
+                                            setSelectedAnalysis(analysisItem);
+                                            setOpen(true);
+                                        }
                                     }} className={`${status === "acceptable" && "hover:cursor-pointer"}`}>
                                         <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
                                     </div>
-                                    <PublicDialog component={<EditMedicalAnalysisDialog medicalAnalysis={selectedAnalysis} analysisTypes={analysisTypes.analysisTypes} setOpen={setOpen} />}
-                                        open={open} setOpen={setOpen}
-                                    />
-                                </div>
-                                : <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                                ) : (
+                                    <MedicalAnalysis key={index} title={title} analysis={analysisItem} />
+                                )}
+                                <PublicDialog
+                                    component={<EditMedicalAnalysisDialog medicalAnalysis={selectedAnalysis} analysisTypes={analysisTypes.analysisTypes} setOpen={setOpen} />}
+                                    open={open}
+                                    setOpen={setOpen}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
             </div>
-        </>
-    );
+        )
+    }
+
 };
+
 export default MedicalAnalysisPage;

@@ -11,13 +11,14 @@ const CustomTextField = ({
   placeholder,
   prefixIcon,
   suffixIcon,
+  customType,
   type = "text",
   required = false,
   readOnly = false,
 }) => {
   return (
     <div dir="rtl">
-      <label className={`${bodyMeduimStyle} font-medium`}>
+      <label className={`${bodyMeduimStyle} ${customType === "add"?"font-bold":"font-medium"}`}>
         {label}
         <div className="h-1"></div>
         <Theme>

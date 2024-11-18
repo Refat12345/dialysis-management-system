@@ -12,6 +12,7 @@ const SelectedTextFeild = ({
   onSelect,
   allowNewSelection = false,
   type,
+  selectType,
   placeholder,
   onClick,
   type2,
@@ -37,7 +38,7 @@ const SelectedTextFeild = ({
         }`}
       >
         {" "}
-        <label onClick={onClick} className={`font-medium ${bodyMeduimStyle}`}>
+        <label onClick={onClick} className={`${selectType === "add" ?"font-bold":"font-medium "} ${bodyMeduimStyle}`}>
           {!activeLabel ? "" : `${label}:`}
           <div className="h-1"></div>
           <Menu.Button
@@ -48,7 +49,7 @@ const SelectedTextFeild = ({
                 value === label ? "text-gray-400" : "text-black"
               } transition-all`}
           >
-            {value}
+            <div className="font-medium">{value}</div>
             <ChevronDownIcon
               className="h-5 w-5 text-textMenuColor font-primaryBold hover:text-violet-200"
               aria-hidden="true"

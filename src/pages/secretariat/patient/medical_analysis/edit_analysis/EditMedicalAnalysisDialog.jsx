@@ -49,8 +49,12 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes , setOpen}) =
     const postData =  () => {
         state.postData(state,editMedicalAnalysis)
     }
+console.log(state.unitOfMeasurement);
 
-    
+    if((state.unitOfMeasurement === "" || state.unitOfMeasurement === null)){
+        console.log("s");
+        
+    }
     return (
         <div dir="rtl" className="w-[400px]">
             {
@@ -73,7 +77,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes , setOpen}) =
                     label="القيمة/النتيجة:"
                     placeholder="القيمة/النتيجة"
                     size="3"
-                    value={state.value}
+                    value={state.value || ""} 
                     onChange={(val) => updateState({ value: val.target.value })}
                 />
                 }
@@ -81,7 +85,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes , setOpen}) =
                 <SelectedTextFeild
                     filter={unitOfMeasurementSelections}
                     label="الوحدة"
-                    value={state.unit === "" ? "الوحدة" : state.unitOfMeasurement}
+                    value={( state.unitOfMeasurement === null) ? "الوحدة" : state.unitOfMeasurement}
                     onSelect={(val) => updateState({ unitOfMeasurement: val })}
                 />
                 <div className="mb-3"></div>
@@ -99,7 +103,7 @@ const EditMedicalAnalysisDialog = ({medicalAnalysis ,analysisTypes , setOpen}) =
                     label="ملاحظات"
                     placeholder="ملاحظات"
                     size="3"
-                    value={state.notes}
+                    value={state.notes || ""}
                     onChange={(val) => updateState({ notes: val.target.value })}
                 />  
                 <div className="mb-4"></div>

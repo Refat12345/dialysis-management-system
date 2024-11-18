@@ -8,6 +8,8 @@ import dayjs from "dayjs";
 
 import { useEditMedicalRecordMutation } from "../../../../../services/secretariat/patient_profile/EditPatientProfileSlice";
 const PrecedentsDialog = ({type ,index}) => {
+    
+    
     const { state, updateState } = useMedicalRecordState();
     const [editMedicalRecord , {isLoading}] = useEditMedicalRecordMutation()
     const medicalRecord = useOutletContext();
@@ -30,7 +32,7 @@ const PrecedentsDialog = ({type ,index}) => {
                 required={true}
                 placeholder= {type === "pathological" ?"اسم المرض" : (type === "pharmacological" ? "اسم الدواء" : "اسم العملية") }
                 type="text"
-                value={type === "pathological" ? state.pathologicalPrecedents[index].illnessName : (type === "pharmacological" ? state.pharmacologicalPrecedents[index].medicineName : state.surgicalPrecedents[index].surgeryName) }
+                value={type === "pathological" ? state.pathologicalPrecedents[index]?.illnessName : (type === "pharmacological" ? state.pharmacologicalPrecedents[index]?.medicineName : state.surgicalPrecedents[index]?.surgeryName) }
                 onChange={(e) =>{
                     if ( type === "pathological") {
                         state.updatePathologicalPrecedent(index,{illnessName: e.target.value})
@@ -45,7 +47,7 @@ const PrecedentsDialog = ({type ,index}) => {
             <div className="mb-3"></div>
             <CustomDatePicker
                 label={type === "pathological" ?"تاريخ التشخيص" : (type === "pharmacological" ? "تاريخ بداية أخذ الداوء" : "تاريخ العملية") }
-                date = {type === "pathological" ? dayjs(state.pathologicalPrecedents[index].medicalDiagnosisDate) : (type === "pharmacological" ? dayjs(state.pharmacologicalPrecedents[index].dateStart) : dayjs(state.surgicalPrecedents[index].surgeryDate)) }
+                date = {type === "pathological" ? dayjs(state.pathologicalPrecedents[index]?.medicalDiagnosisDate) : (type === "pharmacological" ? dayjs(state.pharmacologicalPrecedents[index]?.dateStart) : dayjs(state.surgicalPrecedents[index]?.surgeryDate)) }
                 onSelect={(date)=>{
                     if ( type === "pathological") {
                         state.updatePathologicalPrecedent(index,{medicalDiagnosisDate: date})
@@ -63,7 +65,7 @@ const PrecedentsDialog = ({type ,index}) => {
             {type === "pharmacological" && 
                 <CustomDatePicker
                     label={ "تاريخ نهاية أخذ الداوء"  }
-                    date = { dayjs(state.pharmacologicalPrecedents[index].dateEnd ) }
+                    date = { dayjs(state.pharmacologicalPrecedents[index]?.dateEnd ) }
                     onSelect={(date)=>{
                         state.updatePharmacologicalPrecedent(index,{dateEnd: date})
                         updateState({isDateEndEdit:true})
@@ -77,7 +79,7 @@ const PrecedentsDialog = ({type ,index}) => {
                 required={true}
                 placeholder = {"تفاصيل عامة"}
                 type="text"
-                value={type === "pathological" ?state.pathologicalPrecedents[index].generalDetails : (type === "pharmacological" ? state.pharmacologicalPrecedents[index].generalDetails : state.surgicalPrecedents[index].generalDetails) }
+                value={type === "pathological" ?state.pathologicalPrecedents[index]?.generalDetails : (type === "pharmacological" ? state.pharmacologicalPrecedents[index]?.generalDetails : state.surgicalPrecedents[index]?.generalDetails) }
                 onChange={(e) => {
                     if ( type === "pathological") {
                         state.updatePathologicalPrecedent(index,{generalDetails: e.target.value})

@@ -21,21 +21,16 @@ import {
   bodyMeduimStyle,
   headlineMediumStyle,
 } from "../../../../utils/StyleUtils";
-import { PageLoader } from "../../../../components";
+import { PublicLoader } from "../../../../components";
 import phone from "../../../../assets/icons/medical-center/users/users-list/phone.svg";
 import { calculateAge } from "../../../../utils/DateUtils";
 
 const GlobalInfoPage = () => {
   const { state } = useContext(GlobalInfoStateContext);
-  console.log(state);
   
   if (!state) {
     return (
-      <div className="flex-grow md:mr-48">
-        <div className="flex items-center justify-center h-screen">
-          <PageLoader />
-        </div>
-      </div>
+      <PublicLoader/>
     );
   }
 
@@ -258,10 +253,10 @@ const InfoCard = ({ patientInfo }) => {
         <img className="w-16" src={GlobalInfoPatientAvatar} alt="" />
       </div>
       <div className="flex flex-col items-end justify-start px-1 pt-5">
-        <div className={`font-bold ${headlineMediumStyle} mb-1 transition-all filter blur-sm`}>
+        <div className={`font-bold ${headlineMediumStyle} mb-1 transition-all`}>
           {patientInfo.fullName}
         </div>
-        <div className="flex flex-row-reverse items-center justify-end">
+        {/* <div className="flex flex-row-reverse items-center justify-end">
           {patientInfo.accountStatus === "verified" ? (
             <CheckIcon className="text-green400 w-6 h-6" />
           ) : (
@@ -276,7 +271,7 @@ const InfoCard = ({ patientInfo }) => {
           >
             {patientInfo.accountStatus === "verified" ? "مفعّل" : "غير مفعّل"}
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

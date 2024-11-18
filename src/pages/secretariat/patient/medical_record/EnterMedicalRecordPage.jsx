@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { PublicHeader ,CustomButton  } from "../../../../components"
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { MedicalRecord } from "../../../../assets"
 import {PublicInformation ,PathologicalPrecedents,SurgicalPrecedents,PharmacologicalPrecedents} from "./sections/index"
 import { useEnterMedicalRecordState } from "./EnterMedicalRecordState";
@@ -12,6 +12,8 @@ import ButtonLoader from "../../../../components/public/loader/ButtonLoader";
 
 const EnterMedicalRecordPage = () => {
 const { state , updateState } = useEnterMedicalRecordState();
+const location = useLocation();
+const dataReceived = location.state;
 const [createMedicalRecord , {data,isError,isSuccess,isLoading  ,error:err}] = useCreateMedicalRecordMutation();
 let { patientName } = useParams();
 let status=true
@@ -64,15 +66,15 @@ const handlePost =async () => {
         <div className="md:mr-48 bg-bgMedicalRecord">
             <div className="mx-[1.5%]">
               <ToastContainer position="top-right"/>
-                <PublicHeader  title={"السجل الطبي"} icon={MedicalRecord} bool={true} />
-                <div className="flex justify-between">
+                <PublicHeader  title={"السجل الطبي"} icon={MedicalRecord} bool={true} name={dataReceived.name} />
+                
                 <PublicInformation state={state} updateState={updateState}/>
-                <PathologicalPrecedents state={state} updateState={updateState}/>
-                </div>
+                {/* <PathologicalPrecedents state={state} updateState={updateState}/> */}
                 <div className="element"></div>
                 <div className="flex justify-between ">
                 <SurgicalPrecedents state={state} updateState={updateState}/>
-                <PharmacologicalPrecedents state={state} updateState={updateState}/>
+                <PathologicalPrecedents state={state} updateState={updateState}/>
+                {/* <PharmacologicalPrecedents state={state} updateState={updateState}/> */}
                 </div>
                 <div className="mgButton"></div>
             <div className="flex justify-end ">

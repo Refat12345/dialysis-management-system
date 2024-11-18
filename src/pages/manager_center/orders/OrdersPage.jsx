@@ -8,6 +8,7 @@ import Header from "./sections/Header";
 import OrdersSection from "./sections/OrdersSection";
 import { PaginationComponent, PageLoader } from "../../../components";
 import { ToastContainer } from "react-toastify";
+import TextSearch from "../../../components/public/title/TextSearch";
 
 const OrdersPage = () => {
   const { data, isLoading, isSuccess } = useGetAllOrdersQuery();
@@ -29,11 +30,13 @@ const OrdersPage = () => {
   useEffect(() => {
     if (isSuccess && data) {
       const ordersData = data[0];
+ 
+      
       if (user.role === "secretary") {
         const secretaryOrders = ordersData.filter((order) => {
           const item = order.senderid === user.id && order;
           const filterItem = item.senderName === user.fullName && item;
-          const finalItem = filterItem.requestStatus != "approved"
+          const finalItem = filterItem.requestStatus != "approved" && filterItem 
           return finalItem;
         });
         setOrders(secretaryOrders);
@@ -76,6 +79,30 @@ const OrdersPage = () => {
     );
   }
 
+  
+  if(isSuccess){
+    return (
+      <div dir="rtl" className="flex-grow md:mr-48">
+        <ToastContainer position="top-right" />
+        <div className="mx-[3%] mt-5">
+          <Header setFilter={setFilter} handleChange={handleInputChange} role={user.role} />
+          <div className="mb-4"></div>
+          {filteredOrders.length > 0 ? (
+            <PaginationComponent
+              RenderComponent={OrdersSection}
+              data={filteredOrders}
+              itemsPerPage={itemsPerPage}
+            />
+          ):<div className="flex-grow ">
+          <TextSearch
+            text={"لا يوجد طلبات"}
+          />
+        </div>
+        }
+        </div>
+      </div>
+    );
+  }
   if (isSuccess && orders.length === 0) {
     return (
       <div className="flex-grow md:mr-48">
@@ -86,27 +113,11 @@ const OrdersPage = () => {
     );
   }
   
-  return (
-    <div dir="rtl" className="flex-grow md:mr-48">
-      <ToastContainer position="top-right" />
-      <div className="mx-[3%] mt-5">
-        <Header setFilter={setFilter} handleChange={handleInputChange} role={user.role} />
-        <div className="mb-4"></div>
-        {filteredOrders.length > 0 ? (
-          <PaginationComponent
-            RenderComponent={OrdersSection}
-            data={filteredOrders}
-            itemsPerPage={itemsPerPage}
-          />
-        ):<div className="flex-grow ">
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p className="font-bold text-2xl mr-48">لا يوجد طلبات</p>
-        </div>
-      </div>
-      }
-      </div>
-    </div>
-  );
+  if(!isSuccess){
+    return (
+      <TextSearch text={"خطأ أثناء جلب البيانات أعد المحاولة من فضلك"}/>
+    );
+  }
 };
 
 export default OrdersPage;

@@ -18,12 +18,18 @@ const GetUnAcceptedPatient = () => {
   };
 
   const handleAddGeneralInfo = () => {
-    navigate(`/app/patient/${selectedPatient.id}/hanging/addPatientInfo`);
+    navigate(`/app/patient/${selectedPatient.id}/hanging/addPatientInfo`, {state: {
+      name : selectedPatient.fullName
+    }
+  });
     setShowDropdown(false);
   };
 
   const handleAddMedicalRecord = () => {
-    navigate(`/app/patient/${selectedPatient.id}/hanging/enterMedicalRecord`);
+    navigate(`/app/patient/${selectedPatient.id}/hanging/enterMedicalRecord`, {state: {
+      name : selectedPatient.fullName
+    }
+  });
     setShowDropdown(false);
   };
 
@@ -95,7 +101,7 @@ const GetUnAcceptedPatient = () => {
     
     className="h-9 w-9 rounded-full ml-2"
   />
-    <span className="filter blur-sm">{patient.fullName}</span>
+    <span className="">{patient.fullName}</span>
 
 </div>
 

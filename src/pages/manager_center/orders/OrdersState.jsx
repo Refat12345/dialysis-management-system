@@ -32,14 +32,20 @@ const OrdersState = ({ children }) => {
         try {
             const response =await changeStatus(body)
             
-            if(type === "rejected") {
+            if(type === "rejected" && response.error === undefined) {
                 toast.error("تم رفض الطلب بنجاح")
                 setOpen(false)
-            } else {
+            } else if (type === "approved" && response.error === undefined) {
                 toast.success("تم قبول الطلب بنجاح")
                 setOpen(false)
             }
-        }catch(err){console.log(err);}
+
+            if(response.error != undefined) {
+                toast.error(response.error.data.error)
+            }
+        }catch(err){
+            console.log(err.data.error);
+        }
     }
 return (
     <OrdersStateContext.Provider value={contextValue}>

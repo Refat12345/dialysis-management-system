@@ -44,7 +44,7 @@ const NavItemRecord = ({ array }) => {
           </Link>
         ))}
       </div>
-      <div className="-mt-3 w-[50%] mb-6">
+      <div className="-mt-3 w-[30%] mb-6">
         <div className="border-t border-b-gray-700"></div>
       </div>
     </nav>

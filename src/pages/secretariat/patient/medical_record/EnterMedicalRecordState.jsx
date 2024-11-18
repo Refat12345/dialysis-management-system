@@ -224,43 +224,24 @@ const EnterMedicalRecordState = ({ children }) => {
         }));
         return;
       }
-        let surgical =  data.surgicalPrecedents.length >= 1 ?( data.surgicalPrecedents[data.surgicalPrecedents.length-1].surgeryName === "" ? 
+        let surgical =  (data.surgicalPrecedents.length >= 1 && data.surgicalPrecedents[0].surgeryName != "") ?( data.surgicalPrecedents[data.surgicalPrecedents.length-1].surgeryName === "" ? 
         data.surgicalPrecedents.slice(0,-1) :data.surgicalPrecedents) :[];
 
-        let pathological = data.pathologicalPrecedents.length >= 1 ? (data.pathologicalPrecedents[data.pathologicalPrecedents.length-1].illnessName === "" ?
+        let pathological = (data.pathologicalPrecedents.length >= 1 && data.pathologicalPrecedents[0].illnessName != "") ? (data.pathologicalPrecedents[data.pathologicalPrecedents.length-1].illnessName === "" ?
         data.pathologicalPrecedents.slice(0,-1) : data.pathologicalPrecedents ) : []
 
-        let pharmacological = data.pathologicalPrecedents.length >= 1 ?( data.pharmacologicalPrecedents[data.pharmacologicalPrecedents.length-1].medicineName === "" ? 
-        data.pharmacologicalPrecedents.slice(0,-1) : data.pharmacologicalPrecedents) :[]
+        let pharmacological =[]
         
         surgical.length >= 1 && surgical.forEach(item => {
-          if (item.surgeryDate === null) {
-            item.surgeryDate = "";
-          } else {
+          if (item.surgeryDate != null) {
             item.surgeryDate =item.surgeryDate.format("YYYY-MM-DD")
           }
         });
         
 
         pathological.length >= 1 && pathological.forEach(item => {
-          if (item.medicalDiagnosisDate === null) {
-            item.medicalDiagnosisDate = "";
-          } else {
+          if (item.medicalDiagnosisDate != null) {
             item.medicalDiagnosisDate =item.medicalDiagnosisDate.format("YYYY-MM-DD")
-          }
-        });
-
-
-        pharmacological.length >= 1 && pharmacological.forEach(item => {
-          if (item.dateStart === null) {
-            item.dateStart = "";
-          } else {
-            item.dateStart =item.dateStart.format("YYYY-MM-DD")
-          }
-          if (item.dateEnd === null) {
-            item.dateEnd = "";
-          } else {
-            item.dateEnd =item.dateEnd.format("YYYY-MM-DD")
           }
         });
 
@@ -268,7 +249,7 @@ const EnterMedicalRecordState = ({ children }) => {
           causeRenalFailure:data.causeRenalFailure,
           dryWeight:data.dryWeight,
           bloodType:data.bloodType,
-          dialysisStartDate:data.dialysisStartDate != null ?data.dialysisStartDate.format("YYYY-MM-DD"):"",
+          dialysisStartDate:data.dialysisStartDate != null ?data.dialysisStartDate.format("YYYY-MM-DD"):null,
           kidneyTransplant:data.kidneyTransplant === "لا" || data.kidneyTransplant=== "" ? false :true ,
           vascularEntrance:data.vascularEntrance,
           surgicalHistories:surgical,
@@ -276,7 +257,6 @@ const EnterMedicalRecordState = ({ children }) => {
           pharmacologicalHistories:pharmacological,
           userID:id, 
         }
-        
         return body;
     }
 

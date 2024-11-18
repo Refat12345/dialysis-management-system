@@ -68,7 +68,9 @@ const EditPrescriptionsDialog = ({medicine , patientId,prescriptionId,setOpen}) 
                 <div className="flex justify-center">
                 <CustomButton
                         variant="solid"
-                        onClick={()=>setOpen(false)}
+                        onClick={()=>{
+                            setOpen(true)
+                        }}
                         className="bg-bgbutton text-white h-8 transition-transform transform hover:scale-110 font-bold text-md hover:cursor-pointer ml-2"
                         title={
                             <div className="">

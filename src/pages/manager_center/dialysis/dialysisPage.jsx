@@ -15,7 +15,7 @@ export default function DialysisPage() {
     <>
 
       <DialysisDetailstProvider id={id}>
-       <div className="flex-grow bg-cardDetailsColor  h-screen">
+       <div className="flex-grow bg-dialysisDetails  h-screen">
        <div className="">
           <DialysisView />
         </div>

@@ -70,19 +70,8 @@ export const apiDashboard = apiSlice.injectEndpoints({
             }), 
         }),
         getPieCharts: builder.query({
+            // eslint-disable-next-line no-unused-vars
             query: (data) => {
-                const { month, year } = data;
-                
-                // قم بإنشاء شرط لاستدعاء الـ API فقط إذا كانت كل من السنة والشهر مختلفين عن "الكل"
-                if (month !== "الكل" && year !== "الكل") {
-                    return {
-                        url: `getPieCharts/${month}/${year}`,
-                        method: "GET",
-                        headers: { "Authorization": `Bearer ${Cookies.get("token")}` }
-                    };
-                }
-        
-                // إذا كان أي منهما "الكل"، لا تقم بإرسال أي طلب.
                 return {
                     url: "getPieCharts",
                     method: "GET",

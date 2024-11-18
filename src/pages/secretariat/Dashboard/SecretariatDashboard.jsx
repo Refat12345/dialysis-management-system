@@ -62,7 +62,7 @@ const SecretariatDashboard = () => {
                   <div className=" bg-bgMedicalRecord px-4 w-full flex flex-col justify-start rounded-lg ">
                     <div className="cardOneHeader flex flex-row justify-start ">
                       <img src={s1} />
-                      <h5 className="text-titleColor font-bold  text-xl mr-2 mt-1 filter blur-sm">
+                      <h5 className="text-titleColor font-bold  text-xl mr-2 mt-1 ">
                         {patient.fullName}
                       </h5>
                     </div>
@@ -80,16 +80,18 @@ const SecretariatDashboard = () => {
 
                         <h4 className="text-right mr-2">رقم التواصل</h4>
                       </div>
-                      <h4 className="text-right text-titleColor font-bold filter blur-sm">{patient.contactNumber}</h4>
+                      <h4 className="text-right text-titleColor font-bold ">{patient.contactNumber}</h4>
                     </div>
 
                     <div className="flex justify-end mt-3 ml-5 mb-4">
                       <CustomButton
                         variant="solid"
                         onClick={() => {
-                          navigate(`/app/appointment/${patient.id}`)
+                          navigate(`/app/appointment/${patient.id}`,{state:{
+                            name:patient.fullName
+                          }})
                         }}
-                        className={`bg-blue-800 text-white h-8 transition-all font-semibold ${bodyMeduimStyle} hover:cursor-pointer `}
+                        className={`bg-blue-800 text-white h-8 transition-all font-semibold ${bodyMeduimStyle} hover:cursor-pointer transition-transform transform hover:scale-105 `}
                         title={
                           <div className="flex items-center justify-center">
                             <span className={`${bodySmallStyle}`}>
@@ -103,7 +105,7 @@ const SecretariatDashboard = () => {
                       <CustomButton
                         variant="solid"
                         onClick={() => handleAddToWaiting(patient.id)} 
-                        className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle} mr-2 hover:cursor-pointer`}
+                        className={`bg-bgbutton text-white h-8 transition-all font-semibold ${bodyMeduimStyle} mr-2 hover:cursor-pointer  transition-transform transform hover:scale-105`}
                         title={
                           <div className="flex items-center justify-center">
                             <span className={`${bodySmallStyle}`}>

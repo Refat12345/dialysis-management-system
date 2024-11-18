@@ -8,9 +8,9 @@ import { styled } from "@mui/material/styles";
 import "dayjs/locale/ar";
 // import TextField from "@mui/material/TextField";
 // eslint-disable-next-line react/prop-types
-const CustomDatePicker = ({ label, onSelect, date }) => {
+const CustomDatePicker = ({ label, onSelect, date ,type }) => {
   return (
-    <label dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+    <label dir="rtl" className={` ${type==="add"?"font-bold":"font-medium"} ${bodyMeduimStyle} w-full`}>
       {label}:<div className="h-1"></div>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ar">
         <StyledDatePicker

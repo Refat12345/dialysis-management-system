@@ -33,25 +33,34 @@ const BusinessCard = ({
   role,
 }) => {
   return (
-    <div className="w-full  rounded overflow-hidden shadow-lg p-4 bg-white">
+    <div className="w-full  rounded-xl overflow-hidden shadow-lg p-4 bg-white">
       <div className="flex items-center ">
         <RoleImage role={role} width={11} className="mr-4" />
 
         <div className="text-sm sm:text-lg">
-          <p className="text-gray-900 leading-none mr-1">{fullName}</p>
+          <p className="text-titleColor font-bold leading-none mr-1">{fullName}</p>
         </div>
       </div>
       <div className="mt-4 sm:mt-6">
-        <p className="text-gray-600 text-xs sm:text-base">
-          رقم الهاتف: {phoneNumber}
+        <div className="flex">
+          <p>رقم الهاتف:</p>
+        <p className="text-gray-600 font-bold mr-1 text-xs sm:text-base">
+            {phoneNumber}
         </p>
-        <p className="text-gray-600 mt-2 sm:mt-3 text-xs sm:text-base">
+        </div>
+        <div className="flex mt-2 ">
+          <p>الرقم الوطني:</p>
+        <p className="text-gray-600 font-bold mr-1 text-xs sm:text-base">
           {" "}
-          الرقم الوطني: {nationalNumber}
+            {nationalNumber}
         </p>
-        <p className="text-gray-600 mt-2 sm:mt-3 text-xs sm:text-base">
-          كود الدعوة : {verificationCode}
+        </div>
+        <div className="flex mt-2">
+          <p>كود الدعوة : </p>
+        <p className="text-gray-600 font-bold mr-1 text-xs sm:text-base">
+          {verificationCode}
         </p>
+        </div>
       </div>
     </div>
   );

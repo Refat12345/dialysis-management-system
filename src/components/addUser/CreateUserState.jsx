@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 const UseAddUserStateContext = createContext();

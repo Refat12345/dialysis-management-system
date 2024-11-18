@@ -48,6 +48,12 @@ const DisbursedMaterials = () => {
         );
     }
 
+    if(!isSuccess){
+        return (
+            <TextSearch text={"خطأ أثناء جلب البيانات أعد المحاولة من فضلك"}/>
+        );
+    }
+
     return (
         isSuccess && (
             <div dir="rtl" className="md:mr-48 flex-grow">

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Column, Row } from "../../components";
 import { useAddCenterState } from "./CreateMedicalState";
 import { UserNumberIcon, LoginUserIcon } from "../../assets/index";
@@ -112,6 +113,7 @@ const AddMedicalCenter = () => {
           <div className="w-1/2 mr-4">
             <CustomTextField
               size="3"
+              customType={"add"}
               required={true}
               label={"اسم المستخدم:"}
               placeholder="اسم المستخدم"
@@ -127,6 +129,7 @@ const AddMedicalCenter = () => {
           </div>
           <div className="w-1/2 mr-4">
             <CustomTextField
+            customType={"add"}
               size="3"
               required={true}
               label={"الرقم الوطني:"}
@@ -143,6 +146,7 @@ const AddMedicalCenter = () => {
           </div>
           <div className="w-1/2 mr-4">
             <CustomTextField
+            customType={"add"}
               size="3"
               required={true}
               label={"اسم المركز:"}
@@ -162,6 +166,7 @@ const AddMedicalCenter = () => {
         <Row mainAxisAlignment="justify-evenly">
           <div className="w-1/2 mr-4">
             <SelectedTextFeild
+            selectType={"add"}
               label={genderFilter.title}
               value={state.genderValue === "" ? "الجنس" : state.genderValue}
               filter={genderFilter.array}
@@ -170,6 +175,7 @@ const AddMedicalCenter = () => {
           </div>
           <div className="w-1/2 mr-4">
             <CustomDatePicker
+            type={"add"}
               label="تاريخ الميلاد"
               date={state.birthdate}
               onSelect={state.selectDate}
@@ -179,7 +185,7 @@ const AddMedicalCenter = () => {
         <div className={`${heightSmall}`}></div>
         <div className="mr-4">
           <Column>
-            <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+            <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-full`}>
               {"معلومات التواصل:"}
             </p>
             <div className="h-1"></div>
@@ -227,7 +233,7 @@ const AddMedicalCenter = () => {
           </Column>
           <div className="h-3"></div>
           <Column>
-            <p dir="rtl" className={`font-medium ${bodyMeduimStyle} w-full`}>
+            <p dir="rtl" className={`font-bold ${bodyMeduimStyle} w-full`}>
               {"العنوان:"}
             </p>
             <div className="h-1"></div>

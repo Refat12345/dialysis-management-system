@@ -1,8 +1,8 @@
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
-import { bodyMeduimStyle, bodySmallStyle } from "../../utils/StyleUtils";
+import { bodyMeduimStyle } from "../../utils/StyleUtils";
 import CustomTextField from "../public/textfield/CustomTextField";
-import AddPrescriptionState, {
+import {
   useAddPrescriptionState,
 } from "./AddPrescriptionState";
 import PublicHeader from "../manager_center/secretary/PublicHeader";
@@ -13,9 +13,12 @@ import React from "react";
 import CustomPP from "./CustomPP";
 import { ToastContainer } from "react-toastify";
 import { TrashIcon } from "./../../assets";
+import { useLocation } from "react-router-dom";
 
 function AddPrescription() {
   const { state, postData, userData, loading } = useAddPrescriptionState();
+  const location = useLocation();
+  const dataReceived = location.state;
   const amount = {
     array: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   };
@@ -27,7 +30,7 @@ function AddPrescription() {
         dir="rtl"
         className="w-full flex flex-col md:mr-48 bg-bgSecretaria h-screen "
       >
-        <PublicHeader icon={addPrespictionIcon} title={"اضافة وصفة طبية"} />
+        <PublicHeader icon={addPrespictionIcon} title={"إضافة وصفة طبية"} name={dataReceived.name} />
 
         <div className="border p-3 rounded-xl m-3 bg-white ">
           <div className="flex flex-row justify-between p-4">

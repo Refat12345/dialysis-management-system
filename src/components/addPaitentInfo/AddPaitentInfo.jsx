@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import {
   econamic_status,
   education,
   family_status,
   home_location,
-  patient,
   society_status,
   work,
 } from "../../assets/index";
@@ -23,18 +23,20 @@ import patientIcon from "../../assets/icons/addPaitentInfo/econamic_status.svg";
 import {
   bodyMeduimStyle,
   bodySmallStyle,
-  heightSmall,
 } from "../../utils/StyleUtils";
 import { useState } from "react";
 import ContactSecretariaComponent from "../../pages/manager_center/secretaria_account/secretaria_sections/ContactSecretariaComponent";
 import CustomButton from "../public/button/CustomButton";
 import { PlusIcon } from "@heroicons/react/20/solid";
+import { useLocation } from "react-router-dom";
 
 function AddPaitentInfo({id}) {
 
   const [isLoading, setIsLoading] = useState(false); 
 
-
+  const loc = useLocation();
+  const dataReceived = loc.state;
+  
   const { state, updateState } = useAddPaitentInfoState();
   const [addPatientInfo] = useAddPatientInfoMutation();
 
@@ -82,11 +84,6 @@ function AddPaitentInfo({id}) {
     title: "التعليم",
   };
 
-  const economicSituationFilter = {
-    array: ["متوسط", "عالي", "منخفض"],
-    title: "المستوى",
-  };
-
   const economicTypeFilter = {
     array: ["ثابت", "متغير"],
     title: "ثابت",
@@ -108,12 +105,12 @@ function AddPaitentInfo({id}) {
   };
   return (
     <>
-     <ToastContainer/>
+      <ToastContainer/>
     <div
       dir="rtl"
       className="w-full flex flex-col lg:mr-48 md:mr-48 bg-addPaitentInfoPage"
     >
-      <PublicHeader title={"اضافة المعلومات العامة"} icon={patientIcon} />
+      <PublicHeader title={"إضافة المعلومات العامة"} icon={patientIcon} name={dataReceived.name}/>
 
       <div className="grid grid-cols-2">
         <div>
@@ -279,7 +276,8 @@ function AddPaitentInfo({id}) {
       <HeaderTextField text={"مرافق المريض"} width={"كامل"} />
       <div className="mt-3"></div>
 
-      <Row>
+      <div className="ml-[8%]">
+      <Row >
         <div className="w-6/12 mr-4 ml-2">
           <CustomTextField
             size="3"
@@ -505,6 +503,7 @@ function AddPaitentInfo({id}) {
 
           
         />
+      </div>
       </div>
     </div>
     </>

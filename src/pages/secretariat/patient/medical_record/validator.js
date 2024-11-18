@@ -1,41 +1,41 @@
 const validateCauseRenalFailure = (causeRenalFailure) => {
     if (!causeRenalFailure.trim()) {
-        return "الرجاء ادخال سبب القصور الكلوي";
+        return "الرجاء إدخال سبب القصور الكلوي";
     }
     return null;
 };
 
 const validateBloodType = (bloodType) => {
     if (!bloodType.trim()) {
-        return "الرجاء ادخال زمرة الدم";
+        return "الرجاء إدخال زمرة الدم";
     }
     return null;
 };
 
 const validateDryWeight = (dryWeight) => {
     if (!dryWeight.trim()) {
-        return "الرجاء ادخال الوزن الجاف";
+        return "الرجاء إدخال الوزن الجاف";
     }
     return null;
 };
 
 const validateDialysisStartDate = (dialysisStartDate) => {
     if (dialysisStartDate === null) {
-        return "الرجاء ادخال تاريخ بدء جلسات الغسيل";
+        return "الرجاء إدخال تاريخ بدء جلسات الغسيل";
     }
     return null;
 };
 
 const validateKidneyTransplant = (kidneyTransplant) => {
     if (!kidneyTransplant.trim()) {
-        return "الرجاء ادخال زراعة كلية سابقة";
+        return "الرجاء إدخال زراعة كلية سابقة";
     }
     return null;
 };
 
 const validateVascularEntrance = (vascularEntrance) => {
     if (!vascularEntrance.trim()) {
-        return "الرجاء ادخال الوصل الوعائي";
+        return "الرجاء إدخال الوصل الوعائي";
     }
     return null;
 };
@@ -81,7 +81,7 @@ export const validateMedicalRecordForm = (formData) => {
 
 const validateSurgicalName = (surgeryName)=>{
     if (surgeryName === "") {
-        return "الرجاء ادخال اسم العملية";
+        return "الرجاء إدخال اسم العملية";
     }
     return null;
 }
@@ -97,7 +97,7 @@ export const validateSurgicalPrecedentForm = (formData) => {
 
 const validateIllnessName = (illnessName)=>{
     if (illnessName === "") {
-        return "الرجاء ادخال اسم المرض";
+        return "الرجاء إدخال اسم المرض";
     }
     return null;
 }
@@ -113,7 +113,7 @@ export const validatePathologicalPrecedentForm = (formData) => {
 
 const validateMedicinesName = (medicineName)=>{
     if (medicineName === "") {
-        return "الرجاء ادخال اسم الدواء";
+        return "الرجاء إدخال اسم الدواء";
     }
     return null;
 }

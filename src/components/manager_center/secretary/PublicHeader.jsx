@@ -2,7 +2,7 @@
 
 import { labelMediumStyle } from "../../../utils/StyleUtils";
 
-const PublicHeader = ({title, icon ,bool}) => {
+const PublicHeader = ({title, icon ,bool ,name}) => {
 
   const labelStyle = "text-base lg:text-lg"  
   const height = window.innerHeight;
@@ -10,7 +10,8 @@ const PublicHeader = ({title, icon ,bool}) => {
   const responsiveImage = height > 735 ?"lg:w-20 lg:h-20":"lg:w-16 lg:h-16";
 
   return (
-    <div className={`w-full md:h-32 h-24 bg-bgSecretaria px-3 flex flex-row justify-start items-center transition-all ${bool !=undefined ?responsiveHeight :"lg:h-[150px]"}` }>
+    <div className="w-full bg-bgSecretaria flex justify-between">
+      <div className={` md:h-32 h-24  px-3 flex flex-row justify-start items-center transition-all ${bool !=undefined ?responsiveHeight :"lg:h-[150px]"}` }>
       <img
         className={`w-20 h-20 transition-all ${bool !=undefined ? responsiveImage :"lg:w-28 lg:h-28 "}`}
         src={icon}
@@ -30,6 +31,12 @@ const PublicHeader = ({title, icon ,bool}) => {
           من فضلك قم بإدخال المعلومات التالية:
         </p>
       </div>
+    </div>
+    {name!=undefined && <div className={`${(title === "إضافة المعلومات العامة" || title === "إضافة وصفة طبية")&& "ml-4"} mt-11 font-bold flex `}>
+    <p className="text-lg ml-2">المريض :</p>
+    <p className=" text-titleColor text-lg">{name}</p>
+    </div>}
+    
     </div>
   );
 };

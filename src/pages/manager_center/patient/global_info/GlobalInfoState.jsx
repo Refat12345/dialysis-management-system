@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useGetGeneralDetailsQuery } from "../../../../services/manager_center/patient/global_info/GlobalInfoSlice";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { PageLoader } from "../../../../components";
+import {  PublicLoader } from "../../../../components";
 
 export const GlobalInfoStateContext = createContext();
 
@@ -16,11 +16,7 @@ const GlobalInfoState = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div className="flex-grow md:mr-48">
-        <div className="flex items-center justify-center h-screen">
-          <PageLoader />
-        </div>
-      </div>
+      <PublicLoader/>
     );
   }
 

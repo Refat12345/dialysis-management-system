@@ -7,9 +7,10 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { useGetAuditingQuery } from "../../../services/manager_center/auditing/AuditingSlice";
 import { useSelector } from "react-redux";
 import { translateMedicalTerms } from "../../../data/data";
+import TextSearch from "../../../components/public/title/TextSearch";
 const AuditingPage = () => {
   const user = useSelector((state)=>state.user)
-  const { data, isSuccess, isLoading } = useGetAuditingQuery(user.centerID);
+  const { data, isSuccess, isLoading ,isError} = useGetAuditingQuery(user.centerID);
   const [auditing, setAuditing] = useState([]);
   const [filter, setFilter] = useState({
     date: null,
@@ -76,7 +77,11 @@ const AuditingPage = () => {
   }
 
 
-
+  if(!isSuccess && isError){
+    return (
+      <TextSearch text={"خطأ أثناء جلب البيانات أعد المحاولة من فضلك"}/>
+    );
+  }
   return (
     <div dir="rtl" className="flex-grow md:mr-48 ">
       {isLoading ? (
@@ -85,19 +90,23 @@ const AuditingPage = () => {
         </div>
       ) : (
         isSuccess && (
-          <div className="mx-[5.5%]">
+          <div className="mx-[2.8%]">
             <Header
               value={filter}
               setFilter={setFilter}
               setInputValue={handleInputChange}
             />
-            {filteredAuditing.length > 0 && (
+            {filteredAuditing.length > 0 ? (
               <PaginationComponent
                 RenderComponent={AuditSection}
                 data={filteredAuditing}
                 itemsPerPage={itemsPerPage}
               />
-            )}
+            ):<div className="flex-grow ">
+            <TextSearch
+              text={"لا يوجد نتائج مطابقة"}
+            />
+          </div>}
           </div>
         )
       )}
