@@ -173,9 +173,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useBlocPatientMutation } from "../../../services/manager_center/patient/block_patient/block_pateint";
 
 export function CenterUserDialog({ dialogOpen, setDialogOpen ,id , type}) {
-  console.log(id);
-  
- 
+
   const handleClose = (event) => {
     event.stopPropagation()
     setDialogOpen(false);
