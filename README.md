@@ -14,11 +14,11 @@ This project gained national recognition for its social impact and technical exe
 ## 🚀 System Architecture (5-in-1 Solution)
 The system is designed to replace paper-based records with a centralized Data Center, managing over **35 medical centers** and thousands of patient sessions. It consists of **5 integrated applications**:
 
-1.  **Main Admin Dashboard (Web):** Full oversight for "Daamkom Hayat" program management.
-2.  **Center Manager Dashboard (Web):** Local management for individual center operations.
-3.  **Medical Secretary Portal (Web):** Handling patient intake, files, and scheduling.
-4.  **Nursing Application (Mobile):** Real-time monitoring and logging for dialysis sessions.
-5.  **Patient Application (Mobile):** Allowing patients to track their medical history and appointments.
+1. **Main Admin Dashboard (Web):** Full oversight for "Daamkom Hayat" program management.
+2. **Center Manager Dashboard (Web):** Local management for individual center operations.
+3. **Medical Secretary Portal (Web):** Handling patient intake, files, and scheduling.
+4. **Nursing Application (Mobile):** Real-time monitoring and logging for dialysis sessions.
+5. **Patient Application (Mobile):** Allowing patients to track their medical history and appointments.
 
 ---
 
@@ -33,16 +33,37 @@ As a **Frontend Software Engineer**, I co-led the development of the Web Dashboa
 
 ---
 
-## 📸 System Preview
+## 📸 System Preview (Web Dashboard)
 *Visualizing the digital transformation from paper to code.*
 
-### 🖥️ Web Dashboard (React)
-![Dashboard Screenshot](screenshots/dashboard.png)
-*Real-time statistics and medical records management.*
+### 🖥️ Main Analytics Overview
+![Main Dashboard](screenshots/main-dashboard.png)
+*The central management hub built with React.js & Vite, providing real-time oversight of all centers.*
 
-### 📱 Mobile Interface (Flutter)
-![Mobile App Screenshot](screenshots/mobile.png)
-*Session tracking and patient-specific mobile views.*
+<details>
+  <summary><b>🔍 View More System Interfaces (Screenshots)</b></summary>
+  <br>
+  
+  #### 📊 Medical Statistics & Progress Charts
+  ![Statistics](screenshots/statistics-charts.png)
+  *Advanced data visualization for patient sessions and treatment outcomes.*
+
+  #### 📋 Patient Records Management (EMR)
+  ![Patient Management](screenshots/patient-management.png)
+  *Centralized Electronic Medical Records for thousands of patients across 35+ centers.*
+
+  #### 🧪 Comprehensive Medical Records
+  ![Medical Record](screenshots/medical-record.png)
+  *Detailed individual patient history, lab results, and dialysis session logs.*
+
+  #### 💉 Session Consumables & Inventory Tracking
+  ![Consumables Tracking](screenshots/session-inventory-logs.png)
+  *Automated tracking of medical supplies used during sessions to prevent waste.*
+
+  #### 🔐 Secure User Roles & Permissions
+  ![User Profiles](screenshots/user-roles.png)
+  *Granular access control for Admins, Center Managers, and Medical Secretaries.*
+</details>
 
 ---
 
